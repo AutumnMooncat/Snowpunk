@@ -1,0 +1,18 @@
+{
+  "${ModID}:ModConfigs": {
+    "TEXT": [
+      "If we decide to make any mod settings",
+      "The strings should go in here"
+    ],
+    "EXTRA_TEXT": [
+      "The M10 Robot",
+      "Adds M10 Robot (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!"
+    ]
+  },
+  "${ModID}:Parts": {
+    "TEXT": [
+      "Parts",
+      "Parts can be added to cards to add or modify effects."
+    ]
+  }
+}
