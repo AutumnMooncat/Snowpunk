@@ -30,6 +30,10 @@
     "NAME": "Snowblower",
     "DESCRIPTIONS": ["At the start of your turn, gain #b"," #ySnowball."," #ySnowballs."]
   },
+  "${ModID}:PressureValvesPower": {
+    "NAME": "Pressure Valves",
+    "DESCRIPTIONS": ["#yPressurized cards act as if you have #b"," more #yEnergy."]
+  },
   "${ModID}:LosePowerPower": {
     "NAME": "Lose ",
     "DESCRIPTIONS": ["At the end of your turn, lose #b"," ","."]

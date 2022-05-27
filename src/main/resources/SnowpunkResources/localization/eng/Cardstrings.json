@@ -21,6 +21,10 @@
     "NAME": "Ice Cube",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."
   },
+  "${ModID}:PressureValves": {
+    "NAME": "Pressure Valves",
+    "DESCRIPTION": "{@@}snowpunk:Pressurized cards act as if you have {!Upgrades!|@=!M!|>0=X} more energy."
+  },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
