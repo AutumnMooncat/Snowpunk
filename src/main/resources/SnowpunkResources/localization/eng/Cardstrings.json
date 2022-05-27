@@ -23,7 +23,7 @@
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
-    "DESCRIPTION": "{@@}snowpunk:Pressurized cards act as if you have {!Upgrades!|@=!M!|>0=X} more energy."
+    "DESCRIPTION": "{@@}snowpunk:Pressure acts as if you have {!Upgrades!|@=!M!|>0=X} more energy."
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
