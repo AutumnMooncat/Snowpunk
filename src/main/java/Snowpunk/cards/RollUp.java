@@ -12,7 +12,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class RollUp extends AbstractEasyCard {
     public final static String ID = makeID("RollUp");
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 

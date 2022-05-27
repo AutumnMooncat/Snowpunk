@@ -27,7 +27,7 @@
       "pressure",
       "pressurized"
     ],
-    "DESCRIPTION": "Your current remaining #yEnergy."
+    "DESCRIPTION": "Your current #yEnergy."
   },
   {
     "PROPER_NAME": "Snowballs",
