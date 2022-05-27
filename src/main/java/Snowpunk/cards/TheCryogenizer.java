@@ -2,8 +2,6 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.powers.HeatNextCardPower;
-import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,20 +19,43 @@ public class TheCryogenizer extends AbstractEasyCard {
 
     private static final int COST = 0;
     private static final int DMG = 50;
-    private static final int UP_DMG = 10;
     private static final int MIN_HEAT = 1;
+    private static final int UP_MIN_HEAT = 0;
 
     public TheCryogenizer() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        baseInfo = info = 2;
+        CardModifierManager.addModifier(this, new TemperatureMod(true, -2));
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        if (!super.canUse(p, m)) {
+            return false;
+        } else {
+            return info == 0;
+        }
+    }
+
+    private void updateInfo() {
+        int heat = TemperatureMod.getCardHeat(this);
+        if (heat < (upgraded ? UP_MIN_HEAT : MIN_HEAT)) {
+            info = upgraded ? 1 : 2;
+        } else {
+            info = 0;
+        }
+        isInfoModified = info != baseInfo;
+    }
+
     public void upp() {
-        upgradeDamage(UP_DMG);
-        CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
+        updateInfo();
+        initializeDescription();
+        //CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
     }
 }
