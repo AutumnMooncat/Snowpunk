@@ -11,6 +11,7 @@
   },
   "${ModID}:Parts": {
     "TEXT": [
+      "Part",
       "Parts",
       "Parts can be added to cards to add or modify effects."
     ]

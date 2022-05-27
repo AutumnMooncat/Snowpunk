@@ -45,7 +45,7 @@ public abstract class AbstractPartCard extends AbstractEasyCard {
     public List<TooltipInfo> getCustomTooltipsTop() {
         if (partTooltip == null) {
             partTooltip = new ArrayList<>();
-            partTooltip.add(new TooltipInfo(TEXT[0], TEXT[1]));
+            partTooltip.add(new TooltipInfo(TEXT[1], TEXT[2]));
         }
         return partTooltip;
     }
