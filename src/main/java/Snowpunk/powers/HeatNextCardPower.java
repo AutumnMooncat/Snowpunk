@@ -5,6 +5,7 @@ import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -25,19 +26,21 @@ public class HeatNextCardPower extends AbstractEasyPower {
     }
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
+    public void onUseCard(AbstractCard card, UseCardAction action)
+    {
         flash();
         Wiz.atb(new ModEngineTempAction(1));
-        this.addToTop(new ModCardTempAction(card, 1));
-        this.addToTop(new ReducePowerAction(owner, owner, this, 1));
+        CardModifierManager.addModifier(card, new TemperatureMod(false, 1));
+        //addToTop(new ModCardTempAction(card, 1));
+        addToTop(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override
     public void updateDescription() {
         if (amount == 1) {
-            this.description = DESCRIPTIONS[0];
+            description = DESCRIPTIONS[0];
         } else {
-            this.description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
     }
 }

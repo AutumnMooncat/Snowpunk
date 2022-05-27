@@ -22,12 +22,12 @@
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
   },
   "${ModID}:ReleaseValve": {
-    "NAME": "Release Value",
+    "NAME": "Release Valve",
     "DESCRIPTION": "Deal !D! damage. NL snowpunk:Heat the next card you play."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
-    "DESCRIPTION": "{@@}snowpunk:Pressurized. NL Gain {!Location!|-1=X|@=!Snowpunk:P!} snowpunk:Snowball{!Snowpunk:P!|0,>1=s}."
+    "DESCRIPTION": "{@@}snowpunk:Pressurized. NL Gain {!Location!|@=X|0=!Snowpunk:P!} snowpunk:Snowball{!Snowpunk:P!|0,>1=s}."
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",

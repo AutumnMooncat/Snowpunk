@@ -4,7 +4,7 @@
     "NAMES": [
       "assemble"
     ],
-    "DESCRIPTION": "Create a new card and add it to your hand."
+    "DESCRIPTION": "Create a new card from a selection of #yParts and add it to your hand."
   },
   {
     "PROPER_NAME": "Burn",
@@ -22,12 +22,12 @@
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
   {
-    "PROPER_NAME": "Pressure",
+    "PROPER_NAME": "Pressurized",
     "NAMES": [
       "pressure",
       "pressurized"
     ],
-    "DESCRIPTION": "Pressurized cards are more effective the more unspent #yEnergy you have."
+    "DESCRIPTION": "Replaces X with your current #yEnergy."
   },
   {
     "PROPER_NAME": "Snowballs",
@@ -36,7 +36,7 @@
       "snowballs",
       "snow"
     ],
-    "DESCRIPTION": "Used by cards and can be converted to #yEnergy at the cost of cooling your #yEngine."
+    "DESCRIPTION": "An accumulating resource that can be converted to #yEnergy at the cost of cooling your #yEngine."
   },
   {
     "PROPER_NAME": "Soot",
@@ -51,7 +51,15 @@
     "NAMES": [
       "Tinker"
     ],
-    "DESCRIPTION": "Modify a card to apply an additional effect."
+    "DESCRIPTION": "Modify a card with a random #yPart chosen from a selection."
+  },
+  {
+    "PROPER_NAME": "Part",
+    "NAMES": [
+      "part",
+      "parts"
+    ],
+    "DESCRIPTION": "Modifies the abilities of a card."
   },
   {
     "PROPER_NAME": "Temporary",
@@ -72,28 +80,28 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Exhausts. Greatly heats your #yEngine, grants [E] when played, and repeats the card's effect."
+    "DESCRIPTION": "Greatly #yHeats your #yEngine. Repeat this card's effect. Gain [E] . #yExhaust."
   },
   {
     "PROPER_NAME": "Hot",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Exhausts. Heats your #yEngine and grants [E] when played."
+    "DESCRIPTION": "#yHeats your #yEngine. Gain [E] . #yExhaust."
   },
   {
     "PROPER_NAME": "Cold",
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "Retains. Cools your #yEngine and draws a card when played."
+    "DESCRIPTION": "#yCools your #yEngine. #yRetain.  Draw a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "Retains. Greatly cools your #yEngine, draws a card, and grants a #ySnowball when played."
+    "DESCRIPTION": "Greatly #yCools your #yEngine. Gain a #ySnowball. #yRetain. Draw a card"
   },
   {
     "PROPER_NAME": "Heat",
@@ -101,7 +109,7 @@
       "heat",
       "heated"
     ],
-    "DESCRIPTION": "Raise a card's temperature. Temperature ranges from Frozen to Overheated."
+    "DESCRIPTION": "Raise a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
     "PROPER_NAME": "Cool",
@@ -109,13 +117,13 @@
       "cool",
       "cooled"
     ],
-    "DESCRIPTION": "Lower a card's temperature. Temperature ranges from Frozen to Overheated."
+    "DESCRIPTION": "Lower a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
     "PROPER_NAME": "Stable",
     "NAMES": [
       "stable"
     ],
-    "DESCRIPTION": "Temperature ranges from Frozen to Overheated."
+    "DESCRIPTION": "Temperature with no effects. Temperature ranges from #yFrozen to #yOverheated."
   }
 ]
