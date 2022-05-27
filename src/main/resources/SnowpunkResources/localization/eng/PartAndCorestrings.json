@@ -1,0 +1,16 @@
+{
+  "${ModID}:Example": {
+    "NAME": "",
+    "DESCRIPTION": "",
+    "UPGRADE_DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [""]
+  },
+  "${ModID}:CryonicCrystal": {
+    "NAME": "Cryonic Crystal",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:HeatingCoils": {
+    "NAME": "Heating Coils",
+    "DESCRIPTION": ""
+  }
+}

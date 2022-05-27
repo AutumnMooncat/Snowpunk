@@ -8,15 +8,15 @@ import java.util.function.Predicate;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class HeatingCoils extends AbstractPartCard {
-    public static final String ID = makeID(HeatingCoils.class.getSimpleName());
+public class CryonicCrystal extends AbstractPartCard {
+    public static final String ID = makeID(CryonicCrystal.class.getSimpleName());
 
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
 
-    public HeatingCoils() {
+    public CryonicCrystal() {
         super(ID, TYPE, RARITY);
-        CardModifierManager.addModifier(this, new TemperatureMod(false, 1));
+        CardModifierManager.addModifier(this, new TemperatureMod(false, -2));
     }
 
     @Override
@@ -26,6 +26,6 @@ public class HeatingCoils extends AbstractPartCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new TemperatureMod(false, 1));
+        CardModifierManager.addModifier(card, new TemperatureMod(false, -2));
     }
 }
