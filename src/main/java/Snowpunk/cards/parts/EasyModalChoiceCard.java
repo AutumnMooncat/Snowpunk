@@ -1,4 +1,4 @@
-package Snowpunk.cutContent.democards;
+package Snowpunk.cards.parts;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import basemod.AutoAdd;
