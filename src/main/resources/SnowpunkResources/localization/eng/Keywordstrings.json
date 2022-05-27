@@ -22,12 +22,12 @@
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
   {
-    "PROPER_NAME": "Pressurized",
+    "PROPER_NAME": "Pressure",
     "NAMES": [
       "pressure",
       "pressurized"
     ],
-    "DESCRIPTION": "Replaces X with your current #yEnergy."
+    "DESCRIPTION": "Your current remaining #yEnergy."
   },
   {
     "PROPER_NAME": "Snowballs",
