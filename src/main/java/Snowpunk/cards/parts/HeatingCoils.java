@@ -1,22 +1,34 @@
 package Snowpunk.cards.parts;
 
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
+import Snowpunk.cardmods.TemperatureMod;
+import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+
+import java.util.function.Predicate;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class HeatingCoils extends EasyModalChoiceCard
-{
+public class HeatingCoils extends AbstractPartCard {
     public static final String ID = makeID(HeatingCoils.class.getSimpleName());
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 
-    public HeatingCoils(String name, String description, Runnable onUseOrChosen)
-    {
-        super(NAME, DESCRIPTION, () ->
-        {
-            //Add heat to card but idk how to get card to modify yet
-        });
+    private static final AbstractCard.CardType TYPE = CardType.SKILL;
+
+    public HeatingCoils() {
+        super(ID, TYPE);
+    }
+
+    @Override
+    public Predicate<AbstractCard> getFilter() {
+        return isPlayable;
+    }
+
+    @Override
+    public void apply(AbstractCard card) {
+        CardModifierManager.addModifier(card, new TemperatureMod(false, 1));
+    }
+
+    @Override
+    public void upp() {
+        //If we want to upgrade parts we can support it, we dont need to if we dont want though
     }
 }
