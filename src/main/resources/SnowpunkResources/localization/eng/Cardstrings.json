@@ -33,6 +33,10 @@
     "NAME": "Snowball Fight",
     "DESCRIPTION": "snowpunk:Toss S: Deal !D! damage S times."
   },
+  "${ModID}:Snowblower": {
+    "NAME": "Snowblower",
+    "DESCRIPTION": "{@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s}."
+  },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool all cards in your hand."

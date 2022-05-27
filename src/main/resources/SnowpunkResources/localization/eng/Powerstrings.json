@@ -24,7 +24,11 @@
   "${ModID}:CoolNextCardPower": {
     "NAME": "Cool Next Card",
     "DESCRIPTIONS": ["#yCool the next card you play.",
-                    "#yCool the next #b"," cards you play."]
+      "#yCool the next #b"," cards you play."]
+  },
+  "${ModID}:SnowblowerPower": {
+    "NAME": "Snowblower",
+    "DESCRIPTIONS": ["At the start of your turn, gain #b"," #ySnowball."," #ySnowballs."]
   },
   "${ModID}:LosePowerPower": {
     "NAME": "Lose ",
