@@ -1,6 +1,7 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
@@ -102,6 +103,9 @@ public class TemperatureMod extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
+        if (card instanceof OnTempChangeCard) {
+            ((OnTempChangeCard) card).onTempChange(heat);
+        }
         if (CardModifierManager.hasModifier(card, ID)) {
             TemperatureMod tm = (TemperatureMod) CardModifierManager.getModifiers(card, ID).get(0);
             tm.heat += heat;
