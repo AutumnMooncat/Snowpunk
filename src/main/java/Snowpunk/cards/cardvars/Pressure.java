@@ -1,10 +1,12 @@
 package Snowpunk.cards.cardvars;
 
 import Snowpunk.powers.interfaces.ModifyPressurePower;
+import Snowpunk.relics.interfaces.ModifyPressureRelic;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
@@ -40,9 +42,14 @@ public class Pressure extends DynamicVariable {
     public static int getPressure() {
         int p = EnergyPanel.getCurrentEnergy();
         if (Wiz.adp() != null) {
+            for (AbstractPower pow : Wiz.adp().powers) {
+                if (pow instanceof ModifyPressurePower) {
+                    p = ((ModifyPressurePower) pow).modifyPressure(p);
+                }
+            }
             for (AbstractRelic r : Wiz.adp().relics) {
-                if (r instanceof ModifyPressurePower) {
-                    p = ((ModifyPressurePower) r).modifyPressure(p);
+                if (r instanceof ModifyPressureRelic) {
+                    p = ((ModifyPressureRelic) r).modifyPressure(p);
                 }
             }
         }
