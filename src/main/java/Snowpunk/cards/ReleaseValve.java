@@ -23,6 +23,7 @@ public class ReleaseValve extends AbstractEasyCard {
     private static final int DMG = 10;
     private static final int UP_DMG = 4;
     private static final int HEAT_NEXT = 1;
+    private static final int UP_HEAT_NEXT = 1;
 
     public ReleaseValve() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -37,6 +38,6 @@ public class ReleaseValve extends AbstractEasyCard {
 
     public void upp() {
         upgradeDamage(UP_DMG);
-        CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
+        upgradeMagicNumber(UP_HEAT_NEXT);
     }
 }
