@@ -47,7 +47,7 @@
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
-    "DESCRIPTION": "{@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s}."
+    "DESCRIPTION": "{@@}snowpunk:Frozen cards give !M! additional snowpunk:Snowball{!M!|>1=s}."
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",

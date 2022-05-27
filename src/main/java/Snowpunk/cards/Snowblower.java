@@ -31,6 +31,7 @@ public class Snowblower extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(UP_COST);
+        //upgradeBaseCost(UP_COST);
+        upgradeMagicNumber(UP_SNOW);
     }
 }

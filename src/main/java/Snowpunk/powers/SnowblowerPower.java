@@ -1,9 +1,12 @@
 package Snowpunk.powers;
 
+import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -18,9 +21,11 @@ public class SnowblowerPower extends AbstractEasyPower {
     }
 
     @Override
-    public void atStartOfTurn() {
-        flash();
-        Wiz.applyToSelf(new SnowballPower(Wiz.adp(), amount));
+    public void onPlayCard(AbstractCard card, AbstractMonster m) {
+        if (TemperatureMod.getCardHeat(card) == -2) {
+            flash();
+            Wiz.applyToSelf(new SnowballPower(Wiz.adp(), amount));
+        }
     }
 
     @Override
