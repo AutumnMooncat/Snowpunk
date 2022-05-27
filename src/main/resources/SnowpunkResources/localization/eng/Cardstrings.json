@@ -31,11 +31,15 @@
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Heat the next card you play."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
     "DESCRIPTION": "{@@}Gain snowpunk:Snowballs equal to your snowpunk:Pressure.{!Location!||0= NL snowpunk:Pressure: !Snowpunk:P!}"
+  },
+  "${ModID}:Snowball": {
+    "NAME": "Snowball",
+    "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",

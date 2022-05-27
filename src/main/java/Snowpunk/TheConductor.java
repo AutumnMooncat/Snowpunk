@@ -1,9 +1,6 @@
 package Snowpunk;
 
-import Snowpunk.cards.Defend;
-import Snowpunk.cards.ReleaseValve;
-import Snowpunk.cards.RollUp;
-import Snowpunk.cards.Strike;
+import Snowpunk.cards.*;
 import Snowpunk.cards.interfaces.SkillAnimationAttack;
 import Snowpunk.relics.TodoItem;
 import Snowpunk.util.HeatBasedEnergyManager;
@@ -90,7 +87,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
-        retVal.add(RollUp.ID);
+        retVal.add(Snowball.ID);
         return retVal;
     }
 
