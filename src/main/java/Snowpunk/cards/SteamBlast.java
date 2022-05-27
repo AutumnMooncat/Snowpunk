@@ -19,7 +19,7 @@ public class SteamBlast extends AbstractEasyCard {
 
     private static final int COST = 1;
     private static final int DMG = 6;
-    private static final int UP_DMG = 3;
+    private static final int UP_DMG = 4;
 
     public SteamBlast() {
         super(ID, COST, TYPE, RARITY, TARGET);
