@@ -17,6 +17,10 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
+  "${ModID}:IceCube": {
+    "NAME": "Ice Cube",
+    "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."
+  },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
