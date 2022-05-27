@@ -5,6 +5,7 @@ import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,7 +29,8 @@ public class CoolNextCardPower extends AbstractEasyPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         flash();
         Wiz.atb(new ModEngineTempAction(-1));
-        this.addToTop(new ModCardTempAction(card, -1));
+        CardModifierManager.addModifier(card, new TemperatureMod(false, -1));
+        //this.addToTop(new ModCardTempAction(card, -1));
         this.addToTop(new ReducePowerAction(owner, owner, this, 1));
     }
 
