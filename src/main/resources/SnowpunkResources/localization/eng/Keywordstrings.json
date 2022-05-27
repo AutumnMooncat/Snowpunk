@@ -110,5 +110,12 @@
       "cooled"
     ],
     "DESCRIPTION": "Lower a card's temperature. Temperature ranges from Frozen to Overheated."
+  },
+  {
+    "PROPER_NAME": "Stable",
+    "NAMES": [
+      "stable"
+    ],
+    "DESCRIPTION": "Temperature ranges from Frozen to Overheated."
   }
 ]

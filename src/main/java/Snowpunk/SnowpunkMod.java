@@ -1,5 +1,6 @@
 package Snowpunk;
 
+import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.Pressure;
 import Snowpunk.icons.IconContainer;
 import basemod.AutoAdd;
@@ -143,6 +144,7 @@ public class SnowpunkMod implements
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new Pressure());
+        BaseMod.addDynamicVariable(new Info());
         new AutoAdd(modID)
                 .packageFilter("Snowpunk.cards")
                 .setDefaultSeen(true)
