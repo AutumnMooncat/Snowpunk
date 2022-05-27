@@ -1,5 +1,6 @@
 package Snowpunk.cards.abstracts;
 
+import Snowpunk.cards.cardvars.Pressure;
 import Snowpunk.powers.SnowballPower;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
@@ -251,7 +252,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected int pressure() {
-        return EnergyPanel.getCurrentEnergy();
+        return Pressure.getPressure();
     }
 
     protected int getSnow() {
