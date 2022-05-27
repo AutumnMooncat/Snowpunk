@@ -1,0 +1,52 @@
+{
+  "${ModID}:Example": {
+    "NAME": "",
+    "DESCRIPTION": "",
+    "UPGRADE_DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [""]
+  },
+  "${ModID}:Avalanche": {
+    "NAME": "Avalanche",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Frozen, deal that damage again."
+  },
+  "${ModID}:BurningCoals": {
+    "NAME": "Burning Coals",
+    "DESCRIPTION": "snowpunk:Heat a card in your hand."
+  },
+  "${ModID}:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:Refrigerate": {
+    "NAME": "Refrigerate",
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
+  },
+  "${ModID}:ReleaseValve": {
+    "NAME": "Release Value",
+    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Heat the next card you play."
+  },
+  "${ModID}:RollUp": {
+    "NAME": "Roll Up",
+    "DESCRIPTION": "{@@}snowpunk:Pressurized. NL Gain {!Location!|-1=X|@=!Snowpunk:P!} snowpunk:Snowball{!Snowpunk:P!|0,>1=s}."
+  },
+  "${ModID}:SnowballFight": {
+    "NAME": "Snowball Fight",
+    "DESCRIPTION": "snowpunk:Toss S: Deal !D! damage S times."
+  },
+  "${ModID}:Snowfall": {
+    "NAME": "Snowfall",
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool all cards in your hand."
+  },
+  "${ModID}:SnowFort": {
+    "NAME": "Snow Fort",
+    "DESCRIPTION": "Gain !B! Block S times."
+  },
+  "${ModID}:SteamBlast": {
+    "NAME": "Steam Blast",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "${ModID}:EtherealMod": {
+    "EXTENDED_DESCRIPTION": ["Ethereal. NL "]
+  },
+  "${ModID}:ExhaustMod": {
+    "EXTENDED_DESCRIPTION": [" NL Exhaust."]
+  },
+  "${ModID}:RetainMod": {
+    "EXTENDED_DESCRIPTION": ["Retain. NL "]
+  },
+  "${ModID}:TemperatureMod": {
+    "EXTENDED_DESCRIPTION": ["snowpunk:Hot. NL ", "snowpunk:Overheated. NL ", "snowpunk:Cold. NL ", "snowpunk:Frozen. NL "]
+  }
+}

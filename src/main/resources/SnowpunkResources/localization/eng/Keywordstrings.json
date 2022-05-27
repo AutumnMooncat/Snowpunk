@@ -1,0 +1,114 @@
+[
+  {
+    "PROPER_NAME": "Assemble",
+    "NAMES": [
+      "assemble"
+    ],
+    "DESCRIPTION": "Create a new card and add it to your hand."
+  },
+  {
+    "PROPER_NAME": "Burn",
+    "NAMES": [
+      "burning",
+      "burn"
+    ],
+    "DESCRIPTION": "Burning creatures take damage at the start of your turn. Each turn, Burn is reduced by #b1."
+  },
+  {
+    "PROPER_NAME": "Engine",
+    "NAMES": [
+      "engine"
+    ],
+    "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
+  },
+  {
+    "PROPER_NAME": "Pressure",
+    "NAMES": [
+      "pressure",
+      "pressurized"
+    ],
+    "DESCRIPTION": "Pressurized cards are more effective the more unspent #yEnergy you have."
+  },
+  {
+    "PROPER_NAME": "Snowballs",
+    "NAMES": [
+      "snowball",
+      "snowballs",
+      "snow"
+    ],
+    "DESCRIPTION": "Used by cards and can be converted to #yEnergy at the cost of cooling your #yEngine."
+  },
+  {
+    "PROPER_NAME": "Soot",
+    "NAMES": [
+      "soot",
+      "sooty"
+    ],
+    "DESCRIPTION": "If this creature is #yBurning, its #yBurn increases instead of decreasing."
+  },
+  {
+    "PROPER_NAME": "Tinker",
+    "NAMES": [
+      "Tinker"
+    ],
+    "DESCRIPTION": "Modify a card to apply an additional effect."
+  },
+  {
+    "PROPER_NAME": "Temporary",
+    "NAMES": [
+      "temporary"
+    ],
+    "DESCRIPTION": "Effect is lost at the end of this turn."
+  },
+  {
+    "PROPER_NAME": "Toss",
+    "NAMES": [
+      "toss"
+    ],
+    "DESCRIPTION": "Requires and consumes #ySnowballs to trigger an extra effect."
+  },
+  {
+    "PROPER_NAME": "Overheated",
+    "NAMES": [
+      "overheated"
+    ],
+    "DESCRIPTION": "Exhausts. Greatly heats your #yEngine, grants [E] when played, and repeats the card's effect."
+  },
+  {
+    "PROPER_NAME": "Hot",
+    "NAMES": [
+      "hot"
+    ],
+    "DESCRIPTION": "Exhausts. Heats your #yEngine and grants [E] when played."
+  },
+  {
+    "PROPER_NAME": "Cold",
+    "NAMES": [
+      "cold"
+    ],
+    "DESCRIPTION": "Retains. Cools your #yEngine and draws a card when played."
+  },
+  {
+    "PROPER_NAME": "Frozen",
+    "NAMES": [
+      "frozen"
+    ],
+    "DESCRIPTION": "Retains. Greatly cools your #yEngine, draws a card, and grants a #ySnowball when played."
+  },
+  {
+    "PROPER_NAME": "Heat",
+    "NAMES": [
+      "heat",
+      "heated"
+    ],
+    "DESCRIPTION": "Raise a card's temperature. Temperature ranges from Frozen to Overheated."
+  },
+  {
+    "PROPER_NAME": "Cool",
+    "NAMES": [
+      "cool",
+      "cooled"
+    ],
+    "DESCRIPTION": "Lower a card's temperature. Temperature ranges from Frozen to Overheated."
+  }
+]

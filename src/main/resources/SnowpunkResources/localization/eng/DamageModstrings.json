@@ -1,0 +1,12 @@
+{
+  "${ModID}:RangedDamage": {
+    "NAME": "Ranged",
+    "DESCRIPTION": "Ranged [Ordnance:RangedIcon]",
+    "EXTENDED_DESCRIPTION": ["Requires #yAmmo to play. NL Applies #yBleeding and bypasses #yThorns."]
+  },
+  "${ModID}:FireDamage": {
+    "NAME": "Fire",
+    "DESCRIPTION": "Fire [Ordnance:FireIcon]",
+    "EXTENDED_DESCRIPTION": ["Deals #b20% more damage to targets with no #bBlock."]
+  }
+}
