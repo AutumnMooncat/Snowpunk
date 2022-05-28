@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class SnowFort extends AbstractEasyCard {
-    public final static String ID = makeID("SnowFort");
+    public final static String ID = makeID(SnowFort.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;

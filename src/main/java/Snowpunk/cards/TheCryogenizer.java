@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class TheCryogenizer extends AbstractEasyCard {
-    public final static String ID = makeID("TheCryogenizer");
+    public final static String ID = makeID(TheCryogenizer.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;

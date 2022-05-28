@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class ReleaseValve extends AbstractEasyCard {
-    public final static String ID = makeID("ReleaseValve");
+    public final static String ID = makeID(ReleaseValve.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;

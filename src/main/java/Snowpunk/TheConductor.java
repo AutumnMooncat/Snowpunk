@@ -67,8 +67,8 @@ public class TheConductor extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                50,
-                50,
+                80,
+                80,
                 0,
                 99,
                 5, this, getStartingRelics(),

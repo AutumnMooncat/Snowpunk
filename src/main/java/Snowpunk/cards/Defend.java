@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class Defend extends AbstractEasyCard {
-    public final static String ID = makeID("Defend");
+    public final static String ID = makeID(Defend.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;

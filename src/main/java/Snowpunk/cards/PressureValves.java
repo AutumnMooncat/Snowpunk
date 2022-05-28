@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class PressureValves extends AbstractEasyCard {
-    public final static String ID = makeID("PressureValves");
+    public final static String ID = makeID(PressureValves.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
