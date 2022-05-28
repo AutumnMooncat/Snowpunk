@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
-    public final static String ID = makeID("IceCube");
+    public final static String ID = makeID(IceCube.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;

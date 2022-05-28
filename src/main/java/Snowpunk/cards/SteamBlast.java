@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class SteamBlast extends AbstractEasyCard {
-    public final static String ID = makeID("SteamBlast");
+    public final static String ID = makeID(SteamBlast.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;

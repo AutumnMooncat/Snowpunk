@@ -17,7 +17,8 @@
   {
     "PROPER_NAME": "Engine",
     "NAMES": [
-      "engine"
+      "engine",
+      "engine's"
     ],
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
@@ -36,7 +37,7 @@
       "snowballs",
       "snow"
     ],
-    "DESCRIPTION": "An accumulating resource that can be converted to #yEnergy at the cost of cooling your #yEngine."
+    "DESCRIPTION": "An accumulating resource that can be converted to #yEnergy at the cost of #yCooling your #yEngine."
   },
   {
     "PROPER_NAME": "Soot",
@@ -118,6 +119,13 @@
       "cooled"
     ],
     "DESCRIPTION": "Lower a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
+  },
+  {
+    "PROPER_NAME": "Freeze",
+    "NAMES": [
+      "freeze"
+    ],
+    "DESCRIPTION": "Lower a card's temperature until it is #yFrozen. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
     "PROPER_NAME": "Stable",

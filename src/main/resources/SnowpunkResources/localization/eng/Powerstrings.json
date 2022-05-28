@@ -5,26 +5,42 @@
   },
   "${ModID}:EngineTempPower": {
     "NAME": "Engine Temperature",
-    "DESCRIPTIONS": ["Determines your per turn #yEnergy and #ySnowball gain. NL Current Temperature: ",
-                    " NL #bFrozen: #b0 #yEnergy, #b2 #ySnowballs",
-                    " NL #bCold: #b1 #yEnergy, #b1 #ySnowball",
-                    " NL #yStable: #b2 #yEnergy, #b1 #ySnowball1",
-                    " NL #rHot: #b3 #yEnergy",
-                    " NL #rOverheated: #b4 #yEnergy"]
+    "DESCRIPTIONS": [
+      "Determines your per turn #yEnergy and #ySnowball gain. NL Current Temperature: ",
+      " NL #bFrozen: #b0 #yEnergy, #b2 #ySnowballs",
+      " NL #bCold: #b1 #yEnergy, #b1 #ySnowball",
+      " NL #yStable: #b2 #yEnergy, #b1 #ySnowball1",
+      " NL #rHot: #b3 #yEnergy",
+      " NL #rOverheated: #b4 #yEnergy"
+    ]
   },
   "${ModID}:SnowballPower": {
     "NAME": "Snowballs",
-    "DESCRIPTIONS": ["Used by cards and can be converted to #yEnergy at the cost of cooling your #yEngine."]
+    "DESCRIPTIONS": [
+      "An accumulating resource that can be converted to #yEnergy at the cost of #yCooling your #yEngine."
+    ]
+  },
+  "${ModID}:SnowballChillPower": {
+    "NAME": "Snowball Chill",
+    "DESCRIPTIONS": [
+      "Once this reaches 3, #yCool your #yEngine."
+    ]
   },
   "${ModID}:HeatNextCardPower": {
     "NAME": "Heat Next Card",
-    "DESCRIPTIONS": ["#yHeat the next card you play.",
-                    "#yHeat the next #b"," cards you play."]
+    "DESCRIPTIONS": [
+      "#yHeat the next card you play.",
+      "#yHeat the next #b",
+      " cards you play."
+    ]
   },
   "${ModID}:CoolNextCardPower": {
     "NAME": "Cool Next Card",
-    "DESCRIPTIONS": ["#yCool the next card you play.",
-      "#yCool the next #b"," cards you play."]
+    "DESCRIPTIONS": [
+      "#yCool the next card you play.",
+      "#yCool the next #b",
+      " cards you play."
+    ]
   },
   "${ModID}:SnowblowerPower": {
     "NAME": "Snowblower",
