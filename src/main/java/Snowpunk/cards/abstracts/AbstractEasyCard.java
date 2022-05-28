@@ -203,6 +203,7 @@ public abstract class AbstractEasyCard extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upp();
+            initializeDescription();
         }
     }
 

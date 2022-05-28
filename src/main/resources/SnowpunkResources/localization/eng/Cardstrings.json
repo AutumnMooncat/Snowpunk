@@ -29,9 +29,13 @@
     "NAME": "Refrigerate",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
   },
+  "${ModID}:PiercingRound": {
+    "NAME": "Piercing Round",
+    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage to ALL enemies."
+  },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
+    "DESCRIPTION": "{@@}snowpunk:Gun. NL Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",

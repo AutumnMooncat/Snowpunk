@@ -33,6 +33,7 @@ public class NorEaster extends AbstractEasyCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         Wiz.atb(new ModCardTempEverywhereAction(-99));
+        Wiz.atb(new ModCardTempAction(this, -99));
         Wiz.atb(new ModEngineTempAction(-99));
         if (upgraded)
             Wiz.atb(new ModEngineStabilityPointAction(-99));

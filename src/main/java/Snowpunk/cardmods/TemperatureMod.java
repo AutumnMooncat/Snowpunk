@@ -1,5 +1,6 @@
 package Snowpunk.cardmods;
 
+import Snowpunk.actions.ExhumeMostRecentAction;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowballPower;
@@ -54,7 +55,7 @@ public class TemperatureMod extends AbstractCardModifier {
             Wiz.atb(new DrawCardAction(1));
         }
         if (heat == -2) {
-            Wiz.applyToSelf(new SnowballPower(Wiz.adp(), 1));
+            Wiz.atb(new ExhumeMostRecentAction(card, 1));
         }
     }
 

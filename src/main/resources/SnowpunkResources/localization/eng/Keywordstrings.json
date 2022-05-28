@@ -23,6 +23,21 @@
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
   {
+    "PROPER_NAME": "Gun",
+    "NAMES": [
+      "gun"
+    ],
+    "DESCRIPTION": "#yTemperature and #yTinker effects applied to this card apply to ALL cards with #yGun."
+  },
+  {
+    "PROPER_NAME": "Pressure",
+    "NAMES": [
+      "pressure",
+      "pressurized"
+    ],
+    "DESCRIPTION": "Your current #yEnergy."
+  },
+  {
     "PROPER_NAME": "Pressure",
     "NAMES": [
       "pressure",
