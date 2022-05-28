@@ -28,14 +28,12 @@ public class TheCryogenizer extends AbstractEasyCard {
         baseDamage = damage = DMG;
         baseInfo = info = 2;
         CardTemperatureFields.addInherentHeat(this, -2);
-        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
-    //TODO buggy, give proper update in apply powers
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (!super.canUse(p, m)) {
@@ -43,6 +41,12 @@ public class TheCryogenizer extends AbstractEasyCard {
         } else {
             return info == 0;
         }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        updateInfo();
     }
 
     private void updateInfo() {
