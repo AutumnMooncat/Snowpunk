@@ -45,7 +45,7 @@ public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
 
     @Override
     public void onTempChange(int change) {
-        if (change > 0) {
+        if (change > 0 && Wiz.adp() != null) {
             if (Wiz.adp().cardInUse == this) {
                 for (AbstractGameAction a : AbstractDungeon.actionManager.actions) {
                     if (a instanceof UseCardAction) {
