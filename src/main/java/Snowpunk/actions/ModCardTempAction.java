@@ -53,7 +53,7 @@ public class ModCardTempAction extends AbstractGameAction {
                 }
             }
             //If we have less valid cards than cards to modify, we can just hit all of them
-            if (amount >= validCards.size()) {
+            if (amount == -1 || amount >= validCards.size()) {
                 for (AbstractCard c : validCards.group) {
                     CardTemperatureFields.addHeat(c, heat);
                 }
