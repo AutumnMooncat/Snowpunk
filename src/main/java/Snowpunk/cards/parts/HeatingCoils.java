@@ -1,7 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.TemperatureMod;
-import basemod.helpers.CardModifierManager;
+import Snowpunk.patches.CardTemperatureFields;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import java.util.function.Predicate;
@@ -16,7 +15,7 @@ public class HeatingCoils extends AbstractPartCard {
 
     public HeatingCoils() {
         super(ID, TYPE, RARITY);
-        CardModifierManager.addModifier(this, new TemperatureMod(false, 1));
+        CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     @Override
@@ -26,6 +25,6 @@ public class HeatingCoils extends AbstractPartCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new TemperatureMod(false, 1));
+        CardTemperatureFields.addHeat(card, 1);
     }
 }

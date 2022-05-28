@@ -1,6 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -23,13 +24,13 @@ public class ModCardTempAction extends AbstractGameAction {
     @Override
     public void update() {
         if (card != null) {
-            CardModifierManager.addModifier(card, new TemperatureMod(false, amount));
+            CardTemperatureFields.addHeat(card, amount);
         } else {
             if (random) {
-                CardModifierManager.addModifier(AbstractDungeon.player.hand.getRandomCard(true), new TemperatureMod(false, amount));
+                CardTemperatureFields.addHeat(AbstractDungeon.player.hand.getRandomCard(true), amount);
             } else {
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                    CardModifierManager.addModifier(c, new TemperatureMod(false, amount));
+                    CardTemperatureFields.addHeat(c, amount);
                 }
             }
         }

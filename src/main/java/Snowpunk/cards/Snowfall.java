@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -25,7 +26,7 @@ public class Snowfall extends AbstractEasyCard {
     public Snowfall() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLK;
-        CardModifierManager.addModifier(this, new TemperatureMod(true, -1));
+        CardTemperatureFields.addInherentHeat(this, -1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

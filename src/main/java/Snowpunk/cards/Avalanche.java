@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.SteamEngine;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -25,7 +26,7 @@ public class Avalanche extends AbstractEasyCard {
     public Avalanche() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        CardModifierManager.addModifier(this, new TemperatureMod(true, -2));
+        CardTemperatureFields.addInherentHeat(this, -2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

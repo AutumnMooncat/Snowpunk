@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
@@ -23,11 +24,11 @@ public class BurningCoals extends AbstractEasyCard {
 
     public BurningCoals() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
+        CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new SelectCardsAction(p.hand.group, 1, "", false, card -> TemperatureMod.getCardHeat(card) != 2, cards -> {
+        Wiz.atb(new SelectCardsAction(p.hand.group, 1, "", false, card -> CardTemperatureFields.getCardHeat(card) != 2, cards -> {
             for (AbstractCard c : cards) {
                 Wiz.atb(new ModCardTempAction(c, 1));
             }
@@ -35,6 +36,6 @@ public class BurningCoals extends AbstractEasyCard {
     }
 
     public void upp() {
-        CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
+        CardTemperatureFields.addInherentHeat(this, 1);
     }
 }

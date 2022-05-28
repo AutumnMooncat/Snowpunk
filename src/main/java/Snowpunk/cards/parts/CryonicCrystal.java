@@ -1,6 +1,7 @@
 package Snowpunk.cards.parts;
 
 import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -16,7 +17,7 @@ public class CryonicCrystal extends AbstractPartCard {
 
     public CryonicCrystal() {
         super(ID, TYPE, RARITY);
-        CardModifierManager.addModifier(this, new TemperatureMod(false, -2));
+        CardTemperatureFields.addInherentHeat(this, -2);
     }
 
     @Override
@@ -26,6 +27,6 @@ public class CryonicCrystal extends AbstractPartCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new TemperatureMod(false, -2));
+        CardTemperatureFields.addHeat(card, -2);
     }
 }

@@ -3,6 +3,7 @@ package Snowpunk.powers;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -29,7 +30,7 @@ public class CoolNextCardPower extends AbstractEasyPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         flash();
         Wiz.atb(new ModEngineTempAction(-1));
-        CardModifierManager.addModifier(card, new TemperatureMod(false, -1));
+        CardTemperatureFields.addHeat(card, -1);
         //this.addToTop(new ModCardTempAction(card, -1));
         this.addToTop(new ReducePowerAction(owner, owner, this, 1));
     }

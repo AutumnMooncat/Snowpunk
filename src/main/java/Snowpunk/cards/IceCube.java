@@ -4,6 +4,7 @@ import Snowpunk.actions.ImmediateExhaustCardAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
@@ -31,7 +32,7 @@ public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
     public IceCube() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = SNOW;
-        CardModifierManager.addModifier(this, new TemperatureMod(true, -2));
+        CardTemperatureFields.addInherentHeat(this, -2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -22,7 +23,7 @@ public class SnowblowerPower extends AbstractEasyPower {
 
     @Override
     public void onPlayCard(AbstractCard card, AbstractMonster m) {
-        if (TemperatureMod.getCardHeat(card) == -2) {
+        if (CardTemperatureFields.getCardHeat(card) == -2) {
             flash();
             Wiz.applyToSelf(new SnowballPower(Wiz.adp(), amount));
         }

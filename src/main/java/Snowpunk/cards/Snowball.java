@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -31,6 +32,6 @@ public class Snowball extends AbstractEasyCard {
     }
 
     public void upp() {
-        CardModifierManager.addModifier(this, new TemperatureMod(true, -1));
+        CardTemperatureFields.addInherentHeat(this, -1);
     }
 }

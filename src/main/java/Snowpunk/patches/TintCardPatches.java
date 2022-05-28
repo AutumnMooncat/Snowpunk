@@ -16,7 +16,7 @@ public class TintCardPatches {
 
         @SpirePrefixPatch
         public static void tintBefore(AbstractCard __instance, @ByRef Color[] ___renderColor) {
-            Color tint = TemperatureMod.getCardTint(__instance);
+            Color tint = CardTemperatureFields.getCardTint(__instance);
             if (tint != null) {
                 backupColor.set(___renderColor[0]);
                 ___renderColor[0].set(tint.cpy());
@@ -25,7 +25,7 @@ public class TintCardPatches {
 
         @SpirePostfixPatch
         public static void resetAfter(AbstractCard __instance, @ByRef Color[] ___renderColor) {
-            Color tint = TemperatureMod.getCardTint(__instance);
+            Color tint = CardTemperatureFields.getCardTint(__instance);
             if (tint != null) {
                 ___renderColor[0].set(backupColor);
             }
@@ -38,7 +38,7 @@ public class TintCardPatches {
 
         @SpireInsertPatch(locator = StartLocator.class)
         public static void tintBefore(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            Color tint = TemperatureMod.getCardTint(___card);
+            Color tint = CardTemperatureFields.getCardTint(___card);
             if (tint != null) {
                 backupColor.set(sb.getColor());
                 sb.setColor(tint.cpy());
@@ -47,7 +47,7 @@ public class TintCardPatches {
 
         @SpireInsertPatch(locator = EndLocator.class)
         public static void resetAfter(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            Color tint = TemperatureMod.getCardTint(___card);
+            Color tint = CardTemperatureFields.getCardTint(___card);
             if (tint != null) {
                 sb.setColor(backupColor);
             }

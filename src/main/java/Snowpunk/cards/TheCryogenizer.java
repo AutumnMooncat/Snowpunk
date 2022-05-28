@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,7 +27,7 @@ public class TheCryogenizer extends AbstractEasyCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseInfo = info = 2;
-        CardModifierManager.addModifier(this, new TemperatureMod(true, -2));
+        CardTemperatureFields.addInherentHeat(this, -2);
         initializeDescription();
     }
 
@@ -34,6 +35,7 @@ public class TheCryogenizer extends AbstractEasyCard {
         allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
+    //TODO buggy, give proper update in apply powers
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (!super.canUse(p, m)) {
@@ -44,7 +46,7 @@ public class TheCryogenizer extends AbstractEasyCard {
     }
 
     private void updateInfo() {
-        int heat = TemperatureMod.getCardHeat(this);
+        int heat = CardTemperatureFields.getCardHeat(this);
         if (heat < (upgraded ? UP_MIN_HEAT : MIN_HEAT)) {
             info = upgraded ? 1 : 2;
         } else {
@@ -56,6 +58,5 @@ public class TheCryogenizer extends AbstractEasyCard {
     public void upp() {
         updateInfo();
         initializeDescription();
-        //CardModifierManager.addModifier(this, new TemperatureMod(true, 1));
     }
 }
