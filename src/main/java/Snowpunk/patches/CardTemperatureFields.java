@@ -11,52 +11,45 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class CardTemperatureFields {
-    public static final Color HOT_TINT = new Color(1, 209/255f, 209/255f, 1);
-    public static final Color COLD_TINT = new Color(209/255f, 253/255f, 1, 1);
+    public static final Color HOT_TINT = new Color(1, 209 / 255f, 209 / 255f, 1);
+    public static final Color COLD_TINT = new Color(209 / 255f, 253 / 255f, 1, 1);
     public static final Color STABLE_TINT = Color.WHITE.cpy();
     public static final Color OVERHEAT_TINT = new Color(1, 130 / 255f, 130 / 255f, 1);
     public static final Color FROZEN_TINT = new Color(130 / 255f, 251 / 255f, 1, 1);
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
-    public static class TemperatureFields
-    {
+    public static class TemperatureFields {
         public static SpireField<Integer> inherentHeat = new SpireField<>(() -> 0);
         public static SpireField<Integer> addedHeat = new SpireField<>(() -> 0);
     }
 
-    public static int getCardHeat(AbstractCard card)
-    {
+    public static int getCardHeat(AbstractCard card) {
         return TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
     }
 
-    public static void addInherentHeat(AbstractCard card, int amount)
-    {
+    public static void addInherentHeat(AbstractCard card, int amount) {
         addInherentHeat(card, amount, true);
     }
 
-    public static void addHeat(AbstractCard card, int amount)
-    {
+    public static void addHeat(AbstractCard card, int amount) {
         addHeat(card, amount, true);
     }
 
-    public static void addInherentHeat(AbstractCard card, int amount, boolean affectGun)
-    {
+    public static void addInherentHeat(AbstractCard card, int amount, boolean affectGun) {
         if (amount == 0)
             return;
         addAndClampHeat(card, amount, true, affectGun);
         CardModifierManager.addModifier(card, new TemperatureMod());
     }
 
-    public static void addHeat(AbstractCard card, int amount, boolean affectGun)
-    {
+    public static void addHeat(AbstractCard card, int amount, boolean affectGun) {
         if (amount == 0)
             return;
         addAndClampHeat(card, amount, false, affectGun);
         CardModifierManager.addModifier(card, new TemperatureMod());
     }
 
-    private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent, boolean affectGun)
-    {
+    private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent, boolean affectGun) {
         int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
         if (addInherent)
             TemperatureFields.inherentHeat.set(card, TemperatureFields.inherentHeat.get(card) + amount);
@@ -66,28 +59,22 @@ public class CardTemperatureFields {
         int inherent = TemperatureFields.inherentHeat.get(card);
         int added = TemperatureFields.addedHeat.get(card);
 
-        if (inherent > 2)
-        {
+        if (inherent > 2) {
             inherent = 2;
-        } else if (inherent < -2)
-        {
+        } else if (inherent < -2) {
             inherent = -2;
         }
-        if (inherent + added > 2)
-        {
+        if (inherent + added > 2) {
             added = 2 - inherent;
-        } else if (inherent + added < -2)
-        {
+        } else if (inherent + added < -2) {
             added = -2 - inherent;
         }
 
         //If inherent goes up, but added goes down due to clamping, no change actually happens to current heat
         //int delta = (inherent + added) - (TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card));
-        if (added + inherent != prevTotal)
-        {
+        if (added + inherent != prevTotal) {
             flashHeatColor(card);
-            if (card instanceof OnTempChangeCard)
-            {
+            if (card instanceof OnTempChangeCard) {
                 ((OnTempChangeCard) card).onTempChange(prevTotal - (added + inherent));
             }
             if (card.keywords.contains(KeywordManager.GUN) && affectGun)
@@ -118,7 +105,7 @@ public class CardTemperatureFields {
             case -2:
                 card.superFlash(FROZEN_TINT.cpy());
                 break;
-            case -1 :
+            case -1:
                 card.superFlash(COLD_TINT.cpy());
                 break;
             case 0:
