@@ -31,7 +31,7 @@ public class Snowfall extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        Wiz.atb(new ModCardTempAction(false, -1));
+        Wiz.atb(new ModCardTempAction(-1, -1, true));
     }
 
     public void upp() {
