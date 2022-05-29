@@ -13,6 +13,10 @@
     "NAME": "Brass Plating",
     "DESCRIPTION": "+3 Block."
   },
+  "${ModID}:BrokenSprockets": {
+    "NAME": "Broken Sprockets",
+    "DESCRIPTION": "+6 damage. NL Exhaust."
+  },
   "${ModID}:CoolantValve": {
     "NAME": "Coolant Valve",
     "DESCRIPTION": ""
@@ -28,6 +32,10 @@
   "${ModID}:OiledGears": {
     "NAME": "Oiled Gears",
     "DESCRIPTION": "Draw 1 card. NL Discard 1 card at random."
+  },
+  "${ModID}:ScrapHeap": {
+    "NAME": "Scrap Heap",
+    "DESCRIPTION": "+6 Block. NL Exhaust."
   },
   "${ModID}:SpareSpikes": {
     "NAME": "Spare Spikes",

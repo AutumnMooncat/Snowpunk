@@ -3,11 +3,11 @@ package Snowpunk.cards.parts;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.TypeOverridePatch;
 import basemod.helpers.TooltipInfo;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.ExhaustiveField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.RitualDagger;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -31,6 +31,7 @@ public abstract class AbstractPartCard extends AbstractEasyCard {
     protected static final Predicate<AbstractCard> isPower = c -> c.type == CardType.POWER;
     protected static final Predicate<AbstractCard> nonZeroCost = c -> c.cost > 0 || c.cost == -1;
     protected static final Predicate<AbstractCard> greaterThanZeroCost = c -> c.cost > 0;
+    protected static final Predicate<AbstractCard> doesntExhaust = c -> !c.exhaust && ExhaustiveField.ExhaustiveFields.baseExhaustive.get(c) == -1 && !c.purgeOnUse;
 
     public final CardRarity dropRarity;
 
