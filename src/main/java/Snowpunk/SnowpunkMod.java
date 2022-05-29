@@ -2,7 +2,11 @@ package Snowpunk;
 
 import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.Pressure;
+import Snowpunk.cards.cardvars.SecondDamage;
+import Snowpunk.cards.cardvars.SecondMagicNumber;
+import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
+import Snowpunk.relics.AbstractEasyRelic;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
@@ -16,11 +20,9 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import Snowpunk.cards.cardvars.SecondDamage;
-import Snowpunk.cards.cardvars.SecondMagicNumber;
-import Snowpunk.relics.AbstractEasyRelic;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -71,6 +73,8 @@ public class SnowpunkMod implements
 
     public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
     public static int preTalkProbability = 50; //Out of 100
+
+    public static final ArrayList<AbstractPartCard> parts = new ArrayList<>();
 
     public SnowpunkMod() {
         BaseMod.subscribe(this);
@@ -146,6 +150,12 @@ public class SnowpunkMod implements
                 .packageFilter("Snowpunk.cards")
                 .setDefaultSeen(true)
                 .cards();
+
+        new AutoAdd(modID)
+                .packageFilter("Snowpunk.cards")
+                .any(AbstractPartCard.class, (info, abstractPartCard) -> {
+                    parts.add(abstractPartCard);
+                });
     }
 
 
