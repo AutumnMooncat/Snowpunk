@@ -9,11 +9,24 @@
       "Adds M10 Robot (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!"
     ]
   },
+  "${ModID}:Tinker": {
+    "TEXT": [
+      "Choose a card to tinker.",
+      "Choose a Part to apply to ","."
+    ]
+  },
   "${ModID}:Parts": {
     "TEXT": [
       "Part",
       "Parts",
       "Parts can be added to cards to add or modify effects."
+    ]
+  },
+  "${ModID}:Core": {
+    "TEXT": [
+      "Core",
+      "Cores",
+      "Cores act as a base for creating new cards."
     ]
   }
 }
