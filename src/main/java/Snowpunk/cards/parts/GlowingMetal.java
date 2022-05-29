@@ -2,6 +2,7 @@ package Snowpunk.cards.parts;
 
 import Snowpunk.cardmods.CoolOnDrawMod;
 import Snowpunk.cardmods.HeatOnDrawMod;
+import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -9,13 +10,13 @@ import java.util.function.Predicate;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class CryonicCrystal extends AbstractPartCard {
-    public static final String ID = makeID(CryonicCrystal.class.getSimpleName());
+public class GlowingMetal extends AbstractPartCard {
+    public static final String ID = makeID(GlowingMetal.class.getSimpleName());
 
-    private static final AbstractCard.CardType TYPE = CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
 
-    public CryonicCrystal() {
+    public GlowingMetal() {
         super(ID, TYPE, RARITY);
     }
 
@@ -26,6 +27,6 @@ public class CryonicCrystal extends AbstractPartCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new CoolOnDrawMod());
+        CardModifierManager.addModifier(card, new HeatOnDrawMod());
     }
 }

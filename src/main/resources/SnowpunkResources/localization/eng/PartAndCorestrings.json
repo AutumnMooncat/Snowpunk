@@ -23,7 +23,11 @@
   },
   "${ModID}:CryonicCrystal": {
     "NAME": "Cryonic Crystal",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "When drawn, snowpunk:Cool this card."
+  },
+  "${ModID}:GlowingMetal": {
+    "NAME": "Glowing Metal",
+    "DESCRIPTION": "When drawn, snowpunk:Heat this card."
   },
   "${ModID}:HeatingCoils": {
     "NAME": "Heating Coils",
