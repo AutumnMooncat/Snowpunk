@@ -16,6 +16,12 @@
   },
   "${ModID}:DrawAndDiscardRandomMod": {
     "EXTENDED_DESCRIPTION": [" NL Draw "," card."," cards.",
-                            " NL Discard "," card at random."," cards at random."]
+      " NL Discard "," card at random."," cards at random."]
+  },
+  "${ModID}:HeatOnDrawMod": {
+    "EXTENDED_DESCRIPTION": [" NL When drawn, snowpunk:Heat this card."]
+  },
+  "${ModID}:CoolOnDrawMod": {
+    "EXTENDED_DESCRIPTION": [" NL When drawn, snowpunk:Cool this card."]
   }
 }
