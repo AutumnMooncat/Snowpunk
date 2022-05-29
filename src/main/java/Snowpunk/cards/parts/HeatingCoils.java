@@ -20,7 +20,7 @@ public class HeatingCoils extends AbstractPartCard {
 
     @Override
     public Predicate<AbstractCard> getFilter() {
-        return isPlayable;
+        return isPlayable.and(c -> CardTemperatureFields.getCardHeat(c) != 2);
     }
 
     @Override
