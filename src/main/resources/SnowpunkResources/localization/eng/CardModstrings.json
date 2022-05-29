@@ -13,5 +13,9 @@
   },
   "${ModID}:GainEnergyMod": {
     "EXTENDED_DESCRIPTION": [" NL Gain"," [E] ","."]
+  },
+  "${ModID}:DrawAndDiscardRandomMod": {
+    "EXTENDED_DESCRIPTION": [" NL Draw "," card."," cards.",
+                            " NL Discard "," card at random."," cards at random."]
   }
 }

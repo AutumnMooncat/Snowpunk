@@ -25,6 +25,10 @@
     "NAME": "Heating Coils",
     "DESCRIPTION": ""
   },
+  "${ModID}:OiledGears": {
+    "NAME": "Oiled Gears",
+    "DESCRIPTION": "Draw 1 card. NL Discard 1 card at random."
+  },
   "${ModID}:SpareSpikes": {
     "NAME": "Spare Spikes",
     "DESCRIPTION": "+3 damage."
