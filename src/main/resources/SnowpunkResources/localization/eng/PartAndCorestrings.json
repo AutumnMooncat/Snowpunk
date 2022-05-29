@@ -37,6 +37,10 @@
     "NAME": "Heating Coils",
     "DESCRIPTION": ""
   },
+  "${ModID}:ManastoneCasing": {
+    "NAME": "Manastone Casing",
+    "DESCRIPTION": "+2 magic."
+  },
   "${ModID}:OiledGears": {
     "NAME": "Oiled Gears",
     "DESCRIPTION": "Draw 1 card. NL Discard 1 card at random."
