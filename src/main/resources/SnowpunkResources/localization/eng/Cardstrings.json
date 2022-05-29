@@ -69,6 +69,10 @@
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
   },
+  "${ModID}:Think": {
+    "NAME": "Think",
+    "DESCRIPTION": "{@@}snowpunk:Tinker !M! card{!M!|>1=s} in your hand."
+  },
   "${ModID}:TheCryogenizer": {
     "NAME": "The Cryogenizer",
     "DESCRIPTION": "{@@}{!Snowpunk:Info!|2=Unplayable below snowpunk:Hot. NL |1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
