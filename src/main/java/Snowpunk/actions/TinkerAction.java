@@ -6,6 +6,7 @@ import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,5 +72,16 @@ public class TinkerAction extends AbstractGameAction {
             }));
         }
         this.isDone = true;
+    }
+
+    //TODO - Lifted directly, needs alteration
+    private static AbstractCard.CardRarity rollRarity() {
+        int roll = AbstractDungeon.cardRng.random(99);
+        int rareRate = 3;
+        if (roll < rareRate) {
+            return AbstractCard.CardRarity.RARE;
+        } else {
+            return roll < 40 ? AbstractCard.CardRarity.UNCOMMON : AbstractCard.CardRarity.COMMON;
+        }
     }
 }
