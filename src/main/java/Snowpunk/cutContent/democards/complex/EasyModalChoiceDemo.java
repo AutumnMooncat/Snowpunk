@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import Snowpunk.actions.EasyModalChoiceAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.cards.parts.EasyModalChoiceCard;
+import Snowpunk.cutContent.democards.EasyModalChoiceCard;
 
 import java.util.ArrayList;
 
