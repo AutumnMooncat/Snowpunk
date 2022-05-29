@@ -22,7 +22,7 @@
       "Parts can be added to cards to add or modify effects."
     ]
   },
-  "${ModID}:Core": {
+  "${ModID}:Cores": {
     "TEXT": [
       "Core",
       "Cores",

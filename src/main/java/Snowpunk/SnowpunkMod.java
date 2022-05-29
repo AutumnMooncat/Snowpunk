@@ -4,6 +4,7 @@ import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.Pressure;
 import Snowpunk.cards.cardvars.SecondDamage;
 import Snowpunk.cards.cardvars.SecondMagicNumber;
+import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.relics.AbstractEasyRelic;
@@ -75,6 +76,7 @@ public class SnowpunkMod implements
     public static int preTalkProbability = 50; //Out of 100
 
     public static final ArrayList<AbstractPartCard> parts = new ArrayList<>();
+    public static final ArrayList<AbstractCoreCard> cores = new ArrayList<>();
 
     public SnowpunkMod() {
         BaseMod.subscribe(this);
@@ -153,9 +155,11 @@ public class SnowpunkMod implements
 
         new AutoAdd(modID)
                 .packageFilter("Snowpunk.cards")
-                .any(AbstractPartCard.class, (info, abstractPartCard) -> {
-                    parts.add(abstractPartCard);
-                });
+                .any(AbstractPartCard.class, (info, abstractPartCard) -> parts.add(abstractPartCard));
+
+        new AutoAdd(modID)
+                .packageFilter("Snowpunk.cards")
+                .any(AbstractCoreCard.class, (info, abstractCoreCard) -> cores.add(abstractCoreCard));
     }
 
 

@@ -4,7 +4,7 @@
     "NAMES": [
       "assemble"
     ],
-    "DESCRIPTION": "Create a new card from a selection of #yParts and add it to your hand."
+    "DESCRIPTION": "Create a new card from a selection of #yCores and #yParts and add it to your hand."
   },
   {
     "PROPER_NAME": "Burn",
