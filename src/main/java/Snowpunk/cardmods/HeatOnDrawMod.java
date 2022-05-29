@@ -1,6 +1,7 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.actions.ModCardTempAction;
+import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,7 +22,7 @@ public class HeatOnDrawMod extends AbstractCardModifier {
 
     @Override
     public void onDrawn(AbstractCard card) {
-        CardTemperatureFields.addHeat(card, 1);
+        Wiz.atb(new ModCardTempAction(card, 1));
     }
 
     @Override
