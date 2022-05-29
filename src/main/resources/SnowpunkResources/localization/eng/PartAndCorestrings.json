@@ -5,6 +5,10 @@
     "UPGRADE_DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": [""]
   },
+  "${ModID}:Battery": {
+    "NAME": "Battery",
+    "DESCRIPTION": "Gain [E] ."
+  },
   "${ModID}:BrassPlating": {
     "NAME": "Brass Plating",
     "DESCRIPTION": "+3 Block."
