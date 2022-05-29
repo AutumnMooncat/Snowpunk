@@ -5,6 +5,10 @@
     "UPGRADE_DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": [""]
   },
+  "${ModID}:BrassPlating": {
+    "NAME": "Brass Plating",
+    "DESCRIPTION": "+3 Block."
+  },
   "${ModID}:CryonicCrystal": {
     "NAME": "Cryonic Crystal",
     "DESCRIPTION": ""
@@ -12,5 +16,9 @@
   "${ModID}:HeatingCoils": {
     "NAME": "Heating Coils",
     "DESCRIPTION": ""
+  },
+  "${ModID}:SpareSpikes": {
+    "NAME": "Spare Spikes",
+    "DESCRIPTION": "+3 damage."
   }
 }
