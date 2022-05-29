@@ -23,5 +23,8 @@
   },
   "${ModID}:CoolOnDrawMod": {
     "EXTENDED_DESCRIPTION": [" NL When drawn, snowpunk:Cool this card."]
+  },
+  "${ModID}:DoublePlayOverheatMod": {
+    "EXTENDED_DESCRIPTION": [" NL Play this card's effect an additional time when snowpunk:Overheated."]
   }
 }

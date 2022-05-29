@@ -25,6 +25,10 @@
     "NAME": "Cryonic Crystal",
     "DESCRIPTION": "When drawn, snowpunk:Cool this card."
   },
+  "${ModID}:EmberForge": {
+    "NAME": "Ember Forge",
+    "DESCRIPTION": "Play this card's effect an additional time when snowpunk:Overheated"
+  },
   "${ModID}:GlowingMetal": {
     "NAME": "Glowing Metal",
     "DESCRIPTION": "When drawn, snowpunk:Heat this card."
