@@ -1,17 +1,12 @@
 package Snowpunk.actions;
 
-import Snowpunk.cardmods.TemperatureMod;
-import Snowpunk.cards.BurningCoals;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,7 +37,7 @@ public class ModCardTempAction extends AbstractGameAction {
         //If we have a pre-specified card, heat it
         if (card != null) {
             CardTemperatureFields.addHeat(card, heat);
-        } else {
+        } else if (amount != 0) {
             //Assemble all valid cards based on if they can actually accept the change in heat
             CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : Wiz.adp().hand.group) {
