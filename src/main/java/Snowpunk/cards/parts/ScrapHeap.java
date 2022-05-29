@@ -1,6 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.BlockBuffMod;
+import Snowpunk.cardmods.parts.BlockBuffMod;
 import basemod.cardmods.ExhaustMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;

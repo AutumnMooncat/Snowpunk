@@ -1,8 +1,7 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.CoolOnDrawMod;
-import Snowpunk.cardmods.HeatOnDrawMod;
-import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.cardmods.parts.CoolOnDrawMod;
+import Snowpunk.cardmods.parts.HeatOnDrawMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

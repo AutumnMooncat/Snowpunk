@@ -1,4 +1,4 @@
-package Snowpunk.cardmods;
+package Snowpunk.cardmods.parts;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import basemod.abstracts.AbstractCardModifier;

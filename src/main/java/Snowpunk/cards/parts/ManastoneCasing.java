@@ -1,7 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.BlockBuffMod;
-import Snowpunk.cardmods.MagicBuffMod;
+import Snowpunk.cardmods.parts.MagicBuffMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

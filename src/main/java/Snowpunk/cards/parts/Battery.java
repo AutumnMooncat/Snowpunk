@@ -1,6 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.GainEnergyMod;
+import Snowpunk.cardmods.parts.GainEnergyMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

@@ -1,4 +1,4 @@
-package Snowpunk.cardmods;
+package Snowpunk.cardmods.parts;
 
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.util.Wiz;
@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class HeatOnDrawMod extends AbstractCardModifier {
-    public static final String ID = makeID(HeatOnDrawMod.class.getSimpleName());
+public class CoolOnDrawMod extends AbstractCardModifier {
+    public static final String ID = makeID(CoolOnDrawMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public HeatOnDrawMod() {}
+    public CoolOnDrawMod() {}
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
@@ -22,7 +22,7 @@ public class HeatOnDrawMod extends AbstractCardModifier {
 
     @Override
     public void onDrawn(AbstractCard card) {
-        Wiz.atb(new ModCardTempAction(card, 1));
+        Wiz.atb(new ModCardTempAction(card, -1));
     }
 
     @Override
@@ -37,6 +37,6 @@ public class HeatOnDrawMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new HeatOnDrawMod();
+        return new CoolOnDrawMod();
     }
 }

@@ -1,4 +1,4 @@
-package Snowpunk.cardmods;
+package Snowpunk.cardmods.parts;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;

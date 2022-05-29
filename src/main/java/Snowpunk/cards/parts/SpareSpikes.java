@@ -1,6 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.DamageBuffMod;
+import Snowpunk.cardmods.parts.DamageBuffMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

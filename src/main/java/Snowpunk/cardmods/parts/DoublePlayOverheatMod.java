@@ -1,20 +1,22 @@
-package Snowpunk.cardmods;
+package Snowpunk.cardmods.parts;
 
-import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class CoolOnDrawMod extends AbstractCardModifier {
-    public static final String ID = makeID(CoolOnDrawMod.class.getSimpleName());
+public class DoublePlayOverheatMod extends AbstractCardModifier {
+    public static final String ID = makeID(DoublePlayOverheatMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public CoolOnDrawMod() {}
+    public DoublePlayOverheatMod() {}
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
@@ -22,8 +24,10 @@ public class CoolOnDrawMod extends AbstractCardModifier {
     }
 
     @Override
-    public void onDrawn(AbstractCard card) {
-        Wiz.atb(new ModCardTempAction(card, -1));
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (CardTemperatureFields.getCardHeat(card) == 2) {
+            card.use(Wiz.adp(), (AbstractMonster) target);
+        }
     }
 
     @Override
@@ -38,6 +42,6 @@ public class CoolOnDrawMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CoolOnDrawMod();
+        return new DoublePlayOverheatMod();
     }
 }

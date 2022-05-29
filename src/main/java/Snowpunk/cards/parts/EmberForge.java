@@ -1,8 +1,6 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.CoolOnDrawMod;
-import Snowpunk.cardmods.DoublePlayOverheatMod;
-import Snowpunk.cardmods.HeatOnDrawMod;
+import Snowpunk.cardmods.parts.DoublePlayOverheatMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
