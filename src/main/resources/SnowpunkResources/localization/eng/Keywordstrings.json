@@ -65,7 +65,7 @@
   {
     "PROPER_NAME": "Tinker",
     "NAMES": [
-      "Tinker"
+      "tinker"
     ],
     "DESCRIPTION": "Modify a card with a random #yPart chosen from a selection."
   },
