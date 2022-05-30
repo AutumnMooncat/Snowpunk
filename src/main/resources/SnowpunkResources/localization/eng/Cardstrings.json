@@ -29,6 +29,10 @@
     "NAME": "Burning Coals",
     "DESCRIPTION": "snowpunk:Heat a card in your hand."
   },
+  "${ModID}:ChuckTools": {
+    "NAME": "Chuck Tools",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Randomly snowpunk:Tinker all cards in your hand."
+  },
   "${ModID}:CoalDust": {
     "NAME": "Coal Dust",
     "DESCRIPTION": "{@@}Apply !M! snowpunk:Soot{!Upgrades!|>0= to ALL enemies}."
