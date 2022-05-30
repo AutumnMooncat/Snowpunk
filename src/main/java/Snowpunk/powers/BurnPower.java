@@ -30,6 +30,7 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
 
     @Override
     public void atEndOfRound() {
+        flash();
         Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         //TODO not hardcode this interaction?
         if (owner.hasPower(SootPower.POWER_ID)) {
