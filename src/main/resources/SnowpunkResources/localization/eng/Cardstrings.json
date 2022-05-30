@@ -13,6 +13,10 @@
     "NAME": "Avalanche",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Frozen, deal that damage again."
   },
+  "${ModID}:BrassKnuckles": {
+    "NAME": "Brass Knuckles",
+    "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
+  },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
     "DESCRIPTION": "snowpunk:Heat a card in your hand."
