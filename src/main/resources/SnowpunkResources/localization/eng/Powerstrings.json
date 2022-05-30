@@ -57,5 +57,13 @@
   "${ModID}:NextTurnPowerPower": {
     "NAME": "Next Turn ",
     "DESCRIPTIONS": ["Next turn, gain #b"," ","."]
+  },
+  "${ModID}:SootPower": {
+    "NAME": "Soot",
+    "DESCRIPTIONS": ["If this creature is Burning, increase its Burning by #b"," this turn instead of decreasing it."]
+  },
+  "${ModID}:BurnPower": {
+    "NAME": "Burn",
+    "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage then reduce #yBurn by #b1."]
   }
 }
