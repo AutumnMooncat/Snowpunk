@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class EngineTempPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID("EngineTempPower");
+    public static String POWER_ID = makeID(EngineTempPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 

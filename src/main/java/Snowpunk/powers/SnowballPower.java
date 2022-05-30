@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class SnowballPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID("SnowballPower");
+    public static String POWER_ID = makeID(SnowballPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 

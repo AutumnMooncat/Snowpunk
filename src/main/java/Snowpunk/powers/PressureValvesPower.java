@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class PressureValvesPower extends AbstractEasyPower implements ModifyPressurePower {
-    public static String POWER_ID = makeID("PressureValvesPower");
+    public static String POWER_ID = makeID(PressureValvesPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 

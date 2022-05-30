@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class CoolNextCardPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID("CoolNextCardPower");
+    public static String POWER_ID = makeID(CoolNextCardPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
