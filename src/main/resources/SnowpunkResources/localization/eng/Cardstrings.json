@@ -77,6 +77,10 @@
     "NAME": "Snow Fort",
     "DESCRIPTION": "Gain !B! Block S times."
   },
+  "${ModID}:SnowStack": {
+    "NAME": "Snow Stack",
+    "DESCRIPTION": "Gain !B!S Block."
+  },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
