@@ -17,6 +17,10 @@
     "NAME": "Burning Coals",
     "DESCRIPTION": "snowpunk:Heat a card in your hand."
   },
+  "${ModID}:CoalDust": {
+    "NAME": "Coal Dust",
+    "DESCRIPTION": "{@@}Apply !M! snowpunk:Soot{!Upgrades!|>0= to ALL enemies}."
+  },
   "${ModID}:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
