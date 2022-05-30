@@ -41,6 +41,10 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
+  "${ModID}:Frostbite": {
+    "NAME": "Frostbite",
+    "DESCRIPTION": "{@@}Apply snowpunk:Frostbite equal to your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+  },
   "${ModID}:IceCube": {
     "NAME": "Ice Cube",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."
@@ -71,7 +75,7 @@
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
-    "DESCRIPTION": "{@@}Gain snowpunk:Snowballs equal to your snowpunk:Pressure.{!Location!||0= NL snowpunk:Pressure: !Snowpunk:P!}"
+    "DESCRIPTION": "{@@}Gain snowpunk:Snowballs equal to your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
   },
   "${ModID}:Scald": {
     "NAME": "Scald",

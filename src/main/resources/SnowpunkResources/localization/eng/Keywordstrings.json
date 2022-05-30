@@ -31,6 +31,14 @@
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
   {
+    "PROPER_NAME": "Frostbite",
+    "NAMES": [
+      "frostbite",
+      "frostbitten"
+    ],
+    "DESCRIPTION": "Frostbitten creatures take damage at the start of your turn relative to your #ySnowballs."
+  },
+  {
     "PROPER_NAME": "Gun",
     "NAMES": [
       "gun"

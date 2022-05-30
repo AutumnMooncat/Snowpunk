@@ -65,5 +65,9 @@
   "${ModID}:BurnPower": {
     "NAME": "Burn",
     "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage then reduce #yBurn by #b1."]
+  },
+  "${ModID}:FrostbitePower": {
+    "NAME": "Frostbite",
+    "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage for each #ySnowball you have."]
   }
 }
