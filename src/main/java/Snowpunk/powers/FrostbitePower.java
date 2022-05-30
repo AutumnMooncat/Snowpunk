@@ -23,7 +23,7 @@ public class FrostbitePower extends AbstractEasyPower implements HealthBarRender
     private final Color hpBarColor = Color.SKY.cpy();
 
     public FrostbitePower(AbstractCreature owner, AbstractCreature source, int amount) {
-        super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
+        super(POWER_ID, strings.NAME, PowerType.DEBUFF, false, owner, amount);
         this.loadRegion("int");
         this.source = source;
     }
