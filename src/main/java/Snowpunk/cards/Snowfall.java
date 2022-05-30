@@ -15,7 +15,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Snowfall extends AbstractEasyCard {
     public final static String ID = makeID(Snowfall.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
