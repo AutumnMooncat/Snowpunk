@@ -75,10 +75,11 @@ public class CardTemperatureFields {
         if (added + inherent != prevTotal) {
             flashHeatColor(card);
             if (card instanceof OnTempChangeCard) {
-                ((OnTempChangeCard) card).onTempChange(prevTotal - (added + inherent));
+                ((OnTempChangeCard) card).onTempChange((added + inherent) - prevTotal);
             }
-            if (card.keywords.contains(KeywordManager.GUN) && affectGun)
+            if (card.keywords.contains(KeywordManager.GUN) && affectGun) {
                 GunManager.RunGunUpdate(card);
+            }
         }
 
         TemperatureFields.inherentHeat.set(card, inherent);
