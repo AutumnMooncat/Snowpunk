@@ -88,6 +88,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Snowball.ID);
+        retVal.add(Invention.ID);
         return retVal;
     }
 
@@ -136,8 +137,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        System.out.println("YOU NEED TO SET getStartCardForEvent() in your " + getClass().getSimpleName() + " file!");
-        return null;
+        return new Invention();
     }
 
     @Override
