@@ -52,5 +52,26 @@
   "${ModID}:SpareSpikes": {
     "NAME": "Spare Spikes",
     "DESCRIPTION": "+3 damage."
+  },
+
+
+
+
+
+
+  "${ModID}:BarrierCore": {
+    "NAME": "Barrier Core",
+    "DESCRIPTION": "Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": ["Barrier"]
+  },
+  "${ModID}:BlastCore": {
+    "NAME": "Blast Core",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies.",
+    "EXTENDED_DESCRIPTION": ["Blaster"]
+  },
+  "${ModID}:StrikeCore": {
+    "NAME": "Strike Core",
+    "DESCRIPTION": "Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": ["Striker"]
   }
 }

@@ -15,6 +15,14 @@
     "DESCRIPTION": "Burning creatures take damage at the start of your turn. Each turn, Burn is reduced by #b1."
   },
   {
+    "PROPER_NAME": "Core",
+    "NAMES": [
+      "core",
+      "cores"
+    ],
+    "DESCRIPTION": "Determines the effect and abilities of a card."
+  },
+  {
     "PROPER_NAME": "Engine",
     "NAMES": [
       "engine",
