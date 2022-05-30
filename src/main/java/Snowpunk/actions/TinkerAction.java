@@ -20,35 +20,72 @@ public class TinkerAction extends AbstractGameAction {
     public static final String ID = makeID("Tinker");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     AbstractCard card;
-
-    public TinkerAction(AbstractCard card) {
-        this.card = card;
-    }
+    boolean randomCard;
+    boolean randomlyTinker;
 
     public TinkerAction() {
-        this(null);
+        this(false, false);
+    }
+
+    public TinkerAction(AbstractCard card) {
+        this(card, false);
+    }
+
+    public TinkerAction(AbstractCard card, boolean randomlyTinker) {
+        this.card = card;
+        this.randomlyTinker = randomlyTinker;
+    }
+
+    public TinkerAction(boolean randomCard, boolean randomlyTinker) {
+        this.randomCard = randomCard;
+        this.randomlyTinker = randomlyTinker;
     }
 
     @Override
     public void update() {
         //If we have a pre-specified card, heat it
         if (card != null) {
-            pickPartsForCard(card);
+            if (randomlyTinker) {
+                giveRandomPart(card);
+            } else {
+                pickPartsForCard(card);
+            }
+
         } else {
             if (Wiz.adp().hand.group.stream().anyMatch(TinkerAction::acceptsAPart)) {
-                HashMap<AbstractCard, AbstractCard> cardMap = new HashMap<>();
-                ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
-                for (AbstractCard c : Wiz.adp().hand.group) {
-                    AbstractCard copy = c.makeStatEquivalentCopy();
-                    cardMap.put(copy, c);
-                    selectionGroup.add(copy);
+                if (randomCard) {
+                    CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                    for (AbstractCard c : Wiz.adp().hand.group) {
+                        if (acceptsAPart(c)) {
+                            validCards.addToTop(c);
+                        }
+                    }
+                    if (randomlyTinker) {
+                        giveRandomPart(validCards.getRandomCard(true));
+                    } else {
+                        pickPartsForCard(validCards.getRandomCard(true));
+                    }
+                } else {
+                    HashMap<AbstractCard, AbstractCard> cardMap = new HashMap<>();
+                    ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
+                    for (AbstractCard c : Wiz.adp().hand.group) {
+                        AbstractCard copy = c.makeStatEquivalentCopy();
+                        cardMap.put(copy, c);
+                        selectionGroup.add(copy);
+                    }
+
+                    Wiz.att(new SelectCardsAction(selectionGroup, 1, TEXT[0], false, TinkerAction::acceptsAPart, cards -> {
+                        for (AbstractCard c : cards) {
+                            if (randomlyTinker) {
+                                giveRandomPart(cardMap.get(c));
+                            } else {
+                                pickPartsForCard(cardMap.get(c));
+                            }
+
+                        }
+                    }));
                 }
 
-                Wiz.att(new SelectCardsAction(selectionGroup, 1, TEXT[0], false, TinkerAction::acceptsAPart, cards -> {
-                    for (AbstractCard c : cards) {
-                        pickPartsForCard(cardMap.get(c));
-                    }
-                }));
             }
         }
         this.isDone = true;
@@ -90,6 +127,21 @@ public class TinkerAction extends AbstractGameAction {
                     }
                 }
             }));
+        }
+    }
+
+    private static void giveRandomPart(AbstractCard card) {
+        CardGroup validParts = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        for (AbstractPartCard pc : SnowpunkMod.parts) {
+            if (pc.getFilter().test(card)) {
+                validParts.addToTop(pc.makeCopy());
+            }
+        }
+        if (!validParts.isEmpty()) {
+            AbstractCard part = validParts.getRandomCard(true);
+            if (part instanceof AbstractPartCard) {
+                ((AbstractPartCard) part).apply(card);
+            }
         }
     }
 
