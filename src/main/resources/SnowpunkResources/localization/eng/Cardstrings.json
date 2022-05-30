@@ -53,6 +53,10 @@
     "NAME": "Roll Up",
     "DESCRIPTION": "{@@}Gain snowpunk:Snowballs equal to your snowpunk:Pressure.{!Location!||0= NL snowpunk:Pressure: !Snowpunk:P!}"
   },
+  "${ModID}:Scald": {
+    "NAME": "Scald",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn."
+  },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."
