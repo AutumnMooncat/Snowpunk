@@ -1,5 +1,7 @@
 package Snowpunk.powers;
 
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -14,6 +16,11 @@ public class SootPower extends AbstractEasyPower {
     public SootPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
         this.loadRegion("fumes");
+    }
+
+    @Override
+    public void atEndOfRound() {
+        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override
