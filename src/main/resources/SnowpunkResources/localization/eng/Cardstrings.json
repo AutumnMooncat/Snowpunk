@@ -137,5 +137,9 @@
   "${ModID}:SteamBarrierMk2": {
     "NAME": "Steam Barrier Mk 2",
     "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:WinterStorm": {
+    "NAME": "Winter Storm",
+    "DESCRIPTION": "At the start of your turn, apply !M! snowpunk:Frostbite to ALL enemies."
   }
 }

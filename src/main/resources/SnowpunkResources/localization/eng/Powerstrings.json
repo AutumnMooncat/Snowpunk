@@ -69,5 +69,9 @@
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage for each #ySnowball you have."]
+  },
+  "${ModID}:WinterStormPower": {
+    "NAME": "Winter Storm",
+    "DESCRIPTIONS": ["At the start of your turn, apply #b"," #yFrostbite to ALL enemies."]
   }
 }
