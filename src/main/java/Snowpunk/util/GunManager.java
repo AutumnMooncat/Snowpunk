@@ -1,6 +1,7 @@
 package Snowpunk.util;
 
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.CustomTags;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -30,27 +31,27 @@ public class GunManager
         AbstractPlayer player = AbstractDungeon.player;
         for (AbstractCard c : player.exhaustPile.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
         for (AbstractCard c : player.hand.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
         for (AbstractCard c : player.discardPile.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
         for (AbstractCard c : player.limbo.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
     }
@@ -61,7 +62,7 @@ public class GunManager
         AbstractPlayer player = AbstractDungeon.player;
         for (AbstractCard c : player.masterDeck.group)
         {
-            if (c.keywords.contains(KeywordManager.GUN))
+            if (c.tags.contains(CustomTags.GUN))
                 UpdateCardToMatch(card, c);
         }
     }

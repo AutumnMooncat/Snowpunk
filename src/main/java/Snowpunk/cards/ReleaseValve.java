@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -29,6 +30,7 @@ public class ReleaseValve extends AbstractEasyCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = HEAT_NEXT;
+        tags.add(CustomTags.GUN);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -3,7 +3,6 @@ package Snowpunk.patches;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.util.GunManager;
-import Snowpunk.util.KeywordManager;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
@@ -77,7 +76,7 @@ public class CardTemperatureFields {
             if (card instanceof OnTempChangeCard) {
                 ((OnTempChangeCard) card).onTempChange((added + inherent) - prevTotal);
             }
-            if (card.keywords.contains(KeywordManager.GUN) && affectGun) {
+            if (card.tags.contains(CustomTags.GUN)) {
                 GunManager.RunGunUpdate(card);
             }
         }
