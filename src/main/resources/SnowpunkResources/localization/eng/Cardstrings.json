@@ -29,6 +29,10 @@
     "NAME": "Burning Coals",
     "DESCRIPTION": "snowpunk:Heat a card in your hand."
   },
+  "${ModID}:Cauterize": {
+    "NAME": "Cauterize",
+    "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
+  },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Tools",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Randomly snowpunk:Tinker all cards in your hand."
