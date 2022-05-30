@@ -44,7 +44,7 @@
   },
   "${ModID}:SnowblowerPower": {
     "NAME": "Snowblower",
-    "DESCRIPTIONS": ["At the start of your turn, gain #b"," #ySnowball."," #ySnowballs."]
+    "DESCRIPTIONS": ["Your #yEngine gives #b"," additional #ySnowball when #bCold or #bFrozen."," additional #ySnowballs when #bCold or #bFrozen."]
   },
   "${ModID}:PressureValvesPower": {
     "NAME": "Pressure Valves",

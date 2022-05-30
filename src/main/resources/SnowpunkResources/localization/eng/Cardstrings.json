@@ -99,7 +99,7 @@
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
-    "DESCRIPTION": "{@@}snowpunk:Frozen cards give !M! additional snowpunk:Snowball{!M!|>1=s}."
+    "DESCRIPTION": "{@@}Your snowpunk:Engine gives !M! additional snowpunk:Snowball{!M!|>1=s} when snowpunk:Cold or snowpunk:Frozen."
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",
