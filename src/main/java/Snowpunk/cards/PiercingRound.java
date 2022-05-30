@@ -23,6 +23,7 @@ public class PiercingRound extends AbstractEasyCard {
     public PiercingRound() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        isMultiDamage = true;
         tags.add(CustomTags.GUN);
     }
 

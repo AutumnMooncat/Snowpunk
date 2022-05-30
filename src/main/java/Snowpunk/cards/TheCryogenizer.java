@@ -27,6 +27,7 @@ public class TheCryogenizer extends AbstractEasyCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseInfo = info = 2;
+        isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, -2);
     }
 

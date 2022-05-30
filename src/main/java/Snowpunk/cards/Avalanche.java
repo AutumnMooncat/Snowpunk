@@ -26,6 +26,7 @@ public class Avalanche extends AbstractEasyCard {
     public Avalanche() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, -2);
     }
 

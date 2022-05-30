@@ -25,6 +25,7 @@ public class SteamBlast extends AbstractEasyCard {
     public SteamBlast() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
