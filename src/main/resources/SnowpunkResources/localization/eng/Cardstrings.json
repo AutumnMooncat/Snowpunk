@@ -13,9 +13,17 @@
     "NAME": "Avalanche",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Frozen, deal that damage again."
   },
+  "${ModID}:BoltShot": {
+    "NAME": "Bolt Shot",
+    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage."
+  },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
     "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
+  },
+  "${ModID}:BuckShot": {
+    "NAME": "Buck Shot",
+    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage to a random enemy !M! times."
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
