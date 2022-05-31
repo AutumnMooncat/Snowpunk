@@ -45,6 +45,10 @@
     "NAME": "Coal Dust",
     "DESCRIPTION": "{@@}Apply !M! snowpunk:Soot{!Upgrades!|>0= to ALL enemies}."
   },
+  "${ModID}:ColdSnap": {
+    "NAME": "Cold Snap",
+    "DESCRIPTION": "Deal !D!S damage and apply S snowpunk:Frostbite to ALL enemies. NL Exhaust."
+  },
   "${ModID}:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
