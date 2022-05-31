@@ -16,10 +16,18 @@ public class AssembleCardAction extends AbstractGameAction {
     public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
     int parts;
     int cores;
+    boolean randomCores;
+    boolean randomParts;
 
     public AssembleCardAction(int cores, int parts) {
+        this(cores, parts, false, false);
+    }
+
+    public AssembleCardAction(int cores, int parts, boolean randomCores, boolean randomParts) {
         this.cores = cores;
         this.parts = parts;
+        this.randomCores = randomCores;
+        this.randomParts = randomParts;
     }
 
     @Override
@@ -37,10 +45,10 @@ public class AssembleCardAction extends AbstractGameAction {
             }
         });
         for (int i = 0 ; i < parts ; i++) {
-            Wiz.att(new TinkerAction(ac));
+            Wiz.att(new TinkerAction(ac, randomParts));
         }
         for (int i = 0 ; i < cores ; i++) {
-            Wiz.att(new PickCoresAction(ac));
+            Wiz.att(new PickCoresAction(ac, randomCores));
         }
         this.isDone = true;
     }
