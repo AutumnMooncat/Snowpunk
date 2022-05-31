@@ -36,7 +36,7 @@ public class SCostFieldPatches {
                     if (m.getClassName().equals("com.megacrit.cardcrawl.helpers.FontHelper") && m.getMethodName().equals("renderFont")) {
                         m.replace("if (((Boolean) Snowpunk.patches.SCostFieldPatches.SCostField.isSCost.get(card)).booleanValue()) {" +
                                 "$3 = \"S\";" +
-                                "$4 = 674.0f * com.megacrit.cardcrawl.core.Settings.scale;" +
+                                //"$4 = 674.0f * com.megacrit.cardcrawl.core.Settings.scale;" +
                                 "}" +
                                 "$_ = $proceed($$);");
                     }
