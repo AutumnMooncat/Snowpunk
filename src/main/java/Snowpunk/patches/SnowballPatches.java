@@ -15,6 +15,8 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import javassist.CtBehavior;
 
 public class SnowballPatches {
+    private static final int HEAT_PER_BALL = 0;
+
     @SpirePatch2(clz = AbstractCard.class, method = "hasEnoughEnergy")
     public static class CardCostPatch {
         @SpireInsertPatch(locator = Locator.class)
@@ -49,7 +51,7 @@ public class SnowballPatches {
             if (__instance.hasPower(SnowballPower.POWER_ID)) {
                 int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
                 if (delta > 0) {
-                    Wiz.atb(new ModEngineTempAction(-delta));
+                    Wiz.atb(new ModEngineTempAction(-delta*HEAT_PER_BALL));
                     Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
                 }
             }
