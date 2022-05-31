@@ -11,7 +11,7 @@ public class SteamEngine {
     public static final int STABLE = 0;
     public static final int HOT = 2;
     public static final int OVERHEATED = 4;
-    public static final int STABILITY_FACTOR = 2;
+    public static final int STABILITY_FACTOR = 1;
 
     public static int heat;
     public static int stabilityPoint;
