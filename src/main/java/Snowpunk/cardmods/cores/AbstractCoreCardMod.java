@@ -70,7 +70,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
         if (card.upgraded) {
             card.baseDamage += damage + upDamage;
         } else {
-            card.baseDamage = damage;
+            card.baseDamage += damage;
             if (card instanceof AssembledCard) {
                 ((AssembledCard) card).addUpgradeFunction(ac -> {
                     ac.baseDamage += upDamage;
@@ -89,7 +89,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
         if (card.upgraded) {
             card.baseBlock += block + upBlock;
         } else {
-            card.baseBlock = block;
+            card.baseBlock += block;
             if (card instanceof AssembledCard) {
                 ((AssembledCard) card).addUpgradeFunction(ac -> {
                     ac.baseBlock += upBlock;
@@ -108,7 +108,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
         if (card.upgraded) {
             card.baseMagicNumber += magic + upMagic;
         } else {
-            card.baseMagicNumber = magic;
+            card.baseMagicNumber += magic;
             if (card instanceof AssembledCard) {
                 ((AssembledCard) card).addUpgradeFunction(ac -> {
                     ac.baseMagicNumber += upMagic;
