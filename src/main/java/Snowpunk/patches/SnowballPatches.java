@@ -47,14 +47,10 @@ public class SnowballPatches {
         @SpireInsertPatch(locator = Locator.class)
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
             if (__instance.hasPower(SnowballPower.POWER_ID)) {
-                if (SCostFieldPatches.SCostField.isSCost.get(c) && !c.freeToPlayOnce) {
-                    __instance.energy.use(__instance.getPower(SnowballPower.POWER_ID).amount);
-                } else {
-                    int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
-                    if (delta > 0) {
-                        Wiz.atb(new ModEngineTempAction(-delta));
-                        Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
-                    }
+                int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
+                if (delta > 0) {
+                    Wiz.atb(new ModEngineTempAction(-delta));
+                    Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
                 }
             }
         }
@@ -62,6 +58,23 @@ public class SnowballPatches {
             @Override
             public int[] Locate(CtBehavior ctBehavior) throws Exception {
                 Matcher m = new Matcher.MethodCallMatcher(EnergyManager.class, "use");
+                return LineFinder.findInOrder(ctBehavior, m);
+            }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "useCard")
+    public static class SCostUseEPatch {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
+            if (SCostFieldPatches.SCostField.isSCost.get(c) && !c.freeToPlay()) {
+                __instance.energy.use(__instance.getPower(SnowballPower.POWER_ID).amount);
+            }
+        }
+        public static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher m = new Matcher.MethodCallMatcher(AbstractCard.class, "freeToPlay");
                 return LineFinder.findInOrder(ctBehavior, m);
             }
         }
