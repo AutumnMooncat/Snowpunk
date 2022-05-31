@@ -57,6 +57,10 @@
     "NAME": "Frostbite",
     "DESCRIPTION": "{@@}Apply snowpunk:Frostbite equal to your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
   },
+  "${ModID}:HeatTransfer": {
+    "NAME": "Heat Transfer",
+    "DESCRIPTION": "This turn, snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn."
+  },
   "${ModID}:IceCube": {
     "NAME": "Ice Cube",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."

@@ -2,7 +2,10 @@ package Snowpunk.patches;
 
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
+import Snowpunk.powers.CoolNextCardPower;
+import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.GunManager;
+import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
@@ -24,6 +27,22 @@ public class CardTemperatureFields {
 
     public static int getCardHeat(AbstractCard card) {
         return TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
+    }
+
+    public static int getExpectedCardHeatWhenPlayed(AbstractCard card) {
+        int heat = getCardHeat(card);
+        if (Wiz.adp() != null && Wiz.adp().hasPower(HeatNextCardPower.POWER_ID)) {
+            heat++;
+        }
+        if (Wiz.adp() != null && Wiz.adp().hasPower(CoolNextCardPower.POWER_ID)) {
+            heat--;
+        }
+        if (heat > 2) {
+            heat = 2;
+        } else if (heat < -2) {
+            heat = -2;
+        }
+        return heat;
     }
 
     public static void addInherentHeat(AbstractCard card, int amount) {
