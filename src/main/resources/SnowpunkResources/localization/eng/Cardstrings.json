@@ -69,6 +69,10 @@
     "NAME": "Ice Cube",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."
   },
+  "${ModID}:Ignite": {
+    "NAME": "Ignite",
+    "DESCRIPTION": "Apply !M! snowpunk:Burn to ALL enemies. NL snowpunk:Sooty enemies gain additional snowpunk:Burn equal to their snowpunk:Soot."
+  },
   "${ModID}:Invention": {
     "NAME": "Invention",
     "DESCRIPTION": "{@@}snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
