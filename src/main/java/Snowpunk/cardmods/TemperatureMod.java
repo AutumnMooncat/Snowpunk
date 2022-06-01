@@ -61,7 +61,7 @@ public class TemperatureMod extends AbstractCardModifier {
 
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {
-        if (CardTemperatureFields.getCardHeat(card) < 0) {
+        if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) < 0) {
             card.retain = true;
         }
         return false;
