@@ -17,6 +17,10 @@
     "NAME": "Black Ice",
     "DESCRIPTION": "{@@}snowpunk:Toss S: Apply{!Upgrades!|>0= S snowpunk:Frostbite,} S Weak, and S Vulnerable to ALL enemies. NL Exhaust."
   },
+  "${ModID}:BlastingCap": {
+    "NAME": "Blasting Cap",
+    "DESCRIPTION": "{@@}Deal damage equal !D! times your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+  },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
     "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage."
@@ -88,6 +92,10 @@
   "${ModID}:Resupply": {
     "NAME": "Resupply",
     "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered."
+  },
+  "${ModID}:RollingCoal": {
+    "NAME": "Rolling Coal",
+    "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Soot to ALL enemies."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
