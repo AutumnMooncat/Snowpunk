@@ -160,6 +160,13 @@
     "DESCRIPTION": "Lower a card's temperature until it is #yFrozen. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
+    "PROPER_NAME": "Battery",
+    "NAMES": [
+      "battery"
+    ],
+    "DESCRIPTION": "Gain [E]"
+  },
+  {
     "PROPER_NAME": "Stable",
     "NAMES": [
       "stable"

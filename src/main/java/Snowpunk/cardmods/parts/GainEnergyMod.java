@@ -23,11 +23,14 @@ public class GainEnergyMod extends AbstractCardModifier {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         StringBuilder sb = new StringBuilder();
-        sb.append(rawDescription).append(TEXT[0]);
+        /*sb.append(rawDescription).append(TEXT[0]);
         for (int i = 0 ; i < amount ; i++) {
             sb.append(TEXT[1]);
         }
-        sb.append(TEXT[2]);
+        sb.append(TEXT[2]);*/
+        sb.append(rawDescription).append(TEXT[3]);
+        if (amount > 1)
+            sb.append(TEXT[4]).append(amount);
         return sb.toString();
     }
 
