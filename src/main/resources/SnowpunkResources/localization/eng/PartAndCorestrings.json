@@ -31,7 +31,7 @@
   },
   "${ModID}:GlowingMetal": {
     "NAME": "Glowing Metal",
-    "DESCRIPTION": "When drawn, snowpunk:Heat this card."
+    "DESCRIPTION": "Apples 3 snowpunk:Burn on hit."
   },
   "${ModID}:Gyroscopter": {
     "NAME": "Gyroscopter",
@@ -66,16 +66,16 @@
   "${ModID}:BarrierCore": {
     "NAME": "Barrier Core",
     "DESCRIPTION": "Gain !B! Block.",
-    "EXTENDED_DESCRIPTION": ["Barrier","Gain !B! Block.","Gain !Snowpunk:B2! Block."]
+    "EXTENDED_DESCRIPTION": ["Barrier","Gain %s Block."]
   },
   "${ModID}:BlastCore": {
     "NAME": "Blast Core",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Blaster","Deal !D! damage to ALL enemies.","Deal !Snowpunk:D2! damage to ALL enemies."]
+    "EXTENDED_DESCRIPTION": ["Blaster","Deal %s damage to ALL enemies."]
   },
   "${ModID}:StrikeCore": {
     "NAME": "Strike Core",
     "DESCRIPTION": "Deal !D! damage.",
-    "EXTENDED_DESCRIPTION": ["Striker","Deal !D! damage.","Deal !Snowpunk:D2! damage."]
+    "EXTENDED_DESCRIPTION": ["Striker","Deal %s damage."]
   }
 }
