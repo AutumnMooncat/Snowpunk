@@ -58,6 +58,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
                     this.cost = this.costForTurn = 1;
                 } else {
                     this.cost = this.costForTurn = 0;
+                    this.isCostModified = true;
                 }
                 break;
             case RARE:
@@ -65,6 +66,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
                     this.cost = this.costForTurn = 2;
                 } else {
                     this.cost = this.costForTurn = 1;
+                    this.isCostModified = true;
                 }
                 break;
             default:
