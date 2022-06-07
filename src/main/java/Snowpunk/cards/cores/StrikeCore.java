@@ -40,9 +40,9 @@ public class StrikeCore extends AbstractCoreCard {
     @Override
     public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
-            textToAdd = TEXT[2];
+            textToAdd = String.format(TEXT[1],"!Snowpunk:D2!");
         } else {
-            textToAdd = TEXT[1];
+            textToAdd = String.format(TEXT[1],"!D!");
         }
     }
 
