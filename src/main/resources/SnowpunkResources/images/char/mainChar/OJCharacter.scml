@@ -6,7 +6,7 @@
         <file id="2" name="Full Images/Hurt.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
         <file id="3" name="Full Images/KO.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
         <file id="4" name="Full Images/Throw.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
-        <file id="5" name="Full Images/Idle.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
+        <file id="5" name="Full Images/Character.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
     </folder>
     <entity id="0" name="Character">
         <animation id="0" name="idle" length="4000" interval="100">
@@ -14,16 +14,16 @@
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="2000">
+                <key id="1" time="1500">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" angle="0" scale_x="-1" scale_y="1"/>
+                    <object folder="0" file="5" angle="0" scale_x=".5" scale_y=".5"/>
                 </key>
-                <key id="1" time="2000" spin="0">
-                    <object folder="0" file="5" angle="0" scale_x="-0.97" scale_y="1.03"/>
+                <key id="1" time="1500" spin="0">
+                    <object folder="0" file="5" angle="0" scale_x="0.48" scale_y=".51"/>
                 </key>
             </timeline>
         </animation>
