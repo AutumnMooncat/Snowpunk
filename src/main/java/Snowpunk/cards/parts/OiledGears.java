@@ -1,6 +1,7 @@
 package Snowpunk.cards.parts;
 
 import Snowpunk.cardmods.parts.DrawAndDiscardRandomMod;
+import Snowpunk.cardmods.parts.DrawMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -18,7 +19,7 @@ public class OiledGears extends AbstractPartCard {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
 
     public OiledGears() {
         super(ID, TYPE, RARITY);
@@ -31,6 +32,6 @@ public class OiledGears extends AbstractPartCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new DrawAndDiscardRandomMod(1));
+        CardModifierManager.addModifier(card, new DrawMod(1));
     }
 }

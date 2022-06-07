@@ -103,13 +103,20 @@ public class TinkerAction extends AbstractGameAction {
         }
     }
 
-    private static void pickPartsForCard(AbstractCard card) {
+    private static CardGroup getValidParts(AbstractCard card) {
         CardGroup validParts = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractPartCard pc : SnowpunkMod.parts) {
             if (pc.getFilter().test(card)) {
-                validParts.addToTop(pc.makeCopy());
+                AbstractPartCard copy = (AbstractPartCard) pc.makeCopy();
+                copy.prepForSelection(card);
+                validParts.addToTop(copy);
             }
         }
+        return validParts;
+    }
+
+    private static void pickPartsForCard(AbstractCard card) {
+        CardGroup validParts = getValidParts(card);
         if (!validParts.isEmpty()) {
             ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
             if (validParts.size() <= 3) {
@@ -135,12 +142,7 @@ public class TinkerAction extends AbstractGameAction {
     }
 
     private static void giveRandomPart(AbstractCard card) {
-        CardGroup validParts = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractPartCard pc : SnowpunkMod.parts) {
-            if (pc.getFilter().test(card)) {
-                validParts.addToTop(pc.makeCopy());
-            }
-        }
+        CardGroup validParts = getValidParts(card);
         if (!validParts.isEmpty()) {
             AbstractCard part = validParts.getRandomCard(true);
             if (part instanceof AbstractPartCard) {

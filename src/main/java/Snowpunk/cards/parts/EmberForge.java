@@ -1,6 +1,7 @@
 package Snowpunk.cards.parts;
 
 import Snowpunk.cardmods.parts.DoublePlayOverheatMod;
+import Snowpunk.cardmods.parts.SetCostMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -16,7 +17,7 @@ public class EmberForge extends AbstractPartCard {
     public static final String ID = makeID(EmberForge.class.getSimpleName());
 
     private static final CardType TYPE = CardType.SKILL;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
 
     public EmberForge() {
         super(ID, TYPE, RARITY);
@@ -24,11 +25,11 @@ public class EmberForge extends AbstractPartCard {
 
     @Override
     public Predicate<AbstractCard> getFilter() {
-        return isPlayable.and(c -> !CardModifierManager.hasModifier(c, DoublePlayOverheatMod.ID));
+        return greaterThanZeroCost;
     }
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new DoublePlayOverheatMod());
+        CardModifierManager.addModifier(card, new SetCostMod(0));
     }
 }

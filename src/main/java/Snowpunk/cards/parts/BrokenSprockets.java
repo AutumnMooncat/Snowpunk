@@ -21,6 +21,7 @@ public class BrokenSprockets extends AbstractPartCard {
 
     public BrokenSprockets() {
         super(ID, TYPE, RARITY);
+        magicNumber = baseMagicNumber = 3;
     }
 
     @Override
@@ -29,8 +30,15 @@ public class BrokenSprockets extends AbstractPartCard {
     }
 
     @Override
+    public void prepForSelection(AbstractCard card) {
+        if (card.cost > 1) {
+            baseMagicNumber *= card.cost;
+            magicNumber = baseMagicNumber;
+        }
+    }
+
+    @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new DamageBuffMod(6));
-        CardModifierManager.addModifier(card, new ExhaustMod());
+        CardModifierManager.addModifier(card, new DamageBuffMod(magicNumber));
     }
 }

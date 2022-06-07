@@ -20,6 +20,7 @@ public class BrassPlating extends AbstractPartCard {
 
     public BrassPlating() {
         super(ID, TYPE, RARITY);
+        magicNumber = baseMagicNumber = 3;
     }
 
     @Override
@@ -28,7 +29,15 @@ public class BrassPlating extends AbstractPartCard {
     }
 
     @Override
+    public void prepForSelection(AbstractCard card) {
+        if (card.cost > 1) {
+            baseMagicNumber *= card.cost;
+            magicNumber = baseMagicNumber;
+        }
+    }
+
+    @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new BlockBuffMod(3));
+        CardModifierManager.addModifier(card, new BlockBuffMod(magicNumber));
     }
 }

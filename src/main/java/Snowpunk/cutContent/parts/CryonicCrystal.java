@@ -1,7 +1,8 @@
-package Snowpunk.cards.parts;
+package Snowpunk.cutContent.parts;
 
 import Snowpunk.cardmods.parts.CoolOnDrawMod;
 import Snowpunk.cardmods.parts.HeatOnDrawMod;
+import Snowpunk.cards.parts.AbstractPartCard;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;

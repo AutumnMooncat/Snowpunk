@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public class BurnDamage extends AbstractDamageModifier {
-    int amount;
+    public int amount;
 
     public BurnDamage(int amount) {
         this.amount = amount;

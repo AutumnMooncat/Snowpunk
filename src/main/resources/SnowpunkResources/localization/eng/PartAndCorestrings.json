@@ -11,47 +11,51 @@
   },
   "${ModID}:BrassPlating": {
     "NAME": "Brass Plating",
-    "DESCRIPTION": "+3 Block."
+    "DESCRIPTION": "+ !M! Block."
   },
   "${ModID}:BrokenSprockets": {
     "NAME": "Broken Sprockets",
-    "DESCRIPTION": "+6 damage. NL Exhaust."
+    "DESCRIPTION": "+ !M! damage."
   },
   "${ModID}:CoolantValve": {
-    "NAME": "Coolant Valve",
+    "NAME": "",
     "DESCRIPTION": ""
   },
   "${ModID}:CryonicCrystal": {
-    "NAME": "Cryonic Crystal",
-    "DESCRIPTION": "When drawn, snowpunk:Cool this card."
+    "NAME": "",
+    "DESCRIPTION": ""
   },
   "${ModID}:EmberForge": {
     "NAME": "Ember Forge",
-    "DESCRIPTION": "Play this card's effect an additional time when snowpunk:Overheated"
+    "DESCRIPTION": "Reduce cost to 0."
   },
   "${ModID}:GlowingMetal": {
     "NAME": "Glowing Metal",
     "DESCRIPTION": "When drawn, snowpunk:Heat this card."
   },
+  "${ModID}:Gyroscopter": {
+    "NAME": "Gyroscopter",
+    "DESCRIPTION": "snowpunk:Reshuffle."
+  },
   "${ModID}:HeatingCoils": {
-    "NAME": "Heating Coils",
+    "NAME": "",
     "DESCRIPTION": ""
   },
   "${ModID}:ManastoneCasing": {
     "NAME": "Manastone Casing",
-    "DESCRIPTION": "+2 magic."
+    "DESCRIPTION": "+ 2 magic."
   },
   "${ModID}:OiledGears": {
     "NAME": "Oiled Gears",
-    "DESCRIPTION": "Draw 1 card. NL Discard 1 card at random."
+    "DESCRIPTION": "Draw 1 card."
   },
   "${ModID}:ScrapHeap": {
-    "NAME": "Scrap Heap",
-    "DESCRIPTION": "+6 Block. NL Exhaust."
+    "NAME": "",
+    "DESCRIPTION": ""
   },
   "${ModID}:SpareSpikes": {
-    "NAME": "Spare Spikes",
-    "DESCRIPTION": "+3 damage."
+    "NAME": "",
+    "DESCRIPTION": ""
   },
 
 

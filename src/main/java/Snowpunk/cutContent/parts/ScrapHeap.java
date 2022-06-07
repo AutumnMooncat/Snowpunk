@@ -1,6 +1,7 @@
-package Snowpunk.cards.parts;
+package Snowpunk.cutContent.parts;
 
 import Snowpunk.cardmods.parts.BlockBuffMod;
+import Snowpunk.cards.parts.AbstractPartCard;
 import basemod.cardmods.ExhaustMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;

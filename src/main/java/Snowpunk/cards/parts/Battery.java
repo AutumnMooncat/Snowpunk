@@ -18,7 +18,7 @@ public class Battery extends AbstractPartCard {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
 
     public Battery() {
         super(ID, TYPE, RARITY);

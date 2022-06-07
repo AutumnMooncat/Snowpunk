@@ -62,6 +62,13 @@
     "DESCRIPTION": "Your current #yEnergy."
   },
   {
+    "PROPER_NAME": "Reshuffle",
+    "NAMES": [
+      "reshuffle"
+    ],
+    "DESCRIPTION": "Shuffle this card into your draw pile when it is played."
+  },
+  {
     "PROPER_NAME": "Snowballs",
     "NAMES": [
       "snowball",
