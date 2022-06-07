@@ -15,7 +15,6 @@ public class SootPower extends AbstractEasyPower {
 
     public SootPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
-        this.loadRegion("fumes");
     }
 
     @Override
