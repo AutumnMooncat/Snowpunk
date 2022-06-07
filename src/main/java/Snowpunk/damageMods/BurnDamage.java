@@ -9,9 +9,20 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public class BurnDamage extends AbstractDamageModifier {
     public int amount;
+    boolean inherent;
 
     public BurnDamage(int amount) {
         this.amount = amount;
+    }
+
+    public BurnDamage(int amount, boolean inherent) {
+        this.amount = amount;
+        this.inherent = inherent;
+    }
+
+    @Override
+    public boolean isInherent() {
+        return inherent;
     }
 
     @Override
@@ -21,6 +32,6 @@ public class BurnDamage extends AbstractDamageModifier {
 
     @Override
     public AbstractDamageModifier makeCopy() {
-        return new BurnDamage(amount);
+        return new BurnDamage(amount, inherent);
     }
 }

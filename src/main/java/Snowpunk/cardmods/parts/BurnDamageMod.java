@@ -24,7 +24,7 @@ public class BurnDamageMod extends AbstractCardModifier {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        DamageModifierManager.addModifier(card, new BurnDamage(amount));
+        DamageModifierManager.addModifier(card, new BurnDamage(amount, true));
     }
 
     @Override
