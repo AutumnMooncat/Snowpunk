@@ -1,9 +1,6 @@
 package Snowpunk;
 
-import Snowpunk.cards.cardvars.Info;
-import Snowpunk.cards.cardvars.Pressure;
-import Snowpunk.cards.cardvars.SecondDamage;
-import Snowpunk.cards.cardvars.SecondMagicNumber;
+import Snowpunk.cards.cardvars.*;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
@@ -146,6 +143,7 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.PunctureIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new SecondBlock());
         BaseMod.addDynamicVariable(new Pressure());
         BaseMod.addDynamicVariable(new Info());
         new AutoAdd(modID)

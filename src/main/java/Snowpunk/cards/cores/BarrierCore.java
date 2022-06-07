@@ -7,6 +7,8 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
+import java.util.ArrayList;
+
 import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
@@ -18,19 +20,30 @@ public class BarrierCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
+    private static final ValueType VALUE = ValueType.BLOCK;
 
-    private static final int COST = 1;
     private static final int EFFECT = 6;
     private static final int UP_EFFECT = 3;
 
+    String textToAdd;
+
     public BarrierCore() {
-        super(ID, COST, TYPE, RARITY);
+        super(ID, TYPE, RARITY, VALUE);
         baseBlock = block = EFFECT;
     }
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new GainBlockMod(TEXT[0], rawDescription, COST, TYPE, RARITY, TARGET, EFFECT, UP_EFFECT));
+        CardModifierManager.addModifier(card, new GainBlockMod(TEXT[0], textToAdd, TYPE, RARITY, TARGET, EFFECT, UP_EFFECT));
+    }
+
+    @Override
+    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+            textToAdd = TEXT[2];
+        } else {
+            textToAdd = TEXT[1];
+        }
     }
 
     @Override

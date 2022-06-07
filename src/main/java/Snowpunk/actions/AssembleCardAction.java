@@ -1,10 +1,14 @@
 package Snowpunk.actions;
 
+import Snowpunk.SnowpunkMod;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsCenteredAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
@@ -48,7 +52,11 @@ public class AssembleCardAction extends AbstractGameAction {
             Wiz.att(new TinkerAction(ac, randomParts));
         }
         for (int i = 0 ; i < cores ; i++) {
-            Wiz.att(new PickCoresAction(ac, randomCores));
+            if (randomCores) {
+                giveRandomCore(ac);
+            } else {
+                pickCoresForCard(ac);
+            }
         }
         this.isDone = true;
     }
@@ -60,6 +68,63 @@ public class AssembleCardAction extends AbstractGameAction {
         } else {
             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(copy, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
         }
+    }
+
+    private static CardGroup getValidCores(AbstractCard card) {
+        CardGroup validCores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        int currentDoubledCost = card instanceof AssembledCard ? ((AssembledCard) card).doubledCost : 0;
+        for (AbstractCoreCard core : SnowpunkMod.cores) {
+            if (core.canSpawn(AssembleCardAction.pickedCores)) {
+                AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
+                copy.prepRenderedCost(currentDoubledCost);
+                copy.prepForSelection(AssembleCardAction.pickedCores);
+                validCores.addToTop(copy);
+            }
+        }
+        return validCores;
+    }
+
+    private static void giveRandomCore(AbstractCard card) {
+        CardGroup validCores = getValidCores(card);
+        if (!validCores.isEmpty()) {
+            AbstractCard core = validCores.getRandomCard(true);
+            if (core instanceof AbstractCoreCard) {
+                ((AbstractCoreCard) core).apply(card);
+                validCores.removeCard(core);
+                AssembleCardAction.pickedCores.add((AbstractCoreCard) core);
+            }
+        }
+    }
+
+    private static void pickCoresForCard(AbstractCard card) {
+        Wiz.att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CardGroup validCores = getValidCores(card);
+                if (!validCores.isEmpty()) {
+                    ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
+                    if (validCores.size() <= 3) {
+                        cardsToPick.addAll(validCores.group);
+                    } else {
+                        for (int i = 0; i < 3; i++) {
+                            AbstractCard c = validCores.getRandomCard(true);
+                            validCores.removeCard(c);
+                            cardsToPick.add(c);
+                        }
+                    }
+                    Wiz.att(new SelectCardsCenteredAction(cardsToPick, 1, "", false, crd -> true, cards -> {
+                        for (AbstractCard c : cards) {
+                            if (c instanceof AbstractCoreCard) {
+                                ((AbstractCoreCard) c).apply(card);
+                                validCores.removeCard(c);
+                                AssembleCardAction.pickedCores.add((AbstractCoreCard) c);
+                            }
+                        }
+                    }));
+                }
+                this.isDone = true;
+            }
+        });
     }
 
 }

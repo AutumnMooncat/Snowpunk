@@ -11,6 +11,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -19,7 +22,9 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class AssembledCard extends AbstractEasyCard {
     public static final String ID = makeID(AssembledCard.class.getSimpleName());
 
-    private final ArrayList<Function<AbstractCard, Void>> onUpgradeFunctions = new ArrayList<>();
+    private final ArrayList<Consumer<AbstractCard>> onUpgradeConsumers = new ArrayList<>();
+    private final ArrayList<BiConsumer<AbstractPlayer, AbstractMonster>> onUseConsumers = new ArrayList<>();
+    public int doubledCost;
 
     public AssembledCard() {
         this(0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
@@ -35,16 +40,24 @@ public class AssembledCard extends AbstractEasyCard {
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {}
-
-    public void addUpgradeFunction(Function<AbstractCard, Void> f) {
-        onUpgradeFunctions.add(f);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        for (BiConsumer<AbstractPlayer, AbstractMonster> c : onUseConsumers) {
+            c.accept(p, m);
+        }
     }
 
     @Override
     public void upp() {
-        for (Function<AbstractCard, Void> f : onUpgradeFunctions) {
-            f.apply(this);
+        for (Consumer<AbstractCard> c : onUpgradeConsumers) {
+            c.accept(this);
         }
+    }
+
+    public void addUpgradeConsumer(Consumer<AbstractCard> c) {
+        onUpgradeConsumers.add(c);
+    }
+
+    public void addUseConsumer(BiConsumer<AbstractPlayer, AbstractMonster> c) {
+        onUseConsumers.add(c);
     }
 }

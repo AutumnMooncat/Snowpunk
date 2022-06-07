@@ -62,16 +62,16 @@
   "${ModID}:BarrierCore": {
     "NAME": "Barrier Core",
     "DESCRIPTION": "Gain !B! Block.",
-    "EXTENDED_DESCRIPTION": ["Barrier"]
+    "EXTENDED_DESCRIPTION": ["Barrier","Gain !B! Block.","Gain !Snowpunk:B2! Block."]
   },
   "${ModID}:BlastCore": {
     "NAME": "Blast Core",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Blaster"]
+    "EXTENDED_DESCRIPTION": ["Blaster","Deal !D! damage to ALL enemies.","Deal !Snowpunk:D2! damage to ALL enemies."]
   },
   "${ModID}:StrikeCore": {
     "NAME": "Strike Core",
     "DESCRIPTION": "Deal !D! damage.",
-    "EXTENDED_DESCRIPTION": ["Striker"]
+    "EXTENDED_DESCRIPTION": ["Striker","Deal !D! damage.","Deal !Snowpunk:D2! damage."]
   }
 }

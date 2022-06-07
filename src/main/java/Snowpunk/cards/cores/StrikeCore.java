@@ -7,6 +7,8 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
+import java.util.ArrayList;
+
 import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
@@ -18,19 +20,30 @@ public class StrikeCore extends AbstractCoreCard {
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
+    private static final ValueType VALUE = ValueType.DAMAGE;
 
-    private static final int COST = 1;
     private static final int DAMAGE = 9;
     private static final int UP_DAMAGE = 3;
 
+    String textToAdd;
+
     public StrikeCore() {
-        super(ID, COST, TYPE, RARITY);
+        super(ID, TYPE, RARITY, VALUE);
         baseDamage = damage = DAMAGE;
     }
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new DealDamageMod(TEXT[0], rawDescription, COST, TYPE, RARITY, TARGET, DAMAGE, UP_DAMAGE));
+        CardModifierManager.addModifier(card, new DealDamageMod(TEXT[0], textToAdd, TYPE, RARITY, TARGET, DAMAGE, UP_DAMAGE));
+    }
+
+    @Override
+    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+            textToAdd = TEXT[2];
+        } else {
+            textToAdd = TEXT[1];
+        }
     }
 
     @Override

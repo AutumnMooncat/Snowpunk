@@ -41,6 +41,11 @@ public abstract class AbstractEasyCard extends CustomCard {
     public boolean upgradedSecondDamage;
     public boolean isSecondDamageModified;
 
+    public int secondBlock = -1;
+    public int baseSecondBlock = -1;
+    public boolean upgradedSecondBlock;
+    public boolean isSecondBlockModified;
+
     public int info = -1;
     public int baseInfo = -1;
     public boolean upgradedInfo;
@@ -144,12 +149,33 @@ public abstract class AbstractEasyCard extends CustomCard {
         } else super.calculateCardDamage(mo);
     }
 
+    @Override
+    protected void applyPowersToBlock() {
+        if (baseSecondBlock > -1) {
+            secondBlock = baseSecondBlock;
+
+            int tmp = baseBlock;
+            baseBlock = baseSecondBlock;
+
+            super.applyPowersToBlock();
+
+            secondBlock = block;
+            baseBlock = tmp;
+
+            super.applyPowersToBlock();
+
+            isSecondBlockModified = (secondBlock != baseSecondBlock);
+        } else super.applyPowersToBlock();
+    }
+
     public void resetAttributes() {
         super.resetAttributes();
         secondMagic = baseSecondMagic;
         isSecondMagicModified = false;
         secondDamage = baseSecondDamage;
         isSecondDamageModified = false;
+        secondBlock = baseSecondBlock;
+        isSecondBlockModified = false;
         info = baseInfo;
         isInfoModified = false;
     }
@@ -163,6 +189,10 @@ public abstract class AbstractEasyCard extends CustomCard {
         if (upgradedSecondDamage) {
             secondDamage = baseSecondDamage;
             isSecondDamageModified = true;
+        }
+        if (upgradedSecondBlock) {
+            secondBlock = baseSecondBlock;
+            isSecondBlockModified = true;
         }
         if (upgradedInfo) {
             info = baseInfo;
@@ -180,6 +210,12 @@ public abstract class AbstractEasyCard extends CustomCard {
         baseSecondDamage += amount;
         secondDamage = baseSecondDamage;
         upgradedSecondDamage = true;
+    }
+
+    protected void upgradeSecondBlock(int amount) {
+        baseSecondBlock += amount;
+        secondBlock = baseSecondBlock;
+        upgradedSecondBlock = true;
     }
 
     protected void upgradeInfo(int amount) {

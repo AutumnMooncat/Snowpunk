@@ -9,24 +9,35 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public abstract class AbstractCoreCardMod extends AbstractCardModifier {
     public String name;
     public String description;
-    public int cost;
+    public int doubledCost;
     public AbstractCard.CardType type;
     public AbstractCard.CardRarity rarity;
     public AbstractCard.CardTarget target;
+    public boolean useSecondVar;
 
-    public AbstractCoreCardMod(String name, String description, int cost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
+    public AbstractCoreCardMod(String name, String description, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         this.name = name;
         this.description = description;
-        this.cost = cost;
+        this.doubledCost = getDoubledCostFromRarity(rarity);
         this.type = type;
         this.rarity = rarity;
         this.target = target;
     }
 
+    protected int getDoubledCostFromRarity(AbstractCard.CardRarity rarity) {
+        if (rarity == AbstractCard.CardRarity.RARE) {
+            return 3;
+        } else if (rarity == AbstractCard.CardRarity.UNCOMMON) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
     public void collateCardBasics(AbstractCard card) {
         collateName(card, name);
         collateDescription(card, description);
-        collateCost(card, cost);
+        collateCost(card, doubledCost);
         collateType(card, type);
         collateRarity(card, rarity);
         collateTarget(card, target);
@@ -51,73 +62,122 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
         }
     }
 
-    public void collateCost(AbstractCard card, int cost) {
-        //Collate positive cost values
-        if (cost > 0 && card.cost >= 0) {
-            card.cost += cost;
-            card.costForTurn = card.cost;
-        } else if (cost < 0) {
-            //For X or Unplayable, just override the cost entirely, as they take precedence
-            card.cost = cost;
-            card.costForTurn = cost;
+    public void collateCost(AbstractCard card, int doubledCost) {
+        if (card instanceof AssembledCard) {
+            ((AssembledCard) card).doubledCost += doubledCost;
+            card.cost = card.costForTurn = (int) Math.ceil(((AssembledCard) card).doubledCost/2f);
         }
     }
 
     public void collateDamage(AbstractCard card, int damage, int upDamage) {
         if (card.baseDamage == -1) {
             card.baseDamage = 0;
-        }
-        if (card.upgraded) {
-            card.baseDamage += damage + upDamage;
-        } else {
-            card.baseDamage += damage;
-            if (card instanceof AssembledCard) {
-                ((AssembledCard) card).addUpgradeFunction(ac -> {
-                    ac.baseDamage += upDamage;
-                    ac.upgradedDamage = true;
-                    return null;
-                });
+            if (card.upgraded) {
+                card.baseDamage += damage + upDamage;
+            } else {
+                card.baseDamage += damage;
+                if (card instanceof AssembledCard) {
+                    ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                        ac.baseDamage += upDamage;
+                        ac.upgradedDamage = true;
+                    });
+                }
+            }
+            card.damage = card.baseDamage;
+        } else if (card instanceof AbstractEasyCard) {
+            if (((AbstractEasyCard) card).baseSecondDamage == -1) {
+                useSecondVar = true;
+                ((AbstractEasyCard) card).baseSecondDamage = 0;
+                if (card.upgraded) {
+                    ((AbstractEasyCard) card).baseSecondDamage += damage + upDamage;
+                } else {
+                    ((AbstractEasyCard) card).baseSecondDamage += damage;
+                    if (card instanceof AssembledCard) {
+                        ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                            if (ac instanceof AbstractEasyCard) {
+                                ((AbstractEasyCard) ac).baseSecondDamage += upDamage;
+                                ((AbstractEasyCard) ac).upgradedSecondDamage = true;
+                            }
+                        });
+                    }
+                }
+                ((AbstractEasyCard) card).secondDamage = ((AbstractEasyCard) card).baseSecondDamage;
             }
         }
-        card.damage = card.baseDamage;
     }
 
     public void collateBlock(AbstractCard card, int block, int upBlock) {
         if (card.baseBlock == -1) {
             card.baseBlock = 0;
-        }
-        if (card.upgraded) {
-            card.baseBlock += block + upBlock;
-        } else {
-            card.baseBlock += block;
-            if (card instanceof AssembledCard) {
-                ((AssembledCard) card).addUpgradeFunction(ac -> {
-                    ac.baseBlock += upBlock;
-                    ac.upgradedBlock = true;
-                    return null;
-                });
+            if (card.upgraded) {
+                card.baseBlock += block + upBlock;
+            } else {
+                card.baseBlock += block;
+                if (card instanceof AssembledCard) {
+                    ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                        ac.baseBlock += upBlock;
+                        ac.upgradedBlock = true;
+                    });
+                }
+            }
+            card.block = card.baseBlock;
+        } else if (card instanceof AbstractEasyCard) {
+            if (((AbstractEasyCard) card).baseSecondBlock == -1) {
+                useSecondVar = true;
+                ((AbstractEasyCard) card).baseSecondBlock = 0;
+                if (card.upgraded) {
+                    ((AbstractEasyCard) card).baseSecondBlock += block + upBlock;
+                } else {
+                    ((AbstractEasyCard) card).baseSecondBlock += block;
+                    if (card instanceof AssembledCard) {
+                        ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                            if (ac instanceof AbstractEasyCard) {
+                                ((AbstractEasyCard) ac).baseSecondBlock += upBlock;
+                                ((AbstractEasyCard) ac).upgradedSecondBlock = true;
+                            }
+                        });
+                    }
+                }
+                ((AbstractEasyCard) card).secondBlock = ((AbstractEasyCard) card).baseSecondBlock;
             }
         }
-        card.block = card.baseBlock;
     }
 
     public void collateMagic(AbstractCard card, int magic, int upMagic) {
         if (card.baseMagicNumber == -1) {
             card.baseMagicNumber = 0;
-        }
-        if (card.upgraded) {
-            card.baseMagicNumber += magic + upMagic;
-        } else {
-            card.baseMagicNumber += magic;
-            if (card instanceof AssembledCard) {
-                ((AssembledCard) card).addUpgradeFunction(ac -> {
-                    ac.baseMagicNumber += upMagic;
-                    ac.upgradedBlock = true;
-                    return null;
-                });
+            if (card.upgraded) {
+                card.baseMagicNumber += magic + upMagic;
+            } else {
+                card.baseMagicNumber += magic;
+                if (card instanceof AssembledCard) {
+                    ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                        ac.baseMagicNumber += upMagic;
+                        ac.upgradedBlock = true;
+                    });
+                }
+            }
+            card.magicNumber = card.baseMagicNumber;
+        } else if (card instanceof AbstractEasyCard) {
+            if (((AbstractEasyCard) card).baseSecondMagic == -1) {
+                useSecondVar = true;
+                ((AbstractEasyCard) card).baseSecondMagic = 0;
+                if (card.upgraded) {
+                    ((AbstractEasyCard) card).baseSecondMagic += magic + upMagic;
+                } else {
+                    ((AbstractEasyCard) card).baseSecondMagic += magic;
+                    if (card instanceof AssembledCard) {
+                        ((AssembledCard) card).addUpgradeConsumer(ac -> {
+                            if (ac instanceof AbstractEasyCard) {
+                                ((AbstractEasyCard) ac).baseSecondMagic += upMagic;
+                                ((AbstractEasyCard) ac).upgradedSecondMagic = true;
+                            }
+                        });
+                    }
+                }
+                ((AbstractEasyCard) card).secondMagic = ((AbstractEasyCard) card).baseSecondMagic;
             }
         }
-        card.magicNumber = card.baseMagicNumber;
     }
 
     public void collateType(AbstractCard card, AbstractCard.CardType type) {

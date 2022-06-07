@@ -1,20 +1,19 @@
 package Snowpunk.cardmods.cores;
 
+import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public class DealDamageMod extends AbstractCoreCardMod {
     int damage;
     int upDamage;
 
-    public DealDamageMod(String name, String description, int cost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, int damage, int upDamage) {
-        super(name, description, cost, type, rarity, target);
+    public DealDamageMod(String name, String description, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, int damage, int upDamage) {
+        super(name, description, type, rarity, target);
         this.damage = damage;
         this.upDamage = upDamage;
     }
@@ -23,15 +22,19 @@ public class DealDamageMod extends AbstractCoreCardMod {
     public void onInitialApplication(AbstractCard card) {
         collateCardBasics(card);
         collateDamage(card, damage, upDamage);
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        Wiz.atb(new DamageAction(target, new DamageInfo(Wiz.adp(), card.damage, card.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        if (card instanceof AssembledCard) {
+            ((AssembledCard) card).addUseConsumer((p, m) -> {
+                if (useSecondVar) {
+                    Wiz.atb(new DamageAction(m, new DamageInfo(p, ((AssembledCard) card).secondDamage, card.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                } else {
+                    Wiz.atb(new DamageAction(m, new DamageInfo(p, card.damage, card.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                }
+            });
+        }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DealDamageMod(name, description, cost, type, rarity, target, damage, upDamage);
+        return new DealDamageMod(name, description, type, rarity, target, damage, upDamage);
     }
 }
