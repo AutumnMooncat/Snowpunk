@@ -166,6 +166,10 @@
     "NAME": "Steam Barrier Mk 2",
     "DESCRIPTION": "Gain !B! Block."
   },
+  "${ModID}:WaterTank": {
+    "NAME": "Water Tank",
+    "DESCRIPTION": "snowpunk:Ventilated. NL Temperature effects from this card are !Snowpunk:Info! times stronger."
+  },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",
     "DESCRIPTION": "At the start of your turn, apply !M! snowpunk:Frostbite to ALL enemies."
