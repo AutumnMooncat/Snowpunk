@@ -6,4 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class CustomTags {
     @SpireEnum
     public static AbstractCard.CardTags GUN;
+
+    @SpireEnum
+    public static AbstractCard.CardTags VENT;
 }

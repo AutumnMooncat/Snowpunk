@@ -63,12 +63,12 @@
     "DESCRIPTION": "Your current #yEnergy."
   },
   {
-    "PROPER_NAME": "Pressure",
+    "PROPER_NAME": "Ventilation",
     "NAMES": [
-      "pressure",
-      "pressurized"
+      "ventilation",
+      "ventilated"
     ],
-    "DESCRIPTION": "Your current #yEnergy."
+    "DESCRIPTION": "If this card would #yExhaust from a temperature effect, #yCool it to #yStable instead."
   },
   {
     "PROPER_NAME": "Reshuffle",

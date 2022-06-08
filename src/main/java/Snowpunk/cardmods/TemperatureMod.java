@@ -47,7 +47,11 @@ public class TemperatureMod extends AbstractCardModifier {
         int heat = CardTemperatureFields.getCardHeat(card);
         Wiz.atb(new ModEngineTempAction(heat));
         if (heat > 0) {
-            action.exhaustCard = true;
+            if (card.hasTag(CustomTags.VENT)) {
+                Wiz.atb(new ModCardTempAction(card, -heat));
+            } else {
+                action.exhaustCard = true;
+            }
             Wiz.atb(new GainEnergyAction(1));
         }
         if (heat == 2) {
