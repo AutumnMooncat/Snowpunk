@@ -66,7 +66,7 @@ public class AbyssalCore extends AbstractCoreCard {
         }
         if (effectIndex > 1) {
             baseMagicNumber += 1;
-            magicNumber = baseMagicNumber;
+            magicNumber = secondMagic = baseSecondMagic = baseMagicNumber;
         }
     }
 
