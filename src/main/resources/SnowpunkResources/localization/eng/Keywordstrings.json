@@ -118,6 +118,13 @@
     "DESCRIPTION": "Effect is lost at the end of this turn."
   },
   {
+    "PROPER_NAME": "Primary",
+    "NAMES": [
+      "primary"
+    ],
+    "DESCRIPTION": "The card's main non-damage and non-Block related effect."
+  },
+  {
     "PROPER_NAME": "Toss",
     "NAMES": [
       "toss"

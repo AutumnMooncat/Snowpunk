@@ -43,7 +43,7 @@
   },
   "${ModID}:ManastoneCasing": {
     "NAME": "Manastone Casing",
-    "DESCRIPTION": "+ 2 magic."
+    "DESCRIPTION": "+ 2 snowpunk:Primary."
   },
   "${ModID}:OiledGears": {
     "NAME": "Oiled Gears",
