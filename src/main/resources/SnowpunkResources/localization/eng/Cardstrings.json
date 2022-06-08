@@ -45,6 +45,10 @@
     "NAME": "Chuck Tools",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Randomly snowpunk:Tinker all cards in your hand."
   },
+  "${ModID}:ChuggaChugga": {
+    "NAME": "Chugga Chugga",
+    "DESCRIPTION": "Ethereal. NL snowpunk:Link two cards in your hand."
+  },
   "${ModID}:CoalDust": {
     "NAME": "Coal Dust",
     "DESCRIPTION": "{@@}Apply !M! snowpunk:Soot{!Upgrades!|>0= to ALL enemies}."

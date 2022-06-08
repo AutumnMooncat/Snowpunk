@@ -12,7 +12,16 @@
       "burning",
       "burn"
     ],
-    "DESCRIPTION": "Burning creatures take damage at the start of your turn. Each turn, Burn is reduced by #b1."
+    "DESCRIPTION": "#yBurning creatures take damage at the start of your turn. Each turn, #yBurn is reduced by #b1."
+  },
+  {
+    "PROPER_NAME": "Link",
+    "NAMES": [
+      "link",
+      "linked",
+      "linking"
+    ],
+    "DESCRIPTION": "#yLinked cards are drawn together."
   },
   {
     "PROPER_NAME": "Core",
