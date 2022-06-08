@@ -84,6 +84,6 @@
   },
   "${ModID}:HeatTransferPower": {
     "NAME": "Heat Transfer",
-    "DESCRIPTIONS": ["This turn, #yHot and #yOverheated Attacks, apply #b"," #yBurn."]
+    "DESCRIPTIONS": ["#yHot and #yOverheated Attacks, apply #b"," #yBurn."]
   }
 }

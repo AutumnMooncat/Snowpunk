@@ -39,11 +39,6 @@ public class HeatTransferPower extends AbstractEasyPower implements DamageModApp
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
-    }
-
-    @Override
     public boolean shouldPushMods(DamageInfo damageInfo, Object o, List<AbstractDamageModifier> list) {
         if (o instanceof AbstractCard && ((AbstractCard) o).type == AbstractCard.CardType.ATTACK) {
             return CardTemperatureFields.getExpectedCardHeatWhenPlayed((AbstractCard) o) > 0;
