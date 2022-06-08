@@ -29,7 +29,7 @@ public class StrikeCore extends AbstractCoreCard {
 
     public StrikeCore() {
         super(ID, TYPE, RARITY, VALUE);
-        baseDamage = damage = DAMAGE;
+        baseDamage = damage = secondDamage = baseSecondDamage = DAMAGE;
     }
 
     @Override

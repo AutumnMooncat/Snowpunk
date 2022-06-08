@@ -29,7 +29,7 @@ public class BlastCore extends AbstractCoreCard {
 
     public BlastCore() {
         super(ID, TYPE, RARITY, VALUE);
-        baseDamage = damage = DAMAGE;
+        baseDamage = damage = secondDamage = baseSecondDamage = DAMAGE;
     }
 
     @Override

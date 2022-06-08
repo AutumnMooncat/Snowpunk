@@ -29,7 +29,7 @@ public class BarrierCore extends AbstractCoreCard {
 
     public BarrierCore() {
         super(ID, TYPE, RARITY, VALUE);
-        baseBlock = block = EFFECT;
+        baseBlock = block = secondBlock = baseSecondBlock = EFFECT;
     }
 
     @Override
