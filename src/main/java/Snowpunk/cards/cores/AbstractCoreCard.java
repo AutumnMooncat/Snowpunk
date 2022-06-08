@@ -78,4 +78,21 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {}
 
+    protected void swapDynvarKey(ValueType type) {
+        switch (type) {
+            case DAMAGE:
+                this.rawDescription = this.rawDescription.replace("!D!", "!Snowpunk:D2!");
+                break;
+            case BLOCK:
+                this.rawDescription = this.rawDescription.replace("!B!", "!Snowpunk:B2!");
+                break;
+            case MAGIC:
+                this.rawDescription = this.rawDescription.replace("!M!", "!Snowpunk:M2!");
+                break;
+            default:
+                break;
+        }
+        initializeDescription();
+    }
+
 }

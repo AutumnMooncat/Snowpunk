@@ -68,6 +68,16 @@
     "DESCRIPTION": "Gain !B! Block.",
     "EXTENDED_DESCRIPTION": ["Barrier","Gain %s Block."]
   },
+  "${ModID}:BismuthCore": {
+    "NAME": "Bismuth Core",
+    "DESCRIPTION": "Apply a debuff",
+    "EXTENDED_DESCRIPTION": ["Basher","Apply !M! Vulnerable.","Sweeper","Apply !M! Weak.","Blackener","Apply !M! snowpunk:Soot.","Shackler","Enemy loses !M! Strength this turn."]
+  },
+  "${ModID}:AbyssalCore": {
+    "NAME": "Abyssal Core",
+    "DESCRIPTION": "Apply a debuff",
+    "EXTENDED_DESCRIPTION": ["Tripper","Apply !M! Vulnerable to ALL enemies.","Blinder","Apply !M! Weak to ALL enemies.","Duster","Apply !M! snowpunk:Soot to ALL enemies.","Piercer","ALL enemies lose !M! Strength this turn."]
+  },
   "${ModID}:BlastCore": {
     "NAME": "Blast Core",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
