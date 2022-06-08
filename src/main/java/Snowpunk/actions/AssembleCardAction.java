@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,7 @@ public class AssembleCardAction extends AbstractGameAction {
         } else {
             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(copy, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
         }
+        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(copy.makeSameInstanceOf(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     }
 
     private static CardGroup getValidCores(AbstractCard card) {
