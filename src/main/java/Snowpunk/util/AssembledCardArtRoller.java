@@ -75,7 +75,7 @@ public class AssembledCardArtRoller {
     }
 
     public static String getDynamicKey(AbstractEasyCard c) {
-        return c.cardID+c.type+c.name;
+        return c.cardID+c.type+(c.name.replace("+",""));
     }
 
     public static class ReskinInfo {

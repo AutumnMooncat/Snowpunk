@@ -47,10 +47,18 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
     }
 
     public void collateName(AbstractCard card, String name) {
+        boolean rippedPlus = false;
+        if (card.name.endsWith("+")){
+            card.name = card.name.substring(0, card.name.length()-1);
+            rippedPlus = true;
+        }
         if (card.name.equals("")) {
             card.name = name;
         } else if (!name.equals("")) {
             card.name += " " + name;
+        }
+        if (rippedPlus) {
+            card.name += "+";
         }
     }
 
