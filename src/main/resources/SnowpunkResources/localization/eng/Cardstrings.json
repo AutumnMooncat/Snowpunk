@@ -81,6 +81,10 @@
     "NAME": "Invention",
     "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
   },
+  "${ModID}:NutCracker": {
+    "NAME": "Nut Cracker",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
     "DESCRIPTION": "snowpunk:Gun. snowpunk:Ventilated. NL Deal !D! damage."
@@ -116,6 +120,10 @@
   "${ModID}:Scald": {
     "NAME": "Scald",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn."
+  },
+  "${ModID}:Sledding": {
+    "NAME": "Sledding",
+    "DESCRIPTION": "Deal !D!S damage to ALL enemies."
   },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
