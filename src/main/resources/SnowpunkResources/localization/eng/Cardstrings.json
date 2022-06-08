@@ -81,6 +81,10 @@
     "NAME": "Invention",
     "DESCRIPTION": "{@@}snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
   },
+  "${ModID}:Overblown": {
+    "NAME": "Overblown",
+    "DESCRIPTION": "snowpunk:Gun. snowpunk:Ventilated. NL Deal !D! damage."
+  },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
     "DESCRIPTION": "{@@}snowpunk:Pressure acts as if you have {!Upgrades!|@=!M!|>0=X} more energy."
