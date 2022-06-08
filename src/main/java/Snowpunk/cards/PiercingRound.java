@@ -16,9 +16,9 @@ public class PiercingRound extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 0;
-    private static final int DMG = 4;
-    private static final int UP_DMG = 2;
+    private static final int COST = 1;
+    private static final int DMG = 7;
+    private static final int UP_DMG = 3;
 
     public PiercingRound() {
         super(ID, COST, TYPE, RARITY, TARGET);
