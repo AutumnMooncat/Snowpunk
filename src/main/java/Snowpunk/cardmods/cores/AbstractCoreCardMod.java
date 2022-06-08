@@ -166,7 +166,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                     ((AssembledCard) card).addUpgradeConsumer(ac -> {
                         ac.baseMagicNumber += upMagic;
                         ac.magicNumber = ac.baseMagicNumber;
-                        ac.upgradedBlock = true;
+                        ac.upgradedMagicNumber = true;
                     });
                 }
             }
