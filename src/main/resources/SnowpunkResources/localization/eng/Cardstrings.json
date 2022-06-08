@@ -23,7 +23,7 @@
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
-    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage."
+    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage. NL Apply !M! Vulnerable."
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
