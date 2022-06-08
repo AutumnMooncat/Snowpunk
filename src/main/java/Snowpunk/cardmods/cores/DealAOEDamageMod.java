@@ -25,9 +25,9 @@ public class DealAOEDamageMod extends AbstractCoreCardMod {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseConsumer((p, m) -> {
                 if (useSecondVar) {
-                    Wiz.atb(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(((AssembledCard) card).secondDamage), card.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+                    Wiz.atb(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(((AssembledCard) card).baseSecondDamage), card.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
                 } else {
-                    Wiz.atb(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(card.damage), card.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+                    Wiz.atb(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(card.baseDamage), card.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
                 }
             });
         }
