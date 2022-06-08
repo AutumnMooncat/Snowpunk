@@ -55,7 +55,7 @@
   },
   "${ModID}:ColdSnap": {
     "NAME": "Cold Snap",
-    "DESCRIPTION": "Deal !D!S damage and apply S snowpunk:Frostbite to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "Deal !D! × S damage and apply S snowpunk:Frostbite to ALL enemies. NL Exhaust."
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
@@ -127,7 +127,7 @@
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",
-    "DESCRIPTION": "Deal !D!S damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! × S damage to ALL enemies."
   },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
@@ -151,7 +151,7 @@
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "Gain !B!S Block."
+    "DESCRIPTION": "Gain !B! × S Block."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
