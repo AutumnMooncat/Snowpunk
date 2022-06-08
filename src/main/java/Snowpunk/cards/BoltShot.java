@@ -18,10 +18,11 @@ public class BoltShot extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1;
-    private static final int DMG = 8;
-    private static final int UP_DMG = 3;
-    private static final int VULN = 1;
+    private static final int COST = 2;
+    private static final int DMG = 12;
+    private static final int UP_DMG = 2;
+    private static final int VULN = 2;
+    private static final int UP_VULN = 1;
 
     public BoltShot() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -37,5 +38,6 @@ public class BoltShot extends AbstractEasyCard {
 
     public void upp() {
         upgradeDamage(UP_DMG);
+        upgradeMagicNumber(UP_VULN);
     }
 }
