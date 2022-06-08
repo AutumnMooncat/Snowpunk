@@ -42,6 +42,14 @@
       " cards you play."
     ]
   },
+  "${ModID}:TinkerNextCardPower": {
+    "NAME": "Tinker Next Card",
+    "DESCRIPTIONS": [
+      "Randomly #yTinker the next card you play.",
+      "Randomly #yTinker the next #b",
+      " cards you play."
+    ]
+  },
   "${ModID}:SnowblowerPower": {
     "NAME": "Snowblower",
     "DESCRIPTIONS": ["Your #yEngine gives #b"," additional #ySnowball when #bCold or #bFrozen."," additional #ySnowballs when #bCold or #bFrozen."]

@@ -43,7 +43,7 @@
   },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Tools",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Randomly snowpunk:Tinker all cards in your hand."
+    "DESCRIPTION": "Apply !M! Vulnerable and Weak to ALL enemies. NL Randomly snowpunk:Tinker the next card you play."
   },
   "${ModID}:ChuggaChugga": {
     "NAME": "Chugga Chugga",
