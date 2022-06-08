@@ -73,5 +73,6 @@ public class BismuthCore extends AbstractCoreCard {
     @Override
     public void upp() {
         upgradeMagicNumber(UP_EFFECT);
+        upgradeSecondMagic(UP_EFFECT);
     }
 }

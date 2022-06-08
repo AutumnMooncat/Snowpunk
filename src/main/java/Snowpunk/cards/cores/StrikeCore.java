@@ -49,5 +49,6 @@ public class StrikeCore extends AbstractCoreCard {
     @Override
     public void upp() {
         upgradeDamage(UP_DAMAGE);
+        upgradeSecondDamage(UP_DAMAGE);
     }
 }

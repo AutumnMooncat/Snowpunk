@@ -49,5 +49,6 @@ public class BlastCore extends AbstractCoreCard {
     @Override
     public void upp() {
         upgradeDamage(UP_DAMAGE);
+        upgradeSecondDamage(UP_DAMAGE);
     }
 }

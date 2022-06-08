@@ -49,5 +49,6 @@ public class BarrierCore extends AbstractCoreCard {
     @Override
     public void upp() {
         upgradeBlock(UP_EFFECT);
+        upgradeSecondBlock(UP_EFFECT);
     }
 }
