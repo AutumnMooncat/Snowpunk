@@ -1,9 +1,11 @@
 package Snowpunk.actions;
 
 import Snowpunk.SnowpunkMod;
+import Snowpunk.cardmods.MkMod;
 import Snowpunk.cards.interfaces.OnTinkeredCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -129,10 +131,7 @@ public class TinkerAction extends AbstractGameAction {
             Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, TEXT[1]+card.name+TEXT[2], false, crd -> true, parts -> {
                 for (AbstractCard part : parts) {
                     if (part instanceof AbstractPartCard) {
-                        ((AbstractPartCard) part).apply(card);
-                        if (card instanceof OnTinkeredCard) {
-                            ((OnTinkeredCard) card).onTinkered((AbstractPartCard) part);
-                        }
+                        applyPart(card, (AbstractPartCard) part);
                     }
                 }
             }));
@@ -144,15 +143,21 @@ public class TinkerAction extends AbstractGameAction {
         if (!validParts.isEmpty()) {
             AbstractCard part = validParts.getRandomCard(true);
             if (part instanceof AbstractPartCard) {
-                ((AbstractPartCard) part).apply(card);
-                if (card instanceof OnTinkeredCard) {
-                    ((OnTinkeredCard) card).onTinkered((AbstractPartCard) part);
-                }
+                applyPart(card, (AbstractPartCard) part);
             }
         }
     }
 
     private static boolean acceptsAPart(AbstractCard card) {
         return SnowpunkMod.parts.stream().anyMatch(part -> part.getFilter().test(card));
+    }
+
+    private static void applyPart(AbstractCard card, AbstractPartCard part) {
+        part.apply(card);
+        if (card instanceof OnTinkeredCard) {
+            ((OnTinkeredCard) card).onTinkered(part);
+        }
+        //If part isn't as Epiphany...
+        CardModifierManager.addModifier(card, new MkMod(1));
     }
 }

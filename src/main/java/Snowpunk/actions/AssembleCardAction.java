@@ -1,10 +1,12 @@
 package Snowpunk.actions;
 
 import Snowpunk.SnowpunkMod;
+import Snowpunk.cardmods.MkMod;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -62,6 +64,7 @@ public class AssembleCardAction extends AbstractGameAction {
     }
 
     private void finalizeCard(AssembledCard card) {
+        CardModifierManager.removeModifiersById(card, MkMod.ID, true);
         AssembledCard copy = (AssembledCard) card.makeStatEquivalentCopy();
         if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE) {
             AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(copy, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
