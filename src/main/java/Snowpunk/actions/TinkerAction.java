@@ -4,8 +4,6 @@ import Snowpunk.SnowpunkMod;
 import Snowpunk.cards.interfaces.OnTinkeredCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.util.Wiz;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsCenteredAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -75,7 +73,7 @@ public class TinkerAction extends AbstractGameAction {
                         selectionGroup.add(copy);
                     }
 
-                    Wiz.att(new SelectCardsAction(selectionGroup, 1, TEXT[0], false, TinkerAction::acceptsAPart, cards -> {
+                    Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, 1, TEXT[0], false, TinkerAction::acceptsAPart, cards -> {
                         for (AbstractCard c : cards) {
                             if (randomlyTinker) {
                                 giveRandomPart(cardMap.get(c));
@@ -128,7 +126,7 @@ public class TinkerAction extends AbstractGameAction {
                     cardsToPick.add(c);
                 }
             }
-            Wiz.att(new SelectCardsCenteredAction(cardsToPick, 1, TEXT[1]+card.name+TEXT[2], false, crd -> true, parts -> {
+            Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, TEXT[1]+card.name+TEXT[2], false, crd -> true, parts -> {
                 for (AbstractCard part : parts) {
                     if (part instanceof AbstractPartCard) {
                         ((AbstractPartCard) part).apply(card);

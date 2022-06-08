@@ -2,7 +2,6 @@ package Snowpunk.actions;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -70,7 +69,7 @@ public class ModCardTempAction extends AbstractGameAction {
                     selectionGroup.add(copy);
                 }
 
-                Wiz.att(new SelectCardsAction(selectionGroup, amount, "", false, card -> true, cards -> {
+                Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, amount, "", false, card -> true, cards -> {
                     for (AbstractCard c : cards) {
                         CardTemperatureFields.addHeat(cardMap.get(c), heat);
                     }
