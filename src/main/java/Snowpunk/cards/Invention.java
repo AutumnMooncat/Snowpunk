@@ -4,6 +4,7 @@ import Snowpunk.actions.AssembleCardAction;
 import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.util.Wiz;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -24,6 +25,7 @@ public class Invention extends AbstractEasyCard {
 
     public Invention() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        FleetingField.fleeting.set(this, true);
         baseMagicNumber = magicNumber = TINKER;
         baseSecondMagic = secondMagic = CORES;
     }

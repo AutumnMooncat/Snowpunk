@@ -79,7 +79,7 @@
   },
   "${ModID}:Invention": {
     "NAME": "Invention",
-    "DESCRIPTION": "{@@}snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
+    "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
