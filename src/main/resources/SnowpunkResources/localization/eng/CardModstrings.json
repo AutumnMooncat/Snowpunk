@@ -41,5 +41,8 @@
   },
   "${ModID}:ReshuffleMod": {
     "EXTENDED_DESCRIPTION": [" NL snowpunk:Reshuffle."]
+  },
+  "${ModID}:BetterExhaustMod": {
+    "EXTENDED_DESCRIPTION": [" NL Exhaust."]
   }
 }
