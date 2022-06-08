@@ -14,7 +14,7 @@
   "${ModID}:GainEnergyMod": {
     "EXTENDED_DESCRIPTION": [
       " NL Gain",
-      " [E] ",
+      " [E]",
       ".",
       " NL snowpunk:Battery",
       " x "
