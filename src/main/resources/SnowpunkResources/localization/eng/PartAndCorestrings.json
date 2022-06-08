@@ -87,5 +87,10 @@
     "NAME": "Strike Core",
     "DESCRIPTION": "Deal !D! damage.",
     "EXTENDED_DESCRIPTION": ["Striker","Deal %s damage."]
+  },
+  "${ModID}:CombustionCore": {
+    "NAME": "Combustion Core",
+    "DESCRIPTION": "Powerful damage effect",
+    "EXTENDED_DESCRIPTION": ["Eviscerater","Deal !D! damage 3 times.","Killer","Deal !D! damage to ALL enemies.","Hammer","Deal !D! damage.","Ripper","Deal !D! damage twice."]
   }
 }
