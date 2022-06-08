@@ -79,6 +79,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                 if (card instanceof AssembledCard) {
                     ((AssembledCard) card).addUpgradeConsumer(ac -> {
                         ac.baseDamage += upDamage;
+                        ac.damage = ac.baseDamage;
                         ac.upgradedDamage = true;
                     });
                 }
@@ -96,6 +97,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                         ((AssembledCard) card).addUpgradeConsumer(ac -> {
                             if (ac instanceof AbstractEasyCard) {
                                 ((AbstractEasyCard) ac).baseSecondDamage += upDamage;
+                                ((AbstractEasyCard) ac).secondDamage = ((AbstractEasyCard) ac).baseSecondDamage;
                                 ((AbstractEasyCard) ac).upgradedSecondDamage = true;
                             }
                         });
@@ -116,6 +118,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                 if (card instanceof AssembledCard) {
                     ((AssembledCard) card).addUpgradeConsumer(ac -> {
                         ac.baseBlock += upBlock;
+                        ac.block = ac.baseBlock;
                         ac.upgradedBlock = true;
                     });
                 }
@@ -133,6 +136,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                         ((AssembledCard) card).addUpgradeConsumer(ac -> {
                             if (ac instanceof AbstractEasyCard) {
                                 ((AbstractEasyCard) ac).baseSecondBlock += upBlock;
+                                ((AbstractEasyCard) ac).secondBlock = ((AbstractEasyCard) ac).baseSecondBlock;
                                 ((AbstractEasyCard) ac).upgradedSecondBlock = true;
                             }
                         });
@@ -153,6 +157,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                 if (card instanceof AssembledCard) {
                     ((AssembledCard) card).addUpgradeConsumer(ac -> {
                         ac.baseMagicNumber += upMagic;
+                        ac.magicNumber = ac.baseMagicNumber;
                         ac.upgradedBlock = true;
                     });
                 }
@@ -170,6 +175,7 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
                         ((AssembledCard) card).addUpgradeConsumer(ac -> {
                             if (ac instanceof AbstractEasyCard) {
                                 ((AbstractEasyCard) ac).baseSecondMagic += upMagic;
+                                ((AbstractEasyCard) ac).secondMagic = ((AbstractEasyCard) ac).baseSecondMagic;
                                 ((AbstractEasyCard) ac).upgradedSecondMagic = true;
                             }
                         });
