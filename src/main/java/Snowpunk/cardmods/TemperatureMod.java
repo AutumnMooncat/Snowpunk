@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class TemperatureMod extends AbstractCardModifier {
-    public static String ID = makeID("TemperatureMod");
+    public static String ID = makeID(TemperatureMod.class.getSimpleName());
     public static CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static String[] TEXT = strings.EXTENDED_DESCRIPTION;
 
