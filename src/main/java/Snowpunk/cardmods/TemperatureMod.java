@@ -3,6 +3,8 @@ package Snowpunk.cardmods;
 import Snowpunk.actions.ExhumeMostRecentAction;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.cards.WaterTank;
+import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.util.Wiz;
@@ -46,28 +48,31 @@ public class TemperatureMod extends AbstractCardModifier {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int heat = CardTemperatureFields.getCardHeat(card);
-        Wiz.atb(new ModEngineTempAction(heat));
+        int amount = card instanceof MultiTempEffectCard ? ((MultiTempEffectCard) card).tempEffectAmount() : 1;
+        Wiz.atb(new ModEngineTempAction(heat*amount));
         if (heat > 0) {
             if (card.hasTag(CustomTags.VENT)) {
                 Wiz.atb(new ModCardTempAction(card, -heat));
             } else {
                 action.exhaustCard = true;
             }
-            Wiz.atb(new GainEnergyAction(1));
+            Wiz.atb(new GainEnergyAction(amount));
         }
         if (heat == 2) {
             card.use(Wiz.adp(), (AbstractMonster) target);
             for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
                 if (!(mod instanceof TemperatureMod)) {
-                    mod.onUse(card, target, action);
+                    for (int i = 0 ; i < amount ; i++) {
+                        mod.onUse(card, target, action);
+                    }
                 }
             }
         }
         if (heat < 0) {
-            Wiz.atb(new DrawCardAction(1));
+            Wiz.atb(new DrawCardAction(amount));
         }
         if (heat == -2) {
-            Wiz.atb(new ExhumeMostRecentAction(card, 1));
+            Wiz.atb(new ExhumeMostRecentAction(card, amount));
         }
     }
 
