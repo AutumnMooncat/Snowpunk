@@ -23,7 +23,9 @@ public class TemperatureMod extends AbstractCardModifier {
     public static CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static String[] TEXT = strings.EXTENDED_DESCRIPTION;
 
-    public TemperatureMod() {}
+    public TemperatureMod() {
+        this.priority = -2;
+    }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
