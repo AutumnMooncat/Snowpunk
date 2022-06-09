@@ -22,11 +22,11 @@ public class SnowballPatches {
         @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<?> bePlayable(AbstractCard __instance) {
             AbstractPower power = Wiz.adp().getPower(SnowballPower.POWER_ID);
-            if (SCostFieldPatches.SCostField.isSCost.get(__instance)) {
+            /*if (SCostFieldPatches.SCostField.isSCost.get(__instance)) {
                 if (power != null && EnergyPanel.totalCount < power.amount) {
                     return SpireReturn.Return(false);
                 }
-            }
+            }*/
             if (power != null) {
                 if (EnergyPanel.totalCount + power.amount >= __instance.costForTurn) {
                     return SpireReturn.Return(true);
@@ -51,7 +51,7 @@ public class SnowballPatches {
             if (__instance.hasPower(SnowballPower.POWER_ID)) {
                 int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
                 if (delta > 0) {
-                    Wiz.atb(new ModEngineTempAction(-delta*HEAT_PER_BALL));
+                    //Wiz.atb(new ModEngineTempAction(-delta*HEAT_PER_BALL));
                     Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
                 }
             }
@@ -65,12 +65,16 @@ public class SnowballPatches {
         }
     }
 
-    @SpirePatch2(clz = AbstractPlayer.class, method = "useCard")
+    /*@SpirePatch2(clz = AbstractPlayer.class, method = "useCard")
     public static class SCostUseEPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
             if (SCostFieldPatches.SCostField.isSCost.get(c) && !c.freeToPlay()) {
-                __instance.energy.use(__instance.getPower(SnowballPower.POWER_ID).amount);
+                int snow = __instance.getPower(SnowballPower.POWER_ID).amount;
+                if (EnergyPanel.totalCount < snow) {
+                    Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, snow - EnergyPanel.totalCount));
+                }
+                __instance.energy.use(snow);
             }
         }
         public static class Locator extends SpireInsertLocator {
@@ -80,5 +84,5 @@ public class SnowballPatches {
                 return LineFinder.findInOrder(ctBehavior, m);
             }
         }
-    }
+    }*/
 }
