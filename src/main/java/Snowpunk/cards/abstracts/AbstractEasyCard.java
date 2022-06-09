@@ -1,7 +1,10 @@
 package Snowpunk.cards.abstracts;
 
+import Snowpunk.TheConductor;
 import Snowpunk.cards.cardvars.Pressure;
-import Snowpunk.powers.SnowballPower;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
+import Snowpunk.util.CardArtRoller;
+import Snowpunk.util.Wiz;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -17,13 +20,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Snowpunk.TheConductor;
-import Snowpunk.util.CardArtRoller;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 
-import static Snowpunk.SnowpunkMod.*;
+import static Snowpunk.SnowpunkMod.makeImagePath;
+import static Snowpunk.SnowpunkMod.modID;
 import static Snowpunk.util.Wiz.atb;
 import static Snowpunk.util.Wiz.att;
 
@@ -293,9 +295,12 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected int getSnow() {
-        if (AbstractDungeon.player.hasPower(SnowballPower.POWER_ID)) {
-            return AbstractDungeon.player.getPower(SnowballPower.POWER_ID).amount;
+        int snow = 0;
+        for (AbstractPower pow : Wiz.adp().powers) {
+            if (pow instanceof SnowAmountModifier) {
+                snow += ((SnowAmountModifier) pow).modifySnow();
+            }
         }
-        return 0;
+        return snow;
     }
 }

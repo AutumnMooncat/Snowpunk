@@ -1,6 +1,8 @@
 package Snowpunk.powers;
 
 import Snowpunk.patches.SCostFieldPatches;
+import Snowpunk.powers.interfaces.OnUseSnowPower;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.Wiz;
 import basemod.interfaces.XCostModifier;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -8,10 +10,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class SnowballPower extends AbstractEasyPower implements XCostModifier {
+public class SnowballPower extends AbstractEasyPower implements XCostModifier, SnowAmountModifier {
     public static String POWER_ID = makeID(SnowballPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -49,5 +52,10 @@ public class SnowballPower extends AbstractEasyPower implements XCostModifier {
 
     public void onConsumeSnow(int amount) {
         //TODO hooks go here
+    }
+
+    @Override
+    public int modifySnow() {
+        return amount;
     }
 }
