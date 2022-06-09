@@ -51,7 +51,11 @@ public class SnowballPower extends AbstractEasyPower implements XCostModifier, S
     }
 
     public void onConsumeSnow(int amount) {
-        //TODO hooks go here
+        for(AbstractPower p : owner.powers) {
+            if (p instanceof OnUseSnowPower) {
+                ((OnUseSnowPower) p).onUseSnowball(amount);
+            }
+        }
     }
 
     @Override
