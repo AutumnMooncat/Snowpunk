@@ -15,7 +15,7 @@
   },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",
-    "DESCRIPTION": "{@@}snowpunk:Toss S: Apply{!Upgrades!|>0= S snowpunk:Frostbite,} S Weak, and S Vulnerable to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "{@@}Apply S{!Upgrades!|>0= snowpunk:Frostbite,} Weak{!Upgrades!|>0=,} and Vulnerable to ALL enemies. NL Exhaust."
   },
   "${ModID}:BlastingCap": {
     "NAME": "Blasting Cap",
@@ -135,7 +135,7 @@
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",
-    "DESCRIPTION": "snowpunk:Toss S: Deal !D! damage S times."
+    "DESCRIPTION": "Deal !D! damage S times."
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",

@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -21,11 +22,12 @@ public class BlackIce extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0;
+    private static final int COST = -1;
 
     public BlackIce() {
         super(ID, COST, TYPE, RARITY, TARGET);
         exhaust = true;
+        SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -39,8 +41,8 @@ public class BlackIce extends AbstractEasyCard {
                     Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow(), false));
                 }
             }
-            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
         }
+        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
     }
 
     public void upp() {}

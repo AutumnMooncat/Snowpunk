@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -18,13 +19,14 @@ public class SnowballFight extends AbstractEasyCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
+    private static final int COST = -1;
     private static final int DMG = 7;
     private static final int UP_DMG = 3;
 
     public SnowballFight() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

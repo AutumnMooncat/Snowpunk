@@ -1,10 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
-import basemod.helpers.CardModifierManager;
+import Snowpunk.powers.SnowballPower;
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -33,6 +34,7 @@ public class SnowFort extends AbstractEasyCard {
         for (int i = 0 ; i < getSnow() ; i++) {
             blck();
         }
+        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
     }
 
     public void upp() {
