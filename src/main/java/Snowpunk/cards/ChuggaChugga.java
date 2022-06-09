@@ -20,8 +20,8 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class ChuggaChugga extends AbstractEasyCard {
     public final static String ID = makeID(ChuggaChugga.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 2;

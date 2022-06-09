@@ -48,17 +48,18 @@
     "DESCRIPTION": "Frostbitten creatures take damage at the start of your turn relative to your #ySnowballs."
   },
   {
-    "PROPER_NAME": "Gun",
+    "PROPER_NAME": "Whistol",
     "NAMES": [
-      "gun"
+      "whistol"
     ],
-    "DESCRIPTION": "#yTemperature and #yTinker effects applied to this card apply to ALL cards with #yGun."
+    "DESCRIPTION": "#yTemperature and #yTinker effects applied to this card apply to ALL cards with #yWhistol."
   },
   {
     "PROPER_NAME": "Pressure",
     "NAMES": [
       "pressure",
-      "pressurized"
+      "pressurized",
+      "p"
     ],
     "DESCRIPTION": "Your current #yEnergy."
   },
@@ -82,9 +83,10 @@
     "NAMES": [
       "snowball",
       "snowballs",
-      "snow"
+      "snow",
+      "s"
     ],
-    "DESCRIPTION": "An accumulating resource that can be converted to #yEnergy at the cost of #yCooling your #yEngine."
+    "DESCRIPTION": "An accumulating resource that remains between turns and can be converted to #yEnergy."
   },
   {
     "PROPER_NAME": "Soot",
@@ -109,6 +111,30 @@
       "parts"
     ],
     "DESCRIPTION": "Modifies the abilities of a card."
+  },
+  {
+    "PROPER_NAME": "Invention",
+    "NAMES": [
+      "invention",
+      "inventions"
+    ],
+    "DESCRIPTION": "A card made from 1 #yCore and 2 #yParts."
+  },
+  {
+    "PROPER_NAME": "Creation",
+    "NAMES": [
+      "creation",
+      "creations"
+    ],
+    "DESCRIPTION": "A card made from 2 #yCores and 2 #yParts."
+  },
+  {
+    "PROPER_NAME": "Machination",
+    "NAMES": [
+      "machination",
+      "machinations"
+    ],
+    "DESCRIPTION": "A card made from 2 #yCores and 3 #yParts. One of the #Cores is guaranteed to be #yRare."
   },
   {
     "PROPER_NAME": "Temporary",

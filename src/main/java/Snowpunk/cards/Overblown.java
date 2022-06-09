@@ -16,8 +16,8 @@ public class Overblown extends AbstractEasyCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 2;
-    private static final int DMG = 15;
-    private static final int UP_DMG = 5;
+    private static final int DMG = 18;
+    private static final int UP_DMG = 6;
 
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);

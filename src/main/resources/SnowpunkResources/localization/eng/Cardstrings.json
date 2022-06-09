@@ -19,11 +19,11 @@
   },
   "${ModID}:BlastingCap": {
     "NAME": "Blasting Cap",
-    "DESCRIPTION": "{@@}Deal damage equal !D! times your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+    "DESCRIPTION": "{@@}Deal !D! × snowpunk:P damage.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
-    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage. NL Apply !M! Vulnerable."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage. NL Apply !M! Vulnerable."
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
@@ -31,7 +31,7 @@
   },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",
-    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage to a random enemy !M! times."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage to a random enemy !M! times."
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
@@ -55,7 +55,7 @@
   },
   "${ModID}:ColdSnap": {
     "NAME": "Cold Snap",
-    "DESCRIPTION": "Deal !D! × S damage and apply S snowpunk:Frostbite to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "Deal !D! × snowpunk:S damage and apply snowpunk:S snowpunk:Frostbite to ALL enemies. NL Exhaust."
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
@@ -82,8 +82,9 @@
     "DESCRIPTION": "Apply !M! snowpunk:Burn to ALL enemies. NL snowpunk:Sooty enemies gain additional snowpunk:Burn equal to their snowpunk:Soot."
   },
   "${ModID}:Invention": {
-    "NAME": "Invention",
-    "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a card with !Snowpunk:M2! snowpunk:Core{!Snowpunk:M2!|>1=s} and !M! snowpunk:Parts."
+    "NAME": "Invent",
+    "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
+    "UPGRADE_DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
   },
   "${ModID}:NutCracker": {
     "NAME": "Nut Cracker",
@@ -91,7 +92,7 @@
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
-    "DESCRIPTION": "snowpunk:Gun. snowpunk:Ventilated. NL Deal !D! damage."
+    "DESCRIPTION": "snowpunk:Whistol. snowpunk:Ventilation. NL Deal !D! damage."
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
@@ -103,11 +104,11 @@
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
-    "DESCRIPTION": "snowpunk:Gun. NL Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage to ALL enemies."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "{@@}snowpunk:Gun. NL Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
+    "DESCRIPTION": "{@@}snowpunk:Whistol. NL Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
@@ -127,7 +128,7 @@
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",
-    "DESCRIPTION": "Deal !D! × S damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! × snowpunk:S damage to ALL enemies."
   },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
@@ -135,7 +136,7 @@
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",
-    "DESCRIPTION": "snowpunk:Toss S: Deal !D! damage S times."
+    "DESCRIPTION": "snowpunk:Toss snowpunk:S: Deal !D! damage snowpunk:S times."
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
@@ -147,11 +148,11 @@
   },
   "${ModID}:SnowFort": {
     "NAME": "Snow Fort",
-    "DESCRIPTION": "Gain !B! Block S times."
+    "DESCRIPTION": "Gain !B! Block snowpunk:S times."
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "Gain !B! × S Block."
+    "DESCRIPTION": "Gain !B! × snowpunk:S Block."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
@@ -163,7 +164,7 @@
   },
   "${ModID}:Think": {
     "NAME": "Think",
-    "DESCRIPTION": "{@@}snowpunk:Tinker !M! card{!M!|>1=s} in your hand."
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker a card in your hand."
   },
   "${ModID}:TrolleyForm": {
     "NAME": "Trolley Form",
@@ -184,7 +185,7 @@
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
-    "DESCRIPTION": "snowpunk:Ventilated. NL Temperature effects from this card are !Snowpunk:Info! times stronger."
+    "DESCRIPTION": "snowpunk:Ventilation. NL Temperature effects from this card are !Snowpunk:Info! times stronger."
   },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",
