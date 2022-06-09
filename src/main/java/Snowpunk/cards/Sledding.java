@@ -17,7 +17,7 @@ public class Sledding extends AbstractEasyCard {
     public final static String ID = makeID(Sledding.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 0;
