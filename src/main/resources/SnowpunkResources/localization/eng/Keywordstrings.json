@@ -21,7 +21,7 @@
       "linked",
       "linking"
     ],
-    "DESCRIPTION": "#yLinked cards are drawn together."
+    "DESCRIPTION": "#yLinked cards are drawn and played together, and cost 1 [E] more for each card #yLinked to them."
   },
   {
     "PROPER_NAME": "Core",

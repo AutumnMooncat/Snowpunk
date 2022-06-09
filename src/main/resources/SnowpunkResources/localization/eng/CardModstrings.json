@@ -23,7 +23,7 @@
   "${ModID}:LinkMod": {
     "EXTENDED_DESCRIPTION": [
       "snowpunk:Linked to ",
-      "and ",
+      " and ",
       ". NL "
     ]
   },
