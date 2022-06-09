@@ -1,15 +1,23 @@
 package Snowpunk.cardmods;
 
+import Snowpunk.actions.RepeatCardAction;
+import Snowpunk.actions.ResetLinkedPlayStatusAction;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +37,7 @@ public class LinkMod extends AbstractCardModifier {
 
     public ArrayList<AbstractCard> linkedCards;
     public AbstractCard thisCard;
+    public boolean inPlay = false;
 
     public LinkMod() {
         this(null, null);
@@ -37,6 +46,7 @@ public class LinkMod extends AbstractCardModifier {
     public LinkMod(ArrayList<AbstractCard> cardsToLink, AbstractCard card) {
         linkedCards = new ArrayList<>();
         thisCard = card;
+        inPlay = false;
         if (cardsToLink != null && cardsToLink.size() > 0 && card != null) {
             for (AbstractCard cardToLink : cardsToLink) {
                 if (cardToLink != card && !linkedCards.contains(cardToLink))
@@ -52,6 +62,40 @@ public class LinkMod extends AbstractCardModifier {
         updateLinked(card);
         searchAndMoveToGroup(player.hand);
     }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (target == null)
+            target = AbstractDungeon.getRandomMonster();
+        for (AbstractCard linkedCard : linkedCards) {
+            if (player.hand.contains(linkedCard)) {
+                if (target instanceof AbstractMonster)
+                    AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(linkedCard, (AbstractMonster) target, 0, true, true));
+                else
+                    AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(linkedCard, false));
+            }
+        }
+        //inPlay = true;
+        //AbstractDungeon.actionManager.addToBottom(new ResetLinkedPlayStatusAction(card, linkedCards));
+    }
+
+    private boolean checkQueueForResetLinkAction() {
+        boolean resetExists = false;
+        for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
+            if (action instanceof ResetLinkedPlayStatusAction)
+                resetExists = true;
+        }
+        return resetExists;
+    }
+
+//    @Override
+//    public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
+//        if(linkedCards.contains(otherCard) && !inPlay){
+//            AbstractDungeon.actionManager.addToBottom(new UseCardAction(card));
+//            inPlay = true;
+//        }
+//    }// 168
 
     private void searchAndMoveToGroup(CardGroup pile) {
         AbstractPlayer player = AbstractDungeon.player;
@@ -85,7 +129,7 @@ public class LinkMod extends AbstractCardModifier {
 
     private void updateLinked(AbstractCard card) {
         card.setCostForTurn(card.cost + linkedCards.size());
-        card.cardsToPreview = linkedCards.get(0).makeCopy();
+        //card.cardsToPreview = linkedCards.get(0).makeCopy();
         card.initializeDescription();
     }
 
@@ -99,7 +143,6 @@ public class LinkMod extends AbstractCardModifier {
 //            linkModifier.Append(cardsToLink, card);
 //        }
         if (CardModifierManager.hasModifier(card, LinkMod.ID)) {
-
             logger.info("Found Existing Link");
             LinkMod linkModifier = (LinkMod) CardModifierManager.getModifiers(card, LinkMod.ID).get(0);
             linkModifier.Append(cardsToLink, card);
@@ -120,8 +163,10 @@ public class LinkMod extends AbstractCardModifier {
                     tempLink.remove(card);
                 linkModifier.linkedCards.clear();
                 linkModifier.linkedCards = tempLink;
-            } else
+                linkModifier.updateLinked(card);
+            } else {
                 addModifier(card, new LinkMod(fullListOfLinkedCards, card));
+            }
         }
     }
 
@@ -152,6 +197,11 @@ public class LinkMod extends AbstractCardModifier {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return TEXT[0] + getLinksToString(linkedCards) + TEXT[2] + rawDescription;
+    }
+
+    @Override
+    public String identifier(AbstractCard card) {
+        return ID;
     }
 
     private static String getLinksToString(ArrayList<AbstractCard> cards) {
