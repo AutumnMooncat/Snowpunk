@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,15 +19,15 @@ public class RollUp extends AbstractEasyCard {
 
     private static final int COST = 1;
     private static final int UP_COST = 0;
+    private static final int SNOW = 2;
 
     public RollUp() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        baseMagicNumber = magicNumber = SNOW;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (pressure() > 0) {
-            Wiz.applyToSelf(new SnowballPower(p, pressure()));
-        }
+        Wiz.applyToSelf(new NextTurnPowerPower(p, new SnowballPower(p, magicNumber)));
     }
 
     public void upp() {

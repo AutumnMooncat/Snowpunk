@@ -63,7 +63,7 @@
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "{@@}Apply snowpunk:Frostbite equal to your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+    "DESCRIPTION": "Apply !M! × snowpunk:S snowpunk:Frostbite."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
@@ -120,7 +120,7 @@
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
-    "DESCRIPTION": "{@@}Gain snowpunk:Snowballs equal to your snowpunk:Pressure.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+    "DESCRIPTION": "Next turn, gain !M! snowpunk:Snowballs."
   },
   "${ModID}:Scald": {
     "NAME": "Scald",
