@@ -18,14 +18,16 @@ public class Frostbite extends AbstractEasyCard {
 
     private static final int COST = 1;
     private static final int UP_COST = 0;
+    private static final int EFFECT = 2;
 
     public Frostbite() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = EFFECT;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (pressure() > 0) {
-            Wiz.applyToEnemy(m, new FrostbitePower(m, p, pressure()));
+        if (getSnow() > 0) {
+            Wiz.applyToEnemy(m, new FrostbitePower(m, p, magicNumber * getSnow()));
         }
     }
 
