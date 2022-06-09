@@ -221,5 +221,12 @@
       "stable"
     ],
     "DESCRIPTION": "Temperature with no effects. Temperature ranges from #yFrozen to #yOverheated."
+  },
+  {
+    "PROPER_NAME": "Ice",
+    "NAMES": [
+      "ice"
+    ],
+    "DESCRIPTION": "Creatures with #yIce gain Block when you use #ySnowballs"
   }
 ]

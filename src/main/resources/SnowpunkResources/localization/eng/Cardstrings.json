@@ -71,7 +71,7 @@
   },
   "${ModID}:IceCube": {
     "NAME": "Ice Cube",
-    "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}. NL Exhausts if snowpunk:Heated."
+    "DESCRIPTION": "Gain snowpunk:S + !M! snowpunk:Ice. NL Exhausts if snowpunk:Heated."
   },
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",

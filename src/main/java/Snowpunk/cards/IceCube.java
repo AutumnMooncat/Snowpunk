@@ -1,15 +1,16 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ImmediateExhaustCardAction;
-import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.SCostFieldPatches;
+import Snowpunk.powers.IceCubePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -23,24 +24,26 @@ public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
-    private static final AbstractCard.CardType TYPE = CardType.SKILL;
+    private static final AbstractCard.CardType TYPE = CardType.POWER;
 
-    private static final int COST = 0;
-    private static final int SNOW = 1;
-    private static final int UP_SNOW = 1;
+    private static final int COST = -1;
+    private static final int BONUS = 1;
+    private static final int UP_BONUS = 2;
 
     public IceCube() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = SNOW;
+        baseMagicNumber = magicNumber = BONUS;
+        SCostFieldPatches.SCostField.isSCost.set(this, true);
         CardTemperatureFields.addInherentHeat(this, -2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        Wiz.applyToSelf(new IceCubePower(p, getSnow() + magicNumber));
+        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
     }
 
     public void upp() {
-        upgradeMagicNumber(UP_SNOW);
+        upgradeMagicNumber(UP_BONUS);
     }
 
     @Override
