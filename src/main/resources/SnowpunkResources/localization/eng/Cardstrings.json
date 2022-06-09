@@ -165,6 +165,10 @@
     "NAME": "Think",
     "DESCRIPTION": "{@@}snowpunk:Tinker !M! card{!M!|>1=s} in your hand."
   },
+  "${ModID}:TrolleyForm": {
+    "NAME": "Trolley Form",
+    "DESCRIPTION": "At the start of your turn, you may pull the lever to divert the runaway trolley onto the side track."
+  },
   "${ModID}:TheCryogenizer": {
     "NAME": "The Cryogenizer",
     "DESCRIPTION": "{@@}{!Snowpunk:Info!|2=Unplayable below snowpunk:Hot. NL |1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
