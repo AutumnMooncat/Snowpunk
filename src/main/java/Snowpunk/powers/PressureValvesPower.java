@@ -1,13 +1,17 @@
 package Snowpunk.powers;
 
+import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.interfaces.ModifyPressurePower;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
+import basemod.interfaces.XCostModifier;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class PressureValvesPower extends AbstractEasyPower implements ModifyPressurePower {
+public class PressureValvesPower extends AbstractEasyPower implements XCostModifier, SnowAmountModifier {
     public static String POWER_ID = makeID(PressureValvesPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -23,7 +27,19 @@ public class PressureValvesPower extends AbstractEasyPower implements ModifyPres
     }
 
     @Override
-    public int modifyPressure(int pressure) {
-        return pressure + amount;
+    public int modifyX(AbstractCard abstractCard) {
+        flash();
+        return amount;
+    }
+
+    @Override
+    public boolean xCostModifierActive(AbstractCard c) {
+        return !SCostFieldPatches.SCostField.isSCost.get(c);
+    }
+
+    @Override
+    public int modifySnow() {
+        flash();
+        return amount;
     }
 }

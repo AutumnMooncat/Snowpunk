@@ -56,7 +56,7 @@
   },
   "${ModID}:PressureValvesPower": {
     "NAME": "Pressure Valves",
-    "DESCRIPTIONS": ["#yPressurized cards act as if you have #b"," more #yEnergy."]
+    "DESCRIPTIONS": ["Card effects act as if you have #b"," more #ySnowballs."]
   },
   "${ModID}:LosePowerPower": {
     "NAME": "Lose ",
