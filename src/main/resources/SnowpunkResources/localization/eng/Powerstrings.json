@@ -43,7 +43,7 @@
     ]
   },
   "${ModID}:TinkerNextCardPower": {
-    "NAME": "Tinker Next Card",
+    "NAME": "Random Parts",
     "DESCRIPTIONS": [
       "Randomly #yTinker the next card you play.",
       "Randomly #yTinker the next #b",

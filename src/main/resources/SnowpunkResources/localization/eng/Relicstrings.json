@@ -1,9 +1,9 @@
 {
-  "${ModID}:TodoItem": {
-    "NAME": "Todo Item",
-    "FLAVOR": "TODO: make this a sweet relic.",
+  "${ModID}:BrassPipeRelic": {
+    "NAME": "Brass Pipe",
+    "FLAVOR": "For a busy mind.",
     "DESCRIPTIONS": [
-      "Make this do something neat."
+      "Randomly #ysnowpunk:Tinker the first card you play each combat."
     ]
   }
 }
