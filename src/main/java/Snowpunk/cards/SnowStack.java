@@ -24,7 +24,6 @@ public class SnowStack extends AbstractEasyCard {
     public SnowStack() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLK;
-        info = baseInfo = 0;
         CardTemperatureFields.addInherentHeat(this, -1);
     }
 
@@ -32,13 +31,6 @@ public class SnowStack extends AbstractEasyCard {
         if (getSnow() * block > 0) {
             Wiz.atb(new GainBlockAction(p, block*getSnow()));
         }
-    }
-
-    @Override
-    protected void applyPowersToBlock() {
-        super.applyPowersToBlock();
-        info = block * getSnow();
-        isInfoModified = info != baseInfo;
     }
 
     public void upp() {
