@@ -17,7 +17,7 @@
   "${ModID}:SnowballPower": {
     "NAME": "Snowballs",
     "DESCRIPTIONS": [
-      "An accumulating resource that can be converted to #yEnergy at the cost of #yCooling your #yEngine."
+      "An accumulating resource that can be converted to #yEnergy."
     ]
   },
   "${ModID}:SnowballChillPower": {
