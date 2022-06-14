@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -18,13 +17,13 @@ public class Frostbite extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1;
+    private static final int COST = 1;
     private static final int UP_COST = 0;
     private static final int EFFECT = 2;
 
     public Frostbite() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        SCostFieldPatches.SCostField.isSCost.set(this, true);
+        magicNumber = baseMagicNumber = EFFECT;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
