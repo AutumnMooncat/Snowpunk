@@ -1,12 +1,12 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.actions.ExhumeMostRecentAction;
+import Snowpunk.actions.ExhumeRandomCardToDrawPileAction;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cards.WaterTank;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
+import Snowpunk.patches.LoopcastField;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -14,8 +14,11 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -58,21 +61,40 @@ public class TemperatureMod extends AbstractCardModifier {
             }
             Wiz.atb(new GainEnergyAction(amount));
         }
-        if (heat == 2) {
-            card.use(Wiz.adp(), (AbstractMonster) target);
+        if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
+            for (int i = 0; i < amount ; i++) {
+                AbstractCard tmp = card.makeSameInstanceOf();
+                AbstractDungeon.player.limbo.addToBottom(tmp);
+                tmp.current_x = card.current_x;
+                tmp.current_y = card.current_y;
+                tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+                tmp.target_y = Settings.HEIGHT / 2.0F;
+                if (target instanceof AbstractMonster) {
+                    tmp.calculateCardDamage((AbstractMonster) target);
+                }
+                tmp.purgeOnUse = true;
+                //Don't loop infinitely, lol
+                LoopcastField.LoopField.islooping.set(tmp, true);
+                if (target instanceof AbstractMonster) {
+                    AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, (AbstractMonster) target, card.energyOnUse, true, true), true);
+                } else {
+                    AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, null, card.energyOnUse, true, true), true);
+                }
+            }
+            /*card.use(Wiz.adp(), (AbstractMonster) target);
             for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
                 if (!(mod instanceof TemperatureMod)) {
                     for (int i = 0 ; i < amount ; i++) {
                         mod.onUse(card, target, action);
                     }
                 }
-            }
+            }*/
+        }
+        if (heat == -2) {
+            Wiz.atb(new ExhumeRandomCardToDrawPileAction(c -> CardTemperatureFields.getCardHeat(c) > 0));
         }
         if (heat < 0) {
             Wiz.atb(new DrawCardAction(amount));
-        }
-        if (heat == -2) {
-            Wiz.atb(new ExhumeMostRecentAction(card, amount));
         }
     }
 
