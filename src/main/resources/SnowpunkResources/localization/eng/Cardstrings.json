@@ -144,7 +144,7 @@
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool all cards in your hand."
+    "DESCRIPTION": "Gain !D! damage to a random enemy snowpunk:S times. NL snowpunk:Cool all cards in your hand."
   },
   "${ModID}:SnowFort": {
     "NAME": "Snow Fort",
