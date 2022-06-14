@@ -89,5 +89,9 @@
   "${ModID}:IceCubePower": {
     "NAME": "Ice",
     "DESCRIPTIONS": ["Gain #b"," #yBlock when you use a #ySnowball."]
+  },
+  "${ModID}:BeaconBeamPower": {
+    "NAME": "Beacon Beam",
+    "DESCRIPTIONS": ["Attacks deal #b"," additional damage for each #ySnowball you have."]
   }
 }

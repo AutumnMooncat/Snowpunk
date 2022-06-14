@@ -4,6 +4,7 @@ import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,9 +27,12 @@ public class Frostbite extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (getSnow() > 0) {
-            Wiz.applyToEnemy(m, new FrostbitePower(m, p, magicNumber * getSnow()));
+        int amount = getSnow() + (upgraded ? 1 : 0);
+        if (amount > 0) {
+            Wiz.applyToEnemy(m, new FrostbitePower(m, p, amount));
+            Wiz.applyToEnemy(m, new FrostbitePower(m, p, amount));
         }
+        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
     }
 
     public void upp() {
