@@ -63,7 +63,7 @@
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Apply !M! × snowpunk:S snowpunk:Frostbite."
+    "DESCRIPTION": "{@@}Apply snowpunk:S{!Upgrades!|>0= + 1} snowpunk:Frostbite."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",

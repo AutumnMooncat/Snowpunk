@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -16,19 +18,21 @@ public class Frostbite extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = -1;
     private static final int UP_COST = 0;
     private static final int EFFECT = 2;
 
     public Frostbite() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = EFFECT;
+        SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (getSnow() > 0) {
-            Wiz.applyToEnemy(m, new FrostbitePower(m, p, magicNumber * getSnow()));
+        int amount = getSnow() + (upgraded ? 1 : 0);
+        if (amount > 0) {
+            Wiz.applyToEnemy(m, new FrostbitePower(m, p, amount));
         }
+        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
     }
 
     public void upp() {
