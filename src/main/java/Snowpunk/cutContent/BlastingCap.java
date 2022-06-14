@@ -1,7 +1,6 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.patches.CustomTags;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

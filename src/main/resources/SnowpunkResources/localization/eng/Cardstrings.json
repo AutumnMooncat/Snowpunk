@@ -18,8 +18,8 @@
     "DESCRIPTION": "{@@}Apply snowpunk:S {!Upgrades!|>0=snowpunk:Frostbite, }Weak{!Upgrades!|>0=,} and Vulnerable to ALL enemies. NL Exhaust."
   },
   "${ModID}:BlastingCap": {
-    "NAME": "Blasting Cap",
-    "DESCRIPTION": "{@@}Deal !D! × snowpunk:P damage.{!Location!|0= NL snowpunk:Pressure: !Snowpunk:P!}"
+    "NAME": "",
+    "DESCRIPTION": ""
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
