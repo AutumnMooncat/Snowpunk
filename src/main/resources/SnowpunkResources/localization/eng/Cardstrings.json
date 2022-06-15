@@ -61,6 +61,10 @@
     "NAME": "Cold Snap",
     "DESCRIPTION": "Deal !D! × snowpunk:S damage and apply snowpunk:S snowpunk:Frostbite to ALL enemies. NL Exhaust."
   },
+  "${ModID}:Comburstion": {
+    "NAME": "Comburstion",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Overheated, apply !M! snowpunk:Burn to ALL enemies."
+  },
   "${ModID}:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."

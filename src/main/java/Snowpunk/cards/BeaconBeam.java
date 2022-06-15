@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.powers.BeaconBeamPower;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,7 +27,7 @@ public class BeaconBeam extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new PressureValvesPower(p, magicNumber));
+        Wiz.applyToSelf(new BeaconBeamPower(p, magicNumber));
     }
 
     public void upp() {

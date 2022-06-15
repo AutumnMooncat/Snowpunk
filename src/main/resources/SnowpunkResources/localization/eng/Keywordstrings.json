@@ -176,14 +176,14 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yCools your #yEngine. #yRetain.  Draw a card."
+    "DESCRIPTION": "#yCools your #yEngine. #yRetain. Draw a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "Greatly #yCools your #yEngine. Return the most recently #yExhausted card to your hand. #yRetain. Draw a card"
+    "DESCRIPTION": "Greatly #yCools your #yEngine. #yRetain. Return a random #yExhausted #yHot or #yOverheated card to your draw pile. Draw a card"
   },
   {
     "PROPER_NAME": "Heat",
