@@ -224,7 +224,7 @@ public class TheConductor extends CustomPlayer {
         boolean tookNoDamage = this.lastDamageTaken == 0;
         if (hadBlockBeforeSuper && (hasBlockAfterSuper || tookNoDamage)) {
             RandomChatterHelper.showChatter(RandomChatterHelper.getBlockedDamageText(), damagedTalkProbability, enableDamagedBattleTalkEffect);
-            playAnimation("happy");
+            playAnimation("hurt");
         } else {
             if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
                 if (info.output >= 15) {
