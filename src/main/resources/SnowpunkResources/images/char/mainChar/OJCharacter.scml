@@ -3,7 +3,7 @@
     <folder id="0" name="Full Images">
         <file id="0" name="Full Images/CharacterAttack.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
         <file id="1" name="Full Images/Happy.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
-        <file id="2" name="Full Images/Hurt.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
+        <file id="2" name="Full Images/CharacterBlock.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
         <file id="3" name="Full Images/KO.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
         <file id="4" name="Full Images/Throw.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
         <file id="5" name="Full Images/Character.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
@@ -72,12 +72,12 @@
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="Hurt">
+            <timeline id="0" name="CharacterBlock">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" angle="0" scale_x="-1" scale_y="1"/>
+                    <object folder="0" file="2" angle="0" scale_x=".5" scale_y=".5"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object folder="0" file="2" angle="0" scale_x="-0.97" scale_y="1.03"/>
+                    <object folder="0" file="2" angle="0" scale_x=".48" scale_y=".51"/>
                 </key>
             </timeline>
         </animation>
