@@ -20,7 +20,7 @@ public class SnowFort extends AbstractEasyCard {
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
     private static final int COST = -1;
-    private static final int BLK = 5;
+    private static final int BLK = 7;
     private static final int UP_BLK = 3;
 
     public SnowFort() {
