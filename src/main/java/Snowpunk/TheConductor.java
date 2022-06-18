@@ -1,7 +1,6 @@
 package Snowpunk;
 
 import Snowpunk.cards.*;
-import Snowpunk.cards.interfaces.SkillAnimationAttack;
 import Snowpunk.relics.BrassPipeRelic;
 import Snowpunk.util.HeatBasedEnergyManager;
 import basemod.abstracts.CustomPlayer;
@@ -88,7 +87,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(SnowStack.ID);
-        retVal.add(Invention.ID);
+        retVal.add(Invent.ID);
         return retVal;
     }
 
@@ -137,7 +136,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new Invention();
+        return new Invent();
     }
 
     @Override
@@ -200,11 +199,11 @@ public class TheConductor extends CustomPlayer {
         switch (c.type) {
             case ATTACK:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getAttackText(), cardTalkProbability, enableCardBattleTalkEffect);
-                if (c instanceof SkillAnimationAttack) {
+                /*if (c instanceof SkillAnimationAttack) {
                     playAnimation("skill");
-                } else {
+                } else {*/
                     playAnimation("attack");
-                }
+                //}
                 break;
             case POWER:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getPowerText(), cardTalkProbability, enableCardBattleTalkEffect);
@@ -212,7 +211,7 @@ public class TheConductor extends CustomPlayer {
                 break;
             default:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
-                playAnimation("skill");
+                playAnimation("happy");
                 break;
         }
     }

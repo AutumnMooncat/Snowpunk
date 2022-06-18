@@ -89,7 +89,7 @@
     "NAME": "Ignite",
     "DESCRIPTION": "Apply !M! snowpunk:Burn to ALL enemies. NL snowpunk:Sooty enemies gain additional snowpunk:Burn equal to their snowpunk:Soot."
   },
-  "${ModID}:Invention": {
+  "${ModID}:Invent": {
     "NAME": "Invent",
     "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
     "UPGRADE_DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
