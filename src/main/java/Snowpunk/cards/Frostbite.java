@@ -33,7 +33,9 @@ public class Frostbite extends AbstractEasyCard {
             Wiz.applyToEnemy(m, new FrostbitePower(m, p, amount));
             Wiz.applyToEnemy(m, new FrostbitePower(m, p, amount));
         }
-        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        if (!this.freeToPlayOnce) {
+            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        }
     }
 
     public void upp() {}

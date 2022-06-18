@@ -39,7 +39,9 @@ public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new IceCubePower(p, getSnow() + magicNumber));
-        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        if (!this.freeToPlayOnce) {
+            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        }
     }
 
     public void upp() {

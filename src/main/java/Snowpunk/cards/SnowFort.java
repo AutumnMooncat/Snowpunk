@@ -34,7 +34,9 @@ public class SnowFort extends AbstractEasyCard {
         for (int i = 0 ; i < getSnow() ; i++) {
             blck();
         }
-        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        if (!this.freeToPlayOnce) {
+            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        }
     }
 
     public void upp() {

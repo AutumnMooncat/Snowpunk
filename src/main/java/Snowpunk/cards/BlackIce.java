@@ -42,7 +42,9 @@ public class BlackIce extends AbstractEasyCard {
                 }
             }
         }
-        Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        if (!this.freeToPlayOnce) {
+            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+        }
     }
 
     public void upp() {}
