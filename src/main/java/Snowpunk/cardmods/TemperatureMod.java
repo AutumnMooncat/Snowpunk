@@ -93,7 +93,7 @@ public class TemperatureMod extends AbstractCardModifier {
             }*/
         }
         if (heat == -2) {
-            Wiz.atb(new ExhumeRandomCardToDrawPileAction(c -> CardTemperatureFields.getCardHeat(c) > 0));
+            Wiz.atb(new ExhumeRandomCardToDrawPileAction(c -> !c.hasTag(AbstractCard.CardTags.HEALING)));
         }
         if (heat < 0) {
             Wiz.atb(new DrawCardAction(amount));
