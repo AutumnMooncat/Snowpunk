@@ -69,6 +69,11 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
+  "${ModID}:Faster": {
+    "NAME": "Faster",
+    "DESCRIPTION": "Draw X cards. NL Gain X [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Draw X + 1 cards. NL Gain X + 1 [E]. NL Exhaust."
+  },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
     "DESCRIPTION": "{@@}Apply snowpunk:S{!Upgrades!|>0= + 1} snowpunk:Frostbite twice."
