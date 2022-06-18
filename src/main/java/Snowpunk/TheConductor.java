@@ -200,11 +200,11 @@ public class TheConductor extends CustomPlayer {
         switch (c.type) {
             case ATTACK:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getAttackText(), cardTalkProbability, enableCardBattleTalkEffect);
-                if (c instanceof SkillAnimationAttack) {
+                /*if (c instanceof SkillAnimationAttack) {
                     playAnimation("skill");
-                } else {
+                } else {*/
                     playAnimation("attack");
-                }
+                //}
                 break;
             case POWER:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getPowerText(), cardTalkProbability, enableCardBattleTalkEffect);
@@ -212,7 +212,7 @@ public class TheConductor extends CustomPlayer {
                 break;
             default:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
-                playAnimation("skill");
+                playAnimation("happy");
                 break;
         }
     }
