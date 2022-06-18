@@ -29,8 +29,10 @@ public class SnowballPower extends AbstractEasyPower implements XCostModifier, S
     }
 
     @Override
-    public int modifyX(AbstractCard abstractCard) {
-        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+    public int modifyX(AbstractCard c) {
+        if (!c.freeToPlayOnce) {
+            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+        }
         return amount;
     }
 
