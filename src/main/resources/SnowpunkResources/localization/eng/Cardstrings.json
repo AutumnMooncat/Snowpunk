@@ -15,11 +15,13 @@
   },
   "${ModID}:BeaconBeam": {
     "NAME": "Beacon Beam",
-    "DESCRIPTION": "{@@}{!Upgrades!|>0=Innate. NL }Attacks deal !M! additional damage for each snowpunk:Snowball you have."
+    "DESCRIPTION": "Attacks deal !M! additional damage for each snowpunk:Snowball you have.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Attacks deal !M! additional damage for each snowpunk:Snowball you have."
   },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",
-    "DESCRIPTION": "{@@}Apply snowpunk:S {!Upgrades!|>0=snowpunk:Frostbite, }Weak{!Upgrades!|>0=,} and Vulnerable to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "Apply snowpunk:S Weak and Vulnerable to ALL enemies. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite, Weak, and Vulnerable to ALL enemies. NL Exhaust."
   },
   "${ModID}:BlastingCap": {
     "NAME": "",
@@ -55,7 +57,8 @@
   },
   "${ModID}:CoalDust": {
     "NAME": "Coal Dust",
-    "DESCRIPTION": "{@@}Apply !M! snowpunk:Soot{!Upgrades!|>0= to ALL enemies}."
+    "DESCRIPTION": "Apply !M! snowpunk:Soot.",
+    "UPGRADE_DESCRIPTION": "Apply !M! snowpunk:Soot to ALL enemies."
   },
   "${ModID}:ColdSnap": {
     "NAME": "Cold Snap",
@@ -76,7 +79,8 @@
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "{@@}Apply snowpunk:S{!Upgrades!|>0= + 1} snowpunk:Frostbite twice."
+    "DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite twice.",
+    "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
@@ -96,8 +100,8 @@
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
-    "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
-    "UPGRADE_DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
+    "DESCRIPTION": "Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
+    "UPGRADE_DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
   },
   "${ModID}:NutCracker": {
     "NAME": "Nut Cracker",
@@ -109,7 +113,8 @@
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
-    "DESCRIPTION": "{@@}Card effects act as if you have {!Upgrades!|@=!M!|>0=X} more snowpunk:Snowballs."
+    "DESCRIPTION": "Card effects act as if you have !M! more snowpunk:Snowballs.",
+    "UPGRADE_DESCRIPTION": "Card effects act as if you have X more snowpunk:Snowballs."
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
@@ -185,7 +190,8 @@
   },
   "${ModID}:TheCryogenizer": {
     "NAME": "The Cryogenizer",
-    "DESCRIPTION": "{@@}{!Snowpunk:Info!|2=Unplayable below snowpunk:Hot. NL |1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Hot. NL }Deal !D! damage to ALL enemies.",
+    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
   },
   "${ModID}:NorEaster": {
     "NAME": "Nor'Easter",

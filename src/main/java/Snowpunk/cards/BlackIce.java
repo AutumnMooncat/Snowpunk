@@ -47,5 +47,7 @@ public class BlackIce extends AbstractEasyCard {
         }
     }
 
-    public void upp() {}
+    public void upp() {
+        uDesc();
+    }
 }

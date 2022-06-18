@@ -41,5 +41,6 @@ public class CoalDust extends AbstractEasyCard {
 
     public void upp() {
         target = CardTarget.ALL_ENEMY;
+        uDesc();
     }
 }

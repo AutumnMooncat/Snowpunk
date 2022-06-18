@@ -36,8 +36,6 @@ public class PressureValves extends AbstractEasyCard {
                 p.getRelic("Chemical X").flash();
             }
 
-            //effect += magicNumber;
-
             if (effect > 0) {
                 Wiz.applyToSelf(new PressureValvesPower(p, effect));
             }
@@ -52,5 +50,6 @@ public class PressureValves extends AbstractEasyCard {
 
     public void upp() {
         upgradeBaseCost(UP_COST);
+        uDesc();
     }
 }

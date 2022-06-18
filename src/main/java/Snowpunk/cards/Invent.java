@@ -36,6 +36,6 @@ public class Invent extends AbstractEasyCard {
     public void upp() {
         //upgradeMagicNumber(UP_TINKER);
         upgradeSecondMagic(UP_CORES);
-        rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        uDesc();
     }
 }

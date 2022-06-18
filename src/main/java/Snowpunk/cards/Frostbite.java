@@ -38,5 +38,7 @@ public class Frostbite extends AbstractEasyCard {
         }
     }
 
-    public void upp() {}
+    public void upp() {
+        uDesc();
+    }
 }

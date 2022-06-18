@@ -26,7 +26,7 @@ public class TheCryogenizer extends AbstractEasyCard {
     public TheCryogenizer() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        baseInfo = info = 2;
+        baseInfo = info = 1;
         isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, -2);
     }
@@ -53,7 +53,7 @@ public class TheCryogenizer extends AbstractEasyCard {
     private void updateInfo() {
         int heat = CardTemperatureFields.getCardHeat(this);
         if (heat < (upgraded ? UP_MIN_HEAT : MIN_HEAT)) {
-            info = upgraded ? 1 : 2;
+            info = 1;
         } else {
             info = 0;
         }
@@ -62,6 +62,6 @@ public class TheCryogenizer extends AbstractEasyCard {
 
     public void upp() {
         updateInfo();
-        initializeDescription();
+        uDesc();
     }
 }

@@ -32,5 +32,6 @@ public class BeaconBeam extends AbstractEasyCard {
 
     public void upp() {
         isInnate = true;
+        uDesc();
     }
 }
