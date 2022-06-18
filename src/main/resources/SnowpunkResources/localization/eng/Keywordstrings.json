@@ -69,7 +69,7 @@
       "ventilation",
       "ventilated"
     ],
-    "DESCRIPTION": "If this card would #yExhaust from a temperature effect, #yCool it to #yStable instead."
+    "DESCRIPTION": "If this card would #yExhaust, discard it instead."
   },
   {
     "PROPER_NAME": "Reshuffle",

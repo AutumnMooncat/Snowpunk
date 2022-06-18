@@ -55,11 +55,11 @@ public class TemperatureMod extends AbstractCardModifier {
         int amount = card instanceof MultiTempEffectCard ? ((MultiTempEffectCard) card).tempEffectAmount() : 1;
         Wiz.atb(new ModEngineTempAction(heat*amount));
         if (heat > 0) {
-            if (card.hasTag(CustomTags.VENT)) {
+            /*if (card.hasTag(CustomTags.VENT)) {
                 Wiz.atb(new ModCardTempAction(card, -heat));
             } else {
                 action.exhaustCard = true;
-            }
+            }*/
             //Wiz.atb(new GainEnergyAction(amount));
             Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
