@@ -2,12 +2,12 @@ package Snowpunk.util;
 
 import Snowpunk.powers.EngineTempPower;
 import Snowpunk.powers.SnowballPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import Snowpunk.powers.SteamPower;
 import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class HeatBasedEnergyManager extends EnergyManager {
     public int snowGain;
+    public int steamGain;
 
     public HeatBasedEnergyManager(int e) {
         super(e);
@@ -17,7 +17,7 @@ public class HeatBasedEnergyManager extends EnergyManager {
     public void prep() {
         SteamEngine.reset();
         calculateGains();
-        gainSnow();
+        gainSnowAndSteam();
         super.prep();
         Wiz.applyToSelfTop(new EngineTempPower(Wiz.adp()));
     }
@@ -25,7 +25,7 @@ public class HeatBasedEnergyManager extends EnergyManager {
     @Override
     public void recharge() {
         calculateGains();
-        gainSnow();
+        gainSnowAndSteam();
         super.recharge();
         SteamEngine.stabilize();
     }
@@ -33,11 +33,15 @@ public class HeatBasedEnergyManager extends EnergyManager {
     public void calculateGains() {
         energy = energyMaster + SteamEngine.getBonusEnergy();
         snowGain = SteamEngine.getSnowballs();
+        steamGain = SteamEngine.getSteam();
     }
 
-    public void gainSnow() {
+    public void gainSnowAndSteam() {
         if (snowGain > 0) {
             Wiz.applyToSelfTop(new SnowballPower(Wiz.adp(), snowGain));
+        }
+        if (steamGain > 0) {
+            Wiz.applyToSelfTop(new SteamPower(Wiz.adp(), steamGain));
         }
     }
 }

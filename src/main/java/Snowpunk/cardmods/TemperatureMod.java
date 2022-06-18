@@ -7,6 +7,7 @@ import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.LoopcastField;
+import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -59,7 +60,8 @@ public class TemperatureMod extends AbstractCardModifier {
             } else {
                 action.exhaustCard = true;
             }
-            Wiz.atb(new GainEnergyAction(amount));
+            //Wiz.atb(new GainEnergyAction(amount));
+            Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
         if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
             for (int i = 0; i < amount ; i++) {

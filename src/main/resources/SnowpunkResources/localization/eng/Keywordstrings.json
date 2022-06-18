@@ -162,14 +162,14 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Greatly #yHeats your #yEngine. Repeat this card's effect. NL Gain [E] . #yExhaust."
+    "DESCRIPTION": "Greatly #yHeats your #yEngine. Repeat this card's effect. NL Gain #ySteam. #yExhaust."
   },
   {
     "PROPER_NAME": "Hot",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "#yHeats your #yEngine. Gain [E] . #yExhaust."
+    "DESCRIPTION": "#yHeats your #yEngine. Gain #ySteam. #yExhaust."
   },
   {
     "PROPER_NAME": "Cold",
@@ -228,5 +228,12 @@
       "ice"
     ],
     "DESCRIPTION": "Creatures with #yIce gain Block when you use #ySnowballs"
+  },
+  {
+    "PROPER_NAME": "Steam",
+    "NAMES": [
+      "steam"
+    ],
+    "DESCRIPTION": "The next card you play this turn costs 0 and #yExhausts."
   }
 ]
