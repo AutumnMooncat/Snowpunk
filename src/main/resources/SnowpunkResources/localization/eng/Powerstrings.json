@@ -101,5 +101,9 @@
       "The next #b",
       " cards you play this turn cost 0 and #yExhaust."
     ]
+  },
+  "${ModID}:StrongerPower": {
+    "NAME": "Stronger",
+    "DESCRIPTIONS": ["Whenever a card is #yExhausted, gain #b"," #yStrength."]
   }
 }

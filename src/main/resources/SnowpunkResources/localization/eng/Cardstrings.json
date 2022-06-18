@@ -180,6 +180,10 @@
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
   },
+  "${ModID}:Stronger": {
+    "NAME": "Stronger",
+    "DESCRIPTION": "Whenever a card is Exhausted, gain !M! Strength."
+  },
   "${ModID}:Think": {
     "NAME": "Think",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker a card in your hand."
