@@ -38,7 +38,7 @@ public class SnowballPower extends AbstractEasyPower implements XCostModifier, S
 
     @Override
     public boolean xCostModifierActive(AbstractCard c) {
-        return !SCostFieldPatches.SCostField.isSCost.get(c);
+        return !(c.purgeOnUse && c.isInAutoplay) && !SCostFieldPatches.SCostField.isSCost.get(c);
     }
 
     @Override
