@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.AssembleCardAction;
-import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
@@ -10,8 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Invention extends AbstractEasyCard {
-    public final static String ID = makeID(Invention.class.getSimpleName());
+public class Invent extends AbstractEasyCard {
+    public final static String ID = makeID(Invent.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -23,7 +22,7 @@ public class Invention extends AbstractEasyCard {
     private static final int TINKER = 2;
     private static final int UP_TINKER = 1;
 
-    public Invention() {
+    public Invent() {
         super(ID, COST, TYPE, RARITY, TARGET);
         FleetingField.fleeting.set(this, true);
         baseMagicNumber = magicNumber = TINKER;
