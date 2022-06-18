@@ -74,8 +74,8 @@
   },
   "${ModID}:Faster": {
     "NAME": "Faster",
-    "DESCRIPTION": "Draw X cards. NL Gain X [E]. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Draw X + 1 cards. NL Gain X + 1 [E]. NL Exhaust."
+    "DESCRIPTION": "{@@}Draw X cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
+    "UPGRADE_DESCRIPTION": "{@@}Draw X + 1 cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",

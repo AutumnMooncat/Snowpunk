@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -21,9 +22,13 @@ public class Faster extends AbstractEasyCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = -1;
+    private static final int NRG = 1;
+    private static final int UP_NRG = 1;
 
     public Faster() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = NRG;
+        CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -40,8 +45,8 @@ public class Faster extends AbstractEasyCard {
 
         if (effect > 0) {
             Wiz.atb(new DrawCardAction(effect));
-            Wiz.atb(new GainEnergyAction(effect));
         }
+        Wiz.atb(new GainEnergyAction(magicNumber));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
@@ -49,6 +54,7 @@ public class Faster extends AbstractEasyCard {
     }
 
     public void upp() {
+        upgradeMagicNumber(UP_NRG);
         uDesc();
     }
 }
