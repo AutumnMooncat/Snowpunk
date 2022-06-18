@@ -1,9 +1,11 @@
 package Snowpunk.actions;
 
 import Snowpunk.util.Wiz;
+import Snowpunk.vfx.ExhumeEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.function.Predicate;
 
@@ -32,7 +34,7 @@ public class ExhumeRandomCardToDrawPileAction extends AbstractGameAction {
             card.unfadeOut();
             card.lighten(true);
             card.fadingOut = false;
-            Wiz.adp().exhaustPile.moveToDeck(card, true);
+            AbstractDungeon.topLevelEffects.add(new ExhumeEffect(card));
         }
         this.isDone = true;
     }
