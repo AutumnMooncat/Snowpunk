@@ -76,7 +76,7 @@
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
-    "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage for each #ySnowball you have."]
+    "DESCRIPTIONS": ["Takes #b"," damage when you use a #ySnowball"]
   },
   "${ModID}:WinterStormPower": {
     "NAME": "Winter Storm",

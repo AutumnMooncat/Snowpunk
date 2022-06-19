@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.powers.interfaces.OnUseSnowPower;
 import Snowpunk.util.Wiz;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
@@ -14,7 +15,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FrostbitePower extends AbstractEasyPower implements HealthBarRenderPower {
+public class FrostbitePower extends AbstractEasyPower implements HealthBarRenderPower, OnUseSnowPower {
     public static String POWER_ID = makeID(FrostbitePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -29,19 +30,13 @@ public class FrostbitePower extends AbstractEasyPower implements HealthBarRender
     }
 
     @Override
-    public void atEndOfRound() {
-        flash();
-        Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount*getSnowballs(), DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-    }
-
-    @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override
     public int getHealthBarAmount() {
-        return amount*getSnowballs();
+        return amount;
     }
 
     @Override
@@ -49,10 +44,9 @@ public class FrostbitePower extends AbstractEasyPower implements HealthBarRender
         return hpBarColor;
     }
 
-    private int getSnowballs() {
-        if (Wiz.adp().hasPower(SnowballPower.POWER_ID)) {
-            return Wiz.adp().getPower(SnowballPower.POWER_ID).amount;
-        }
-        return 0;
+    @Override
+    public void onUseSnowball(int snow) {
+        flashWithoutSound();
+        Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount*snow, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
     }
 }

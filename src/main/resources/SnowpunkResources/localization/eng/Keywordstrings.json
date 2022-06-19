@@ -45,7 +45,7 @@
       "frostbite",
       "frostbitten"
     ],
-    "DESCRIPTION": "Frostbitten creatures take damage at the start of your turn relative to your #ySnowballs."
+    "DESCRIPTION": "Frostbitten creatures take damage when you use #ySnowballs"
   },
   {
     "PROPER_NAME": "Whistol",
