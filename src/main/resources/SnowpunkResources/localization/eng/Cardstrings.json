@@ -72,6 +72,11 @@
     "NAME": "Comburstion",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Overheated, apply !M! snowpunk:Burn to ALL enemies."
   },
+  "${ModID}:Create": {
+    "NAME": "Create",
+    "DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Creation.",
+    "UPGRADE_DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Machination."
+  },
   "${ModID}:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
