@@ -61,6 +61,7 @@ public class TemperatureMod extends AbstractCardModifier {
                 action.exhaustCard = true;
             }*/
             //Wiz.atb(new GainEnergyAction(amount));
+            action.exhaustCard = true;
             Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
         if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
