@@ -19,29 +19,46 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import java.util.ArrayList;
 
 public class AssembleCardAction extends AbstractGameAction {
-    public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
-    int parts;
-    int cores;
-    boolean randomCores;
-    boolean randomParts;
+    public enum AssembleType {
+        INVENTION(1, 2),
+        CREATION(2, 2),
+        MACHINATION(2, 3);
 
-    public AssembleCardAction(int cores, int parts) {
-        this(cores, parts, false, false);
+        AssembleType(int cores, int parts) {
+            this.cores = cores;
+            this.parts = parts;
+        }
+
+        private final int cores;
+        private final int parts;
+
+        public int getCores() {
+            return cores;
+        }
+
+        public int getParts() {
+            return parts;
+        }
     }
 
-    public AssembleCardAction(int cores, int parts, boolean randomCores, boolean randomParts) {
-        this.cores = cores;
-        this.parts = parts;
-        this.randomCores = randomCores;
-        this.randomParts = randomParts;
+    public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
+    AssembleType type;
+    boolean addToMaster;
+    boolean random;
+
+    public AssembleCardAction(AssembleType type) {
+        this(type, true, false);
+    }
+
+    public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random) {
+        this.type = type;
+        this.addToMaster = addToMaster;
+        this.random = random;
     }
 
     @Override
     public void update() {
         pickedCores.clear();
-        if (cores == 0) {
-            return;
-        }
         AssembledCard ac = new AssembledCard();
         Wiz.att(new AbstractGameAction() {
             @Override
@@ -50,11 +67,11 @@ public class AssembleCardAction extends AbstractGameAction {
                 this.isDone = true;
             }
         });
-        for (int i = 0 ; i < parts ; i++) {
-            Wiz.att(new TinkerAction(ac, randomParts));
+        for (int i = 0 ; i < type.getParts() ; i++) {
+            Wiz.att(new TinkerAction(ac, random));
         }
-        for (int i = 0 ; i < cores ; i++) {
-            if (randomCores) {
+        for (int i = 0 ; i < type.getCores() ; i++) {
+            if (random) {
                 giveRandomCore(ac);
             } else {
                 pickCoresForCard(ac);
@@ -71,7 +88,9 @@ public class AssembleCardAction extends AbstractGameAction {
         } else {
             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(copy, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
         }
-        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(copy.makeSameInstanceOf(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+        if (addToMaster) {
+            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(copy.makeSameInstanceOf(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+        }
     }
 
     private static CardGroup getValidCores(AbstractCard card) {

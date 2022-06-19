@@ -17,25 +17,21 @@ public class Invent extends AbstractEasyCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 0;
-    private static final int CORES = 1;
-    private static final int UP_CORES = 1;
-    private static final int TINKER = 2;
-    private static final int UP_TINKER = 1;
 
     public Invent() {
         super(ID, COST, TYPE, RARITY, TARGET);
         FleetingField.fleeting.set(this, true);
-        baseMagicNumber = magicNumber = TINKER;
-        baseSecondMagic = secondMagic = CORES;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new AssembleCardAction(secondMagic, magicNumber));
+        if (upgraded) {
+            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.CREATION));
+        } else {
+            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.INVENTION));
+        }
     }
 
     public void upp() {
-        //upgradeMagicNumber(UP_TINKER);
-        upgradeSecondMagic(UP_CORES);
         uDesc();
     }
 }
