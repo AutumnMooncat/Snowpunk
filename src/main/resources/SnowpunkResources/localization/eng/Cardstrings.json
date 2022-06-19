@@ -9,6 +9,10 @@
     "NAME": "",
     "DESCRIPTION": ""
   },
+  "${ModID}:ArtilleryCargo": {
+    "NAME": "Artillery Cargo",
+    "DESCRIPTION": "Deal !D! damage to a random enemy."
+  },
   "${ModID}:Avalanche": {
     "NAME": "Avalanche",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Frozen, deal that damage again."
@@ -81,6 +85,10 @@
     "NAME": "Frostbite",
     "DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite twice.",
     "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
+  },
+  "${ModID}:Harder": {
+    "NAME": "Harder",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! snowpunk:Ice."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
