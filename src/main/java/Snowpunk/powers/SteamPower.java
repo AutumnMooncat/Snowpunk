@@ -21,7 +21,9 @@ public class SteamPower extends AbstractEasyPower {
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (!card.purgeOnUse && this.amount > 0) {
-            action.exhaustCard = true;
+            if (!owner.hasPower(SteamFormPower.POWER_ID)) {
+                action.exhaustCard = true;
+            }
             this.flash();
             --this.amount;
             if (this.amount == 0) {

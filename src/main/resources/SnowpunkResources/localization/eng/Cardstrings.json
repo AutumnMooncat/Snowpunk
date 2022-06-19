@@ -184,6 +184,11 @@
     "NAME": "Steam Blast",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
+  "${ModID}:SteamForm": {
+    "NAME": "Steam Form",
+    "DESCRIPTION": "At the start of your turn, gain !M! snowpunk:Steam. NL snowpunk:Steam no longer Exhausts cards.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! snowpunk:Steam. NL snowpunk:Steam no longer Exhausts cards."
+  },
   "${ModID}:Strike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."

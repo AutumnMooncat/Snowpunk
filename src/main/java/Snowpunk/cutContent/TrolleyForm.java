@@ -1,9 +1,8 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.HeatTransferPower;
 import Snowpunk.util.Wiz;
-import basemod.BaseMod;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
