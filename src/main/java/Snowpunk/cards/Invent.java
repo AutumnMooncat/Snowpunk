@@ -21,6 +21,7 @@ public class Invent extends AbstractEasyCard {
     public Invent() {
         super(ID, COST, TYPE, RARITY, TARGET);
         FleetingField.fleeting.set(this, true);
+        tags.add(CardTags.HEALING); // We don't want this generated in combat
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
