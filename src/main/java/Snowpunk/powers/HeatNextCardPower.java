@@ -30,7 +30,7 @@ public class HeatNextCardPower extends AbstractEasyPower {
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
         flash();
-        Wiz.atb(new ModEngineTempAction(1));
+        //Wiz.atb(new ModEngineTempAction(1));
         CardTemperatureFields.addHeat(card, 1);
         //addToTop(new ModCardTempAction(card, 1));
         addToTop(new ReducePowerAction(owner, owner, this, 1));
