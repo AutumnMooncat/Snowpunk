@@ -18,7 +18,7 @@ public class BrassPipeRelic extends AbstractEasyRelic {
     public void atBattleStart() {
         flash();
         AbstractPlayer player = AbstractDungeon.player;
-        player.addPower(new TinkerNextCardPower(player, 1));
+        player.addPower(new TinkerNextCardPower(player, 1, false));
         //AbstractDungeon.actionManager.addToBottom(new VacantMillAction(counter + AbstractVacantCard.GetBonusMillAmount()));
         //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player, new VoidPower(player, player, VOID_AMOUNT), VOID_AMOUNT));
     }

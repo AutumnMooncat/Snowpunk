@@ -18,11 +18,16 @@ public class TinkerNextCardPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    private boolean justApplied = true;
+    private boolean justApplied;
 
     public TinkerNextCardPower(AbstractCreature owner, int amount) {
+        this(owner, amount, true);
+    }
+
+    public TinkerNextCardPower(AbstractCreature owner, int amount, boolean appliedByCard) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("tools");
+        justApplied = appliedByCard;
     }
 
     @Override
