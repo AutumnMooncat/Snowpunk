@@ -7,11 +7,11 @@
     "NAME": "Engine Temperature",
     "DESCRIPTIONS": [
       "Determines your per turn #yEnergy and #ySnowball gain. NL Current Temperature: ",
-      " NL #bFrozen: #b0 #yEnergy, #b2 #ySnowballs",
-      " NL #bCold: #b1 #yEnergy, #b1 #ySnowball",
-      " NL #yStable: #b2 #yEnergy, #b1 #ySnowball1",
-      " NL #rHot: #b3 #yEnergy",
-      " NL #rOverheated: #b4 #yEnergy"
+      " NL #bFrozen: #b0 #yEnergy, #b3 #ySnowballs",
+      " NL #bCold: #b1 #yEnergy, #b2 #ySnowball",
+      " NL #yStable: #b2 #yEnergy, #b1 #ySnowball",
+      " NL #rHot: #b2 #yEnergy, #b1 #ySteam",
+      " NL #rOverheated: #b2 #yEnergy, #b2 #ySteam"
     ]
   },
   "${ModID}:SnowballPower": {
