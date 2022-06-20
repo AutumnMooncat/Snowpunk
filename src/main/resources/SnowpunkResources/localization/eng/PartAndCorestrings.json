@@ -97,5 +97,10 @@
     "NAME": "Juggle Core",
     "DESCRIPTION": "Draw effect",
     "EXTENDED_DESCRIPTION": ["Skimmer","Draw !M! cards.","Retainer","Draw !M! cards. NL Retain your hand this turn.","Doppeler","Next turn, gain [E] and draw !M! cards.","Expert","Draw until you have !M! cards in your hand."]
+  },
+  "${ModID}:GeneratorCore": {
+    "NAME": "Generator Core",
+    "DESCRIPTION": "Energy effect",
+    "EXTENDED_DESCRIPTION": ["Booster","{@@}Gain {!M!|1=[E]|-1,2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.","Steamer","Gain !M! snowpunk:Steam.","Manic","{@@}snowpunk:Solve {!M!|>1=!M!|@=a} random card{!M!|>1=s} in your hand.","Snowy","{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."]
   }
 }

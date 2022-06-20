@@ -235,5 +235,13 @@
       "steam"
     ],
     "DESCRIPTION": "The next card you play this turn costs 0 and #yExhausts."
+  },
+  {
+    "PROPER_NAME": "Solve",
+    "NAMES": [
+      "solve",
+      "solved"
+    ],
+    "DESCRIPTION": "Solved cards cost #b0 this combat."
   }
 ]
