@@ -48,7 +48,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseSecondDamage += upEffect;
                     c.secondDamage = c.baseSecondDamage;
-                    c.isSecondDamageModified = true;
+                    c.upgradedSecondDamage = true;
                 });
             }
             card.secondDamage = card.baseSecondDamage;
@@ -60,7 +60,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseDamage += upEffect;
                     c.damage = c.baseDamage;
-                    c.isDamageModified = true;
+                    c.upgradedDamage = true;
                 });
             }
             card.damage = card.baseDamage;
@@ -76,7 +76,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseSecondBlock += upEffect;
                     c.secondBlock = c.baseSecondBlock;
-                    c.isSecondBlockModified = true;
+                    c.upgradedSecondBlock = true;
                 });
             }
             card.secondBlock = card.baseSecondBlock;
@@ -88,7 +88,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseBlock += upEffect;
                     c.block = c.baseBlock;
-                    c.isBlockModified = true;
+                    c.upgradedBlock = true;
                 });
             }
             card.block = card.baseBlock;
@@ -104,7 +104,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseSecondMagic += upEffect;
                     c.secondMagic = c.baseSecondMagic;
-                    c.isSecondMagicModified = true;
+                    c.upgradedSecondMagic = true;
                 });
             }
             card.secondMagic = card.baseSecondMagic;
@@ -116,7 +116,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                 card.addUpgradeConsumer(c -> {
                     c.baseMagicNumber += upEffect;
                     c.magicNumber = c.baseMagicNumber;
-                    c.isMagicNumberModified = true;
+                    c.upgradedMagicNumber = true;
                 });
             }
             card.magicNumber = card.baseMagicNumber;
