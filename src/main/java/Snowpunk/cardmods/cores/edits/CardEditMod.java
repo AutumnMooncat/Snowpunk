@@ -8,7 +8,10 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import static Snowpunk.SnowpunkMod.makeID;
+
 public class CardEditMod extends AbstractCardModifier {
+    public static final String ID = makeID(CardEditMod.class.getSimpleName());
     public String name;
     public int doubledCost;
     public AbstractCard.CardType type;
@@ -35,10 +38,20 @@ public class CardEditMod extends AbstractCardModifier {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        collateCardBasics(card);
+        collateCardBasics(card, name, doubledCost, type, rarity, target);
     }
 
-    public void collateCardBasics(AbstractCard card) {
+    @Override
+    public boolean shouldApply(AbstractCard card) {
+        if (CardModifierManager.hasModifier(card, ID)){
+            CardEditMod mod = (CardEditMod) CardModifierManager.getModifiers(card, ID).get(0);
+            mod.collateCardBasics(card, name, doubledCost, type, rarity, target);
+            return false;
+        }
+        return true;
+    }
+
+    public void collateCardBasics(AbstractCard card, String name, int doubledCost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         collateName(card, name);
         collateCost(card, doubledCost);
         collateType(card, type);
@@ -63,12 +76,14 @@ public class CardEditMod extends AbstractCardModifier {
         if (rippedPlus) {
             card.name += "+";
         }
+        this.name = card.name;
     }
 
     public void collateCost(AbstractCard card, int doubledCost) {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).doubledCost += doubledCost;
             card.cost = card.costForTurn = (int) Math.ceil(((AssembledCard) card).doubledCost/2f);
+            this.doubledCost = ((AssembledCard) card).doubledCost;
         }
     }
 
@@ -88,12 +103,14 @@ public class CardEditMod extends AbstractCardModifier {
             return;
         }
         card.type = type;
+        this.type = card.type;
     }
 
     public void collateRarity(AbstractCard card, AbstractCard.CardRarity rarity) {
         if (card.rarity.ordinal() < rarity.ordinal()) {
             card.rarity = rarity;
         }
+        this.rarity = card.rarity;
     }
 
     public void collateTarget(AbstractCard card, AbstractCard.CardTarget target) {
@@ -121,6 +138,12 @@ public class CardEditMod extends AbstractCardModifier {
                     break;
             }
         }
+        this.target = card.target;
+    }
+
+    @Override
+    public String identifier(AbstractCard card) {
+        return ID;
     }
 
     @Override
