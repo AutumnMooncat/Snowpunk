@@ -75,7 +75,7 @@
   },
   "${ModID}:AbyssalCore": {
     "NAME": "Abyssal Core",
-    "DESCRIPTION": "Apply a debuff",
+    "DESCRIPTION": "Apply a debuff to ALL enemies",
     "EXTENDED_DESCRIPTION": ["Tripper","Apply !M! Vulnerable to ALL enemies.","Blinder","Apply !M! Weak to ALL enemies.","Duster","Apply !M! snowpunk:Soot to ALL enemies.","Piercer","ALL enemies lose !M! Strength this turn."]
   },
   "${ModID}:BlastCore": {
@@ -92,5 +92,10 @@
     "NAME": "Combustion Core",
     "DESCRIPTION": "Powerful damage effect",
     "EXTENDED_DESCRIPTION": ["Eviscerater","Deal !D! damage 3 times.","Killer","Deal !D! damage to ALL enemies.","Hammer","Deal !D! damage.","Ripper","Deal !D! damage twice."]
+  },
+  "${ModID}:JuggleCore": {
+    "NAME": "Juggle Core",
+    "DESCRIPTION": "Draw effect",
+    "EXTENDED_DESCRIPTION": ["Skimmer","Draw !M! cards.","Retainer","Draw !M! cards. NL Retain your hand this turn.","Doppeler","Next turn, gain [E] and draw !M! cards.","Expert","Draw until you have !M! cards in your hand."]
   }
 }
