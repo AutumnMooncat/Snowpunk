@@ -107,7 +107,7 @@
     "DESCRIPTIONS": ["Whenever a card is #yExhausted, gain #b"," #yStrength."]
   },
   "${ModID}:SteamFormPower": {
-    "NAME": "Stronger",
+    "NAME": "Steam Form",
     "DESCRIPTIONS": ["At the start of your turn, gain #b"," #ySteam. NL #ySteam no longer exhausts cards."]
   }
 }
