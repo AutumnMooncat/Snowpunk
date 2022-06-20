@@ -74,7 +74,7 @@ public class AssembleCardAction extends AbstractGameAction {
             if (random) {
                 giveRandomCore(ac);
             } else {
-                pickCoresForCard(ac);
+                pickCoresForCard(ac, type);
             }
         }
         this.isDone = true;
@@ -107,6 +107,72 @@ public class AssembleCardAction extends AbstractGameAction {
         return validCores;
     }
 
+    private static CardGroup getWeightedCores(AbstractCard card, AssembleType type) {
+        CardGroup cores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        int currentDoubledCost = card instanceof AssembledCard ? ((AssembledCard) card).doubledCost : 0;
+        int toSelect = 3;
+        ArrayList<AbstractCoreCard> commons = new ArrayList<>();
+        ArrayList<AbstractCoreCard> uncommons = new ArrayList<>();
+        ArrayList<AbstractCoreCard> rares = new ArrayList<>();
+        for (AbstractCoreCard core : SnowpunkMod.cores) {
+            if (core.canSpawn(AssembleCardAction.pickedCores)) {
+                AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
+                copy.prepRenderedCost(currentDoubledCost);
+                copy.prepForSelection(AssembleCardAction.pickedCores);
+                switch (copy.dropRarity) {
+                    case COMMON:
+                        commons.add(copy);
+                        break;
+                    case UNCOMMON:
+                        uncommons.add(copy);
+                        break;
+                    case RARE:
+                        rares.add(copy);
+                        break;
+                }
+            }
+        }
+        if (type == AssembleType.MACHINATION && AssembleCardAction.pickedCores.isEmpty() && !rares.isEmpty()) {
+            for (int i = 0 ; i < toSelect ; i++) {
+                if (!rares.isEmpty()) {
+                    cores.addToTop(rares.remove(AbstractDungeon.cardRandomRng.random(rares.size()-1)));
+                }
+            }
+            return cores;
+        }
+        ArrayList<AbstractCard.CardRarity> options = new ArrayList<>();
+        for (int i = 0 ; i < toSelect ; i ++) {
+            if (!commons.isEmpty()) {
+                options.add(AbstractCard.CardRarity.COMMON);
+                options.add(AbstractCard.CardRarity.COMMON);
+                options.add(AbstractCard.CardRarity.COMMON);
+            }
+            if (!uncommons.isEmpty()) {
+                options.add(AbstractCard.CardRarity.UNCOMMON);
+                options.add(AbstractCard.CardRarity.UNCOMMON);
+            }
+            if (!rares.isEmpty()) {
+                options.add(AbstractCard.CardRarity.RARE);
+            }
+            if (options.isEmpty()) {
+                return cores;
+            }
+            AbstractCard.CardRarity selection = options.get(AbstractDungeon.cardRandomRng.random(options.size()-1));
+            switch (selection) {
+                case COMMON:
+                    cores.addToTop(commons.remove(AbstractDungeon.cardRandomRng.random(commons.size()-1)));
+                    break;
+                case UNCOMMON:
+                    cores.addToTop(uncommons.remove(AbstractDungeon.cardRandomRng.random(uncommons.size()-1)));
+                    break;
+                case RARE:
+                    cores.addToTop(rares.remove(AbstractDungeon.cardRandomRng.random(rares.size()-1)));
+                    break;
+            }
+        }
+        return cores;
+    }
+
     private static void giveRandomCore(AbstractCard card) {
         CardGroup validCores = getValidCores(card);
         if (!validCores.isEmpty()) {
@@ -119,13 +185,13 @@ public class AssembleCardAction extends AbstractGameAction {
         }
     }
 
-    private static void pickCoresForCard(AbstractCard card) {
+    private static void pickCoresForCard(AbstractCard card, AssembleType type) {
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {
-                CardGroup validCores = getValidCores(card);
+                CardGroup validCores = getWeightedCores(card, type);
                 if (!validCores.isEmpty()) {
-                    ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
+                    /*ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
                     if (validCores.size() <= 3) {
                         cardsToPick.addAll(validCores.group);
                     } else {
@@ -134,8 +200,8 @@ public class AssembleCardAction extends AbstractGameAction {
                             validCores.removeCard(c);
                             cardsToPick.add(c);
                         }
-                    }
-                    Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, "", false, crd -> true, cards -> {
+                    }*/
+                    Wiz.att(new BetterSelectCardsCenteredAction(validCores.group, 1, "", false, crd -> true, cards -> {
                         for (AbstractCard c : cards) {
                             if (c instanceof AbstractCoreCard) {
                                 ((AbstractCoreCard) c).apply(card);
