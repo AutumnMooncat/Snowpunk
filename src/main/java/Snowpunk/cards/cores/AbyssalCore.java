@@ -82,7 +82,7 @@ public class AbyssalCore extends AbstractCoreCard {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SOOT;
         } else {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = STR_DOWN;
-            CardModifierManager.addModifier(card, new BetterExhaustMod());
+            CardModifierManager.addModifier(this, new BetterExhaustMod());
         }
     }
 
