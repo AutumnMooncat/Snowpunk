@@ -170,6 +170,7 @@ public class AssembleCardAction extends AbstractGameAction {
                     cores.addToTop(rares.remove(AbstractDungeon.cardRandomRng.random(rares.size()-1)));
                     break;
             }
+            options.clear();
         }
         return cores;
     }
