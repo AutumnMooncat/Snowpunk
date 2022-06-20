@@ -1,9 +1,11 @@
 package Snowpunk.cardmods.cores.edits;
 
+import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class CardEditMod extends AbstractCardModifier {
@@ -76,11 +78,11 @@ public class CardEditMod extends AbstractCardModifier {
             return;
         }
         if (type == AbstractCard.CardType.POWER && card.type != AbstractCard.CardType.POWER) {
-            //CardModifierManager.addModifier(card, new BetterPurgeMod());
+            CardModifierManager.addModifier(card, new BetterExhaustMod());
             return;
         }
         if (card.type == AbstractCard.CardType.POWER) {
-            //CardModifierManager.addModifier(card, new BetterPurgeMod());
+            CardModifierManager.addModifier(card, new BetterExhaustMod());
         }
         if (card.type == AbstractCard.CardType.ATTACK) {
             return;
