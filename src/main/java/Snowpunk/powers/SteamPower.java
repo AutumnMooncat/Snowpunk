@@ -26,6 +26,7 @@ public class SteamPower extends AbstractEasyPower {
             }
             this.flash();
             --this.amount;
+            updateDescription();
             if (this.amount == 0) {
                 this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             }
