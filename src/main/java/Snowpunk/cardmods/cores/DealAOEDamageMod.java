@@ -16,6 +16,7 @@ public class DealAOEDamageMod extends AbstractCoreCardMod {
         super(name, description, type, rarity, target);
         this.damage = damage;
         this.upDamage = upDamage;
+        this.priority = -1;
     }
 
     @Override

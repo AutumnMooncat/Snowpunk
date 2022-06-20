@@ -14,6 +14,7 @@ public class GainBlockMod extends AbstractCoreCardMod {
         super(name, description, type, rarity, target);
         this.effect = effect;
         this.upEffect = upEffect;
+        this.priority = -2;
     }
 
     @Override
