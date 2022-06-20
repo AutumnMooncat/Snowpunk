@@ -1,5 +1,6 @@
 package Snowpunk.cards.cores;
 
+import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cardmods.cores.*;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
@@ -20,17 +21,17 @@ public class AbyssalCore extends AbstractCoreCard {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.SKILL;
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final ValueType VALUE = ValueType.MAGIC;
 
-    private static final int VULN = 1;
+    private static final int VULN = 2;
     private static final int UP_VULN = 1;
-    private static final int WEAK = 1;
+    private static final int WEAK = 2;
     private static final int UP_WEAK = 1;
-    private static final int SOOT = 2;
-    private static final int UP_SOOT = 1;
-    private static final int STR_DOWN = 2;
+    private static final int SOOT = 3;
+    private static final int UP_SOOT = 2;
+    private static final int STR_DOWN = 6;
     private static final int UP_STR_DOWN = 2;
 
     String nameToAdd;
@@ -58,6 +59,7 @@ public class AbyssalCore extends AbstractCoreCard {
                 break;
             case 3:
                 CardModifierManager.addModifier(card, new ApplyAOETempStrDownMod(rawDescription, VALUE, STR_DOWN, UP_STR_DOWN, useSecondVar));
+                CardModifierManager.addModifier(card, new BetterExhaustMod());
                 break;
         }
     }
@@ -80,6 +82,7 @@ public class AbyssalCore extends AbstractCoreCard {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SOOT;
         } else {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = STR_DOWN;
+            CardModifierManager.addModifier(card, new BetterExhaustMod());
         }
     }
 
