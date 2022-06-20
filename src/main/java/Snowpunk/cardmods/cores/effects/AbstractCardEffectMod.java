@@ -125,6 +125,12 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + description + " NL ";
+        if (rawDescription.equals("")) {
+            return description;
+        } else if (rawDescription.endsWith(" NL ")) {
+            return rawDescription + description;
+        } else {
+            return rawDescription + " NL " + description;
+        }
     }
 }
