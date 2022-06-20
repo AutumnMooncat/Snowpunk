@@ -7,11 +7,14 @@ import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AfterImagePower;
 
-public class ApplyWeakMod extends AbstractCardEffectMod {
-    public ApplyWeakMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+import java.util.function.BiConsumer;
+
+public class AfterImageMod extends AbstractCardEffectMod {
+    public AfterImageMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 
@@ -21,13 +24,13 @@ public class ApplyWeakMod extends AbstractCardEffectMod {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
-                Wiz.applyToEnemy(m, new WeakPower(m, amount, false));
+                Wiz.applyToSelf(new AfterImagePower(p, amount));
             }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyWeakMod(description, type, effect, upEffect, useSecondVar);
+        return new AfterImageMod(description, type, effect, upEffect, useSecondVar);
     }
 }

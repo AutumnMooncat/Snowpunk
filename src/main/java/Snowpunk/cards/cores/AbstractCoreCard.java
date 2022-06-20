@@ -43,13 +43,13 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
         return coreTooltip;
     }
 
-    public boolean canSpawn(ArrayList<AbstractCoreCard> chosenCores) {
+    public boolean canSpawn(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         return chosenCores.stream().noneMatch(c -> c.getClass().equals(this.getClass())) && (this.valueType == ValueType.NONE || chosenCores.stream().filter(c -> c.valueType == this.valueType).count() < 2);
     }
 
     public abstract void apply(AbstractCard card);
 
-    public abstract void prepForSelection(ArrayList<AbstractCoreCard> chosenCores);
+    public abstract void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores);
 
     public void prepRenderedCost(int currentDoubledCost) {
         switch (dropRarity) {

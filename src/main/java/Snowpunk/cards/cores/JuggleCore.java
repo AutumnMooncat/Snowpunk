@@ -1,6 +1,7 @@
 package Snowpunk.cards.cores;
 
 import Snowpunk.cardmods.cores.*;
+import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -35,6 +36,7 @@ public class JuggleCore extends AbstractCoreCard {
     String nameToAdd;
     int effectIndex;
     int effects = 4;
+    boolean useSecondVar;
 
     public JuggleCore() {
         super(ID, TYPE, RARITY, VALUE);
@@ -43,31 +45,33 @@ public class JuggleCore extends AbstractCoreCard {
 
     @Override
     public void apply(AbstractCard card) {
+        CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
         switch (effectIndex) {
             case 0:
-                CardModifierManager.addModifier(card, new DrawCardMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, SKIM, UP_SKIM));
+                CardModifierManager.addModifier(card, new DrawCardsMod(rawDescription, VALUE, SKIM, UP_SKIM, useSecondVar));
                 break;
             case 1:
-                CardModifierManager.addModifier(card, new DrawRetMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, DRAW_RET, UP_DRAW_RET));
+                CardModifierManager.addModifier(card, new DrawAndRetainMod(rawDescription, VALUE, DRAW_RET, UP_DRAW_RET, useSecondVar));
                 break;
             case 2:
-                CardModifierManager.addModifier(card, new DoppelMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, DOPPEL, UP_DOPPEL));
+                CardModifierManager.addModifier(card, new DrawNextTurnMod(rawDescription, VALUE, DOPPEL, UP_DOPPEL, useSecondVar));
                 break;
             case 3:
-                CardModifierManager.addModifier(card, new DrawUntilMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, DRAW_TO, UP_DRAW_TO));
+                CardModifierManager.addModifier(card, new DrawUntilMod(rawDescription, VALUE, DRAW_TO, UP_DRAW_TO, useSecondVar));
                 break;
             default:
         }
     }
 
     @Override
-    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         effectIndex = AbstractDungeon.cardRandomRng.random(effects-1); // Inclusive RNG call needs a -1
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
             swapDynvarKey(VALUE);
+            useSecondVar = true;
         }
         if (effectIndex == 0) {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SKIM;

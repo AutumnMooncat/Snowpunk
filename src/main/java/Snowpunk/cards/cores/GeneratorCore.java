@@ -2,6 +2,7 @@ package Snowpunk.cards.cores;
 
 import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cardmods.cores.*;
+import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -36,6 +37,7 @@ public class GeneratorCore extends AbstractCoreCard {
     String nameToAdd;
     int effectIndex;
     int effects = 4;
+    boolean useSecondVar;
 
     public GeneratorCore() {
         super(ID, TYPE, RARITY, VALUE);
@@ -44,33 +46,35 @@ public class GeneratorCore extends AbstractCoreCard {
 
     @Override
     public void apply(AbstractCard card) {
+        CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
         switch (effectIndex) {
             case 0:
-                CardModifierManager.addModifier(card, new CoreEnergyMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, BOOST, UP_BOOST));
+                CardModifierManager.addModifier(card, new GainMEnergyMod(rawDescription, VALUE, BOOST, UP_BOOST, useSecondVar));
                 break;
             case 1:
-                CardModifierManager.addModifier(card, new SteamMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, STEAM, UP_STEAM));
+                CardModifierManager.addModifier(card, new GainSteamMod(rawDescription, VALUE, STEAM, UP_STEAM, useSecondVar));
                 CardModifierManager.addModifier(card, new BetterExhaustMod());
                 break;
             case 2:
-                CardModifierManager.addModifier(card, new MadnessMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, MADNESS, UP_MADNESS));
+                CardModifierManager.addModifier(card, new MadnessMod(rawDescription, VALUE, MADNESS, UP_MADNESS, useSecondVar));
                 CardModifierManager.addModifier(card, new BetterExhaustMod());
                 break;
             case 3:
-                CardModifierManager.addModifier(card, new SnowMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, SNOW, UP_SNOW));
+                CardModifierManager.addModifier(card, new GainSnowMod(rawDescription, VALUE, SNOW, UP_SNOW, useSecondVar));
                 break;
             default:
         }
     }
 
     @Override
-    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         effectIndex = AbstractDungeon.cardRandomRng.random(effects-1); // Inclusive RNG call needs a -1
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
             swapDynvarKey(VALUE);
+            useSecondVar = true;
         }
         if (effectIndex == 0) {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = BOOST;

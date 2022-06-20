@@ -6,12 +6,12 @@ import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.AfterImagePower;
 
-public class ApplyWeakMod extends AbstractCardEffectMod {
-    public ApplyWeakMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+public class DrawCardsMod extends AbstractCardEffectMod {
+    public DrawCardsMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 
@@ -21,13 +21,13 @@ public class ApplyWeakMod extends AbstractCardEffectMod {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
-                Wiz.applyToEnemy(m, new WeakPower(m, amount, false));
+                Wiz.atb(new DrawCardAction(amount));
             }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyWeakMod(description, type, effect, upEffect, useSecondVar);
+        return new DrawCardsMod(description, type, effect, upEffect, useSecondVar);
     }
 }

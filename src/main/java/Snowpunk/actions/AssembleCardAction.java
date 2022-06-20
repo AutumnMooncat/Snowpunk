@@ -93,32 +93,32 @@ public class AssembleCardAction extends AbstractGameAction {
         }
     }
 
-    private static CardGroup getValidCores(AbstractCard card) {
+    private static CardGroup getValidCores(AssembledCard card) {
         CardGroup validCores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        int currentDoubledCost = card instanceof AssembledCard ? ((AssembledCard) card).doubledCost : 0;
+        int currentDoubledCost = card.doubledCost;
         for (AbstractCoreCard core : SnowpunkMod.cores) {
-            if (core.canSpawn(AssembleCardAction.pickedCores)) {
+            if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
                 AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
                 copy.prepRenderedCost(currentDoubledCost);
-                copy.prepForSelection(AssembleCardAction.pickedCores);
+                copy.prepForSelection(card, AssembleCardAction.pickedCores);
                 validCores.addToTop(copy);
             }
         }
         return validCores;
     }
 
-    private static CardGroup getWeightedCores(AbstractCard card, AssembleType type) {
+    private static CardGroup getWeightedCores(AssembledCard card, AssembleType type) {
         CardGroup cores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        int currentDoubledCost = card instanceof AssembledCard ? ((AssembledCard) card).doubledCost : 0;
+        int currentDoubledCost = card.doubledCost;
         int toSelect = 3;
         ArrayList<AbstractCoreCard> commons = new ArrayList<>();
         ArrayList<AbstractCoreCard> uncommons = new ArrayList<>();
         ArrayList<AbstractCoreCard> rares = new ArrayList<>();
         for (AbstractCoreCard core : SnowpunkMod.cores) {
-            if (core.canSpawn(AssembleCardAction.pickedCores)) {
+            if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
                 AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
                 copy.prepRenderedCost(currentDoubledCost);
-                copy.prepForSelection(AssembleCardAction.pickedCores);
+                copy.prepForSelection(card, AssembleCardAction.pickedCores);
                 switch (copy.dropRarity) {
                     case COMMON:
                         commons.add(copy);
@@ -143,6 +143,7 @@ public class AssembleCardAction extends AbstractGameAction {
         ArrayList<AbstractCard.CardRarity> options = new ArrayList<>();
         for (int i = 0 ; i < toSelect ; i ++) {
             if (!commons.isEmpty()) {
+                options.add(AbstractCard.CardRarity.COMMON);
                 options.add(AbstractCard.CardRarity.COMMON);
                 options.add(AbstractCard.CardRarity.COMMON);
                 options.add(AbstractCard.CardRarity.COMMON);
@@ -173,7 +174,7 @@ public class AssembleCardAction extends AbstractGameAction {
         return cores;
     }
 
-    private static void giveRandomCore(AbstractCard card) {
+    private static void giveRandomCore(AssembledCard card) {
         CardGroup validCores = getValidCores(card);
         if (!validCores.isEmpty()) {
             AbstractCard core = validCores.getRandomCard(true);
@@ -185,7 +186,7 @@ public class AssembleCardAction extends AbstractGameAction {
         }
     }
 
-    private static void pickCoresForCard(AbstractCard card, AssembleType type) {
+    private static void pickCoresForCard(AssembledCard card, AssembleType type) {
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {

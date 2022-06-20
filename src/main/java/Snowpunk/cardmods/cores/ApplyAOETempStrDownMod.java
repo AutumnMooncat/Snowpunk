@@ -1,48 +1,36 @@
 package Snowpunk.cardmods.cores;
 
 import Snowpunk.actions.ApplyPowerActionWithFollowup;
+import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
+import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
+import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
-public class ApplyAOETempStrDownMod extends AbstractCoreCardMod {
-    int effect;
-    int upEffect;
-
-    public ApplyAOETempStrDownMod(String name, String description, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, int effect, int upEffect) {
-        super(name, description, type, rarity, target);
-        this.effect = effect;
-        this.upEffect = upEffect;
+public class ApplyAOETempStrDownMod extends AbstractCardEffectMod {
+    public ApplyAOETempStrDownMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+        super(description, type, effect, upEffect, secondVar);
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        collateCardBasics(card);
-        collateMagic(card, effect, upEffect);
+        super.onInitialApplication(card);
         if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addUseConsumer((p, m) -> {
-                for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                    if (!mo.isDeadOrEscaped()) {
-                        if (useSecondVar) {
-                            Wiz.atb(new ApplyPowerActionWithFollowup(new ApplyPowerAction(mo, p, new StrengthPower(mo, -((AssembledCard) card).secondMagic)), new ApplyPowerAction(mo, p, new GainStrengthPower(mo, ((AssembledCard) card).secondMagic))));
-                        } else {
-                            Wiz.atb(new ApplyPowerActionWithFollowup(new ApplyPowerAction(mo, p, new StrengthPower(mo, -card.magicNumber)), new ApplyPowerAction(mo, p, new GainStrengthPower(mo, card.magicNumber))));
-                        }
-                    }
-                }
-            });
+            ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
+                int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
+                Wiz.forAllMonstersLiving(mon -> Wiz.atb(new ApplyPowerActionWithFollowup(new ApplyPowerAction(mon, p, new StrengthPower(mon, -amount)), new ApplyPowerAction(mon, p, new GainStrengthPower(mon, amount)))));
+            }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyAOETempStrDownMod(name, description, type, rarity, target, effect, upEffect);
+        return new ApplyAOETempStrDownMod(description, type, effect, upEffect, useSecondVar);
     }
 }

@@ -1,6 +1,7 @@
 package Snowpunk.cards.cores;
 
 import Snowpunk.cardmods.cores.GainBlockMod;
+import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -25,7 +26,7 @@ public class BarrierCore extends AbstractCoreCard {
     private static final int EFFECT = 6;
     private static final int UP_EFFECT = 3;
 
-    String textToAdd;
+    boolean useSecondVar;
 
     public BarrierCore() {
         super(ID, TYPE, RARITY, VALUE);
@@ -34,15 +35,15 @@ public class BarrierCore extends AbstractCoreCard {
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new GainBlockMod(TEXT[0], textToAdd, TYPE, RARITY, TARGET, EFFECT, UP_EFFECT));
+        CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], TYPE, RARITY, TARGET));
+        CardModifierManager.addModifier(card, new GainBlockMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondVar));
     }
 
     @Override
-    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
-            textToAdd = String.format(TEXT[1],"!Snowpunk:B2!");
-        } else {
-            textToAdd = String.format(TEXT[1],"!B!");
+            swapDynvarKey(VALUE);
+            useSecondVar = true;
         }
     }
 

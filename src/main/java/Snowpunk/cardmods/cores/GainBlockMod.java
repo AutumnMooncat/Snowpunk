@@ -1,39 +1,34 @@
 package Snowpunk.cardmods.cores;
 
+import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
+import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
+import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.powers.AfterImagePower;
 
-public class GainBlockMod extends AbstractCoreCardMod {
-    int effect;
-    int upEffect;
-
-    public GainBlockMod(String name, String description, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, int effect, int upEffect) {
-        super(name, description, type, rarity, target);
-        this.effect = effect;
-        this.upEffect = upEffect;
+public class GainBlockMod extends AbstractCardEffectMod {
+    public GainBlockMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+        super(description, type, effect, upEffect, secondVar);
         this.priority = -2;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        collateCardBasics(card);
-        collateBlock(card, effect, upEffect);
+        super.onInitialApplication(card);
         if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addUseConsumer((p, m) -> {
-                if (useSecondVar) {
-                    Wiz.atb(new GainBlockAction(p, ((AssembledCard) card).secondBlock));
-                } else {
-                    Wiz.atb(new GainBlockAction(p, card.block));
-                }
-            });
+            ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
+                int amount = useSecondVar ? ((AssembledCard) card).secondBlock : card.block;
+                Wiz.atb(new GainBlockAction(p, amount));
+            }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GainBlockMod(name, description, type, rarity, target, effect, upEffect);
+        return new GainBlockMod(description, type, effect, upEffect, useSecondVar);
     }
 }

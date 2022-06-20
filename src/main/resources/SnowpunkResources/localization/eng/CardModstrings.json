@@ -61,6 +61,9 @@
   "${ModID}:BetterExhaustMod": {
     "EXTENDED_DESCRIPTION": [" NL Exhaust."]
   },
+  "${ModID}:BetterPurgeMod": {
+    "EXTENDED_DESCRIPTION": [" NL Purge."]
+  },
   "${ModID}:VentMod": {
     "EXTENDED_DESCRIPTION": ["snowpunk:Ventilated. NL "]
   },

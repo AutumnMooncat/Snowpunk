@@ -66,7 +66,7 @@
   "${ModID}:BarrierCore": {
     "NAME": "Barrier Core",
     "DESCRIPTION": "Gain !B! Block.",
-    "EXTENDED_DESCRIPTION": ["Barrier","Gain %s Block."]
+    "EXTENDED_DESCRIPTION": ["Barrier"]
   },
   "${ModID}:BismuthCore": {
     "NAME": "Bismuth Core",
@@ -102,5 +102,10 @@
     "NAME": "Generator Core",
     "DESCRIPTION": "Energy effect",
     "EXTENDED_DESCRIPTION": ["Booster","{@@}Gain {!M!|1=[E]|-1,2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.","Steamer","Gain !M! snowpunk:Steam.","Manic","{@@}snowpunk:Solve {!M!|>1=!M!|@=a} random card{!M!|>1=s} in your hand.","Snowy","{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."]
+  },
+  "${ModID}:HolographicCore": {
+    "NAME": "Holographic Core",
+    "DESCRIPTION": "Negation effect",
+    "EXTENDED_DESCRIPTION": ["Wraith","Gain !M! Intangible.","Buffer","{@@}Prevent the next {!M!|>1=!M! }time{!M!|>1=s} you would lose HP.","Blitzer","Whenever you play a card, gain !M! Block.","Metal","At the end of your turn, gain !M! Block."]
   }
 }

@@ -1,8 +1,8 @@
 package Snowpunk.cards.cores;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.AssembledCardArtRoller;
-import Snowpunk.util.CardArtRoller;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,10 +11,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
+import java.util.Collections;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -22,8 +20,8 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class AssembledCard extends AbstractEasyCard {
     public static final String ID = makeID(AssembledCard.class.getSimpleName());
 
-    private final ArrayList<Consumer<AbstractCard>> onUpgradeConsumers = new ArrayList<>();
-    private final ArrayList<BiConsumer<AbstractPlayer, AbstractMonster>> onUseConsumers = new ArrayList<>();
+    private final ArrayList<Consumer<AssembledCard>> onUpgradeConsumers = new ArrayList<>();
+    private final ArrayList<OnUseCardInstance> onUseInstances = new ArrayList<>();
     public int doubledCost;
 
     public AssembledCard() {
@@ -41,23 +39,24 @@ public class AssembledCard extends AbstractEasyCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (BiConsumer<AbstractPlayer, AbstractMonster> c : onUseConsumers) {
-            c.accept(p, m);
+        for (OnUseCardInstance i : onUseInstances) {
+            i.onUseConsumer.accept(p, m);
         }
     }
 
     @Override
     public void upp() {
-        for (Consumer<AbstractCard> c : onUpgradeConsumers) {
+        for (Consumer<AssembledCard> c : onUpgradeConsumers) {
             c.accept(this);
         }
     }
 
-    public void addUpgradeConsumer(Consumer<AbstractCard> c) {
+    public void addUpgradeConsumer(Consumer<AssembledCard> c) {
         onUpgradeConsumers.add(c);
     }
 
-    public void addUseConsumer(BiConsumer<AbstractPlayer, AbstractMonster> c) {
-        onUseConsumers.add(c);
+    public void addUseEffects(OnUseCardInstance i) {
+        onUseInstances.add(i);
+        Collections.sort(onUseInstances);
     }
 }

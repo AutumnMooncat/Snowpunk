@@ -6,6 +6,7 @@ import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+@Deprecated
 public abstract class AbstractCoreCardMod extends AbstractCardModifier {
     public String name;
     public String description;
@@ -195,6 +196,17 @@ public abstract class AbstractCoreCardMod extends AbstractCardModifier {
     }
 
     public void collateType(AbstractCard card, AbstractCard.CardType type) {
+        if (card.rarity == AbstractCard.CardRarity.SPECIAL) {
+            card.type = type;
+            return;
+        }
+        if (type == AbstractCard.CardType.POWER && card.type != AbstractCard.CardType.POWER) {
+            //CardModifierManager.addModifier(card, new BetterPurgeMod());
+            return;
+        }
+        if (card.type == AbstractCard.CardType.POWER) {
+            //CardModifierManager.addModifier(card, new BetterPurgeMod());
+        }
         if (card.type == AbstractCard.CardType.ATTACK) {
             return;
         }

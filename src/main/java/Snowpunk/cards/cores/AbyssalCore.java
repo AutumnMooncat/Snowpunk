@@ -1,6 +1,7 @@
 package Snowpunk.cards.cores;
 
 import Snowpunk.cardmods.cores.*;
+import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -35,6 +36,7 @@ public class AbyssalCore extends AbstractCoreCard {
     String nameToAdd;
     int effectIndex;
     int effects = 4;
+    boolean useSecondVar;
 
     public AbyssalCore() {
         super(ID, TYPE, RARITY, VALUE);
@@ -43,32 +45,32 @@ public class AbyssalCore extends AbstractCoreCard {
 
     @Override
     public void apply(AbstractCard card) {
+        CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
         switch (effectIndex) {
             case 0:
-                CardModifierManager.addModifier(card, new ApplyAOEVulnMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, VULN, UP_VULN));
+                CardModifierManager.addModifier(card, new ApplyAOEVulnMod(rawDescription, VALUE, VULN, UP_VULN, useSecondVar));
                 break;
             case 1:
-                CardModifierManager.addModifier(card, new ApplyAOEWeakMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, WEAK, UP_WEAK));
+                CardModifierManager.addModifier(card, new ApplyAOEWeakMod(rawDescription, VALUE, WEAK, UP_WEAK, useSecondVar));
                 break;
             case 2:
-                CardModifierManager.addModifier(card, new ApplyAOESootMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, SOOT, UP_SOOT));
+                CardModifierManager.addModifier(card, new ApplyAOESootMod(rawDescription, VALUE, SOOT, UP_SOOT, useSecondVar));
                 break;
             case 3:
-                CardModifierManager.addModifier(card, new ApplyAOETempStrDownMod(nameToAdd, rawDescription, TYPE, RARITY, TARGET, STR_DOWN, UP_STR_DOWN));
+                CardModifierManager.addModifier(card, new ApplyAOETempStrDownMod(rawDescription, VALUE, STR_DOWN, UP_STR_DOWN, useSecondVar));
                 break;
-            default:
-                throw new IllegalStateException("[Abyssal Core] - Unexpected value: " + effectIndex);
         }
     }
 
     @Override
-    public void prepForSelection(ArrayList<AbstractCoreCard> chosenCores) {
+    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         effectIndex = AbstractDungeon.cardRandomRng.random(effects-1); // Inclusive RNG call needs a -1
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
             swapDynvarKey(VALUE);
+            useSecondVar = true;
         }
         if (effectIndex == 0) {
             baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = VULN;

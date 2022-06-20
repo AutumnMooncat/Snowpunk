@@ -26,7 +26,7 @@ public class BetterExhaustMod extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !card.exhaust;
+        return !card.exhaust && !card.purgeOnUse;
     }
 
     @Override

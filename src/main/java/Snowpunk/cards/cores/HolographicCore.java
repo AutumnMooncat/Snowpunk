@@ -15,32 +15,32 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class BismuthCore extends AbstractCoreCard {
-    public static final String ID = makeID(BismuthCore.class.getSimpleName());
+public class HolographicCore extends AbstractCoreCard {
+    public static final String ID = makeID(HolographicCore.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    private static final CardType TYPE = CardType.SKILL;
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.POWER;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final ValueType VALUE = ValueType.MAGIC;
 
-    private static final int VULN = 2;
-    private static final int UP_VULN = 1;
-    private static final int WEAK = 2;
-    private static final int UP_WEAK = 1;
-    private static final int SOOT = 3;
-    private static final int UP_SOOT = 1;
-    private static final int STR_DOWN = 3;
-    private static final int UP_STR_DOWN = 2;
+    private static final int INTAN = 1;
+    private static final int UP_INTAN = 1;
+    private static final int BUFFER = 1;
+    private static final int UP_BUFFER = 1;
+    private static final int AFTER = 1;
+    private static final int UP_AFTER = 1;
+    private static final int METAL = 6;
+    private static final int UP_METAL = 3;
 
     String nameToAdd;
     int effectIndex;
     int effects = 4;
-    boolean useSecondVar;
+    boolean secondVar;
 
-    public BismuthCore() {
+    public HolographicCore() {
         super(ID, TYPE, RARITY, VALUE);
-        baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = VULN;
+        baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = INTAN;
     }
 
     @Override
@@ -48,16 +48,16 @@ public class BismuthCore extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
         switch (effectIndex) {
             case 0:
-                CardModifierManager.addModifier(card, new ApplyVulnMod(rawDescription, VALUE, VULN, UP_VULN, useSecondVar));
+                CardModifierManager.addModifier(card, new IntangibleMod(rawDescription, VALUE, INTAN, UP_INTAN, secondVar));
                 break;
             case 1:
-                CardModifierManager.addModifier(card, new ApplyWeakMod(rawDescription, VALUE, WEAK, UP_WEAK, useSecondVar));
+                CardModifierManager.addModifier(card, new BufferMod(rawDescription, VALUE, BUFFER, UP_BUFFER, secondVar));
                 break;
             case 2:
-                CardModifierManager.addModifier(card, new ApplySootMod(rawDescription, VALUE, SOOT, UP_SOOT, useSecondVar));
+                CardModifierManager.addModifier(card, new AfterImageMod(rawDescription, VALUE, AFTER, UP_AFTER, secondVar));
                 break;
             case 3:
-                CardModifierManager.addModifier(card, new ApplyTempStrDownMod(rawDescription, VALUE, STR_DOWN, UP_STR_DOWN, useSecondVar));
+                CardModifierManager.addModifier(card, new MetallicizeMod(rawDescription, VALUE, METAL, UP_METAL, secondVar));
                 break;
             default:
         }
@@ -71,33 +71,33 @@ public class BismuthCore extends AbstractCoreCard {
         initializeDescription();
         if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
             swapDynvarKey(VALUE);
-            useSecondVar = true;
+            secondVar = true;
         }
         if (effectIndex == 0) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = VULN;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = INTAN;
         } else if (effectIndex == 1) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = WEAK;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = BUFFER;
         } else if (effectIndex == 2) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SOOT;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = AFTER;
         } else {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = STR_DOWN;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = METAL;
         }
     }
 
     @Override
     public void upp() {
         if (effectIndex == 0) {
-            upgradeMagicNumber(UP_VULN);
-            upgradeSecondMagic(UP_VULN);
+            upgradeMagicNumber(UP_INTAN);
+            upgradeSecondMagic(UP_INTAN);
         } else if (effectIndex == 1) {
-            upgradeMagicNumber(UP_WEAK);
-            upgradeSecondMagic(UP_WEAK);
+            upgradeMagicNumber(UP_BUFFER);
+            upgradeSecondMagic(UP_BUFFER);
         } else if (effectIndex == 2) {
-            upgradeMagicNumber(UP_SOOT);
-            upgradeSecondMagic(UP_SOOT);
+            upgradeMagicNumber(UP_AFTER);
+            upgradeSecondMagic(UP_AFTER);
         } else {
-            upgradeMagicNumber(UP_STR_DOWN);
-            upgradeSecondMagic(UP_STR_DOWN);
+            upgradeMagicNumber(UP_METAL);
+            upgradeSecondMagic(UP_METAL);
         }
     }
 }
