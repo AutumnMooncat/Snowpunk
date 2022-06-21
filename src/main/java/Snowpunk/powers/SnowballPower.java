@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.patches.AltCostPatch;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.interfaces.OnUseSnowPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
@@ -32,7 +33,7 @@ public class SnowballPower extends AbstractEasyPower implements XCostModifier, S
 
     @Override
     public int modifyX(AbstractCard c) {
-        if (!c.freeToPlayOnce) {
+        if (!c.freeToPlayOnce && !AltCostPatch.AltCostField.usingAltCost.get(c)) {
             Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
         }
         return amount;
