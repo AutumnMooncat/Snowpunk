@@ -14,7 +14,7 @@ public class FreeCardPatch {
     public static class FreeCardPlz {
         @SpirePrefixPatch
         public static SpireReturn<?> free(AbstractCard __instance) {
-            if (Wiz.adp() != null && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && Wiz.adp().hasPower(SteamPower.POWER_ID)) {
+            if (Wiz.adp() != null && !AbstractDungeon.isScreenUp && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && Wiz.adp().hasPower(SteamPower.POWER_ID)) {
                 return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();
