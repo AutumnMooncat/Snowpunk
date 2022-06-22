@@ -1,13 +1,16 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.BlurPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Defend extends AbstractEasyCard {
+public class Defend extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Defend.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
@@ -21,14 +24,21 @@ public class Defend extends AbstractEasyCard {
     public Defend() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLK;
+        baseInfo = info = 0;
         tags.add(CardTags.STARTER_DEFEND);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
+        if (info == 1) {
+            Wiz.applyToSelf(new BlurPower(p, 1));
+        }
     }
 
-    public void upp() {
-        upgradeBlock(UP_BLK);
+    @Override
+    protected void addUpgrades() {
+        upgrades.add(() -> upgradeBlock(UP_BLK));
+        upgrades.add(() -> upgradeBaseCost(0));
+        upgrades.add(() -> upgradeInfo(1));
     }
 }

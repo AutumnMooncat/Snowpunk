@@ -79,7 +79,7 @@
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block."
+    "DESCRIPTION": "{@@}Gain !B! Block.{!Snowpunk:Info!|1= NL Block is not removed at the start of your next turn.}"
   },
   "${ModID}:Faster": {
     "NAME": "Faster",
