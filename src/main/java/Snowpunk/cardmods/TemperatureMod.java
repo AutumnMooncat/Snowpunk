@@ -55,17 +55,13 @@ public class TemperatureMod extends AbstractCardModifier {
         int amount = card instanceof MultiTempEffectCard ? ((MultiTempEffectCard) card).tempEffectAmount() : 1;
         Wiz.atb(new ModEngineTempAction(heat*amount));
         if (heat > 0) {
-            /*if (card.hasTag(CustomTags.VENT)) {
-                Wiz.atb(new ModCardTempAction(card, -heat));
-            } else {
-                action.exhaustCard = true;
-            }*/
-            //Wiz.atb(new GainEnergyAction(amount));
+            Wiz.atb(new GainEnergyAction(amount));
             action.exhaustCard = true;
-            Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
+            //Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
         if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
-            for (int i = 0; i < amount ; i++) {
+            Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
+            /*for (int i = 0; i < amount ; i++) {
                 AbstractCard tmp = card.makeSameInstanceOf();
                 AbstractDungeon.player.limbo.addToBottom(tmp);
                 tmp.current_x = card.current_x;
@@ -82,14 +78,6 @@ public class TemperatureMod extends AbstractCardModifier {
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, (AbstractMonster) target, card.energyOnUse, true, true), true);
                 } else {
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, null, card.energyOnUse, true, true), true);
-                }
-            }
-            /*card.use(Wiz.adp(), (AbstractMonster) target);
-            for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-                if (!(mod instanceof TemperatureMod)) {
-                    for (int i = 0 ; i < amount ; i++) {
-                        mod.onUse(card, target, action);
-                    }
                 }
             }*/
         }
