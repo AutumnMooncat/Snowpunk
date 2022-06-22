@@ -27,19 +27,21 @@ public abstract class AbstractMultiUpgradeCard extends AbstractEasyCard {
         return !upgrades.isEmpty();
     }
 
-    @Override
-    public void upgrade() {
-        if (canUpgrade()) {
+    public void specificUpgrade(int i) {
+        if (upgrades.size() > i) {
             upgradeName();
-            upp();
+            upgrades.remove(i).doUpgrade();
             initializeDescription();
         }
     }
 
     @Override
-    public void upp() {
-        upgrades.remove(0).doUpgrade();
+    public void upgrade() {
+        specificUpgrade(0);
     }
+
+    @Override
+    public void upp() {}
 
     @Override
     protected void upgradeName() {
