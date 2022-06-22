@@ -70,9 +70,9 @@ public class SteamEngine {
 
     public static int getSteam() {
         if (heat == OVERHEATED) {
-            return 2;
-        } else if (heat >= HOT) {
             return 1;
+        } else if (heat >= HOT) {
+            return 0;
         } else {
             return 0;
         }
