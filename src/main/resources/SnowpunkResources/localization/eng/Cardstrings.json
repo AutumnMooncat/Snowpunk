@@ -196,7 +196,7 @@
   },
   "${ModID}:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "{@@}Deal !D! damage{!M!|>1= !M! times}."
   },
   "${ModID}:Stronger": {
     "NAME": "Stronger",

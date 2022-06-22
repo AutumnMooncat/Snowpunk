@@ -1,6 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Strike extends AbstractEasyCard {
+public class Strike extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Strike.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
@@ -22,15 +22,24 @@ public class Strike extends AbstractEasyCard {
     public Strike() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        magicNumber = baseMagicNumber = 1;
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        for (int i = 0 ; i < magicNumber ; i ++) {
+            dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        }
     }
 
-    public void upp() {
-        upgradeDamage(UP_DMG);
+    @Override
+    protected void addUpgrades() {
+        upgrades.add(() -> upgradeDamage(UP_DMG));
+        upgrades.add(() -> upgradeBaseCost(0));
+        upgrades.add(() -> {
+            upgradeDamage(-2);
+            upgradeMagicNumber(1);
+        });
     }
 }
