@@ -45,8 +45,12 @@ public class SteamEngine {
             return -2;
         } else if (heat <= COLD) {
             return -1;
-        } else {
+        } else if (heat < HOT) {
             return 0;
+        } else if (heat < OVERHEATED) {
+            return 1;
+        } else {
+            return 2;
         }
     }
 
@@ -70,7 +74,7 @@ public class SteamEngine {
 
     public static int getSteam() {
         if (heat == OVERHEATED) {
-            return 1;
+            return 0;
         } else if (heat >= HOT) {
             return 0;
         } else {
