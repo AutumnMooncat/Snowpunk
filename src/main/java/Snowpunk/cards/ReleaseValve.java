@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.HeatNextCardPower;
+import Snowpunk.powers.OverheatNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,18 +29,23 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = HEAT_NEXT;
+        baseInfo = info = 0;
         tags.add(CustomTags.GUN);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToSelf(new HeatNextCardPower(p, magicNumber));
+        if (info == 0) {
+            Wiz.applyToSelf(new HeatNextCardPower(p, magicNumber));
+        } else {
+            Wiz.applyToSelf(new OverheatNextCardPower(p, magicNumber));
+        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_HEAT_NEXT));
-        //TODO add 3rd upgrade
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> upgradeInfo(1));
     }
 }

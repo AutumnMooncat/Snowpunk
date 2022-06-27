@@ -4,6 +4,7 @@ import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
 import Snowpunk.powers.HeatNextCardPower;
+import Snowpunk.powers.OverheatNextCardPower;
 import Snowpunk.util.GunManager;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -31,12 +32,18 @@ public class CardTemperatureFields {
 
     public static int getExpectedCardHeatWhenPlayed(AbstractCard card) {
         int heat = getCardHeat(card);
-        if (Wiz.adp() != null && Wiz.adp().hasPower(HeatNextCardPower.POWER_ID)) {
-            heat++;
+        if (Wiz.adp() != null) {
+            if (Wiz.adp().hasPower(HeatNextCardPower.POWER_ID)) {
+                heat++;
+            }
+            if (Wiz.adp().hasPower(CoolNextCardPower.POWER_ID)) {
+                heat--;
+            }
+            if (Wiz.adp().hasPower(OverheatNextCardPower.POWER_ID)) {
+                heat = 2;
+            }
         }
-        if (Wiz.adp() != null && Wiz.adp().hasPower(CoolNextCardPower.POWER_ID)) {
-            heat--;
-        }
+
         if (heat > 2) {
             heat = 2;
         } else if (heat < -2) {

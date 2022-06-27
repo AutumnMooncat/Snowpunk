@@ -34,6 +34,14 @@
       " cards you play."
     ]
   },
+  "${ModID}:OverheatNextCardPower": {
+    "NAME": "Overheat Next Card",
+    "DESCRIPTIONS": [
+      "#yOverheat the next card you play.",
+      "#yOverheat the next #b",
+      " cards you play."
+    ]
+  },
   "${ModID}:CoolNextCardPower": {
     "NAME": "Cool Next Card",
     "DESCRIPTIONS": [
