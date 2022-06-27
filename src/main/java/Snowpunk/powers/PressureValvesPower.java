@@ -1,7 +1,6 @@
 package Snowpunk.powers;
 
 import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.powers.interfaces.ModifyPressurePower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import basemod.interfaces.XCostModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -39,7 +38,6 @@ public class PressureValvesPower extends AbstractEasyPower implements XCostModif
 
     @Override
     public int modifySnow() {
-        flash();
         return amount;
     }
 }
