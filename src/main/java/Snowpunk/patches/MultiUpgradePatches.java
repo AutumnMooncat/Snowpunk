@@ -127,7 +127,6 @@ public class MultiUpgradePatches {
                 MultiSelectFields.previewCards.get(__instance).clear();
                 boolean skip = true;
                 for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
-                    //TODO this doubles up on the original upgrade card
                     if (u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
                         if (skip) {
                             skip = false;
