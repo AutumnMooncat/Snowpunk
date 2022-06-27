@@ -41,7 +41,7 @@
   },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage to a random enemy !M! times."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies."
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
