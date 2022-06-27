@@ -1,27 +1,21 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.actions.ExhumeRandomCardToDrawPileAction;
-import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -85,7 +79,7 @@ public class TemperatureMod extends AbstractCardModifier {
             Wiz.atb(new ExhumeRandomCardToDrawPileAction(c -> !c.hasTag(AbstractCard.CardTags.HEALING)));
         }
         if (heat < 0) {
-            Wiz.atb(new DrawCardAction(amount));
+            //Wiz.atb(new DrawCardAction(amount));
         }
     }
 
@@ -95,6 +89,13 @@ public class TemperatureMod extends AbstractCardModifier {
             card.retain = true;
         }
         return false;
+    }
+
+    @Override
+    public void onRetained(AbstractCard card) {
+        if (CardTemperatureFields.getCardHeat(card) < 0) {
+            Wiz.atb(new ReduceCostAction(card));
+        }
     }
 
     @Override

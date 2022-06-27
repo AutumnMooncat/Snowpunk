@@ -162,28 +162,28 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Greatly #yHeats your #yEngine. Repeat this card's effect. NL Gain #ySteam. #yExhaust."
+    "DESCRIPTION": "Greatly #yHeats your #yEngine. NL Gain #ySteam. Gain [E]. #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "#yHeats your #yEngine. Gain #ySteam. #yExhaust."
+    "DESCRIPTION": "#yHeats your #yEngine. Gain [E]. #yEvaporate."
   },
   {
     "PROPER_NAME": "Cold",
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yCools your #yEngine. #yRetain. Draw a card."
+    "DESCRIPTION": "#yCools your #yEngine. #yRetain. When #yRetained, lower its cost by #b1 this combat."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "Greatly #yCools your #yEngine. #yRetain. Return a random #yExhausted card to your draw pile. Draw a card"
+    "DESCRIPTION": "Greatly #yCools your #yEngine. #yCondense a random #yEvaporated card. #yRetain. When #yRetained, lower its cost by #b1 this combat."
   },
   {
     "PROPER_NAME": "Heat",
