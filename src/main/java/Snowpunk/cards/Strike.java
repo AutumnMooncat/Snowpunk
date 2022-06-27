@@ -34,10 +34,10 @@ public class Strike extends AbstractMultiUpgradeCard {
     }
 
     @Override
-    protected void addUpgrades() {
-        upgrades.add(() -> upgradeDamage(UP_DMG));
-        upgrades.add(() -> upgradeBaseCost(0));
-        upgrades.add(() -> {
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(this, () -> {
             upgradeDamage(-2);
             upgradeMagicNumber(1);
         });

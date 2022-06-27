@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -36,9 +35,9 @@ public class Defend extends AbstractMultiUpgradeCard {
     }
 
     @Override
-    protected void addUpgrades() {
-        upgrades.add(() -> upgradeBlock(UP_BLK));
-        upgrades.add(() -> upgradeBaseCost(0));
-        upgrades.add(() -> upgradeInfo(1));
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeBlock(UP_BLK));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(this, () -> upgradeInfo(1));
     }
 }

@@ -1,11 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.TemperatureMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class ReleaseValve extends AbstractEasyCard {
+public class ReleaseValve extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ReleaseValve.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
@@ -38,8 +36,10 @@ public class ReleaseValve extends AbstractEasyCard {
         Wiz.applyToSelf(new HeatNextCardPower(p, magicNumber));
     }
 
-    public void upp() {
-        upgradeDamage(UP_DMG);
-        upgradeMagicNumber(UP_HEAT_NEXT);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_HEAT_NEXT));
+        //TODO add 3rd upgrade
     }
 }

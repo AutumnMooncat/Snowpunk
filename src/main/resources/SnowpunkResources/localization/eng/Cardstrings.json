@@ -183,7 +183,7 @@
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "Gain !B! × snowpunk:S Block."
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Gain !B! Block. NL }Gain !M! snowpunk:Snowballs."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
