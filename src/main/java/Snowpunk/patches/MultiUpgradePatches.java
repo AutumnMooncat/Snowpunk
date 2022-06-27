@@ -291,7 +291,7 @@ public class MultiUpgradePatches {
                         card.drawScale = 0.9F;
                     }
                     card.current_x = startX + 300F * Settings.scale * count;
-                    card.current_y = Settings.HEIGHT / 4.0F + (420.0F * lineNum * Settings.scale);
+                    card.current_y = Settings.HEIGHT / 4.0F - (420.0F * lineNum * Settings.scale);
                     card.target_x = card.current_x;
                     card.target_y = card.current_y;
                     card.render(sb);
@@ -305,52 +305,19 @@ public class MultiUpgradePatches {
                     }
                 }
 
-                /*
-                if (__instance.upgradePreviewCard.hb.hovered) {
-                    __instance.upgradePreviewCard.drawScale = 1.0F;
-                } else {
-                    __instance.upgradePreviewCard.drawScale = 0.9F;
-                }
-                __instance.upgradePreviewCard.current_x = (float)Settings.WIDTH * 0.63F;
-                __instance.upgradePreviewCard.current_y = (float)Settings.HEIGHT / 4.0F + 50.0F * Settings.scale;
-                __instance.upgradePreviewCard.target_x = (float)Settings.WIDTH * 0.63F;
-                __instance.upgradePreviewCard.target_y = (float)Settings.HEIGHT / 4.0F + 50.0F * Settings.scale;
-                __instance.upgradePreviewCard.render(sb);
-                __instance.upgradePreviewCard.updateHoverLogic();
-                __instance.upgradePreviewCard.renderCardTip(sb);
-                cardList.add(__instance.upgradePreviewCard);
-                int i = 0;
-                for (AbstractCard preview : MultiSelectFields.previewCards.get(__instance)) {
-                    i++;
-                    if (preview.hb.hovered) {
-                        preview.drawScale = 1.0F;
-                    } else {
-                        preview.drawScale = 0.9F;
-                    }
-
-                    preview.current_x = (float)Settings.WIDTH * 0.63F + 300.0F * i * Settings.scale;
-                    preview.current_y = (float)Settings.HEIGHT / 2.0F;
-                    preview.target_x = (float)Settings.WIDTH * 0.63F + 300.0F * i * Settings.scale;
-                    preview.target_y = (float)Settings.HEIGHT / 2.0F;
-                    preview.render(sb);
-                    preview.updateHoverLogic();
-                    preview.renderCardTip(sb);
-                    cardList.add(preview);
-                }*/
-
-                if (__instance.forUpgrade || __instance.forTransform || __instance.forPurge || __instance.isJustForConfirming || __instance.anyNumber) {// 188
-                    __instance.confirmButton.render(sb);// 189
+                if (__instance.forUpgrade || __instance.forTransform || __instance.forPurge || __instance.isJustForConfirming || __instance.anyNumber) {
+                    __instance.confirmButton.render(sb);
                 }
 
-                //TODO what is this for
-                CardGroup targetGroup = ReflectionHacks.getPrivate(__instance, GridCardSelectScreen.class, "targetGroup");// 191
-                String tipMsg = ReflectionHacks.getPrivate(__instance, GridCardSelectScreen.class, "tipMsg");// 192
-                if (!__instance.isJustForConfirming || targetGroup.size() > 5) {// 193
-                    FontHelper.renderDeckViewTip(sb, tipMsg, 96.0F * Settings.scale, Settings.CREAM_COLOR);// 194
+                CardGroup targetGroup = ReflectionHacks.getPrivate(__instance, GridCardSelectScreen.class, "targetGroup");
+                String tipMsg = ReflectionHacks.getPrivate(__instance, GridCardSelectScreen.class, "tipMsg");
+                if (!__instance.isJustForConfirming || targetGroup.size() > 5) {
+                    //FontHelper.renderDeckViewTip(sb, tipMsg, 96.0F * Settings.scale, Settings.CREAM_COLOR);
+                    FontHelper.renderDeckViewTip(sb, tipMsg, Settings.HEIGHT / 2F - 25F * Settings.scale, Settings.CREAM_COLOR);
                 }
-                return SpireReturn.Return(null);// 196
+                return SpireReturn.Return(null);
             } else {
-                return SpireReturn.Continue();// 198
+                return SpireReturn.Continue();
             }
         }
     }
