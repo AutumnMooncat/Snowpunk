@@ -41,9 +41,4 @@ public class SnowStack extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
-
-    @Override
-    protected void upgradeName() {
-        super.upgradeName();
-    }
 }
