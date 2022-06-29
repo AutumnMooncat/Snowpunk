@@ -67,6 +67,9 @@
   "${ModID}:VentMod": {
     "EXTENDED_DESCRIPTION": ["snowpunk:Ventilated. NL "]
   },
+  "${ModID}:WhistolMod": {
+    "EXTENDED_DESCRIPTION": ["snowpunk:Whistol. NL "]
+  },
   "${ModID}:MkMod": {
     "EXTENDED_DESCRIPTION": [" Mk "]
   }

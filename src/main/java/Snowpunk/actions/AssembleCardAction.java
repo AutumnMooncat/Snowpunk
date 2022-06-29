@@ -95,11 +95,11 @@ public class AssembleCardAction extends AbstractGameAction {
 
     private static CardGroup getValidCores(AssembledCard card) {
         CardGroup validCores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        int currentDoubledCost = card.doubledCost;
+        //int currentDoubledCost = card.doubledCost;
         for (AbstractCoreCard core : SnowpunkMod.cores) {
             if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
                 AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
-                copy.prepRenderedCost(currentDoubledCost);
+                //copy.prepRenderedCost(currentDoubledCost);
                 copy.prepForSelection(card, AssembleCardAction.pickedCores);
                 validCores.addToTop(copy);
             }
@@ -107,7 +107,7 @@ public class AssembleCardAction extends AbstractGameAction {
         return validCores;
     }
 
-    private static CardGroup getWeightedCores(AssembledCard card, AssembleType type) {
+    /*private static CardGroup getWeightedCores(AssembledCard card, AssembleType type) {
         CardGroup cores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         int currentDoubledCost = card.doubledCost;
         int toSelect = 3;
@@ -117,7 +117,7 @@ public class AssembleCardAction extends AbstractGameAction {
         for (AbstractCoreCard core : SnowpunkMod.cores) {
             if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
                 AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
-                copy.prepRenderedCost(currentDoubledCost);
+                //copy.prepRenderedCost(currentDoubledCost);
                 copy.prepForSelection(card, AssembleCardAction.pickedCores);
                 switch (copy.dropRarity) {
                     case COMMON:
@@ -173,7 +173,7 @@ public class AssembleCardAction extends AbstractGameAction {
             options.clear();
         }
         return cores;
-    }
+    }*/
 
     private static void giveRandomCore(AssembledCard card) {
         CardGroup validCores = getValidCores(card);
@@ -191,9 +191,9 @@ public class AssembleCardAction extends AbstractGameAction {
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {
-                CardGroup validCores = getWeightedCores(card, type);
+                CardGroup validCores = getValidCores(card);
                 if (!validCores.isEmpty()) {
-                    /*ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
+                    ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
                     if (validCores.size() <= 3) {
                         cardsToPick.addAll(validCores.group);
                     } else {
@@ -202,8 +202,8 @@ public class AssembleCardAction extends AbstractGameAction {
                             validCores.removeCard(c);
                             cardsToPick.add(c);
                         }
-                    }*/
-                    Wiz.att(new BetterSelectCardsCenteredAction(validCores.group, 1, "", false, crd -> true, cards -> {
+                    }
+                    Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, "", false, crd -> true, cards -> {
                         for (AbstractCard c : cards) {
                             if (c instanceof AbstractCoreCard) {
                                 ((AbstractCoreCard) c).apply(card);

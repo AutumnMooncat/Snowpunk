@@ -1,6 +1,6 @@
 package Snowpunk.cards.cores;
 
-import Snowpunk.cardmods.cores.DealAOEDamageMod;
+import Snowpunk.cardmods.cores.FlingScrapMod;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -8,43 +8,31 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-import java.util.ArrayList;
-
 import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class BlastCore extends AbstractCoreCard {
-    public static final String ID = makeID(BlastCore.class.getSimpleName());
+public class FlingScrap extends AbstractCoreCard {
+    public static final String ID = makeID(FlingScrap.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.ATTACK;
-    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final ValueType VALUE = ValueType.DAMAGE;
 
-    private static final int DAMAGE = 6;
-    private static final int UP_DAMAGE = 2;
+    private static final int COST = 0;
+    private static final int DAMAGE = 5;
+    private static final int UP_DAMAGE = 3;
 
-    boolean useSecondVar;
-
-    public BlastCore() {
-        super(ID, TYPE, RARITY, VALUE);
+    public FlingScrap() {
+        super(ID, COST, TYPE, VALUE);
         baseDamage = damage = secondDamage = baseSecondDamage = DAMAGE;
     }
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], TYPE, RARITY, TARGET));
-        CardModifierManager.addModifier(card, new DealAOEDamageMod(rawDescription, VALUE, DAMAGE, UP_DAMAGE, useSecondVar));
-    }
-
-    @Override
-    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
-            swapDynvarKey(VALUE);
-            useSecondVar = true;
-        }
+        CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
+        CardModifierManager.addModifier(card, new FlingScrapMod(rawDescription, VALUE, DAMAGE, UP_DAMAGE, useSecondVar));
     }
 
     @Override

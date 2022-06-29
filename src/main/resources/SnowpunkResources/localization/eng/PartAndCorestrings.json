@@ -63,49 +63,59 @@
 
 
 
-  "${ModID}:BarrierCore": {
-    "NAME": "Barrier Core",
+  "${ModID}:BrassShield": {
+    "NAME": "Brass Shield",
     "DESCRIPTION": "Gain !B! Block.",
     "EXTENDED_DESCRIPTION": ["Barrier"]
   },
-  "${ModID}:BismuthCore": {
-    "NAME": "Bismuth Core",
-    "DESCRIPTION": "Apply a debuff",
-    "EXTENDED_DESCRIPTION": ["Basher","Apply !M! Vulnerable.","Sweeper","Apply !M! Weak.","Blackener","Apply !M! snowpunk:Soot.","Shackler","Enemy loses !M! Strength this turn."]
-  },
-  "${ModID}:AbyssalCore": {
-    "NAME": "Abyssal Core",
-    "DESCRIPTION": "Apply a debuff to ALL enemies",
-    "EXTENDED_DESCRIPTION": ["Tripper","Apply !M! Vulnerable to ALL enemies.","Blinder","Apply !M! Weak to ALL enemies.","Duster","Apply !M! snowpunk:Soot to ALL enemies.","Piercer","ALL enemies lose !M! Strength this turn."]
-  },
-  "${ModID}:BlastCore": {
-    "NAME": "Blast Core",
+  "${ModID}:FlingScrap": {
+    "NAME": "Fling Scrap",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Blaster","Deal %s damage to ALL enemies."]
+    "EXTENDED_DESCRIPTION": ["Flinger"]
   },
-  "${ModID}:StrikeCore": {
-    "NAME": "Strike Core",
+  "${ModID}:MonkeyWrench": {
+    "NAME": "Monkey Wrench",
+    "DESCRIPTION": "Deal !D! damage twice.",
+    "EXTENDED_DESCRIPTION": ["Wrench"]
+  },
+  "${ModID}:ScavengedStrike": {
+    "NAME": "Scavenged Strike",
     "DESCRIPTION": "Deal !D! damage.",
-    "EXTENDED_DESCRIPTION": ["Striker","Deal %s damage."]
+    "EXTENDED_DESCRIPTION": ["Striker"]
   },
-  "${ModID}:CombustionCore": {
-    "NAME": "Combustion Core",
-    "DESCRIPTION": "Powerful damage effect",
-    "EXTENDED_DESCRIPTION": ["Eviscerater","Deal !D! damage 3 times.","Killer","Deal !D! damage to ALL enemies.","Hammer","Deal !D! damage.","Ripper","Deal !D! damage twice."]
+  "${ModID}:QuickBlast": {
+    "NAME": "Quick Blast",
+    "DESCRIPTION": "Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": ["Blaster"]
   },
-  "${ModID}:JuggleCore": {
-    "NAME": "Juggle Core",
-    "DESCRIPTION": "Draw effect",
-    "EXTENDED_DESCRIPTION": ["Skimmer","Draw !M! cards.","Retainer","Draw !M! cards. NL Retain your hand this turn.","Doppeler","Next turn, gain [E] and draw !M! cards.","Expert","Draw until you have !M! cards in your hand."]
+  "${ModID}:DoubleBarrel": {
+    "NAME": "Double Barrel",
+    "DESCRIPTION": "Deal !D! damage twice.",
+    "EXTENDED_DESCRIPTION": ["Cannon"]
   },
-  "${ModID}:GeneratorCore": {
-    "NAME": "Generator Core",
-    "DESCRIPTION": "Energy effect",
-    "EXTENDED_DESCRIPTION": ["Booster","{@@}Gain {!M!|1=[E]|-1,2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.","Steamer","Gain !M! snowpunk:Steam.","Manic","{@@}snowpunk:Solve {!M!|>1=!M!|@=a} random card{!M!|>1=s} in your hand.","Snowy","{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."]
+  "${ModID}:Fluxcombobulator": {
+    "NAME": "Fluxcombobulator",
+    "DESCRIPTION": "Apply !M! Weak and !M! Vulnerable.",
+    "EXTENDED_DESCRIPTION": ["Combobulator"]
   },
-  "${ModID}:HolographicCore": {
-    "NAME": "Holographic Core",
-    "DESCRIPTION": "Negation effect",
-    "EXTENDED_DESCRIPTION": ["Wraith","Gain !M! Intangible.","Buffer","{@@}Prevent the next {!M!|>1=!M! }time{!M!|>1=s} you would lose HP.","Blitzer","Whenever you play a card, gain !M! Block.","Metal","At the end of your turn, gain !M! Block."]
+  "${ModID}:FluxMachine": {
+    "NAME": "Flux Machine",
+    "DESCRIPTION": "Gain !M! Artifact.",
+    "EXTENDED_DESCRIPTION": ["Fluxer"]
+  },
+  "${ModID}:RunningEngine": {
+    "NAME": "Running Engine",
+    "DESCRIPTION": "{@@}Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play.",
+    "EXTENDED_DESCRIPTION": ["Heater"]
+  },
+  "${ModID}:BurningEngine": {
+    "NAME": "Burning Engine",
+    "DESCRIPTION": "Apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": ["Burner"]
+  },
+  "${ModID}:SteamEngine": {
+    "NAME": "Steam Engine",
+    "DESCRIPTION": "Gain !M! snowpunk:Steam.",
+    "EXTENDED_DESCRIPTION": ["Steamer"]
   }
 }

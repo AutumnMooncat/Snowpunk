@@ -23,14 +23,23 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;
     private static ArrayList<TooltipInfo> coreTooltip;
 
-    public final CardRarity dropRarity;
+    //public final CardRarity dropRarity;
     public final ValueType valueType;
+    public boolean useSecondVar;
 
     public AbstractCoreCard(String cardID, CardType type, CardRarity dropRarity, ValueType valueType) {
         super(cardID, -2, type, CardRarity.SPECIAL, CardTarget.NONE);
-        this.dropRarity = dropRarity;
+        //this.dropRarity = dropRarity;
         this.valueType = valueType;
         setDisplayRarity(dropRarity);
+        TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
+    }
+
+    public AbstractCoreCard(String cardID, int cost, CardType type, ValueType valueType) {
+        super(cardID, cost, type, CardRarity.SPECIAL, CardTarget.NONE);
+        //this.dropRarity = dropRarity;
+        this.valueType = valueType;
+        //setDisplayRarity(dropRarity);
         TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
     }
 
@@ -49,9 +58,14 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
 
     public abstract void apply(AbstractCard card);
 
-    public abstract void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores);
+    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
+        if (chosenCores.stream().anyMatch(c -> c.valueType == this.valueType)) {
+            swapDynvarKey(this.valueType);
+            useSecondVar = true;
+        }
+    }
 
-    public void prepRenderedCost(int currentDoubledCost) {
+    /*public void prepRenderedCost(int currentDoubledCost) {
         switch (dropRarity) {
             case COMMON:
                 if (currentDoubledCost % 2 == 0) {
@@ -73,7 +87,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
                 this.cost = this.costForTurn = 1;
                 break;
         }
-    }
+    }*/
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {}

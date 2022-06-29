@@ -1,7 +1,9 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.*;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
+import Snowpunk.cards.cores.AbstractCoreCard;
+import Snowpunk.cards.cores.AssembledCard;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -52,15 +54,15 @@ public class CombustionCore extends AbstractCoreCard {
                 break;
             case 1:
                 CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, CardTarget.ALL_ENEMY));
-                CardModifierManager.addModifier(card, new DealAOEDamageMod(rawDescription, VALUE, AOE_DAMAGE, UP_AOE_DMG, useSecondVar));
+                CardModifierManager.addModifier(card, new FlingScrapMod(rawDescription, VALUE, AOE_DAMAGE, UP_AOE_DMG, useSecondVar));
                 break;
             case 2:
                 CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
-                CardModifierManager.addModifier(card, new DealDamageMod(rawDescription, VALUE, SINGLE_DMG, UP_SINGLE_DMG, useSecondVar));
+                CardModifierManager.addModifier(card, new ScavengeStrikeMod(rawDescription, VALUE, SINGLE_DMG, UP_SINGLE_DMG, useSecondVar));
                 break;
             case 3:
                 CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
-                CardModifierManager.addModifier(card, new DealDamageTwiceMod(rawDescription, VALUE, TWICE_DAMAGE, UP_TWICE_DMG, useSecondVar));
+                CardModifierManager.addModifier(card, new MonkeyWrenchMod(rawDescription, VALUE, TWICE_DAMAGE, UP_TWICE_DMG, useSecondVar));
                 break;
             default:
         }

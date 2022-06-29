@@ -7,11 +7,11 @@ import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.AfterImagePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
-public class ApplyVulnMod extends AbstractCardEffectMod {
-    public ApplyVulnMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+public class FluxcombobulatorMod extends AbstractCardEffectMod {
+    public FluxcombobulatorMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 
@@ -21,6 +21,7 @@ public class ApplyVulnMod extends AbstractCardEffectMod {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
+                Wiz.applyToEnemy(m, new WeakPower(m, amount, false));
                 Wiz.applyToEnemy(m, new VulnerablePower(m, amount, false));
             }));
         }
@@ -28,6 +29,6 @@ public class ApplyVulnMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyVulnMod(description, type, effect, upEffect, useSecondVar);
+        return new FluxcombobulatorMod(description, type, effect, upEffect, useSecondVar);
     }
 }

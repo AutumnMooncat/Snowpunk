@@ -1,7 +1,9 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.*;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
+import Snowpunk.cards.cores.AbstractCoreCard;
+import Snowpunk.cards.cores.AssembledCard;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -15,32 +17,32 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class JuggleCore extends AbstractCoreCard {
-    public static final String ID = makeID(JuggleCore.class.getSimpleName());
+public class BismuthCore extends AbstractCoreCard {
+    public static final String ID = makeID(BismuthCore.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.SKILL;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final ValueType VALUE = ValueType.MAGIC;
 
-    private static final int SKIM = 3;
-    private static final int UP_SKIM = 1;
-    private static final int DRAW_RET = 2;
-    private static final int UP_DRAW_RET = 1;
-    private static final int DOPPEL = 2;
-    private static final int UP_DOPPEL = 1;
-    private static final int DRAW_TO = 6;
-    private static final int UP_DRAW_TO = 1;
+    private static final int VULN = 2;
+    private static final int UP_VULN = 1;
+    private static final int WEAK = 2;
+    private static final int UP_WEAK = 1;
+    private static final int SOOT = 3;
+    private static final int UP_SOOT = 1;
+    private static final int STR_DOWN = 3;
+    private static final int UP_STR_DOWN = 2;
 
     String nameToAdd;
     int effectIndex;
     int effects = 4;
     boolean useSecondVar;
 
-    public JuggleCore() {
+    public BismuthCore() {
         super(ID, TYPE, RARITY, VALUE);
-        baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SKIM;
+        baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = VULN;
     }
 
     @Override
@@ -48,16 +50,16 @@ public class JuggleCore extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new CardEditMod(nameToAdd, TYPE, RARITY, TARGET));
         switch (effectIndex) {
             case 0:
-                CardModifierManager.addModifier(card, new DrawCardsMod(rawDescription, VALUE, SKIM, UP_SKIM, useSecondVar));
+                CardModifierManager.addModifier(card, new FluxcombobulatorMod(rawDescription, VALUE, VULN, UP_VULN, useSecondVar));
                 break;
             case 1:
-                CardModifierManager.addModifier(card, new DrawAndRetainMod(rawDescription, VALUE, DRAW_RET, UP_DRAW_RET, useSecondVar));
+                CardModifierManager.addModifier(card, new ApplyWeakMod(rawDescription, VALUE, WEAK, UP_WEAK, useSecondVar));
                 break;
             case 2:
-                CardModifierManager.addModifier(card, new DrawNextTurnMod(rawDescription, VALUE, DOPPEL, UP_DOPPEL, useSecondVar));
+                CardModifierManager.addModifier(card, new ApplySootMod(rawDescription, VALUE, SOOT, UP_SOOT, useSecondVar));
                 break;
             case 3:
-                CardModifierManager.addModifier(card, new DrawUntilMod(rawDescription, VALUE, DRAW_TO, UP_DRAW_TO, useSecondVar));
+                CardModifierManager.addModifier(card, new ApplyTempStrDownMod(rawDescription, VALUE, STR_DOWN, UP_STR_DOWN, useSecondVar));
                 break;
             default:
         }
@@ -74,30 +76,30 @@ public class JuggleCore extends AbstractCoreCard {
             useSecondVar = true;
         }
         if (effectIndex == 0) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SKIM;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = VULN;
         } else if (effectIndex == 1) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = DRAW_RET;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = WEAK;
         } else if (effectIndex == 2) {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = DOPPEL;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = SOOT;
         } else {
-            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = DRAW_TO;
+            baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = STR_DOWN;
         }
     }
 
     @Override
     public void upp() {
         if (effectIndex == 0) {
-            upgradeMagicNumber(UP_SKIM);
-            upgradeSecondMagic(UP_SKIM);
+            upgradeMagicNumber(UP_VULN);
+            upgradeSecondMagic(UP_VULN);
         } else if (effectIndex == 1) {
-            upgradeMagicNumber(UP_DRAW_RET);
-            upgradeSecondMagic(UP_DRAW_RET);
+            upgradeMagicNumber(UP_WEAK);
+            upgradeSecondMagic(UP_WEAK);
         } else if (effectIndex == 2) {
-            upgradeMagicNumber(UP_DOPPEL);
-            upgradeSecondMagic(UP_DOPPEL);
+            upgradeMagicNumber(UP_SOOT);
+            upgradeSecondMagic(UP_SOOT);
         } else {
-            upgradeMagicNumber(UP_DRAW_TO);
-            upgradeSecondMagic(UP_DRAW_TO);
+            upgradeMagicNumber(UP_STR_DOWN);
+            upgradeSecondMagic(UP_STR_DOWN);
         }
     }
 }

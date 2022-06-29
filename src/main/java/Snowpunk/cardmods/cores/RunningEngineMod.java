@@ -4,17 +4,15 @@ import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
+import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
-public class DealDamageMod extends AbstractCardEffectMod {
-    public DealDamageMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+public class RunningEngineMod extends AbstractCardEffectMod {
+    public RunningEngineMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
-        this.priority = -1;
     }
 
     @Override
@@ -22,14 +20,14 @@ public class DealDamageMod extends AbstractCardEffectMod {
         super.onInitialApplication(card);
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
-                int amount = useSecondVar ? ((AssembledCard) card).secondDamage : card.damage;
-                Wiz.atb(new DamageAction(m, new DamageInfo(p, amount, card.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
+                Wiz.applyToSelf(new HeatNextCardPower(p, amount));
             }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DealDamageMod(description, type, effect, upEffect, useSecondVar);
+        return new RunningEngineMod(description, type, effect, upEffect, useSecondVar);
     }
 }

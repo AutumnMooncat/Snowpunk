@@ -1,6 +1,5 @@
 package Snowpunk.cardmods.cores.edits;
 
-import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.AssembledCardArtRoller;
@@ -13,47 +12,46 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class CardEditMod extends AbstractCardModifier {
     public static final String ID = makeID(CardEditMod.class.getSimpleName());
     public String name;
-    public int doubledCost;
+    public int cost;
     public AbstractCard.CardType type;
     public AbstractCard.CardRarity rarity;
     public AbstractCard.CardTarget target;
 
+    @Deprecated
     public CardEditMod(String name, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         this.name = name;
-        this.doubledCost = getDoubledCostFromRarity(rarity);
+        this.cost = 1;
         this.type = type;
         this.rarity = rarity;
         this.target = target;
     }
 
-    protected int getDoubledCostFromRarity(AbstractCard.CardRarity rarity) {
-        if (rarity == AbstractCard.CardRarity.RARE) {
-            return 3;
-        } else if (rarity == AbstractCard.CardRarity.UNCOMMON) {
-            return 2;
-        } else {
-            return 1;
-        }
+    public CardEditMod(String name, int cost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
+        this.name = name;
+        this.cost = cost;
+        this.type = type;
+        this.rarity = rarity;
+        this.target = target;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        collateCardBasics(card, name, doubledCost, type, rarity, target);
+        collateCardBasics(card, name, cost, type, rarity, target);
     }
 
     @Override
     public boolean shouldApply(AbstractCard card) {
         if (CardModifierManager.hasModifier(card, ID)){
             CardEditMod mod = (CardEditMod) CardModifierManager.getModifiers(card, ID).get(0);
-            mod.collateCardBasics(card, name, doubledCost, type, rarity, target);
+            mod.collateCardBasics(card, name, cost, type, rarity, target);
             return false;
         }
         return true;
     }
 
-    public void collateCardBasics(AbstractCard card, String name, int doubledCost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
+    public void collateCardBasics(AbstractCard card, String name, int cost, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         collateName(card, name);
-        collateCost(card, doubledCost);
+        collateCost(card, cost);
         collateType(card, type);
         collateRarity(card, rarity);
         collateTarget(card, target);
@@ -79,27 +77,22 @@ public class CardEditMod extends AbstractCardModifier {
         this.name = card.name;
     }
 
-    public void collateCost(AbstractCard card, int doubledCost) {
-        if (card instanceof AssembledCard) {
-            ((AssembledCard) card).doubledCost += doubledCost;
-            card.cost = card.costForTurn = (int) Math.ceil(((AssembledCard) card).doubledCost/2f);
-            this.doubledCost = ((AssembledCard) card).doubledCost;
+    public void collateCost(AbstractCard card, int cost) {
+        if (card.cost == -1) {
+            return;
         }
+        if (cost == -1) {
+            card.cost = -1;
+            card.costForTurn = -1;
+        } else {
+            card.cost += cost;
+            card.costForTurn = card.cost;
+        }
+        this.cost = card.cost;
     }
 
     public void collateType(AbstractCard card, AbstractCard.CardType type) {
-        if (card.rarity == AbstractCard.CardRarity.SPECIAL) {
-            card.type = type;
-            return;
-        }
-        if (type == AbstractCard.CardType.POWER && card.type != AbstractCard.CardType.POWER) {
-            CardModifierManager.addModifier(card, new BetterExhaustMod());
-            return;
-        }
-        if (card.type == AbstractCard.CardType.POWER) {
-            CardModifierManager.addModifier(card, new BetterExhaustMod());
-        }
-        if (card.type == AbstractCard.CardType.ATTACK) {
+        if (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.POWER) {
             return;
         }
         card.type = type;
@@ -148,6 +141,6 @@ public class CardEditMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CardEditMod(name, type, rarity, target);
+        return new CardEditMod(name, cost, type, rarity, target);
     }
 }

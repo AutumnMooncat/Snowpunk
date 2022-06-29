@@ -1,7 +1,9 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.*;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
+import Snowpunk.cards.cores.AbstractCoreCard;
+import Snowpunk.cards.cores.AssembledCard;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
