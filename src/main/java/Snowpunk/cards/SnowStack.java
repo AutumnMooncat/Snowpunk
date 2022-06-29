@@ -17,10 +17,10 @@ public class SnowStack extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 2;
-    private static final int SNOW = 2;
+    private static final int SNOW = 1;
     private static final int UP_SNOW = 1;
-    private static final int BLOCK = 0;
-    private static final int UP_BLOCK = 5;
+    private static final int BLOCK = 6;
+    private static final int UP_BLOCK = 3;
 
     public SnowStack() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -31,18 +31,13 @@ public class SnowStack extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(info == 1) {
-            blck();
-        }
+        blck();
         Wiz.applyToSelf(new SnowballPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            upgradeBlock(UP_BLOCK);
-            upgradeInfo(1);
-        });
+        addUpgradeData(this, () -> upgradeBlock(UP_BLOCK));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
