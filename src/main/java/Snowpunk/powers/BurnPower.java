@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -29,16 +30,20 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atStartOfTurn() {
         flash();
         Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        //TODO not hardcode this interaction?
-        if (owner.hasPower(SootPower.POWER_ID)) {
-            owner.getPower(SootPower.POWER_ID).flash();
-            Wiz.atb(new ApplyPowerAction(owner, source, new BurnPower(owner, source, owner.getPower(SootPower.POWER_ID).amount)));
-        } else {
-            Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
+        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
+    }
+
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
+            this.flash();
+            this.addToTop(new ReducePowerAction(owner, owner, this, 1));
+            this.addToTop(new DamageAction(this.owner, new DamageInfo(info.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
+        return damageAmount;
     }
 
     @Override

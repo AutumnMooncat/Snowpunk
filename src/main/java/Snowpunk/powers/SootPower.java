@@ -2,6 +2,7 @@ package Snowpunk.powers;
 
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -15,6 +16,10 @@ public class SootPower extends AbstractEasyPower {
 
     public SootPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
+    }
+
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        return type == DamageInfo.DamageType.NORMAL ? Math.max(0, damage - this.amount) : damage;
     }
 
     @Override

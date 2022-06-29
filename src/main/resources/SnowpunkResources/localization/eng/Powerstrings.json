@@ -76,11 +76,11 @@
   },
   "${ModID}:SootPower": {
     "NAME": "Soot",
-    "DESCRIPTIONS": ["If this creature is Burning, increase its Burning by #b"," this turn instead of decreasing it."]
+    "DESCRIPTIONS": ["Decreases attack damage by #b","."]
   },
   "${ModID}:BurnPower": {
     "NAME": "Burn",
-    "DESCRIPTIONS": ["At the start of your turn, takes #b"," damage then reduce #yBurn by #b1."]
+    "DESCRIPTIONS": ["At the start of its turn and when attacked, takes #b"," damage then reduce #yBurn by #b1."]
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
@@ -105,9 +105,9 @@
   "${ModID}:SteamPower": {
     "NAME": "Steam",
     "DESCRIPTIONS": [
-      "The next card you play this turn costs 0 and #yExhausts.",
+      "The next card you play this turn costs 0.",
       "The next #b",
-      " cards you play this turn cost 0 and #yExhaust."
+      " cards you play this turn cost 0."
     ]
   },
   "${ModID}:StrongerPower": {

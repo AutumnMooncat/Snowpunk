@@ -12,7 +12,7 @@
       "burning",
       "burn"
     ],
-    "DESCRIPTION": "#yBurning creatures take damage at the start of your turn. Each turn, #yBurn is reduced by #b1."
+    "DESCRIPTION": "#yBurning creatures take damage at the start of their turn and when attacked. When triggered, #yBurn is reduced by #b1."
   },
   {
     "PROPER_NAME": "Link",
@@ -94,7 +94,7 @@
       "soot",
       "sooty"
     ],
-    "DESCRIPTION": "If this creature is #yBurning, its #yBurn increases instead of decreasing."
+    "DESCRIPTION": "Sooty creates deal less damage when attacking."
   },
   {
     "PROPER_NAME": "Tinker",
@@ -241,7 +241,7 @@
     "NAMES": [
       "steam"
     ],
-    "DESCRIPTION": "The next card you play this turn costs 0 and #yExhausts."
+    "DESCRIPTION": "The next card you play this turn costs 0."
   },
   {
     "PROPER_NAME": "Solve",
