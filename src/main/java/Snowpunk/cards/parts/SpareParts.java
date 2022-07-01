@@ -1,7 +1,7 @@
 package Snowpunk.cards.parts;
 
-import Snowpunk.cardmods.parts.DrawAndDiscardRandomMod;
-import Snowpunk.cardmods.parts.DrawMod;
+import Snowpunk.cardmods.parts.GainEnergyMod;
+import Snowpunk.cardmods.parts.TinkerNextMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -14,24 +14,24 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class OiledGears extends AbstractPartCard {
-    public static final String ID = makeID(OiledGears.class.getSimpleName());
+public class SpareParts extends AbstractPartCard {
+    public static final String ID = makeID(SpareParts.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    private static final AbstractCard.CardType TYPE = CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
 
-    public OiledGears() {
+    public SpareParts() {
         super(ID, TYPE, RARITY);
     }
 
     @Override
     public Predicate<AbstractCard> getFilter() {
-        return isPlayable.and(card -> !CardModifierManager.hasModifier(card, DrawMod.ID));
+        return isPlayable.and(isSkill);
     }
 
     @Override
     public void apply(AbstractCard card) {
-        CardModifierManager.addModifier(card, new DrawMod(1));
+        CardModifierManager.addModifier(card, new TinkerNextMod(1));
     }
 }

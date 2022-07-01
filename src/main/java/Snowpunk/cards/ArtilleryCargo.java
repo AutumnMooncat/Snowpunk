@@ -19,7 +19,7 @@ public class ArtilleryCargo extends AbstractEasyCard {
 
     private static final int COST = 5;
     private static final int DMG = 42;
-    private static final int UP_DMG = 16;
+    private static final int UP_DMG = 14;
 
     public ArtilleryCargo() {
         super(ID, COST, TYPE, RARITY, TARGET);

@@ -99,6 +99,10 @@
     "NAME": "Heat Transfer",
     "DESCRIPTION": "snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn."
   },
+  "${ModID}:HollyAndMistletoe": {
+    "NAME": "Holly and Mistletoe",
+    "DESCRIPTION": "Increase snowpunk:Holiday\u00a0Cheer by !M!."
+  },
   "${ModID}:IceCube": {
     "NAME": "Ice Cube",
     "DESCRIPTION": "Gain snowpunk:S + !M! snowpunk:Ice. NL Exhausts if snowpunk:Heated."

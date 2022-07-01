@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "Randomly #ysnowpunk:Tinker the first card you play each combat."
     ]
+  },
+  "${ModID}:ChristmasSpirit": {
+    "NAME": "Christmas Spirit",
+    "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain #ysnowpunk:Holiday\u00a0Cheer equal to your Christmas Spirit"
+    ]
   }
 }
