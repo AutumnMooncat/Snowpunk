@@ -1,9 +1,11 @@
 package Snowpunk.cardmods;
 
+import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.actions.ExhumeRandomCardToDrawPileAction;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
@@ -13,9 +15,13 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -50,12 +56,13 @@ public class TemperatureMod extends AbstractCardModifier {
         Wiz.atb(new ModEngineTempAction(heat*amount));
         if (heat > 0) {
             Wiz.atb(new GainEnergyAction(amount));
-            action.exhaustCard = true;
+            //action.exhaustCard = true;
+            EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
             //Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
         if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
-            Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
-            /*for (int i = 0; i < amount ; i++) {
+            //Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
+            for (int i = 0; i < amount ; i++) {
                 AbstractCard tmp = card.makeSameInstanceOf();
                 AbstractDungeon.player.limbo.addToBottom(tmp);
                 tmp.current_x = card.current_x;
@@ -73,10 +80,10 @@ public class TemperatureMod extends AbstractCardModifier {
                 } else {
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, null, card.energyOnUse, true, true), true);
                 }
-            }*/
+            }
         }
         if (heat == -2) {
-            Wiz.atb(new ExhumeRandomCardToDrawPileAction(c -> !c.hasTag(AbstractCard.CardTags.HEALING)));
+            Wiz.atb(new CondenseRandomCardToDrawPileAction());
         }
         if (heat < 0) {
             //Wiz.atb(new DrawCardAction(amount));

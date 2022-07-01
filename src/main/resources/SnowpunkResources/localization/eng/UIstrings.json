@@ -28,5 +28,12 @@
       "Cores",
       "Cores act as a base for creating new cards."
     ]
+  },
+  "${ModID}:EvaporatePanel": {
+    "TEXT": [
+      "Evaporated Cards",
+      "Click to view cards Evaporated this combat.",
+      "These cards are currently evaporated."
+    ]
   }
 }
