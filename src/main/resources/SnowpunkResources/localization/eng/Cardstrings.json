@@ -116,6 +116,11 @@
     "DESCRIPTION": "Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
     "UPGRADE_DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
   },
+  "${ModID}:NorEaster": {
+    "NAME": "Nor'Easter",
+    "DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Set your snowpunk:Engine's Stable Temperature to snowpunk:Frozen. Exhaust."
+  },
   "${ModID}:NutCracker": {
     "NAME": "Nut Cracker",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
@@ -185,6 +190,10 @@
     "NAME": "Snow Stack",
     "DESCRIPTION": "{@@}Gain !B! Block. NL Gain !M! snowpunk:Snowball{!M!|>1=s}."
   },
+  "${ModID}:SteamBarrierMk2": {
+    "NAME": "Steam Barrier",
+    "DESCRIPTION": "Gain !B! Block."
+  },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
@@ -214,15 +223,6 @@
     "NAME": "The Cryogenizer",
     "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Hot. NL }Deal !D! damage to ALL enemies.",
     "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
-  },
-  "${ModID}:NorEaster": {
-    "NAME": "Nor'Easter",
-    "DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Set your snowpunk:Engine's Stable Temperature to snowpunk:Frozen. Exhaust."
-  },
-  "${ModID}:SteamBarrierMk2": {
-    "NAME": "Steam Barrier Mk 2",
-    "DESCRIPTION": "Gain !B! Block."
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
