@@ -163,7 +163,7 @@ public class TinkerAction extends AbstractGameAction {
 
     private static int getAmountOfOptions() {
         //Relics to boost options, and also can boost for testing
-        return 8;
-        //return 3;
+        //return 8;
+        return 3;
     }
 }

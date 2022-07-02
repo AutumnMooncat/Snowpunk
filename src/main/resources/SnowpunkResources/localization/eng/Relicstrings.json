@@ -10,7 +10,7 @@
     "NAME": "Christmas Spirit",
     "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
     "DESCRIPTIONS": [
-      "At the start of combat, gain #ysnowpunk:Holiday\u00a0Cheer equal to your Christmas Spirit"
+      "At the start of combat, gain #ysnowpunk:Holiday\u00a0Cheer equal to your #ysnowpunk:Christmas\u00a0Spirit. Killing an enemy or gaining a #rCurse reduces your Christmas Spirit!"
     ]
   }
 }

@@ -1,9 +1,14 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
+import Snowpunk.actions.ChangeChristmasSpiritAction;
 import Snowpunk.powers.HolidayCheerPower;
+import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -15,10 +20,10 @@ public class ChristmasSpirit extends AbstractEasyRelic {
     public static final String ID = makeID(ChristmasSpirit.class.getSimpleName());
 
     public int currentCheer = 0;
-    public boolean wonFromCheer = false;
+    public boolean prevRoomBattle = false, killThisCombat = false;
 
     public ChristmasSpirit() {
-        super(ID, RelicTier.STARTER, LandingSound.FLAT, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.SPECIAL, LandingSound.FLAT, TheConductor.Enums.SNOWY_BLUE_COLOR);
         counter = 0;
     }
 
@@ -26,15 +31,41 @@ public class ChristmasSpirit extends AbstractEasyRelic {
     public void atBattleStart() {
         if (counter > 0) {
             currentCheer = counter;
-            wonFromCheer = false;
+            resetVars();
             flash();
             updateHolidayCheer();
+            prevRoomBattle = true;
+        }
+    }
+
+    @Override
+    public void onMonsterDeath(AbstractMonster m) {
+        if (m.currentHealth == 0) {
+            flash();
+            if (counter < 0)
+                counter = 0;
+            killThisCombat = true;
+            grayscale = true;
+            Wiz.atb(new ChangeChristmasSpiritAction(-1));
+            Wiz.atb(new RelicAboveCreatureAction(m, this));
+        }
+    }
+
+    @Override
+    public void onObtainCard(AbstractCard card) {
+        if (card.color == AbstractCard.CardColor.CURSE) {
+            if (ModHelper.isModEnabled("Hoarder")) {
+                Wiz.atb(new ChangeChristmasSpiritAction(-3));
+            } else
+                Wiz.atb(new ChangeChristmasSpiritAction(-1));
         }
     }
 
     @Override
     public void onVictory() {
-        if (wonFromCheer) {
+        if (!killThisCombat) {
+            flash();
+            Wiz.atb(new RelicAboveCreatureAction(adp(), this));
             adp().heal(counter);
             adp().gainGold(counter);
         }
@@ -42,9 +73,29 @@ public class ChristmasSpirit extends AbstractEasyRelic {
 
     @Override
     public int changeNumberOfCardsInReward(int amount) {
-        if (wonFromCheer)
+        if (!killThisCombat && prevRoomBattle)
             amount += 1;
         return amount;
+    }
+
+    @Override
+    public void onEnterRoom(AbstractRoom room) {
+        resetVars();
+    }
+
+    @Override
+    public void setCounter(int amount) {
+        counter = amount;
+        if (counter > 12)
+            counter = 12;
+        if (counter < 0)
+            counter = 0;
+    }
+
+    private void resetVars() {
+        killThisCombat = false;
+        grayscale = false;
+        prevRoomBattle = false;
     }
 
     public void updateHolidayCheer() {

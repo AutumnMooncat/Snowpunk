@@ -12,7 +12,7 @@
       "burning",
       "burn"
     ],
-    "DESCRIPTION": "#yBurning creatures take damage at the start of their turn and when attacked. When triggered, #yBurn is reduced by #b1."
+    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the end of your turn, #yBurn deals damage and then is removed."
   },
   {
     "PROPER_NAME": "Link",
@@ -162,28 +162,35 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Greatly #yHeats your #yEngine. NL Gain #ySteam. Gain [E]. #yEvaporate."
+    "DESCRIPTION": "Play a copy of this card. Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "#yHeats your #yEngine. Gain [E]. #yEvaporate."
+    "DESCRIPTION": "Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Cold",
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yCools your #yEngine. #yRetain. When #yRetained, lower its cost by #b1 this combat."
+    "DESCRIPTION": "#yRetain. #yPull a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "Greatly #yCools your #yEngine. #yCondense a random #yEvaporated card. #yRetain. When #yRetained, lower its cost by #b1 this combat."
+    "DESCRIPTION": "#yCondense a card. #yRetain. #yPull a card."
+  },
+  {
+    "PROPER_NAME": "Condense",
+    "NAMES": [
+      "condense"
+    ],
+    "DESCRIPTION": "Shuffle a random #yEvaporated card to your draw pile."
   },
   {
     "PROPER_NAME": "Heat",
@@ -252,11 +259,33 @@
     "DESCRIPTION": "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1."
   },
   {
+    "PROPER_NAME": "Christmas Spirit",
+    "NAMES": [
+      "christmasspirit",
+      "christmas\u00a0spirit"
+    ],
+    "DESCRIPTION": "If you end combat by sending everyone home for the holidays, heal HP and gain Gold equal to your #yChristmas #ySpirit, and gain an additional card from this combat's card reward."
+  },
+  {
     "PROPER_NAME": "Solve",
     "NAMES": [
       "solve",
       "solved"
     ],
     "DESCRIPTION": "Solved cards cost #b0 this combat."
+  },
+  {
+    "PROPER_NAME": "Frosty",
+    "NAMES": [
+      "frosty"
+    ],
+    "DESCRIPTION": "When #yRetained, lower this card's cost by #b1 this combat."
+  },
+  {
+    "PROPER_NAME": "Pull",
+    "NAMES": [
+      "pull"
+    ],
+    "DESCRIPTION": "Move the top card of your draw pile to your hand."
   }
 ]

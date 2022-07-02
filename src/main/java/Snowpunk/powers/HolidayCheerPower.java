@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.ChangeChristmasSpiritAction;
 import Snowpunk.relics.ChristmasSpirit;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
@@ -28,7 +29,7 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    private final Color hpBarColor = new Color(Color.GREEN);
+    private final Color hpBarColor = new Color(12f / 256f, 242 / 256f, 108 / 256f, 1);
     private boolean winByHoliday = false;
 
     public HolidayCheerPower(AbstractCreature owner, int amount) {
@@ -37,21 +38,13 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
 
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (!isPlayer)
-            return;
-        flash();
-        boolean goingToWin = true;
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (monster.currentHealth <= amount) {
-                escapeNext(monster);
-            } else
-                goingToWin = false;
-        }
-        if (goingToWin) {
-            winByHoliday = true;
-            ChristmasSpirit christmasSpirit = checkChristmas();
-            if (christmasSpirit != null)
-                christmasSpirit.wonFromCheer = true;
+        if (isPlayer) {
+            flash();
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                if (monster.currentHealth <= amount) {
+                    escapeNext(monster);
+                }
+            }
         }
     }
 
@@ -60,12 +53,10 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
         int speech = 1 + random.nextInt(strings.DESCRIPTIONS.length - 2);
         if (!monster.cannotEscape && !monster.escapeNext) {
             monster.escapeNext = true;
-            AbstractDungeon.actionManager.addToBottom(new EscapeAction(monster));
-            AbstractDungeon.actionManager.addToBottom(new SetMoveAction(monster, (byte) 3, AbstractMonster.Intent.ESCAPE));
-            AbstractDungeon.effectList.add(new SpeechBubble(monster.dialogX, monster.dialogY, 3.0F, strings.DESCRIPTIONS[speech], false));
-            ChristmasSpirit christmasSpirit = checkChristmas();
-            if (christmasSpirit != null)
-                christmasSpirit.counter++;
+            AbstractDungeon.effectList.add(0, new SpeechBubble(monster.dialogX, monster.dialogY, 3.0F, strings.DESCRIPTIONS[speech], false));
+            Wiz.atb(new EscapeAction(monster));
+            Wiz.atb(new SetMoveAction(monster, (byte) 3, AbstractMonster.Intent.ESCAPE));
+            Wiz.atb(new ChangeChristmasSpiritAction(1));
         }
     }
 
@@ -82,13 +73,5 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
     @Override
     public Color getColor() {
         return hpBarColor;
-    }
-
-    private ChristmasSpirit checkChristmas() {
-        if (!adp().hasRelic(ChristmasSpirit.ID)) {
-            adp().relics.add(new ChristmasSpirit());
-            adp().reorganizeRelics();
-        }
-        return (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
     }
 }

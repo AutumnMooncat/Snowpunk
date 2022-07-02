@@ -6,7 +6,7 @@
   "${ModID}:EngineTempPower": {
     "NAME": "Engine Temperature",
     "DESCRIPTIONS": [
-      "Determines your per turn #yEnergy and #ySnowball gain. NL Current Temperature: ",
+      "Determines your #yEnergy and #ySnowball gain per turn. Playing cards with Temperature effects changes the Engine Temperature. NL Current Temperature: ",
       " NL #bFrozen: #b0 #yEnergy, #b3 #ySnowballs",
       " NL #bCold: #b1 #yEnergy, #b2 #ySnowball",
       " NL #yStable: #b2 #yEnergy, #b1 #ySnowball",
@@ -80,7 +80,11 @@
   },
   "${ModID}:BurnPower": {
     "NAME": "Burn",
-    "DESCRIPTIONS": ["At the start of its turn and when attacked, takes #b"," damage then reduce #yBurn by #b1."]
+    "DESCRIPTIONS": [
+      "Take #b",
+      " additional damage when attacked. At the end of your turn, take #b",
+      " damage, and then remove all #yBurn."
+    ]
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
