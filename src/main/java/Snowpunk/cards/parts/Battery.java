@@ -26,7 +26,7 @@ public class Battery extends AbstractPartCard {
 
     @Override
     public Predicate<AbstractCard> getFilter() {
-        return isPlayable;
+        return isPlayable.and(card -> !CardModifierManager.hasModifier(card, GainEnergyMod.ID) || card.cost >= ((GainEnergyMod) CardModifierManager.getModifiers(card, GainEnergyMod.ID).get(0)).amount);
     }
 
     @Override

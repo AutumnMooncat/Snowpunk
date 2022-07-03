@@ -37,20 +37,59 @@
     ]
   },
   "${ModID}:DrawAndDiscardRandomMod": {
-    "EXTENDED_DESCRIPTION": [" NL Draw "," card."," cards.",
-      " NL Discard "," card at random."," cards at random."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Draw ",
+      " card.",
+      " cards.",
+      " NL Discard ",
+      " card at random.",
+      " cards at random."
+    ]
   },
   "${ModID}:DrawMod": {
-    "EXTENDED_DESCRIPTION": [" NL Draw "," card."," cards."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Draw ",
+      " card.",
+      " cards."
+    ]
+  },
+  "${ModID}:TinkerNextMod": {
+    "EXTENDED_DESCRIPTION": [
+      " NL Randomly snowpunk:Tinker the next card you play.",
+      " NL Randomly snowpunk:Tinker the next ",
+      " cards you play."
+    ]
+  },
+  "${ModID}:ThornsMod": {
+    "EXTENDED_DESCRIPTION": [
+      " NL Gain ",
+      " Thorns."
+    ]
+  },
+  "${ModID}:FastMod": {
+    "EXTENDED_DESCRIPTION": [
+      " NL Next turn, gain [E] and draw a card.",
+      " NL Next turn, gain",
+      " [E]",
+      " and draw ",
+      " cards.",
+      " "
+    ]
   },
   "${ModID}:HeatOnDrawMod": {
-    "EXTENDED_DESCRIPTION": [" NL When drawn, snowpunk:Heat this card."]
+    "EXTENDED_DESCRIPTION": [
+      " NL When drawn, snowpunk:Heat this card."
+    ]
   },
   "${ModID}:CoolOnDrawMod": {
-    "EXTENDED_DESCRIPTION": [" NL When drawn, snowpunk:Cool this card."]
+    "EXTENDED_DESCRIPTION": [
+      " NL When drawn, snowpunk:Cool this card."
+    ]
   },
   "${ModID}:DoublePlayOverheatMod": {
-    "EXTENDED_DESCRIPTION": [" NL Play this card's effect an additional time when snowpunk:Overheated."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Play this card's effect an additional time when snowpunk:Overheated."
+    ]
   },
   "${ModID}:BurnDamageMod": {
     "EXTENDED_DESCRIPTION": [" NL Applies %d snowpunk:Burn on hit."]

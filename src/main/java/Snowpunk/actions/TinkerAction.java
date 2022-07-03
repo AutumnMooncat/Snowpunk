@@ -119,10 +119,10 @@ public class TinkerAction extends AbstractGameAction {
         CardGroup validParts = getValidParts(card);
         if (!validParts.isEmpty()) {
             ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
-            if (validParts.size() <= 3) {
+            if (validParts.size() <= getAmountOfOptions()) {
                 cardsToPick.addAll(validParts.group);
             } else {
-                for (int i = 0 ; i < 3 ; i++) {
+                for (int i = 0; i < getAmountOfOptions(); i++) {
                     AbstractCard c = validParts.getRandomCard(true);
                     validParts.removeCard(c);
                     cardsToPick.add(c);
@@ -159,5 +159,11 @@ public class TinkerAction extends AbstractGameAction {
         }
         //If part isn't as Epiphany...
         CardModifierManager.addModifier(card, new MkMod(1));
+    }
+
+    private static int getAmountOfOptions() {
+        //Relics to boost options, and also can boost for testing
+        //return 8;
+        return 3;
     }
 }

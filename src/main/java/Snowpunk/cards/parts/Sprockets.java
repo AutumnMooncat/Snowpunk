@@ -1,7 +1,6 @@
 package Snowpunk.cards.parts;
 
 import Snowpunk.cardmods.parts.DamageBuffMod;
-import basemod.cardmods.ExhaustMod;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -13,13 +12,13 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class BrokenSprockets extends AbstractPartCard {
-    public static final String ID = makeID(BrokenSprockets.class.getSimpleName());
+public class Sprockets extends AbstractPartCard {
+    public static final String ID = makeID(Sprockets.class.getSimpleName());
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
 
-    public BrokenSprockets() {
+    public Sprockets() {
         super(ID, TYPE, RARITY);
         magicNumber = baseMagicNumber = 3;
     }

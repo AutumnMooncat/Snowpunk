@@ -3,14 +3,17 @@ package Snowpunk.cardmods;
 import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.actions.ExhumeRandomCardToDrawPileAction;
 import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.actions.PullCardAction;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -23,6 +26,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class TemperatureMod extends AbstractCardModifier {
@@ -33,6 +39,8 @@ public class TemperatureMod extends AbstractCardModifier {
     public TemperatureMod() {
         this.priority = -2;
     }
+
+    private static ArrayList<TooltipInfo> Tooltip;
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
@@ -48,6 +56,18 @@ public class TemperatureMod extends AbstractCardModifier {
         }
         return rawDescription;
     }
+/*
+    @Override
+    public List<TooltipInfo> getCustomTooltips()
+    {
+        if(Tooltip == null)
+        {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.VOID_ID), BaseMod.getKeywordDescription(KeywordManager.VOID_ID)));
+            //Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.VOID_FORM_ID), BaseMod.getKeywordDescription(KeywordManager.VOID_FORM_ID)));
+        }
+        return Tooltip;
+    }*/
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
@@ -86,7 +106,7 @@ public class TemperatureMod extends AbstractCardModifier {
             Wiz.atb(new CondenseRandomCardToDrawPileAction());
         }
         if (heat < 0) {
-            //Wiz.atb(new DrawCardAction(amount));
+            Wiz.atb(new PullCardAction(amount));
         }
     }
 
@@ -96,13 +116,6 @@ public class TemperatureMod extends AbstractCardModifier {
             card.retain = true;
         }
         return false;
-    }
-
-    @Override
-    public void onRetained(AbstractCard card) {
-        if (CardTemperatureFields.getCardHeat(card) < 0) {
-            Wiz.atb(new ReduceCostAction(card));
-        }
     }
 
     @Override

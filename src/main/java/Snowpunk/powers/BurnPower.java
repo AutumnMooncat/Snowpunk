@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,26 +30,34 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
         this.source = source;
     }
 
-    @Override
-    public void atStartOfTurn() {
-        flash();
-        Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
-    }
-
+    /*
+        @Override
+        public void atStartOfTurn() {
+            flash();
+            Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+            Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
+        }
+    */
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
-            this.flash();
-            this.addToTop(new ReducePowerAction(owner, owner, this, 1));
-            this.addToTop(new DamageAction(this.owner, new DamageInfo(info.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
+        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != owner) {
+            flash();
+            //this.addToTop(new ReducePowerAction(owner, owner, this, 1));
+            addToTop(new DamageAction(owner, new DamageInfo(info.owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
         return damageAmount;
     }
 
     @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+        addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+        addToTop(new DamageAction(owner, new DamageInfo(owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
+    }
+
+    @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

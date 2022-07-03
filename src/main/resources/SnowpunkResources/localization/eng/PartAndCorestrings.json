@@ -3,7 +3,13 @@
     "NAME": "",
     "DESCRIPTION": "",
     "UPGRADE_DESCRIPTION": "",
-    "EXTENDED_DESCRIPTION": [""]
+    "EXTENDED_DESCRIPTION": [
+      ""
+    ]
+  },
+  "${ModID}:Barbs": {
+    "NAME": "Barbs",
+    "DESCRIPTION": "Gain !M! Thorns."
   },
   "${ModID}:Battery": {
     "NAME": "Battery",
@@ -13,8 +19,8 @@
     "NAME": "Brass Plating",
     "DESCRIPTION": "+ !M! Block."
   },
-  "${ModID}:BrokenSprockets": {
-    "NAME": "Broken Sprockets",
+  "${ModID}:Sprockets": {
+    "NAME": "Sprockets",
     "DESCRIPTION": "+ !M! damage."
   },
   "${ModID}:CoolantValve": {
@@ -49,9 +55,21 @@
     "NAME": "Oiled Gears",
     "DESCRIPTION": "Draw 1 card."
   },
+  "${ModID}:Overclock": {
+    "NAME": "Overclock",
+    "DESCRIPTION": "Next turn, gain [E] and draw a card."
+  },
   "${ModID}:ScrapHeap": {
     "NAME": "",
     "DESCRIPTION": ""
+  },
+  "${ModID}:SpareParts": {
+    "NAME": "Spare Parts",
+    "DESCRIPTION": "Randomly snowpunk:Tinker the next card you play.",
+    "EXTENDED_DESCRIPTION": [
+      "Randomly snowpunk:Tinker the next ",
+      " cards you play."
+    ]
   },
   "${ModID}:SpareSpikes": {
     "NAME": "",

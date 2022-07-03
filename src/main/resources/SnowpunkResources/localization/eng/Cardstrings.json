@@ -99,6 +99,10 @@
     "NAME": "Heat Transfer",
     "DESCRIPTION": "snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn."
   },
+  "${ModID}:Holly": {
+    "NAME": "Holly",
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1= Innate. }Increase NL snowpunk:Holiday\u00a0Cheer by !M!."
+  },
   "${ModID}:IceCube": {
     "NAME": "Ice Cube",
     "DESCRIPTION": "Gain snowpunk:S + !M! snowpunk:Ice. NL Exhausts if snowpunk:Heated."
@@ -188,7 +192,7 @@
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "{@@}Gain !B! Block. NL Gain !M! snowpunk:Snowball{!M!|>1=s}."
+    "DESCRIPTION": "{@@}snowpunk:Frosty. NL Gain !B! Block.{!M!|>0= NL Gain !M! snowpunk:Snowball}{!M!|>1=s}{!M!|>0=.}"
   },
   "${ModID}:SteamBarrierMk2": {
     "NAME": "Steam Barrier",

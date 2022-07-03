@@ -6,7 +6,7 @@
   "${ModID}:EngineTempPower": {
     "NAME": "Engine Temperature",
     "DESCRIPTIONS": [
-      "Determines your per turn #yEnergy and #ySnowball gain. NL Current Temperature: ",
+      "Determines your #yEnergy and #ySnowball gain per turn. Playing cards with Temperature effects changes the Engine Temperature. NL Current Temperature: ",
       " NL #bFrozen: #b0 #yEnergy, #b3 #ySnowballs",
       " NL #bCold: #b1 #yEnergy, #b2 #ySnowball",
       " NL #yStable: #b2 #yEnergy, #b1 #ySnowball",
@@ -80,7 +80,11 @@
   },
   "${ModID}:BurnPower": {
     "NAME": "Burn",
-    "DESCRIPTIONS": ["At the start of its turn and when attacked, takes #b"," damage then reduce #yBurn by #b1."]
+    "DESCRIPTIONS": [
+      "Take #b",
+      " additional damage when attacked. At the end of your turn, take #b",
+      " damage, and then remove all #yBurn."
+    ]
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
@@ -112,10 +116,28 @@
   },
   "${ModID}:StrongerPower": {
     "NAME": "Stronger",
-    "DESCRIPTIONS": ["Whenever a card is #yExhausted, gain #b"," #yStrength."]
+    "DESCRIPTIONS": [
+      "Whenever a card is #yExhausted, gain #b",
+      " #yStrength."
+    ]
+  },
+  "${ModID}:HolidayCheerPower": {
+    "NAME": "Holiday Cheer",
+    "DESCRIPTIONS": [
+      "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1.",
+      "Jingle bells, jingle bells, jingle all the way...",
+      "Dashing through the snow, in a one horse open sleigh...",
+      "Christmas time is here!",
+      "All I want for Christmas is youuuuuuu",
+      "Let it snow!",
+      "Chestnuts roasting on an open fiiiiire..."
+    ]
   },
   "${ModID}:SteamFormPower": {
     "NAME": "Steam Form",
-    "DESCRIPTIONS": ["At the start of your turn, gain #b"," #ySteam. NL #ySteam no longer exhausts cards."]
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain #b",
+      " #ySteam. NL #ySteam no longer exhausts cards."
+    ]
   }
 }
