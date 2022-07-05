@@ -16,10 +16,14 @@ public class TintCardPatches {
 
         @SpirePrefixPatch
         public static void tintBefore(AbstractCard __instance, @ByRef Color[] ___renderColor) {
-            Color tint = CardTemperatureFields.getCardTint(__instance);
+            Color tint = CardTemperatureFields.getCardTint(__instance).cpy();
             if (tint != null) {
+                //TODO this is just awful
+                if (MultiUpgradePatches.lockedList.contains(__instance)) {
+                    //tint.mul(new Color(0.5f, 0.5f, 0.5f, 1f));
+                }
                 backupColor.set(___renderColor[0]);
-                ___renderColor[0].set(tint.cpy());
+                ___renderColor[0].set(tint);
             }
         }
 

@@ -35,6 +35,10 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
     }
 
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, int... dependencies) {
+        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies));
+    }
+
     default void processUpgrade(AbstractCard card) {
         //Get the upgrades
         ArrayList<UpgradeData> upgrades = getUpgrades(card);
@@ -51,7 +55,7 @@ public interface MultiUpgradeCard {
         }
 
         //If we can perform the upgrade, do it
-        if (i != -1 && upgrades.size() > i && !upgrades.get(i).applied && upgrades.get(i).canUpgrade(upgrades)) {
+        if (i != -1 && upgrades.size() > i && !upgrades.get(i).applied /*&& upgrades.get(i).canUpgrade(upgrades)*/) {
             upgrades.get(i).upgrade();
             card.timesUpgraded += (1 << i);
             card.upgraded = true;
@@ -61,5 +65,15 @@ public interface MultiUpgradeCard {
 
         //Default back to the next upgrade
         MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(card, -1);
+    }
+
+    default void validateUpgrades(AbstractCard card) throws Exception {
+        for (UpgradeData u : getUpgrades(card)) {
+            for (int i : u.dependencies) {
+                if (i >= u.index) {
+                    throw new Exception("Illegal forward dependency");
+                }
+            }
+        }
     }
 }

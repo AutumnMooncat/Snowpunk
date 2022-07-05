@@ -41,5 +41,19 @@ public class Strike extends AbstractMultiUpgradeCard {
             upgradeDamage(-2);
             upgradeMagicNumber(1);
         });
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG + 2), 0);
+        addUpgradeData(this, () -> {
+            upgradeDamage(-2);
+            upgradeMagicNumber(1);
+        }, 2);
+        addUpgradeData(this, () -> upgradeDamage(4), 3, 4);
+        addUpgradeData(this, () -> upgradeDamage(4), 2, 3);
+        addUpgradeData(this, () -> upgradeDamage(4), 1, 4);
+        addUpgradeData(this, () -> upgradeDamage(4), 5);
+        addUpgradeData(this, () -> upgradeDamage(4), 5, 1);
+        addUpgradeData(this, () -> upgradeDamage(4), 4, 6);
+        addUpgradeData(this, () -> upgradeDamage(4), 7, 8);
+        addUpgradeData(this, () -> upgradeDamage(4), 9, 10);
+        addUpgradeData(this, () -> upgradeDamage(4), 10, 11, 12);
     }
 }

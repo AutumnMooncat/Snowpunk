@@ -1,5 +1,7 @@
 package Snowpunk.util;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+
 import java.util.ArrayList;
 
 public class UpgradeData {
@@ -7,10 +9,16 @@ public class UpgradeData {
     public int index;
     public UpgradeRunnable upgradeRunnable;
     public ArrayList<Integer> dependencies = new ArrayList<>();
+    public AbstractCard alias;
 
     public UpgradeData(UpgradeRunnable runnable, int index, int... dependencies) {
+        this(runnable, index, null, dependencies);
+    }
+
+    public UpgradeData(UpgradeRunnable runnable, int index, AbstractCard alias, int... dependencies) {
         this.upgradeRunnable = runnable;
         this.index = index;
+        this.alias = alias;
         for (int i : dependencies) {
             this.dependencies.add(i);
         }
