@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class GunManager
 {
-
+/*
     public static final Logger logger = LogManager.getLogger(GunManager.class.getName());
 
     public static void RunGunUpdate(AbstractCard card)
@@ -81,5 +81,5 @@ public class GunManager
 
 
         //TODO: ADD TINKER CHECK HERE
-    }
+    }*/
 }

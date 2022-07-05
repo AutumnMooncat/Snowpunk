@@ -6,6 +6,8 @@ import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -17,6 +19,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class ColdSnap extends AbstractEasyCard {
     public final static String ID = makeID(ColdSnap.class.getSimpleName());
 

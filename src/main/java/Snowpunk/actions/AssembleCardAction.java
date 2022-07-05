@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class AssembleCardAction extends AbstractGameAction {
     public enum AssembleType {
-        INVENTION(1, 2),
-        CREATION(2, 2),
-        MACHINATION(2, 3);
+        INVENTION(1, 1),
+        CREATION(2, 1),
+        MACHINATION(2, 2);
 
         AssembleType(int cores, int parts) {
             this.cores = cores;
