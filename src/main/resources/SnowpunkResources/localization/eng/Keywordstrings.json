@@ -118,7 +118,7 @@
       "invention",
       "inventions"
     ],
-    "DESCRIPTION": "A card made from 1 #yCore and 2 #yParts."
+    "DESCRIPTION": "A card made from 1 #yCore and 1 #yPart."
   },
   {
     "PROPER_NAME": "Creation",
@@ -126,7 +126,7 @@
       "creation",
       "creations"
     ],
-    "DESCRIPTION": "A card made from 2 #yCores and 2 #yParts."
+    "DESCRIPTION": "A card made from 2 #yCores and 1 #yPart."
   },
   {
     "PROPER_NAME": "Machination",
@@ -134,7 +134,7 @@
       "machination",
       "machinations"
     ],
-    "DESCRIPTION": "A card made from 2 #yCores and 3 #yParts. One of the #yCores is guaranteed to be #yRare."
+    "DESCRIPTION": "A card made from 2 #yCores and 2 #yParts."
   },
   {
     "PROPER_NAME": "Temporary",
@@ -162,7 +162,7 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Play a copy of this card. Gain [E] . #yEvaporate."
+    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot",
@@ -183,7 +183,7 @@
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yCondense a card. #yRetain. #yPull a card."
+    "DESCRIPTION": "#yCondense a card. NL #yRetain. #yPull a card."
   },
   {
     "PROPER_NAME": "Condense",
@@ -241,7 +241,7 @@
     "NAMES": [
       "ice"
     ],
-    "DESCRIPTION": "Creatures with #yIce gain Block when you use #ySnowballs"
+    "DESCRIPTION": "Gain Block when you use a #ySnowball."
   },
   {
     "PROPER_NAME": "Steam",

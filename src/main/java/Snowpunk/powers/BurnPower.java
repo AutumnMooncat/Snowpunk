@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -30,14 +31,13 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
         this.source = source;
     }
 
-    /*
-        @Override
-        public void atStartOfTurn() {
-            flash();
-            Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-            Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
-        }
-    */
+    @Override
+    public void atStartOfTurn() {
+        flash();
+        Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+    }
+
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != owner) {
@@ -46,13 +46,6 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
             addToTop(new DamageAction(owner, new DamageInfo(info.owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
         return damageAmount;
-    }
-
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        addToTop(new RemoveSpecificPowerAction(owner, owner, this));
-        addToTop(new RemoveSpecificPowerAction(owner, owner, this));
-        addToTop(new DamageAction(owner, new DamageInfo(owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
     }
 
     @Override

@@ -5,7 +5,6 @@ import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
 import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.powers.OverheatNextCardPower;
-import Snowpunk.util.GunManager;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -53,28 +52,20 @@ public class CardTemperatureFields {
     }
 
     public static void addInherentHeat(AbstractCard card, int amount) {
-        addInherentHeat(card, amount, true);
+        if (amount == 0)
+            return;
+        addAndClampHeat(card, amount, true);
+        CardModifierManager.addModifier(card, new TemperatureMod());
     }
 
     public static void addHeat(AbstractCard card, int amount) {
-        addHeat(card, amount, true);
-    }
-
-    public static void addInherentHeat(AbstractCard card, int amount, boolean affectGun) {
         if (amount == 0)
             return;
-        addAndClampHeat(card, amount, true, affectGun);
+        addAndClampHeat(card, amount, false);
         CardModifierManager.addModifier(card, new TemperatureMod());
     }
 
-    public static void addHeat(AbstractCard card, int amount, boolean affectGun) {
-        if (amount == 0)
-            return;
-        addAndClampHeat(card, amount, false, affectGun);
-        CardModifierManager.addModifier(card, new TemperatureMod());
-    }
-
-    private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent, boolean affectGun) {
+    private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent) {
         int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
         if (addInherent)
             TemperatureFields.inherentHeat.set(card, TemperatureFields.inherentHeat.get(card) + amount);
@@ -101,9 +92,6 @@ public class CardTemperatureFields {
             flashHeatColor(card);
             if (card instanceof OnTempChangeCard) {
                 ((OnTempChangeCard) card).onTempChange((added + inherent) - prevTotal);
-            }
-            if (card.tags.contains(CustomTags.GUN)) {
-                GunManager.RunGunUpdate(card);
             }
         }
 
