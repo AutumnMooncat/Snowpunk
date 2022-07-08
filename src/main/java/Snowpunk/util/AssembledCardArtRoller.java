@@ -53,6 +53,10 @@ public class AssembledCardArtRoller {
 
     public static Texture getPortraitTexture(AbstractEasyCard c) {
         ReskinInfo r = infos.get(getDynamicKey(c));
+        if (r == null) {
+            computeCard(c);
+            r = infos.get(getDynamicKey(c));
+        }
         Color HSLC = new Color(r.H, r.S, r.L, r.C);
         TextureAtlas.AtlasRegion t = new TextureAtlas.AtlasRegion(TexLoader.getTexture("images/1024Portraits/" + CardLibrary.getCard(r.origCardID).assetUrl + ".png"), 0, 0, 500, 380);
         t.flip(false, true);
