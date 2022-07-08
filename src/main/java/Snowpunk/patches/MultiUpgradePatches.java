@@ -150,11 +150,25 @@ public class MultiUpgradePatches {
                 root.move(-1, 0);
                 cardGraph.addVertex(root);
                 for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
-                    AbstractCard copy = c.makeStatEquivalentCopy();
-                    MultiUpgradeFields.upgradeIndex.set(copy, u.index);
+                    AbstractCard copy;// = c.makeStatEquivalentCopy();
+                    if (u.applied) {
+                        copy = c.makeCopy();
+                    } else {
+                        copy = c.makeStatEquivalentCopy();
+                    }
+                    prepUpgradePreview(copy, u);
+                    if (u.upgradeName != null && !u.upgradeName.isEmpty()) {
+                        copy.name = u.upgradeName;
+                        ReflectionHacks.privateMethod(AbstractCard.class, "initializeTitle").invoke(copy);
+                    }
+                    if (u.upgradeDescription != null && !u.upgradeDescription.isEmpty()) {
+                        copy.rawDescription = u.upgradeDescription;
+                        copy.initializeDescription();
+                    }
+                    /*MultiUpgradeFields.upgradeIndex.set(copy, u.index);
                     copy.upgrade();
-                    copy.displayUpgrades();
-                    MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed
+                    copy.displayUpgrades();*/
+                    MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed, so we need to set it again
                     if (u.alias != null) {
                         AbstractCard alias = u.alias.makeStatEquivalentCopy();
                         MultiUpgradeFields.upgradeIndex.set(alias, u.index);
@@ -291,6 +305,18 @@ public class MultiUpgradePatches {
                 }
                 renderScale = 1f;
             }
+        }
+
+        private static void prepUpgradePreview(AbstractCard card, UpgradeData u) {
+            for (int i : u.dependencies) {
+                UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
+                if (!dep.applied) {
+                    prepUpgradePreview(card, dep);
+                }
+            }
+            MultiUpgradeFields.upgradeIndex.set(card, u.index);
+            card.upgrade();
+            card.displayUpgrades();
         }
 
         private static class Locator extends SpireInsertLocator {

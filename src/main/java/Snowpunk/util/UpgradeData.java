@@ -10,6 +10,8 @@ public class UpgradeData {
     public UpgradeRunnable upgradeRunnable;
     public ArrayList<Integer> dependencies = new ArrayList<>();
     public AbstractCard alias;
+    public String upgradeName;
+    public String upgradeDescription;
 
     public UpgradeData(UpgradeRunnable runnable, int index, int... dependencies) {
         this(runnable, index, null, dependencies);
@@ -19,6 +21,16 @@ public class UpgradeData {
         this.upgradeRunnable = runnable;
         this.index = index;
         this.alias = alias;
+        for (int i : dependencies) {
+            this.dependencies.add(i);
+        }
+    }
+
+    public UpgradeData(UpgradeRunnable runnable, int index, String name, String description, int... dependencies) {
+        this.upgradeRunnable = runnable;
+        this.index = index;
+        this.upgradeName = name;
+        this.upgradeDescription = description;
         for (int i : dependencies) {
             this.dependencies.add(i);
         }
