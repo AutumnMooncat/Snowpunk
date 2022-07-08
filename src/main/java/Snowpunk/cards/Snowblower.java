@@ -1,37 +1,87 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.powers.SnowblowerPower;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CustomTags;
+import Snowpunk.powers.PressureValvesPower;
+import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Snowblower extends AbstractEasyCard {
+public class Snowblower extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Snowblower.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
-    private static final AbstractCard.CardType TYPE = CardType.POWER;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
+    private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
+    private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1;
-    private static final int UP_COST = 0;
-    private static final int SNOW = 1;
+    private static final int COST = 3;
+    private static final int DMG = 10;
+    private static final int DOWN_DMG = -4;
+    private static final int SNOW = 2;
     private static final int UP_SNOW = 1;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = SNOW;
+        baseInfo = info = 0;
+        tags.add(CustomTags.VENT);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SnowblowerPower(p, magicNumber));
+        if (cost == -1) {
+            int effect = this.energyOnUse;
+
+            if (p.hasRelic("Chemical X")) {
+                effect += ChemicalX.BOOST;
+                p.getRelic("Chemical X").flash();
+            }
+
+            effect++;
+
+            for (int i = 0 ; i < effect ; i++) {
+                dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            }
+            Wiz.applyToSelf(new SnowballPower(p, effect));
+
+            if (effect > 0) {
+                Wiz.applyToSelf(new PressureValvesPower(p, effect));
+            }
+
+            if (!this.freeToPlayOnce) {
+                p.energy.use(EnergyPanel.totalCount);
+            }
+        } else {
+            if (info == 0) {
+                dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+            } else {
+                for (int i = 0 ; i < magicNumber ; i++) {
+                    dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+                }
+            }
+            Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        }
     }
 
-    public void upp() {
-        //upgradeBaseCost(UP_COST);
-        upgradeMagicNumber(UP_SNOW);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> {
+            upgradeDamage(DOWN_DMG);
+            upgradeInfo(1);
+            uDesc();
+        }, "Barrel Diffusion", "-4 Damage NL Deal damage as many times as snowpunk:Snowballs gained");
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW), "Coolant Cell", "+1 snowpunk:Snowball");
+        addUpgradeData(this, () -> {
+            upgradeBaseCost(-1);
+            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            initializeDescription();
+        }, "Flux Coil", "Deal damage X+1 times and gain X+1 snowpunk:Snowballs",0, 1);
     }
 }

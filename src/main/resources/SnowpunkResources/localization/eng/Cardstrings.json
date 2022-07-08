@@ -117,8 +117,7 @@
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
-    "DESCRIPTION": "Fleeting. NL snowpunk:Assemble an snowpunk:Invention.",
-    "UPGRADE_DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Creation."
+    "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a{!Snowpunk:Info!|0=n snowpunk:Invention|1= snowpunk:Creation|>1= snowpunk:Machination}."
   },
   "${ModID}:NorEaster": {
     "NAME": "Nor'Easter",
@@ -180,7 +179,9 @@
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
-    "DESCRIPTION": "{@@}Your snowpunk:Engine gives !M! additional snowpunk:Snowball{!M!|>1=s} when snowpunk:Cold or snowpunk:Frozen."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage. NL Gain !M! snowpunk:Snowballs.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage !M! times. NL Gain !M! snowpunk:Snowballs.",
+    "EXTENDED_DESCRIPTION": ["snowpunk:Whistol. NL Deal !D! damage X + 1 times. NL Gain X + 1 snowpunk:Snowballs."]
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",
