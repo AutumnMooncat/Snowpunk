@@ -11,20 +11,25 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class ScatterDamageAction extends AbstractGameAction {
     private final AbstractCard card;
+    private Consumer<HashMap<AbstractMonster, Integer>> callback;
 
     public ScatterDamageAction(AbstractCard card, AttackEffect effect) {
-        this.card = card;
-        this.attackEffect = effect;
-        this.source = Wiz.adp();
+        this(card, effect, map -> {});
     }
 
-    public ScatterDamageAction(AbstractCard card) {
-        this(card, AttackEffect.NONE);
+    public ScatterDamageAction(AbstractCard card, AttackEffect effect, Consumer<HashMap<AbstractMonster, Integer> > callback) {
+        this.card = card;
+        this.attackEffect = effect;
+        this.callback = callback;
+        this.source = Wiz.adp();
     }
 
     public void update() {
@@ -47,6 +52,7 @@ public class ScatterDamageAction extends AbstractGameAction {
                 m.damage(info);
             }
         }
+        callback.accept(damageMap);
         card.baseDamage = backup;
         if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
             AbstractDungeon.actionManager.clearPostCombatActions();

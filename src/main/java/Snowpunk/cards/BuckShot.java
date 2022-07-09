@@ -1,20 +1,18 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ScatterDamageAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
+import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class BuckShot extends AbstractEasyCard {
+public class BuckShot extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BuckShot.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -22,21 +20,36 @@ public class BuckShot extends AbstractEasyCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 2;
-    private static final int DMG = 12;
-    private static final int UP_DMG = 2;
-    private static final int HITS = 4;
+    private static final int DMG = 18;
+    private static final int UP_DMG = 6;
+    private static final int BURN = 4;
 
     public BuckShot() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        info = baseInfo = 0;
         tags.add(CustomTags.GUN);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ScatterDamageAction(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        Wiz.atb(new ScatterDamageAction(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageMap -> {
+            if (info > 0) {
+                for (AbstractMonster mon : damageMap.keySet()) {
+                    Wiz.applyToEnemy(mon, new BurnPower(mon, p, magicNumber));
+                }
+            }
+        }));
     }
 
-    public void upp() {
-        upgradeDamage(UP_DMG);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(this, () -> {
+            upgradeInfo(1);
+            baseMagicNumber = magicNumber = 0;
+            upgradeMagicNumber(BURN);
+            uDesc();
+        });
     }
 }

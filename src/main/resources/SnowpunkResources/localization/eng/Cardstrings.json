@@ -41,7 +41,8 @@
   },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies."
+    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies. NL Applies !M! snowpunk:Burn on hit."
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
@@ -218,7 +219,7 @@
   },
   "${ModID}:Think": {
     "NAME": "Think",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker a card in your hand."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Tinker {!M!|@=a|>1=!M!} card{!M!|>1=s} in your hand.{!Snowpunk:Info!|1= NL Randomly snowpunk:Tinker the next card you play.}"
   },
   "${ModID}:TrolleyForm": {
     "NAME": "Trolley Form",
