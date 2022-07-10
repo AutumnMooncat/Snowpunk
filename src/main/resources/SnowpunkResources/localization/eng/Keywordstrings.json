@@ -12,7 +12,7 @@
       "burning",
       "burn"
     ],
-    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the end of your turn, #yBurn deals damage and then is removed."
+    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the end of their turn, #yBurn deals damage and then is removed."
   },
   {
     "PROPER_NAME": "Link",
@@ -40,6 +40,14 @@
     "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
   },
   {
+    "PROPER_NAME": "Fireball",
+    "NAMES": [
+      "fireball",
+      "fireballs"
+    ],
+    "DESCRIPTION": "Frostbitten creatures take damage when you use #ySnowballs"
+  },
+  {
     "PROPER_NAME": "Frostbite",
     "NAMES": [
       "frostbite",
@@ -52,7 +60,7 @@
     "NAMES": [
       "whistol"
     ],
-    "DESCRIPTION": "#yTemperature and #yTinker effects applied to this card apply to ALL cards with #yWhistol."
+    "DESCRIPTION": "Deals additional damage for each #ySnowball and #yEvaporated card you have."
   },
   {
     "PROPER_NAME": "Pressure",
@@ -142,6 +150,13 @@
       "temporary"
     ],
     "DESCRIPTION": "Effect is lost at the end of this turn."
+  },
+  {
+    "PROPER_NAME": "Token",
+    "NAMES": [
+      "token"
+    ],
+    "DESCRIPTION": "Is not shuffled into your deck at the start of combat. Cannot be removed from your deck. Upgrades affect all newly created instances of this #yToken."
   },
   {
     "PROPER_NAME": "Primary",

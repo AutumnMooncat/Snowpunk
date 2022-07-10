@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,5 +38,7 @@ public class Scald extends AbstractEasyCard {
     public void upp() {
         upgradeDamage(UP_DMG);
         upgradeMagicNumber(UP_BURN);
+
+        CardModifierManager.addModifier(this, new WhistolMod());
     }
 }

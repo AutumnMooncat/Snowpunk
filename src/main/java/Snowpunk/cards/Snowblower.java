@@ -1,10 +1,12 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -32,6 +34,7 @@ public class Snowblower extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = SNOW;
         baseInfo = info = 0;
+        CardModifierManager.addModifier(this, new WhistolMod());
         tags.add(CustomTags.VENT);
     }
 

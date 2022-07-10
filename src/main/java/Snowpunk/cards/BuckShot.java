@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ScatterDamageAction;
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
@@ -29,7 +31,7 @@ public class BuckShot extends AbstractEasyCard {
     public BuckShot() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        tags.add(CustomTags.GUN);
+        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

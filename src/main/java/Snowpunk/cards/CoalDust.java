@@ -1,10 +1,12 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
+import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SootPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
