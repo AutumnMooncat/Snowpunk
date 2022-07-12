@@ -4,9 +4,8 @@ import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.shaders.Grayscale;
 import Snowpunk.shaders.Greenify;
 import Snowpunk.util.CardGraph;
-import Snowpunk.util.CardGraphEdge;
-import Snowpunk.util.UpgradeData;
 import Snowpunk.util.CardVertex;
+import Snowpunk.util.UpgradeData;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -29,7 +28,6 @@ import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 
 public class MultiUpgradePatches {
@@ -44,6 +42,9 @@ public class MultiUpgradePatches {
     public static boolean allowX, allowY;
     public static boolean dragging;
     public static float renderScale;
+    private static final float DEFAULT_ZOOM = 1.0f;
+    private static final float MIN_ZOOM = 0.3f;
+    private static final float MAX_ZOOM = 1.1f;
     private static final float X_PAD = 400F * Settings.scale;
     private static final float Y_PAD = 220F * Settings.scale;
     private static final float LINE_SPACING = 20F * Settings.scale;
@@ -275,7 +276,7 @@ public class MultiUpgradePatches {
                     if (card.current_y < down) {
                         down = card.current_y;
                     } else if (card.current_y > up) {
-                        up = card.current_x;
+                        up = card.current_y;
                     }
                 }
 
@@ -303,7 +304,6 @@ public class MultiUpgradePatches {
                     minY = Settings.HEIGHT - up - 260F * Settings.scale;
                     allowY = true;
                 }
-                renderScale = 1f;
             }
         }
 
@@ -476,9 +476,9 @@ public class MultiUpgradePatches {
             } else if (deltaY > maxY) {
                 deltaY = MathHelper.scrollSnapLerpSpeed(deltaY, maxY);
             }
-            if (InputHelper.scrolledDown && renderScale > 0.5f) {
+            if (InputHelper.scrolledDown && renderScale > MIN_ZOOM) {
                 renderScale -= 0.1f;
-            } else if (InputHelper.scrolledUp && renderScale < 1f) {
+            } else if (InputHelper.scrolledUp && renderScale < MAX_ZOOM) {
                 renderScale += 0.1f;
             }
         }
@@ -493,7 +493,7 @@ public class MultiUpgradePatches {
         maxY = 0;
         allowX = false;
         allowY = false;
-        renderScale = 1f;
+        renderScale = DEFAULT_ZOOM;
     }
 
     @SpirePatch(clz = GridSelectConfirmButton.class, method = "render")
