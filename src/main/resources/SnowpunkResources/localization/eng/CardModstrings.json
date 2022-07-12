@@ -92,7 +92,9 @@
     ]
   },
   "${ModID}:BurnDamageMod": {
-    "EXTENDED_DESCRIPTION": [" NL Applies %d snowpunk:Burn on hit."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Apply %d snowpunk:Burn on hit."
+    ]
   },
   "${ModID}:ReshuffleMod": {
     "EXTENDED_DESCRIPTION": [" NL snowpunk:Reshuffle."]

@@ -3,7 +3,7 @@
     "NAME": "Brass Pipe",
     "FLAVOR": "For a busy mind.",
     "DESCRIPTIONS": [
-      "Randomly #ysnowpunk:Tinker the first card you play each combat."
+      "At the start of combat, gain a #ysnowpunk:Snowball."
     ]
   },
   "${ModID}:ChristmasSpirit": {

@@ -1,6 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
+import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -18,9 +19,6 @@ public class BrassPipeRelic extends AbstractEasyRelic {
     @Override
     public void atBattleStart() {
         flash();
-        AbstractPlayer player = AbstractDungeon.player;
-        Wiz.applyToSelf(new TinkerNextCardPower(player, 1, false));
-        //AbstractDungeon.actionManager.addToBottom(new VacantMillAction(counter + AbstractVacantCard.GetBonusMillAmount()));
-        //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player, new VoidPower(player, player, VOID_AMOUNT), VOID_AMOUNT));
+        Wiz.applyToSelf(new SnowballPower(Wiz.adp(), 1));
     }
 }
