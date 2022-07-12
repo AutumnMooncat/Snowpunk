@@ -164,7 +164,8 @@
   },
   "${ModID}:Scald": {
     "NAME": "Scald",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !M! snowpunk:Burn{!Snowpunk:Info!|1= to ALL enemies}.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage twice. NL Apply !M! snowpunk:Burn{!Snowpunk:Info!|1= to ALL enemies}."
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",

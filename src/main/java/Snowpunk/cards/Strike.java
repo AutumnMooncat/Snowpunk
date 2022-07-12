@@ -35,25 +35,27 @@ public class Strike extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG)); // 0
+        addUpgradeData(this, () -> upgradeBaseCost(0)); // 1
         addUpgradeData(this, () -> {
             upgradeDamage(-2);
             upgradeMagicNumber(1);
-        });
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG + 2), 0);
+        }); // 2
+        /*addUpgradeData(this, () -> upgradeDamage(UP_DMG + 2), 0); // 3
         addUpgradeData(this, () -> {
             upgradeDamage(-2);
             upgradeMagicNumber(1);
-        }, 2);
-        addUpgradeData(this, () -> upgradeDamage(4), 3, 4);
-        addUpgradeData(this, () -> upgradeDamage(4), 2, 3);
-        addUpgradeData(this, () -> upgradeDamage(4), 1, 4);
-        addUpgradeData(this, () -> upgradeDamage(4), 5);
-        addUpgradeData(this, () -> upgradeDamage(4), 5, 1);
-        addUpgradeData(this, () -> upgradeDamage(4), 4, 6);
-        addUpgradeData(this, () -> upgradeDamage(4), 7, 8);
-        addUpgradeData(this, () -> upgradeDamage(4), 9, 10);
-        addUpgradeData(this, () -> upgradeDamage(4), 10, 11, 12);
+        }, 0); // 4
+        addUpgradeData(this, () -> upgradeDamage(4), 1); // 5
+        addUpgradeData(this, () -> upgradeDamage(4), 1); // 6
+        addUpgradeData(this, () -> upgradeDamage(4), 2); // 7
+        addUpgradeData(this, () -> upgradeDamage(4), 2); // 8
+        addUpgradeData(this, () -> upgradeDamage(4), 3, 4); // 9
+        addUpgradeData(this, () -> upgradeDamage(4), 5, 6); // 10
+        addUpgradeData(this, () -> upgradeDamage(4), 7, 8); // 11
+        addUpgradeData(this, () -> upgradeDamage(4), 9, 10); // 12
+        addUpgradeData(this, () -> upgradeDamage(4), 10, 11); // 13
+        addUpgradeData(this, () -> upgradeDamage(4), 12, 13); // 13*/
+
     }
 }
