@@ -33,20 +33,28 @@
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage. NL Apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
     "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
   },
+  "${ModID}:BrassWave": {
+    "NAME": "Brass Wave",
+    "DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1=+1} times."
+  },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage randomly dispersed to ALL enemies. NL Applies !M! snowpunk:Burn on hit."
+    "DESCRIPTION": "Deal !D! damage randomly dispersed to ALL enemies.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage randomly dispersed to ALL enemies. NL Applies !M! snowpunk:Burn on hit."
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
     "DESCRIPTION": "snowpunk:Heat a card in your hand."
+  },
+  "${ModID}:BurningFury": {
+    "NAME": "Burning Fury",
+    "DESCRIPTION": "Add !M! snowpunk:Fireballs NL to your hand."
   },
   "${ModID}:Cauterize": {
     "NAME": "Cauterize",
@@ -86,6 +94,10 @@
     "NAME": "Faster",
     "DESCRIPTION": "{@@}Draw X cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
     "UPGRADE_DESCRIPTION": "{@@}Draw X + 1 cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
+  },
+  "${ModID}:Fireball": {
+    "NAME": "Fireball",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn."
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
@@ -131,7 +143,7 @@
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
-    "DESCRIPTION": "snowpunk:Whistol. snowpunk:Ventilation. NL Deal !D! damage."
+    "DESCRIPTION": "snowpunk:Ventilation. NL Deal !D! damage."
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
@@ -144,11 +156,11 @@
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "{@@}snowpunk:Whistol. NL Deal !D! damage. NL {!Snowpunk:Info!|0=snowpunk:Heat|1=snowpunk:Overheat} the next {!M!|>1=!M! }card{!M!|>1=s} you play."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL {!Snowpunk:Info!|0=snowpunk:Heat|1=snowpunk:Overheat} the next {!M!|>1=!M! }card{!M!|>1=s} you play."
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
@@ -167,6 +179,10 @@
     "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !M! snowpunk:Burn{!Snowpunk:Info!|1= to ALL enemies}.",
     "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage twice. NL Apply !M! snowpunk:Burn{!Snowpunk:Info!|1= to ALL enemies}."
   },
+  "${ModID}:Singe": {
+    "NAME": "Singe",
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, gain !M! snowpunk:Fireballs."
+  },
   "${ModID}:Sledding": {
     "NAME": "Sledding",
     "DESCRIPTION": "Deal !D! × snowpunk:S damage to ALL enemies."
@@ -181,9 +197,11 @@
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
-    "DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage. NL Gain !M! snowpunk:Snowballs.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Whistol. NL Deal !D! damage !M! times. NL Gain !M! snowpunk:Snowballs.",
-    "EXTENDED_DESCRIPTION": ["snowpunk:Whistol. NL Deal !D! damage X + 1 times. NL Gain X + 1 snowpunk:Snowballs."]
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! snowpunk:Snowballs.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Gain !M! snowpunk:Snowballs.",
+    "EXTENDED_DESCRIPTION": [
+      "Deal !D! damage X + 1 times. NL Gain X + 1 snowpunk:Snowballs."
+    ]
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",

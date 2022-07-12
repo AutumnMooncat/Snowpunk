@@ -1,11 +1,12 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ScatterDamageAction;
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,7 +29,7 @@ public class BuckShot extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         info = baseInfo = 0;
-        tags.add(CustomTags.GUN);
+        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -82,7 +82,7 @@
     "NAME": "Burn",
     "DESCRIPTIONS": [
       "Take #b",
-      " additional damage when attacked. At the end of your turn, take #b",
+      " additional damage when attacked. At the start of its turn, take #b",
       " damage, and then remove all #yBurn."
     ]
   },
@@ -104,7 +104,10 @@
   },
   "${ModID}:BeaconBeamPower": {
     "NAME": "Beacon Beam",
-    "DESCRIPTIONS": ["Attacks deal #b"," additional damage for each #ySnowball you have."]
+    "DESCRIPTIONS": [
+      "Attacks deal #b",
+      " additional damage for each #ySnowball you have."
+    ]
   },
   "${ModID}:SteamPower": {
     "NAME": "Steam",
@@ -112,6 +115,14 @@
       "The next card you play this turn costs 0.",
       "The next #b",
       " cards you play this turn cost 0."
+    ]
+  },
+  "${ModID}:FireballNextTurnPower": {
+    "NAME": "Fireballs",
+    "DESCRIPTIONS": [
+      "Next turn, add a #yFireball to your hand.",
+      "Next turn, add #b",
+      " #yFireballs to your hand."
     ]
   },
   "${ModID}:StrongerPower": {

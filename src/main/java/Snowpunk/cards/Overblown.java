@@ -1,7 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CustomTags;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,7 +24,7 @@ public class Overblown extends AbstractEasyCard {
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        tags.add(CustomTags.GUN);
+        CardModifierManager.addModifier(this, new WhistolMod());
         tags.add(CustomTags.VENT);
     }
 

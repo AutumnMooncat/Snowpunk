@@ -14,7 +14,7 @@ public class ReshuffleMod extends AbstractCardModifier {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public ReshuffleMod() {
-        this.priority = 1;
+        this.priority = -1;
     }
 
     @Override
@@ -29,13 +29,18 @@ public class ReshuffleMod extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !card.shuffleBackIntoDrawPile;
+        return !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override
     public String identifier(AbstractCard card) {
         return ID;
     }
+/*
+    @Override
+    public boolean isInherent(AbstractCard card) {
+        return inherent;
+    }*/
 
     @Override
     public AbstractCardModifier makeCopy() {

@@ -1,10 +1,12 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.powers.OverheatNextCardPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -30,7 +32,7 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = HEAT_NEXT;
         baseInfo = info = 0;
-        tags.add(CustomTags.GUN);
+        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

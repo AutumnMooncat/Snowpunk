@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
@@ -47,7 +46,6 @@ public class Scald extends AbstractMultiUpgradeCard {
         } else {
             Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
         }
-
     }
 
     @Override
