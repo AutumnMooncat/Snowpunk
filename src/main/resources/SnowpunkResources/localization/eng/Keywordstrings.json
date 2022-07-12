@@ -63,15 +63,6 @@
     "DESCRIPTION": "Deals additional damage for each #ySnowball and #yEvaporated card you have."
   },
   {
-    "PROPER_NAME": "Pressure",
-    "NAMES": [
-      "pressure",
-      "pressurized",
-      "p"
-    ],
-    "DESCRIPTION": "Your current #yEnergy."
-  },
-  {
     "PROPER_NAME": "Ventilation",
     "NAMES": [
       "ventilation",
