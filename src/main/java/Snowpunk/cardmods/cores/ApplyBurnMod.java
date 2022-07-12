@@ -5,7 +5,6 @@ import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.powers.BurnPower;
-import Snowpunk.powers.SootPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;

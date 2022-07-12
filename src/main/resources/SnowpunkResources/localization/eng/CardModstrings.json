@@ -17,7 +17,9 @@
       "snowpunk:Hot. NL ",
       "snowpunk:Overheated. NL ",
       "snowpunk:Cold. NL ",
-      "snowpunk:Frozen. NL "
+      "snowpunk:Frozen. NL ",
+      "snowpunk:Hot & snowpunk:Cold. NL ",
+      "snowpunk:Overheated & snowpunk:Frozen. NL "
     ]
   },
   "${ModID}:LinkMod": {
@@ -104,6 +106,9 @@
   },
   "${ModID}:BetterPurgeMod": {
     "EXTENDED_DESCRIPTION": [" NL Purge."]
+  },
+  "${ModID}:FluxMod": {
+    "EXTENDED_DESCRIPTION": ["snowpunk:Fluxed. NL "]
   },
   "${ModID}:VentMod": {
     "EXTENDED_DESCRIPTION": ["snowpunk:Ventilated. NL "]

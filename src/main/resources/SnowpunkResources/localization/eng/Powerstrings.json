@@ -74,8 +74,8 @@
     "NAME": "Next Turn ",
     "DESCRIPTIONS": ["Next turn, gain #b"," ","."]
   },
-  "${ModID}:SootPower": {
-    "NAME": "Soot",
+  "${ModID}:ChillPower": {
+    "NAME": "Chill",
     "DESCRIPTIONS": ["Decreases attack damage by #b","."]
   },
   "${ModID}:BurnPower": {

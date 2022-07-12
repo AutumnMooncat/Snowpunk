@@ -9,4 +9,7 @@ public class CustomTags {
 
     @SpireEnum
     public static AbstractCard.CardTags VENT;
+
+    @SpireEnum
+    public static AbstractCard.CardTags FLUX;
 }

@@ -3,11 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CustomTags;
-import Snowpunk.powers.BurnPower;
-import Snowpunk.powers.SootPower;
-import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;

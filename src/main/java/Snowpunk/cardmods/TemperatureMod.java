@@ -6,6 +6,7 @@ import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.actions.PullCardAction;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.SteamPower;
@@ -46,12 +47,24 @@ public class TemperatureMod extends AbstractCardModifier {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         switch (CardTemperatureFields.getCardHeat(card)) {
             case -2:
+                if (card.hasTag(CustomTags.FLUX)) {
+                    return TEXT[5] + rawDescription;
+                }
                 return TEXT[3] + rawDescription;
             case -1:
+                if (card.hasTag(CustomTags.FLUX)) {
+                    return TEXT[4] + rawDescription;
+                }
                 return TEXT[2] + rawDescription;
             case 1:
+                if (card.hasTag(CustomTags.FLUX)) {
+                    return TEXT[4] + rawDescription;
+                }
                 return TEXT[0] + rawDescription;
             case 2 :
+                if (card.hasTag(CustomTags.FLUX)) {
+                    return TEXT[5] + rawDescription;
+                }
                 return TEXT[1] + rawDescription;
         }
         return rawDescription;
@@ -74,13 +87,13 @@ public class TemperatureMod extends AbstractCardModifier {
         int heat = CardTemperatureFields.getCardHeat(card);
         int amount = card instanceof MultiTempEffectCard ? ((MultiTempEffectCard) card).tempEffectAmount() : 1;
         Wiz.atb(new ModEngineTempAction(heat*amount));
-        if (heat > 0) {
+        if (heat > 0 || (card.hasTag(CustomTags.FLUX) && heat < 0)) {
             Wiz.atb(new GainEnergyAction(amount));
             //action.exhaustCard = true;
             EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
             //Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
         }
-        if (heat == 2 && !LoopcastField.LoopField.islooping.get(card)) {
+        if ((heat == 2 || (card.hasTag(CustomTags.FLUX) && heat == -2))&& !LoopcastField.LoopField.islooping.get(card)) {
             //Wiz.applyToSelf(new SteamPower(Wiz.adp(), 1));
             for (int i = 0; i < amount ; i++) {
                 AbstractCard tmp = card.makeSameInstanceOf();
@@ -102,17 +115,17 @@ public class TemperatureMod extends AbstractCardModifier {
                 }
             }
         }
-        if (heat == -2) {
+        if (heat == -2 || (card.hasTag(CustomTags.FLUX) && heat == 2)) {
             Wiz.atb(new CondenseRandomCardToDrawPileAction());
         }
-        if (heat < 0) {
+        if (heat < 0 || (card.hasTag(CustomTags.FLUX) && heat > 0)) {
             Wiz.atb(new PullCardAction(amount));
         }
     }
 
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {
-        if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) < 0) {
+        if (!card.isEthereal && (CardTemperatureFields.getCardHeat(card) < 0 || (card.hasTag(CustomTags.FLUX) && CardTemperatureFields.getCardHeat(card) > 0))) {
             card.retain = true;
         }
         return false;

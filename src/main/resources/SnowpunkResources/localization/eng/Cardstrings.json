@@ -68,10 +68,10 @@
     "NAME": "Chugga Chugga",
     "DESCRIPTION": "Ethereal. NL snowpunk:Link two cards in your hand."
   },
-  "${ModID}:CoalDust": {
-    "NAME": "Coal Dust",
-    "DESCRIPTION": "Apply !M! snowpunk:Soot.",
-    "UPGRADE_DESCRIPTION": "Apply !M! snowpunk:Soot to ALL enemies."
+  "${ModID}:ColdWind": {
+    "NAME": "Cold Wind",
+    "DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and Weak}. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and Weak} to ALL enemies. NL Exhaust."
   },
   "${ModID}:ColdSnap": {
     "NAME": "Cold Snap",
@@ -123,10 +123,6 @@
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",
     "DESCRIPTION": "Deal !D! damage. NL snowpunk:Cool this card."
-  },
-  "${ModID}:Ignite": {
-    "NAME": "Ignite",
-    "DESCRIPTION": "Apply !M! snowpunk:Burn to ALL enemies. NL snowpunk:Sooty enemies gain additional snowpunk:Burn equal to their snowpunk:Soot."
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
@@ -236,6 +232,10 @@
   "${ModID}:Stronger": {
     "NAME": "Stronger",
     "DESCRIPTION": "Whenever a card is Exhausted, gain !M! Strength."
+  },
+  "${ModID}:ThermalShock": {
+    "NAME": "Thermal Shock",
+    "DESCRIPTION": "Apply !M! snowpunk:Burn and !Snowpunk:M2! snowpunk:Chill to ALL enemies. NL Exhaust."
   },
   "${ModID}:Think": {
     "NAME": "Think",

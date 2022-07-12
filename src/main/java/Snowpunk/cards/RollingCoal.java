@@ -1,10 +1,9 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.powers.SootPower;
+import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -35,7 +34,7 @@ public class RollingCoal extends AbstractEasyCard {
         allDmg(AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
-                Wiz.applyToEnemy(mo, new SootPower(mo, magicNumber));
+                Wiz.applyToEnemy(mo, new ChillPower(mo, magicNumber));
             }
         }
     }

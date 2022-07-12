@@ -97,12 +97,12 @@
     "DESCRIPTION": "An accumulating resource that remains between turns and can be converted to #yEnergy."
   },
   {
-    "PROPER_NAME": "Soot",
+    "PROPER_NAME": "Chill",
     "NAMES": [
-      "soot",
-      "sooty"
+      "chill",
+      "chilled"
     ],
-    "DESCRIPTION": "Sooty creates deal less damage when attacking."
+    "DESCRIPTION": "Chilled creates deal less damage when attacking."
   },
   {
     "PROPER_NAME": "Tinker",
@@ -302,5 +302,12 @@
       "pull"
     ],
     "DESCRIPTION": "Move the top card of your draw pile to your hand."
+  },
+  {
+    "PROPER_NAME": "Fluxed",
+    "NAMES": [
+      "fluxed"
+    ],
+    "DESCRIPTION": "Fluxed cards act as if they are also their opposite temperature."
   }
 ]

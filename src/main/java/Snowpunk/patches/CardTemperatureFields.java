@@ -67,10 +67,16 @@ public class CardTemperatureFields {
 
     private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent) {
         int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
-        if (addInherent)
+        if (card.hasTag(CustomTags.FLUX) && prevTotal != 0) {
+            if (Math.signum(amount) != Math.signum(prevTotal)) {
+                amount *= -1;
+            }
+        }
+        if (addInherent) {
             TemperatureFields.inherentHeat.set(card, TemperatureFields.inherentHeat.get(card) + amount);
-        else
+        } else {
             TemperatureFields.addedHeat.set(card, TemperatureFields.addedHeat.get(card) + amount);
+        }
 
         int inherent = TemperatureFields.inherentHeat.get(card);
         int added = TemperatureFields.addedHeat.get(card);
