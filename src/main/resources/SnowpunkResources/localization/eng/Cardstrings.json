@@ -167,10 +167,6 @@
     "NAME": "Resupply",
     "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered."
   },
-  "${ModID}:RollingCoal": {
-    "NAME": "Rolling Coal",
-    "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Soot to ALL enemies."
-  },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
     "DESCRIPTION": "Next turn, gain !M! snowpunk:Snowballs."
@@ -203,6 +199,10 @@
     "EXTENDED_DESCRIPTION": [
       "Deal !D! damage X + 1 times. NL Gain X + 1 snowpunk:Snowballs."
     ]
+  },
+  "${ModID}:Snowbowl": {
+    "NAME": "Snowbowl",
+    "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Chill to ALL enemies."
   },
   "${ModID}:Snowfall": {
     "NAME": "Snowfall",
