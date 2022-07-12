@@ -60,6 +60,10 @@
     "NAME": "Cauterize",
     "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
   },
+  "${ModID}:ChristmasCookies": {
+    "NAME": "Christmas Cookies",
+    "DESCRIPTION": "Increase snowpunk:Holiday\u00a0Cheer by !M! and heal !Snowpunk:M2! HP. NL Exhaust."
+  },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Parts",
     "DESCRIPTION": "{@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play."
