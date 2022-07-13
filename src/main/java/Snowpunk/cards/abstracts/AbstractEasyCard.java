@@ -1,7 +1,6 @@
 package Snowpunk.cards.abstracts;
 
 import Snowpunk.TheConductor;
-import Snowpunk.cards.cardvars.Pressure;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
@@ -288,10 +287,6 @@ public abstract class AbstractEasyCard extends CustomCard {
 
     protected void blck() {
         atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
-    }
-
-    protected int pressure() {
-        return Pressure.getPressure();
     }
 
     protected int getSnow() {

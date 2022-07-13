@@ -27,9 +27,9 @@ public class BlastingCap extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (pressure() > 0) {
+        /*if (pressure() > 0) {
             Wiz.atb(new DamageAction(m, new DamageInfo(p, damage*pressure(), damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        }
+        }*/
     }
 
     public void upp() {

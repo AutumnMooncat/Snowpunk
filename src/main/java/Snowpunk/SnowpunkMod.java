@@ -146,7 +146,6 @@ public class SnowpunkMod implements
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
-        BaseMod.addDynamicVariable(new Pressure());
         BaseMod.addDynamicVariable(new Info());
         new AutoAdd(modID)
                 .packageFilter("Snowpunk.cards")
