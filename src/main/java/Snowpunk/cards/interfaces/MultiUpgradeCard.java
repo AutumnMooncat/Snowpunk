@@ -35,8 +35,8 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
     }
 
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, int... dependencies) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies));
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
+        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies, strict, exclusions));
     }
 
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, String name, String description, int... dependencies) {

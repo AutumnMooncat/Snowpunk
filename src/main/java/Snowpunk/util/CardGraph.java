@@ -14,6 +14,11 @@ public class CardGraph {
         to.addChild(from);
     }
 
+    public void addExclusion(CardVertex from, CardVertex to) {
+        from.addExclusion(to);
+        to.addExclusion(from);
+    }
+
     public void clear() {
         for (CardVertex v : vertices) {
             v.parents.clear();

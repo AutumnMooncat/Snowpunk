@@ -68,15 +68,33 @@
   },
   "${ModID}:LosePowerPower": {
     "NAME": "Lose ",
-    "DESCRIPTIONS": ["At the end of your turn, lose #b"," ","."]
+    "DESCRIPTIONS": [
+      "At the end of your turn, lose #b",
+      " ",
+      "."
+    ]
   },
   "${ModID}:NextTurnPowerPower": {
     "NAME": "Next Turn ",
-    "DESCRIPTIONS": ["Next turn, gain #b"," ","."]
+    "DESCRIPTIONS": [
+      "Next turn, gain #b",
+      " ",
+      "."
+    ]
   },
   "${ModID}:ChillPower": {
     "NAME": "Chill",
-    "DESCRIPTIONS": ["Decreases attack damage by #b","."]
+    "DESCRIPTIONS": [
+      "Decreases attack damage by #b",
+      "."
+    ]
+  },
+  "${ModID}:ChristmasCookiePower": {
+    "NAME": "Christmas Cookies",
+    "DESCRIPTIONS": [
+      "#yChristmas #ySpirit heals an additional #b",
+      " HP."
+    ]
   },
   "${ModID}:BurnPower": {
     "NAME": "Burn",

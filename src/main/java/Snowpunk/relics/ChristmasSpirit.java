@@ -2,6 +2,7 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.actions.ChangeChristmasSpiritAction;
+import Snowpunk.powers.ChristmasCookiePower;
 import Snowpunk.powers.HolidayCheerPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -66,9 +67,16 @@ public class ChristmasSpirit extends AbstractEasyRelic {
         if (!killThisCombat) {
             flash();
             Wiz.atb(new RelicAboveCreatureAction(adp(), this));
-            adp().heal(counter);
+            adp().heal(counter + getBonusHealing());
             adp().gainGold(counter);
         }
+    }
+
+    private int getBonusHealing() {
+        int bonus = 0;
+        if (adp().hasPower(ChristmasCookiePower.POWER_ID))
+            bonus += adp().getPower(ChristmasCookiePower.POWER_ID).amount;
+        return bonus;
     }
 
     @Override

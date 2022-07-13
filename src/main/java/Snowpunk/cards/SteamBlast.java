@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
+import static java.lang.Math.signum;
 
 public class SteamBlast extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SteamBlast.class.getSimpleName());

@@ -62,7 +62,7 @@
   },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",
-    "DESCRIPTION": "Increase snowpunk:Holiday\u00a0Cheer by !M! and heal !Snowpunk:M2! HP. NL Exhaust."
+    "DESCRIPTION": "Increase snowpunk:Holiday\u00a0Cheer by !M!. snowpunk:Christmas\u00a0Spirit heals !Snowpunk:M2! additional HP."
   },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Parts",
@@ -235,7 +235,7 @@
   },
   "${ModID}:Stronger": {
     "NAME": "Stronger",
-    "DESCRIPTION": "Whenever a card is Exhausted, gain !M! Strength."
+    "DESCRIPTION": "{@@}Gain {!M!|2=double|3=triple} {!Snowpunk:Info!|0=snowpunk:S|1=X} Strength."
   },
   "${ModID}:ThermalShock": {
     "NAME": "Thermal Shock",

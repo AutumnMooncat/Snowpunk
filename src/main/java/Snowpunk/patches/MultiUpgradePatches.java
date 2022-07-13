@@ -1,14 +1,17 @@
 package Snowpunk.patches;
 
+import Snowpunk.SnowpunkMod;
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.shaders.Grayscale;
 import Snowpunk.shaders.Greenify;
 import Snowpunk.util.CardGraph;
 import Snowpunk.util.CardVertex;
+import Snowpunk.util.TexLoader;
 import Snowpunk.util.UpgradeData;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -48,6 +51,8 @@ public class MultiUpgradePatches {
     private static final float X_PAD = 400F * Settings.scale;
     private static final float Y_PAD = 220F * Settings.scale;
     private static final float LINE_SPACING = 20F * Settings.scale;
+    public static Texture upgradeAndLine = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/icons/andLine.png");
+    public static Texture exclusionLine = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/icons/exLine.png");
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = SpirePatch.CLASS)
     public static class MultiSelectFields {
@@ -59,7 +64,9 @@ public class MultiUpgradePatches {
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class MultiUpgradeFields {
         public static SpireField<ArrayList<UpgradeData>> upgrades = new SpireField<>(ArrayList::new);
+        //public static SpireField<ArrayList<UpgradeData>> exclusions = new SpireField<>(ArrayList::new);
         public static SpireField<Integer> upgradeIndex = new SpireField<>(() -> -1);
+        //public static SpireField<Boolean> strict = new SpireField<>(() -> true);
     }
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {String.class, String.class, String.class, int.class, String.class, AbstractCard.CardType.class, AbstractCard.CardColor.class, AbstractCard.CardRarity.class, AbstractCard.CardTarget.class, DamageInfo.DamageType.class})
@@ -184,14 +191,27 @@ public class MultiUpgradePatches {
                     } else if (!u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
                         lockedList.add(copy);
                     }
-                    CardVertex v = new CardVertex(copy, u.index);
+                    CardVertex v = new CardVertex(copy, u.index, u.strict);
                     cardGraph.addVertex(v);
                     if (u.dependencies.isEmpty()) {
                         cardGraph.addDependence(v, root);
                     } else {
                         for (int i : u.dependencies) {
                             //Dependency directed graphs
-                            cardGraph.addDependence(v, cardGraph.vertices.get(i+1));
+                            cardGraph.addDependence(v, cardGraph.vertices.get(i + 1));
+                        }
+                    }
+
+                    if (u.exclusions.size() > 0) {
+                        //only add the line for the exclusions with the largest index that is less than the index of the upgrade with the exclusions
+                        for (int i : u.exclusions) {
+                            int largestE = 0;
+                            for (int e : ((MultiUpgradeCard) c).getUpgrades(c).get(i).exclusions)
+                                if (e > largestE && e < u.index)
+                                    largestE = e;
+                            if (i == largestE)
+                                cardGraph.addExclusion(v, cardGraph.vertices.get(i));
+                            //cardGraph.addExclusion(v, cardGraph.vertices.get(i+1));
                         }
                     }
 
@@ -422,7 +442,42 @@ public class MultiUpgradePatches {
                         int mod = 0;
                         for (float i = 0; i < length; i += LINE_SPACING) {
                             vec2.clamp(length - i, length - i);
-                            sb.draw(ImageMaster.MAP_DOT_1, (v.card.current_x) + vec2.x - 8.0F, v.card.current_y + vec2.y - 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, 16, 16, false, false);
+                            //sb.draw(ImageMaster.MAP_DOT_1, (v.card.current_x) + vec2.x - 8.0F, v.card.current_y + vec2.y - 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, 16, 16, false, false);
+                            Texture texture = child.strict ? upgradeAndLine : ImageMaster.MAP_DOT_1;
+                            float width = texture.getWidth();
+                            sb.draw(texture, (v.card.current_x) + vec2.x - width / 2, v.card.current_y + vec2.y - width / 2, width / 2, width / 2, width, width, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, (int) width, (int) width, false, false);
+                            //sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
+                            /*if (mod == 0) {
+                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale1[0], Settings.scale * renderScale * ___arrowScale1[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
+                            } else if (mod == 1) {
+                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale2[0], Settings.scale * renderScale * ___arrowScale2[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
+                            } else {
+                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale3[0], Settings.scale * renderScale * ___arrowScale3[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
+                            }
+                            mod++;
+                            mod = mod % 3;*/
+                        }
+                        sb.setColor(Color.WHITE);
+                    }
+
+                    for (CardVertex exclusion : v.exclusions) {
+                        if (hovered != null) {
+                            if (exclusion.card == hovered) {
+                                sb.setColor(Color.RED);
+                            } else {
+                                sb.setColor(new Color(1.0F, 0, 0, 0.25F));
+                            }
+                        }
+
+                        Vector2 vec2 = (new Vector2((exclusion.card.current_x), exclusion.card.current_y)).sub(new Vector2((v.card.current_x), v.card.current_y));
+                        float length = vec2.len();
+                        int mod = 0;
+                        for (float i = 0; i < length; i += LINE_SPACING) {
+                            vec2.clamp(length - i, length - i);
+                            //sb.draw(ImageMaster.MAP_DOT_1, (v.card.current_x) + vec2.x - 8.0F, v.card.current_y + vec2.y - 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, 16, 16, false, false);
+                            Texture texture = exclusionLine;
+                            float width = texture.getWidth();
+                            sb.draw(exclusionLine, (v.card.current_x) + vec2.x - width / 2, v.card.current_y + vec2.y - width / 2, width / 2, width / 2, width, width, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (exclusion.card.current_x), v.card.current_y - exclusion.card.current_y)).nor().angle() + 90.0F, 0, 0, (int) width, (int) width, false, false);
                             //sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
                             /*if (mod == 0) {
                                 sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale1[0], Settings.scale * renderScale * ___arrowScale1[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);

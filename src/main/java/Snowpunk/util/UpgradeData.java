@@ -5,24 +5,28 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import java.util.ArrayList;
 
 public class UpgradeData {
-    public boolean applied = false;
+    public boolean applied = false, strict = true;
     public int index;
     public UpgradeRunnable upgradeRunnable;
-    public ArrayList<Integer> dependencies = new ArrayList<>();
+    public ArrayList<Integer> dependencies = new ArrayList<>(), exclusions = new ArrayList<>();
     public AbstractCard alias;
     public String upgradeName;
     public String upgradeDescription;
 
     public UpgradeData(UpgradeRunnable runnable, int index, int... dependencies) {
-        this(runnable, index, null, dependencies);
+        this(runnable, index, null, dependencies, true, new int[]{});
     }
 
-    public UpgradeData(UpgradeRunnable runnable, int index, AbstractCard alias, int... dependencies) {
+    public UpgradeData(UpgradeRunnable runnable, int index, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
         this.upgradeRunnable = runnable;
         this.index = index;
         this.alias = alias;
+        this.strict = strict;
         for (int i : dependencies) {
             this.dependencies.add(i);
+        }
+        for (int i : exclusions) {
+            this.exclusions.add(i);
         }
     }
 
@@ -40,12 +44,26 @@ public class UpgradeData {
         if (applied) {
             return false;
         }
+
+        boolean dependencyCheck = false, exclusionCheck = true;
+
         for (int i : dependencies) {
-            if (upgrades.size() <= i || !upgrades.get(i).applied) {
+
+            if (strict && (upgrades.size() <= i || !upgrades.get(i).applied))
                 return false;
-            }
+
+            if (upgrades.get(i).applied)
+                dependencyCheck = true;
         }
-        return true;
+        if (dependencies.size() == 0)
+            dependencyCheck = true;
+
+        for (int i : exclusions) {
+            if (upgrades.get(i).applied)
+                return false;
+        }
+
+        return dependencyCheck && exclusionCheck;
     }
 
     public void upgrade() {

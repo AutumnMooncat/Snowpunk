@@ -54,10 +54,6 @@ public class Snowblower extends AbstractMultiUpgradeCard {
             }
             Wiz.applyToSelf(new SnowballPower(p, effect));
 
-            if (effect > 0) {
-                Wiz.applyToSelf(new PressureValvesPower(p, effect));
-            }
-
             if (!this.freeToPlayOnce) {
                 p.energy.use(EnergyPanel.totalCount);
             }
@@ -79,12 +75,12 @@ public class Snowblower extends AbstractMultiUpgradeCard {
             upgradeDamage(DOWN_DMG);
             upgradeInfo(1);
             uDesc();
-        }, "Barrel Diffusion", "-4 Damage NL Deal damage as many times as snowpunk:Snowballs gained");
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW), "Coolant Cell", "+1 snowpunk:Snowball");
+        });
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(this, () -> {
             upgradeBaseCost(-1);
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
             initializeDescription();
-        }, "Flux Coil", "Deal damage X+1 times and gain X+1 snowpunk:Snowballs",0, 1);
+        }, 0, 1);
     }
 }
