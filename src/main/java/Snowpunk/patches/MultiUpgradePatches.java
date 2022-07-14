@@ -202,19 +202,6 @@ public class MultiUpgradePatches {
                         }
                     }
 
-                    if (u.exclusions.size() > 0) {
-                        //only add the line for the exclusions with the largest index that is less than the index of the upgrade with the exclusions
-                        for (int i : u.exclusions) {
-                            int largestE = 0;
-                            for (int e : ((MultiUpgradeCard) c).getUpgrades(c).get(i).exclusions)
-                                if (e > largestE && e < u.index)
-                                    largestE = e;
-                            if (i == largestE)
-                                cardGraph.addExclusion(v, cardGraph.vertices.get(i));
-                            //cardGraph.addExclusion(v, cardGraph.vertices.get(i+1));
-                        }
-                    }
-
                     /*if (u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
                         AbstractCard copy = c.makeStatEquivalentCopy();
                         MultiUpgradeFields.upgradeIndex.set(copy, u.index);
@@ -231,6 +218,22 @@ public class MultiUpgradePatches {
                         }
                     }*/
                 }
+                for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
+                    if (u.exclusions.size() > 0) {
+                        //only add the line for the exclusions with the largest index that is less than the index of the upgrade with the exclusions
+                        for (int i : u.exclusions) {
+                            cardGraph.addExclusion(cardGraph.vertices.get(u.index+1), cardGraph.vertices.get(i+1));
+                            /*int largestE = 0;
+                            for (int e : ((MultiUpgradeCard) c).getUpgrades(c).get(i).exclusions)
+                                if (e > largestE && e < u.index)
+                                    largestE = e;
+                            if (i == largestE)
+                                cardGraph.addExclusion(v, cardGraph.vertices.get(i));*/
+                            //cardGraph.addExclusion(v, cardGraph.vertices.get(i+1));
+                        }
+                    }
+                }
+
                 MultiSelectFields.waitingForUpgradeSelection.set(__instance, true);
 
                 //Set the starting positions for the cards
@@ -328,15 +331,19 @@ public class MultiUpgradePatches {
         }
 
         private static void prepUpgradePreview(AbstractCard card, UpgradeData u) {
+            doUpgrade(card, u);
+            card.displayUpgrades();
+        }
+
+        private static void doUpgrade(AbstractCard card, UpgradeData u) {
             for (int i : u.dependencies) {
                 UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
                 if (!dep.applied) {
-                    prepUpgradePreview(card, dep);
+                    doUpgrade(card, dep);
                 }
             }
             MultiUpgradeFields.upgradeIndex.set(card, u.index);
             card.upgrade();
-            card.displayUpgrades();
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -369,6 +376,8 @@ public class MultiUpgradePatches {
                         }
 
                     });
+
+                    //TODO make upgrades that will be locked glow red
 
                     MultiSelectFields.chosenIndex.set(AbstractDungeon.gridSelectScreen, MultiUpgradeFields.upgradeIndex.get(__instance));
                     MultiSelectFields.waitingForUpgradeSelection.set(AbstractDungeon.gridSelectScreen, false);

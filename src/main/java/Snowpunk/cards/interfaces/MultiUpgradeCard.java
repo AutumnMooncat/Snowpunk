@@ -8,9 +8,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import java.util.ArrayList;
 
 public interface MultiUpgradeCard {
+    enum TreeStyle {
+        DEFAULT_TREE,
+        FORCE_DIRECTED_TREE
+    }
+
     void addUpgrades();
 
     void updateName();
+
+    default TreeStyle getTreeStyle() {
+        return TreeStyle.DEFAULT_TREE;
+    }
 
     default ArrayList<UpgradeData> getUpgrades(AbstractCard card) {
         return MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card);
@@ -60,11 +69,11 @@ public interface MultiUpgradeCard {
 
         //If we can perform the upgrade, do it
         if (i != -1 && upgrades.size() > i && !upgrades.get(i).applied /*&& upgrades.get(i).canUpgrade(upgrades)*/) {
-            upgrades.get(i).upgrade();
+            updateName();
             card.timesUpgraded += (1 << i);
             card.upgraded = true;
-            updateName();
-            card.initializeDescription();
+            upgrades.get(i).upgrade();
+            //card.initializeDescription();
         }
 
         //Default back to the next upgrade
