@@ -80,13 +80,4 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(card, -1);
     }
 
-    default void validateUpgrades(AbstractCard card) throws Exception {
-        for (UpgradeData u : getUpgrades(card)) {
-            for (int i : u.dependencies) {
-                if (i >= u.index) {
-                    throw new Exception("Illegal forward dependency");
-                }
-            }
-        }
-    }
 }

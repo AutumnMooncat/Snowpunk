@@ -145,10 +145,20 @@ public class MultiUpgradePatches {
     @SpirePatch(clz = GridCardSelectScreen.class, method = "update")
     public static class GetMultiUpgrades {
         @SpireInsertPatch(locator = Locator.class)
-        public static void Insert(GridCardSelectScreen __instance) {
+        public static void Insert(GridCardSelectScreen __instance) throws Exception {
             resetScrollState();
             AbstractCard c = BranchingUpgradesPatch.getHoveredCard();
             if (c instanceof MultiUpgradeCard) {
+                for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
+                    for (int i : u.dependencies) {
+                        if (i > u.index) {
+                            throw new Exception("Illegal forward dependency: Upgrade Index "+u.index+" requires Upgrade Index "+i);
+                        }
+                        if (i == u.index) {
+                            throw new Exception("Illegal self dependency: Upgrade Index "+u.index+" requires itself");
+                        }
+                    }
+                }
                 //Prep the cards into the array
                 MultiSelectFields.previewCards.get(__instance).clear();
                 takenList.clear();
