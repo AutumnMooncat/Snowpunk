@@ -41,7 +41,7 @@
   },
   "${ModID}:BrassWave": {
     "NAME": "Brass Wave",
-    "DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1=+1} times."
+    "DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1= + 1} times."
   },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",
@@ -190,7 +190,8 @@
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",
-    "DESCRIPTION": "Deal !D! damage snowpunk:S times."
+    "DESCRIPTION": "{@@}Deal !D! damage snowpunk:S {!Snowpunk:Info!|1=+ 1 }times.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage snowpunk:S {!Snowpunk:Info!|1=+ 1 }times. NL Gain !M! snowpunk:Snowball{!M!|>1=s}."
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",

@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -12,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class SnowballFight extends AbstractEasyCard {
+public class SnowballFight extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SnowballFight.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
@@ -26,12 +27,16 @@ public class SnowballFight extends AbstractEasyCard {
     public SnowballFight() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        info = baseInfo = 0;
         SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0 ; i < getSnow() ; i++) {
+        for (int i = 0 ; i < getSnow()+info ; i++) {
             dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        }
+        if (magicNumber > 0) {
+            Wiz.applyToSelf(new SnowballPower(p, magicNumber));
         }
         if (!this.freeToPlayOnce) {
             Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
@@ -40,5 +45,16 @@ public class SnowballFight extends AbstractEasyCard {
 
     public void upp() {
         upgradeDamage(UP_DMG);
+    }
+
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> upgradeInfo(1));
+        addUpgradeData(this, () -> {
+            baseMagicNumber = magicNumber = 0;
+            upgradeMagicNumber(1);
+            uDesc();
+        });
     }
 }
