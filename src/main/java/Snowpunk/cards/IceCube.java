@@ -2,9 +2,9 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ImmediateExhaustCardAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.IceCubePower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -19,33 +19,30 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
+public class IceCube extends AbstractMultiUpgradeCard implements OnTempChangeCard {
     public final static String ID = makeID(IceCube.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.POWER;
 
-    private static final int COST = -1;
-    private static final int BONUS = 1;
-    private static final int UP_BONUS = 2;
+    private static final int COST = 1;
+    private static final int UP_COST = 0;
+    private static final int ICE = 3;
+    private static final int UP_ICE = 1;
 
     public IceCube() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = BONUS;
-        SCostFieldPatches.SCostField.isSCost.set(this, true);
-        CardTemperatureFields.addInherentHeat(this, -2);
+        baseMagicNumber = magicNumber = ICE;
+        CardTemperatureFields.addInherentHeat(this, -1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new IceCubePower(p, getSnow() + magicNumber));
-        if (!this.freeToPlayOnce) {
-            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
-        }
+        Wiz.applyToSelf(new IceCubePower(p, magicNumber));
     }
 
     public void upp() {
-        upgradeMagicNumber(UP_BONUS);
+        upgradeMagicNumber(UP_ICE);
     }
 
     @Override
@@ -65,5 +62,12 @@ public class IceCube extends AbstractEasyCard implements OnTempChangeCard {
                 }
             }
         }
+    }
+
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_ICE));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }
