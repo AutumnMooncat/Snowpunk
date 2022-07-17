@@ -44,6 +44,11 @@ public class TemperatureMod extends AbstractCardModifier {
     private static ArrayList<TooltipInfo> Tooltip;
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        CardModifierManager.addModifier(card, new PrefixManager());
+    }
+
+    /*@Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         switch (CardTemperatureFields.getCardHeat(card)) {
             case -2:
@@ -68,7 +73,7 @@ public class TemperatureMod extends AbstractCardModifier {
                 return TEXT[1] + rawDescription;
         }
         return rawDescription;
-    }
+    }*/
 /*
     @Override
     public List<TooltipInfo> getCustomTooltips()

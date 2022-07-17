@@ -19,12 +19,13 @@ public class FluxMod extends AbstractCardModifier {
     @Override
     public void onInitialApplication(AbstractCard card) {
         card.tags.add(CustomTags.FLUX);
+        CardModifierManager.addModifier(card, new PrefixManager());
     }
 
-    @Override
+/*    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return TEXT[0] + rawDescription;
-    }
+    }*/
 
     @Override
     public boolean shouldApply(AbstractCard card) {

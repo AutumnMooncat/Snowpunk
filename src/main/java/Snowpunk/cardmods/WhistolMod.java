@@ -22,9 +22,15 @@ public class WhistolMod extends AbstractCardModifier {
     }
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        card.tags.add(CustomTags.GUN);
+        CardModifierManager.addModifier(card, new PrefixManager());
+    }
+
+/*    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return TEXT[0] + rawDescription;
-    }
+    }*/
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {

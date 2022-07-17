@@ -1,6 +1,7 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.CustomTags;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -21,7 +22,12 @@ public class FrostMod extends AbstractCardModifier {
     public static final String ID = makeID(FrostMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public FrostMod() {
+    public FrostMod() {}
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        card.tags.add(CustomTags.FROSTY);
+        CardModifierManager.addModifier(card, new PrefixManager());
     }
 
     @Override

@@ -118,5 +118,17 @@
   },
   "${ModID}:MkMod": {
     "EXTENDED_DESCRIPTION": [" Mk "]
+  },
+  "${ModID}:PrefixManager": {
+    "EXTENDED_DESCRIPTION": [" NL ",
+                            "snowpunk:Fluxed.",
+                            "snowpunk:Frosty.",
+                            "snowpunk:Whistol.",
+                            "snowpunk:Hot.",
+                            "snowpunk:Overheated.",
+                            "snowpunk:Cold.",
+                            "snowpunk:Frozen.",
+                            "snowpunk:Hot & snowpunk:Cold.",
+                            "snowpunk:Overheated & snowpunk:Frozen."]
   }
 }
