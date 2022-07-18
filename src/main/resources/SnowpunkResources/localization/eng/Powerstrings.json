@@ -168,5 +168,12 @@
       "At the start of your turn, gain #b",
       " #ySteam. NL #ySteam no longer exhausts cards."
     ]
+  },
+  "${ModID}:ProtectionPower": {
+    "NAME": "Protected",
+    "DESCRIPTIONS": [
+      "Take half damage from #yAttacks this turn.",
+      "Take half damage from #yAttacks for #b", " turns."
+    ]
   }
 }

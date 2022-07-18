@@ -124,6 +124,11 @@
     "NAME": "Ice Cube",
     "DESCRIPTION": "Gain !M! snowpunk:Ice. NL Exhausts if snowpunk:Heated."
   },
+  "${ModID}:IceWall": {
+    "NAME": "Ice Wall",
+    "DESCRIPTION": "When drawn, receive half damage from Attacks this turn.",
+    "UPGRADE_DESCRIPTION": "When drawn, receive half damage from Attacks this turn and snowpunk:Freeze your snowpunk:Engine."
+  },
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",
     "DESCRIPTION": "Deal !D! damage. NL snowpunk:Cool this card."
