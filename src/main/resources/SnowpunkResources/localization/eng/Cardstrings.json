@@ -238,6 +238,11 @@
     "NAME": "Stronger",
     "DESCRIPTION": "{@@}Gain {!M!|2=double|3=triple} {!Snowpunk:Info!|0=snowpunk:S|1=X} Strength."
   },
+  "${ModID}:TheEmperor": {
+    "NAME": "The Emperor",
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  },
   "${ModID}:ThermalShock": {
     "NAME": "Thermal Shock",
     "DESCRIPTION": "Apply !M! snowpunk:Burn and !Snowpunk:M2! snowpunk:Chill to ALL enemies. NL Exhaust."
