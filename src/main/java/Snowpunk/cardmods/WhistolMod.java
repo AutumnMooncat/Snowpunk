@@ -18,7 +18,7 @@ public class WhistolMod extends AbstractCardModifier {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public WhistolMod() {
-        this.priority = -1;
+        this.priority = -3;
     }
 
     @Override

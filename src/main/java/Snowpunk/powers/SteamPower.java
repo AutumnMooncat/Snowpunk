@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.patches.EvaporatePanelPatches;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,22 +21,24 @@ public class SteamPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && this.amount > 0) {
+        if (!card.purgeOnUse && amount > 0) {
             /*if (!owner.hasPower(SteamFormPower.POWER_ID)) {
                 action.exhaustCard = true;
             }*/
-            this.flash();
-            --this.amount;
+            flash();
+            if (!card.exhaust)
+                EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
+            --amount;
             updateDescription();
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            if (amount == 0) {
+                addToTop(new RemoveSpecificPowerAction(owner, owner, this));
             }
         }
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        this.addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

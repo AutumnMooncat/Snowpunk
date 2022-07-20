@@ -192,6 +192,15 @@
     "DESCRIPTION": "#yCondense a card. NL #yRetain. #yPull a card."
   },
   {
+    "PROPER_NAME": "Evaporate",
+    "NAMES": [
+      "evaporate",
+      "evaporates",
+      "evaporated"
+    ],
+    "DESCRIPTION": "Removed until the end of combat, or until #yCondensed."
+  },
+  {
     "PROPER_NAME": "Condense",
     "NAMES": [
       "condense"
@@ -250,11 +259,18 @@
     "DESCRIPTION": "Gain Block when you use a #ySnowball."
   },
   {
+    "PROPER_NAME": "Stabilize",
+    "NAMES": [
+      "stabilize"
+    ],
+    "DESCRIPTION": "Normal temperature."
+  },
+  {
     "PROPER_NAME": "Steam",
     "NAMES": [
       "steam"
     ],
-    "DESCRIPTION": "The next card you play this turn costs 0."
+    "DESCRIPTION": "The next card you play this turn costs 0 and #yEvaporates."
   },
   {
     "PROPER_NAME": "Holiday Cheer",
@@ -286,7 +302,7 @@
     "NAMES": [
       "frosty"
     ],
-    "DESCRIPTION": "When #yRetained, lower this card's cost by #b1 this combat."
+    "DESCRIPTION": "If this card is in your hand at the end of turn, lower this card's cost by #b1 this combat."
   },
   {
     "PROPER_NAME": "Pull",

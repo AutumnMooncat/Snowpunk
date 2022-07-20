@@ -56,6 +56,10 @@
     "NAME": "Burning Fury",
     "DESCRIPTION": "Add !M! snowpunk:Fireballs NL to your hand."
   },
+  "${ModID}:Caroling": {
+    "NAME": "Caroling",
+    "DESCRIPTION": "{@@}At the start of your turn, increase snowpunk:Holiday\u00a0Cheer by !Snowpunk:M2! and draw {!M!|1=a card.|>1=!M! cards.}"
+  },
   "${ModID}:Cauterize": {
     "NAME": "Cauterize",
     "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
@@ -94,6 +98,11 @@
     "NAME": "Defend",
     "DESCRIPTION": "{@@}Gain !B! Block.{!Snowpunk:Info!|1= NL Block is not removed at the start of your next turn.}"
   },
+  "${ModID}:EngineOffload": {
+    "NAME": "Engine Offload",
+    "DESCRIPTION": "{@@}snowpunk:Stabilize your snowpunk:Engine. snowpunk:Condense ALL snowpunk:Evaporated cards.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, snowpunk:Stabilize your snowpunk:Engine. snowpunk:Condense ALL snowpunk:Evaporated cards."
+  },
   "${ModID}:Faster": {
     "NAME": "Faster",
     "DESCRIPTION": "{@@}Draw X cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
@@ -106,6 +115,11 @@
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
     "DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite twice.",
+    "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
+  },
+  "${ModID}:Gift": {
+    "NAME": "Gift",
+    "DESCRIPTION": "{@@}Increase snowpunk:Holiday\u00a0Cheer by !M!. Choose 1 of 3 random cards to add to your hand.{!Snowpunk:Info!|0= Exhaust.|2= It costs 0 this turn. Exhaust.}",
     "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
   },
   "${ModID}:Harder": {
@@ -150,18 +164,22 @@
     "NAME": "Overblown",
     "DESCRIPTION": "snowpunk:Ventilation. NL Deal !D! damage."
   },
+  "${ModID}:PiercingRound": {
+    "NAME": "Piercing Round",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
     "DESCRIPTION": "Card effects act as if you have !M! more snowpunk:Snowballs.",
     "UPGRADE_DESCRIPTION": "Card effects act as if you have X more snowpunk:Snowballs."
   },
+  "${ModID}:PressurisedBlast": {
+    "NAME": "Pressurised Blast",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
-  },
-  "${ModID}:PiercingRound": {
-    "NAME": "Piercing Round",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
@@ -228,7 +246,7 @@
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "{@@}Deal !D! damage twice. Gain !M! snowpunk:Steam.{!Snowpunk:Info!|0= NL snowpunk:Evaporate.}"
   },
   "${ModID}:SteamForm": {
     "NAME": "Steam Form",

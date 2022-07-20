@@ -20,6 +20,27 @@
       "An accumulating resource that can be converted to #yEnergy."
     ]
   },
+  "${ModID}:CarolingPower": {
+    "NAME": "Caroling",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b",
+      " #yHoliday #yCheer."
+    ]
+  },
+  "${ModID}:EngineOffloadPower": {
+    "NAME": "Engine Offload",
+    "DESCRIPTIONS": [
+      "At the start of your turn, Stabilize your #yEngine and #yCondense ALL #yEvaporated cards."
+    ]
+  },
+  "${ModID}:PageTurnPower": {
+    "NAME": "Page Turn",
+    "DESCRIPTIONS": [
+      "At the end of your turn, #yPull #b",
+      " card and #yRetain it.",
+      " cards and #yRetain them."
+    ]
+  },
   "${ModID}:SnowballChillPower": {
     "NAME": "Snowball Chill",
     "DESCRIPTIONS": [

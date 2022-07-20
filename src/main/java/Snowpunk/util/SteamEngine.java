@@ -82,6 +82,10 @@ public class SteamEngine {
         }
     }
 
+    public static int getHeat() {
+        return heat;
+    }
+
     public static void stabilize() {
         if (Math.abs(heat - stabilityPoint) <= STABILITY_FACTOR) {
             heat = stabilityPoint;

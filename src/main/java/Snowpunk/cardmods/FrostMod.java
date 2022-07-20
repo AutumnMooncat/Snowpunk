@@ -10,6 +10,7 @@ import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
@@ -43,9 +44,15 @@ public class FrostMod extends AbstractCardModifier {
     }*/
 
     @Override
+    public void atEndOfTurn(AbstractCard card, CardGroup group) {
+        if (group == Wiz.adp().hand)
+            Wiz.atb(new ReduceCostAction(card));
+    }
+/*
+    @Override
     public void onRetained(AbstractCard card) {
         Wiz.atb(new ReduceCostAction(card));
-    }
+    }*/
 
     @Override
     public String identifier(AbstractCard card) {
