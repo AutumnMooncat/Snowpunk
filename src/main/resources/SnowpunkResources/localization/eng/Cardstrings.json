@@ -105,8 +105,7 @@
   },
   "${ModID}:Faster": {
     "NAME": "Faster",
-    "DESCRIPTION": "{@@}Draw X cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
-    "UPGRADE_DESCRIPTION": "{@@}Draw X + 1 cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
+    "DESCRIPTION": "{@@}Draw X {!Snowpunk:M2!|>0=+ !Snowpunk:M2! }cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
   },
   "${ModID}:Fireball": {
     "NAME": "Fireball",
