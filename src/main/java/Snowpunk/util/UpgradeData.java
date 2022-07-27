@@ -13,8 +13,16 @@ public class UpgradeData {
     public String upgradeName;
     public String upgradeDescription;
 
-    public UpgradeData(UpgradeRunnable runnable, int index, int... dependencies) {
+    public UpgradeData(UpgradeRunnable runnable, int index, int[] dependencies) {
         this(runnable, index, null, dependencies, true, new int[]{});
+    }
+
+    public UpgradeData(UpgradeRunnable runnable, int index, boolean strict, int[] dependencies) {
+        this(runnable, index, null, dependencies, strict, new int[]{});
+    }
+
+    public UpgradeData(UpgradeRunnable runnable, int index, boolean strict, int[] dependencies, int[] exclusions) {
+        this(runnable, index, null, dependencies, strict, exclusions);
     }
 
     public UpgradeData(UpgradeRunnable runnable, int index, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
