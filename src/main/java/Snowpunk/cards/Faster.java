@@ -56,11 +56,6 @@ public class Faster extends AbstractMultiUpgradeCard {
         }
     }
 
-    public void upp() {
-        upgradeMagicNumber(UP_NRG);
-        uDesc();
-    }
-
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeSecondMagic(UP_DRAW));
