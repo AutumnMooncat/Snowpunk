@@ -36,7 +36,7 @@ public class Caroling extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeSecondMagic(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeMagicNumber(1), null, new int[]{}, true, new int[]{2});
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), null, new int[]{}, true, new int[]{1});
+        addUpgradeData(this, () -> upgradeMagicNumber(1), new int[]{}, new int[]{2});
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
     }
 }

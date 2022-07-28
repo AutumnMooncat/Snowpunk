@@ -37,8 +37,8 @@ public class Gift extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> upgrade2(), null, new int[]{}, true, new int[]{2});
-        addUpgradeData(this, () -> upgradeInfo(2), null, new int[]{}, true, new int[]{1});
+        addUpgradeData(this, () -> upgrade2(), new int[]{}, new int[]{2});
+        addUpgradeData(this, () -> upgradeInfo(2), new int[]{}, new int[]{1});
     }
 
     private void upgrade2() {
