@@ -111,7 +111,7 @@
     "EXTENDED_DESCRIPTION": ["snowpunk:Fluxed. NL "]
   },
   "${ModID}:VentMod": {
-    "EXTENDED_DESCRIPTION": ["snowpunk:Ventilated. NL "]
+    "EXTENDED_DESCRIPTION": [" NL snowpunk:Ventilated."]
   },
   "${ModID}:WhistolMod": {
     "EXTENDED_DESCRIPTION": ["snowpunk:Whistol. NL "]
