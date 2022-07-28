@@ -71,7 +71,12 @@ public interface MultiUpgradeCard {
         if (i == -1) {
             ArrayList<UpgradeData> validUpgrades = upgrades.stream().filter(u -> !u.applied && u.canUpgrade(upgrades)).collect(Collectors.toCollection(ArrayList::new));
             if (!validUpgrades.isEmpty()) {
-                i = validUpgrades.get(AbstractDungeon.cardRandomRng.random(validUpgrades.size()-1)).index;
+                if (AbstractDungeon.cardRandomRng == null || AbstractDungeon.player == null) {
+                    i = validUpgrades.get(0).index;
+                } else {
+                    i = validUpgrades.get(AbstractDungeon.cardRandomRng.random(validUpgrades.size()-1)).index;
+                }
+
             }
         }
 
