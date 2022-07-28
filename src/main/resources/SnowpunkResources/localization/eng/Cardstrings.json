@@ -123,7 +123,8 @@
   },
   "${ModID}:Harder": {
     "NAME": "Harder",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! snowpunk:Ice."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL If this kills an enemy, receive half damage from Attacks this turn."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
