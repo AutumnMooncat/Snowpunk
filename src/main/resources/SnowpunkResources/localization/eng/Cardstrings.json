@@ -11,7 +11,8 @@
   },
   "${ModID}:ArtilleryCargo": {
     "NAME": "Artillery Cargo",
-    "DESCRIPTION": "Deal !D! damage to a random enemy."
+    "DESCRIPTION": "Deal !D! damage to a random enemy.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:Avalanche": {
     "NAME": "Avalanche",
