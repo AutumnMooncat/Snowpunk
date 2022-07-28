@@ -45,7 +45,7 @@
       "fireball",
       "fireballs"
     ],
-    "DESCRIPTION": "Frostbitten creatures take damage when you use #ySnowballs"
+    "DESCRIPTION": "A #yToken Attack that applies Burn."
   },
   {
     "PROPER_NAME": "Frostbite",
@@ -53,7 +53,7 @@
       "frostbite",
       "frostbitten"
     ],
-    "DESCRIPTION": "Frostbitten creatures take damage when you use #ySnowballs"
+    "DESCRIPTION": "Frostbitten creatures take double damage."
   },
   {
     "PROPER_NAME": "Whistol",
@@ -93,7 +93,7 @@
       "chill",
       "chilled"
     ],
-    "DESCRIPTION": "Chilled creates deal less damage when attacking."
+    "DESCRIPTION": "Chilled creatures deal less damage this turn."
   },
   {
     "PROPER_NAME": "Tinker",
