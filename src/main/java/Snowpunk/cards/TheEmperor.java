@@ -22,11 +22,12 @@ public class TheEmperor extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
+    private static final int COST = 3;
+    private static final int UP_COST = 2;
     private static final int DMG = 5;
     private static final int UP_DMG = 1;
-    private static final int HITS = 4;
-    private static final int UP_HITS = 2;
+    private static final int HITS = 5;
+    private static final int UP_HITS = 1;
 
     public TheEmperor() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -45,19 +46,18 @@ public class TheEmperor extends AbstractMultiUpgradeCard {
         }
     }
 
+    //TODO non strict upgrades don't render well
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> {
-            upgradeBaseCost(this.cost + 1); // Hacky but it works for now
             upgradeDamage(UP_DMG);
             upgradeMagicNumber(UP_HITS);
-        });
+        }, true, new int[]{}, new int[]{1});
         addUpgradeData(this, () -> {
-            upgradeBaseCost(this.cost + 1); // Hacky but it works for now
             this.isMultiDamage = true;
             this.target = CardTarget.ALL_ENEMY;
             uDesc();
-        });
-        addUpgradeData(this, () -> upgradeBaseCost(this.cost - 1), 0, 1); // Still hacky
+        }, true, new int[]{}, new int[]{0});
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), false, 0, 1);
     }
 }

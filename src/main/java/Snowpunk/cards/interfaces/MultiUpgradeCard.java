@@ -4,8 +4,10 @@ import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.UpgradeData;
 import Snowpunk.util.UpgradeRunnable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public interface MultiUpgradeCard {
     enum TreeStyle {
@@ -44,6 +46,14 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
     }
 
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, boolean strict, int... dependencies) {
+        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies));
+    }
+
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, boolean strict, int[] dependencies, int[] exclusions) {
+        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies, exclusions));
+    }
+
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies, strict, exclusions));
     }
@@ -57,13 +67,11 @@ public interface MultiUpgradeCard {
         ArrayList<UpgradeData> upgrades = getUpgrades(card);
         //Get the next upgrade index
         int i = MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.get(card);
-        //If it is -1, then this means grab the next available upgrade
+        //If it is -1, then this means grab a random available upgrade
         if (i == -1) {
-            for (UpgradeData d : upgrades) {
-                if (!d.applied && d.canUpgrade(upgrades)) {
-                    i = (upgrades.indexOf(d));
-                    break;
-                }
+            ArrayList<UpgradeData> validUpgrades = upgrades.stream().filter(u -> !u.applied && u.canUpgrade(upgrades)).collect(Collectors.toCollection(ArrayList::new));
+            if (!validUpgrades.isEmpty()) {
+                i = validUpgrades.get(AbstractDungeon.cardRandomRng.random(validUpgrades.size()-1)).index;
             }
         }
 
@@ -76,7 +84,7 @@ public interface MultiUpgradeCard {
             //card.initializeDescription();
         }
 
-        //Default back to the next upgrade
+        //Default back to a random upgrade
         MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(card, -1);
     }
 

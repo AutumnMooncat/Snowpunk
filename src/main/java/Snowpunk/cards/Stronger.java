@@ -30,8 +30,11 @@ public class Stronger extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int snow = getSnow();
-        if (snow > 0)
-            Wiz.applyToSelf(new StrengthPower(p, snow * magicNumber));
+        if (snow > 0) {
+            for (int i = 0 ; i < magicNumber ; i++) {
+                Wiz.applyToSelf(new StrengthPower(p, snow));
+            }
+        }
     }
 
     @Override

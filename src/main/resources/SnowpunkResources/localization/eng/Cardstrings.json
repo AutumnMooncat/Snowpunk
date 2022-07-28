@@ -105,8 +105,7 @@
   },
   "${ModID}:Faster": {
     "NAME": "Faster",
-    "DESCRIPTION": "{@@}Draw X cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
-    "UPGRADE_DESCRIPTION": "{@@}Draw X + 1 cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
+    "DESCRIPTION": "{@@}Draw X {!Snowpunk:M2!|>0=+ !Snowpunk:M2! }cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
   },
   "${ModID}:Fireball": {
     "NAME": "Fireball",
@@ -124,7 +123,8 @@
   },
   "${ModID}:Harder": {
     "NAME": "Harder",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! snowpunk:Ice."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL If this kills an enemy, receive half damage from Attacks this turn."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
@@ -260,7 +260,7 @@
   },
   "${ModID}:Stronger": {
     "NAME": "Stronger",
-    "DESCRIPTION": "{@@}Gain {!M!|2=double|3=triple} {!Snowpunk:Info!|0=snowpunk:S|1=X} Strength."
+    "DESCRIPTION": "{@@}Gain {!Snowpunk:Info!|0=snowpunk:S|1=X} Strength !M! times."
   },
   "${ModID}:TheEmperor": {
     "NAME": "The Emperor",
