@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CustomTags;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -22,7 +24,7 @@ public class WaterTank extends AbstractEasyCard implements MultiTempEffectCard {
     public WaterTank() {
         super(ID, COST, TYPE, RARITY, TARGET);
         info = baseInfo = MULTI;
-        tags.add(CustomTags.VENT);
+        CardModifierManager.addModifier(this, new VentMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {}

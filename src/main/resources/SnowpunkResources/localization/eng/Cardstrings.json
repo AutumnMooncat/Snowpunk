@@ -164,7 +164,7 @@
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
-    "DESCRIPTION": "snowpunk:Ventilation. NL Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
@@ -287,7 +287,7 @@
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
-    "DESCRIPTION": "snowpunk:Ventilation. NL Temperature effects from this card are !Snowpunk:Info! times stronger."
+    "DESCRIPTION": "Temperature effects from this card are !Snowpunk:Info! times stronger."
   },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",

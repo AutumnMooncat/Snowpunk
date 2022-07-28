@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.VentMod;
 import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CustomTags;
@@ -25,7 +26,7 @@ public class Overblown extends AbstractEasyCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         CardModifierManager.addModifier(this, new WhistolMod());
-        tags.add(CustomTags.VENT);
+        CardModifierManager.addModifier(this, new VentMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
