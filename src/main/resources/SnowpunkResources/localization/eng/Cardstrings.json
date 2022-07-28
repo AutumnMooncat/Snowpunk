@@ -79,8 +79,8 @@
   },
   "${ModID}:ColdWind": {
     "NAME": "Cold Wind",
-    "DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and Weak}. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and Weak} to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and !Snowpunk:M2! Weak}.",
+    "UPGRADE_DESCRIPTION": "{@@}Apply !M! snowpunk:Chill{!Snowpunk:Info!|1= and !Snowpunk:M2! Weak} to ALL enemies."
   },
   "${ModID}:ColdSnap": {
     "NAME": "Cold Snap",
@@ -114,8 +114,8 @@
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite twice.",
-    "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
+    "DESCRIPTION": "Apply !M! snowpunk:Frostbite.",
+    "UPGRADE_DESCRIPTION": "Apply !M! snowpunk:Frostbite to ALL enemies."
   },
   "${ModID}:Gift": {
     "NAME": "Gift",
@@ -146,7 +146,8 @@
   },
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",
-    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Cool this card."
+    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Cool this card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL snowpunk:Cool this card."
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
@@ -174,8 +175,8 @@
     "DESCRIPTION": "Card effects act as if you have !M! more snowpunk:Snowballs.",
     "UPGRADE_DESCRIPTION": "Card effects act as if you have X more snowpunk:Snowballs."
   },
-  "${ModID}:PressurisedBlast": {
-    "NAME": "Pressurised Blast",
+  "${ModID}:PressurizedBlast": {
+    "NAME": "Pressurized Blast",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
   "${ModID}:Refrigerate": {
@@ -235,7 +236,7 @@
   },
   "${ModID}:SnowFort": {
     "NAME": "Snow Fort",
-    "DESCRIPTION": "Gain !B! Block snowpunk:S times."
+    "DESCRIPTION": "Gain !B! Block. NL Next turn, gain !M! snowpunk:Snowballs."
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",

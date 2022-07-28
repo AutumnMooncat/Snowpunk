@@ -2,6 +2,7 @@ package Snowpunk.powers;
 
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,7 +26,7 @@ public class ChillPower extends AbstractEasyPower {
 
     @Override
     public void atEndOfRound() {
-        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
+        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

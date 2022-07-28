@@ -107,7 +107,7 @@
     "NAME": "Chill",
     "DESCRIPTIONS": [
       "Decreases attack damage by #b",
-      "."
+      ". Removed at the end of the turn."
     ]
   },
   "${ModID}:ChristmasCookiePower": {
@@ -127,7 +127,11 @@
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
-    "DESCRIPTIONS": ["Takes #b"," damage when you use a #ySnowball"]
+    "DESCRIPTIONS": [
+      "Take double damage from attacks for #b",
+      " turn.",
+      " turns."
+    ]
   },
   "${ModID}:WinterStormPower": {
     "NAME": "Winter Storm",

@@ -22,10 +22,11 @@ public class BlackIce extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1;
+    private static final int COST = -1, BONUS = 1;
 
     public BlackIce() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = 0;
         exhaust = true;
         SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
