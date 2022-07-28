@@ -223,7 +223,7 @@
     "DESCRIPTION": "Deal !D! damage. NL Gain !M! snowpunk:Snowballs.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Gain !M! snowpunk:Snowballs.",
     "EXTENDED_DESCRIPTION": [
-      "Deal !D! damage X + 1 times. NL Gain X + 1 snowpunk:Snowballs."
+      "Deal !D! damage X + !M! times. NL Gain X + !M! snowpunk:Snowballs."
     ]
   },
   "${ModID}:Snowbowl": {

@@ -28,6 +28,7 @@ public class Snowblower extends AbstractMultiUpgradeCard {
     private static final int DOWN_DMG = -4;
     private static final int SNOW = 2;
     private static final int UP_SNOW = 1;
+    private static final int DOWN_SNOW = -2;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -47,7 +48,7 @@ public class Snowblower extends AbstractMultiUpgradeCard {
                 p.getRelic("Chemical X").flash();
             }
 
-            effect++;
+            effect += magicNumber;
 
             for (int i = 0 ; i < effect ; i++) {
                 dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
@@ -79,6 +80,7 @@ public class Snowblower extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(this, () -> {
             upgradeBaseCost(-1);
+            upgradeMagicNumber(DOWN_SNOW);
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
             initializeDescription();
         }, 0, 1);
