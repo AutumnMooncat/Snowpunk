@@ -34,7 +34,8 @@
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Weak."
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
@@ -168,7 +169,8 @@
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies.",
+    "UPGRADE_DESCRIPTION": "Remove all Block from and deal !D! damage to ALL enemies."
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
