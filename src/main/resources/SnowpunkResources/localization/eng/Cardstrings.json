@@ -25,8 +25,8 @@
   },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",
-    "DESCRIPTION": "Apply snowpunk:S Weak and Vulnerable to ALL enemies. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply snowpunk:S snowpunk:Frostbite, Weak, and Vulnerable to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "{@@}Apply snowpunk:S{!M!|>0= + !M!} snowpunk:Chill, snowpunk:S{!M!|>0= + !M!} Weak, and snowpunk:S{!M!|>0= + !M!} Vulnerable.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "{@@}Apply snowpunk:S{!M!|>0= + !M!} snowpunk:Chill, snowpunk:S{!M!|>0= + !M!} Weak, and snowpunk:S{!M!|>0= + !M!} Vulnerable to ALL enemies.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:BlastingCap": {
     "NAME": "",
@@ -207,7 +207,8 @@
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",
-    "DESCRIPTION": "Deal !D! × snowpunk:S damage to ALL enemies."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block for each enemy hit. NL Deal !D! damage to ALL enemies."
   },
   "${ModID}:Snowball": {
     "NAME": "Snowball",

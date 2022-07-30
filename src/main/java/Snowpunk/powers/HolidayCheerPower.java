@@ -8,8 +8,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -36,6 +41,15 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
         super(POWER_ID, strings.NAME, NeutralPowertypePatch.NEUTRAL, false, owner, amount);
     }
 
+
+    @Override
+    public void atStartOfTurn() {
+        if (owner != adp() && owner.currentHealth <= amount) {
+            flash();
+            escapeNext((AbstractMonster) owner);
+        }
+    }
+    /*
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer) {
@@ -46,14 +60,15 @@ public class HolidayCheerPower extends AbstractEasyPower implements HealthBarRen
                 }
             }
         }
-    }
+    }*/
 
     private void escapeNext(AbstractMonster monster) {
         Random random = new Random();
         int speech = 1 + random.nextInt(strings.DESCRIPTIONS.length - 2);
         if (!monster.cannotEscape && !monster.escapeNext) {
             monster.escapeNext = true;
-            AbstractDungeon.effectList.add(0, new SpeechBubble(monster.dialogX, monster.dialogY, 3.0F, strings.DESCRIPTIONS[speech], false));
+            Wiz.atb(new TalkAction(monster, strings.DESCRIPTIONS[speech]));
+            //AbstractDungeon.effectList.add(0, new SpeechBubble(monster.dialogX, monster.dialogY, 3.0F, strings.DESCRIPTIONS[speech], false));
             Wiz.atb(new EscapeAction(monster));
             Wiz.atb(new SetMoveAction(monster, (byte) 3, AbstractMonster.Intent.ESCAPE));
             Wiz.atb(new ChangeChristmasSpiritAction(1));

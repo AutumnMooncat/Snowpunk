@@ -25,6 +25,8 @@ public class ChangeChristmasSpiritAction extends AbstractGameAction {
         if (!adp().hasRelic(ChristmasSpirit.ID)) {
             adp().relics.add(new ChristmasSpirit());
             adp().reorganizeRelics();
+            ChristmasSpirit christmasSpirit = (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
+            christmasSpirit.onEquip();
         }
         return (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
     }
