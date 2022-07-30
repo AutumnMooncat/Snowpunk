@@ -1,6 +1,7 @@
 package Snowpunk.patches;
 
 import Snowpunk.SnowpunkMod;
+import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.shaders.Grayscale;
 import Snowpunk.shaders.Greenify;
@@ -175,33 +176,28 @@ public class MultiUpgradePatches {
                         copy = c.makeStatEquivalentCopy();
                     }
                     prepUpgradePreview(copy, u);
-                    if (u.upgradeName != null && !u.upgradeName.isEmpty()) {
-                        copy.name = u.upgradeName;
-                        ReflectionHacks.privateMethod(AbstractCard.class, "initializeTitle").invoke(copy);
-                    }
-                    if (u.upgradeDescription != null && !u.upgradeDescription.isEmpty()) {
-                        copy.rawDescription = u.upgradeDescription;
-                        copy.initializeDescription();
-                    }
-                    /*MultiUpgradeFields.upgradeIndex.set(copy, u.index);
-                    copy.upgrade();
-                    copy.displayUpgrades();*/
+
                     MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed, so we need to set it again
+
+                    AbstractCard node = copy;
                     if (u.alias != null) {
                         AbstractCard alias = u.alias.makeStatEquivalentCopy();
+                        if (alias instanceof UpgradeAlias) {
+                            ((UpgradeAlias) alias).registerUpgradeData(u);
+                        }
                         MultiUpgradeFields.upgradeIndex.set(alias, u.index);
                         alias.cardsToPreview = copy;
-                        MultiSelectFields.previewCards.get(__instance).add(alias);
-                    } else {
-                        MultiSelectFields.previewCards.get(__instance).add(copy);
+                        node = alias;
                     }
 
+                    MultiSelectFields.previewCards.get(__instance).add(node);
+
                     if (u.applied) {
-                        takenList.add(copy);
+                        takenList.add(node);
                     } else if (!u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
-                        lockedList.add(copy);
+                        lockedList.add(node);
                     }
-                    CardVertex v = new CardVertex(copy, u.index, u.strict);
+                    CardVertex v = new CardVertex(node, u.index, u.strict);
                     cardGraph.addVertex(v);
                     if (u.dependencies.isEmpty()) {
                         cardGraph.addDependence(v, root);
@@ -212,21 +208,6 @@ public class MultiUpgradePatches {
                         }
                     }
 
-                    /*if (u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
-                        AbstractCard copy = c.makeStatEquivalentCopy();
-                        MultiUpgradeFields.upgradeIndex.set(copy, u.index);
-                        copy.upgrade();
-                        copy.displayUpgrades();
-                        MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed
-                        if (u.alias != null) {
-                            AbstractCard alias = u.alias.makeStatEquivalentCopy();
-                            MultiUpgradeFields.upgradeIndex.set(alias, u.index);
-                            alias.cardsToPreview = copy;
-                            MultiSelectFields.previewCards.get(__instance).add(alias);
-                        } else {
-                            MultiSelectFields.previewCards.get(__instance).add(copy);
-                        }
-                    }*/
                 }
                 for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
                     if (u.exclusions.size() > 0) {
@@ -246,24 +227,6 @@ public class MultiUpgradePatches {
 
                 MultiSelectFields.waitingForUpgradeSelection.set(__instance, true);
 
-                //Set the starting positions for the cards
-                /*c.current_x = (float)Settings.WIDTH * 0.5F;
-                c.current_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale;
-                int lineNum = 0;
-                int count = 0;
-                for (AbstractCard card : MultiSelectFields.previewCards.get(__instance)) {
-                    int cardsThisRow = Math.min(5, MultiSelectFields.previewCards.get(__instance).size() - (5 * lineNum));
-                    int startX = (int) (Settings.WIDTH / 2.0F - (cardsThisRow - 1) * 150F * Settings.scale);
-                    card.current_x = startX + 300F * Settings.scale * count;
-                    card.current_y = Settings.HEIGHT / 4.0F - (420.0F * lineNum * Settings.scale);
-                    count++;
-
-                    if (count == 5) {
-                        count = 0;
-                        lineNum++;
-                    }
-                }*/
-
                 c.current_x = (float)Settings.WIDTH * 1/3F;
                 c.current_y = (float)Settings.HEIGHT / 2F;
 
@@ -276,15 +239,6 @@ public class MultiUpgradePatches {
                         v.card.current_x = Settings.WIDTH * 2/3F + (v.x * X_PAD);
                     }
                 }
-
-                /*//Balance all cards in the Y direction around their respective parents
-                for (CardVertex v : cardGraph.vertices) {
-                    int yIndex = v.children.size() - 1;
-                    for (CardVertex dependent : v.children) {
-                        dependent.move(dependent.x, v.y + yIndex);
-                        yIndex -= 2;
-                    }
-                }*/
 
                 for (int i = 0 ; i <= cardGraph.depth() ; i++) {
                     int finalI = i;
@@ -346,10 +300,12 @@ public class MultiUpgradePatches {
         }
 
         private static void doUpgrade(AbstractCard card, UpgradeData u) {
-            for (int i : u.dependencies) {
-                UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
-                if (!dep.applied) {
-                    doUpgrade(card, dep);
+            if (u.alias == null) {
+                for (int i : u.dependencies) {
+                    UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
+                    if (!dep.applied) {
+                        doUpgrade(card, dep);
+                    }
                 }
             }
             MultiUpgradeFields.upgradeIndex.set(card, u.index);

@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.random.Random;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class AssembledCardArtRoller {
     private static HashMap<String, TextureAtlas.AtlasRegion> doneCards = new HashMap<>();
@@ -28,7 +29,7 @@ public class AssembledCardArtRoller {
             ReskinInfo r = infos.computeIfAbsent(key, key2 -> {
                 Random rng = new Random((long) getDynamicKey(c).hashCode());
                 ArrayList<AbstractCard> cardsList = Wiz.getCardsMatchingPredicate(s -> s.type == c.type && WhatMod.findModName(s.getClass()) == null, true);
-                String q = Wiz.getRandomItem(cardsList, rng).cardID;
+                String q = Objects.requireNonNull(Wiz.getRandomItem(cardsList, rng)).cardID;
                 return new ReskinInfo(q, rng.random(0.35f, 0.65f), rng.random(0.35f, 0.65f), rng.random(0.35f, 0.65f), rng.random(0.35f, 0.65f), rng.randomBoolean());
             });
             Color HSLC = new Color(r.H, r.S, r.L, r.C);

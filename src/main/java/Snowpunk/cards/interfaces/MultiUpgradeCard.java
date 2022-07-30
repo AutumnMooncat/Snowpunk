@@ -1,5 +1,6 @@
 package Snowpunk.cards.interfaces;
 
+import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.UpgradeData;
 import Snowpunk.util.UpgradeRunnable;
@@ -58,12 +59,8 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies, exclusions));
     }
 
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, boolean strict, int[] dependencies, int[] exclusions) {
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, UpgradeAlias alias, boolean strict, int[] dependencies, int[] exclusions) {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies, strict, exclusions));
-    }
-
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, String name, String description, int... dependencies) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), name, description, dependencies));
     }
 
     default void processUpgrade(AbstractCard card) {

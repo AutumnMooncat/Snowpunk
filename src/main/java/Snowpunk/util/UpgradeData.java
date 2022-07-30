@@ -1,17 +1,17 @@
 package Snowpunk.util;
 
+import Snowpunk.cards.helpers.UpgradeAlias;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import java.util.ArrayList;
 
 public class UpgradeData {
-    public boolean applied = false, strict = true;
+    public boolean applied = false;
+    public boolean strict;
     public int index;
     public UpgradeRunnable upgradeRunnable;
     public ArrayList<Integer> dependencies = new ArrayList<>(), exclusions = new ArrayList<>();
-    public AbstractCard alias;
-    public String upgradeName;
-    public String upgradeDescription;
+    public UpgradeAlias alias;
 
     public UpgradeData(UpgradeRunnable runnable, int index, int[] dependencies) {
         this(runnable, index, null, dependencies, true, new int[]{});
@@ -25,7 +25,7 @@ public class UpgradeData {
         this(runnable, index, null, dependencies, strict, exclusions);
     }
 
-    public UpgradeData(UpgradeRunnable runnable, int index, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
+    public UpgradeData(UpgradeRunnable runnable, int index, UpgradeAlias alias, int[] dependencies, boolean strict, int[] exclusions) {
         this.upgradeRunnable = runnable;
         this.index = index;
         this.alias = alias;
@@ -38,22 +38,12 @@ public class UpgradeData {
         }
     }
 
-    public UpgradeData(UpgradeRunnable runnable, int index, String name, String description, int... dependencies) {
-        this.upgradeRunnable = runnable;
-        this.index = index;
-        this.upgradeName = name;
-        this.upgradeDescription = description;
-        for (int i : dependencies) {
-            this.dependencies.add(i);
-        }
-    }
-
     public boolean canUpgrade(ArrayList<UpgradeData> upgrades) {
         if (applied) {
             return false;
         }
 
-        boolean dependencyCheck = false, exclusionCheck = true;
+        boolean dependencyCheck = false;
 
         for (int i : dependencies) {
 
@@ -71,7 +61,7 @@ public class UpgradeData {
                 return false;
         }
 
-        return dependencyCheck && exclusionCheck;
+        return dependencyCheck;
     }
 
     public void upgrade() {
