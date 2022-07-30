@@ -51,7 +51,7 @@
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
-    "DESCRIPTION": "snowpunk:Heat a card in your hand."
+    "DESCRIPTION": "{@@}snowpunk:Heat !M! card{!M!|>1=s} in your hand."
   },
   "${ModID}:BurningFury": {
     "NAME": "Burning Fury",
@@ -181,7 +181,8 @@
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card."
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card. NL When Retained, increase its Block by !M! this combat."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
