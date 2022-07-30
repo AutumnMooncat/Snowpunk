@@ -1,16 +1,19 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class RollUp extends AbstractEasyCard {
+public class RollUp extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(RollUp.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
@@ -20,6 +23,7 @@ public class RollUp extends AbstractEasyCard {
     private static final int COST = 1;
     private static final int UP_COST = 0;
     private static final int SNOW = 2;
+    private static final int UP_SNOW = 1;
 
     public RollUp() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -30,7 +34,10 @@ public class RollUp extends AbstractEasyCard {
         Wiz.applyToSelf(new NextTurnPowerPower(p, new SnowballPower(p, magicNumber)));
     }
 
-    public void upp() {
-        upgradeBaseCost(UP_COST);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
+        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ReshuffleMod()));
     }
 }

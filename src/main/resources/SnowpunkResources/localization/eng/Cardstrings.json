@@ -161,7 +161,8 @@
   },
   "${ModID}:NutCracker": {
     "NAME": "Nut Cracker",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+    "DESCRIPTION": "{@@}Deal !D! damage{!Snowpunk:M2!|>1= !Snowpunk:M2! times}. NL Apply !M! Weak.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage{!Snowpunk:M2!|>1= !Snowpunk:M2! times}. NL Apply !M! Weak. NL Apply !M! Vulnerable."
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
