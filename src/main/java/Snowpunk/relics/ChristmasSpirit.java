@@ -8,6 +8,7 @@ import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,6 +27,24 @@ public class ChristmasSpirit extends AbstractEasyRelic {
     public ChristmasSpirit() {
         super(ID, RelicTier.SPECIAL, LandingSound.FLAT, TheConductor.Enums.SNOWY_BLUE_COLOR);
         counter = 0;
+    }
+
+
+    @Override
+    public void onEquip() {
+        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+            AbstractMonster m = AbstractDungeon.getMonsters().monsters.get(i);
+            if (m.isDead) {
+                if (m.currentHealth == 0) {
+                    flash();
+                    if (counter < 0)
+                        counter = 0;
+                    killThisCombat = true;
+                    grayscale = true;
+                    Wiz.atb(new ChangeChristmasSpiritAction(-1));
+                }
+            }
+        }
     }
 
     @Override
@@ -47,7 +66,7 @@ public class ChristmasSpirit extends AbstractEasyRelic {
                 counter = 0;
             killThisCombat = true;
             grayscale = true;
-            Wiz.atb(new ChangeChristmasSpiritAction(-1));
+            Wiz.att(new ChangeChristmasSpiritAction(-1));
             Wiz.atb(new RelicAboveCreatureAction(m, this));
         }
     }
@@ -66,6 +85,7 @@ public class ChristmasSpirit extends AbstractEasyRelic {
     public void onVictory() {
         if (!killThisCombat) {
             flash();
+            CardCrawlGame.sound.play("GOLD_GAIN");
             Wiz.atb(new RelicAboveCreatureAction(adp(), this));
             adp().heal(counter + getBonusHealing());
             adp().gainGold(counter);
@@ -119,10 +139,12 @@ public class ChristmasSpirit extends AbstractEasyRelic {
                 atb(new ApplyPowerAction(adp(), adp(), new HolidayCheerPower(adp(), currentCheer)));
 
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-                if (monster.hasPower(HolidayCheerPower.POWER_ID))
-                    monster.getPower(HolidayCheerPower.POWER_ID).amount = currentCheer;
-                else
-                    atb(new ApplyPowerAction(monster, monster, new HolidayCheerPower(monster, currentCheer)));
+                if (!monster.escaped && !monster.isDead && !monster.isEscaping) {
+                    if (monster.hasPower(HolidayCheerPower.POWER_ID))
+                        monster.getPower(HolidayCheerPower.POWER_ID).amount = currentCheer;
+                    else
+                        atb(new ApplyPowerAction(monster, monster, new HolidayCheerPower(monster, currentCheer)));
+                }
             }
         }
     }
