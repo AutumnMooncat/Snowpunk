@@ -41,10 +41,10 @@ public class BoltShot extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
         if (weak) {
             Wiz.applyToEnemy(m, new WeakPower(m, magicNumber, false));
         }
+        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
     }
 
     @Override

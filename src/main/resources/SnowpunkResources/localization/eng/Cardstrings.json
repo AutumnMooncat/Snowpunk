@@ -35,7 +35,7 @@
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Weak."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Apply !M! Vulnerable."
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
