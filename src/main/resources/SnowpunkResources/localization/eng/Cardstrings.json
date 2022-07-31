@@ -50,7 +50,8 @@
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
-    "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
+    "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage 3 times. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
   },
   "${ModID}:BrassWave": {
     "NAME": "Brass Wave",
@@ -211,7 +212,7 @@
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
     "DESCRIPTION": "Card effects act as if you have !M! more snowpunk:Snowballs.",
-    "UPGRADE_DESCRIPTION": "Card effects act as if you have X more snowpunk:Snowballs."
+    "UPGRADE_DESCRIPTION": "Card effects act as if you have {@@}X{!M!|>0= + !M!} more snowpunk:Snowballs."
   },
   "${ModID}:PressurizedBlast": {
     "NAME": "Pressurized Blast",
