@@ -1,16 +1,13 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
 import Snowpunk.actions.ImmediateExhaustCardAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.IceCubePower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,8 +16,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class IceCube extends AbstractMultiUpgradeCard implements OnTempChangeCard {
-    public final static String ID = makeID(IceCube.class.getSimpleName());
+public class IceCubeOLD extends AbstractMultiUpgradeCard implements OnTempChangeCard {
+    public final static String ID = makeID(IceCubeOLD.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
@@ -31,7 +28,7 @@ public class IceCube extends AbstractMultiUpgradeCard implements OnTempChangeCar
     private static final int ICE = 3;
     private static final int UP_ICE = 1;
 
-    public IceCube() {
+    public IceCubeOLD() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = ICE;
         CardTemperatureFields.addInherentHeat(this, -1);
