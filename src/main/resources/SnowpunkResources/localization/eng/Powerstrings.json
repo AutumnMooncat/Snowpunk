@@ -208,5 +208,29 @@
       " #yFireball into your hand.",
       " #yFireballs into your hand."
     ]
+  },
+  "${ModID}:BetterInventionPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yInvention into your hand.",
+      " randomly #yAssembled #yInventions into your hand."
+    ]
+  },
+  "${ModID}:BetterCreationPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yCreation into your hand.",
+      " randomly #yAssembled #yCreations into your hand."
+    ]
+  },
+  "${ModID}:BetterMachinationPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yMachination into your hand.",
+      " randomly #yAssembled #yMachinations into your hand."
+    ]
   }
 }

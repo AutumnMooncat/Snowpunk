@@ -28,6 +28,12 @@
     "DESCRIPTION": "Attacks deal !M! additional damage for each snowpunk:Snowball you have.",
     "UPGRADE_DESCRIPTION": "Innate. NL Attacks deal !M! additional damage for each snowpunk:Snowball you have."
   },
+  "${ModID}:Better": {
+    "NAME": "Better",
+    "DESCRIPTION": "{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Invention{!M!|>1=s} into your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Creation{!M!|>1=s} into your hand.",
+    "EXTENDED_DESCRIPTION": ["{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Machination{!M!|>1=s} into your hand."]
+  },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",
     "DESCRIPTION": "{@@}Apply snowpunk:S{!M!|>0= + !M!} snowpunk:Chill, snowpunk:S{!M!|>0= + !M!} Weak, and snowpunk:S{!M!|>0= + !M!} Vulnerable.{!Snowpunk:Info!|0= NL Exhaust.}",
