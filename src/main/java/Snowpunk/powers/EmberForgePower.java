@@ -15,7 +15,7 @@ public class EmberForgePower extends AbstractEasyPower {
 
     public EmberForgePower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("panache");
+        this.loadRegion("nirvana");
     }
 
     @Override
