@@ -292,7 +292,7 @@
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
-    "DESCRIPTION": "Temperature effects from this card are !Snowpunk:Info! times stronger."
+    "DESCRIPTION": "Temperature effects from this card are !M! times stronger."
   },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",
