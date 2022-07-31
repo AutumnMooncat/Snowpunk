@@ -142,7 +142,8 @@
   },
   "${ModID}:Fireball": {
     "NAME": "Fireball",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": ["snowpunk:Token"]
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
