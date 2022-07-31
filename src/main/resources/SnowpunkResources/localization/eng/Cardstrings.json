@@ -327,6 +327,7 @@
   },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",
-    "DESCRIPTION": "At the start of your turn, apply !M! snowpunk:Frostbite to ALL enemies."
+    "DESCRIPTION": "{@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s} and lose {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Freeze your snowpunk:Engine. NL {@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s} and lose {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
   }
 }
