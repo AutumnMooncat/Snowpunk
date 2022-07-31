@@ -232,5 +232,13 @@
       " randomly #yAssembled #yMachination into your hand.",
       " randomly #yAssembled #yMachinations into your hand."
     ]
+  },
+  "${ModID}:EmberForgePower": {
+    "NAME": "Ember Forge",
+    "DESCRIPTIONS": [
+      "At the start of your turn, #yHeat #b",
+      " random card into your hand.",
+      " random cards into your hand."
+    ]
   }
 }

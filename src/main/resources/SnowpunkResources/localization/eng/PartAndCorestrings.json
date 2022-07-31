@@ -31,10 +31,6 @@
     "NAME": "",
     "DESCRIPTION": ""
   },
-  "${ModID}:EmberForge": {
-    "NAME": "Ember Forge",
-    "DESCRIPTION": "Reduce cost to 0."
-  },
   "${ModID}:GlowingMetal": {
     "NAME": "Glowing Metal",
     "DESCRIPTION": "Apples 3 snowpunk:Burn on hit."
