@@ -1,22 +1,26 @@
 package Snowpunk;
 
-import Snowpunk.cards.cardvars.*;
+import Snowpunk.cards.cardvars.Info;
+import Snowpunk.cards.cardvars.SecondBlock;
+import Snowpunk.cards.cardvars.SecondDamage;
+import Snowpunk.cards.cardvars.SecondMagicNumber;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
+import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.relics.AbstractEasyRelic;
-import Snowpunk.util.TexLoader;
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.helpers.CardBorderGlowManager;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -31,7 +35,7 @@ public class SnowpunkMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber, PostInitializeSubscriber {
 
     public static final String modID = "Snowpunk";
 
@@ -194,5 +198,26 @@ public class SnowpunkMod implements
                 BaseMod.addKeyword(modID.toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
+            private final Color c = Color.RED.cpy();
+            @Override
+            public boolean test(AbstractCard abstractCard) {
+                return MultiUpgradePatches.MultiUpgradeFields.glowRed.get(abstractCard);
+            }
+
+            @Override
+            public Color getColor(AbstractCard abstractCard) {
+                return c;
+            }
+
+            @Override
+            public String glowID() {
+                return makeID("ExclusionGlow");
+            }
+        });
     }
 }

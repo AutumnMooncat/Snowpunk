@@ -1,5 +1,7 @@
 package Snowpunk.util;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+
 import java.util.ArrayList;
 
 public class CardGraph {
@@ -17,6 +19,15 @@ public class CardGraph {
     public void addExclusion(CardVertex from, CardVertex to) {
         from.addExclusion(to);
         to.addExclusion(from);
+    }
+
+    public CardVertex getVertexByCard(AbstractCard card) {
+        for (CardVertex v : vertices) {
+            if (v.card == card) {
+                return v;
+            }
+        }
+        return null;
     }
 
     public void clear() {

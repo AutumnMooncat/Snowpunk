@@ -65,9 +65,8 @@ public class MultiUpgradePatches {
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class MultiUpgradeFields {
         public static SpireField<ArrayList<UpgradeData>> upgrades = new SpireField<>(ArrayList::new);
-        //public static SpireField<ArrayList<UpgradeData>> exclusions = new SpireField<>(ArrayList::new);
         public static SpireField<Integer> upgradeIndex = new SpireField<>(() -> -1);
-        //public static SpireField<Boolean> strict = new SpireField<>(() -> true);
+        public static SpireField<Boolean> glowRed = new SpireField<>(() -> false);
     }
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {String.class, String.class, String.class, int.class, String.class, AbstractCard.CardType.class, AbstractCard.CardColor.class, AbstractCard.CardRarity.class, AbstractCard.CardTarget.class, DamageInfo.DamageType.class})
@@ -335,20 +334,37 @@ public class MultiUpgradePatches {
             AbstractCard hovered = BranchingUpgradesPatch.getHoveredCard();
             if (__instance != hovered && hovered instanceof MultiUpgradeCard && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && __instance.hb.hovered && InputHelper.justClickedLeft) {
                 if (cardList.contains(__instance) && !takenList.contains(__instance) && !lockedList.contains(__instance)) {
+                    MultiUpgradeFields.glowRed.set(__instance, false);
                     __instance.beginGlowing();
                     cardList.forEach((c) -> {
                         if (c != __instance) {
+                            MultiUpgradeFields.glowRed.set(c, false);
                             c.stopGlowing();
                         }
 
                     });
+                    CardVertex v = cardGraph.getVertexByCard(__instance);
+                    if (v != null) {
+                        for (CardVertex exclude : v.exclusions) {
+                            markExclusions(exclude);
+                        }
 
-                    //TODO make upgrades that will be locked glow red
+                    }
 
                     MultiSelectFields.chosenIndex.set(AbstractDungeon.gridSelectScreen, MultiUpgradeFields.upgradeIndex.get(__instance));
                     MultiSelectFields.waitingForUpgradeSelection.set(AbstractDungeon.gridSelectScreen, false);
                 }
             }
+        }
+
+        public static void markExclusions(CardVertex v) {
+            MultiUpgradeFields.glowRed.set(v.card, true);
+            v.card.beginGlowing();
+            v.children.forEach(c -> {
+                if (c.strict) {
+                    markExclusions(c);
+                }
+            });
         }
     }
 
@@ -625,6 +641,7 @@ public class MultiUpgradePatches {
                 int count = 0;
                 for (CardVertex v : cardGraph.vertices) {
                     if (v.x != -1) {
+                        //TODO transparency stuff
                         if (v.card.hb.hovered) {
                             v.card.drawScale = renderScale;
                         } else {
@@ -633,7 +650,7 @@ public class MultiUpgradePatches {
                         v.card.target_x = c.target_x + (Settings.WIDTH / 3F * renderScale) + (v.x * X_PAD * renderScale);
                         v.card.target_y = c.target_y + (v.y * Y_PAD * renderScale);
 
-                        if (lockedList.contains(v.card)) {
+                        if (lockedList.contains(v.card) || MultiUpgradeFields.glowRed.get(v.card)) {
                             sb.end();
                             sb.setShader(Grayscale.program);
                             sb.begin();
