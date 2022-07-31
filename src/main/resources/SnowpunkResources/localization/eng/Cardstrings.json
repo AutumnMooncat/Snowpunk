@@ -89,7 +89,8 @@
   },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Parts",
-    "DESCRIPTION": "{@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play."
+    "DESCRIPTION": "{@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play.",
+    "UPGRADE_DESCRIPTION": "Innate. NL {@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play."
   },
   "${ModID}:ChuggaChugga": {
     "NAME": "Chugga Chugga",
