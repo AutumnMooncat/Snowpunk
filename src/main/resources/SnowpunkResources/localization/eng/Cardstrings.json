@@ -302,8 +302,8 @@
   },
   "${ModID}:TheCryogenizer": {
     "NAME": "The Cryogenizer",
-    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Hot. NL }Deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Unplayable below snowpunk:Stable. NL }Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage. NL Play a random snowpunk:Evaporated card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Play a random snowpunk:Evaporated card."
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
