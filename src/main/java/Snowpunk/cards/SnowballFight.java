@@ -38,9 +38,6 @@ public class SnowballFight extends AbstractMultiUpgradeCard {
         if (magicNumber > 0) {
             Wiz.applyToSelf(new SnowballPower(p, magicNumber));
         }
-        if (!this.freeToPlayOnce) {
-            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
-        }
     }
 
     public void upp() {

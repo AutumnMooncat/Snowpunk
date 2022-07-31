@@ -53,9 +53,6 @@ public class BlackIce extends AbstractMultiUpgradeCard {
                 Wiz.applyToEnemy(m, new VulnerablePower(m, getSnow() + magicNumber, false));
             }
         }
-        if (!this.freeToPlayOnce) {
-            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
-        }
     }
 
     @Override
