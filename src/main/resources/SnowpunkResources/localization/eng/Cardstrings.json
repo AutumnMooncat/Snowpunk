@@ -280,8 +280,8 @@
   },
   "${ModID}:SteamForm": {
     "NAME": "Steam Form",
-    "DESCRIPTION": "At the start of your turn, gain !M! snowpunk:Steam. NL snowpunk:Steam no longer Exhausts cards.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! snowpunk:Steam. NL snowpunk:Steam no longer Exhausts cards."
+    "DESCRIPTION": "At the start of your turn, gain !M! snowpunk:Steam.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! snowpunk:Steam."
   },
   "${ModID}:Strike": {
     "NAME": "Strike",
