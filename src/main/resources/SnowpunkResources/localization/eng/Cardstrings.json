@@ -5,6 +5,11 @@
     "UPGRADE_DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": [""]
   },
+  "${ModID}:Armageddon": {
+    "NAME": "Armageddon",
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat ALL cards."
+  },
   "${ModID}:AssembledCard": {
     "NAME": "",
     "DESCRIPTION": ""
@@ -108,6 +113,10 @@
   "${ModID}:Faster": {
     "NAME": "Faster",
     "DESCRIPTION": "{@@}Draw X {!Snowpunk:M2!|>0=+ !Snowpunk:M2! }cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
+  },
+  "${ModID}:FireAndBrimstone": {
+    "NAME": "Fire and Brimstone",
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }At the start of each turn, add !M! *Fireball{!M!|>1=s} into your hand."
   },
   "${ModID}:Fireball": {
     "NAME": "Fireball",

@@ -200,5 +200,13 @@
       "Take half damage from #yAttacks this turn.",
       "Take half damage from #yAttacks for #b", " turns."
     ]
+  },
+  "${ModID}:BrimstonePower": {
+    "NAME": "Fire and Brimstone",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " #yFireball into your hand.",
+      " #yFireballs into your hand."
+    ]
   }
 }
