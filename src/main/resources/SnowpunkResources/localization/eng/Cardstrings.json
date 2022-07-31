@@ -189,7 +189,8 @@
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this kills an enemy, gain 1 snowpunk:Steam."
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
@@ -217,7 +218,8 @@
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
-    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered."
+    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
