@@ -82,7 +82,7 @@
   "${ModID}:Cauterize": {
     "NAME": "Cauterize",
     "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt.",
-    "UPGRADE_DESCRIPTION": "Remove all Block from the enemy. NL Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Ignores Block. NL Apply snowpunk:Burn equal to unblocked damage dealt."
   },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",
@@ -206,7 +206,7 @@
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Remove all Block from and deal !D! damage to ALL enemies."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Ignores Block."
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",

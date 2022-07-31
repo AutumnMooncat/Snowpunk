@@ -3,10 +3,12 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.damageMods.PiercingDamage;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -35,8 +37,6 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //TODO needs custom action to improve timing
-        Wiz.forAllMonstersLiving(mo -> this.addToBot(new RemoveAllBlockAction(mo, p)));
         allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
     }
 
@@ -45,7 +45,7 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(this, () -> {
-            removeBlock = true;
+            DamageModifierManager.addModifier(this, new PiercingDamage());
             uDesc();
         }, 0, 1);
     }

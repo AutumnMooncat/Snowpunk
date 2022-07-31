@@ -318,5 +318,12 @@
       "fluxed"
     ],
     "DESCRIPTION": "Fluxed cards act as if they are also their opposite temperature."
+  },
+  {
+    "PROPER_NAME": "Piercing",
+    "NAMES": [
+      "piercing"
+    ],
+    "DESCRIPTION": "Ignores block."
   }
 ]

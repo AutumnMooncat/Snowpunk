@@ -4,6 +4,7 @@ import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.damageMods.CauterizeDamage;
+import Snowpunk.damageMods.PiercingDamage;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
@@ -27,8 +28,6 @@ public class Cauterize extends AbstractMultiUpgradeCard {
     private static final int DMG = 8;
     private static final int UP_DMG = 3;
 
-    private boolean melter = false;
-
     public Cauterize() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
@@ -37,9 +36,6 @@ public class Cauterize extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (melter) {
-            Wiz.atb(new RemoveAllBlockAction(m, p));
-        }
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
     }
 
@@ -52,7 +48,7 @@ public class Cauterize extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(this, () -> CardModifierManager.addModifier(this, new VentMod()));
         addUpgradeData(this, () -> {
-            melter = true;
+            DamageModifierManager.addModifier(this, new PiercingDamage());
             uDesc();
         });
     }
