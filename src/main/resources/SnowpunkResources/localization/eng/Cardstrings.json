@@ -108,7 +108,7 @@
   },
   "${ModID}:Comburstion": {
     "NAME": "Comburstion",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. If your snowpunk:Engine is snowpunk:Overheated, apply !M! snowpunk:Burn to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Burn to ALL enemies."
   },
   "${ModID}:Create": {
     "NAME": "Create",
