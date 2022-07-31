@@ -151,6 +151,10 @@
     "DESCRIPTION": "{@@}Increase snowpunk:Holiday\u00a0Cheer by !M!. Choose 1 of 3 random cards to add to your hand.{!Snowpunk:Info!|0= Exhaust.|2= It costs 0 this turn. Exhaust.}",
     "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
   },
+  "${ModID}:Hail": {
+    "NAME": "Hail",
+    "DESCRIPTION": "{@@}Deal !D! damage and apply snowpunk:S{!M!|>0= + !M!} snowpunk:Chill to a random enemy snowpunk:S{!M!|>0= + !M!} times."
+  },
   "${ModID}:Harder": {
     "NAME": "Harder",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill.",
@@ -264,10 +268,6 @@
   "${ModID}:Snowbowl": {
     "NAME": "Snowbowl",
     "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Chill to ALL enemies."
-  },
-  "${ModID}:Snowfall": {
-    "NAME": "Snowfall",
-    "DESCRIPTION": "Gain !D! damage to a random enemy snowpunk:S times. NL snowpunk:Cool all cards in your hand."
   },
   "${ModID}:SnowFort": {
     "NAME": "Snow Fort",
