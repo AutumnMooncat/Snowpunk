@@ -81,7 +81,8 @@
   },
   "${ModID}:Cauterize": {
     "NAME": "Cauterize",
-    "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
+    "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt.",
+    "UPGRADE_DESCRIPTION": "Remove all Block from the enemy. NL Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt."
   },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",
