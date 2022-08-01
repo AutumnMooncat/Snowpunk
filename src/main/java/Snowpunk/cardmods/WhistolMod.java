@@ -2,6 +2,7 @@ package Snowpunk.cardmods;
 
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SnowballPower;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -35,10 +37,16 @@ public class WhistolMod extends AbstractCardModifier {
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
         int snowballs = 0, evaporated = 0;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(SnowballPower.POWER_ID))
-            snowballs = Wiz.adp().getPower(SnowballPower.POWER_ID).amount;
-        if (EvaporatePanel.evaporatePile != null && EvaporatePanel.evaporatePile.size() > 0)
+        if (Wiz.adp() != null){
+            for (AbstractPower pow : Wiz.adp().powers) {
+                if (pow instanceof SnowAmountModifier) {
+                    snowballs += ((SnowAmountModifier) pow).modifySnow();
+                }
+            }
+        }
+        if (EvaporatePanel.evaporatePile != null && EvaporatePanel.evaporatePile.size() > 0) {
             evaporated = EvaporatePanel.evaporatePile.size();
+        }
         return damage + snowballs + evaporated;
     }
 
