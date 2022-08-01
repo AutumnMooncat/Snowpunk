@@ -40,4 +40,10 @@ public class CardVertex {
         this.x = x;
         this.y = y;
     }
+
+    public void clear() {
+        parents.clear();
+        children.clear();
+        exclusions.clear();
+    }
 }

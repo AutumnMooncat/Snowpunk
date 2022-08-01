@@ -6,6 +6,7 @@ import Snowpunk.util.UpgradeData;
 import Snowpunk.util.UpgradeRunnable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -72,7 +73,7 @@ public interface MultiUpgradeCard {
         if (i == -1) {
             ArrayList<UpgradeData> validUpgrades = upgrades.stream().filter(u -> !u.applied && u.canUpgrade(upgrades)).collect(Collectors.toCollection(ArrayList::new));
             if (!validUpgrades.isEmpty()) {
-                if (AbstractDungeon.cardRandomRng == null || AbstractDungeon.player == null) {
+                if (SingleCardViewPopup.isViewingUpgrade || AbstractDungeon.cardRandomRng == null || AbstractDungeon.player == null) {
                     i = validUpgrades.get(0).index;
                 } else {
                     i = validUpgrades.get(AbstractDungeon.cardRandomRng.random(validUpgrades.size()-1)).index;
