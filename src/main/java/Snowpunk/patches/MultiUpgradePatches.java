@@ -25,7 +25,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -110,6 +112,40 @@ public class MultiUpgradePatches {
                         retVal.upgrade();
                     }
                 }
+            }
+        }
+    }
+
+    @SpirePatch2(clz = RunHistoryScreen.class, method = "cardForName")
+    public static class SaveMultiUpgradesRunHistory {
+        static int muxedUpgrades = 0;
+        static AbstractCard multiUpCard = null;
+        @SpireInsertPatch(locator = Locator.class, localvars = {"card","upgrades"})
+        public static void getMuxedUpgrades2(AbstractCard card, @ByRef int[] upgrades) {
+            if (card instanceof MultiUpgradeCard) {
+                muxedUpgrades = upgrades[0];
+                multiUpCard = card;
+                upgrades[0] = 0;
+            }
+        }
+        @SpirePostfixPatch
+        public static void doMuxedUpgrades2() {
+            if (multiUpCard instanceof MultiUpgradeCard) {
+                for (int i = 0 ; i < 32 ; i++) {
+                    if ((muxedUpgrades & (1 << i)) != 0) {
+                        MultiUpgradeFields.upgradeIndex.set(multiUpCard, i);
+                        multiUpCard.upgrade();
+                    }
+                }
+            }
+            multiUpCard = null;
+        }
+
+        public static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher m = new Matcher.MethodCallMatcher(AbstractCard.class, "makeCopy");
+                return new int[]{LineFinder.findInOrder(ctBehavior, m)[0]+1};
             }
         }
     }
