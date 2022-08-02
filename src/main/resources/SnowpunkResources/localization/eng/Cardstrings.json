@@ -152,8 +152,10 @@
   },
   "${ModID}:Gift": {
     "NAME": "Gift",
-    "DESCRIPTION": "{@@}Increase snowpunk:Holiday\u00a0Cheer by !M!. Choose 1 of 3 random cards to add to your hand.{!Snowpunk:Info!|0= Exhaust.|2= It costs 0 this turn. Exhaust.}",
-    "UPGRADE_DESCRIPTION": "Apply snowpunk:S + 1 snowpunk:Frostbite twice."
+    "DESCRIPTION": "Choose 1 of !M! random cards of any color to add to your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 of !M! random cards of any color to add to your hand. NL It costs 0 this turn. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Choose 1 of !M! random cards of any color to add to your hand.",
+                            "Choose 1 of !M! random cards of any color to add to your hand. NL It costs 0 this turn."]
   },
   "${ModID}:Hail": {
     "NAME": "Hail",
@@ -321,8 +323,8 @@
   },
   "${ModID}:TheCryogenizer": {
     "NAME": "The Cryogenizer",
-    "DESCRIPTION": "Deal !D! damage. NL Play a random snowpunk:Evaporated card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Play a random snowpunk:Evaporated card."
+    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Condense !M! random cards to your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL snowpunk:Condense !M! random cards to your hand."
   },
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",

@@ -20,29 +20,41 @@ public class Gift extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, MAGIC = 5, UP_MAGIC = 3;
+    private static final int COST = 1, MAGIC = 3, UP_MAGIC = 2;
+
+    boolean free = false;
 
     public Gift() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = MAGIC;
-        baseInfo = info = 0;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new HolidayCheerUpAction(magicNumber));
-        Wiz.atb(new GiftDiscoveryAction(3, info > 0 && exhaust));
+        Wiz.atb(new GiftDiscoveryAction(magicNumber, free));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> upgrade2(), new int[]{}, new int[]{2});
-        addUpgradeData(this, () -> upgradeInfo(2), new int[]{}, new int[]{1});
-    }
+        addUpgradeData(this, () -> {
+            free = true;
+            if (exhaust) {
+                uDesc();
+            } else {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+                initializeDescription();
+            }
 
-    private void upgrade2() {
-        upgradeInfo(1);
-        exhaust = false;
+        });
+        addUpgradeData(this, () -> {
+            exhaust = false;
+            if (free) {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+            } else {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            }
+            initializeDescription();
+        });
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
     }
 }

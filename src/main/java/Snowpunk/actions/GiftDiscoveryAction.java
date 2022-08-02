@@ -15,15 +15,15 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import java.util.ArrayList;
 
 import static Snowpunk.util.Wiz.adp;
+import static Snowpunk.util.Wiz.getRandomItem;
 
 public class GiftDiscoveryAction extends AbstractGameAction {
-    boolean freeThisTurn = false;
+    boolean freeThisTurn;
     private boolean retrieveCard = false;
 
     public GiftDiscoveryAction(int amount, boolean free) {
         this.amount = amount;
         freeThisTurn = free;
-        retrieveCard = false;
         duration = Settings.ACTION_DUR_FAST;
     }
 
@@ -53,10 +53,14 @@ public class GiftDiscoveryAction extends AbstractGameAction {
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
+        ArrayList<AbstractCard.CardRarity> rarityList = new ArrayList<>();
+        rarityList.add(AbstractCard.CardRarity.COMMON);
+        rarityList.add(AbstractCard.CardRarity.UNCOMMON);
+        rarityList.add(AbstractCard.CardRarity.RARE);
         ArrayList<AbstractCard> derp = new ArrayList<>();
-        while (derp.size() != 3) {
+        while (derp.size() != this.amount) {
             boolean dupe = false;
-            AbstractCard tmp = AbstractDungeon.returnTrulyRandomCardInCombat();
+            AbstractCard tmp = CardLibrary.getAnyColorCard(getRandomItem(rarityList));
             for (AbstractCard c : derp) {
                 if (c.cardID.equals(tmp.cardID)) {
                     dupe = true;
