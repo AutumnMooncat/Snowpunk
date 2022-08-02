@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class AssembleCardAction extends AbstractGameAction {
     public enum AssembleType {
@@ -45,15 +46,21 @@ public class AssembleCardAction extends AbstractGameAction {
     AssembleType type;
     boolean addToMaster;
     boolean random;
+    private Consumer<AssembledCard> onAssemble;
 
     public AssembleCardAction(AssembleType type) {
-        this(type, true, false);
+        this(type, true, false, c -> {});
     }
 
     public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random) {
+        this(type, addToMaster, random, c -> {});
+    }
+
+    public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
         this.type = type;
         this.addToMaster = addToMaster;
         this.random = random;
+        this.onAssemble = onAssemble;
     }
 
     @Override
@@ -83,6 +90,7 @@ public class AssembleCardAction extends AbstractGameAction {
     private void finalizeCard(AssembledCard card) {
         CardModifierManager.removeModifiersById(card, MkMod.ID, true);
         AssembledCard copy = (AssembledCard) card.makeStatEquivalentCopy();
+        onAssemble.accept(copy);
         if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE) {
             AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(copy, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
         } else {

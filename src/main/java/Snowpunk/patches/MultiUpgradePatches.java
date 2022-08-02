@@ -1,13 +1,11 @@
 package Snowpunk.patches;
 
 import Snowpunk.SnowpunkMod;
+import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.shaders.Grayscale;
 import Snowpunk.shaders.Greenify;
-import Snowpunk.util.CardGraph;
-import Snowpunk.util.CardVertex;
-import Snowpunk.util.TexLoader;
-import Snowpunk.util.UpgradeData;
+import Snowpunk.util.*;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -24,7 +22,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -64,9 +65,8 @@ public class MultiUpgradePatches {
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class MultiUpgradeFields {
         public static SpireField<ArrayList<UpgradeData>> upgrades = new SpireField<>(ArrayList::new);
-        //public static SpireField<ArrayList<UpgradeData>> exclusions = new SpireField<>(ArrayList::new);
         public static SpireField<Integer> upgradeIndex = new SpireField<>(() -> -1);
-        //public static SpireField<Boolean> strict = new SpireField<>(() -> true);
+        public static SpireField<Boolean> glowRed = new SpireField<>(() -> false);
     }
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {String.class, String.class, String.class, int.class, String.class, AbstractCard.CardType.class, AbstractCard.CardColor.class, AbstractCard.CardRarity.class, AbstractCard.CardTarget.class, DamageInfo.DamageType.class})
@@ -114,6 +114,40 @@ public class MultiUpgradePatches {
         }
     }
 
+    @SpirePatch2(clz = RunHistoryScreen.class, method = "cardForName")
+    public static class SaveMultiUpgradesRunHistory {
+        static int muxedUpgrades = 0;
+        static AbstractCard multiUpCard = null;
+        @SpireInsertPatch(locator = Locator.class, localvars = {"card","upgrades"})
+        public static void getMuxedUpgrades2(AbstractCard card, @ByRef int[] upgrades) {
+            if (card instanceof MultiUpgradeCard) {
+                muxedUpgrades = upgrades[0];
+                multiUpCard = card;
+                upgrades[0] = 0;
+            }
+        }
+        @SpirePostfixPatch
+        public static void doMuxedUpgrades2() {
+            if (multiUpCard instanceof MultiUpgradeCard) {
+                for (int i = 0 ; i < 32 ; i++) {
+                    if ((muxedUpgrades & (1 << i)) != 0) {
+                        MultiUpgradeFields.upgradeIndex.set(multiUpCard, i);
+                        multiUpCard.upgrade();
+                    }
+                }
+            }
+            multiUpCard = null;
+        }
+
+        public static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher m = new Matcher.MethodCallMatcher(AbstractCard.class, "makeCopy");
+                return new int[]{LineFinder.findInOrder(ctBehavior, m)[0]+1};
+            }
+        }
+    }
+
     @SpirePatch(
             clz = AbstractCard.class,
             method = "makeStatEquivalentCopy"
@@ -146,214 +180,11 @@ public class MultiUpgradePatches {
     public static class GetMultiUpgrades {
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(GridCardSelectScreen __instance) throws Exception {
-            resetScrollState();
             AbstractCard c = BranchingUpgradesPatch.getHoveredCard();
             if (c instanceof MultiUpgradeCard) {
-                for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
-                    for (int i : u.dependencies) {
-                        if (i > u.index) {
-                            throw new Exception("Illegal forward dependency: Upgrade Index "+u.index+" requires Upgrade Index "+i);
-                        }
-                        if (i == u.index) {
-                            throw new Exception("Illegal self dependency: Upgrade Index "+u.index+" requires itself");
-                        }
-                    }
-                }
-                //Prep the cards into the array
-                MultiSelectFields.previewCards.get(__instance).clear();
-                takenList.clear();
-                lockedList.clear();
-                cardGraph.clear();
-                CardVertex root = new CardVertex(c, -1);
-                root.move(-1, 0);
-                cardGraph.addVertex(root);
-                for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
-                    AbstractCard copy;// = c.makeStatEquivalentCopy();
-                    if (u.applied) {
-                        copy = c.makeCopy();
-                    } else {
-                        copy = c.makeStatEquivalentCopy();
-                    }
-                    prepUpgradePreview(copy, u);
-                    if (u.upgradeName != null && !u.upgradeName.isEmpty()) {
-                        copy.name = u.upgradeName;
-                        ReflectionHacks.privateMethod(AbstractCard.class, "initializeTitle").invoke(copy);
-                    }
-                    if (u.upgradeDescription != null && !u.upgradeDescription.isEmpty()) {
-                        copy.rawDescription = u.upgradeDescription;
-                        copy.initializeDescription();
-                    }
-                    /*MultiUpgradeFields.upgradeIndex.set(copy, u.index);
-                    copy.upgrade();
-                    copy.displayUpgrades();*/
-                    MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed, so we need to set it again
-                    if (u.alias != null) {
-                        AbstractCard alias = u.alias.makeStatEquivalentCopy();
-                        MultiUpgradeFields.upgradeIndex.set(alias, u.index);
-                        alias.cardsToPreview = copy;
-                        MultiSelectFields.previewCards.get(__instance).add(alias);
-                    } else {
-                        MultiSelectFields.previewCards.get(__instance).add(copy);
-                    }
-
-                    if (u.applied) {
-                        takenList.add(copy);
-                    } else if (!u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
-                        lockedList.add(copy);
-                    }
-                    CardVertex v = new CardVertex(copy, u.index, u.strict);
-                    cardGraph.addVertex(v);
-                    if (u.dependencies.isEmpty()) {
-                        cardGraph.addDependence(v, root);
-                    } else {
-                        for (int i : u.dependencies) {
-                            //Dependency directed graphs
-                            cardGraph.addDependence(v, cardGraph.vertices.get(i + 1));
-                        }
-                    }
-
-                    /*if (u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
-                        AbstractCard copy = c.makeStatEquivalentCopy();
-                        MultiUpgradeFields.upgradeIndex.set(copy, u.index);
-                        copy.upgrade();
-                        copy.displayUpgrades();
-                        MultiUpgradeFields.upgradeIndex.set(copy, u.index); //Gets set back to -1 when completed
-                        if (u.alias != null) {
-                            AbstractCard alias = u.alias.makeStatEquivalentCopy();
-                            MultiUpgradeFields.upgradeIndex.set(alias, u.index);
-                            alias.cardsToPreview = copy;
-                            MultiSelectFields.previewCards.get(__instance).add(alias);
-                        } else {
-                            MultiSelectFields.previewCards.get(__instance).add(copy);
-                        }
-                    }*/
-                }
-                for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
-                    if (u.exclusions.size() > 0) {
-                        //only add the line for the exclusions with the largest index that is less than the index of the upgrade with the exclusions
-                        for (int i : u.exclusions) {
-                            cardGraph.addExclusion(cardGraph.vertices.get(u.index+1), cardGraph.vertices.get(i+1));
-                            /*int largestE = 0;
-                            for (int e : ((MultiUpgradeCard) c).getUpgrades(c).get(i).exclusions)
-                                if (e > largestE && e < u.index)
-                                    largestE = e;
-                            if (i == largestE)
-                                cardGraph.addExclusion(v, cardGraph.vertices.get(i));*/
-                            //cardGraph.addExclusion(v, cardGraph.vertices.get(i+1));
-                        }
-                    }
-                }
-
+                MultiUpgradeTree.open(c);
                 MultiSelectFields.waitingForUpgradeSelection.set(__instance, true);
-
-                //Set the starting positions for the cards
-                /*c.current_x = (float)Settings.WIDTH * 0.5F;
-                c.current_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale;
-                int lineNum = 0;
-                int count = 0;
-                for (AbstractCard card : MultiSelectFields.previewCards.get(__instance)) {
-                    int cardsThisRow = Math.min(5, MultiSelectFields.previewCards.get(__instance).size() - (5 * lineNum));
-                    int startX = (int) (Settings.WIDTH / 2.0F - (cardsThisRow - 1) * 150F * Settings.scale);
-                    card.current_x = startX + 300F * Settings.scale * count;
-                    card.current_y = Settings.HEIGHT / 4.0F - (420.0F * lineNum * Settings.scale);
-                    count++;
-
-                    if (count == 5) {
-                        count = 0;
-                        lineNum++;
-                    }
-                }*/
-
-                c.current_x = (float)Settings.WIDTH * 1/3F;
-                c.current_y = (float)Settings.HEIGHT / 2F;
-
-                //Balance all cards in the X direction
-                for (CardVertex v : cardGraph.vertices) {
-                    for (CardVertex dependency : v.parents) {
-                        if (dependency.x >= v.x) {
-                            v.move(dependency.x + 1, v.y);
-                        }
-                        v.card.current_x = Settings.WIDTH * 2/3F + (v.x * X_PAD);
-                    }
-                }
-
-                /*//Balance all cards in the Y direction around their respective parents
-                for (CardVertex v : cardGraph.vertices) {
-                    int yIndex = v.children.size() - 1;
-                    for (CardVertex dependent : v.children) {
-                        dependent.move(dependent.x, v.y + yIndex);
-                        yIndex -= 2;
-                    }
-                }*/
-
-                for (int i = 0 ; i <= cardGraph.depth() ; i++) {
-                    int finalI = i;
-                    final int[] yIndex = {(int) cardGraph.vertices.stream().filter(v -> v.x == finalI).count() - 1};
-                    cardGraph.vertices.stream().filter(v -> v.x == finalI).forEach(v -> {
-                        v.move(v.x, yIndex[0]);
-                        v.card.current_y = Settings.HEIGHT / 2F + (v.y * Y_PAD);
-                        yIndex[0] -= 2;
-                    });
-                }
-
-                //Define the scroll limits
-                float left, right, up, down;
-                left = right = c.current_x;
-                up = down = c.current_y;
-                for (AbstractCard card : MultiSelectFields.previewCards.get(__instance)) {
-                    if (card.current_x < left) {
-                        left = card.current_x;
-                    } else if (card.current_x > right) {
-                        right = card.current_x;
-                    }
-                    if (card.current_y < down) {
-                        down = card.current_y;
-                    } else if (card.current_y > up) {
-                        up = card.current_y;
-                    }
-                }
-
-                //Add some padding
-                left -= 200F;
-                right += 200F;
-                up += 260F;
-                down -= 260F;
-
-                if (left < 0) {
-                    //minX = left - 200F * Settings.scale;
-                    maxX = -left + 200F * Settings.scale;
-                    allowX = true;
-                }
-                if (right > Settings.WIDTH) {
-                    //maxX = right - Settings.WIDTH + 200F * Settings.scale;
-                    minX = Settings.WIDTH - right - 200F * Settings.scale;
-                    allowX = true;
-                }
-                if (down < 0) {
-                    maxY = -down + 260F * Settings.scale;
-                    allowY = true;
-                }
-                if (up > Settings.HEIGHT) {
-                    minY = Settings.HEIGHT - up - 260F * Settings.scale;
-                    allowY = true;
-                }
             }
-        }
-
-        private static void prepUpgradePreview(AbstractCard card, UpgradeData u) {
-            doUpgrade(card, u);
-            card.displayUpgrades();
-        }
-
-        private static void doUpgrade(AbstractCard card, UpgradeData u) {
-            for (int i : u.dependencies) {
-                UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
-                if (!dep.applied) {
-                    doUpgrade(card, dep);
-                }
-            }
-            MultiUpgradeFields.upgradeIndex.set(card, u.index);
-            card.upgrade();
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -369,7 +200,6 @@ public class MultiUpgradePatches {
         public static void Prefix(GridCardSelectScreen __instance) {
             MultiSelectFields.waitingForUpgradeSelection.set(__instance, false);
             MultiSelectFields.chosenIndex.set(__instance, -1);
-            resetScrollState();
         }
     }
 
@@ -378,20 +208,7 @@ public class MultiUpgradePatches {
         public static void Postfix(AbstractCard __instance) {
             AbstractCard hovered = BranchingUpgradesPatch.getHoveredCard();
             if (__instance != hovered && hovered instanceof MultiUpgradeCard && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && __instance.hb.hovered && InputHelper.justClickedLeft) {
-                if (cardList.contains(__instance) && !takenList.contains(__instance) && !lockedList.contains(__instance)) {
-                    __instance.beginGlowing();
-                    cardList.forEach((c) -> {
-                        if (c != __instance) {
-                            c.stopGlowing();
-                        }
-
-                    });
-
-                    //TODO make upgrades that will be locked glow red
-
-                    MultiSelectFields.chosenIndex.set(AbstractDungeon.gridSelectScreen, MultiUpgradeFields.upgradeIndex.get(__instance));
-                    MultiSelectFields.waitingForUpgradeSelection.set(AbstractDungeon.gridSelectScreen, false);
-                }
+                MultiUpgradeTree.selectCard(__instance);
             }
         }
     }
@@ -405,7 +222,6 @@ public class MultiUpgradePatches {
                 MultiUpgradeFields.upgradeIndex.set(hoveredCard, MultiSelectFields.chosenIndex.get(__instance));
                 MultiSelectFields.chosenIndex.set(__instance, -1);
             }
-            resetScrollState();
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -423,151 +239,10 @@ public class MultiUpgradePatches {
         public static SpireReturn<?> downwardArrows(GridCardSelectScreen __instance, SpriteBatch sb, @ByRef float[] ___arrowTimer, @ByRef float[] ___arrowScale1, @ByRef float[] ___arrowScale2, @ByRef float[] ___arrowScale3) {
             AbstractCard card = BranchingUpgradesPatch.getHoveredCard();
             if (__instance.forUpgrade && card instanceof MultiUpgradeCard) {
-                //float x = (float)Settings.WIDTH / 2.0F - 73.0F * Settings.scale - 32.0F;
-                sb.setColor(Color.WHITE);
-                //sb.draw(ImageMaster.UPGRADE_ARROW, card.current_x + Settings.WIDTH / 6F * renderScale - 32.0F - 64F * Settings.scale * renderScale, card.current_y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, ___arrowScale1[0] * Settings.scale * renderScale, ___arrowScale1[0] * Settings.scale * renderScale, 0.0F, 0, 0, 64, 64, false, false);
-                //sb.draw(ImageMaster.UPGRADE_ARROW, card.current_x + Settings.WIDTH / 6F * renderScale - 32.0F, card.current_y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, ___arrowScale2[0] * Settings.scale * renderScale, ___arrowScale2[0] * Settings.scale * renderScale, 0.0F, 0, 0, 64, 64, false, false);
-                //sb.draw(ImageMaster.UPGRADE_ARROW, card.current_x + Settings.WIDTH / 6F * renderScale - 32.0F + 64F * Settings.scale * renderScale, card.current_y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, ___arrowScale3[0] * Settings.scale * renderScale, ___arrowScale3[0] * Settings.scale * renderScale, 0.0F, 0, 0, 64, 64, false, false);
-                ___arrowTimer[0] += Gdx.graphics.getDeltaTime() * 2.0F;
-                ___arrowScale1[0] = 0.8F + (MathUtils.cos(___arrowTimer[0]) + 1.0F) / 8.0F;
-                ___arrowScale2[0] = 0.8F + (MathUtils.cos(___arrowTimer[0] - 0.8F) + 1.0F) / 8.0F;
-                ___arrowScale3[0] = 0.8F + (MathUtils.cos(___arrowTimer[0] - 1.6F) + 1.0F) / 8.0F;
-
-                AbstractCard hovered = null;
-                for (CardVertex v : cardGraph.vertices) {
-                    if (v.card.hb.hovered) {
-                        hovered = v.card;
-                        break;
-                    }
-                }
-                for (CardVertex v : cardGraph.vertices) {
-                    for (CardVertex child : v.children) {
-                        if (hovered != null) {
-                            if (child.card == hovered) {
-                                if (v.index == -1 || takenList.contains(v.card)) {
-                                    sb.setColor(Color.GREEN);
-                                } else if (!lockedList.contains(v.card)) {
-                                    sb.setColor(Color.ORANGE);
-                                } else {
-                                    sb.setColor(Color.RED);
-                                }
-                            } else {
-                                sb.setColor(Settings.QUARTER_TRANSPARENT_WHITE_COLOR);
-                            }
-                        }
-
-                        Vector2 vec2 = (new Vector2((child.card.current_x),child.card.current_y)).sub(new Vector2((v.card.current_x), v.card.current_y));
-                        float length = vec2.len();
-                        int mod = 0;
-                        for (float i = 0; i < length; i += LINE_SPACING) {
-                            vec2.clamp(length - i, length - i);
-                            //sb.draw(ImageMaster.MAP_DOT_1, (v.card.current_x) + vec2.x - 8.0F, v.card.current_y + vec2.y - 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, 16, 16, false, false);
-                            Texture texture = child.strict ? upgradeAndLine : ImageMaster.MAP_DOT_1;
-                            float width = texture.getWidth();
-                            sb.draw(texture, (v.card.current_x) + vec2.x - width / 2, v.card.current_y + vec2.y - width / 2, width / 2, width / 2, width, width, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, (int) width, (int) width, false, false);
-                            //sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            /*if (mod == 0) {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale1[0], Settings.scale * renderScale * ___arrowScale1[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            } else if (mod == 1) {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale2[0], Settings.scale * renderScale * ___arrowScale2[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            } else {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale3[0], Settings.scale * renderScale * ___arrowScale3[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            }
-                            mod++;
-                            mod = mod % 3;*/
-                        }
-                        sb.setColor(Color.WHITE);
-                    }
-
-                    for (CardVertex exclusion : v.exclusions) {
-                        if (hovered != null) {
-                            if (exclusion.card == hovered) {
-                                sb.setColor(Color.RED);
-                            } else {
-                                sb.setColor(new Color(1.0F, 0, 0, 0.25F));
-                            }
-                        }
-
-                        Vector2 vec2 = (new Vector2((exclusion.card.current_x), exclusion.card.current_y)).sub(new Vector2((v.card.current_x), v.card.current_y));
-                        float length = vec2.len();
-                        int mod = 0;
-                        for (float i = 0; i < length; i += LINE_SPACING) {
-                            vec2.clamp(length - i, length - i);
-                            //sb.draw(ImageMaster.MAP_DOT_1, (v.card.current_x) + vec2.x - 8.0F, v.card.current_y + vec2.y - 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle() + 90.0F, 0, 0, 16, 16, false, false);
-                            Texture texture = exclusionLine;
-                            float width = texture.getWidth();
-                            sb.draw(exclusionLine, (v.card.current_x) + vec2.x - width / 2, v.card.current_y + vec2.y - width / 2, width / 2, width / 2, width, width, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (exclusion.card.current_x), v.card.current_y - exclusion.card.current_y)).nor().angle() + 90.0F, 0, 0, (int) width, (int) width, false, false);
-                            //sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            /*if (mod == 0) {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale1[0], Settings.scale * renderScale * ___arrowScale1[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            } else if (mod == 1) {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale2[0], Settings.scale * renderScale * ___arrowScale2[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            } else {
-                                sb.draw(ImageMaster.UPGRADE_ARROW, (v.card.current_x) + vec2.x - 32.0F, v.card.current_y + vec2.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * renderScale * ___arrowScale3[0], Settings.scale * renderScale * ___arrowScale3[0], (new Vector2((v.card.current_x) - (child.card.current_x), v.card.current_y - child.card.current_y)).nor().angle(), 0, 0, 64, 64, true, false);
-                            }
-                            mod++;
-                            mod = mod % 3;*/
-                        }
-                        sb.setColor(Color.WHITE);
-                    }
-                }
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();
         }
-    }
-
-    @SpirePatch(clz = GridCardSelectScreen.class, method = "updateScrolling")
-    public static class ScrollShenanigans {
-        public static void Prefix(GridCardSelectScreen __instance) {
-            int x = InputHelper.mX;
-            int y = InputHelper.mY;
-            if (!dragging) {
-                if (InputHelper.justClickedLeft) {
-                    dragging = true;
-                    grabX = x - deltaX;
-                    grabY = y - deltaY;
-                }
-            } else if (InputHelper.isMouseDown) {
-                if (allowX) {
-                    deltaX = x - grabX;
-                }
-                if (allowY) {
-                    deltaY = y - grabY;
-                }
-
-            } else {
-                dragging = false;
-            }
-
-            if (deltaX < minX) {
-                deltaX = MathHelper.scrollSnapLerpSpeed(deltaX, minX);
-            } else if (deltaX > maxX) {
-                deltaX = MathHelper.scrollSnapLerpSpeed(deltaX, maxX);
-            }
-            if (deltaY < minY) {
-                deltaY = MathHelper.scrollSnapLerpSpeed(deltaY, minY);
-            } else if (deltaY > maxY) {
-                deltaY = MathHelper.scrollSnapLerpSpeed(deltaY, maxY);
-            }
-            if (InputHelper.scrolledDown && renderScale > MIN_ZOOM) {
-                renderScale -= 0.1f;
-            } else if (InputHelper.scrolledUp && renderScale < MAX_ZOOM) {
-                renderScale += 0.1f;
-            }
-        }
-    }
-
-    public static void resetScrollState() {
-        deltaX = 0;
-        deltaY = 0;
-        minX = 0;
-        maxX = 0;
-        minY = 0;
-        maxY = 0;
-        allowX = false;
-        allowY = false;
-        renderScale = DEFAULT_ZOOM;
     }
 
     @SpirePatch(clz = GridSelectConfirmButton.class, method = "render")
@@ -652,75 +327,7 @@ public class MultiUpgradePatches {
         public static SpireReturn<?> Do(GridCardSelectScreen __instance, SpriteBatch sb) {
             AbstractCard c = BranchingUpgradesPatch.getHoveredCard();
             if (__instance.forUpgrade && c instanceof MultiUpgradeCard) {
-                float dx = deltaX;
-                float dy = deltaY;
-                cardList.clear();
-                //TODO reorganize this
-                c.target_x = (float)Settings.WIDTH * 1/3F + dx;
-                c.target_y = (float)Settings.HEIGHT / 2F + dy;
-                c.drawScale = renderScale;
-                //c.target_x = (float)Settings.WIDTH * 0.5F + dx;
-                //c.target_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale + dy;
-                c.render(sb);
-                c.updateHoverLogic();
-
-                cardList.addAll(MultiSelectFields.previewCards.get(__instance));
-                int lineNum = 0;
-                int count = 0;
-                for (CardVertex v : cardGraph.vertices) {
-                    if (v.x != -1) {
-                        if (v.card.hb.hovered) {
-                            v.card.drawScale = renderScale;
-                        } else {
-                            v.card.drawScale = 0.9F * renderScale;
-                        }
-                        v.card.target_x = c.target_x + (Settings.WIDTH / 3F * renderScale) + (v.x * X_PAD * renderScale);
-                        v.card.target_y = c.target_y + (v.y * Y_PAD * renderScale);
-
-                        if (lockedList.contains(v.card)) {
-                            sb.end();
-                            sb.setShader(Grayscale.program);
-                            sb.begin();
-                            //card.setLocked();
-                        } else if (takenList.contains(v.card)) {
-                            sb.end();
-                            sb.setShader(Greenify.program);
-                            sb.begin();
-                        }
-                        v.card.render(sb);
-                        ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
-                        v.card.updateHoverLogic();
-                        v.card.renderCardTip(sb);
-                    }
-                }
-                /*for (AbstractCard card : cardList) {
-                    int cardsThisRow = Math.min(5, cardList.size() - (5 * lineNum));
-                    int startX = (int) (Settings.WIDTH / 2.0F - (cardsThisRow - 1) * 150F * Settings.scale);
-                    if (card.hb.hovered) {
-                        card.drawScale = 1.0F;
-                    } else {
-                        card.drawScale = 0.9F;
-                    }
-                    card.target_x = startX + 300F * Settings.scale * count + dx;
-                    card.target_y = Settings.HEIGHT / 4.0F - (420.0F * lineNum * Settings.scale) + dy;
-
-                    if (lockedList.contains(card)) {
-                        sb.end();
-                        sb.setShader(Grayscale.program);
-                        sb.begin();
-                        //card.setLocked();
-                    }
-                    card.render(sb);
-                    ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
-                    card.updateHoverLogic();
-                    card.renderCardTip(sb);
-
-                    count++;
-                    if (count == 5) {
-                        count = 0;
-                        lineNum++;
-                    }
-                }*/
+                MultiUpgradeTree.render(sb);
 
                 if (__instance.forUpgrade || __instance.forTransform || __instance.forPurge || __instance.isJustForConfirming || __instance.anyNumber) {
                     __instance.confirmButton.render(sb);
@@ -743,10 +350,9 @@ public class MultiUpgradePatches {
     public static class UpdatePreviewCards {
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(GridCardSelectScreen __instance) {
-            for (AbstractCard c : MultiSelectFields.previewCards.get(__instance)) {
-                if (c != null) {
-                    c.update();
-                }
+            AbstractCard c = BranchingUpgradesPatch.getHoveredCard();
+            if (__instance.forUpgrade && c instanceof MultiUpgradeCard) {
+                MultiUpgradeTree.update();
             }
         }
 
@@ -773,6 +379,60 @@ public class MultiUpgradePatches {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractCard.class, "upgrade");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "render")
+    public static class RenderTreeSCV {
+/*        static boolean upgradePreview = false;
+        @SpirePrefixPatch
+        public static void stopUpgrading(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
+            upgradePreview = SingleCardViewPopup.isViewingUpgrade;
+            if (___card instanceof MultiUpgradeCard) {
+                SingleCardViewPopup.isViewingUpgrade = false;
+            }
+        }*/
+        @SpirePostfixPatch
+        public static void renderTree(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
+            if (___card instanceof MultiUpgradeCard && SingleCardViewPopup.isViewingUpgrade) {
+                sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.8F));// 809
+                sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float)Settings.WIDTH, (float)Settings.HEIGHT - 64.0F * Settings.scale);// 810
+                MultiUpgradeTree.render(sb);
+            }
+        }
+    }
+
+    @SpirePatch2(clz = SingleCardViewPopup.class, method = "open", paramtypez = {AbstractCard.class})
+    @SpirePatch2(clz = SingleCardViewPopup.class, method = "open", paramtypez = {AbstractCard.class, CardGroup.class})
+    public static class LoadTree {
+        @SpirePrefixPatch
+        public static void load(SingleCardViewPopup __instance, AbstractCard card) throws Exception {
+            if (card instanceof MultiUpgradeCard) {
+                MultiUpgradeTree.open(card, true);
+            }
+        }
+    }
+
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "update")
+    public static class UpdateTree {
+        static boolean upgradePreview = false;
+        @SpirePostfixPatch
+        public static void renderTree(SingleCardViewPopup __instance, AbstractCard ___card) {
+            if (___card instanceof MultiUpgradeCard) {
+                MultiUpgradeTree.update();
+            }
+        }
+    }
+
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTips")
+    public static class TipsBeGone {
+        static boolean upgradePreview = false;
+        @SpirePrefixPatch
+        public static SpireReturn<?> stopUpgrading(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
+            if (___card instanceof MultiUpgradeCard && SingleCardViewPopup.isViewingUpgrade) {
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
         }
     }
 }

@@ -29,6 +29,15 @@
       "Cores act as a base for creating new cards."
     ]
   },
+  "${ModID}:Upgrades": {
+    "TEXT": [
+      "Upgrade",
+      "Improves ",
+      " NL Requires (AND): NL ",
+      " NL Requires (OR): NL ",
+      " NL Excludes: NL "
+    ]
+  },
   "${ModID}:EvaporatePanel": {
     "TEXT": [
       "Evaporated Cards",

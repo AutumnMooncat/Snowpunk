@@ -1,10 +1,12 @@
 package Snowpunk.cards.interfaces;
 
+import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.UpgradeData;
 import Snowpunk.util.UpgradeRunnable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -46,6 +48,10 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
     }
 
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, int[] dependencies, int[] exclusions) {
+        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), true, dependencies, exclusions));
+    }
+
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, boolean strict, int... dependencies) {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies));
     }
@@ -54,12 +60,8 @@ public interface MultiUpgradeCard {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies, exclusions));
     }
 
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, AbstractCard alias, int[] dependencies, boolean strict, int[] exclusions) {
+    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, UpgradeAlias alias, boolean strict, int[] dependencies, int[] exclusions) {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies, strict, exclusions));
-    }
-
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, String name, String description, int... dependencies) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), name, description, dependencies));
     }
 
     default void processUpgrade(AbstractCard card) {
@@ -71,7 +73,7 @@ public interface MultiUpgradeCard {
         if (i == -1) {
             ArrayList<UpgradeData> validUpgrades = upgrades.stream().filter(u -> !u.applied && u.canUpgrade(upgrades)).collect(Collectors.toCollection(ArrayList::new));
             if (!validUpgrades.isEmpty()) {
-                if (AbstractDungeon.cardRandomRng == null || AbstractDungeon.player == null) {
+                if (SingleCardViewPopup.isViewingUpgrade || AbstractDungeon.cardRandomRng == null || AbstractDungeon.player == null) {
                     i = validUpgrades.get(0).index;
                 } else {
                     i = validUpgrades.get(AbstractDungeon.cardRandomRng.random(validUpgrades.size()-1)).index;

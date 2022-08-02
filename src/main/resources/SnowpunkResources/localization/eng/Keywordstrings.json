@@ -2,9 +2,10 @@
   {
     "PROPER_NAME": "Assemble",
     "NAMES": [
-      "assemble"
+      "assemble",
+      "assembled"
     ],
-    "DESCRIPTION": "Create a new card from a selection of #yCores and #yParts and add it to your hand and deck."
+    "DESCRIPTION": "Create a new card from a selection of #yCores and #yParts and add it to your hand. Cards which are not randomly Assembled are also added to your deck."
   },
   {
     "PROPER_NAME": "Burn",
@@ -317,5 +318,12 @@
       "fluxed"
     ],
     "DESCRIPTION": "Fluxed cards act as if they are also their opposite temperature."
+  },
+  {
+    "PROPER_NAME": "Piercing",
+    "NAMES": [
+      "piercing"
+    ],
+    "DESCRIPTION": "Ignores block."
   }
 ]

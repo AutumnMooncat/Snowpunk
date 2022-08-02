@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +11,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class ChuckTools extends AbstractEasyCard {
+public class ChuckTools extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChuckTools.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -34,14 +35,18 @@ public class ChuckTools extends AbstractEasyCard {
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
                 Wiz.applyToEnemy(mo, new VulnerablePower(mo, secondMagic, false));
-                //Wiz.applyToEnemy(mo, new WeakPower(mo, secondMagic, false));
             }
         }
         Wiz.applyToSelf(new TinkerNextCardPower(p, magicNumber));
     }
 
-    public void upp() {
-        //upgradeBaseCost(UP_COST);
-        upgradeMagicNumber(UP_TINKER);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_TINKER));
+        addUpgradeData(this, () -> {
+            this.isInnate = true;
+            uDesc();
+        });
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
     }
 }

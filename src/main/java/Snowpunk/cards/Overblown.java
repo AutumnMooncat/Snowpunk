@@ -1,17 +1,21 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cardmods.VentMod;
 import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.damageMods.SteamOnKillDamage;
 import Snowpunk.patches.CustomTags;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Overblown extends AbstractEasyCard {
+public class Overblown extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Overblown.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -33,7 +37,13 @@ public class Overblown extends AbstractEasyCard {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
-    public void upp() {
-        upgradeDamage(UP_DMG);
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FluxMod()));
+        addUpgradeData(this, () -> {
+            DamageModifierManager.addModifier(this, new SteamOnKillDamage());
+            uDesc();
+        });
     }
 }

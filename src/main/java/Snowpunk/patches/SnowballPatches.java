@@ -63,6 +63,23 @@ public class SnowballPatches {
                 return LineFinder.findInOrder(ctBehavior, m);
             }
         }
+
+        @SpireInsertPatch(locator = Locator2.class)
+        public static void fixSCostShenanigans(AbstractPlayer __instance, AbstractCard c) {
+            if (SCostFieldPatches.SCostField.isSCost.get(c)) {
+                if (!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c) && __instance.hasPower(SnowballPower.POWER_ID)) {
+                    Wiz.atb(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, __instance.getPower(SnowballPower.POWER_ID).amount));
+                    //Wiz.atb(new RemoveSpecificPowerAction(__instance, __instance, SnowballPower.POWER_ID));
+                }
+            }
+        }
+        public static class Locator2 extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher m = new Matcher.MethodCallMatcher(AbstractCard.class, "freeToPlay");
+                return LineFinder.findInOrder(ctBehavior, m);
+            }
+        }
     }
 
     /*@SpirePatch2(clz = AbstractPlayer.class, method = "useCard")

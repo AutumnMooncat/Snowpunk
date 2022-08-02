@@ -2,6 +2,9 @@ package Snowpunk.powers;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -21,17 +24,18 @@ public class WinterStormPower extends AbstractEasyPower {
         this.loadRegion("storm");
     }
 
-    @Override
-    public void atStartOfTurnPostDraw() {
-        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-            if (!mo.isDeadOrEscaped()) {
-                Wiz.applyToEnemy(mo, new FrostbitePower(mo, owner, amount));
-            }
-        }
+    public void atStartOfTurn() {
+        this.addToBot(new LoseEnergyAction(amount));
+        this.addToBot(new ApplyPowerAction(Wiz.adp(), owner, new SnowballPower(Wiz.adp(), amount)));
+        this.flash();
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (amount == 1) {
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
+        } else {
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
+        }
     }
 }

@@ -135,7 +135,10 @@
   },
   "${ModID}:WinterStormPower": {
     "NAME": "Winter Storm",
-    "DESCRIPTIONS": ["At the start of your turn, apply #b"," #yFrostbite to ALL enemies."]
+    "DESCRIPTIONS": ["At the start of your turn, gain #b",
+                    " #ySnowball and lose #b",
+                    " #ySnowballs and lose #b",
+                    " [E] ."]
   },
   "${ModID}:HeatTransferPower": {
     "NAME": "Heat Transfer",
@@ -199,6 +202,46 @@
     "DESCRIPTIONS": [
       "Take half damage from #yAttacks this turn.",
       "Take half damage from #yAttacks for #b", " turns."
+    ]
+  },
+  "${ModID}:BrimstonePower": {
+    "NAME": "Fire and Brimstone",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " #yFireball into your hand.",
+      " #yFireballs into your hand."
+    ]
+  },
+  "${ModID}:BetterInventionPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yInvention into your hand.",
+      " randomly #yAssembled #yInventions into your hand."
+    ]
+  },
+  "${ModID}:BetterCreationPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yCreation into your hand.",
+      " randomly #yAssembled #yCreations into your hand."
+    ]
+  },
+  "${ModID}:BetterMachinationPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " randomly #yAssembled #yMachination into your hand.",
+      " randomly #yAssembled #yMachinations into your hand."
+    ]
+  },
+  "${ModID}:EmberForgePower": {
+    "NAME": "Ember Forge",
+    "DESCRIPTIONS": [
+      "At the start of your turn, #yHeat #b",
+      " random card into your hand.",
+      " random cards into your hand."
     ]
   }
 }

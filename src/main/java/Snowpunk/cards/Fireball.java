@@ -1,14 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BurnPower;
-import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,7 +16,6 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-
 public class Fireball extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Fireball.class.getSimpleName());
 
@@ -27,7 +23,7 @@ public class Fireball extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    protected static ArrayList<TooltipInfo> Tooltip;
+    protected static ArrayList<TooltipInfo> tooltip;
 
     private static final int COST = 1, UP_COST = 0, DMG = 2, UP_DMG = 2, MAGIC = 2, UP_MAGIC = 1;
 
@@ -47,18 +43,18 @@ public class Fireball extends AbstractMultiUpgradeCard {
     @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("snowpunk:token"));
+        tags.add(BaseMod.getKeywordTitle(cardStrings.EXTENDED_DESCRIPTION[0].toLowerCase()));
         tags.addAll(super.getCardDescriptors());
         return tags;
     }
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.TOKEN), BaseMod.getKeywordDescription(KeywordManager.TOKEN)));
+        if (tooltip == null) {
+            tooltip = new ArrayList<>();
+            tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(cardStrings.EXTENDED_DESCRIPTION[0].toLowerCase()), BaseMod.getKeywordDescription(cardStrings.EXTENDED_DESCRIPTION[0].toLowerCase())));
         }
-        return Tooltip;
+        return tooltip;
     }
 
     @Override

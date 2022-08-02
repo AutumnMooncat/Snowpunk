@@ -39,9 +39,9 @@ public class Stronger extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MULT), null, new int[]{}, true, new int[]{1, 2});
-        addUpgradeData(this, () -> upgrade2(), null, new int[]{}, true, new int[]{0, 2});
-        addUpgradeData(this, () -> upgrade3(), null, new int[]{}, true, new int[]{0, 1});
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_MULT), new int[]{}, new int[]{1, 2});
+        addUpgradeData(this, () -> upgrade2(), new int[]{}, new int[]{0, 2});
+        addUpgradeData(this, () -> upgrade3(), new int[]{}, new int[]{0, 1});
     }
 
     private void upgrade2() {

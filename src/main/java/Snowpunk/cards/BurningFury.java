@@ -26,6 +26,7 @@ public class BurningFury extends AbstractMultiUpgradeCard {
     public BurningFury() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = FIRE;
+        cardsToPreview = new Fireball();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -22,7 +22,7 @@ public class Harder extends AbstractMultiUpgradeCard {
     private static final int COST = 1;
     private static final int DMG = 12;
     private static final int UP_DMG = 4;
-    private static final int EFFECT = 2;
+    private static final int EFFECT = 4;
     private static final int UP_EFFECT = 1;
 
     public Harder() {
