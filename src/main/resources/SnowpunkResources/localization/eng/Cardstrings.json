@@ -85,6 +85,10 @@
     "DESCRIPTION": "Deal !D! damage. NL Apply snowpunk:Burn equal to unblocked damage dealt.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Ignores Block. NL Apply snowpunk:Burn equal to unblocked damage dealt."
   },
+  "${ModID}:ChooChoo": {
+    "NAME": "Choo Choo",
+    "DESCRIPTION": "Ethereal. NL Play all Linked cards in your hand. NL Exhaust."
+  },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",
     "DESCRIPTION": "Increase snowpunk:Holiday\u00a0Cheer by !M!. snowpunk:Christmas\u00a0Spirit heals !Snowpunk:M2! additional HP."
@@ -316,6 +320,11 @@
   "${ModID}:Think": {
     "NAME": "Think",
     "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Tinker {!M!|@=a|>1=!M!} card{!M!|>1=s} in your hand.{!Snowpunk:Info!|1= NL Randomly snowpunk:Tinker the next card you play.}"
+  },
+  "${ModID}:TrainStation": {
+    "NAME": "Train Station",
+    "DESCRIPTION": "{@@}Add a [#efc851]Chugga[] [#efc851]Chugga[] to your hand.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "{@@}Add a [#efc851]Chugga[] [#efc851]Chugga[] and a [#efc851]Choo[] [#efc851]Choo[] to your hand.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:TrolleyForm": {
     "NAME": "Trolley Form",
