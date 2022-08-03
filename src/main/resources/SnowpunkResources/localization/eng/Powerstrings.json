@@ -250,5 +250,13 @@
       "#yUpgrade the next card you draw.",
       "#yUpgrade the next #b"," cards you draw."
     ]
+  },
+  "${ModID}:OverdrivePower": {
+    "NAME": "Overdrive",
+    "DESCRIPTIONS": [
+      "Whenever a card #yEvaporates, draw #b",
+      " card.",
+      " cards."
+    ]
   }
 }

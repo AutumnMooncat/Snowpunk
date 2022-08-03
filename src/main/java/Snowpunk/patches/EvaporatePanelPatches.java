@@ -1,5 +1,6 @@
 package Snowpunk.patches;
 
+import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
@@ -145,6 +147,11 @@ public class EvaporatePanelPatches {
                 EvaporateField.evaporate.set(___targetCard, false);
                 ___targetCard.exhaustOnUseOnce = false;
                 ___targetCard.dontTriggerOnUseCard = false;
+                for (AbstractPower pow : Wiz.adp().powers) {
+                    if (pow instanceof OnEvaporatePower) {
+                        ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+                    }
+                }
                 Wiz.atb(new HandCheckAction());
                 ReflectionHacks.RMethod tick = ReflectionHacks.privateMethod(AbstractGameAction.class, "tickDuration");
                 tick.invoke(__instance);

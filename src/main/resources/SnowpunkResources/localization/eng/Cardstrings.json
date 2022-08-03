@@ -215,6 +215,11 @@
     "DESCRIPTION": "Deal !D! damage.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this kills an enemy, gain 1 snowpunk:Steam."
   },
+  "${ModID}:Overdrive": {
+    "NAME": "Overdrive",
+    "DESCRIPTION": "Whenever a card snowpunk:Evaporates, draw !M! card{!M!|>1=s}{@@}.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever a card snowpunk:Evaporates, draw !M! card{!M!|>1=s}{@@}."
+  },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
