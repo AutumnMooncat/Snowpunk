@@ -1,18 +1,16 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.EmberForgePower;
-import Snowpunk.powers.HeatTransferPower;
+import Snowpunk.powers.WildfirePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class EmberForge extends AbstractMultiUpgradeCard {
-    public final static String ID = makeID(EmberForge.class.getSimpleName());
+public class Wildfire extends AbstractMultiUpgradeCard {
+    public final static String ID = makeID(Wildfire.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -22,13 +20,13 @@ public class EmberForge extends AbstractMultiUpgradeCard {
     private static final int EFFECT = 1;
     private static final int UP_EFFECT = 1;
 
-    public EmberForge() {
+    public Wildfire() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new EmberForgePower(p, magicNumber));
+        Wiz.applyToSelf(new WildfirePower(p, magicNumber));
     }
 
     @Override

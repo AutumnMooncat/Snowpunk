@@ -135,11 +135,6 @@
     "DESCRIPTION": "{@@}snowpunk:Stabilize your snowpunk:Engine. snowpunk:Condense ALL snowpunk:Evaporated cards.{!Snowpunk:Info!|0= NL Exhaust.}",
     "UPGRADE_DESCRIPTION": "At the start of your turn, snowpunk:Stabilize your snowpunk:Engine. snowpunk:Condense ALL snowpunk:Evaporated cards."
   },
-  "${ModID}:EmberForge": {
-    "NAME": "Ember Forge",
-    "DESCRIPTION": "{@@}At the start of your turn, snowpunk:Heat !M! random card{!M!|>1=s} in your hand.",
-    "UPGRADE_DESCRIPTION": "Innate. NL {@@}At the start of your turn, snowpunk:Heat !M! random card{!M!|>1=s} in your hand."
-  },
   "${ModID}:Faster": {
     "NAME": "Faster",
     "DESCRIPTION": "{@@}Draw X {!Snowpunk:M2!|>0=+ !Snowpunk:M2! }cards. NL Gain {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
@@ -359,6 +354,11 @@
   "${ModID}:WaterTank": {
     "NAME": "Water Tank",
     "DESCRIPTION": "Temperature effects from this card are !M! times stronger."
+  },
+  "${ModID}:Wildfire": {
+    "NAME": "Wildfire",
+    "DESCRIPTION": "{@@}At the start of your turn, snowpunk:Heat !M! random card{!M!|>1=s} in your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL {@@}At the start of your turn, snowpunk:Heat !M! random card{!M!|>1=s} in your hand."
   },
   "${ModID}:WinterStorm": {
     "NAME": "Winter Storm",
