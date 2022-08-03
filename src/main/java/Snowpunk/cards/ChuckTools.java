@@ -33,7 +33,7 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
-                Wiz.applyToEnemy(mo, new VulnerablePower(mo, secondMagic, false));
+                Wiz.applyToEnemy(mo, new VulnerablePower(mo, magicNumber, false));
             }
         }
         Wiz.applyToSelf(new SparePartsPower(p, magicNumber));
