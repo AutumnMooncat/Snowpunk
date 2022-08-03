@@ -102,7 +102,7 @@
       "tinker",
       "tinkered"
     ],
-    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #Parts which #yUpgrades drawn cards. #yAdditional #yParts are obtained when Tinkering an #yUpgraded card."
+    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #yParts which #yUpgrades drawn cards. #yAdditional #yParts are obtained when Tinkering an #yUpgraded card."
   },
   {
     "PROPER_NAME": "Part",
@@ -257,7 +257,7 @@
     "NAMES": [
       "ice"
     ],
-    "DESCRIPTION": "Gain Block when you use a #ySnowball."
+    "DESCRIPTION": "Receive half damage from #yAttacks this turn."
   },
   {
     "PROPER_NAME": "Stabilize",

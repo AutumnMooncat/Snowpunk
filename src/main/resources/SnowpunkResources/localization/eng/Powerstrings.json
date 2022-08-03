@@ -198,7 +198,7 @@
     ]
   },
   "${ModID}:ProtectionPower": {
-    "NAME": "Protected",
+    "NAME": "Ice",
     "DESCRIPTIONS": [
       "Take half damage from #yAttacks this turn.",
       "Take half damage from #yAttacks for #b", " turns."

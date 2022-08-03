@@ -172,7 +172,7 @@
   "${ModID}:Harder": {
     "NAME": "Harder",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL If this kills an enemy, receive half damage from Attacks this turn."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL If this kills an enemy, gain 1 snowpunk:Ice."
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
@@ -188,8 +188,8 @@
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
-    "DESCRIPTION": "When drawn, receive half damage from Attacks this turn.",
-    "UPGRADE_DESCRIPTION": "When drawn, receive half damage from Attacks this turn and snowpunk:Freeze your snowpunk:Engine."
+    "DESCRIPTION": "When you draw this card, gain 1 snowpunk:Ice.",
+    "UPGRADE_DESCRIPTION": "When you draw this card, gain 1 snowpunk:Ice and snowpunk:Freeze your snowpunk:Engine."
   },
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",
@@ -326,11 +326,16 @@
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand.{@@}",
     "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker this card."
   },
+  "${ModID}:ThinkingChamber": {
+    "NAME": "Thinking Chamber",
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Ice. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Ice. NL Gain !Snowpunk:M2! snowpunk:Steam. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand."
+  },
   "${ModID}:TinkersHammer": {
     "NAME": "Tinker's Hammer",
-    "DESCRIPTION": "snowpunk:Tinker a card in your hand. NL Upon pickup, Upgrade a card in your deck. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Tinker this card. NL Upon pickup, Upgrade a card in your deck.",
-    "EXTENDED_DESCRIPTION": ["snowpunk:Tinker a card in your hand. NL Upon pickup, Upgrade a card in your deck."]
+    "DESCRIPTION": "{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Tinker this card.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}",
+    "EXTENDED_DESCRIPTION": ["{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}"]
   },
   "${ModID}:TrainStation": {
     "NAME": "Train Station",
