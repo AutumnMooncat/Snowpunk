@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.HeatTransferPower;
 import Snowpunk.util.Wiz;

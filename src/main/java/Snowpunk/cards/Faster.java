@@ -1,11 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.TinkerAction;
 import Snowpunk.cardmods.VentMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;

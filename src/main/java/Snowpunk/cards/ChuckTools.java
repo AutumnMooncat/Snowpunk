@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -22,13 +23,11 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
     private static final int UP_COST = 0;
     private static final int EFFECT = 2;
     private static final int UP_EFFECT = 1;
-    private static final int TINKER = 1;
-    private static final int UP_TINKER = 1;
 
     public ChuckTools() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        secondMagic = baseSecondMagic = EFFECT;
-        magicNumber = baseMagicNumber = TINKER;
+        magicNumber = baseMagicNumber = EFFECT;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -37,12 +36,12 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
                 Wiz.applyToEnemy(mo, new VulnerablePower(mo, secondMagic, false));
             }
         }
-        Wiz.applyToSelf(new TinkerNextCardPower(p, magicNumber));
+        Wiz.applyToSelf(new SparePartsPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_TINKER));
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
         addUpgradeData(this, () -> {
             this.isInnate = true;
             uDesc();

@@ -44,6 +44,10 @@ public interface MultiUpgradeCard {
         return true;
     }
 
+    default int upgradesPerformed(AbstractCard card) {
+        return (int) getUpgrades(card).stream().filter(u -> u.applied).count();
+    }
+
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, int... dependencies) {
         MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
     }

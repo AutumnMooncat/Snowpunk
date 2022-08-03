@@ -75,7 +75,7 @@ public class AssembleCardAction extends AbstractGameAction {
             }
         });
         for (int i = 0 ; i < type.getParts() ; i++) {
-            Wiz.att(new TinkerAction(ac, random));
+            Wiz.att(new TinkerActionOLD(ac, random));
         }
         for (int i = 0 ; i < type.getCores() ; i++) {
             if (random) {

@@ -50,8 +50,12 @@
   },
   "${ModID}:BrassKnuckles": {
     "NAME": "Brass Knuckles",
-    "DESCRIPTION": "Deal !D! damage twice. When snowpunk:Tinkered, increase this card's damage by !M! this combat.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage 3 times. When snowpunk:Tinkered, increase this card's damage by !M! this combat."
+    "DESCRIPTION": "Deal !D! damage twice.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL Apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage twice. NL Apply !M! snowpunk:Chill.",
+                            "Deal !D! damage 3 times. NL Apply !M! snowpunk:Burn.",
+                            "Deal !D! damage 3 times. NL Apply !M! snowpunk:Chill.",
+                            "Burning Knuckles", "Chilling Knuckles"]
   },
   "${ModID}:BrassWave": {
     "NAME": "Brass Wave",
@@ -95,8 +99,8 @@
   },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Parts",
-    "DESCRIPTION": "{@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play.",
-    "UPGRADE_DESCRIPTION": "Innate. NL {@@}Apply !Snowpunk:M2! Vulnerable to ALL enemies. NL Randomly snowpunk:Tinker the next{!M!|>1= !M!} card{!M!|>1=s} you play."
+    "DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Spare_Parts. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Spare_Parts. NL Exhaust."
   },
   "${ModID}:ChuggaChugga": {
     "NAME": "Chugga Chugga",
@@ -237,8 +241,8 @@
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
-    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Draw !M! cards. NL Cards drawn this way are randomly snowpunk:Tinkered."
+    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
@@ -319,7 +323,14 @@
   },
   "${ModID}:Think": {
     "NAME": "Think",
-    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Tinker {!M!|@=a|>1=!M!} card{!M!|>1=s} in your hand.{!Snowpunk:Info!|1= NL Randomly snowpunk:Tinker the next card you play.}"
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand.{@@}",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker this card."
+  },
+  "${ModID}:TinkersHammer": {
+    "NAME": "Tinker's Hammer",
+    "DESCRIPTION": "snowpunk:Tinker a card in your hand. NL Upon pickup, Upgrade a card in your deck. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Tinker this card. NL Upon pickup, Upgrade a card in your deck.",
+    "EXTENDED_DESCRIPTION": ["snowpunk:Tinker a card in your hand. NL Upon pickup, Upgrade a card in your deck."]
   },
   "${ModID}:TrainStation": {
     "NAME": "Train Station",

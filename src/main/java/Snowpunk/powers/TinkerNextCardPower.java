@@ -1,9 +1,7 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.actions.TinkerAction;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.util.Wiz;
+import Snowpunk.actions.TinkerActionOLD;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,19 +24,18 @@ public class TinkerNextCardPower extends AbstractEasyPower {
 
     public TinkerNextCardPower(AbstractCreature owner, int amount, boolean appliedByCard) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("tools");
+        this.loadRegion("curiosity");
         justApplied = appliedByCard;
     }
 
     @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+    public void onUseCard(AbstractCard card, UseCardAction action) {
         if (justApplied) {
             justApplied = false;
             return;
         }
-        if (!card.purgeOnUse) {
-            flash();
-            addToBot(new TinkerAction(card, true));
+        if (card.canUpgrade()) {
+            TinkerAction.tinkerCard(card);
             addToBot(new ReducePowerAction(owner, owner, this, 1));
         }
     }

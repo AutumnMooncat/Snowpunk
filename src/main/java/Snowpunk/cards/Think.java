@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.TinkerAction;
+import Snowpunk.actions.TinkerActionOLD;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
@@ -21,6 +22,8 @@ public class Think extends AbstractMultiUpgradeCard {
     private static final int TINKER = 1;
     private static final int UP_TINKER = 1;
 
+    private boolean tinkerSelf = false;
+
     public Think() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
@@ -30,18 +33,20 @@ public class Think extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        for (int i = 0 ; i < magicNumber ; i++) {
-            Wiz.atb(new TinkerAction());
-        }
-        if (info == 1) {
-            Wiz.applyToSelf(new TinkerNextCardPower(p, 1, true));
+        if (tinkerSelf) {
+            Wiz.atb(new TinkerAction(this));
+        } else {
+            Wiz.atb(new TinkerAction(magicNumber, false));
         }
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBlock(UPG_BLOCK));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_TINKER));
-        addUpgradeData(this, () -> upgradeInfo(1));
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_TINKER), new int[]{}, new int[]{2});
+        addUpgradeData(this, () -> {
+            tinkerSelf = true;
+            uDesc();
+        }, new int[]{}, new int[]{1});
     }
 }

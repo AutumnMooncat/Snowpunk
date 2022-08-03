@@ -102,7 +102,7 @@
       "tinker",
       "tinkered"
     ],
-    "DESCRIPTION": "Modify a card with a random #yPart chosen from a selection."
+    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #Parts which #yUpgrades drawn cards. #yAdditional #yParts are obtained when Tinkering an #yUpgraded card."
   },
   {
     "PROPER_NAME": "Part",
@@ -325,5 +325,13 @@
       "piercing"
     ],
     "DESCRIPTION": "Ignores block."
+  },
+  {
+    "PROPER_NAME": "Spare Parts",
+    "NAMES": [
+      "spare parts",
+      "spare_parts"
+    ],
+    "DESCRIPTION": "#yUpgrades drawn cards."
   }
 ]

@@ -12,6 +12,7 @@
   "${ModID}:Tinker": {
     "TEXT": [
       "Choose a card to tinker.",
+      "Choose #b"," cards to tinker.",
       "Choose a Part to apply to ","."
     ]
   },

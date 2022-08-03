@@ -1,8 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.TinkerAction;
+import Snowpunk.actions.TinkerActionOLD;
 import Snowpunk.cardmods.BetterExhaustMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -29,6 +28,7 @@ public class Resupply extends AbstractMultiUpgradeCard {
     public Resupply() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = DRAW;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -36,7 +36,9 @@ public class Resupply extends AbstractMultiUpgradeCard {
             @Override
             public void update() {
                 for (AbstractCard c : DrawCardAction.drawnCards) {
-                    Wiz.att(new TinkerAction(c, true));
+                    if (c.canUpgrade()) {
+                        c.upgrade();
+                    }
                 }
                 this.isDone = true;
             }
@@ -47,12 +49,11 @@ public class Resupply extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_DRAW));
         addUpgradeData(this, () -> {
-            this.isInnate = true;
-            uDesc();
-        });
-        addUpgradeData(this, () -> {
             upgradeBaseCost(UP_COST);
-            CardModifierManager.addModifier(this, new BetterExhaustMod());
-        });
+        }, new int[]{}, new int[]{2});
+        addUpgradeData(this, () -> {
+            exhaust = false;
+            uDesc();
+        }, new int[]{}, new int[]{1});
     }
 }

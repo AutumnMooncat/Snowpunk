@@ -243,5 +243,12 @@
       " random card into your hand.",
       " random cards into your hand."
     ]
+  },
+  "${ModID}:SparePartsPower": {
+    "NAME": "Spare Parts",
+    "DESCRIPTIONS": [
+      "#yUpgrade the next card you draw.",
+      "#yUpgrade the next #b"," cards you draw."
+    ]
   }
 }
