@@ -3,7 +3,7 @@
     "NAME": "Brass Pipe",
     "FLAVOR": "For a busy mind.",
     "DESCRIPTIONS": [
-      "At the start of combat, gain a #ysnowpunk:Snowball."
+      "#yUpgrade the first #b2 cards you draw each combat."
     ]
   },
   "${ModID}:ChristmasSpirit": {
