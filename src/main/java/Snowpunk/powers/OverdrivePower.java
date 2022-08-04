@@ -16,7 +16,7 @@ public class OverdrivePower extends AbstractEasyPower implements OnEvaporatePowe
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
     public OverdrivePower(AbstractCreature owner, int amount) {
-        super(POWER_ID, strings.NAME, PowerType.BUFF, true, owner, amount);
+        super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("like_water");
     }
 
