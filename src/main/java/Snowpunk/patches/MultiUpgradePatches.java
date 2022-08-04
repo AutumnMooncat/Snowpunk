@@ -161,7 +161,7 @@ public class MultiUpgradePatches {
         public static void Insert(GridCardSelectScreen __instance) throws Exception {
             AbstractCard c = BranchingUpgradesPatch.getHoveredCard();
             if (c instanceof MultiUpgradeCard) {
-                MultiUpgradeTree.open(c);
+                MultiUpgradeTree.open(c, true);
                 MultiSelectFields.waitingForUpgradeSelection.set(__instance, true);
             }
         }
@@ -240,7 +240,7 @@ public class MultiUpgradePatches {
         }
     }
 
-    @SpirePatch2(clz = AbstractCard.class, method = "hover")
+/*    @SpirePatch2(clz = AbstractCard.class, method = "hover")
     public static class StopJitteringPlz {
         @SpirePrefixPatch
         public static SpireReturn<?> plz(AbstractCard __instance, @ByRef boolean[] ___hovered) {
@@ -253,7 +253,7 @@ public class MultiUpgradePatches {
             }
             return SpireReturn.Continue();
         }
-    }
+    }*/
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = "render")
     public static class HideGhostCard {

@@ -69,7 +69,7 @@ public class MultiUpgradeTree {
     }
 
     public static void selectCard(AbstractCard card) {
-        if (cardList.contains(card) && !takenList.contains(card) && !lockedList.contains(card)) {
+        if (card != mainCard && cardList.contains(card) && !takenList.contains(card) && !lockedList.contains(card)) {
             MultiUpgradePatches.MultiUpgradeFields.glowRed.set(card, false);
             card.beginGlowing();
             cardList.forEach((c) -> {
