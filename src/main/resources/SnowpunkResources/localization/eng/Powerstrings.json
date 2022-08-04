@@ -7,11 +7,11 @@
     "NAME": "Engine Temperature",
     "DESCRIPTIONS": [
       "Determines your #yEnergy and #ySnowball gain per turn. Playing cards with Temperature effects changes the Engine Temperature. NL Current Temperature: ",
-      " NL #bFrozen: #b0 #yEnergy, #b3 #ySnowballs",
-      " NL #bCold: #b1 #yEnergy, #b2 #ySnowball",
-      " NL #yStable: #b2 #yEnergy, #b1 #ySnowball",
-      " NL #rHot: #b3 #yEnergy",
-      " NL #rOverheated: #b4 #yEnergy"
+      " NL #bFrozen: #b0 #yEnergy, #b3 #bSnowballs",
+      " NL #bCold: #b1 #yEnergy, #b2 #bSnowballs",
+      " NL #yStable: #b2 #yEnergy, #b1 #bSnowball",
+      " NL #rHot: #b3 #yEnergy, #b1 #rFireball",
+      " NL #rOverheated: #b4 #yEnergy, #b2 #rFireballs"
     ]
   },
   "${ModID}:SnowballPower": {
@@ -51,8 +51,7 @@
     "NAME": "Heat Next Card",
     "DESCRIPTIONS": [
       "#yHeat the next card you play.",
-      "#yHeat the next #b",
-      " cards you play."
+      "#yHeat the next #b", " cards you play."
     ]
   },
   "${ModID}:OverheatNextCardPower": {
