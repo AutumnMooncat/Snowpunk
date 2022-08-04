@@ -102,7 +102,7 @@
       "tinker",
       "tinkered"
     ],
-    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #yParts which #yUpgrades drawn cards. #yAdditional #yParts are obtained when Tinkering an #yUpgraded card."
+    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #yParts which #yUpgrades drawn cards. Additional #yParts are obtained when Tinkering an #yUpgraded card."
   },
   {
     "PROPER_NAME": "Part",
@@ -183,14 +183,14 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. #yPull a card."
+    "DESCRIPTION": "#yRetain. If your draw pile isn't empty, draw a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yCondense a card. NL #yRetain. #yPull a card."
+    "DESCRIPTION": "#yCondense a card. NL #yRetain. If your draw pile isn't empty, draw a card."
   },
   {
     "PROPER_NAME": "Evaporate",
@@ -206,7 +206,7 @@
     "NAMES": [
       "condense"
     ],
-    "DESCRIPTION": "Shuffle a random #yEvaporated card to your draw pile."
+    "DESCRIPTION": "Shuffle a random #yEvaporated card into your draw pile."
   },
   {
     "PROPER_NAME": "Heat",
