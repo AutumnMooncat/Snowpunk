@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -36,7 +37,10 @@ public class TinkerAction extends AbstractGameAction {
             tinkerCard(card);
         } else {
             if (amount >= Wiz.adp().hand.size()) {
-                for (AbstractCard c : Wiz.adp().hand.group) {
+                Iterator<AbstractCard> it = Wiz.adp().hand.group.iterator();
+                while (it.hasNext()) {
+                    AbstractCard c = it.next();
+                    it.remove();
                     tinkerCard(c);
                 }
             } else if (random) {
