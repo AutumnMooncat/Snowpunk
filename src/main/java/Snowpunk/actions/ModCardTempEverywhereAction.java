@@ -1,33 +1,37 @@
 package Snowpunk.actions;
 
-import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.patches.CardTemperatureFields;
-import basemod.helpers.CardModifierManager;
+import Snowpunk.ui.EvaporatePanel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class ModCardTempEverywhereAction extends AbstractGameAction
-{
+public class ModCardTempEverywhereAction extends AbstractGameAction {
 
-    public ModCardTempEverywhereAction(int amount)
-    {
+    public ModCardTempEverywhereAction(int amount) {
         this.amount = amount;
     }
 
     @Override
-    public void update()
-    {
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
+    public void update() {
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
             CardTemperatureFields.addHeat(c, amount);
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             CardTemperatureFields.addHeat(c, amount);
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+        }
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             CardTemperatureFields.addHeat(c, amount);
-        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
             CardTemperatureFields.addHeat(c, amount);
-        for (AbstractCard c : AbstractDungeon.player.limbo.group)
+        }
+        for (AbstractCard c : AbstractDungeon.player.limbo.group) {
             CardTemperatureFields.addHeat(c, amount);
+        }
+        for (AbstractCard c : EvaporatePanel.evaporatePile.group) {
+            CardTemperatureFields.addHeat(c, amount);
+        }
         isDone = true;
     }
 }

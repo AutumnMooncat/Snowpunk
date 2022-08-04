@@ -197,8 +197,8 @@
   },
   "${ModID}:NorEaster": {
     "NAME": "Nor'Easter",
-    "DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Set your snowpunk:Engine's Stable Temperature to snowpunk:Frozen. Exhaust."
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Freeze your hand. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Freeze ALL cards. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust."
   },
   "${ModID}:NutCracker": {
     "NAME": "Nut Cracker",
@@ -338,9 +338,9 @@
   },
   "${ModID}:TinkersHammer": {
     "NAME": "Tinker's Hammer",
-    "DESCRIPTION": "{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Tinker this card.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}",
-    "EXTENDED_DESCRIPTION": ["{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}"]
+    "DESCRIPTION": "{@@}snowpunk:Tinker a card in your hand.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Tinker this card.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.}",
+    "EXTENDED_DESCRIPTION": ["{@@}snowpunk:Tinker a card in your hand.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.}"]
   },
   "${ModID}:TrainStation": {
     "NAME": "Train Station",
