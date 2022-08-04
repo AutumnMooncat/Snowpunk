@@ -71,11 +71,10 @@
     ]
   },
   "${ModID}:TinkerNextCardPower": {
-    "NAME": "Random Parts",
+    "NAME": "Next Card Tinker",
     "DESCRIPTIONS": [
-      "Randomly #yTinker the next card you play.",
-      "Randomly #yTinker the next #b",
-      " cards you play."
+      "#yTinker the next card you play.",
+      "#yTinker the next #b"," cards you play."
     ]
   },
   "${ModID}:SnowblowerPower": {
@@ -262,6 +261,13 @@
     "NAME": "The Snowman",
     "DESCRIPTIONS": [
       "All cards become #bFrosty."
+    ]
+  },
+  "${ModID}:BreakthroughPower": {
+    "NAME": "Breakthrough",
+    "DESCRIPTIONS": [
+      "The next card you play costs #b0.",
+      "The next #b", " cards you play cost #b0."
     ]
   }
 }

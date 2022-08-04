@@ -1,5 +1,6 @@
 package Snowpunk.patches;
 
+import Snowpunk.powers.BreakthroughPower;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -14,8 +15,10 @@ public class FreeCardPatch {
     public static class FreeCardPlz {
         @SpirePrefixPatch
         public static SpireReturn<?> free(AbstractCard __instance) {
-            if (Wiz.adp() != null && !AbstractDungeon.isScreenUp && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && Wiz.adp().hasPower(SteamPower.POWER_ID)) {
-                return SpireReturn.Return(true);
+            if (Wiz.adp() != null && !AbstractDungeon.isScreenUp && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                if (Wiz.adp().hasPower(SteamPower.POWER_ID) || Wiz.adp().hasPower(BreakthroughPower.POWER_ID)) {
+                    return SpireReturn.Return(true);
+                }
             }
             return SpireReturn.Continue();
         }

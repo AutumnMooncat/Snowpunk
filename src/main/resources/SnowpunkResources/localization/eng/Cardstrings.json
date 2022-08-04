@@ -63,9 +63,8 @@
   },
   "${ModID}:Breakthrough": {
     "NAME": "Breakthrough",
-    "DESCRIPTION": "Add a randomly snowpunk:Assembled snowpunk:Invention into your hand. NL It costs 0 this turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Add a randomly snowpunk:Assembled snowpunk:Creation into your hand. NL It costs 0 this turn. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Add a randomly snowpunk:Assembled snowpunk:Machination into your hand. NL It costs 0 this turn. NL Exhaust."]
+    "DESCRIPTION": "{@@}The next {!M!|>1=!M! }card{!M!|>1=s} you play cost{!M!|1=s} 0 and snowpunk:Tinker{!M!|1=s} {!M!|1=itself|@=themselves}. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}The next {!M!|>1=!M! }card{!M!|>1=s} you play cost{!M!|1=s} 0 and snowpunk:Tinker{!M!|1=s} {!M!|1=itself|@=themselves}. NL snowpunk:Tinker this card."
   },
   "${ModID}:BuckShot": {
     "NAME": "Buck Shot",

@@ -100,7 +100,8 @@
     "PROPER_NAME": "Tinker",
     "NAMES": [
       "tinker",
-      "tinkered"
+      "tinkered",
+      "tinkers"
     ],
     "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #yParts which #yUpgrades drawn cards. Additional #yParts are obtained when Tinkering an #yUpgraded card."
   },

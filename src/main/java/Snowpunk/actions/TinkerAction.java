@@ -70,7 +70,7 @@ public class TinkerAction extends AbstractGameAction {
         if (AbstractDungeon.player.hoveredCard == c) {
             AbstractDungeon.player.releaseCard();
         }
-        AbstractDungeon.actionManager.removeFromQueue(c);
+        //AbstractDungeon.actionManager.removeFromQueue(c);
         c.unhover();
         c.untip();
         c.stopGlowing();

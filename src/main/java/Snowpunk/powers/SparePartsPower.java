@@ -24,7 +24,7 @@ public class SparePartsPower extends AbstractEasyPower {
         if (amount > 0 && card.canUpgrade()) {
             amount--;
             card.upgrade();
-            flash();
+            flashWithoutSound();
             updateDescription();
             if (amount == 0) {
                 Wiz.att(new RemoveSpecificPowerAction(owner, owner, this));

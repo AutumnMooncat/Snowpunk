@@ -1,13 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.AssembleCardAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.BetterCreationPower;
-import Snowpunk.powers.BetterInventionPower;
-import Snowpunk.powers.BetterMachinationPower;
+import Snowpunk.powers.BreakthroughPower;
+import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -22,22 +20,22 @@ public class Breakthrough extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
     private static final int UP_COST = 0;
+    private static final int CARDS = 1;
+    private static final int UP_CARDS = 1;
 
-    private boolean creation = false;
-    private boolean machination = false;
+    private boolean selfTinker = false;
 
     public Breakthrough() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = CARDS;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (machination) {
-            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.MACHINATION, false, true, c -> c.setCostForTurn(0)));
-        } else if (creation) {
-            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.CREATION, false, true, c -> c.setCostForTurn(0)));
-        } else {
-            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.INVENTION, false, true, c -> c.setCostForTurn(0)));
+        Wiz.applyToSelf(new BreakthroughPower(p, magicNumber));
+        Wiz.applyToSelf(new TinkerNextCardPower(p, magicNumber));
+        if (selfTinker) {
+            Wiz.atb(new TinkerAction(this));
         }
     }
 
@@ -45,13 +43,10 @@ public class Breakthrough extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> {
-            creation = true;
+            selfTinker = true;
+            exhaust = false;
             uDesc();
         });
-        addUpgradeData(this, () -> {
-            machination = true;
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-            initializeDescription();
-        },1);
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_CARDS));
     }
 }
