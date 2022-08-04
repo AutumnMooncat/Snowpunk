@@ -26,11 +26,11 @@ public class ChooChoo extends AbstractEasyCard {
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public ChooChoo() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardTemperatureFields.addInherentHeat(this, -1);
+        CardTemperatureFields.addInherentHeat(this, 1);
         isEthereal = true;
         exhaust = true;
     }
@@ -40,7 +40,7 @@ public class ChooChoo extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeBaseCost(1);
         upgradedCost = true;
     }
 }
