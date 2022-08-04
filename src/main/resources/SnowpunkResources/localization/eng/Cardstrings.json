@@ -338,9 +338,9 @@
   },
   "${ModID}:TinkersHammer": {
     "NAME": "Tinker's Hammer",
-    "DESCRIPTION": "{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Tinker this card.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}",
-    "EXTENDED_DESCRIPTION": ["{@@}snowpunk:Tinker a card in your hand.{!Location!|-1= NL Upon pickup, Upgrade a card in your deck.}"]
+    "DESCRIPTION": "{@@}snowpunk:Tinker a card in your hand.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Tinker this card.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.}",
+    "EXTENDED_DESCRIPTION": ["{@@}snowpunk:Tinker a card in your hand.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.}"]
   },
   "${ModID}:TrainStation": {
     "NAME": "Train Station",
