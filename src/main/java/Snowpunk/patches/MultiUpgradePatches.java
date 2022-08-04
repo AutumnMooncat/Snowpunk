@@ -1,18 +1,11 @@
 package Snowpunk.patches;
 
-import Snowpunk.SnowpunkMod;
-import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
-import Snowpunk.shaders.Grayscale;
-import Snowpunk.shaders.Greenify;
-import Snowpunk.util.*;
+import Snowpunk.util.MultiUpgradeTree;
+import Snowpunk.util.UpgradeData;
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.BranchingUpgradesPatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,12 +13,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -35,25 +29,6 @@ import javassist.expr.MethodCall;
 import java.util.ArrayList;
 
 public class MultiUpgradePatches {
-    public static ArrayList<AbstractCard> cardList = new ArrayList<>();
-    public static ArrayList<AbstractCard> takenList = new ArrayList<>();
-    public static ArrayList<AbstractCard> lockedList = new ArrayList<>();
-    public static CardGraph cardGraph = new CardGraph();
-    public static float grabX, grabY;
-    public static float deltaX, deltaY;
-    public static float minX, minY;
-    public static float maxX, maxY;
-    public static boolean allowX, allowY;
-    public static boolean dragging;
-    public static float renderScale;
-    private static final float DEFAULT_ZOOM = 1.0f;
-    private static final float MIN_ZOOM = 0.3f;
-    private static final float MAX_ZOOM = 1.1f;
-    private static final float X_PAD = 400F * Settings.scale;
-    private static final float Y_PAD = 220F * Settings.scale;
-    private static final float LINE_SPACING = 20F * Settings.scale;
-    public static Texture upgradeAndLine = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/icons/andLine.png");
-    public static Texture exclusionLine = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/icons/exLine.png");
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = SpirePatch.CLASS)
     public static class MultiSelectFields {
