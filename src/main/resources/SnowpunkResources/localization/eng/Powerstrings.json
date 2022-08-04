@@ -258,5 +258,11 @@
       " card.",
       " cards."
     ]
+  },
+  "${ModID}:TheSnowmanPower": {
+    "NAME": "The Snowman",
+    "DESCRIPTIONS": [
+      "All cards become #bFrosty."
+    ]
   }
 }

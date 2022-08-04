@@ -321,6 +321,11 @@
     "NAME": "Thermal Shock",
     "DESCRIPTION": "Apply !M! snowpunk:Burn and !Snowpunk:M2! snowpunk:Chill to ALL enemies. NL Exhaust."
   },
+  "${ModID}:TheSnowman": {
+    "NAME": "The Snowman",
+    "DESCRIPTION": "ALL cards become snowpunk:Frosty.",
+    "UPGRADE_DESCRIPTION": "Innate. NL ALL cards become snowpunk:Frosty."
+  },
   "${ModID}:Think": {
     "NAME": "Think",
     "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand.{@@}",
