@@ -1,13 +1,10 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.BeaconBeamPower;
-import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

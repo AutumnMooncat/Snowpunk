@@ -25,8 +25,8 @@
   },
   "${ModID}:BeaconBeam": {
     "NAME": "Beacon Beam",
-    "DESCRIPTION": "Attacks deal !M! additional damage for each snowpunk:Snowball you have.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Attacks deal !M! additional damage for each snowpunk:Snowball you have."
+    "DESCRIPTION": "",
+    "UPGRADE_DESCRIPTION": ""
   },
   "${ModID}:Better": {
     "NAME": "Better",
