@@ -11,6 +11,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -18,14 +19,17 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
+import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class MultiUpgradePatches {
@@ -241,7 +245,7 @@ public class MultiUpgradePatches {
         @SpirePrefixPatch
         public static SpireReturn<?> plz(AbstractCard __instance, @ByRef boolean[] ___hovered) {
             AbstractCard hovered = BranchingUpgradesPatch.getHoveredCard();
-            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && AbstractDungeon.gridSelectScreen.confirmScreenUp && BranchingUpgradesPatch.getHoveredCard() instanceof MultiUpgradeCard) {
+            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && AbstractDungeon.gridSelectScreen.confirmScreenUp && hovered instanceof MultiUpgradeCard) {
                 if (!___hovered[0]) {
                     ___hovered[0] = true;
                 }
@@ -359,14 +363,6 @@ public class MultiUpgradePatches {
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "render")
     public static class RenderTreeSCV {
-/*        static boolean upgradePreview = false;
-        @SpirePrefixPatch
-        public static void stopUpgrading(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            upgradePreview = SingleCardViewPopup.isViewingUpgrade;
-            if (___card instanceof MultiUpgradeCard) {
-                SingleCardViewPopup.isViewingUpgrade = false;
-            }
-        }*/
         @SpirePostfixPatch
         public static void renderTree(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
             if (___card instanceof MultiUpgradeCard && SingleCardViewPopup.isViewingUpgrade) {
@@ -390,10 +386,9 @@ public class MultiUpgradePatches {
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "update")
     public static class UpdateTree {
-        static boolean upgradePreview = false;
         @SpirePostfixPatch
         public static void renderTree(SingleCardViewPopup __instance, AbstractCard ___card) {
-            if (___card instanceof MultiUpgradeCard) {
+            if (___card instanceof MultiUpgradeCard && SingleCardViewPopup.isViewingUpgrade) {
                 MultiUpgradeTree.update();
             }
         }
@@ -401,13 +396,41 @@ public class MultiUpgradePatches {
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTips")
     public static class TipsBeGone {
-        static boolean upgradePreview = false;
         @SpirePrefixPatch
-        public static SpireReturn<?> stopUpgrading(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
+        public static SpireReturn<?> stop(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
             if (___card instanceof MultiUpgradeCard && SingleCardViewPopup.isViewingUpgrade) {
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch2(clz = AbstractCard.class, method = "renderCardTip")
+    public static class StopMakingCopiesToRender {
+        static Field cardField;
+        @SpireInstrumentPatch
+        public static ExprEditor plz() {
+            return new ExprEditor() {
+                @Override
+                public void edit(FieldAccess f) throws CannotCompileException {
+                    if (f.getClassName().equals(SingleCardViewPopup.class.getName()) && f.getFieldName().equals("isViewingUpgrade")) {
+                        f.replace("$_ ="+ MultiUpgradePatches.StopMakingCopiesToRender.class.getName()+".checkMU($proceed($$));");
+                    }
+                }
+            };
+        }
+
+        public static boolean checkMU(boolean retval) {
+            try {
+                if (cardField == null) {
+                    cardField = SingleCardViewPopup.class.getDeclaredField("card");
+                }
+                cardField.setAccessible(true);
+                return retval && !(cardField.get(CardCrawlGame.cardPopup) instanceof MultiUpgradeCard);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return retval;
         }
     }
 }

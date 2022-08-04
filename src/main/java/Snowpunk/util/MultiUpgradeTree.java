@@ -270,7 +270,7 @@ public class MultiUpgradeTree {
         //c.target_x = (float)Settings.WIDTH * 0.5F + dx;
         //c.target_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale + dy;
         c.render(sb);
-        c.updateHoverLogic();
+        //c.updateHoverLogic();
 
         //cardList.addAll(MultiUpgradePatches.MultiSelectFields.previewCards.get(__instance));
         int lineNum = 0;
@@ -298,7 +298,7 @@ public class MultiUpgradeTree {
                 }
                 v.card.render(sb);
                 ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
-                v.card.updateHoverLogic();
+                //v.card.updateHoverLogic();
                 v.card.renderCardTip(sb);
             }
         }
@@ -430,6 +430,7 @@ public class MultiUpgradeTree {
         for (AbstractCard c : cardList) {
             if (c != null) {
                 c.update();
+                c.updateHoverLogic();
             }
         }
     }
