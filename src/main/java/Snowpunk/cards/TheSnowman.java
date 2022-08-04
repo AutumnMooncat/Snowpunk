@@ -14,7 +14,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class TheSnowman extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(TheSnowman.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
