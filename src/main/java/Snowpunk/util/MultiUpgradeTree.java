@@ -376,7 +376,7 @@ public class MultiUpgradeTree {
     }
 
     private static void doUpgrade(AbstractCard card, UpgradeData u) {
-        if (u.alias == null) {
+        if (u.alias == null && u.strict) {
             for (int i : u.dependencies) {
                 UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
                 if (!dep.applied) {
