@@ -142,6 +142,10 @@
     "NAME": "Heat Transfer",
     "DESCRIPTIONS": ["#yHot and #yOverheated Attacks, apply #b"," #yBurn."]
   },
+  "${ModID}:HeatGeneratorPower": {
+    "NAME": "Heat Generator",
+    "DESCRIPTIONS": ["Attacks, apply #b"," #yBurn."]
+  },
   "${ModID}:IceCubePower": {
     "NAME": "Ice",
     "DESCRIPTIONS": ["Gain #b"," #yBlock when you use a #ySnowball."]

@@ -170,7 +170,11 @@
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
-    "DESCRIPTION": "snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn."
+    "DESCRIPTION": "snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn.",
+    "UPGRADE_DESCRIPTION": "Innate NL snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": ["Attacks apply !M! snowpunk:Burn.",
+                            "Innate. NL Attacks apply !M! snowpunk:Burn.",
+                            "Heat Generator"]
   },
   "${ModID}:Holly": {
     "NAME": "Holly",
