@@ -194,6 +194,11 @@
     "NAME": "Invent",
     "DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a{!Snowpunk:Info!|0=n snowpunk:Invention|1= snowpunk:Creation|>1= snowpunk:Machination}."
   },
+  "${ModID}:MadScience": {
+    "NAME": "Mad Science",
+    "DESCRIPTION": "Whenever you play a card, Upgrade !M! random card{!M!|>1=s} in your hand for the rest of combat.{@@}",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a card, Upgrade !M! random card{!M!|>1=s} in your hand for the rest of combat.{@@}"
+  },
   "${ModID}:NorEaster": {
     "NAME": "Nor'Easter",
     "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Freeze your hand. NL snowpunk:Freeze your snowpunk:Engine. NL Exhaust.",
@@ -240,8 +245,8 @@
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
-    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded."
+    "DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded for the rest of combat. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Cards drawn this way are Upgraded for the rest of combat."
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",

@@ -245,8 +245,8 @@
   "${ModID}:SparePartsPower": {
     "NAME": "Spare Parts",
     "DESCRIPTIONS": [
-      "#yUpgrade the next card you draw.",
-      "#yUpgrade the next #b"," cards you draw."
+      "#yUpgrade the next card you draw for the rest of combat.",
+      "#yUpgrade the next #b"," cards you draw for the rest of combat."
     ]
   },
   "${ModID}:OverdrivePower": {
@@ -268,6 +268,14 @@
     "DESCRIPTIONS": [
       "The next card you play costs #b0.",
       "The next #b", " cards you play cost #b0."
+    ]
+  },
+  "${ModID}:MadSciencePower": {
+    "NAME": "Mad Science",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, #yUpgrade #b",
+      " random card in your hand for the rest of combat.",
+      " random cards in your hand for the rest of combat."
     ]
   }
 }
