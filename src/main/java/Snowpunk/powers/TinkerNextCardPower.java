@@ -31,9 +31,13 @@ public class TinkerNextCardPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        TinkerAction.tinkerCard(card);
-        card.purgeOnUse = true;
-        addToBot(new ReducePowerAction(owner, owner, this, 1));
+        if (!card.purgeOnUse) {
+            flash();
+            TinkerAction.tinkerCard(card);
+            card.purgeOnUse = true;
+            addToBot(new ReducePowerAction(owner, owner, this, 1));
+        }
+
     }
 
     @Override
