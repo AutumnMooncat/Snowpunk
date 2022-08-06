@@ -90,7 +90,7 @@
   },
   "${ModID}:ChooChoo": {
     "NAME": "Choo Choo",
-    "DESCRIPTION": "Ethereal. NL Play all Linked cards in your hand. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Play all snowpunk:Linked cards in your hand. NL Exhaust."
   },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",

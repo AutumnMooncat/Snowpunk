@@ -6,6 +6,7 @@ import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
 public class Fireball extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Fireball.class.getSimpleName());
 
@@ -28,10 +30,10 @@ public class Fireball extends AbstractMultiUpgradeCard {
     private static final int COST = 1, UP_COST = 0, DMG = 2, UP_DMG = 2, MAGIC = 2, UP_MAGIC = 1;
 
     public Fireball() {
-        super(ID, COST, TYPE, RARITY, TARGET);
+        super(ID, COST, TYPE, RARITY, TARGET, CardColor.COLORLESS);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = MAGIC;
-        SoulboundField.soulbound.set(this, true);
+        //SoulboundField.soulbound.set(this, true);
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
@@ -39,7 +41,7 @@ public class Fireball extends AbstractMultiUpgradeCard {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
         Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
     }
-
+/*
     @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
@@ -55,7 +57,7 @@ public class Fireball extends AbstractMultiUpgradeCard {
             tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(cardStrings.EXTENDED_DESCRIPTION[0].toLowerCase()), BaseMod.getKeywordDescription(cardStrings.EXTENDED_DESCRIPTION[0].toLowerCase())));
         }
         return tooltip;
-    }
+    }*/
 
     @Override
     public void addUpgrades() {

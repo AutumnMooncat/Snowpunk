@@ -18,7 +18,6 @@ import java.util.HashMap;
 import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
-@NoCompendium
 public class ChooChoo extends AbstractEasyCard {
     public final static String ID = makeID(ChooChoo.class.getSimpleName());
 
@@ -29,7 +28,7 @@ public class ChooChoo extends AbstractEasyCard {
     private static final int COST = 2;
 
     public ChooChoo() {
-        super(ID, COST, TYPE, RARITY, TARGET);
+        super(ID, COST, TYPE, RARITY, TARGET, CardColor.COLORLESS);
         CardTemperatureFields.addInherentHeat(this, 1);
         isEthereal = true;
         exhaust = true;

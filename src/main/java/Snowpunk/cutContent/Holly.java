@@ -1,4 +1,4 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
 import Snowpunk.actions.HolidayCheerUpAction;
 import Snowpunk.cardmods.parts.ReshuffleMod;

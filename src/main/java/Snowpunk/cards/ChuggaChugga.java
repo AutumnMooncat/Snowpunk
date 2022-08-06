@@ -20,7 +20,6 @@ import java.util.HashMap;
 import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
-@NoCompendium
 public class ChuggaChugga extends AbstractEasyCard {
     public final static String ID = makeID(ChuggaChugga.class.getSimpleName());
 
@@ -31,7 +30,7 @@ public class ChuggaChugga extends AbstractEasyCard {
     private static final int COST = 2;
 
     public ChuggaChugga() {
-        super(ID, COST, TYPE, RARITY, TARGET);
+        super(ID, COST, TYPE, RARITY, TARGET, CardColor.COLORLESS);
         CardTemperatureFields.addInherentHeat(this, 1);
         isEthereal = true;
     }
