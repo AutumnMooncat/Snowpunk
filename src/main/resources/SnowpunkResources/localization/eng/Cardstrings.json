@@ -263,9 +263,7 @@
   },
   "${ModID}:ScrapShield": {
     "NAME": "Scrap Shield",
-    "DESCRIPTION": "{@@}Gain !B! Block. Whenever you are attacked this turn, gain !M! snowpunk:Spare_Part{!M!|>1=s}.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. Whenever you are attacked this turn, gain 1 snowpunk:Spare_Part. NL Apply !M! snowpunk:Chill to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Gain !B! Block. Whenever you are attacked this turn, gain 1 snowpunk:Spare_Part. NL Apply !M! snowpunk:Burn to ALL enemies."]
+    "DESCRIPTION": "{@@}Gain !B! Block. Whenever you are attacked this turn, gain !M! snowpunk:Spare_Part{!M!|>1=s}."
   },
   "${ModID}:Singe": {
     "NAME": "Singe",
