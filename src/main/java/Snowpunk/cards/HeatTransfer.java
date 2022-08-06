@@ -1,6 +1,8 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.powers.HeatGeneratorPower;
 import Snowpunk.powers.HeatTransferPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class HeatTransfer extends AbstractEasyCard {
+public class HeatTransfer extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(HeatTransfer.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -17,7 +19,9 @@ public class HeatTransfer extends AbstractEasyCard {
 
     private static final int COST = 1;
     private static final int BURN = 3;
-    private static final int UP_BURN = 1;
+    private static final int UP_BURN = 2;
+
+    private boolean heatGenerator = false;
 
     public HeatTransfer() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -25,10 +29,39 @@ public class HeatTransfer extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new HeatTransferPower(p, magicNumber));
+        if (heatGenerator) {
+            Wiz.applyToSelf(new HeatGeneratorPower(p, magicNumber));
+        } else {
+            Wiz.applyToSelf(new HeatTransferPower(p, magicNumber));
+        }
     }
 
     public void upp() {
         upgradeMagicNumber(UP_BURN);
+    }
+
+    @Override
+    public void addUpgrades() {
+        addUpgradeData(this, () -> {
+            isInnate = true;
+            if (heatGenerator) {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+                initializeDescription();
+            } else {
+                uDesc();
+            }
+        });
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(this, () -> {
+            heatGenerator = true;
+            if (isInnate) {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+            } else {
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            }
+            this.name = cardStrings.EXTENDED_DESCRIPTION[2];
+            initializeTitle();
+            initializeDescription();
+        });
     }
 }

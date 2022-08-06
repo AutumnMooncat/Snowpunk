@@ -331,8 +331,10 @@
     "PROPER_NAME": "Spare Parts",
     "NAMES": [
       "spare parts",
-      "spare_parts"
+      "spare part",
+      "spare_parts",
+      "spare_part"
     ],
-    "DESCRIPTION": "#yUpgrades drawn cards."
+    "DESCRIPTION": "#yUpgrades drawn cards for the rest of combat."
   }
 ]
