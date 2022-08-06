@@ -239,8 +239,7 @@
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card. NL When Retained, increase its Block by !M! this combat."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Cool the next {!M!|>1=!M! }card{!M!|>1=s} you draw."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
