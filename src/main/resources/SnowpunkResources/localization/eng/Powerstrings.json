@@ -281,5 +281,13 @@
       " random card in your hand for the rest of combat.",
       " random cards in your hand for the rest of combat."
     ]
+  },
+  "${ModID}:ScrapShieldPower": {
+    "NAME": "Scrap Shield",
+    "DESCRIPTIONS": [
+      "When attacked, gain #b",
+      " #ySpare #yPart.",
+      " #ySpare #yParts."
+    ]
   }
 }
