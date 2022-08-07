@@ -23,7 +23,9 @@ public class MadSciencePower extends AbstractEasyPower {
 
     @Override
     public void onPlayCard(AbstractCard card, AbstractMonster m) {
-        this.addToBot(new UpgradeRandomCardAction());
+        for (int i = 0 ; i < amount ; i ++) {
+            this.addToBot(new UpgradeRandomCardAction());
+        }
     }
 
     @Override
