@@ -20,11 +20,20 @@
       "An accumulating resource that can be converted to #yEnergy."
     ]
   },
-  "${ModID}:CarolingPower": {
-    "NAME": "Caroling",
+  "${ModID}:CarolingCoolPower": {
+    "NAME": "Cool Caroling",
     "DESCRIPTIONS": [
-      "At the end of your turn, gain #b",
-      " #yHoliday #yCheer."
+      "At the start of your turn, draw #b",
+      " card and #yCool it.",
+      " cards and #yCool them."
+    ]
+  },
+  "${ModID}:CarolingFreezePower": {
+    "NAME": "Freeze Caroling",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b",
+      " card and #yFreeze it.",
+      " cards and #yFreeze them."
     ]
   },
   "${ModID}:EngineOffloadPower": {
@@ -187,9 +196,16 @@
       "Jingle bells, jingle bells, jingle all the way...",
       "Dashing through the snow, in a one horse open sleigh...",
       "Christmas time is here!",
-      "All I want for Christmas is youuuuuuu",
+      "All I want for Christmas is youuuuuuu!",
       "Let it snow!",
-      "Chestnuts roasting on an open fiiiiire..."
+      "Chestnuts roasting on an open fiiiiire...",
+      "Siiiiiiilent niiiiiight....",
+      "Joy to the world!",
+      "On the first day of Christmas...",
+      "FIVE GOLDEN RINGS!!!",
+      "It's beginning to look a lot like Christmas!",
+      "God rest ye merry gentlemen...",
+      "Sing with me!"
     ]
   },
   "${ModID}:SteamFormPower": {

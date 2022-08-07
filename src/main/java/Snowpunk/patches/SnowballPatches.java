@@ -68,7 +68,11 @@ public class SnowballPatches {
         public static void fixSCostShenanigans(AbstractPlayer __instance, AbstractCard c) {
             if (SCostFieldPatches.SCostField.isSCost.get(c)) {
                 if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && __instance.hasPower(SnowballPower.POWER_ID)) {
-                    Wiz.atb(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, __instance.getPower(SnowballPower.POWER_ID).amount));
+                    int snow = __instance.getPower(SnowballPower.POWER_ID).amount;
+                    int energy = EnergyPanel.totalCount;
+                    if (snow > energy)
+                        Wiz.atb(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, snow - energy));
+                    __instance.loseEnergy(snow);
                 }
             }
         }

@@ -1,10 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.TinkerActionOLD;
-import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
