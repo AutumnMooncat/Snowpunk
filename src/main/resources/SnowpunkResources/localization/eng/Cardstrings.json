@@ -120,6 +120,10 @@
     "NAME": "Comburstion",
     "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Burn to ALL enemies."
   },
+  "${ModID}:Condensation": {
+    "NAME": "Condensation",
+    "DESCRIPTION": "{@@}At the start of your turn, snowpunk:Condense !M! card{!M!|>1=s}."
+  },
   "${ModID}:Create": {
     "NAME": "Create",
     "DESCRIPTION": "Fleeting. NL snowpunk:Assemble a snowpunk:Creation.",

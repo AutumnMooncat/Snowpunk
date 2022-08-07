@@ -318,5 +318,13 @@
     "DESCRIPTIONS": [
       "Whenever you play an #yUpgraded card, gain #b"," #yBlock."
     ]
+  },
+  "${ModID}:CondensationPower": {
+    "NAME": "Condensation",
+    "DESCRIPTIONS": [
+      "At the start of your turn, #yCondense #b",
+      " card.",
+      " cards."
+    ]
   }
 }
