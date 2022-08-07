@@ -4,6 +4,7 @@ import Snowpunk.actions.ScatterDamageAction;
 import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.IgnoreEnemyPowersPatches;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -30,6 +31,7 @@ public class BuckShot extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         info = baseInfo = 0;
         CardModifierManager.addModifier(this, new WhistolMod());
+        IgnoreEnemyPowersPatches.IgnoreField.ignore.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
