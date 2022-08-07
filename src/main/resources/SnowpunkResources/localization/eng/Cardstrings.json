@@ -30,9 +30,10 @@
   },
   "${ModID}:Better": {
     "NAME": "Better",
-    "DESCRIPTION": "{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Invention{!M!|>1=s} into your hand.",
-    "UPGRADE_DESCRIPTION": "{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Creation{!M!|>1=s} into your hand.",
-    "EXTENDED_DESCRIPTION": ["{@@}At the start of each turn, add !M! randomly snowpunk:Assembled snowpunk:Machination{!M!|>1=s} into your hand."]
+    "DESCRIPTION": "Whenever you play an Upgraded card, gain !M! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play an Upgraded card, gain !M! Block.",
+    "EXTENDED_DESCRIPTION": ["Gain !M! snowpunk:Spare_Parts. NL Whenever you play an Upgraded card, gain !M! Block.",
+                            "Innate. NL Gain !M! snowpunk:Spare_Parts. NL Whenever you play an Upgraded card, gain !M! Block."]
   },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",

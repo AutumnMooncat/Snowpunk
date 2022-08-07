@@ -312,5 +312,11 @@
       "#yCool the next card you draw.",
       "#yCool the next #b"," cards you draw."
     ]
+  },
+  "${ModID}:BetterPower": {
+    "NAME": "Better",
+    "DESCRIPTIONS": [
+      "Whenever you play an #yUpgraded card, gain #b"," #yBlock."
+    ]
   }
 }
