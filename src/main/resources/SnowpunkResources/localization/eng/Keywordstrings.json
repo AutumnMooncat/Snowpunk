@@ -184,14 +184,14 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. If your draw pile isn't empty, draw a card."
+    "DESCRIPTION": "#yRetain. Draw a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yCondense a card. NL #yRetain. If your draw pile isn't empty, draw a card."
+    "DESCRIPTION": "#yCondense a card. NL #yRetain. Draw a card."
   },
   {
     "PROPER_NAME": "Evaporate",
