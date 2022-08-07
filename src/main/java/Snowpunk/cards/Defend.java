@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -30,14 +32,14 @@ public class Defend extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         if (info == 1) {
-            Wiz.applyToSelf(new BlurPower(p, 1));
+            Wiz.applyToSelf(new EnergizedBluePower(p, 1));
         }
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBlock(UP_BLK));
-        addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(this, () -> upgradeInfo(1));
     }
 }

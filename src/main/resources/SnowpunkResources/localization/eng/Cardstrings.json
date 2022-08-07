@@ -129,7 +129,7 @@
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
-    "DESCRIPTION": "{@@}Gain !B! Block.{!Snowpunk:Info!|1= NL Block is not removed at the start of your next turn.}"
+    "DESCRIPTION": "{@@}Gain !B! Block.{!Snowpunk:Info!|1= NL Gain [E] next turn.}"
   },
   "${ModID}:EmberForge": {
     "NAME": "Ember Forge",

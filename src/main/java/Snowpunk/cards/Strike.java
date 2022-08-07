@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -36,26 +37,10 @@ public class Strike extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG)); // 0
-        addUpgradeData(this, () -> upgradeBaseCost(0)); // 1
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1)); // 1
         addUpgradeData(this, () -> {
             upgradeDamage(-2);
             upgradeMagicNumber(1);
-        }); // 2
-        /*addUpgradeData(this, () -> upgradeDamage(UP_DMG + 2), 0); // 3
-        addUpgradeData(this, () -> {
-            upgradeDamage(-2);
-            upgradeMagicNumber(1);
-        }, 0); // 4
-        addUpgradeData(this, () -> upgradeDamage(4), 1); // 5
-        addUpgradeData(this, () -> upgradeDamage(4), 1); // 6
-        addUpgradeData(this, () -> upgradeDamage(4), 2); // 7
-        addUpgradeData(this, () -> upgradeDamage(4), 2); // 8
-        addUpgradeData(this, () -> upgradeDamage(4), 3, 4); // 9
-        addUpgradeData(this, () -> upgradeDamage(4), 5, 6); // 10
-        addUpgradeData(this, () -> upgradeDamage(4), 7, 8); // 11
-        addUpgradeData(this, () -> upgradeDamage(4), 9, 10); // 12
-        addUpgradeData(this, () -> upgradeDamage(4), 10, 11); // 13
-        addUpgradeData(this, () -> upgradeDamage(4), 12, 13); // 13*/
-
+        }); //2
     }
 }
