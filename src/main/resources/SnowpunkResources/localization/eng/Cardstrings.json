@@ -273,6 +273,10 @@
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block for each enemy hit. NL Deal !D! damage to ALL enemies."
   },
+  "${ModID}:Smelt": {
+    "NAME": "Smelt",
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Heat adjacent cards."
+  },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
     "DESCRIPTION": "{@@}Gain !M! snowpunk:Snowball{!M!|>1=s}."
@@ -301,10 +305,6 @@
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
     "DESCRIPTION": "{@@} Gain !B! Block.{!M!|>0= NL Gain !M! snowpunk:Snowball}{!M!|>1=s}{!M!|>0=.}"
-  },
-  "${ModID}:SteamBarrierMk2": {
-    "NAME": "Steam Barrier",
-    "DESCRIPTION": "Gain !B! Block."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
