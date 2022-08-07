@@ -15,6 +15,7 @@ import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -124,7 +125,7 @@ public class TemperatureMod extends AbstractCardModifier {
             Wiz.atb(new CondenseRandomCardToDrawPileAction());
         }
         if (heat < 0 || (card.hasTag(CustomTags.FLUX) && heat > 0)) {
-            Wiz.atb(new PullCardAction(amount));
+            Wiz.atb(new DrawCardAction(amount));
         }
     }
 

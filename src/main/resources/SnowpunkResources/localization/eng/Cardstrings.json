@@ -240,8 +240,7 @@
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Cool this card. NL When Retained, increase its Block by !M! this combat."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Cool the next {!M!|>1=!M! }card{!M!|>1=s} you draw."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
@@ -268,9 +267,7 @@
   },
   "${ModID}:ScrapShield": {
     "NAME": "Scrap Shield",
-    "DESCRIPTION": "{@@}Gain !B! Block. Whenever you are attacked this turn, gain !M! snowpunk:Spare_Part{!M!|>1=s}.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. Whenever you are attacked this turn, gain 1 snowpunk:Spare_Part. NL Apply !M! snowpunk:Chill to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Gain !B! Block. Whenever you are attacked this turn, gain 1 snowpunk:Spare_Part. NL Apply !M! snowpunk:Burn to ALL enemies."]
+    "DESCRIPTION": "{@@}Gain !B! Block. Whenever you are attacked this turn, gain !M! snowpunk:Spare_Part{!M!|>1=s}."
   },
   "${ModID}:Singe": {
     "NAME": "Singe",
@@ -280,6 +277,10 @@
     "NAME": "Sledding",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block for each enemy hit. NL Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Smelt": {
+    "NAME": "Smelt",
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Heat adjacent cards."
   },
   "${ModID}:Snowball": {
     "NAME": "Snowball",
@@ -309,10 +310,6 @@
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
     "DESCRIPTION": "{@@} Gain !B! Block.{!M!|>0= NL Gain !M! snowpunk:Snowball}{!M!|>1=s}{!M!|>0=.}"
-  },
-  "${ModID}:SteamBarrierMk2": {
-    "NAME": "Steam Barrier",
-    "DESCRIPTION": "Gain !B! Block."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",

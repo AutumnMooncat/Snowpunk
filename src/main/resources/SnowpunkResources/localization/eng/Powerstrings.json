@@ -305,5 +305,12 @@
       " #ySpare #yPart.",
       " #ySpare #yParts."
     ]
+  },
+  "${ModID}:RefrigeratePower": {
+    "NAME": "Refrigerate",
+    "DESCRIPTIONS": [
+      "#yCool the next card you draw.",
+      "#yCool the next #b"," cards you draw."
+    ]
   }
 }
