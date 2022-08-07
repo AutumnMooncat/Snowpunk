@@ -1,9 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.TinkerAction;
-import Snowpunk.actions.TinkerActionOLD;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

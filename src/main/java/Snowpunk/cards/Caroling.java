@@ -1,14 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.HolidayCheerUpAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.CarolingPower;
-import Snowpunk.powers.ChristmasCookiePower;
+import Snowpunk.powers.CarolingCoolPower;
+import Snowpunk.powers.CarolingFreezePower;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.cards.blue.MachineLearning;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -19,24 +16,36 @@ public class Caroling extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2, UP_COST = 1, MAGIC = 3, UP_MAGIC = 2;
+    private static final int COST = 2;
 
     public Caroling() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 1;
-        secondMagic = baseSecondMagic = MAGIC;
+        secondMagic = baseSecondMagic = 0;
+        info = baseInfo = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new CarolingPower(p, secondMagic));
-        Wiz.applyToSelf(new DrawPower(p, magicNumber));
-        //Wiz.atb(new HealAction(p, p, secondMagic));
+        if (secondMagic == 0)
+            Wiz.applyToSelf(new CarolingCoolPower(p, magicNumber));
+        else
+            Wiz.applyToSelf(new CarolingFreezePower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeSecondMagic(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeMagicNumber(1), new int[]{}, new int[]{2});
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
+        addUpgradeData(this, () -> upgrade1());
+        addUpgradeData(this, () -> upgradeMagicNumber(1));
+        addUpgradeData(this, () -> upgrade3());
+    }
+
+    private void upgrade3() {
+        upgradeSecondMagic(1);
+        uDesc();
+    }
+
+    private void upgrade1() {
+        upgradeInfo(1);
+        isInnate = true;
     }
 }

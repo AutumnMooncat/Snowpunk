@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 public class AssembleCardAction extends AbstractGameAction {
     public enum AssembleType {
         INVENTION(1, 1),
-        CREATION(2, 1),
+        CREATION(1, 2),
         MACHINATION(2, 2);
 
         AssembleType(int cores, int parts) {
@@ -43,21 +43,45 @@ public class AssembleCardAction extends AbstractGameAction {
     }
 
     public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
-    AssembleType type;
     boolean addToMaster;
     boolean random;
+    int cores;
+    int parts;
+    int options = 3;
     private Consumer<AssembledCard> onAssemble;
 
     public AssembleCardAction(AssembleType type) {
-        this(type, true, false, c -> {});
+        this(type, true, false, c -> {
+        });
     }
 
     public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random) {
-        this(type, addToMaster, random, c -> {});
+        this(type, addToMaster, random, c -> {
+        });
     }
 
     public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
-        this.type = type;
+        this.cores = type.getCores();
+        this.parts = type.getParts();
+        this.addToMaster = addToMaster;
+        this.random = random;
+        this.onAssemble = onAssemble;
+    }
+
+    public AssembleCardAction(int cores, int parts) {
+        this(cores, parts, 3, true, false, c -> {
+        });
+    }
+
+    public AssembleCardAction(int cores, int parts, int options) {
+        this(cores, parts, options, true, false, c -> {
+        });
+    }
+
+    public AssembleCardAction(int cores, int parts, int options, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
+        this.cores = cores;
+        this.parts = parts;
+        this.options = options;
         this.addToMaster = addToMaster;
         this.random = random;
         this.onAssemble = onAssemble;
@@ -74,14 +98,14 @@ public class AssembleCardAction extends AbstractGameAction {
                 this.isDone = true;
             }
         });
-        for (int i = 0 ; i < type.getParts() ; i++) {
-            Wiz.att(new TinkerActionOLD(ac, random));
+        for (int i = 0; i < parts; i++) {
+            Wiz.att(new AddPartAction(ac, options, random));
         }
-        for (int i = 0 ; i < type.getCores() ; i++) {
+        for (int i = 0; i < cores; i++) {
             if (random) {
                 giveRandomCore(ac);
             } else {
-                pickCoresForCard(ac, type);
+                pickCoresForCard(ac, options);
             }
         }
         this.isDone = true;
@@ -195,17 +219,17 @@ public class AssembleCardAction extends AbstractGameAction {
         }
     }
 
-    private static void pickCoresForCard(AssembledCard card, AssembleType type) {
+    private static void pickCoresForCard(AssembledCard card, int options) {
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {
                 CardGroup validCores = getValidCores(card);
                 if (!validCores.isEmpty()) {
                     ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
-                    if (validCores.size() <= 3) {
+                    if (validCores.size() <= options) {
                         cardsToPick.addAll(validCores.group);
                     } else {
-                        for (int i = 0; i < 3; i++) {
+                        for (int i = 0; i < options; i++) {
                             AbstractCard c = validCores.getRandomCard(true);
                             validCores.removeCard(c);
                             cardsToPick.add(c);

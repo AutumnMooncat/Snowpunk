@@ -16,28 +16,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static Snowpunk.SnowpunkMod.makeID;
-@Deprecated
-public class TinkerActionOLD extends AbstractGameAction {
+
+public class AddPartAction extends AbstractGameAction {
     public static final String ID = makeID("Tinker");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     AbstractCard card;
+    int options = 3;
     boolean randomCard;
     boolean randomlyTinker;
 
-    public TinkerActionOLD() {
+    public AddPartAction() {
         this(false, false);
     }
 
-    public TinkerActionOLD(AbstractCard card) {
+    public AddPartAction(AbstractCard card) {
         this(card, false);
     }
 
-    public TinkerActionOLD(AbstractCard card, boolean randomlyTinker) {
+    public AddPartAction(AbstractCard card, boolean randomlyTinker) {
         this.card = card;
         this.randomlyTinker = randomlyTinker;
     }
 
-    public TinkerActionOLD(boolean randomCard, boolean randomlyTinker) {
+    public AddPartAction(AbstractCard card, int options, boolean randomlyTinker) {
+        this.card = card;
+        this.options = options;
+        this.randomlyTinker = randomlyTinker;
+    }
+
+    public AddPartAction(boolean randomCard, boolean randomlyTinker) {
         this.randomCard = randomCard;
         this.randomlyTinker = randomlyTinker;
     }
@@ -53,7 +60,7 @@ public class TinkerActionOLD extends AbstractGameAction {
             }
 
         } else {
-            if (Wiz.adp().hand.group.stream().anyMatch(TinkerActionOLD::acceptsAPart)) {
+            if (Wiz.adp().hand.group.stream().anyMatch(AddPartAction::acceptsAPart)) {
                 if (randomCard) {
                     CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     for (AbstractCard c : Wiz.adp().hand.group) {
@@ -75,7 +82,7 @@ public class TinkerActionOLD extends AbstractGameAction {
                         selectionGroup.add(copy);
                     }
 
-                    Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, 1, TEXT[0], false, TinkerActionOLD::acceptsAPart, cards -> {
+                    Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, 1, TEXT[0], false, AddPartAction::acceptsAPart, cards -> {
                         for (AbstractCard c : cards) {
                             if (randomlyTinker) {
                                 giveRandomPart(cardMap.get(c));
@@ -115,14 +122,14 @@ public class TinkerActionOLD extends AbstractGameAction {
         return validParts;
     }
 
-    private static void pickPartsForCard(AbstractCard card) {
+    private void pickPartsForCard(AbstractCard card) {
         CardGroup validParts = getValidParts(card);
         if (!validParts.isEmpty()) {
             ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
-            if (validParts.size() <= getAmountOfOptions()) {
+            if (validParts.size() <= options) {
                 cardsToPick.addAll(validParts.group);
             } else {
-                for (int i = 0; i < getAmountOfOptions(); i++) {
+                for (int i = 0; i < options; i++) {
                     AbstractCard c = validParts.getRandomCard(true);
                     validParts.removeCard(c);
                     cardsToPick.add(c);
@@ -161,9 +168,9 @@ public class TinkerActionOLD extends AbstractGameAction {
         CardModifierManager.addModifier(card, new MkMod(1));
     }
 
-    private static int getAmountOfOptions() {
+    private int getAmountOfOptions() {
         //Relics to boost options, and also can boost for testing
         //return 8;
-        return 3;
+        return options;
     }
 }
