@@ -130,6 +130,13 @@
     "NAME": "Defend",
     "DESCRIPTION": "{@@}Gain !B! Block.{!Snowpunk:Info!|1= NL Block is not removed at the start of your next turn.}"
   },
+  "${ModID}:EmberForge": {
+    "NAME": "Ember Forge",
+    "DESCRIPTION": "You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
+    "UPGRADE_DESCRIPTION": "Innate. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
+    "EXTENDED_DESCRIPTION": ["snowpunk:Overheat your snowpunk:Engine. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
+      "Innate. NL snowpunk:Overheat your snowpunk:Engine. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0."]
+  },
   "${ModID}:EngineOffload": {
     "NAME": "Engine Offload",
     "DESCRIPTION": "{@@}snowpunk:Stabilize your snowpunk:Engine. snowpunk:Condense ALL snowpunk:Evaporated cards.{!Snowpunk:Info!|0= NL Exhaust.}",

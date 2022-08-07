@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.patches.EvaporatePanelPatches;
+import Snowpunk.powers.interfaces.FreeToPlayPower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -11,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class BreakthroughPower extends AbstractEasyPower {
+public class BreakthroughPower extends AbstractEasyPower implements FreeToPlayPower {
     public static String POWER_ID = makeID(BreakthroughPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -36,5 +37,10 @@ public class BreakthroughPower extends AbstractEasyPower {
         } else {
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
+    }
+
+    @Override
+    public boolean isFreeToPlay(AbstractCard card) {
+        return true;
     }
 }
