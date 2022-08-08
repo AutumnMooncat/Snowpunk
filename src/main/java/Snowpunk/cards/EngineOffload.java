@@ -3,12 +3,10 @@ package Snowpunk.cards;
 import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.EngineOffloadPower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -28,19 +26,16 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (type != CardType.POWER) {
+        if (magicNumber < 1)
             Wiz.atb(new ModEngineTempAction(true));
-            Wiz.atb(new CondenseRandomCardToDrawPileAction(EvaporatePanel.evaporatePile.size() + 2));
-        } else {
-            Wiz.applyToSelf(new EngineOffloadPower(p, -1));
-        }
+        Wiz.atb(new CondenseRandomCardToDrawPileAction(EvaporatePanel.evaporatePile.size() + 2));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> upgrade2());
-        addUpgradeData(this, () -> upgrade3(), 1);
+        addUpgradeData(this, () -> upgrade3());
     }
 
     private void upgrade2() {
@@ -49,7 +44,7 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     }
 
     private void upgrade3() {
-        type = CardType.POWER;
+        upgradeMagicNumber(2);
         uDesc();
     }
 }

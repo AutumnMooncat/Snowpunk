@@ -1,12 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.actions.GiftDiscoveryAction;
-import Snowpunk.actions.HolidayCheerUpAction;
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.EngineOffloadPower;
-import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

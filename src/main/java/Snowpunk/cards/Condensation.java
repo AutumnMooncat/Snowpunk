@@ -26,7 +26,6 @@ public class Condensation extends AbstractMultiUpgradeCard {
     public Condensation() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
-        cardsToPreview = new Fireball();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

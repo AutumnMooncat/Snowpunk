@@ -16,52 +16,26 @@ public class Create extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
-    private static final int UP_COST = 0;
-
-    private boolean machination = false;
-    private boolean random = false;
+    private static final int COST = 1, CORES = 1, PARTS = 2;
 
     public Create() {
         super(ID, COST, TYPE, RARITY, TARGET);
         FleetingField.fleeting.set(this, true);
+        isEthereal = true;
         tags.add(CardTags.HEALING); // We don't want this generated in combat
+        baseInfo = info = 3;
+        magicNumber = baseMagicNumber = CORES;
+        secondMagic = baseSecondMagic = PARTS;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (machination) {
-            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.MACHINATION, !random, random));
-        } else {
-            Wiz.atb(new AssembleCardAction(AssembleCardAction.AssembleType.CREATION, !random, random));
-        }
-    }
-
-    public void upp() {
-        uDesc();
+        Wiz.atb(new AssembleCardAction(magicNumber, secondMagic, info));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            machination = true;
-            if (random) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-                initializeDescription();
-            } else {
-                uDesc();
-            }
-        });
-        addUpgradeData(this, () -> {
-            random = true;
-            FleetingField.fleeting.set(this, false);
-            if (machination) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-                initializeDescription();
-            } else {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-                initializeDescription();
-            }
-        });
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 1);
+        addUpgradeData(this, () -> upgradeSecondMagic(1));
+        addUpgradeData(this, () -> upgradeMagicNumber(1));
+        addUpgradeData(this, () -> upgradeInfo(2));
     }
 }

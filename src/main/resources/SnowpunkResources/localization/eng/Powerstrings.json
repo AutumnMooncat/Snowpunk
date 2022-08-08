@@ -36,12 +36,6 @@
       " cards and #yFreeze them."
     ]
   },
-  "${ModID}:EngineOffloadPower": {
-    "NAME": "Engine Offload",
-    "DESCRIPTIONS": [
-      "At the start of your turn, Stabilize your #yEngine and #yCondense ALL #yEvaporated cards."
-    ]
-  },
   "${ModID}:PageTurnPower": {
     "NAME": "Page Turn",
     "DESCRIPTIONS": [
@@ -171,7 +165,8 @@
     "DESCRIPTIONS": [
       "The next card you play this turn costs 0.",
       "The next #b",
-      " cards you play this turn cost 0."
+      " cards you play this turn cost 0.",
+      " Removed at the end of your turn."
     ]
   },
   "${ModID}:FireballNextTurnPower": {
@@ -212,7 +207,7 @@
     "NAME": "Steam Form",
     "DESCRIPTIONS": [
       "At the start of your turn, gain #b",
-      " #ySteam. NL #ySteam no longer exhausts cards."
+      " #ySteam."
     ]
   },
   "${ModID}:ProtectionPower": {
@@ -306,11 +301,18 @@
       " #ySpare #yParts."
     ]
   },
+  "${ModID}:BackupBoilerPower": {
+    "NAME": "Backup Boiler",
+    "DESCRIPTIONS": [
+      "Steam is no longer removed at the end of your turn."
+    ]
+  },
   "${ModID}:RefrigeratePower": {
     "NAME": "Refrigerate",
     "DESCRIPTIONS": [
       "#yCool the next card you draw.",
-      "#yCool the next #b"," cards you draw."
+      "#yCool the next #b",
+      " cards you draw."
     ]
   },
   "${ModID}:BetterPower": {

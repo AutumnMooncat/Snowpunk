@@ -27,14 +27,14 @@ public class Sprockets extends AbstractPartCard {
     public Predicate<AbstractCard> getFilter() {
         return isAttack.and(doesntExhaust);
     }
-
+/*
     @Override
     public void prepForSelection(AbstractCard card) {
         if (card.cost > 1) {
             baseMagicNumber *= card.cost;
             magicNumber = baseMagicNumber;
         }
-    }
+    }*/
 
     @Override
     public void apply(AbstractCard card) {

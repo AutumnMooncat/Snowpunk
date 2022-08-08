@@ -15,7 +15,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class FireAndBrimstone extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(FireAndBrimstone.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 

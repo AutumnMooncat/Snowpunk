@@ -28,7 +28,7 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
     public ThermalShock() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = BURN;
-        secondMagic = baseSecondMagic = CHILL;
+        info = baseInfo = 0;
         exhaust = true;
     }
 
@@ -36,7 +36,7 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
                 Wiz.applyToEnemy(mo, new BurnPower(mo, p, magicNumber));
-                Wiz.applyToEnemy(mo, new ChillPower(mo, secondMagic));
+                Wiz.applyToEnemy(mo, new ChillPower(mo, magicNumber));
             }
         }
     }
@@ -45,6 +45,12 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
         addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FluxMod()));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1), 1);
+        addUpgradeData(this, () -> upgrade3(), 1);
+    }
+
+    private void upgrade3() {
+        CardTemperatureFields.addInherentHeat(this, 1);
+        exhaust = false;
+        upgradeInfo(1);
     }
 }

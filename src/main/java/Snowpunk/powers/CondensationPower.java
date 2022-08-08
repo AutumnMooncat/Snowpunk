@@ -10,14 +10,14 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class CondensationPower extends AbstractEasyPower {
+public class CondensationPower extends AbstractEasyPower implements OnCondensePower {
     public static String POWER_ID = makeID(CondensationPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
     public CondensationPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("retain");
+        //this.loadRegion("retain");
     }
 
     @Override
@@ -32,5 +32,10 @@ public class CondensationPower extends AbstractEasyPower {
         } else {
             this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
         }
+    }
+
+    @Override
+    public void onCondense() {
+
     }
 }
