@@ -1,4 +1,4 @@
-package Snowpunk.powers;
+package Snowpunk.powers.interfaces;
 
 public interface OnCondensePower {
 

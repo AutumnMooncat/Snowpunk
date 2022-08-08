@@ -127,7 +127,8 @@
   },
   "${ModID}:Condensation": {
     "NAME": "Condensation",
-    "DESCRIPTION": "{@@}At the start of your turn, snowpunk:Condense !M! card{!M!|>1=s}."
+    "DESCRIPTION": "Whenever a card snowpunk:Condenses, gain !M! Block.",
+    "UPGRADE_DESCRIPTION": "Whenever a card snowpunk:Condenses, gain !M! Block. NL snowpunk:Condense a card."
   },
   "${ModID}:Create": {
     "NAME": "Create",
@@ -160,7 +161,13 @@
   "${ModID}:Fireball": {
     "NAME": "Fireball",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn.",
-    "EXTENDED_DESCRIPTION": ["snowpunk:Token"]
+    "EXTENDED_DESCRIPTION": [
+      "snowpunk:Token"
+    ]
+  },
+  "${ModID}:Freezer": {
+    "NAME": "Freezer",
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Freeze the next {!M!|1=card|@=!M! cards} you play and snowpunk:Link {!M!|1=it|@=them} to this one."
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
@@ -171,8 +178,10 @@
     "NAME": "Gift",
     "DESCRIPTION": "Choose 1 of !M! random cards of any color to add to your hand. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Choose 1 of !M! random cards of any color to add to your hand. NL It costs 0 this turn. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Choose 1 of !M! random cards of any color to add to your hand.",
-                            "Choose 1 of !M! random cards of any color to add to your hand. NL It costs 0 this turn."]
+    "EXTENDED_DESCRIPTION": [
+      "Choose 1 of !M! random cards of any color to add to your hand.",
+      "Choose 1 of !M! random cards of any color to add to your hand. NL It costs 0 this turn."
+    ]
   },
   "${ModID}:Hail": {
     "NAME": "Hail",

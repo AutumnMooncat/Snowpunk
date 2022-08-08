@@ -3,12 +3,16 @@ package Snowpunk.cards;
 import Snowpunk.actions.AssembleCardAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class Create extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Create.class.getSimpleName());
 

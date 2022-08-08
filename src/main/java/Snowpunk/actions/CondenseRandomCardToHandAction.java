@@ -1,12 +1,15 @@
 package Snowpunk.actions;
 
+import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.ui.EvaporatePanel;
+import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class CondenseRandomCardToHandAction extends AbstractGameAction {
     private final AbstractPlayer p;
@@ -44,9 +47,19 @@ public class CondenseRandomCardToHandAction extends AbstractGameAction {
 
                     card.unhover();
                     card.fadingOut = false;
+                    triggerOnCondense();
                 }
             }
         }
         this.tickDuration();
+    }
+
+    private void triggerOnCondense() {
+        if (Wiz.adp() != null) {
+            for (AbstractPower power : Wiz.adp().powers) {
+                if (power instanceof OnCondensePower)
+                    ((OnCondensePower) power).onCondense();
+            }
+        }
     }
 }

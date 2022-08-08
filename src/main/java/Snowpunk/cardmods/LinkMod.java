@@ -150,6 +150,12 @@ public class LinkMod extends AbstractCardModifier {
             addModifier(card, new LinkMod(cardsToLink, card));
     }
 
+    public static void Link(AbstractCard card1, AbstractCard card2) {
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        cards.add(card1);
+        Link(cards, card2);
+    }
+
     private void Append(ArrayList<AbstractCard> cardsToLink, AbstractCard self) {
         logger.info("Appending " + getLinksToString(cardsToLink) + " to " + self.name);
         ArrayList<AbstractCard> fullListOfLinkedCards = getFullLinkedList(cardsToLink, self);

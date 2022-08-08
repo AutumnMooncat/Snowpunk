@@ -1,12 +1,6 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.util.SteamEngine;
-import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,12 +10,12 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class CoolNextCardPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID(CoolNextCardPower.class.getSimpleName());
+public class FreezeNextCardPower extends AbstractEasyPower {
+    public static String POWER_ID = makeID(FreezeNextCardPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    public CoolNextCardPower(AbstractCreature owner, int amount) {
+    public FreezeNextCardPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         //this.loadRegion("skillBurn");
     }
@@ -31,7 +25,7 @@ public class CoolNextCardPower extends AbstractEasyPower {
         if (!card.purgeOnUse && CardTemperatureFields.getCardHeat(card) > -2) {
             flash();
             //Wiz.atb(new ModEngineTempAction(-1));
-            CardTemperatureFields.addHeat(card, -1);
+            CardTemperatureFields.addHeat(card, -999);
             //this.addToTop(new ModCardTempAction(card, -1));
             this.addToTop(new ReducePowerAction(owner, owner, this, 1));
         }

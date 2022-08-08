@@ -1,13 +1,14 @@
 package Snowpunk.actions;
 
+import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.CondenseEffect;
-import Snowpunk.vfx.ExhumeEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.function.Predicate;
 
@@ -47,8 +48,18 @@ public class CondenseRandomCardToDrawPileAction extends AbstractGameAction {
                 card.fadingOut = false;
                 AbstractDungeon.topLevelEffects.add(new CondenseEffect(card));
                 validCards.removeCard(card);
+                triggerOnCondense();
             }
         }
         this.isDone = true;
+    }
+
+    private void triggerOnCondense() {
+        if (Wiz.adp() != null) {
+            for (AbstractPower power : Wiz.adp().powers) {
+                if (power instanceof OnCondensePower)
+                    ((OnCondensePower) power).onCondense();
+            }
+        }
     }
 }

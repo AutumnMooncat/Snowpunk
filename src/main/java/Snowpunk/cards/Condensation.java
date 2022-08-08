@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrimstonePower;
@@ -17,25 +18,30 @@ public class Condensation extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
-    private static final int UP_COST = 1;
-    private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
-    private static final int UP_EFFECT_2 = 2;
+    private static final int COST = 2, UP_COST = 1, EFFECT = 3, UP_EFFECT = 1;
+    private boolean condense = false;
 
     public Condensation() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
+        condense = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new CondensationPower(p, magicNumber));
+        if (condense)
+            Wiz.atb(new CondenseRandomCardToDrawPileAction());
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT_2), 1);
+        addUpgradeData(this, () -> upgrade2());
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+    }
+
+    private void upgrade2() {
+        condense = true;
+        uDesc();
     }
 }

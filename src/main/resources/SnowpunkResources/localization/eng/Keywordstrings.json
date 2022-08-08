@@ -205,7 +205,9 @@
   {
     "PROPER_NAME": "Condense",
     "NAMES": [
-      "condense"
+      "condense",
+      "condensed",
+      "condenses"
     ],
     "DESCRIPTION": "Shuffle a random #yEvaporated card into your draw pile."
   },

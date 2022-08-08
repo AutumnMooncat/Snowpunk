@@ -73,16 +73,39 @@
       " cards you play."
     ]
   },
+  "${ModID}:FreezeNextCardPower": {
+    "NAME": "Freeze Next Card",
+    "DESCRIPTIONS": [
+      "#yFreeze the next card you play.",
+      "#yFreeze the next #b",
+      " cards you play."
+    ]
+  },
+  "${ModID}:LinkNextCardPower": {
+    "NAME": "Link Next Card",
+    "DESCRIPTIONS": [
+      "#yLink the next card you play to ",
+      ".",
+      "#yLink the next #b",
+      " cards you play to ",
+      "."
+    ]
+  },
   "${ModID}:TinkerNextCardPower": {
     "NAME": "Next Card Tinker",
     "DESCRIPTIONS": [
       "#yTinker the next card you play.",
-      "#yTinker the next #b"," cards you play."
+      "#yTinker the next #b",
+      " cards you play."
     ]
   },
   "${ModID}:SnowblowerPower": {
     "NAME": "Snowblower",
-    "DESCRIPTIONS": ["Your #yEngine gives #b"," additional #ySnowball when #bCold or #bFrozen."," additional #ySnowballs when #bCold or #bFrozen."]
+    "DESCRIPTIONS": [
+      "Your #yEngine gives #b",
+      " additional #ySnowball when #bCold or #bFrozen.",
+      " additional #ySnowballs when #bCold or #bFrozen."
+    ]
   },
   "${ModID}:PressureValvesPower": {
     "NAME": "Pressure Valves",
@@ -324,9 +347,8 @@
   "${ModID}:CondensationPower": {
     "NAME": "Condensation",
     "DESCRIPTIONS": [
-      "At the start of your turn, #yCondense #b",
-      " card.",
-      " cards."
+      "Whenever a card #yCondenses, gain #b",
+      " #yBlock."
     ]
   }
 }

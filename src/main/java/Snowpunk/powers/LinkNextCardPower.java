@@ -1,11 +1,7 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.cardmods.LinkMod;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.util.SteamEngine;
-import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -16,23 +12,27 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class CoolNextCardPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID(CoolNextCardPower.class.getSimpleName());
+public class LinkNextCardPower extends AbstractEasyPower {
+    public static String POWER_ID = makeID(LinkNextCardPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
+    private AbstractCard cardToLink;
 
-    public CoolNextCardPower(AbstractCreature owner, int amount) {
+    public LinkNextCardPower(AbstractCreature owner, int amount, AbstractCard cardToLink) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        //this.loadRegion("skillBurn");
+        this.cardToLink = cardToLink;
+        updateDescription();
     }
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && CardTemperatureFields.getCardHeat(card) > -2) {
+        if (!card.purgeOnUse && (!CardModifierManager.hasModifier(card, LinkMod.ID) ||
+                (CardModifierManager.hasModifier(card, LinkMod.ID) &&
+                        !((LinkMod) CardModifierManager.getModifiers(card, LinkMod.ID).get(0)).linkedCards.contains(cardToLink)
+                ))) {
             flash();
-            //Wiz.atb(new ModEngineTempAction(-1));
-            CardTemperatureFields.addHeat(card, -1);
-            //this.addToTop(new ModCardTempAction(card, -1));
+            LinkMod.Link(card, cardToLink);
+            LinkMod.Link(cardToLink, card);
             this.addToTop(new ReducePowerAction(owner, owner, this, 1));
         }
     }
@@ -40,9 +40,9 @@ public class CoolNextCardPower extends AbstractEasyPower {
     @Override
     public void updateDescription() {
         if (amount == 1) {
-            this.description = DESCRIPTIONS[0];
+            this.description = DESCRIPTIONS[0] + (cardToLink == null ? "" : cardToLink.name) + DESCRIPTIONS[1];
         } else {
-            this.description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            this.description = DESCRIPTIONS[2] + amount + DESCRIPTIONS[3] + (cardToLink == null ? "" : cardToLink.name) + DESCRIPTIONS[4];
         }
     }
 }
