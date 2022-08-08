@@ -2,6 +2,7 @@ package Snowpunk.cards.abstracts;
 
 import Snowpunk.cardmods.MkMod;
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
+import Snowpunk.patches.MkPatches;
 import basemod.helpers.CardModifierManager;
 
 public abstract class AbstractMultiUpgradeCard extends AbstractEasyCard implements MultiUpgradeCard {
@@ -21,7 +22,8 @@ public abstract class AbstractMultiUpgradeCard extends AbstractEasyCard implemen
 
     @Override
     public void updateName() {
-        CardModifierManager.addModifier(this, new MkMod(1));
+        MkPatches.addMk(this);
+        //CardModifierManager.addModifier(this, new MkMod(1));
     }
 
     @Override
