@@ -18,6 +18,7 @@ public class EngineTempPower extends AbstractEasyPower {
 
     public EngineTempPower(AbstractCreature owner) {
         super(POWER_ID, strings.NAME, NeutralPowertypePatch.NEUTRAL, false, owner, -1);
+        updateDescription();
     }
 
     @Override

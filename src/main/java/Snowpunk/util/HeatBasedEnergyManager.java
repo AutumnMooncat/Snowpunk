@@ -1,6 +1,8 @@
 package Snowpunk.util;
 
+import Snowpunk.cards.EmberForge;
 import Snowpunk.cards.Fireball;
+import Snowpunk.powers.EmberForgePower;
 import Snowpunk.powers.EngineTempPower;
 import Snowpunk.powers.SnowballPower;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
@@ -35,6 +37,9 @@ public class HeatBasedEnergyManager extends EnergyManager {
         energy = energyMaster + SteamEngine.getBonusEnergy();
         snowGain = SteamEngine.getSnowballs();
         fireGain = SteamEngine.getFire();
+
+        if (Wiz.adp().hasPower(EmberForgePower.POWER_ID))
+            energy = 0;
     }
 
     public void gainSnowAndSteam() {

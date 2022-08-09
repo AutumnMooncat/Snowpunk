@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.EmberForgePower;
 import Snowpunk.powers.MadSciencePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -30,7 +31,7 @@ public class EmberForge extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new MadSciencePower(p, magicNumber));
+        Wiz.applyToSelf(new EmberForgePower(p));
     }
 
     @Override

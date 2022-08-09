@@ -1,5 +1,6 @@
 package Snowpunk.util;
 
+import Snowpunk.TheConductor;
 import Snowpunk.powers.EngineTempPower;
 import Snowpunk.powers.interfaces.ModifyEngineSnowballsPower;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -56,20 +57,21 @@ public class SteamEngine {
 
     public static int getSnowballs() {
         int bonus = 0;
+        if ((Wiz.adp() instanceof TheConductor))
+            bonus = 1;
         for (AbstractPower p : Wiz.adp().powers) {
             if (p instanceof ModifyEngineSnowballsPower) {
                 bonus += ((ModifyEngineSnowballsPower) p).modifySnowballs(heat);
             }
         }
-        if (heat == FREEZING) {
-            return 3 + bonus;
-        } else if (heat <= COLD) {
+
+        if (heat == FREEZING)
             return 2 + bonus;
-        } else if (heat < HOT) {
+        if (heat <= COLD)
             return 1 + bonus;
-        } else {
+        if (heat < HOT)
             return bonus;
-        }
+        return 0;
     }
 
     public static int getFire() {

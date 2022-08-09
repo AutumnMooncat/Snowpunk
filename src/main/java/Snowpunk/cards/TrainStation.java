@@ -3,12 +3,16 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class TrainStation extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(TrainStation.class.getSimpleName());
 

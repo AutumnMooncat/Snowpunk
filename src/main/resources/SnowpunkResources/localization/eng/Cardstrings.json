@@ -167,7 +167,7 @@
   },
   "${ModID}:Freezer": {
     "NAME": "Freezer",
-    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Freeze the next {!M!|1=card|@=!M! cards} you play and snowpunk:Link {!M!|1=it|@=them} to this one."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Freeze the next {!M!|1=card|@=!M! cards} you play."
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",

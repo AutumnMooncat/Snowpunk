@@ -330,6 +330,12 @@
       "Steam is no longer removed at the end of your turn."
     ]
   },
+  "${ModID}:EmberForgePower": {
+    "NAME": "Ember Forge",
+    "DESCRIPTIONS": [
+      "No longer generate #yEnergy at the start of your turn. #yHot cards cost 0."
+    ]
+  },
   "${ModID}:RefrigeratePower": {
     "NAME": "Refrigerate",
     "DESCRIPTIONS": [
