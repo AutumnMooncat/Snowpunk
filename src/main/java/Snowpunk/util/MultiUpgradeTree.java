@@ -129,7 +129,7 @@ public class MultiUpgradeTree {
         for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
             AbstractCard copy;// = c.makeStatEquivalentCopy();
             if (u.applied) {
-                copy = c.makeCopy();
+                copy = makeUpgradelessCopy(c);
             } else {
                 copy = c.makeStatEquivalentCopy();
             }
@@ -368,6 +368,14 @@ public class MultiUpgradeTree {
                 sb.setColor(Color.WHITE);
             }
         }
+    }
+
+    private static AbstractCard makeUpgradelessCopy(AbstractCard c) {
+        int upgrades = c.timesUpgraded;
+        c.timesUpgraded = 0;
+        AbstractCard copy = c.makeStatEquivalentCopy();
+        c.timesUpgraded = upgrades;
+        return copy;
     }
 
     private static void prepUpgradePreview(AbstractCard card, UpgradeData u) {
