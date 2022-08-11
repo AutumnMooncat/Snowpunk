@@ -1,6 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.cards.interfaces.MultiUpgradeCard;
+import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
@@ -70,16 +71,17 @@ public class TinkerAction extends AbstractGameAction {
         if (AbstractDungeon.player.hoveredCard == c) {
             AbstractDungeon.player.releaseCard();
         }
-        //AbstractDungeon.actionManager.removeFromQueue(c);
-        c.unhover();
-        c.untip();
-        c.stopGlowing();
-        Wiz.adp().hand.group.remove(c);
-        AbstractDungeon.player.onCardDrawOrDiscard();
-        if (Wiz.adp().cardInUse == c) {
-            c.purgeOnUse = true;
-        } else {
-            AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
+        if (!c.hasTag(CustomTags.MENDING)) {
+            c.unhover();
+            c.untip();
+            c.stopGlowing();
+            Wiz.adp().hand.group.remove(c);
+            AbstractDungeon.player.onCardDrawOrDiscard();
+            if (Wiz.adp().cardInUse == c) {
+                c.purgeOnUse = true;
+            } else {
+                AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
+            }
         }
         int parts = 1;
         if (c instanceof BranchingUpgradesCard) {

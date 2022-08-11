@@ -6,12 +6,11 @@ import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.unique.ExpertiseAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class DrawUntilMod extends AbstractCardEffectMod {
-    public DrawUntilMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public DrawUntilMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

@@ -7,15 +7,10 @@ import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AfterImagePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-import java.util.function.BiConsumer;
-
 public class ApplyAOEVulnMod extends AbstractCardEffectMod {
-    public ApplyAOEVulnMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public ApplyAOEVulnMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

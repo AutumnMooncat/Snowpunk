@@ -35,7 +35,7 @@ public class BuckShot extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ScatterDamageAction(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageMap -> {
+        Wiz.atb(new ScatterDamageAction(this, damage, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageMap -> {
             if (info > 0) {
                 for (AbstractMonster mon : damageMap.keySet()) {
                     Wiz.applyToEnemy(mon, new BurnPower(mon, p, magicNumber));

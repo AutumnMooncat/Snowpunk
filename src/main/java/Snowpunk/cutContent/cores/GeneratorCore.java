@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.BetterExhaustMod;
@@ -25,7 +26,7 @@ public class GeneratorCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final ValueType VALUE = ValueType.MAGIC;
+    private static final EffectTag VALUE = EffectTag.MAGIC;
 
     private static final int BOOST = 2;
     private static final int UP_BOOST = 1;
@@ -74,7 +75,7 @@ public class GeneratorCore extends AbstractCoreCard {
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -108,3 +109,4 @@ public class GeneratorCore extends AbstractCoreCard {
         }
     }
 }
+*/

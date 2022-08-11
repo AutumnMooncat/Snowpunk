@@ -9,37 +9,30 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
 public abstract class AbstractCoreCard extends AbstractEasyCard {
-    public enum ValueType {
+    public enum EffectTag {
         DAMAGE,
         BLOCK,
         MAGIC,
-        NONE
+        NONE,
+        EXHAUSTS,
+        REMOVES_EXHAUST,
+        UPGRADES_COST,
     }
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;
     private static ArrayList<TooltipInfo> coreTooltip;
 
-    //public final CardRarity dropRarity;
-    public final ValueType valueType;
-    public boolean useSecondVar;
+    public final ArrayList<EffectTag> effectTags;
+    public boolean useSecondDamage, useSecondBlock, useSecondMagic;
 
-    public AbstractCoreCard(String cardID, CardType type, CardRarity dropRarity, ValueType valueType) {
-        super(cardID, -2, type, CardRarity.SPECIAL, CardTarget.NONE);
-        //this.dropRarity = dropRarity;
-        this.valueType = valueType;
-        setDisplayRarity(dropRarity);
-        TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
-    }
-
-    public AbstractCoreCard(String cardID, int cost, CardType type, ValueType valueType) {
+    public AbstractCoreCard(String cardID, int cost, CardType type, EffectTag... effectTags) {
         super(cardID, cost, type, CardRarity.SPECIAL, CardTarget.NONE);
-        //this.dropRarity = dropRarity;
-        this.valueType = valueType;
-        //setDisplayRarity(dropRarity);
+        this.effectTags = new ArrayList<>(Arrays.asList(effectTags));
         TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
     }
 
@@ -53,46 +46,42 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
     }
 
     public boolean canSpawn(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        return chosenCores.stream().noneMatch(c -> c.getClass().equals(this.getClass())) && (this.valueType == ValueType.NONE || chosenCores.stream().filter(c -> c.valueType == this.valueType).count() < 2);
+        if (chosenCores.stream().anyMatch(c -> c.getClass().equals(this.getClass()))) {
+            return false;
+        }
+        if (effectTags.contains(EffectTag.DAMAGE) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.DAMAGE))) {
+            return false;
+        }
+        if (effectTags.contains(EffectTag.BLOCK) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.BLOCK))) {
+            return false;
+        }
+        if (effectTags.contains(EffectTag.MAGIC) && chosenCores.stream().filter(c -> c.effectTags.contains(EffectTag.MAGIC)).count() > 1) {
+            return false;
+        }
+        return true;
     }
 
     public abstract void apply(AbstractCard card);
 
     public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        if (chosenCores.stream().anyMatch(c -> c.valueType == this.valueType)) {
-            swapDynvarKey(this.valueType);
-            useSecondVar = true;
+        if (effectTags.contains(EffectTag.DAMAGE) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.DAMAGE))) {
+            swapDynvarKey(EffectTag.DAMAGE);
+            useSecondDamage = true;
+        }
+        if (effectTags.contains(EffectTag.BLOCK) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.BLOCK))) {
+            swapDynvarKey(EffectTag.BLOCK);
+            useSecondBlock = true;
+        }
+        if (effectTags.contains(EffectTag.MAGIC) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.MAGIC))) {
+            swapDynvarKey(EffectTag.MAGIC);
+            useSecondMagic = true;
         }
     }
-
-    /*public void prepRenderedCost(int currentDoubledCost) {
-        switch (dropRarity) {
-            case COMMON:
-                if (currentDoubledCost % 2 == 0) {
-                    this.cost = this.costForTurn = 1;
-                } else {
-                    this.cost = this.costForTurn = 0;
-                    this.isCostModified = true;
-                }
-                break;
-            case RARE:
-                if (currentDoubledCost % 2 == 0) {
-                    this.cost = this.costForTurn = 2;
-                } else {
-                    this.cost = this.costForTurn = 1;
-                    this.isCostModified = true;
-                }
-                break;
-            default:
-                this.cost = this.costForTurn = 1;
-                break;
-        }
-    }*/
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {}
 
-    protected void swapDynvarKey(ValueType type) {
+    protected void swapDynvarKey(EffectTag type) {
         switch (type) {
             case DAMAGE:
                 this.rawDescription = this.rawDescription.replace("!D!", "!Snowpunk:D2!");

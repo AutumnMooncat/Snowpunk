@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 
 public class QuickBlastMod extends AbstractCardEffectMod {
-    public QuickBlastMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public QuickBlastMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
         this.priority = -1;
     }

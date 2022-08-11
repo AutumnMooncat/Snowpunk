@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 
 public class MonkeyWrenchMod extends AbstractCardEffectMod {
-    public MonkeyWrenchMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public MonkeyWrenchMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
         this.priority = -1;
     }
@@ -24,7 +24,6 @@ public class MonkeyWrenchMod extends AbstractCardEffectMod {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((AssembledCard) card).secondDamage : card.damage;
                 Wiz.atb(new DamageAction(m, new DamageInfo(p, amount, card.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                Wiz.atb(new DamageAction(m, new DamageInfo(p, amount, card.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }));
         }
     }

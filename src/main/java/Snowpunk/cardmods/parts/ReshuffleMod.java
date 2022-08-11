@@ -14,7 +14,7 @@ public class ReshuffleMod extends AbstractCardModifier {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public ReshuffleMod() {
-        this.priority = -1;
+        this.priority = 1;
     }
 
     @Override

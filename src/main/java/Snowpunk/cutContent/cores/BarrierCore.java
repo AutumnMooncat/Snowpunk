@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.GainBlockMod;
@@ -23,7 +24,7 @@ public class BarrierCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final ValueType VALUE = ValueType.BLOCK;
+    private static final EffectTag VALUE = EffectTag.BLOCK;
 
     private static final int EFFECT = 6;
     private static final int UP_EFFECT = 3;
@@ -43,7 +44,7 @@ public class BarrierCore extends AbstractCoreCard {
 
     @Override
     public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -55,3 +56,4 @@ public class BarrierCore extends AbstractCoreCard {
         upgradeSecondBlock(UP_EFFECT);
     }
 }
+*/

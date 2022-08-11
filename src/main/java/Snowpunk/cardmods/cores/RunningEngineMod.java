@@ -8,10 +8,9 @@ import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 public class RunningEngineMod extends AbstractCardEffectMod {
-    public RunningEngineMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public RunningEngineMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

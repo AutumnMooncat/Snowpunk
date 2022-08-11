@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 public class FlingScrapMod extends AbstractCardEffectMod {
-    public FlingScrapMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public FlingScrapMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
         this.priority = -1;
     }

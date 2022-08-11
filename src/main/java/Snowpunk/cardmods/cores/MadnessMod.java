@@ -8,10 +8,9 @@ import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.unique.MadnessAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.AfterImagePower;
 
 public class MadnessMod extends AbstractCardEffectMod {
-    public MadnessMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public MadnessMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

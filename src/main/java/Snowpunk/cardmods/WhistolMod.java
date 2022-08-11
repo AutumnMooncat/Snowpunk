@@ -1,5 +1,6 @@
 package Snowpunk.cardmods;
 
+import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
@@ -52,7 +53,10 @@ public class WhistolMod extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !CardModifierManager.hasModifier(card, ID) && card.type == AbstractCard.CardType.ATTACK;
+        if (!(card instanceof AssembledCard) && card.type != AbstractCard.CardType.ATTACK) {
+            return false;
+        }
+        return !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override

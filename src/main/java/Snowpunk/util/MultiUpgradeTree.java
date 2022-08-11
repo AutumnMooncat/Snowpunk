@@ -6,6 +6,7 @@ import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.shaders.Grayscale;
 import Snowpunk.shaders.Greenify;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -129,7 +130,7 @@ public class MultiUpgradeTree {
         for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
             AbstractCard copy;// = c.makeStatEquivalentCopy();
             if (u.applied) {
-                copy = makeUpgradelessCopy(c);
+                copy = makeSimpleCopy(c);
             } else {
                 copy = c.makeStatEquivalentCopy();
             }
@@ -370,11 +371,9 @@ public class MultiUpgradeTree {
         }
     }
 
-    private static AbstractCard makeUpgradelessCopy(AbstractCard c) {
-        int upgrades = c.timesUpgraded;
-        c.timesUpgraded = 0;
-        AbstractCard copy = c.makeStatEquivalentCopy();
-        c.timesUpgraded = upgrades;
+    private static AbstractCard makeSimpleCopy(AbstractCard c) {
+        AbstractCard copy = c.makeCopy();
+        CardModifierManager.copyModifiers(c, copy, false, false, false);
         return copy;
     }
 

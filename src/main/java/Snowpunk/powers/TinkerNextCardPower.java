@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.actions.TinkerAction;
+import Snowpunk.patches.CustomTags;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,7 +33,10 @@ public class TinkerNextCardPower extends AbstractEasyPower {
         if (!card.purgeOnUse) {
             flash();
             TinkerAction.tinkerCard(card);
-            card.purgeOnUse = true;
+            if (!card.hasTag(CustomTags.MENDING)) {
+                card.purgeOnUse = true;
+            }
+
             addToBot(new ReducePowerAction(owner, owner, this, 1));
         }
 

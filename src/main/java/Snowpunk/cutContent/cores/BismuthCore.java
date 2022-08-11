@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.*;
@@ -24,7 +25,7 @@ public class BismuthCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final ValueType VALUE = ValueType.MAGIC;
+    private static final EffectTag VALUE = EffectTag.MAGIC;
 
     private static final int VULN = 2;
     private static final int UP_VULN = 1;
@@ -71,7 +72,7 @@ public class BismuthCore extends AbstractCoreCard {
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -103,3 +104,4 @@ public class BismuthCore extends AbstractCoreCard {
         }
     }
 }
+*/

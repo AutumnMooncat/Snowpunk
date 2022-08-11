@@ -130,5 +130,11 @@
                             "snowpunk:Frozen.",
                             "snowpunk:Hot & snowpunk:Cold.",
                             "snowpunk:Overheated & snowpunk:Frozen."]
+  },
+  "${ModID}:TinkerSelfMod": {
+    "EXTENDED_DESCRIPTION": [" NL snowpunk:Tinker this card."]
+  },
+  "${ModID}:MendingMod": {
+    "EXTENDED_DESCRIPTION": [" NL Is not removed when snowpunk:Tinkered."]
   }
 }

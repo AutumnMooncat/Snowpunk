@@ -5,13 +5,12 @@ import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.powers.SnowballPower;
-import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class GainSnowMod extends AbstractCardEffectMod {
-    public GainSnowMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public GainSnowMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

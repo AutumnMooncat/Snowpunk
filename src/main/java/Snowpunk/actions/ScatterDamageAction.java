@@ -20,27 +20,28 @@ import java.util.function.Consumer;
 public class ScatterDamageAction extends AbstractGameAction {
     private final AbstractCard card;
     private Consumer<HashMap<AbstractMonster, Integer>> callback;
+    int damageToDistribute;
 
-    public ScatterDamageAction(AbstractCard card, AttackEffect effect) {
-        this(card, effect, map -> {});
+    public ScatterDamageAction(AbstractCard card, int damageToDistribute, AttackEffect effect) {
+        this(card, damageToDistribute, effect, map -> {});
     }
 
-    public ScatterDamageAction(AbstractCard card, AttackEffect effect, Consumer<HashMap<AbstractMonster, Integer> > callback) {
+    public ScatterDamageAction(AbstractCard card, int damageToDistribute, AttackEffect effect, Consumer<HashMap<AbstractMonster, Integer> > callback) {
         this.card = card;
+        this.damageToDistribute = damageToDistribute;
         this.attackEffect = effect;
         this.callback = callback;
         this.source = Wiz.adp();
     }
 
     public void update() {
-        int backup = card.baseDamage;
         HashMap<AbstractMonster, Integer> damageMap = new HashMap<>();
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
             if (!m.isDeadOrEscaped()) {
                 damageMap.put(m, 0);
             }
         }
-        for (int i = 0 ; i < card.damage ; i++) {
+        for (int i = 0 ; i < damageToDistribute ; i++) {
             AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             damageMap.put(m, damageMap.get(m) + 1);
         }
@@ -53,7 +54,6 @@ public class ScatterDamageAction extends AbstractGameAction {
             }
         }
         callback.accept(damageMap);
-        card.baseDamage = backup;
         if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
             AbstractDungeon.actionManager.clearPostCombatActions();
         }

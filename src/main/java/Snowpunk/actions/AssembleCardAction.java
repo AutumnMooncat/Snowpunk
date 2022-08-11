@@ -20,67 +20,28 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class AssembleCardAction extends AbstractGameAction {
-    public enum AssembleType {
-        INVENTION(1, 1),
-        CREATION(1, 2),
-        MACHINATION(2, 2);
-
-        AssembleType(int cores, int parts) {
-            this.cores = cores;
-            this.parts = parts;
-        }
-
-        private final int cores;
-        private final int parts;
-
-        public int getCores() {
-            return cores;
-        }
-
-        public int getParts() {
-            return parts;
-        }
-    }
 
     public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
     boolean addToMaster;
     boolean random;
     int cores;
-    int parts;
-    int options = 3;
+    int upgrades;
+    int options;
     private Consumer<AssembledCard> onAssemble;
 
-    public AssembleCardAction(AssembleType type) {
-        this(type, true, false, c -> {
+    public AssembleCardAction(int cores, int upgrades) {
+        this(cores, upgrades, 3, true, false, c -> {
         });
     }
 
-    public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random) {
-        this(type, addToMaster, random, c -> {
+    public AssembleCardAction(int cores, int upgrades, int options) {
+        this(cores, upgrades, options, true, false, c -> {
         });
     }
 
-    public AssembleCardAction(AssembleType type, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
-        this.cores = type.getCores();
-        this.parts = type.getParts();
-        this.addToMaster = addToMaster;
-        this.random = random;
-        this.onAssemble = onAssemble;
-    }
-
-    public AssembleCardAction(int cores, int parts) {
-        this(cores, parts, 3, true, false, c -> {
-        });
-    }
-
-    public AssembleCardAction(int cores, int parts, int options) {
-        this(cores, parts, options, true, false, c -> {
-        });
-    }
-
-    public AssembleCardAction(int cores, int parts, int options, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
+    public AssembleCardAction(int cores, int upgrades, int options, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
         this.cores = cores;
-        this.parts = parts;
+        this.upgrades = upgrades;
         this.options = options;
         this.addToMaster = addToMaster;
         this.random = random;
@@ -98,9 +59,6 @@ public class AssembleCardAction extends AbstractGameAction {
                 this.isDone = true;
             }
         });
-        for (int i = 0; i < parts; i++) {
-            Wiz.att(new AddPartAction(ac, options, random));
-        }
         for (int i = 0; i < cores; i++) {
             if (random) {
                 giveRandomCore(ac);
@@ -112,7 +70,9 @@ public class AssembleCardAction extends AbstractGameAction {
     }
 
     private void finalizeCard(AssembledCard card) {
-        CardModifierManager.removeModifiersById(card, MkMod.ID, true);
+        for (int i = 0 ; i < upgrades ; i++) {
+            card.upgrade();
+        }
         AssembledCard copy = (AssembledCard) card.makeStatEquivalentCopy();
         onAssemble.accept(copy);
         if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE) {
@@ -138,74 +98,6 @@ public class AssembleCardAction extends AbstractGameAction {
         }
         return validCores;
     }
-
-    /*private static CardGroup getWeightedCores(AssembledCard card, AssembleType type) {
-        CardGroup cores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        int currentDoubledCost = card.doubledCost;
-        int toSelect = 3;
-        ArrayList<AbstractCoreCard> commons = new ArrayList<>();
-        ArrayList<AbstractCoreCard> uncommons = new ArrayList<>();
-        ArrayList<AbstractCoreCard> rares = new ArrayList<>();
-        for (AbstractCoreCard core : SnowpunkMod.cores) {
-            if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
-                AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
-                //copy.prepRenderedCost(currentDoubledCost);
-                copy.prepForSelection(card, AssembleCardAction.pickedCores);
-                switch (copy.dropRarity) {
-                    case COMMON:
-                        commons.add(copy);
-                        break;
-                    case UNCOMMON:
-                        uncommons.add(copy);
-                        break;
-                    case RARE:
-                        rares.add(copy);
-                        break;
-                }
-            }
-        }
-        if (type == AssembleType.MACHINATION && AssembleCardAction.pickedCores.isEmpty() && !rares.isEmpty()) {
-            for (int i = 0 ; i < toSelect ; i++) {
-                if (!rares.isEmpty()) {
-                    cores.addToTop(rares.remove(AbstractDungeon.cardRandomRng.random(rares.size()-1)));
-                }
-            }
-            return cores;
-        }
-        ArrayList<AbstractCard.CardRarity> options = new ArrayList<>();
-        for (int i = 0 ; i < toSelect ; i ++) {
-            if (!commons.isEmpty()) {
-                options.add(AbstractCard.CardRarity.COMMON);
-                options.add(AbstractCard.CardRarity.COMMON);
-                options.add(AbstractCard.CardRarity.COMMON);
-                options.add(AbstractCard.CardRarity.COMMON);
-            }
-            if (!uncommons.isEmpty()) {
-                options.add(AbstractCard.CardRarity.UNCOMMON);
-                options.add(AbstractCard.CardRarity.UNCOMMON);
-            }
-            if (!rares.isEmpty()) {
-                options.add(AbstractCard.CardRarity.RARE);
-            }
-            if (options.isEmpty()) {
-                return cores;
-            }
-            AbstractCard.CardRarity selection = options.get(AbstractDungeon.cardRandomRng.random(options.size()-1));
-            switch (selection) {
-                case COMMON:
-                    cores.addToTop(commons.remove(AbstractDungeon.cardRandomRng.random(commons.size()-1)));
-                    break;
-                case UNCOMMON:
-                    cores.addToTop(uncommons.remove(AbstractDungeon.cardRandomRng.random(uncommons.size()-1)));
-                    break;
-                case RARE:
-                    cores.addToTop(rares.remove(AbstractDungeon.cardRandomRng.random(rares.size()-1)));
-                    break;
-            }
-            options.clear();
-        }
-        return cores;
-    }*/
 
     private static void giveRandomCore(AssembledCard card) {
         CardGroup validCores = getValidCores(card);

@@ -15,4 +15,7 @@ public class CustomTags {
 
     @SpireEnum
     public static AbstractCard.CardTags FROSTY;
+
+    @SpireEnum
+    public static AbstractCard.CardTags MENDING;
 }

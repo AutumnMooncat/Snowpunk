@@ -8,17 +8,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class VentMod extends AbstractCardModifier {
-    public static final String ID = makeID(VentMod.class.getSimpleName());
+public class MendingMod extends AbstractCardModifier {
+    public static final String ID = makeID(MendingMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public VentMod() {
+    public MendingMod() {
         this.priority = 1;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.tags.add(CustomTags.VENT);
+        card.tags.add(CustomTags.MENDING);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class VentMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new VentMod();
+        return new MendingMod();
     }
 }

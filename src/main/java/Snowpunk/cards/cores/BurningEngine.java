@@ -1,9 +1,8 @@
 package Snowpunk.cards.cores;
 
-import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cardmods.cores.ApplyBurnMod;
-import Snowpunk.cardmods.cores.FluxcombobulatorMod;
 import Snowpunk.cardmods.cores.edits.CardEditMod;
+import Snowpunk.util.Triplet;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -20,11 +19,11 @@ public class BurningEngine extends AbstractCoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final ValueType VALUE = ValueType.MAGIC;
+    private static final EffectTag VALUE = EffectTag.MAGIC;
 
     private static final int COST = 1;
     private static final int EFFECT = 5;
-    private static final int UP_EFFECT = 2;
+    public static final int UP_EFFECT = 2;
 
     public BurningEngine() {
         super(ID, COST, TYPE, VALUE);
@@ -34,7 +33,10 @@ public class BurningEngine extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new ApplyBurnMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondVar));
+        CardModifierManager.addModifier(card, new ApplyBurnMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
+        if (card instanceof AssembledCard) {
+            ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.BURNING_ENGINE, useSecondMagic, UP_EFFECT));
+        }
     }
 
     @Override

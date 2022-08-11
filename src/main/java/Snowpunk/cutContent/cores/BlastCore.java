@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.FlingScrapMod;
@@ -23,7 +24,7 @@ public class BlastCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final ValueType VALUE = ValueType.DAMAGE;
+    private static final EffectTag VALUE = EffectTag.DAMAGE;
 
     private static final int DAMAGE = 6;
     private static final int UP_DAMAGE = 2;
@@ -43,7 +44,7 @@ public class BlastCore extends AbstractCoreCard {
 
     @Override
     public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -55,3 +56,4 @@ public class BlastCore extends AbstractCoreCard {
         upgradeSecondDamage(UP_DAMAGE);
     }
 }
+*/

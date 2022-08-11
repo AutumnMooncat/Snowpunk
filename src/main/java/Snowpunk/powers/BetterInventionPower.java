@@ -1,3 +1,4 @@
+/*
 package Snowpunk.powers;
 
 import Snowpunk.actions.AssembleCardAction;
@@ -31,3 +32,4 @@ public class BetterInventionPower extends AbstractEasyPower {
         }
     }
 }
+*/

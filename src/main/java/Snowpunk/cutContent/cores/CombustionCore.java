@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.*;
@@ -24,7 +25,7 @@ public class CombustionCore extends AbstractCoreCard {
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final ValueType VALUE = ValueType.DAMAGE;
+    private static final EffectTag VALUE = EffectTag.DAMAGE;
 
     private static final int TRICE_DMG = 5;
     private static final int UP_THRICE_DMG = 2;
@@ -74,7 +75,7 @@ public class CombustionCore extends AbstractCoreCard {
         nameToAdd = TEXT[effectIndex*2];
         rawDescription = TEXT[effectIndex*2+1];
         initializeDescription();
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -106,3 +107,4 @@ public class CombustionCore extends AbstractCoreCard {
         }
     }
 }
+*/

@@ -1,24 +1,33 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.patches.CustomTags;
+import Snowpunk.actions.TinkerAction;
+import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class VentMod extends AbstractCardModifier {
-    public static final String ID = makeID(VentMod.class.getSimpleName());
+public class TinkerSelfMod extends AbstractCardModifier {
+    public static final String ID = makeID(TinkerSelfMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public VentMod() {
-        this.priority = 1;
+    public TinkerSelfMod() {
+        this.priority = 2;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.tags.add(CustomTags.VENT);
+        card.exhaust = false;
+        CardModifierManager.removeModifiersById(card, BetterExhaustMod.ID, false);
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        Wiz.atb(new TinkerAction(card));
     }
 
     @Override
@@ -38,6 +47,6 @@ public class VentMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new VentMod();
+        return new TinkerSelfMod();
     }
 }

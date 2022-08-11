@@ -4,16 +4,14 @@ import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
-import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.powers.AfterImagePower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 public class DrawNextTurnMod extends AbstractCardEffectMod {
-    public DrawNextTurnMod(String description, AbstractCoreCard.ValueType type, int effect, int upEffect, boolean secondVar) {
+    public DrawNextTurnMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
         super(description, type, effect, upEffect, secondVar);
     }
 

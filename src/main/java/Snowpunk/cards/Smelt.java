@@ -26,6 +26,7 @@ public class Smelt extends AbstractMultiUpgradeCard {
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
+    //TODO make copies played still heat cards in hand
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         if (Wiz.adp().hand.contains(this)) {

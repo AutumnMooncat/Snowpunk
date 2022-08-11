@@ -1,3 +1,4 @@
+/*
 package Snowpunk.cutContent.cores;
 
 import Snowpunk.cardmods.cores.ScavengeStrikeMod;
@@ -23,7 +24,7 @@ public class StrikeCore extends AbstractCoreCard {
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
     private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
-    private static final ValueType VALUE = ValueType.DAMAGE;
+    private static final EffectTag VALUE = EffectTag.DAMAGE;
 
     private static final int DAMAGE = 9;
     private static final int UP_DAMAGE = 3;
@@ -43,7 +44,7 @@ public class StrikeCore extends AbstractCoreCard {
 
     @Override
     public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        if (chosenCores.stream().anyMatch(c -> c.valueType == VALUE)) {
+        if (chosenCores.stream().anyMatch(c -> c.effectTags == VALUE)) {
             swapDynvarKey(VALUE);
             useSecondVar = true;
         }
@@ -55,3 +56,4 @@ public class StrikeCore extends AbstractCoreCard {
         upgradeSecondDamage(UP_DAMAGE);
     }
 }
+*/
