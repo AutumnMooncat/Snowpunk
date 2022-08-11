@@ -36,7 +36,6 @@ public class Snowblower extends AbstractMultiUpgradeCard {
         baseMagicNumber = magicNumber = SNOW;
         baseInfo = info = 0;
         CardModifierManager.addModifier(this, new WhistolMod());
-        tags.add(CustomTags.VENT);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

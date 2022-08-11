@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.WinterStormPower;
@@ -23,7 +22,7 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
     private static final int STACKS = 1;
     private static final int UP_STACKS = 1;
 
-    private boolean freeze = false;
+    private boolean coolEngine = false;
 
     public WinterStorm() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -31,8 +30,8 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (freeze) {
-            Wiz.atb(new ModEngineTempAction(-99));
+        if (coolEngine) {
+            Wiz.atb(new ModEngineTempAction(-2));
         }
         Wiz.applyToSelf(new WinterStormPower(p, magicNumber));
     }
@@ -43,7 +42,7 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(this, () -> {
-            this.freeze = true;
+            this.coolEngine = true;
             uDesc();
         });
     }
