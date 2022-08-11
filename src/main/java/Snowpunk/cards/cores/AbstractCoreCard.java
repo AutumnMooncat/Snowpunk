@@ -47,7 +47,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
 
     public boolean canSpawn(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         if (chosenCores.stream().anyMatch(c -> c.getClass().equals(this.getClass()))) {
-            //return false;
+            return false;
         }
         if (effectTags.contains(EffectTag.DAMAGE) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.DAMAGE))) {
             return false;
