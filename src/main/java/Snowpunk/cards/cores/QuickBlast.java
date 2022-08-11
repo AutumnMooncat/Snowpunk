@@ -42,6 +42,7 @@ public class QuickBlast extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new WhistolMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.QUICK_BLAST, useSecondDamage, UP_DAMAGE));
+            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
         }
     }
 

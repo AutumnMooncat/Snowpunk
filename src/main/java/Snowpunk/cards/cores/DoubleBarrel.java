@@ -39,6 +39,7 @@ public class DoubleBarrel extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new WhistolMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.DOUBLE_BARREL, useSecondDamage, UP_DAMAGE));
+            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
         }
     }
 

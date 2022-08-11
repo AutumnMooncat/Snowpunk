@@ -36,6 +36,7 @@ public class BurningEngine extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new ApplyBurnMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.BURNING_ENGINE, useSecondMagic, UP_EFFECT));
+            ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);
         }
     }
 

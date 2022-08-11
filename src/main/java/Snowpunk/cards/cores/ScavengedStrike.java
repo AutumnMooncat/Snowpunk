@@ -40,6 +40,7 @@ public class ScavengedStrike extends AbstractCoreCard {
         card.tags.add(CardTags.STRIKE);
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.SCAVENGE_STRIKE, useSecondDamage, UP_DAMAGE));
+            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
         }
     }
 

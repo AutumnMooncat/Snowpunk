@@ -175,6 +175,36 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
         }
     }
 
+    public void saveDamage(int amount, boolean secondVar) {
+        if (secondVar) {
+            info.setDamage2(amount);
+            this.baseSecondDamage = this.damage = amount;
+        } else {
+            info.setDamage(amount);
+            this.baseDamage = this.damage = amount;
+        }
+    }
+
+    public void saveBlock(int amount, boolean secondVar) {
+        if (secondVar) {
+            info.setBlock2(amount);
+            this.baseSecondBlock = this.secondBlock = amount;
+        } else {
+            info.setBlock(amount);
+            this.baseBlock = this.block = amount;
+        }
+    }
+
+    public void saveMagic(int amount, boolean secondVar) {
+        if (secondVar) {
+            info.setMagic2(amount);
+            this.baseSecondMagic = this.secondMagic = amount;
+        } else {
+            info.setMagic(amount);
+            this.baseMagicNumber = this.magicNumber = amount;
+        }
+    }
+
     @Override
     public void onRecreate() {
         for (int i : capturedIndices) {
@@ -192,6 +222,12 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
     public void onLoad(SaveInfo saveInfo) {
         if (saveInfo != null) {
             saveInfo.savedCores.forEach(this::addInfo);
+            saveDamage(saveInfo.damage, false);
+            saveDamage(saveInfo.damage2, true);
+            saveBlock(saveInfo.block, false);
+            saveBlock(saveInfo.block2, true);
+            saveMagic(saveInfo.magic, false);
+            saveMagic(saveInfo.magic2, true);
         }
     }
 
@@ -223,6 +259,37 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
         ArrayList<Triplet<CoreType, Boolean, Integer>> savedCores;
 
+        public void setDamage(int damage) {
+            this.damage = damage;
+        }
+
+        public void setDamage2(int damage2) {
+            this.damage2 = damage2;
+        }
+
+        public void setBlock(int block) {
+            this.block = block;
+        }
+
+        public void setBlock2(int block2) {
+            this.block2 = block2;
+        }
+
+        public void setMagic(int magic) {
+            this.magic = magic;
+        }
+
+        public void setMagic2(int magic2) {
+            this.magic2 = magic2;
+        }
+
+        int damage = -1;
+        int damage2 = -1;
+        int block = -1;
+        int block2 = -1;
+        int magic = -1;
+        int magic2 = -1;
+
         public SaveInfo() {
             this.savedCores = new ArrayList<>();
         }
@@ -235,5 +302,6 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
         public void addCore(Triplet<CoreType, Boolean, Integer> t) {
             savedCores.add(t);
         }
+
     }
 }
