@@ -4,7 +4,7 @@
     <groupId>Info</groupId>
 
     <artifactId>Snowpunk</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>The Conductor</name>
     <description>Adds a Steampunk Snowman to Slay the Spire</description>
     <!-- Change the above for mod information. -->
