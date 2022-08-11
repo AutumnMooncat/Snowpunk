@@ -119,8 +119,10 @@
   },
   "${ModID}:RunningEngine": {
     "NAME": "Running Engine",
-    "DESCRIPTION": "Heat the next !M! cards you play.",
-    "EXTENDED_DESCRIPTION": ["Heater"]
+    "DESCRIPTION": "snowpunk:Heat the next !M! cards you play.",
+    "EXTENDED_DESCRIPTION": [
+      "Heater"
+    ]
   },
   "${ModID}:BurningEngine": {
     "NAME": "Burning Engine",

@@ -12,8 +12,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoPools
-@NoCompendium
 public class Invent extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Invent.class.getSimpleName());
 
@@ -29,7 +27,8 @@ public class Invent extends AbstractMultiUpgradeCard {
         isEthereal = true;
         tags.add(CardTags.HEALING); // We don't want this generated in combat
         baseInfo = info = 3;
-        magicNumber = baseMagicNumber = secondMagic = baseSecondMagic = 1;
+        magicNumber = baseMagicNumber = 2;
+        secondMagic = baseSecondMagic = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -38,8 +37,12 @@ public class Invent extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(this, () -> {
+            upgradeBaseCost(0);
+            isEthereal = false;
+            uDesc();
+        });
         addUpgradeData(this, () -> upgradeSecondMagic(1));
-        addUpgradeData(this, () -> upgradeMagicNumber(1), 0);
-        addUpgradeData(this, () -> upgradeInfo(2), 0);
+        addUpgradeData(this, () -> upgradeInfo(2));
     }
 }

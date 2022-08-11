@@ -11,8 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoPools
-@NoCompendium
 public class Create extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Create.class.getSimpleName());
 
@@ -20,7 +18,7 @@ public class Create extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CORES = 1, PARTS = 2;
+    private static final int COST = 1, CORES = 2, PARTS = 1;
 
     public Create() {
         super(ID, COST, TYPE, RARITY, TARGET);

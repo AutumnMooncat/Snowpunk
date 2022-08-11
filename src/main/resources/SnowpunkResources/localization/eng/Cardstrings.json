@@ -133,7 +133,7 @@
   },
   "${ModID}:Create": {
     "NAME": "Create",
-    "DESCRIPTION": "{@@}Ethereal. Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s} and !Snowpunk:M2! snowpunk:Part{!Snowpunk:M2!|>1=s}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
+    "DESCRIPTION": "{@@}Ethereal. Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s} and randomly Upgrade it !Snowpunk:M2! time{!Snowpunk:M2!|>1=s}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
@@ -222,7 +222,8 @@
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
-    "DESCRIPTION": "{@@}Ethereal. Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s} and !Snowpunk:M2! snowpunk:Part{!Snowpunk:M2!|>1=s}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
+    "DESCRIPTION": "{@@}Ethereal. Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s}{!Snowpunk:M2!|>0= and randomly Upgrade it}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}",
+    "UPGRADE_DESCRIPTION": "{@@}Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s}{!Snowpunk:M2!|>0= and randomly Upgrade it}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
   },
   "${ModID}:MadScience": {
     "NAME": "Mad Science",
