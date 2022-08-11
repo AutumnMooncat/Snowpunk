@@ -71,7 +71,7 @@ public class AssembleCardAction extends AbstractGameAction {
 
     private void finalizeCard(AssembledCard card) {
         for (int i = 0 ; i < upgrades ; i++) {
-            card.upgrade();
+            //card.upgrade();
         }
         AssembledCard copy = (AssembledCard) card.makeStatEquivalentCopy();
         onAssemble.accept(copy);

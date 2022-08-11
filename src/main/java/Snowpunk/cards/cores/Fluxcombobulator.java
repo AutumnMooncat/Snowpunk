@@ -41,6 +41,7 @@ public class Fluxcombobulator extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new BetterExhaustMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLUX_COMBOBULATOR, useSecondMagic, UP_EFFECT));
+            ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);
         }
     }
 

@@ -36,6 +36,7 @@ public class RunningEngine extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new RunningEngineMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.RUNNING_ENGINE, useSecondMagic, UP_EFFECT));
+            ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);
         }
     }
 

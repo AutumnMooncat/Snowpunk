@@ -20,7 +20,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
         this.useSecondVar = useSecondVar;
     }
 
-    @Override
+    /*@Override
     public void onInitialApplication(AbstractCard card) {
         if (card instanceof AssembledCard) {
             switch (type) {
@@ -37,7 +37,7 @@ public abstract class AbstractCardEffectMod extends AbstractCardModifier {
                     break;
             }
         }
-    }
+    }*/
 
     protected void setUpDamage(AssembledCard card, int effect, int upEffect, boolean useSecondVar) {
         if (useSecondVar) {

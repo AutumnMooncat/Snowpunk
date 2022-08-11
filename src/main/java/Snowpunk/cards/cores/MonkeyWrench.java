@@ -44,6 +44,8 @@ public class MonkeyWrench extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new FluxMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.MONKEY_WRENCH, useSecondBlock, useSecondDamage ? 1 : 0));
+            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
+            ((AssembledCard) card).saveBlock(BLOCK, useSecondBlock);
         }
     }
 

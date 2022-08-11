@@ -43,6 +43,8 @@ public class FlingScrap extends AbstractCoreCard {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLING_SCRAP, useSecondDamage, UP_DAMAGE));
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLING_SCRAP2, useSecondMagic, UP_PARTS));
+            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
+            ((AssembledCard) card).saveMagic(PARTS, useSecondMagic);
         }
     }
 
