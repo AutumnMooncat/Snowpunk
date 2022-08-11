@@ -18,7 +18,7 @@ public class WildfirePower extends AbstractEasyPower {
     }
 
     @Override
-    public void atStartOfTurn() {
+    public void atStartOfTurnPostDraw() {
         addToBot(new ModCardTempAction(amount, 1, true));
     }
 

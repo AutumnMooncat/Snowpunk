@@ -26,6 +26,7 @@ public class Singe extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = MAGIC;
+        cardToPreview.add(new Fireball());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -27,12 +27,13 @@ public class Fireball extends AbstractMultiUpgradeCard {
 
     protected static ArrayList<TooltipInfo> tooltip;
 
-    private static final int COST = 1, UP_COST = 0, DMG = 2, UP_DMG = 2, MAGIC = 2, UP_MAGIC = 1;
+    private static final int COST = 0, UP_COST = 0, DMG = 2, UP_DMG = 1, MAGIC = 2, UP_MAGIC = 1;
 
     public Fireball() {
         super(ID, COST, TYPE, RARITY, TARGET, CardColor.COLORLESS);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = MAGIC;
+        isEthereal = true;
         //SoulboundField.soulbound.set(this, true);
         CardTemperatureFields.addInherentHeat(this, 1);
     }
@@ -61,8 +62,11 @@ public class Fireball extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 0, 1);
+        addUpgradeData(this, () -> {
+            upgradeDamage(UP_DMG);
+            upgradeMagicNumber(UP_MAGIC);
+        });
+        //addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
+        //addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 0, 1);
     }
 }

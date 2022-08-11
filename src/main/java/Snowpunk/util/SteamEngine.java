@@ -12,7 +12,7 @@ public class SteamEngine {
     public static final int STABLE = 0;
     public static final int HOT = 2;
     public static final int OVERHEATED = 4;
-    public static final int STABILITY_FACTOR = 1;
+    public static final int STABILITY_FACTOR = 0;
 
     public static int heat;
     public static int stabilityPoint;
@@ -42,17 +42,11 @@ public class SteamEngine {
     }
 
     public static int getBonusEnergy() {
-        if (heat == FREEZING) {
+        if (heat == FREEZING)
             return -2;
-        } else if (heat <= COLD) {
+        if (heat <= COLD)
             return -1;
-        } else if (heat < HOT) {
-            return 0;
-        } else if (heat < OVERHEATED) {
-            return 1;
-        } else {
-            return 2;
-        }
+        return 0;
     }
 
     public static int getSnowballs() {

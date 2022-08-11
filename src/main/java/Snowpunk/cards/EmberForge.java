@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.EmberForgePower;
@@ -18,43 +19,29 @@ public class EmberForge extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.POWER;
 
     private static final int COST = 3;
-    private static final int UP_COST = 2;
-    private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
+    private static final int UP_COST = 2, UP_COST2 = 0;
+    private static final int EFFECT = 2;
+    private static final int UP_EFFECT = 99;
 
     private boolean overheat;
 
     public EmberForge() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
-        CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        Wiz.atb(new ModEngineTempAction(magicNumber));
         Wiz.applyToSelf(new EmberForgePower(p));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            this.isInnate = true;
-            if (overheat) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-                initializeDescription();
-            } else {
-                uDesc();
-            }
-
-        });
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST2), 0);
         addUpgradeData(this, () -> {
-            this.overheat = true;
-            if (isInnate) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-            } else {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-            }
-            initializeDescription();
+            upgradeMagicNumber(UP_EFFECT);
+            uDesc();
         });
     }
 }

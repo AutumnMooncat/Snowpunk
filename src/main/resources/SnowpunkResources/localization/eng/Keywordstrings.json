@@ -38,7 +38,7 @@
       "engine",
       "engine's"
     ],
-    "DESCRIPTION": "Provides #yEnergy and #ySnow each turn, based on its temperature. Temperature ranges from Frozen to Overheated."
+    "DESCRIPTION": "Provides #yEnergy, #yFireballs, and #ySnowballs each turn, based on its temperature. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
     "PROPER_NAME": "Fireball",
@@ -69,7 +69,7 @@
       "ventilation",
       "ventilated"
     ],
-    "DESCRIPTION": "If this card would #yExhaust, discard it instead."
+    "DESCRIPTION": "If this card would #yEvaporate, discard it instead."
   },
   {
     "PROPER_NAME": "Reshuffle",
@@ -170,7 +170,7 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate."
+    "DESCRIPTION": "Play a copy of this card. NL #yHot: Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot",
@@ -191,7 +191,7 @@
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yCondense a card. NL #yRetain. Draw a card."
+    "DESCRIPTION": "#yCondense a card. NL #yCold: #yRetain. Draw a card."
   },
   {
     "PROPER_NAME": "Evaporate",
