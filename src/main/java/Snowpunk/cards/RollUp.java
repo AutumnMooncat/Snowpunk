@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -38,6 +39,6 @@ public class RollUp extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ReshuffleMod()));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

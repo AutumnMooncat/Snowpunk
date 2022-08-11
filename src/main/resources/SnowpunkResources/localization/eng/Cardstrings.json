@@ -7,8 +7,8 @@
   },
   "${ModID}:Armageddon": {
     "NAME": "Armageddon",
-    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat your hand.",
-    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat ALL cards."
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat your hand. NL snowpunk:Overheat your snowpunk:Engine.",
+    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Overheat ALL cards. NL snowpunk:Overheat your snowpunk:Engine."
   },
   "${ModID}:AssembledCard": {
     "NAME": "",
@@ -83,7 +83,8 @@
   },
   "${ModID}:BurningFury": {
     "NAME": "Burning Fury",
-    "DESCRIPTION": "Add !M! snowpunk:Fireballs NL to your hand."
+    "DESCRIPTION": "Add !M! snowpunk:Fireballs NL to your hand.",
+    "UPGRADE_DESCRIPTION": "Add !M! snowpunk:Fireballs NL to your hand. NL snowpunk:Heat your snowpunk:Engine."
   },
   "${ModID}:Caroling": {
     "NAME": "Caroling",
@@ -140,10 +141,8 @@
   },
   "${ModID}:EmberForge": {
     "NAME": "Ember Forge",
-    "DESCRIPTION": "You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
-    "UPGRADE_DESCRIPTION": "Innate. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
-    "EXTENDED_DESCRIPTION": ["snowpunk:Overheat your snowpunk:Engine. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0.",
-      "Innate. NL snowpunk:Overheat your snowpunk:Engine. NL You no longer gain Energy at the start of your turn. NL snowpunk:Hot and snowpunk:Overheated cards cost 0."]
+    "DESCRIPTION": "snowpunk:Heat your snowpunk:Engine. NL snowpunk:Hot cards cost 0. NL You no longer gain Energy at the start of your turn.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Overheat your snowpunk:Engine. NL snowpunk:Hot cards cost 0. NL You no longer gain Energy at the start of your turn."
   },
   "${ModID}:EngineOffload": {
     "NAME": "Engine Offload",
@@ -156,18 +155,19 @@
   },
   "${ModID}:FireAndBrimstone": {
     "NAME": "Fire and Brimstone",
-    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }At the start of each turn, add !M! *Fireball{!M!|>1=s} into your hand."
+    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }At the start of your turn, lose !M! [E] and add !M! *Fireball{!M!|>1=s} into your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }snowpunk:Heat your snowpunk:Engine. NL At the start of your turn, lose !M! [E] and add !M! *Fireball{!M!|>1=s} into your hand."
   },
   "${ModID}:Fireball": {
     "NAME": "Fireball",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn.",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !M! snowpunk:Burn.",
     "EXTENDED_DESCRIPTION": [
       "snowpunk:Token"
     ]
   },
   "${ModID}:Freezer": {
     "NAME": "Freezer",
-    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Freeze the next {!M!|1=card|@=!M! cards} you play and snowpunk:Link {!M!|1=it|@=them} to this one."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Freeze the next {!M!|1=card|@=!M! cards} you play."
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
@@ -194,11 +194,13 @@
   },
   "${ModID}:HeatTransfer": {
     "NAME": "Heat Transfer",
-    "DESCRIPTION": "snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn.",
-    "UPGRADE_DESCRIPTION": "Innate NL snowpunk:Hot and snowpunk:Overheated Attacks apply !M! snowpunk:Burn.",
-    "EXTENDED_DESCRIPTION": ["Attacks apply !M! snowpunk:Burn.",
-                            "Innate. NL Attacks apply !M! snowpunk:Burn.",
-                            "Heat Generator"]
+    "DESCRIPTION": "snowpunk:Hot Attacks apply !M! snowpunk:Burn.",
+    "UPGRADE_DESCRIPTION": "Innate NL snowpunk:Hot Attacks apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": [
+      "Attacks apply !M! snowpunk:Burn.",
+      "Innate. NL Attacks apply !M! snowpunk:Burn.",
+      "Heat Generator"
+    ]
   },
   "${ModID}:Holly": {
     "NAME": "Holly",
@@ -259,11 +261,12 @@
   },
   "${ModID}:PressurizedBlast": {
     "NAME": "Pressurized Blast",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
-    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Cool the next {!M!|>1=!M! }card{!M!|>1=s} you draw."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Cool the next {!M!|>1=!M! }card{!M!|>1=s} you draw.",
+    "UPGRADE_DESCRIPTION": "{@@}Gain !B! Block. NL snowpunk:Cool your snowpunk:Engine. NL snowpunk:Cool the next {!M!|>1=!M! }card{!M!|>1=s} you draw."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
@@ -294,7 +297,7 @@
   },
   "${ModID}:Singe": {
     "NAME": "Singe",
-    "DESCRIPTION": "Deal !D! damage. NL Next turn, gain !M! snowpunk:Fireballs."
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, gain !M! *Fireballs."
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",

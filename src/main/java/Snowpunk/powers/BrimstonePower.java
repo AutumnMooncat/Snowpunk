@@ -4,6 +4,7 @@ import Snowpunk.cards.Fireball;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -22,15 +23,17 @@ public class BrimstonePower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurn() {
+        addToBot(new LoseEnergyAction(amount));
         addToBot(new MakeTempCardInHandAction(new Fireball(), amount));
+        flash();
     }
 
     @Override
     public void updateDescription() {
         if (amount == 1) {
-            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
         } else {
-            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
         }
     }
 }

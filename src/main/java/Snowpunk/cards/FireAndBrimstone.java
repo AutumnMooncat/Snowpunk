@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -23,23 +24,28 @@ public class FireAndBrimstone extends AbstractMultiUpgradeCard {
     private static final int EFFECT = 1;
     private static final int UP_EFFECT = 1;
 
+    private boolean heatEngine = false;
+
     public FireAndBrimstone() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
         cardsToPreview = new Fireball();
+        heatEngine = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new BrimstonePower(p, magicNumber));
+        if (heatEngine)
+            Wiz.atb(new ModEngineTempAction(2));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            this.isInnate = true;
-            baseInfo = info = 1;
-        });
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(this, () -> {
+            heatEngine = true;
+            uDesc();
+        });
         addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
     }
 }

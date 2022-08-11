@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModCardTempEverywhereAction;
+import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -38,6 +39,7 @@ public class Armageddon extends AbstractMultiUpgradeCard {
         } else {
             Wiz.atb(new ModCardTempAction(-1, 99, true));
         }
+        Wiz.atb(new ModEngineTempAction(99));
     }
 
 

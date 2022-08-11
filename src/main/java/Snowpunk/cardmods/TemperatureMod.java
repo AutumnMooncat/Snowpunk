@@ -92,7 +92,7 @@ public class TemperatureMod extends AbstractCardModifier {
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int heat = CardTemperatureFields.getCardHeat(card);
         int amount = card instanceof MultiTempEffectCard ? ((MultiTempEffectCard) card).tempEffectAmount() : 1;
-        Wiz.atb(new ModEngineTempAction(heat*amount));
+        //Wiz.atb(new ModEngineTempAction(heat*amount));
         if (heat > 0 || (card.hasTag(CustomTags.FLUX) && heat < 0)) {
             Wiz.atb(new GainEnergyAction(amount));
             //action.exhaustCard = true;

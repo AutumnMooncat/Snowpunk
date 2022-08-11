@@ -38,7 +38,6 @@ public class Freezer extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         Wiz.applyToSelf(new FreezeNextCardPower(p, magicNumber));
-        Wiz.applyToSelf(new LinkNextCardPower(p, magicNumber, this));
     }
 
     @Override

@@ -9,6 +9,7 @@ import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -27,13 +28,16 @@ public class IceWall extends AbstractMultiUpgradeCard {
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
         CardTemperatureFields.addInherentHeat(this, -2);
+        freeze = false;
     }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {}
 
     @Override
     public void triggerWhenDrawn() {
         Wiz.applyToSelf(new ProtectionPower(Wiz.adp(), 1));
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
         if (freeze) {
             Wiz.atb(new ModEngineTempAction(-99));
         }

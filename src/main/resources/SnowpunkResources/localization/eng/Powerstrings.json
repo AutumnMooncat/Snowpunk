@@ -6,12 +6,12 @@
   "${ModID}:EngineTempPower": {
     "NAME": "Engine Temperature",
     "DESCRIPTIONS": [
-      "Determines your #yEnergy and #ySnowball gain per turn. Playing cards with Temperature effects changes the Engine Temperature. NL Current Temperature: ",
+      "Determines your #yEnergy and #ySnowball gain per turn. NL Current Temperature: ",
       " NL #bFrozen: #b0 #yEnergy, #b3 #bSnowballs",
       " NL #bCold: #b1 #yEnergy, #b2 #bSnowballs",
       " NL #yStable: #b2 #yEnergy, #b1 #bSnowball",
-      " NL #rHot: #b3 #yEnergy, #b1 #rFireball",
-      " NL #rOverheated: #b4 #yEnergy, #b2 #rFireballs"
+      " NL #rHot: #b2 #yEnergy, #b1 #rFireball",
+      " NL #rOverheated: #b2 #yEnergy, #b2 #rFireballs"
     ]
   },
   "${ModID}:SnowballPower": {
@@ -244,8 +244,9 @@
     "NAME": "Fire and Brimstone",
     "DESCRIPTIONS": [
       "At the start of your turn, add #b",
-      " #yFireball into your hand.",
-      " #yFireballs into your hand."
+      " #yFireball to your hand and lose #b",
+      " #yFireballs to your hand and lose #b",
+      " [E] ."
     ]
   },
   "${ModID}:BetterInventionPower": {
@@ -328,6 +329,12 @@
     "NAME": "Backup Boiler",
     "DESCRIPTIONS": [
       "Steam is no longer removed at the end of your turn."
+    ]
+  },
+  "${ModID}:EmberForgePower": {
+    "NAME": "Ember Forge",
+    "DESCRIPTIONS": [
+      "No longer generate #yEnergy at the start of your turn. #yHot cards cost 0."
     ]
   },
   "${ModID}:RefrigeratePower": {
