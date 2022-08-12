@@ -133,5 +133,10 @@
     "NAME": "Steam Engine",
     "DESCRIPTION": "Gain !M! snowpunk:Steam.",
     "EXTENDED_DESCRIPTION": ["Steamer"]
+  },
+  "${ModID}:PipeFence": {
+    "NAME": "Pipe Fence",
+    "DESCRIPTION": "Gain !B! Block 4 times.",
+    "EXTENDED_DESCRIPTION": ["Piped"]
   }
 }
