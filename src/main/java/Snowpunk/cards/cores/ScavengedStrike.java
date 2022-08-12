@@ -35,7 +35,7 @@ public class ScavengedStrike extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new ScavengeStrikeMod(rawDescription, VALUE, DAMAGE, UP_DAMAGE, useSecondDamage));
+        CardModifierManager.addModifier(card, new ScavengeStrikeMod(rawDescription, useSecondDamage));
         CardModifierManager.addModifier(card, new TinkerSelfMod());
         card.tags.add(CardTags.STRIKE);
         if (card instanceof AssembledCard) {

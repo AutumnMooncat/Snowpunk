@@ -33,7 +33,7 @@ public class FluxMachine extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new FluxMachineMod(rawDescription, EffectTag.MAGIC, EFFECT, UP_EFFECT, useSecondMagic));
+        CardModifierManager.addModifier(card, new FluxMachineMod(rawDescription, useSecondMagic));
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLUX_MACHINE, useSecondMagic, UP_EFFECT));
             ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);

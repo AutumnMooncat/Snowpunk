@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 public class DrawNextTurnMod extends AbstractCardEffectMod {
-    public DrawNextTurnMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public DrawNextTurnMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class DrawNextTurnMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DrawNextTurnMod(description, type, effect, upEffect, useSecondVar);
+        return new DrawNextTurnMod(description, useSecondVar);
     }
 }

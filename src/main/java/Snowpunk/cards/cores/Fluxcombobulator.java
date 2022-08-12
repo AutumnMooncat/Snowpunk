@@ -37,7 +37,7 @@ public class Fluxcombobulator extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new FluxcombobulatorMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
+        CardModifierManager.addModifier(card, new FluxcombobulatorMod(rawDescription, useSecondMagic));
         CardModifierManager.addModifier(card, new BetterExhaustMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLUX_COMBOBULATOR, useSecondMagic, UP_EFFECT));

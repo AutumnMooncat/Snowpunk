@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 public class ApplyAOETempStrDownMod extends AbstractCardEffectMod {
-    public ApplyAOETempStrDownMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public ApplyAOETempStrDownMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ApplyAOETempStrDownMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyAOETempStrDownMod(description, type, effect, upEffect, useSecondVar);
+        return new ApplyAOETempStrDownMod(description, useSecondVar);
     }
 }

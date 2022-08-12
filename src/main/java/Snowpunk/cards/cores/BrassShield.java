@@ -35,7 +35,7 @@ public class BrassShield extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new GainBlockMod(rawDescription, VALUE, BLOCK, UP_BLOCK, useSecondBlock));
+        CardModifierManager.addModifier(card, new GainBlockMod(rawDescription, useSecondBlock));
         CardModifierManager.addModifier(card, new MendingMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.BRASS_SHIELD, useSecondBlock, UP_BLOCK));

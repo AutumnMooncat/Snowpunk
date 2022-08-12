@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.actions.unique.MadnessAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class MadnessMod extends AbstractCardEffectMod {
-    public MadnessMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public MadnessMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class MadnessMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new MadnessMod(description, type, effect, upEffect, useSecondVar);
+        return new MadnessMod(description, useSecondVar);
     }
 }

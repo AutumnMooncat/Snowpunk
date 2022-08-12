@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.AfterImagePower;
 
 public class AfterImageMod extends AbstractCardEffectMod {
-    public AfterImageMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public AfterImageMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class AfterImageMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new AfterImageMod(description, type, effect, upEffect, useSecondVar);
+        return new AfterImageMod(description, useSecondVar);
     }
 }

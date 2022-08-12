@@ -10,8 +10,8 @@ import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class RunningEngineMod extends AbstractCardEffectMod {
-    public RunningEngineMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public RunningEngineMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class RunningEngineMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new RunningEngineMod(description, type, effect, upEffect, useSecondVar);
+        return new RunningEngineMod(description, useSecondVar);
     }
 }

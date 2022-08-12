@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class GainBlockMod extends AbstractCardEffectMod {
-    public GainBlockMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public GainBlockMod(String description, boolean secondVar) {
+        super(description, secondVar);
         this.priority = -2;
     }
 
@@ -28,6 +28,6 @@ public class GainBlockMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GainBlockMod(description, type, effect, upEffect, useSecondVar);
+        return new GainBlockMod(description, useSecondVar);
     }
 }

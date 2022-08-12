@@ -33,7 +33,7 @@ public class BurningEngine extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new ApplyBurnMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
+        CardModifierManager.addModifier(card, new ApplyBurnMod(rawDescription, useSecondMagic));
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.BURNING_ENGINE, useSecondMagic, UP_EFFECT));
             ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);

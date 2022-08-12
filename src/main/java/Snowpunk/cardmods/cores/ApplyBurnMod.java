@@ -10,8 +10,8 @@ import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class ApplyBurnMod extends AbstractCardEffectMod {
-    public ApplyBurnMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public ApplyBurnMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class ApplyBurnMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyBurnMod(description, type, effect, upEffect, useSecondVar);
+        return new ApplyBurnMod(description, useSecondVar);
     }
 }

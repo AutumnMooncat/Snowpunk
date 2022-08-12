@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 public class FluxMachineMod extends AbstractCardEffectMod {
-    public FluxMachineMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public FluxMachineMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,13 +27,15 @@ public class FluxMachineMod extends AbstractCardEffectMod {
                     @Override
                     public void update() {
                         for (AbstractCard c : DrawCardAction.drawnCards) {
-                            int newCost = AbstractDungeon.cardRandomRng.random(3);
-                            if (c.cost != newCost) {
-                                c.cost = newCost;
-                                c.costForTurn = c.cost;
-                                c.isCostModified = true;
+                            if (c.cost >= 0) {
+                                int newCost = AbstractDungeon.cardRandomRng.random(3);
+                                if (c.cost != newCost) {
+                                    c.cost = newCost;
+                                    c.costForTurn = c.cost;
+                                    c.isCostModified = true;
+                                }
+                                c.freeToPlayOnce = false;
                             }
-                            c.freeToPlayOnce = false;
                         }
                         this.isDone = true;
                     }
@@ -44,6 +46,6 @@ public class FluxMachineMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FluxMachineMod(description, type, effect, upEffect, useSecondVar);
+        return new FluxMachineMod(description, useSecondVar);
     }
 }
