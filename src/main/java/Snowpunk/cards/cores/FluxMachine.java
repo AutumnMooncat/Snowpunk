@@ -20,23 +20,20 @@ public class FluxMachine extends AbstractCoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final EffectTag VALUE = EffectTag.MAGIC;
 
     private static final int COST = 1;
-    private static final int EFFECT = 2;
+    private static final int EFFECT = 3;
     public static final int UP_EFFECT = 1;
 
     public FluxMachine() {
-        super(ID, COST, TYPE, VALUE);
+        super(ID, COST, TYPE, EffectTag.MAGIC);
         baseMagicNumber = magicNumber = secondMagic = baseSecondMagic = EFFECT;
-        CardModifierManager.addModifier(this, new BetterExhaustMod());
     }
 
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new FluxMachineMod(rawDescription, VALUE, EFFECT, UP_EFFECT, useSecondMagic));
-        CardModifierManager.addModifier(card, new BetterExhaustMod());
+        CardModifierManager.addModifier(card, new FluxMachineMod(rawDescription, EffectTag.MAGIC, EFFECT, UP_EFFECT, useSecondMagic));
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLUX_MACHINE, useSecondMagic, UP_EFFECT));
             ((AssembledCard) card).saveMagic(EFFECT, useSecondMagic);
