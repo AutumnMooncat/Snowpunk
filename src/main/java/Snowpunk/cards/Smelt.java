@@ -6,6 +6,8 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -23,21 +25,39 @@ public class Smelt extends AbstractMultiUpgradeCard {
     public Smelt() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
+        misc = -1;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
-    //TODO make copies played still heat cards in hand
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         if (Wiz.adp().hand.contains(this)) {
-            int handIndex = Wiz.adp().hand.group.indexOf(this);
-            if (handIndex > 0) {
-                Wiz.atb(new ModCardTempAction(Wiz.adp().hand.group.get(handIndex-1), 1));
-            }
-            if (handIndex < Wiz.adp().hand.size()-1) {
-                Wiz.atb(new ModCardTempAction(Wiz.adp().hand.group.get(handIndex+1), 1));
-            }
+            misc = Wiz.adp().hand.group.indexOf(this);
         }
+        if (misc != -1) {
+            //int handIndex = Wiz.adp().hand.group.indexOf(this);
+            if (misc > 0) {
+                Wiz.atb(new ModCardTempAction(Wiz.adp().hand.group.get(misc-1), 1));
+            }
+            if (!Wiz.adp().hand.contains(this)) {
+                misc--;
+            }
+            if (misc < Wiz.adp().hand.size()-1) {
+                Wiz.atb(new ModCardTempAction(Wiz.adp().hand.group.get(misc+1), 1));
+            }
+            Wiz.atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    Smelt.this.misc = -1;
+                    this.isDone = true;
+                }
+            });
+        }
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        return super.makeStatEquivalentCopy();
     }
 
     @Override
