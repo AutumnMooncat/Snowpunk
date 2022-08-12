@@ -1,15 +1,18 @@
-package Snowpunk.cards;
+package Snowpunk.cutContent;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.HeatGeneratorPower;
 import Snowpunk.powers.HeatTransferPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class HeatTransfer extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(HeatTransfer.class.getSimpleName());
 
