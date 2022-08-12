@@ -303,7 +303,7 @@
   "${ModID}:Sledding": {
     "NAME": "Sledding",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block for each enemy hit. NL Deal !D! damage to ALL enemies."
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies. Gain !Snowpunk:B2! Block for each enemy hit."
   },
   "${ModID}:Smelt": {
     "NAME": "Smelt",
