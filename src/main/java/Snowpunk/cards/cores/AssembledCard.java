@@ -105,6 +105,13 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
         }
     }
 
+    public void removeExhaustUpgrade() {
+        addUpgradeData(this, () -> {
+            this.exhaust = false;
+            CardModifierManager.removeModifiersById(this, BetterExhaustMod.ID, false);
+        });
+    }
+
     public void addInfo(Triplet<SaveInfo.CoreType, Boolean, Integer> t) {
         info.addCore(t);
         switch (t.getKey()) {
@@ -125,10 +132,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
                 break;
             case FLUX_COMBOBULATOR:
                 addMagicUpgrade(t.getValue(), t.getFlag());
-                addUpgradeData(this, () -> {
-                    this.exhaust = false;
-                    CardModifierManager.removeModifiersById(this, BetterExhaustMod.ID, false);
-                });
+                removeExhaustUpgrade();
                 break;
             case FLUX_MACHINE:
                 addMagicUpgrade(t.getValue(), t.getFlag());
@@ -174,6 +178,9 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
                 break;
             case PIPE_FENCE:
                 addBlockUpgrade(t.getValue(), t.getFlag());
+                break;
+            case YOINK:
+                removeExhaustUpgrade();
                 break;
         }
     }
@@ -258,7 +265,8 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
             RUNNING_ENGINE,
             SCAVENGE_STRIKE,
             STEAM_ENGINE,
-            PIPE_FENCE
+            PIPE_FENCE,
+            YOINK
         }
 
         ArrayList<Triplet<CoreType, Boolean, Integer>> savedCores;
