@@ -27,7 +27,7 @@ public class ScavengedStrike extends AbstractCoreCard {
     public static final int UP_DAMAGE = 4;
 
     public ScavengedStrike() {
-        super(ID, COST, TYPE, VALUE);
+        super(ID, COST, TYPE, EffectTag.DAMAGE, EffectTag.PURGES);
         baseDamage = damage = secondDamage = baseSecondDamage = DAMAGE;
         CardModifierManager.addModifier(this, new TinkerSelfMod());
     }
