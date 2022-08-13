@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class GainMEnergyMod extends AbstractCardEffectMod {
-    public GainMEnergyMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public GainMEnergyMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class GainMEnergyMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GainMEnergyMod(description, type, effect, upEffect, useSecondVar);
+        return new GainMEnergyMod(description, useSecondVar);
     }
 }

@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.RushdownAction;
 import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
@@ -23,7 +24,9 @@ public class Sledding extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, UP_DMG = 2, BLOCK = 5, UP_BLOCK = 2;
+    private static final int COST = 2, DMG = 8, UP_DMG = 2, BLOCK = 5, UP_BLOCK = 2, BLOCK_PER_HIT = 2;
+
+    boolean perhit = false;
 
     public Sledding() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -34,22 +37,23 @@ public class Sledding extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if ((timesUpgraded & 1 << 2) != 0) {
-            for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                if (!AbstractDungeon.getMonsters().monsters.get(i).isDead)
-                    blck();
-            }
-        } else
-            blck();
-
-        Wiz.atb(new DamageAllEnemiesAction(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        if (perhit) {
+            Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, secondBlock));
+        } else {
+            Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn));
+        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgrade1());
+        addUpgradeData(this, this::upgrade1);
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> uDesc());
+        addUpgradeData(this, () -> {
+            perhit = true;
+            this.baseSecondBlock = this.secondBlock = 0;
+            upgradeSecondBlock(BLOCK_PER_HIT);
+            uDesc();
+        });
     }
 
     private void upgrade1() {

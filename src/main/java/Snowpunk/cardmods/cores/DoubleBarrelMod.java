@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 
 public class DoubleBarrelMod extends AbstractCardEffectMod {
-    public DoubleBarrelMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public DoubleBarrelMod(String description, boolean secondVar) {
+        super(description, secondVar);
         this.priority = -1;
     }
 
@@ -32,6 +32,6 @@ public class DoubleBarrelMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DoubleBarrelMod(description, type, effect, upEffect, useSecondVar);
+        return new DoubleBarrelMod(description, useSecondVar);
     }
 }

@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 public class ApplyWeakMod extends AbstractCardEffectMod {
-    public ApplyWeakMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public ApplyWeakMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class ApplyWeakMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ApplyWeakMod(description, type, effect, upEffect, useSecondVar);
+        return new ApplyWeakMod(description, useSecondVar);
     }
 }

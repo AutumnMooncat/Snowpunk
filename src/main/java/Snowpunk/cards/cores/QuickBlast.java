@@ -37,7 +37,7 @@ public class QuickBlast extends AbstractCoreCard {
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new QuickBlastMod(rawDescription, VALUE, DAMAGE, UP_DAMAGE, useSecondDamage));
+        CardModifierManager.addModifier(card, new QuickBlastMod(rawDescription, useSecondDamage));
         CardModifierManager.addModifier(card, new DrawMod(2));
         CardModifierManager.addModifier(card, new WhistolMod());
         if (card instanceof AssembledCard) {

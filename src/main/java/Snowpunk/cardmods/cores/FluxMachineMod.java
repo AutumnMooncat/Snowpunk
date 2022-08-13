@@ -6,12 +6,15 @@ import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.cards.cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 public class FluxMachineMod extends AbstractCardEffectMod {
-    public FluxMachineMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public FluxMachineMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -20,13 +23,29 @@ public class FluxMachineMod extends AbstractCardEffectMod {
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((AssembledCard) card).secondMagic : card.magicNumber;
-                Wiz.applyToSelf(new ArtifactPower(p, amount));
+                Wiz.atb(new DrawCardAction(amount, new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractCard c : DrawCardAction.drawnCards) {
+                            if (c.cost >= 0) {
+                                int newCost = AbstractDungeon.cardRandomRng.random(3);
+                                if (c.cost != newCost) {
+                                    c.cost = newCost;
+                                    c.costForTurn = c.cost;
+                                    c.isCostModified = true;
+                                }
+                                c.freeToPlayOnce = false;
+                            }
+                        }
+                        this.isDone = true;
+                    }
+                }));
             }));
         }
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FluxMachineMod(description, type, effect, upEffect, useSecondVar);
+        return new FluxMachineMod(description, useSecondVar);
     }
 }

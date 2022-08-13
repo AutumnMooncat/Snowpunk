@@ -172,6 +172,9 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
             case STEAM_ENGINE:
                 addMagicUpgrade(t.getValue(), t.getFlag());
                 break;
+            case PIPE_FENCE:
+                addBlockUpgrade(t.getValue(), t.getFlag());
+                break;
         }
     }
 
@@ -254,7 +257,8 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
             QUICK_BLAST,
             RUNNING_ENGINE,
             SCAVENGE_STRIKE,
-            STEAM_ENGINE
+            STEAM_ENGINE,
+            PIPE_FENCE
         }
 
         ArrayList<Triplet<CoreType, Boolean, Integer>> savedCores;

@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 public class GainSparePartsMod extends AbstractCardEffectMod {
-    public GainSparePartsMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public GainSparePartsMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -34,6 +34,6 @@ public class GainSparePartsMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GainSparePartsMod(description, type, effect, upEffect, useSecondVar);
+        return new GainSparePartsMod(description, useSecondVar);
     }
 }

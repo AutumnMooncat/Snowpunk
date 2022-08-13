@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 public class FluxcombobulatorMod extends AbstractCardEffectMod {
-    public FluxcombobulatorMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public FluxcombobulatorMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -31,6 +31,6 @@ public class FluxcombobulatorMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FluxcombobulatorMod(description, type, effect, upEffect, useSecondVar);
+        return new FluxcombobulatorMod(description, useSecondVar);
     }
 }

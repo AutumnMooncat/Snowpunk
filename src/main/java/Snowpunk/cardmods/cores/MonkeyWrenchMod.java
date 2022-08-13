@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 
 public class MonkeyWrenchMod extends AbstractCardEffectMod {
-    public MonkeyWrenchMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public MonkeyWrenchMod(String description, boolean secondVar) {
+        super(description, secondVar);
         this.priority = -1;
     }
 
@@ -30,6 +30,6 @@ public class MonkeyWrenchMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new MonkeyWrenchMod(description, type, effect, upEffect, useSecondVar);
+        return new MonkeyWrenchMod(description, useSecondVar);
     }
 }

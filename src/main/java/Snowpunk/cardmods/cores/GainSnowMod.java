@@ -10,8 +10,8 @@ import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class GainSnowMod extends AbstractCardEffectMod {
-    public GainSnowMod(String description, AbstractCoreCard.EffectTag type, int effect, int upEffect, boolean secondVar) {
-        super(description, type, effect, upEffect, secondVar);
+    public GainSnowMod(String description, boolean secondVar) {
+        super(description, secondVar);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class GainSnowMod extends AbstractCardEffectMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GainSnowMod(description, type, effect, upEffect, useSecondVar);
+        return new GainSnowMod(description, useSecondVar);
     }
 }

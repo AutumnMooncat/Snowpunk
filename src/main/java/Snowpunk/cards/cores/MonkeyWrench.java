@@ -39,8 +39,8 @@ public class MonkeyWrench extends AbstractCoreCard {
     public void apply(AbstractCard card) {
         String[] blocks = rawDescription.split(" NL ");
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
-        CardModifierManager.addModifier(card, new GainBlockMod(blocks[0], EffectTag.BLOCK, BLOCK, UP_BLOCK, useSecondBlock));
-        CardModifierManager.addModifier(card, new MonkeyWrenchMod(blocks[1], EffectTag.DAMAGE, DAMAGE, UP_DAMAGE, useSecondDamage));
+        CardModifierManager.addModifier(card, new GainBlockMod(blocks[0], useSecondBlock));
+        CardModifierManager.addModifier(card, new MonkeyWrenchMod(blocks[1], useSecondDamage));
         CardModifierManager.addModifier(card, new FluxMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.MONKEY_WRENCH, useSecondBlock, useSecondDamage ? 1 : 0));
