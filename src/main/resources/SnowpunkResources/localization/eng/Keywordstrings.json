@@ -306,7 +306,7 @@
     "NAMES": [
       "frosty"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of turn, lower this card's cost by #b1 this combat."
+    "DESCRIPTION": "If this card is in your hand at the end of the turn, lower this card's cost by #b1 this combat."
   },
   {
     "PROPER_NAME": "Pull",
