@@ -2,6 +2,8 @@ package Snowpunk.cardmods;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
+import Snowpunk.patches.EvaporatePanelPatches;
+import Snowpunk.util.KeywordManager;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -46,6 +48,7 @@ public class PrefixManager extends AbstractCardModifier {
                         sb.append(TEXT[5]).append(" ");
                         break;
                 }
+                addTempKeywords(card, temp);
             }
         }
         if (card.hasTag(CustomTags.FROSTY)) {
@@ -59,6 +62,25 @@ public class PrefixManager extends AbstractCardModifier {
             sb.append(TEXT[0]);
         }
         return sb + rawDescription;
+    }
+
+    private void addTempKeywords(AbstractCard card, int temp) {
+        if (temp < 0) {
+            if (!card.keywords.toString().contains(KeywordManager.CONDENSE))
+                card.keywords.add(0, KeywordManager.CONDENSE);
+            if (card.keywords.toString().contains(KeywordManager.EVAPORATE) && !card.description.contains(KeywordManager.EVAPORATE))
+                card.keywords.remove(KeywordManager.EVAPORATE);
+        } else if (temp > 0) {
+            if (!card.keywords.toString().contains(KeywordManager.EVAPORATE))
+                card.keywords.add(0, KeywordManager.EVAPORATE);
+            if (card.keywords.toString().contains(KeywordManager.CONDENSE) && !card.description.contains(KeywordManager.CONDENSE))
+                card.keywords.remove(KeywordManager.CONDENSE);
+        } else {
+            if (card.keywords.toString().contains(KeywordManager.EVAPORATE) && !card.description.contains(KeywordManager.EVAPORATE))
+                card.keywords.remove(KeywordManager.EVAPORATE);
+            if (card.keywords.toString().contains(KeywordManager.CONDENSE) && !card.description.contains(KeywordManager.CONDENSE))
+                card.keywords.remove(KeywordManager.CONDENSE);
+        }
     }
 
     @Override

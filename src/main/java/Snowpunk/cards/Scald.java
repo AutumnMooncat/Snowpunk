@@ -17,10 +17,10 @@ public class Scald extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1;
-    private static final int DMG = 6;
+    private static final int COST = 0;
+    private static final int DMG = 3;
     private static final int UP_DMG = 2;
-    private static final int BURN = 3;
+    private static final int BURN = 2;
     private static final int UP_BURN = 1;
 
     private boolean doubleHit = false;
@@ -50,15 +50,8 @@ public class Scald extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            upgradeDamage(UP_DMG);
-            upgradeMagicNumber(UP_BURN);
-        });
+        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(this, () -> upgradeInfo(1));
-        addUpgradeData(this, () -> {
-            upgradeDamage(-2);
-            doubleHit = true;
-            uDesc();
-        });
+        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
     }
 }

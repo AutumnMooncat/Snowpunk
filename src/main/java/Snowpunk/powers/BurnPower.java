@@ -39,6 +39,13 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
     }
 
     @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+        if (damageType == DamageInfo.DamageType.NORMAL)
+            return damage + amount;
+        return damage;
+    }
+    /*
+    @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != owner) {
             flash();
@@ -46,7 +53,7 @@ public class BurnPower extends AbstractEasyPower implements HealthBarRenderPower
             addToTop(new DamageAction(owner, new DamageInfo(info.owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
         return damageAmount;
-    }
+    }*/
 
     @Override
     public void updateDescription() {

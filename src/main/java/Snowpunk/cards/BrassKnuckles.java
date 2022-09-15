@@ -27,7 +27,7 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
     private static final int UP_DMG = 2;
     private static final int DOWN_DMG = -1;
     private static final int BURN = 3;
-    private static final int CHILL = 2;
+    private static final int CHILL = 3;
     private static final int BONUS = 1;
 
     private boolean third = false;
@@ -55,17 +55,17 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1), new int[]{}, new int[]{1});
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1), new int[]{}, new int[]{0});
         addUpgradeData(this, () -> {
-            CardTemperatureFields.addInherentHeat(this, 1);
             baseMagicNumber = magicNumber = 0;
             burn = true;
             upgradeMagicNumber(BURN);
             name = cardStrings.EXTENDED_DESCRIPTION[3];
             initializeTitle();
             uDesc();
-        }, new int[]{}, new int[]{1});
+        }, 0);
         addUpgradeData(this, () -> {
-            CardTemperatureFields.addInherentHeat(this, -1);
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
             baseMagicNumber = magicNumber = 0;
             chill = true;
@@ -73,22 +73,13 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
             initializeTitle();
             upgradeMagicNumber(CHILL);
             initializeDescription();
-        }, new int[]{}, new int[]{0});
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG), 0);
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 1);
+        }, 1);
         addUpgradeData(this, () -> {
             third = true;
-            upgradeDamage(DOWN_DMG);
-            upgradeMagicNumber(BONUS);
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
             initializeDescription();
         }, 2);
-        addUpgradeData(this, () -> {
-            third = true;
-            upgradeDamage(DOWN_DMG);
-            upgradeMagicNumber(BONUS);
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
-            initializeDescription();
-        },  3);
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 3);
+
     }
 }

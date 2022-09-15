@@ -23,7 +23,6 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
         EXHAUSTS,
         REMOVES_EXHAUST,
         UPGRADES_COST,
-        PURGES
     }
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;
     private static ArrayList<TooltipInfo> coreTooltip;

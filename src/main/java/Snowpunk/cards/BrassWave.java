@@ -4,6 +4,7 @@ import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -24,12 +25,13 @@ public class BrassWave extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = -1;
-    private static final int DMG = 5, BLOCK = 5, UP_DMG = 3, UP_BLOCK = 3;
+    private static final int DMG = 4, BLOCK = 4, UP_DMG = 3, UP_BLOCK = 3, MAGIC = 1;
 
     public BrassWave() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
+        magicNumber = baseMagicNumber = 0;
         info = baseInfo = 0;
     }
 
@@ -49,6 +51,8 @@ public class BrassWave extends AbstractMultiUpgradeCard {
             for (int i = 0; i < effect; i++) {
                 dmg(m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
                 blck();
+                if (magicNumber > 0)
+                    Wiz.applyToSelf(new SparePartsPower(p, effect));
             }
         }
 
@@ -61,6 +65,9 @@ public class BrassWave extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(this, () -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(this, () -> upgradeInfo(1), 0, 1);
+        addUpgradeData(this, () -> {
+            upgradeMagicNumber(1);
+            uDesc();
+        });
     }
 }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+
 @NoPools
 public class Invent extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Invent.class.getSimpleName());

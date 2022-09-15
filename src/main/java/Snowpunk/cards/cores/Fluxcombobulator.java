@@ -47,7 +47,7 @@ public class Fluxcombobulator extends AbstractCoreCard {
 
     @Override
     public boolean canSpawn(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
-        return super.canSpawn(card, chosenCores) && chosenCores.stream().noneMatch(c -> c.effectTags.contains(EffectTag.REMOVES_EXHAUST) && c.effectTags.contains(EffectTag.PURGES));
+        return super.canSpawn(card, chosenCores) && chosenCores.stream().noneMatch(c -> c.effectTags.contains(EffectTag.REMOVES_EXHAUST));
     }
 
     @Override

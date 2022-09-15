@@ -1,12 +1,6 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.util.SteamEngine;
-import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,12 +10,12 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class HeatNextCardPower extends AbstractEasyPower {
-    public static String POWER_ID = makeID(HeatNextCardPower.class.getSimpleName());
+public class FireballPower extends AbstractEasyPower {
+    public static String POWER_ID = makeID(FireballPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    public HeatNextCardPower(AbstractCreature owner, int amount) {
+    public FireballPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("attackBurn");
     }

@@ -138,10 +138,5 @@
     "NAME": "Pipe Fence",
     "DESCRIPTION": "Gain !B! Block 4 times.",
     "EXTENDED_DESCRIPTION": ["Piped"]
-  },
-  "${ModID}:Yoink": {
-    "NAME": "Yoink!",
-    "DESCRIPTION": "Remove all Block from the enemy. Gain that much Block.",
-    "EXTENDED_DESCRIPTION": ["Yoinked"]
   }
 }

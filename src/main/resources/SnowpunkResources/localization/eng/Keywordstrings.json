@@ -13,7 +13,7 @@
       "burning",
       "burn"
     ],
-    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the end of their turn, #yBurn deals damage and then is removed."
+    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the start of their turn, #yBurn deals damage and is removed."
   },
   {
     "PROPER_NAME": "Link",
@@ -46,7 +46,7 @@
       "fireball",
       "fireballs"
     ],
-    "DESCRIPTION": "A #yToken Attack that applies Burn."
+    "DESCRIPTION": "#yHeat the next card you play."
   },
   {
     "PROPER_NAME": "Frostbite",
@@ -61,7 +61,7 @@
     "NAMES": [
       "whistol"
     ],
-    "DESCRIPTION": "Deals additional damage for each #ySnowball and #yEvaporated card you have."
+    "DESCRIPTION": "Deals additional damage for each #yEvaporated card you have."
   },
   {
     "PROPER_NAME": "Ventilation",
@@ -170,7 +170,7 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Play a copy of this card. NL #yHot: Gain [E] . #yEvaporate."
+    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate. NL Counts as #yHot."
   },
   {
     "PROPER_NAME": "Hot",
@@ -184,14 +184,14 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. Draw a card."
+    "DESCRIPTION": "#yRetain. #yCondense a card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yCondense a card. NL #yCold: #yRetain. Draw a card."
+    "DESCRIPTION": "#yRetain. #yCondense a card. Draw a card. NL Counts as #yCold."
   },
   {
     "PROPER_NAME": "Evaporate",
@@ -200,7 +200,7 @@
       "evaporates",
       "evaporated"
     ],
-    "DESCRIPTION": "Removed until the end of combat, or until #yCondensed."
+    "DESCRIPTION": "Removed from combat until #yCondensed."
   },
   {
     "PROPER_NAME": "Condense",
@@ -306,7 +306,7 @@
     "NAMES": [
       "frosty"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of turn, lower this card's cost by #b1 this combat."
+    "DESCRIPTION": "If this card is in your hand at the end of the turn, lower this card's cost by #b1 this combat."
   },
   {
     "PROPER_NAME": "Pull",

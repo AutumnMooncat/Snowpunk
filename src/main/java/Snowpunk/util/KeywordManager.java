@@ -1,9 +1,13 @@
 package Snowpunk.util;
-@Deprecated
+
+import Snowpunk.SnowpunkMod;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
+
 public class KeywordManager {
-    public static String GUN = "snowpunk:gun";
-    public static String TOKEN = "snowpunk:token";
-    public static String RETAIN = "Retain";
-    public static String PULL = "snowpunk:pull";
-    public static String EVAPORATE = "snowpunk:evaporate";
+
+    public static final String ID = SnowpunkMod.makeID(KeywordManager.class.getSimpleName());
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static String EVAPORATE = cardStrings.EXTENDED_DESCRIPTION[0];
+    public static String CONDENSE = cardStrings.EXTENDED_DESCRIPTION[1];
 }

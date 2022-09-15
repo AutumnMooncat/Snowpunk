@@ -37,18 +37,11 @@ public class WhistolMod extends AbstractCardModifier {
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        int snowballs = 0, evaporated = 0;
-        if (Wiz.adp() != null){
-            for (AbstractPower pow : Wiz.adp().powers) {
-                if (pow instanceof SnowAmountModifier) {
-                    snowballs += ((SnowAmountModifier) pow).modifySnow();
-                }
-            }
-        }
+        int evaporated = 0;
         if (EvaporatePanel.evaporatePile != null && EvaporatePanel.evaporatePile.size() > 0) {
             evaporated = EvaporatePanel.evaporatePile.size();
         }
-        return damage + snowballs + evaporated;
+        return damage + evaporated;
     }
 
     @Override

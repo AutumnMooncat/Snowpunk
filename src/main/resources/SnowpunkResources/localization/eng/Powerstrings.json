@@ -50,11 +50,12 @@
       "Once this reaches 3, #yCool your #yEngine."
     ]
   },
-  "${ModID}:HeatNextCardPower": {
-    "NAME": "Heat Next Card",
+  "${ModID}:FireballPower": {
+    "NAME": "Fireball",
     "DESCRIPTIONS": [
       "#yHeat the next card you play.",
-      "#yHeat the next #b", " cards you play."
+      "#yHeat the next #b",
+      " cards you play."
     ]
   },
   "${ModID}:OverheatNextCardPower": {

@@ -37,7 +37,6 @@ public class Sledding extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
         if (perhit) {
             Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, secondBlock));
         } else {

@@ -4,6 +4,7 @@ import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.BurnPower;
 import Snowpunk.powers.FireballNextTurnPower;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
@@ -20,25 +21,32 @@ public class Singe extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 15, UP_DMG = 5, MAGIC = 2, UP_MAGIC = 1;
+    private static final int COST = 2, DMG = 15, UP_DMG = 5, MAGIC = 4, UP_MAGIC = 1;
 
     public Singe() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = MAGIC;
-        cardToPreview.add(new Fireball());
+        magicNumber = baseMagicNumber = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
-        Wiz.applyToSelf(new FireballNextTurnPower(p, magicNumber));
+        Wiz.atb(new ModCardTempAction(this, 1));
+        if (magicNumber > 0)
+            Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
+//        Wiz.applyToSelf(new FireballNextTurnPower(p, magicNumber));
     }
 
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(this, () -> upgrade2());
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+    }
+
+    private void upgrade2() {
+        upgradeMagicNumber(MAGIC);
+        uDesc();
     }
 }

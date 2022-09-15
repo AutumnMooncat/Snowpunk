@@ -65,7 +65,8 @@
   },
   "${ModID}:BrassWave": {
     "NAME": "Brass Wave",
-    "DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1= + 1} times."
+    "DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1= + 1} times.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage and gain !B! Block X{!Snowpunk:Info!|1= + 1} times. NL Gain X snowpunk:snowpunk:Spare_Parts."
   },
   "${ModID}:Breakthrough": {
     "NAME": "Breakthrough",
@@ -271,8 +272,7 @@
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play.",
-    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Apply !Snowpunk:M2! snowpunk:Burn. NL snowpunk:Heat the next {!M!|>1=!M! }card{!M!|>1=s} you play."
+    "DESCRIPTION": "{@@}{!D!|>9=  }Deal !D! damage. NL Apply !M! snowpunk:Burn. NL snowpunk:Heat this card."
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
@@ -298,7 +298,8 @@
   },
   "${ModID}:Singe": {
     "NAME": "Singe",
-    "DESCRIPTION": "Deal !D! damage. NL Next turn, gain !M! *Fireballs."
+    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Heat this card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Burn. NL snowpunk:Heat this card."
   },
   "${ModID}:Sledding": {
     "NAME": "Sledding",
@@ -371,7 +372,7 @@
   },
   "${ModID}:Think": {
     "NAME": "Think",
-    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker !M! card{!M!|>1=s} in your hand.{@@}",
+    "DESCRIPTION": "{@@}Gain !B! Block. NL Upgrade {!M!|@=a card|>1= !M! cards} in your hand{!Snowpunk:M2!|>1= !Snowpunk:M2! times}.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block. NL snowpunk:Tinker this card."
   },
   "${ModID}:ThinkingChamber": {
@@ -412,5 +413,13 @@
     "NAME": "Winter Storm",
     "DESCRIPTION": "{@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s} and lose {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
     "UPGRADE_DESCRIPTION": "snowpunk:Cool your snowpunk:Engine. NL {@@}At the start of your turn, gain !M! snowpunk:Snowball{!M!|>1=s} and lose {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}."
+  },
+  "${ModID}:KeywordManager": {
+    "NAME": "KeywordManager",
+    "DESCRIPTION": "Stores keywords that are added in other places for translations.",
+    "EXTENDED_DESCRIPTION": [
+      "snowpunk:evaporate",
+      "snowpunk:condense"
+    ]
   }
 }
