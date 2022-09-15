@@ -58,7 +58,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public void upgrade() {
-        if (this.getUpgrades(this).isEmpty()) {
+        if (this.getUpgrades().isEmpty()) {
             capturedIndices.add(MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.get(this));
         } else {
             super.upgrade();

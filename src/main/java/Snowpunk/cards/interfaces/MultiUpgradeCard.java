@@ -1,6 +1,5 @@
 package Snowpunk.cards.interfaces;
 
-import Snowpunk.cards.helpers.UpgradeAlias;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.UpgradeData;
 import Snowpunk.util.UpgradeRunnable;
@@ -25,54 +24,73 @@ public interface MultiUpgradeCard {
         return TreeStyle.DEFAULT_TREE;
     }
 
-    default ArrayList<UpgradeData> getUpgrades(AbstractCard card) {
-        return MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card);
+    default ArrayList<UpgradeData> getUpgrades() {
+        return MultiUpgradePatches.MultiUpgradeFields.upgrades.get(this);
     }
 
     default int upgradeLimit() {
         return -1;
     }
 
-    default boolean canPerformUpgrade(AbstractCard card) {
-        boolean hasUpgrade = getUpgrades(card).stream().anyMatch(u -> u.canUpgrade(getUpgrades(card)));
+    default boolean canPerformUpgrade() {
+        boolean hasUpgrade = getUpgrades().stream().anyMatch(u -> u.canUpgrade(getUpgrades()));
         if (!hasUpgrade) {
             return false;
         }
         if (upgradeLimit() != -1) {
-            return getUpgrades(card).stream().filter(u -> u.applied).count() < upgradeLimit();
+            return getUpgrades().stream().filter(u -> u.applied).count() < upgradeLimit();
         }
         return true;
     }
 
     default int upgradesPerformed(AbstractCard card) {
-        return (int) getUpgrades(card).stream().filter(u -> u.applied).count();
+        return (int) getUpgrades().stream().filter(u -> u.applied).count();
     }
 
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, int... dependencies) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), dependencies));
+        getUpgrades().add(new UpgradeData(r, getUpgrades().size(), dependencies));
     }
 
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, int[] dependencies, int[] exclusions) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), true, dependencies, exclusions));
+        getUpgrades().add(new UpgradeData(r, getUpgrades().size(), true, dependencies, exclusions));
     }
 
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, boolean strict, int... dependencies) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies));
+        getUpgrades().add(new UpgradeData(r, getUpgrades().size(), strict, dependencies));
     }
 
     default void addUpgradeData(AbstractCard card, UpgradeRunnable r, boolean strict, int[] dependencies, int[] exclusions) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), strict, dependencies, exclusions));
+        getUpgrades().add(new UpgradeData(r, getUpgrades().size(), strict, dependencies, exclusions));
     }
 
-    default void addUpgradeData(AbstractCard card, UpgradeRunnable r, UpgradeAlias alias, boolean strict, int[] dependencies, int[] exclusions) {
-        MultiUpgradePatches.MultiUpgradeFields.upgrades.get(card).add(new UpgradeData(r, getUpgrades(card).size(), alias, dependencies, strict, exclusions));
+    default void addUpgradeData(UpgradeRunnable r) {
+        getUpgrades().add(new UpgradeData(r, getUpgrades().size()));
     }
 
-    default void processUpgrade(AbstractCard card) {
+    default void setExclusions(int... exclusiveIndices) {
+        for (int i : exclusiveIndices) {
+            UpgradeData d = getUpgrades().get(i);
+            for (int e : exclusiveIndices) {
+                if (e != i) {
+                    d.exclusions.add(e);
+                }
+            }
+        }
+    }
+
+    default void setDependencies(boolean strict, int upgradeIndex, int... requiredIndices) {
+        UpgradeData d = getUpgrades().get(upgradeIndex);
+        d.strict = strict;
+        for (int i : requiredIndices) {
+            d.dependencies.add(i);
+        }
+    }
+
+    default void processUpgrade() {
         //Get the upgrades
-        ArrayList<UpgradeData> upgrades = getUpgrades(card);
+        ArrayList<UpgradeData> upgrades = getUpgrades();
         //Get the next upgrade index
-        int i = MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.get(card);
+        int i = MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.get(this);
         //If it is -1, then this means grab a random available upgrade
         if (i == -1) {
             ArrayList<UpgradeData> validUpgrades = upgrades.stream().filter(u -> !u.applied && u.canUpgrade(upgrades)).collect(Collectors.toCollection(ArrayList::new));
@@ -86,17 +104,18 @@ public interface MultiUpgradeCard {
             }
         }
 
-        //If we can perform the upgrade, do it
-        if (i != -1 && upgrades.size() > i && !upgrades.get(i).applied /*&& upgrades.get(i).canUpgrade(upgrades)*/) {
+        //If the upgrade isn't already applied, do it.
+        if (i != -1 && upgrades.size() > i && !upgrades.get(i).applied) {
             updateName();
-            card.timesUpgraded += (1 << i);
-            card.upgraded = true;
+            if (this instanceof AbstractCard) {
+                ((AbstractCard) this).timesUpgraded += (1 << i);
+                ((AbstractCard) this).upgraded = true;
+            }
             upgrades.get(i).upgrade();
-            //card.initializeDescription();
         }
 
         //Default back to a random upgrade
-        MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(card, -1);
+        MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(this, -1);
     }
 
 }

@@ -107,6 +107,7 @@ public class EvaporatePanelPatches {
     }
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
     public static class ClearPile {
         @SpirePrefixPatch
         public static void clear(AbstractPlayer __instance) {

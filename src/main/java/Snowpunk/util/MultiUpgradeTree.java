@@ -105,7 +105,7 @@ public class MultiUpgradeTree {
 
     private static void prepTree(AbstractCard c) throws Exception {
         resetScrollState();
-        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
+        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades()) {
             for (int i : u.dependencies) {
                 if (i > u.index) {
                     throw new Exception("Illegal forward dependency: Upgrade Index "+u.index+" requires Upgrade Index "+i);
@@ -127,7 +127,7 @@ public class MultiUpgradeTree {
         CardVertex root = new CardVertex(c, -1);
         root.move(-1, 0);
         cardGraph.addVertex(root);
-        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
+        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades()) {
             AbstractCard copy;// = c.makeStatEquivalentCopy();
             if (u.applied) {
                 copy = makeSimpleCopy(c);
@@ -155,7 +155,7 @@ public class MultiUpgradeTree {
 
             if (u.applied) {
                 takenList.add(node);
-            } else if (!u.canUpgrade(((MultiUpgradeCard) c).getUpgrades(c))) {
+            } else if (!u.canUpgrade(((MultiUpgradeCard) c).getUpgrades())) {
                 lockedList.add(node);
             }
             CardVertex v = new CardVertex(node, u.index, u.strict);
@@ -170,7 +170,7 @@ public class MultiUpgradeTree {
             }
 
         }
-        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades(c)) {
+        for (UpgradeData u : ((MultiUpgradeCard) c).getUpgrades()) {
             if (u.exclusions.size() > 0) {
                 //only add the line for the exclusions with the largest index that is less than the index of the upgrade with the exclusions
                 for (int i : u.exclusions) {
@@ -348,15 +348,11 @@ public class MultiUpgradeTree {
                 sb.setColor(Color.WHITE);
             }
 
+            sb.setColor(Color.RED);
             for (CardVertex exclusion : v.exclusions) {
-                if (hovered != null) {
-                    if (exclusion.card == hovered) {
-                        sb.setColor(Color.RED);
-                    } else {
-                        sb.setColor(new Color(1.0F, 0, 0, 0.25F));
-                    }
+                if (exclusion.index > v.index) {
+                    continue;
                 }
-
                 Vector2 vec2 = (new Vector2((exclusion.card.current_x), exclusion.card.current_y)).sub(new Vector2((v.card.current_x), v.card.current_y));
                 float length = vec2.len();
                 int mod = 0;
@@ -366,8 +362,8 @@ public class MultiUpgradeTree {
                     float width = texture.getWidth();
                     sb.draw(exclusionLine, (v.card.current_x) + vec2.x - width / 2, v.card.current_y + vec2.y - width / 2, width / 2, width / 2, width, width, Settings.scale, Settings.scale, (new Vector2((v.card.current_x) - (exclusion.card.current_x), v.card.current_y - exclusion.card.current_y)).nor().angle() + 90.0F, 0, 0, (int) width, (int) width, false, false);
                 }
-                sb.setColor(Color.WHITE);
             }
+            sb.setColor(Color.WHITE);
         }
     }
 
@@ -385,7 +381,7 @@ public class MultiUpgradeTree {
     private static void doUpgrade(AbstractCard card, UpgradeData u) {
         if (u.alias == null && u.strict) {
             for (int i : u.dependencies) {
-                UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades(card).get(i);
+                UpgradeData dep = ((MultiUpgradeCard)card).getUpgrades().get(i);
                 if (!dep.applied) {
                     doUpgrade(card, dep);
                 }

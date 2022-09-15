@@ -17,13 +17,12 @@ public abstract class AbstractMultiUpgradeCard extends AbstractEasyCard implemen
 
     @Override
     public void upgrade() {
-        processUpgrade(this);
+        processUpgrade();
     }
 
     @Override
     public void updateName() {
         MkPatches.addMk(this);
-        //CardModifierManager.addModifier(this, new MkMod(1));
     }
 
     @Override

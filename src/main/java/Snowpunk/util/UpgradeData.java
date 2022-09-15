@@ -13,6 +13,10 @@ public class UpgradeData {
     public ArrayList<Integer> dependencies = new ArrayList<>(), exclusions = new ArrayList<>();
     public UpgradeAlias alias;
 
+    public UpgradeData(UpgradeRunnable runnable, int index) {
+        this(runnable, index, null, new int[]{}, true, new int[]{});
+    }
+
     public UpgradeData(UpgradeRunnable runnable, int index, int[] dependencies) {
         this(runnable, index, null, dependencies, true, new int[]{});
     }

@@ -70,7 +70,7 @@ public class UpgradeAlias extends AbstractEasyCard {
                 sb.append(TIP_TEXT[3]);
             }
             for (int i : data.dependencies) {
-                UpgradeData dep = ((MultiUpgradeCard)baseCard).getUpgrades(baseCard).get(i);
+                UpgradeData dep = ((MultiUpgradeCard)baseCard).getUpgrades().get(i);
                 String prefix = "";
                 if (dep.applied) {
                     prefix = "#g";
@@ -90,7 +90,7 @@ public class UpgradeAlias extends AbstractEasyCard {
                 prefix = "#r";
             }
             for (int i : data.exclusions) {
-                UpgradeData excludes = ((MultiUpgradeCard)baseCard).getUpgrades(baseCard).get(i);
+                UpgradeData excludes = ((MultiUpgradeCard)baseCard).getUpgrades().get(i);
                 if (excludes.alias == null) {
                     sb.append(prefix).append("- ").append(prefix).append(TIP_TEXT[0]).append(" ").append(prefix).append(i);
                 } else {

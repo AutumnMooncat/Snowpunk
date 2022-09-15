@@ -64,7 +64,7 @@ public class MultiUpgradePatches {
         @SpirePrefixPatch
         public static SpireReturn<?> canUpgrade(AbstractCard __instance) {
             if (__instance instanceof MultiUpgradeCard) {
-                return SpireReturn.Return(((MultiUpgradeCard) __instance).canPerformUpgrade(__instance));
+                return SpireReturn.Return(((MultiUpgradeCard) __instance).canPerformUpgrade());
             }
             return SpireReturn.Continue();
         }
