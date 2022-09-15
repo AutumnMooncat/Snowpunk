@@ -122,10 +122,10 @@ public class TemperatureMod extends AbstractCardModifier {
             }
         }
         if (heat == -2 || (card.hasTag(CustomTags.FLUX) && heat == 2)) {
-            Wiz.atb(new CondenseRandomCardToDrawPileAction());
+            Wiz.atb(new DrawCardAction(amount));
         }
         if (heat < 0 || (card.hasTag(CustomTags.FLUX) && heat > 0)) {
-            Wiz.atb(new DrawCardAction(amount));
+            Wiz.atb(new CondenseRandomCardToDrawPileAction());
         }
     }
 

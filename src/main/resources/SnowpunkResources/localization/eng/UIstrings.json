@@ -13,7 +13,8 @@
     "TEXT": [
       "Choose a card to tinker.",
       "Choose "," cards to tinker.",
-      "Choose a Part to apply to ","."
+      "Choose a Part to apply to ",
+      "."
     ]
   },
   "${ModID}:Parts": {
@@ -21,6 +22,11 @@
       "Part",
       "Parts",
       "Parts can be added to cards to add or modify effects."
+    ]
+  },
+  "${ModID}:Upgrade": {
+    "TEXT": [
+      "Upgrade"
     ]
   },
   "${ModID}:Cores": {

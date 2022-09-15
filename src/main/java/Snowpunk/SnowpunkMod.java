@@ -9,6 +9,7 @@ import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.relics.AbstractEasyRelic;
+import Snowpunk.vfx.ParticleManager;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.CardBorderGlowManager;
@@ -80,6 +81,8 @@ public class SnowpunkMod implements
 
     public static final ArrayList<AbstractPartCard> parts = new ArrayList<>();
     public static final ArrayList<AbstractCoreCard> cores = new ArrayList<>();
+
+    public static final ParticleManager particleManager = new ParticleManager();
 
     public SnowpunkMod() {
         BaseMod.subscribe(this);

@@ -1,10 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cardmods.WhistolMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CustomTags;
-import Snowpunk.powers.HeatNextCardPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
