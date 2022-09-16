@@ -43,9 +43,9 @@ public class Think extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBlock(UPG_BLOCK));
-        addUpgradeData(this, () -> upgradeSecondMagic(1));
-        addUpgradeData(this, () -> upgradeSecondMagic(1), 1);
-
+        addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
+        addUpgradeData(() -> upgradeSecondMagic(1));
+        addUpgradeData(() -> upgradeSecondMagic(1));
+        setDependencies(true, 2, 1);
     }
 }
