@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
@@ -26,13 +25,15 @@ public class PressureValves extends AbstractMultiUpgradeCard {
     private static final int UP_STACKS = 1;
     private static final int DOWN_STACKS = -2;
 
+    private boolean xUpgrade;
+
     public PressureValves() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = STACKS;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded) {
+        if (xUpgrade) {
             int effect = this.energyOnUse + magicNumber;
 
             if (p.hasRelic("Chemical X")) {
@@ -61,6 +62,7 @@ public class PressureValves extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeMagicNumber(UP_STACKS));
         addUpgradeData(this, () -> {
+            xUpgrade = true;
             upgradeBaseCost(OTHER_COST);
             upgradeMagicNumber(DOWN_STACKS);
             uDesc();
