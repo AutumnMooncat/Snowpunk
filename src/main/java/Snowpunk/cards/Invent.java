@@ -26,7 +26,6 @@ public class Invent extends AbstractMultiUpgradeCard {
     public Invent() {
         super(ID, COST, TYPE, RARITY, TARGET);
         FleetingField.fleeting.set(this, true);
-        isEthereal = true;
         tags.add(CardTags.HEALING); // We don't want this generated in combat
         baseInfo = info = 3;
         magicNumber = baseMagicNumber = 2;
@@ -34,17 +33,11 @@ public class Invent extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new AssembleCardAction(magicNumber, secondMagic, info));
+        Wiz.atb(new AssembleCardAction(magicNumber, 0, info));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            upgradeBaseCost(0);
-            isEthereal = false;
-            uDesc();
-        });
-        addUpgradeData(this, () -> upgradeSecondMagic(1));
-        addUpgradeData(this, () -> upgradeInfo(2));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
     }
 }

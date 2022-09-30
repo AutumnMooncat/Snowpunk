@@ -48,7 +48,7 @@ public class PrefixManager extends AbstractCardModifier {
                         sb.append(TEXT[5]).append(" ");
                         break;
                 }
-                addTempKeywords(card, temp);
+                //addTempKeywords(card, temp);
             }
         }
         if (card.hasTag(CustomTags.FROSTY)) {

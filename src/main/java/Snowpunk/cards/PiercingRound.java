@@ -32,8 +32,8 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
     public PiercingRound() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        CardTemperatureFields.addInherentHeat(this, 1);
         isMultiDamage = true;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,11 +42,12 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> {
             DamageModifierManager.addModifier(this, new PiercingDamage());
             uDesc();
-        }, 0, 1);
+        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        setDependencies(true, 2, 0, 1);
     }
 }

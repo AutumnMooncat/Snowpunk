@@ -16,9 +16,8 @@ public class Wildfire extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
 
     public Wildfire() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -31,11 +30,12 @@ public class Wildfire extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            this.isInnate = true;
+        addUpgradeData(() -> {
+            isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        setDependencies(true, 2, 0, 1);
     }
 }

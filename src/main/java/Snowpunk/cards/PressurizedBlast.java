@@ -19,13 +19,12 @@ public class PressurizedBlast extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 2, UP_DMG = 1, TIMES = 3, UP_TIMES = 1;
+    private static final int COST = 0, DMG = 3, UP_DMG = 1, TIMES = 2, UP_TIMES = 1;
 
     public PressurizedBlast() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = TIMES;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -36,8 +35,9 @@ public class PressurizedBlast extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_TIMES), 0, 1);
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_TIMES));
+        setDependencies(true, 2, 1);
     }
 }

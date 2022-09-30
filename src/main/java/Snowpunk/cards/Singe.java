@@ -8,12 +8,16 @@ import Snowpunk.powers.BurnPower;
 import Snowpunk.powers.FireballNextTurnPower;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class Singe extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Singe.class.getSimpleName());
 

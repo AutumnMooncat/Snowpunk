@@ -29,7 +29,6 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = BURN_AMOUNT;
         baseInfo = info = 0;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

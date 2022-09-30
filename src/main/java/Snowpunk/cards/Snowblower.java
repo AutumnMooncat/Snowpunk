@@ -35,7 +35,6 @@ public class Snowblower extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = SNOW;
         baseInfo = info = 0;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

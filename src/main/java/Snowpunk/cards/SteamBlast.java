@@ -8,6 +8,8 @@ import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -15,6 +17,8 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class SteamBlast extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SteamBlast.class.getSimpleName());
 
@@ -29,7 +33,6 @@ public class SteamBlast extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = STEAM;
         info = baseInfo = 0;
-        CardModifierManager.addModifier(this, new WhistolMod());
         EvaporatePanelPatches.EvaporateField.evaporate.set(this, true);
     }
 

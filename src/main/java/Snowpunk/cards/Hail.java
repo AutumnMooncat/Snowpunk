@@ -7,6 +7,8 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -21,6 +23,8 @@ import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Hail extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Hail.class.getSimpleName());
 

@@ -23,7 +23,8 @@ public class FrostMod extends AbstractCardModifier {
     public static final String ID = makeID(FrostMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public FrostMod() {}
+    public FrostMod() {
+    }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -32,8 +33,13 @@ public class FrostMod extends AbstractCardModifier {
     }
 
     @Override
+    public void onRemove(AbstractCard card) {
+        card.tags.remove(CustomTags.FROSTY);
+    }
+
+    @Override
     public boolean shouldApply(AbstractCard card) {
-        return !CardModifierManager.hasModifier(card, ID);
+        return !CardModifierManager.hasModifier(card, ID) && CardTemperatureFields.getCardHeat(card) < 1;
     }
 
 /*
@@ -45,7 +51,7 @@ public class FrostMod extends AbstractCardModifier {
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        if (group == Wiz.adp().hand)
+        if (group == Wiz.adp().hand && CardTemperatureFields.getCardHeat(card) < 1)
             Wiz.atb(new ReduceCostAction(card));
     }
 /*

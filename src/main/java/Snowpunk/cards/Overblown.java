@@ -29,7 +29,6 @@ public class Overblown extends AbstractMultiUpgradeCard {
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        CardModifierManager.addModifier(this, new WhistolMod());
         CardModifierManager.addModifier(this, new VentMod());
     }
 

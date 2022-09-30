@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.MultiUpgradeInHandAction;
 import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnObtainCard;
@@ -21,34 +22,25 @@ public class TinkersHammer extends AbstractMultiUpgradeCard implements OnObtainC
     private static final int COST = 1;
     private static final int UP_COST = 0;
 
-    private boolean selfTinker = false;
-
     public TinkersHammer() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = 1;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (selfTinker) {
-            Wiz.atb(new TinkerAction(this));
-        } else {
-            Wiz.atb(new TinkerAction(1, false));
-        }
+        Wiz.atb(new MultiUpgradeInHandAction(magicNumber, 1));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(this, () -> upgradeMagicNumber(1));
         addUpgradeData(this, () -> {
-            selfTinker = true;
             exhaust = false;
             uDesc();
-        }, new int[]{}, new int[]{1});
-        addUpgradeData(this, () -> {
-            exhaust = false;
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-            initializeDescription();
-        }, new int[]{}, new int[]{0});
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        });
+        setDependencies(true, 2, 0, 1);
     }
 
     @Override

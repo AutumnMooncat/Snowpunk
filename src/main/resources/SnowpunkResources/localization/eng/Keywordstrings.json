@@ -5,15 +5,16 @@
       "assemble",
       "assembled"
     ],
-    "DESCRIPTION": "Create a new card from a selection of #yCores and add it to your hand and deck."
+    "DESCRIPTION": "Create a new card from multiple selections of effects and replace this card with it in your hand and deck."
   },
   {
-    "PROPER_NAME": "Burn",
+    "PROPER_NAME": "Singe",
     "NAMES": [
-      "burning",
-      "burn"
+      "singeing",
+      "singed",
+      "singe"
     ],
-    "DESCRIPTION": "#yBurning creatures take additional damage when attacked. At the start of their turn, #yBurn deals damage and is removed."
+    "DESCRIPTION": "Singed creatures take additional damage when attacked. At the start of their turn, Singe deals damage and is removed."
   },
   {
     "PROPER_NAME": "Link",
@@ -191,7 +192,7 @@
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yRetain. #yCondense a card. Draw a card. NL Counts as #yCold."
+    "DESCRIPTION": "#yRetain. #yCondense a card. NL Draw a card. NL Counts as #yCold."
   },
   {
     "PROPER_NAME": "Evaporate",
@@ -217,14 +218,14 @@
       "heat",
       "heated"
     ],
-    "DESCRIPTION": "Raise a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
+    "DESCRIPTION": "Raise temperature if it is below #yOverheated."
   },
   {
     "PROPER_NAME": "Overheat",
     "NAMES": [
       "overheat"
     ],
-    "DESCRIPTION": "Maximize a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
+    "DESCRIPTION": "Set Temperature to #yOverheated."
   },
   {
     "PROPER_NAME": "Cool",
@@ -232,14 +233,14 @@
       "cool",
       "cooled"
     ],
-    "DESCRIPTION": "Lower a card's temperature. Temperature ranges from #yFrozen to #yOverheated."
+    "DESCRIPTION": "Lower temperature if it is above #yFrozen."
   },
   {
     "PROPER_NAME": "Freeze",
     "NAMES": [
       "freeze"
     ],
-    "DESCRIPTION": "Lower a card's temperature until it is #yFrozen. Temperature ranges from #yFrozen to #yOverheated."
+    "DESCRIPTION": "Lower temperature to #yFrozen."
   },
   {
     "PROPER_NAME": "Battery",
@@ -274,7 +275,7 @@
     "NAMES": [
       "steam"
     ],
-    "DESCRIPTION": "The next card you play this turn costs 0 and #yEvaporates."
+    "DESCRIPTION": "The next card you play costs 0 and #yEvaporates."
   },
   {
     "PROPER_NAME": "Holiday Cheer",
@@ -306,7 +307,7 @@
     "NAMES": [
       "frosty"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of the turn, lower this card's cost by #b1 this combat."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, lower its cost by #b1. NL #yHot cards cannot be Frosty."
   },
   {
     "PROPER_NAME": "Pull",
@@ -328,6 +329,13 @@
       "piercing"
     ],
     "DESCRIPTION": "Ignores block."
+  },
+  {
+    "PROPER_NAME": "Water",
+    "NAMES": [
+      "water"
+    ],
+    "DESCRIPTION": "Hot: Gain Steam NL Stable: Gain [E] NL Cold: Gain Snowballs"
   },
   {
     "PROPER_NAME": "Spare Parts",

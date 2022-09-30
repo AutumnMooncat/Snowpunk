@@ -33,7 +33,6 @@ public class TheEmperor extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = HITS;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

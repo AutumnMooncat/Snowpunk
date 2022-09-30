@@ -17,10 +17,8 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
-    private static final int UP_COST = 1;
+    private static final int COST = 1;
     private static final int STACKS = 1;
-    private static final int UP_STACKS = 1;
 
     private boolean coolEngine = false;
 
@@ -30,20 +28,17 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (coolEngine) {
-            Wiz.atb(new ModEngineTempAction(-2));
-        }
         Wiz.applyToSelf(new WinterStormPower(p, magicNumber));
     }
 
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
         addUpgradeData(this, () -> {
-            this.coolEngine = true;
+            isInnate = true;
             uDesc();
         });
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

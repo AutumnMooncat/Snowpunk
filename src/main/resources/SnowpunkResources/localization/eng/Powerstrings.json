@@ -20,20 +20,20 @@
       "An accumulating resource that can be converted to #yEnergy."
     ]
   },
-  "${ModID}:CarolingCoolPower": {
-    "NAME": "Cool Caroling",
+  "${ModID}:CarolingDrawPower": {
+    "NAME": "Caroling Draw",
     "DESCRIPTIONS": [
-      "At the start of your turn, draw #b",
-      " card and #yCool it.",
-      " cards and #yCool them."
+      "At the start of your turn, if you played no attacks last turn, draw #b",
+      " card.",
+      " cards."
     ]
   },
-  "${ModID}:CarolingFreezePower": {
-    "NAME": "Freeze Caroling",
+  "${ModID}:CarolingSnowballPower": {
+    "NAME": "Caroling Snow",
     "DESCRIPTIONS": [
-      "At the start of your turn, draw #b",
-      " card and #yFreeze it.",
-      " cards and #yFreeze them."
+      "At the start of your turn, if you played no attacks last gain, #b",
+      " #ySnowball.",
+      " #ySnowballs."
     ]
   },
   "${ModID}:PageTurnPower": {
@@ -143,11 +143,11 @@
     ]
   },
   "${ModID}:BurnPower": {
-    "NAME": "Burn",
+    "NAME": "Singe",
     "DESCRIPTIONS": [
       "Take #b",
       " additional damage when attacked. At the start of its turn, take #b",
-      " damage, and then remove all #yBurn."
+      " damage, and then remove all #ySinge."
     ]
   },
   "${ModID}:FrostbitePower": {
@@ -187,10 +187,9 @@
   "${ModID}:SteamPower": {
     "NAME": "Steam",
     "DESCRIPTIONS": [
-      "The next card you play this turn costs 0.",
+      "The next card you play costs #b0 and #yEvaporates.",
       "The next #b",
-      " cards you play this turn cost 0.",
-      " Removed at the end of your turn."
+      " cards you play cost #b0 and #yEvaporate."
     ]
   },
   "${ModID}:FireballNextTurnPower": {
@@ -244,9 +243,9 @@
   "${ModID}:BrimstonePower": {
     "NAME": "Fire and Brimstone",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " #yFireball to your hand and lose #b",
-      " #yFireballs to your hand and lose #b",
+      "At the start of your turn, gain #b",
+      " #yFireball and lose #b",
+      " #yFireballs and lose #b",
       " [E] ."
     ]
   },
@@ -277,9 +276,7 @@
   "${ModID}:WildfirePower": {
     "NAME": "Wildfire",
     "DESCRIPTIONS": [
-      "At the start of your turn, #yHeat #b",
-      " random card into your hand.",
-      " random cards into your hand."
+      "At the end of your turn, #yHeat your #yEngine."
     ]
   },
   "${ModID}:SparePartsPower": {

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 
 public class VentPatch {
+    /*
     @SpirePatch2(clz = CardGroup.class, method = "moveToExhaustPile")
     public static class VentTime {
         @SpirePrefixPatch
@@ -17,5 +18,5 @@ public class VentPatch {
             }
             return SpireReturn.Continue();
         }
-    }
+    }*/
 }

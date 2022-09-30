@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -9,7 +8,6 @@ import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -23,12 +21,12 @@ public class IceWall extends AbstractMultiUpgradeCard {
     private static final int COST = 4;
     private static final int UP_COST = 3;
 
-    private boolean freeze = false;
+    private boolean iceOnPlay = false;
 
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
         CardTemperatureFields.addInherentHeat(this, -2);
-        freeze = false;
+        iceOnPlay = false;
     }
 
     @Override
@@ -38,8 +36,8 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (freeze) {
-            Wiz.atb(new ModEngineTempAction(-99));
+        if (iceOnPlay) {
+            Wiz.applyToSelf(new ProtectionPower(Wiz.adp(), 1));
         }
     }
 
@@ -48,7 +46,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FrostMod()));
         addUpgradeData(this, () -> {
-            freeze = true;
+            iceOnPlay = true;
             uDesc();
         });
     }

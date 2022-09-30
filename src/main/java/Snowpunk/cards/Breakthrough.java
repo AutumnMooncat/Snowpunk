@@ -6,11 +6,15 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.BreakthroughPower;
 import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Breakthrough extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Breakthrough.class.getSimpleName());
 

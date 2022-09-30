@@ -1,8 +1,8 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.CarolingCoolPower;
-import Snowpunk.powers.CarolingFreezePower;
+import Snowpunk.powers.CarolingDrawPower;
+import Snowpunk.powers.CarolingSnowballPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,22 +21,20 @@ public class Caroling extends AbstractMultiUpgradeCard {
     public Caroling() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 1;
-        secondMagic = baseSecondMagic = 0;
+        secondMagic = baseSecondMagic = 1;
         info = baseInfo = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (secondMagic == 0)
-            Wiz.applyToSelf(new CarolingCoolPower(p, magicNumber));
-        else
-            Wiz.applyToSelf(new CarolingFreezePower(p, magicNumber));
+        Wiz.applyToSelf(new CarolingDrawPower(p, magicNumber));
+        Wiz.applyToSelf(new CarolingSnowballPower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgrade1());
+        addUpgradeData(this, () -> upgradeBaseCost(1));
         addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> upgrade3());
+        addUpgradeData(this, () -> upgradeSecondMagic(1));
     }
 
     private void upgrade3() {

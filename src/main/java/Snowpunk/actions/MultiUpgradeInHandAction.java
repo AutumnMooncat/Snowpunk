@@ -69,6 +69,7 @@ public class MultiUpgradeInHandAction extends AbstractGameAction {
                 AbstractDungeon.player.hand.addToTop(c);
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+            returnCards();
         }
         tickDuration();
     }

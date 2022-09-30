@@ -29,14 +29,12 @@ public class DoubleBarrel extends AbstractCoreCard {
     public DoubleBarrel() {
         super(ID, COST, TYPE, VALUE);
         baseDamage = damage = secondDamage = baseSecondDamage = DAMAGE;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     @Override
     public void apply(AbstractCard card) {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
         CardModifierManager.addModifier(card, new DoubleBarrelMod(rawDescription, useSecondDamage));
-        CardModifierManager.addModifier(card, new WhistolMod());
         if (card instanceof AssembledCard) {
             ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.DOUBLE_BARREL, useSecondDamage, UP_DAMAGE));
             ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);

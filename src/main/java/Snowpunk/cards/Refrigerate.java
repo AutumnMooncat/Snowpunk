@@ -23,32 +23,25 @@ public class Refrigerate extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
     private static final int COST = 1;
-    private static final int BLK = 7;
-    private static final int UP_BLK = 3;
-    private static final int EFFECT = 1;
+    private static final int EFFECT = 2;
     private static final int UP_EFFECT = 1;
-    private boolean coolEngine = false;
+    private boolean random = false;
 
     public Refrigerate() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseBlock = block = BLK;
         magicNumber = baseMagicNumber = EFFECT;
+        info = baseInfo = 0;
         CardTemperatureFields.addInherentHeat(this, -1);
-        coolEngine = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
-        Wiz.applyToSelf(new RefrigeratePower(p, magicNumber));
+        Wiz.atb(new ModCardTempAction(magicNumber, -1, info == 0));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBlock(UP_BLK));
-        addUpgradeData(this, () -> {
-            coolEngine = true;
-            uDesc();
-        });
+        addUpgradeData(this, () -> upgradeBaseCost(0));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(this, () -> upgradeInfo(1));
     }
 }

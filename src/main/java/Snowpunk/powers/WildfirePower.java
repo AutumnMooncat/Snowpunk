@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.actions.ModCardTempAction;
+import Snowpunk.actions.ModEngineTempAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -18,16 +19,13 @@ public class WildfirePower extends AbstractEasyPower {
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        addToBot(new ModCardTempAction(amount, 1, true));
+    public void atEndOfTurn(boolean player) {
+        flash();
+        addToBot(new ModEngineTempAction(2 * amount));
     }
 
     @Override
     public void updateDescription() {
-        if (amount == 1) {
-            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        } else {
-            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
-        }
+        description = DESCRIPTIONS[0];
     }
 }

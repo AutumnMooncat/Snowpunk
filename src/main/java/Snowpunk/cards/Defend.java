@@ -40,6 +40,6 @@ public class Defend extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBlock(UP_BLK));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> upgradeInfo(1));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
     }
 }

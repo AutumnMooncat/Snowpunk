@@ -30,7 +30,6 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new SteamPower(p, magicNumber));
-        Wiz.applyToSelf(new BackupBoilerPower(p, -1));
     }
 
     @Override

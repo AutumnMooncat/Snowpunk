@@ -29,6 +29,11 @@
       "Upgrade"
     ]
   },
+  "${ModID}:Copy": {
+    "TEXT": [
+      "Copy"
+    ]
+  },
   "${ModID}:Cores": {
     "TEXT": [
       "Core",

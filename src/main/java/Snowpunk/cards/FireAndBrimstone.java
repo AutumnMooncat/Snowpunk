@@ -20,32 +20,27 @@ public class FireAndBrimstone extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
 
     private boolean heatEngine = false;
 
     public FireAndBrimstone() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
-        cardsToPreview = new Fireball();
-        heatEngine = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new BrimstonePower(p, magicNumber));
-        if (heatEngine)
-            Wiz.atb(new ModEngineTempAction(2));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(this, () -> upgradeBaseCost(0));
         addUpgradeData(this, () -> {
-            heatEngine = true;
+            isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
     }
 }

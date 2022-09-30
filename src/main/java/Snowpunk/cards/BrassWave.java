@@ -49,11 +49,11 @@ public class BrassWave extends AbstractMultiUpgradeCard {
 
         if (effect > 0) {
             for (int i = 0; i < effect; i++) {
-                dmg(m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
                 blck();
-                if (magicNumber > 0)
-                    Wiz.applyToSelf(new SparePartsPower(p, effect));
+                dmg(m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }
+            if (magicNumber > 0)
+                Wiz.applyToSelf(new SparePartsPower(p, effect));
         }
 
         if (!this.freeToPlayOnce) {

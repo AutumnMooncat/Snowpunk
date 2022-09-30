@@ -24,7 +24,7 @@ public class BrimstonePower extends AbstractEasyPower {
     @Override
     public void atStartOfTurn() {
         addToBot(new LoseEnergyAction(amount));
-        addToBot(new MakeTempCardInHandAction(new Fireball(), amount));
+        Wiz.applyToSelf(new FireballPower(owner, amount));
         flash();
     }
 

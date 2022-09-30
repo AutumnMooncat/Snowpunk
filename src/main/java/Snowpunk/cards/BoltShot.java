@@ -4,6 +4,8 @@ import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +14,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class BoltShot extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BoltShot.class.getSimpleName());
 
@@ -33,7 +37,6 @@ public class BoltShot extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = VULN;
-        CardModifierManager.addModifier(this, new WhistolMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -51,8 +54,8 @@ public class BoltShot extends AbstractMultiUpgradeCard {
             upgradeMagicNumber(UP_VULN);
         });
         addUpgradeData(this, () -> {
-           upgradeDamage(DOWN_DMG);
-           upgradeBaseCost(UP_COST);
+            upgradeDamage(DOWN_DMG);
+            upgradeBaseCost(UP_COST);
         });
         addUpgradeData(this, () -> {
             weak = true;

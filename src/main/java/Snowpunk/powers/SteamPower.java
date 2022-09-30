@@ -37,13 +37,13 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
         }
     }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-        else
-            owner.getPower(BackupBoilerPower.POWER_ID).flash();
-    }
+//    @Override
+//    public void atEndOfTurn(boolean isPlayer) {
+//        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
+//            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+//        else
+//            owner.getPower(BackupBoilerPower.POWER_ID).flash();
+//    }
 
     @Override
     public void updateDescription() {
@@ -52,8 +52,8 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
         } else {
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
-        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
-            description += DESCRIPTIONS[3];
+//        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
+//            description += DESCRIPTIONS[3];
     }
 
     @Override

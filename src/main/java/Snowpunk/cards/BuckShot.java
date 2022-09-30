@@ -8,12 +8,16 @@ import Snowpunk.patches.IgnoreEnemyPowersPatches;
 import Snowpunk.powers.BurnPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class BuckShot extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BuckShot.class.getSimpleName());
 
@@ -30,7 +34,6 @@ public class BuckShot extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         info = baseInfo = 0;
-        CardModifierManager.addModifier(this, new WhistolMod());
         IgnoreEnemyPowersPatches.IgnoreField.ignore.set(this, true);
     }
 

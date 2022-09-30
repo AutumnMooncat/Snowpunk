@@ -7,13 +7,16 @@ import Snowpunk.cards.cardvars.SecondMagicNumber;
 import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.relics.AbstractEasyRelic;
+import Snowpunk.util.Wiz;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.CardBorderGlowManager;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -21,6 +24,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -220,5 +224,7 @@ public class SnowpunkMod implements
                 return makeID("ExclusionGlow");
             }
         });
+
+        DynamicTextBlocks.registerCustomCheck(makeID("CardTemp"), card -> CardTemperatureFields.getCardHeat(card));
     }
 }

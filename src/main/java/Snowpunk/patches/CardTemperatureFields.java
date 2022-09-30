@@ -1,10 +1,12 @@
 package Snowpunk.patches;
 
+import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.OverheatNextCardPower;
+import Snowpunk.powers.TheSnowmanPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -103,6 +105,14 @@ public class CardTemperatureFields {
 
         TemperatureFields.inherentHeat.set(card, inherent);
         TemperatureFields.addedHeat.set(card, added);
+
+        if (CardTemperatureFields.getCardHeat(card) > 0 && CardModifierManager.hasModifier(card, FrostMod.ID)) {
+            CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, FrostMod.ID).get(0), true);
+        }
+
+        if (CardTemperatureFields.getCardHeat(card) < 1 && !CardModifierManager.hasModifier(card, FrostMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
+            CardModifierManager.addModifier(card, new FrostMod());
+        }
     }
 
     public static Color getCardTint(AbstractCard card) {

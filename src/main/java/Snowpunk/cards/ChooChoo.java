@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
 @NoPools
 public class ChooChoo extends AbstractEasyCard {
     public final static String ID = makeID(ChooChoo.class.getSimpleName());

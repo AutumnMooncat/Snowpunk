@@ -24,9 +24,7 @@ public class Sledding extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, UP_DMG = 2, BLOCK = 5, UP_BLOCK = 2, BLOCK_PER_HIT = 2;
-
-    boolean perhit = false;
+    private static final int COST = 2, DMG = 8, UP_DMG = 4, BLOCK = 3, UP_BLOCK = 2;
 
     public Sledding() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -37,27 +35,13 @@ public class Sledding extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (perhit) {
-            Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, secondBlock));
-        } else {
-            Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn));
-        }
+        Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, block));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, this::upgrade1);
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> {
-            perhit = true;
-            this.baseSecondBlock = this.secondBlock = 0;
-            upgradeSecondBlock(BLOCK_PER_HIT);
-            uDesc();
-        });
-    }
-
-    private void upgrade1() {
-        upgradeBlock(UP_BLOCK);
-        upgradeDamage(UP_DMG);
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
     }
 }

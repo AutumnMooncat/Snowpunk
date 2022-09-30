@@ -4,6 +4,7 @@ import Snowpunk.cards.EmberForge;
 import Snowpunk.cards.Fireball;
 import Snowpunk.powers.EmberForgePower;
 import Snowpunk.powers.EngineTempPower;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SnowballPower;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -47,7 +48,7 @@ public class HeatBasedEnergyManager extends EnergyManager {
             Wiz.applyToSelfTop(new SnowballPower(Wiz.adp(), snowGain));
         }
         if (fireGain > 0) {
-            Wiz.att(new MakeTempCardInHandAction(new Fireball(), fireGain));
+            Wiz.applyToSelfTop(new FireballPower(Wiz.adp(), fireGain));
         }
     }
 }
