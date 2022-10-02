@@ -111,7 +111,6 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
     public ArrayList<CardSave> onSave() {
         if (cores != null) {
             ArrayList<CardSave> cardSaves = new ArrayList<>();
-            cardSaves.add(new CardSave(cardID, timesUpgraded, misc));
             for (CoreCard card : cores)
                 cardSaves.add(new CardSave(card.cardID, card.timesUpgraded, card.misc));
 
@@ -124,10 +123,6 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
     public void onLoad(ArrayList<CardSave> coreLoad) {
         int timesToUpgrade = 0;
         if (coreLoad != null) {
-            if (coreLoad.get(0).id.equals(cardID)) {
-                timesToUpgrade = coreLoad.get(0).upgrades;
-                coreLoad.remove(coreLoad.get(0));
-            }
             for (CardSave card : coreLoad) {
                 if (card == null)
                     continue;
