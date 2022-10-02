@@ -58,24 +58,24 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     @Override
     public void addUpgrades() {
         if(cores != null && cores.size() > 0) {
-        //if(baseDamage > 0){
-        int bonusDmg = (int) Math.max(baseDamage * .33, 3);
-        addUpgradeData(() -> upgradeDamage(bonusDmg));
-//            }
-//            if(baseBlock > 0){
-        int bonusBlock = (int) Math.max(baseBlock * .25, 3);
-        addUpgradeData(() -> upgradeBlock(bonusBlock));
-//            }
-//            if(baseMagicNumber > 0)
-        addUpgradeData(() -> upgradeMagicNumber(1));
-//            if(baseSecondMagic > 0)
-        addUpgradeData(() -> upgradeSecondMagic(1));
-//            if(CardTemperatureFields.getCardHeat(this) == 1)
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-//            if(CardTemperatureFields.getCardHeat(this) == -1)
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-//            if(baseCost > 1)
-        addUpgradeData(() -> upgradeBaseCost(baseCost - 1));
+            if (baseDamage > 0) {
+                int bonusDmg = (int) Math.max(baseDamage * .33, 3);
+                addUpgradeData(() -> upgradeDamage(bonusDmg));
+            }
+            if (baseBlock > 0) {
+                int bonusBlock = (int) Math.max(baseBlock * .25, 3);
+                addUpgradeData(() -> upgradeBlock(bonusBlock));
+            }
+            if (baseMagicNumber > 0)
+                addUpgradeData(() -> upgradeMagicNumber(1));
+            if (baseSecondMagic > 0)
+                addUpgradeData(() -> upgradeSecondMagic(1));
+            if (CardTemperatureFields.getCardHeat(this) == 1)
+                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+            if (CardTemperatureFields.getCardHeat(this) == -1)
+                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+            if (baseCost > 1)
+                addUpgradeData(() -> upgradeBaseCost(baseCost - 1));
         }
     }
 
@@ -101,7 +101,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
             //Check Damage Mod Stuff Here
         }
         if (target == CardTarget.ENEMY)
-            Wiz.atb(new DamageAction(monster, new DamageInfo(player, damage)));
+            dmg(monster, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         else if (target == CardTarget.ALL_ENEMY)
             allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
     }

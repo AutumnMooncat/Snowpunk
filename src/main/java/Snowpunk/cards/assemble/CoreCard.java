@@ -69,7 +69,8 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
         PREFIX,
         CORE,
         ABMOD,
-        MOD
+        MOD,
+        NAME
     }
 
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;
