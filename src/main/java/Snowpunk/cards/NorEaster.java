@@ -48,7 +48,7 @@ public class NorEaster extends AbstractMultiUpgradeCard {
             p.getRelic("Chemical X").flash();
         }
 
-        effect += secondMagic;
+        effect += magicNumber;
 
         if (effect > 0) {
             Wiz.applyToSelf(new SnowballPower(p, effect));
