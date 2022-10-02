@@ -29,7 +29,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreateCardModsCard, CustomSavable<ArrayList<CardSave>> {
+public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSavable<ArrayList<CardSave>> {
     public static final String ID = makeID(AssembledCard.class.getSimpleName());
 
     public ArrayList<CoreCard> cores;
@@ -57,7 +57,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public void addUpgrades() {
-        //if(cores != null && cores.size() > 0){
+        if(cores != null && cores.size() > 0) {
         //if(baseDamage > 0){
         int bonusDmg = (int) Math.max(baseDamage * .33, 3);
         addUpgradeData(() -> upgradeDamage(bonusDmg));
@@ -76,7 +76,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
 //            if(baseCost > 1)
         addUpgradeData(() -> upgradeBaseCost(baseCost - 1));
-//        }
+        }
     }
 
 
@@ -121,7 +121,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public void onLoad(ArrayList<CardSave> coreLoad) {
-        int timesToUpgrade = 0;
+        //int timesToUpgrade = 0;
         if (coreLoad != null) {
             for (CardSave card : coreLoad) {
                 if (card == null)
@@ -134,17 +134,21 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
             }
         }
         grabStats();
-        timesUpgraded = timesToUpgrade;
+        for (int i : capturedIndices) {
+            MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(this, i);
+            upgrade();
+        }
+        //timesUpgraded = timesToUpgrade;
     }
 
 
-    @Override
+    /*@Override
     public void onRecreate() {
         for (int i : capturedIndices) {
             MultiUpgradePatches.MultiUpgradeFields.upgradeIndex.set(this, i);
             upgrade();
         }
-    }
+    }*/
     //endregion
 
     //region Build Stats
@@ -261,15 +265,20 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public AbstractCard makeCopy() {
-        return makeStatEquivalentCopy();
+        //return makeStatEquivalentCopy();
+        ArrayList<CoreCard> newCores = new ArrayList<>();
+        for (AbstractCard core : cores) {
+            newCores.add((CoreCard) core.makeStatEquivalentCopy());
+        }
+        return new AssembledCard(newCores);
     }
 
-    @Override
+    /*@Override
     public AbstractCard makeStatEquivalentCopy() {
         ArrayList<CoreCard> newCores = new ArrayList<>();
         newCores.addAll(cores);
         AbstractCard copy = new AssembledCard(newCores);
         copy.timesUpgraded = timesUpgraded;
         return copy;
-    }
+    }*/
 }
