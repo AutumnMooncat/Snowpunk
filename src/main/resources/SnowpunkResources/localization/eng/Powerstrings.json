@@ -193,11 +193,11 @@
     ]
   },
   "${ModID}:FireballNextTurnPower": {
-    "NAME": "Fireballs",
+    "NAME": "Fireballs Next Turn",
     "DESCRIPTIONS": [
-      "Next turn, add a #yFireball to your hand.",
-      "Next turn, add #b",
-      " #yFireballs to your hand."
+      "Next turn, gain a #yFireball.",
+      "Next turn, gain #b",
+      " #yFireballs."
     ]
   },
   "${ModID}:StrongerPower": {

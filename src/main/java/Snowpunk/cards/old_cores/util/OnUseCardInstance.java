@@ -1,4 +1,4 @@
-package Snowpunk.cards.cores.util;
+package Snowpunk.cards.old_cores.util;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

@@ -132,11 +132,68 @@
   "${ModID}:SteamEngine": {
     "NAME": "Steam Engine",
     "DESCRIPTION": "Gain !M! snowpunk:Steam.",
-    "EXTENDED_DESCRIPTION": ["Steamer"]
+    "EXTENDED_DESCRIPTION": [
+      "Steamer"
+    ]
   },
   "${ModID}:PipeFence": {
     "NAME": "Pipe Fence",
     "DESCRIPTION": "Gain !B! Block 4 times.",
-    "EXTENDED_DESCRIPTION": ["Piped"]
+    "EXTENDED_DESCRIPTION": [
+      "Piped"
+    ]
+  },
+  "${ModID}:StrikeCore": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:CarnageCore": {
+    "NAME": "Carnage",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:SliceCore": {
+    "NAME": "Slice",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:DefendCore": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:BarrierCore": {
+    "NAME": "Barrier",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:DeflectCore": {
+    "NAME": "Deflect",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:ConveyorCore": {
+    "NAME": "Conveyor",
+    "DESCRIPTION": "Draw !M! cards. NL Discard !M! cards."
+  },
+  "${ModID}:UpgradeCore": {
+    "NAME": "Upgrade",
+    "DESCRIPTION": "Upgrade !M! random cards in your hand."
+  },
+  "${ModID}:SnowballCore": {
+    "NAME": "Snowball",
+    "DESCRIPTION": "Gain !Snowpunk:M2! snowpunk:Snowball.",
+    "UPGRADE_DESCRIPTION": "Gain !Snowpunk:M2! snowpunk:Snowballs."
+  },
+  "${ModID}:ExhaustCore": {
+    "NAME": "Exhaust",
+    "DESCRIPTION": "Exhaust."
+  },
+  "${ModID}:ColdCore": {
+    "NAME": "Cold",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:HotCore": {
+    "NAME": "Hot",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:AllEnemiesCore": {
+    "NAME": "All Enemies",
+    "DESCRIPTION": "to ALL enemies."
   }
 }

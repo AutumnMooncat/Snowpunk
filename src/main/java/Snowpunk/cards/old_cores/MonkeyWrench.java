@@ -1,4 +1,4 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cards.old_cores;
 
 import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cardmods.cores.GainBlockMod;
@@ -42,10 +42,10 @@ public class MonkeyWrench extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new GainBlockMod(blocks[0], useSecondBlock));
         CardModifierManager.addModifier(card, new MonkeyWrenchMod(blocks[1], useSecondDamage));
         CardModifierManager.addModifier(card, new FluxMod());
-        if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.MONKEY_WRENCH, useSecondBlock, useSecondDamage ? 1 : 0));
-            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
-            ((AssembledCard) card).saveBlock(BLOCK, useSecondBlock);
+        if (card instanceof ARCHIVED_AssembledCard) {
+            ((ARCHIVED_AssembledCard) card).addInfo(new Triplet<>(ARCHIVED_AssembledCard.SaveInfo.CoreType.MONKEY_WRENCH, useSecondBlock, useSecondDamage ? 1 : 0));
+            ((ARCHIVED_AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
+            ((ARCHIVED_AssembledCard) card).saveBlock(BLOCK, useSecondBlock);
         }
     }
 

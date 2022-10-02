@@ -1,4 +1,4 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cards.old_cores;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.TypeOverridePatch;
@@ -45,7 +45,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
         return coreTooltip;
     }
 
-    public boolean canSpawn(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
+    public boolean canSpawn(ARCHIVED_AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         if (chosenCores.stream().anyMatch(c -> c.getClass().equals(this.getClass()))) {
             return false;
         }
@@ -63,7 +63,7 @@ public abstract class AbstractCoreCard extends AbstractEasyCard {
 
     public abstract void apply(AbstractCard card);
 
-    public void prepForSelection(AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
+    public void prepForSelection(ARCHIVED_AssembledCard card, ArrayList<AbstractCoreCard> chosenCores) {
         if (effectTags.contains(EffectTag.DAMAGE) && chosenCores.stream().anyMatch(c -> c.effectTags.contains(EffectTag.DAMAGE))) {
             swapDynvarKey(EffectTag.DAMAGE);
             useSecondDamage = true;

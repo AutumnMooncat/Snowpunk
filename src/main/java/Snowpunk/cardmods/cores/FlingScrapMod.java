@@ -1,9 +1,8 @@
 package Snowpunk.cardmods.cores;
 
 import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
-import Snowpunk.cards.cores.AbstractCoreCard;
-import Snowpunk.cards.cores.AssembledCard;
-import Snowpunk.cards.cores.util.OnUseCardInstance;
+import Snowpunk.cards.old_cores.ARCHIVED_AssembledCard;
+import Snowpunk.cards.old_cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,9 +22,9 @@ public class FlingScrapMod extends AbstractCardEffectMod {
     @Override
     public void onInitialApplication(AbstractCard card) {
         super.onInitialApplication(card);
-        if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
-                int amount = useSecondVar ? ((AssembledCard) card).baseSecondDamage : card.baseDamage;
+        if (card instanceof ARCHIVED_AssembledCard) {
+            ((ARCHIVED_AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
+                int amount = useSecondVar ? ((ARCHIVED_AssembledCard) card).baseSecondDamage : card.baseDamage;
                 Wiz.atb(new SFXAction("ATTACK_HEAVY"));
                 Wiz.atb(new VFXAction(p, new CleaveEffect(), 0.1F));
                 Wiz.atb(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(amount), card.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));

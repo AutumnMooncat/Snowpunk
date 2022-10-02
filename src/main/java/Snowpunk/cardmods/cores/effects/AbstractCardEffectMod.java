@@ -1,7 +1,5 @@
 package Snowpunk.cardmods.cores.effects;
 
-import Snowpunk.cards.cores.AbstractCoreCard;
-import Snowpunk.cards.cores.AssembledCard;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

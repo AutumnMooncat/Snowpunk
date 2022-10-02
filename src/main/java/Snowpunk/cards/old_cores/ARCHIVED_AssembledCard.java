@@ -1,14 +1,12 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cards.old_cores;
 
 import Snowpunk.cardmods.BetterExhaustMod;
-import Snowpunk.cardmods.TinkerSelfMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.cores.util.OnUseCardInstance;
+import Snowpunk.cards.old_cores.util.OnUseCardInstance;
 import Snowpunk.cards.interfaces.OnRecreateCardModsCard;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.AssembledCardArtRoller;
 import Snowpunk.util.Triplet;
-import basemod.Pair;
 import basemod.abstracts.CustomSavable;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -24,11 +22,12 @@ import java.util.function.Consumer;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoPools @NoCompendium
-public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreateCardModsCard, CustomSavable<AssembledCard.SaveInfo> {
-    public static final String ID = makeID(AssembledCard.class.getSimpleName());
+@NoPools
+@NoCompendium
+public class ARCHIVED_AssembledCard extends AbstractMultiUpgradeCard implements OnRecreateCardModsCard, CustomSavable<ARCHIVED_AssembledCard.SaveInfo> {
+    public static final String ID = makeID(ARCHIVED_AssembledCard.class.getSimpleName());
 
-    private final ArrayList<Consumer<AssembledCard>> onUpgradeConsumers = new ArrayList<>();
+    private final ArrayList<Consumer<ARCHIVED_AssembledCard>> onUpgradeConsumers = new ArrayList<>();
     private final ArrayList<OnUseCardInstance> onUseInstances = new ArrayList<>();
     public int doubledCost;
 
@@ -36,11 +35,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     private SaveInfo info = new SaveInfo();
 
-    public AssembledCard() {
+    public ARCHIVED_AssembledCard() {
         this(0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
     }
 
-    public AssembledCard(int cost, CardType type, CardRarity rarity, CardTarget target) {
+    public ARCHIVED_AssembledCard(int cost, CardType type, CardRarity rarity, CardTarget target) {
         super(ID, cost, type, rarity, target);
     }
 
@@ -67,12 +66,12 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public void upp() {
-        for (Consumer<AssembledCard> c : onUpgradeConsumers) {
+        for (Consumer<ARCHIVED_AssembledCard> c : onUpgradeConsumers) {
             c.accept(this);
         }
     }
 
-    public void addUpgradeConsumer(Consumer<AssembledCard> c) {
+    public void addUpgradeConsumer(Consumer<ARCHIVED_AssembledCard> c) {
         onUpgradeConsumers.add(c);
     }
 
@@ -236,7 +235,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
 
     @Override
     public AbstractCard makeCopy() {
-        AssembledCard copy = (AssembledCard) super.makeCopy();
+        ARCHIVED_AssembledCard copy = (ARCHIVED_AssembledCard) super.makeCopy();
         copy.onLoad(this.onSave());
         return copy;
     }

@@ -1,7 +1,6 @@
 package Snowpunk.cardmods.cores.edits;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.cards.cores.AssembledCard;
 import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;

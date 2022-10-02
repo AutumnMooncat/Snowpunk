@@ -1,12 +1,10 @@
 package Snowpunk.actions;
 
 import Snowpunk.SnowpunkMod;
-import Snowpunk.cardmods.MkMod;
-import Snowpunk.cards.cores.AbstractCoreCard;
-import Snowpunk.cards.cores.AssembledCard;
+import Snowpunk.cards.old_cores.AbstractCoreCard;
+import Snowpunk.cards.old_cores.ARCHIVED_AssembledCard;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -19,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-public class AssembleCardAction extends AbstractGameAction {
+public class ARCHIVED_AssembleCardAction extends AbstractGameAction {
 
     public static final ArrayList<AbstractCoreCard> pickedCores = new ArrayList<>();
     boolean addToMaster;
@@ -27,19 +25,19 @@ public class AssembleCardAction extends AbstractGameAction {
     int cores;
     int upgrades;
     int options;
-    private Consumer<AssembledCard> onAssemble;
+    private Consumer<ARCHIVED_AssembledCard> onAssemble;
 
-    public AssembleCardAction(int cores, int upgrades) {
+    public ARCHIVED_AssembleCardAction(int cores, int upgrades) {
         this(cores, upgrades, 3, true, false, c -> {
         });
     }
 
-    public AssembleCardAction(int cores, int upgrades, int options) {
+    public ARCHIVED_AssembleCardAction(int cores, int upgrades, int options) {
         this(cores, upgrades, options, true, false, c -> {
         });
     }
 
-    public AssembleCardAction(int cores, int upgrades, int options, boolean addToMaster, boolean random, Consumer<AssembledCard> onAssemble) {
+    public ARCHIVED_AssembleCardAction(int cores, int upgrades, int options, boolean addToMaster, boolean random, Consumer<ARCHIVED_AssembledCard> onAssemble) {
         this.cores = cores;
         this.upgrades = upgrades;
         this.options = options;
@@ -51,7 +49,7 @@ public class AssembleCardAction extends AbstractGameAction {
     @Override
     public void update() {
         pickedCores.clear();
-        AssembledCard ac = new AssembledCard();
+        ARCHIVED_AssembledCard ac = new ARCHIVED_AssembledCard();
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {
@@ -69,49 +67,49 @@ public class AssembleCardAction extends AbstractGameAction {
         this.isDone = true;
     }
 
-    private void finalizeCard(AssembledCard card) {
-        for (int i = 0 ; i < upgrades ; i++) {
+    private void finalizeCard(ARCHIVED_AssembledCard card) {
+        for (int i = 0; i < upgrades; i++) {
             card.upgrade();
         }
-        AssembledCard copy = (AssembledCard) card.makeStatEquivalentCopy();
+        ARCHIVED_AssembledCard copy = (ARCHIVED_AssembledCard) card.makeStatEquivalentCopy();
         onAssemble.accept(copy);
         if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE) {
-            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(copy, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(copy, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         } else {
-            AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(copy, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(copy, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
         if (addToMaster) {
             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(copy.makeSameInstanceOf(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
     }
 
-    private static CardGroup getValidCores(AssembledCard card) {
+    private static CardGroup getValidCores(ARCHIVED_AssembledCard card) {
         CardGroup validCores = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         //int currentDoubledCost = card.doubledCost;
-        for (AbstractCoreCard core : SnowpunkMod.cores) {
-            if (core.canSpawn(card, AssembleCardAction.pickedCores)) {
+        /*for (AbstractCoreCard core : SnowpunkMod.cores) {
+            if (core.canSpawn(card, ARCHIVED_AssembleCardAction.pickedCores)) {
                 AbstractCoreCard copy = (AbstractCoreCard) core.makeCopy();
                 //copy.prepRenderedCost(currentDoubledCost);
-                copy.prepForSelection(card, AssembleCardAction.pickedCores);
+                copy.prepForSelection(card, ARCHIVED_AssembleCardAction.pickedCores);
                 validCores.addToTop(copy);
             }
-        }
+        }*/
         return validCores;
     }
 
-    private static void giveRandomCore(AssembledCard card) {
+    private static void giveRandomCore(ARCHIVED_AssembledCard card) {
         CardGroup validCores = getValidCores(card);
         if (!validCores.isEmpty()) {
             AbstractCard core = validCores.getRandomCard(true);
             if (core instanceof AbstractCoreCard) {
                 ((AbstractCoreCard) core).apply(card);
                 validCores.removeCard(core);
-                AssembleCardAction.pickedCores.add((AbstractCoreCard) core);
+                ARCHIVED_AssembleCardAction.pickedCores.add((AbstractCoreCard) core);
             }
         }
     }
 
-    private static void pickCoresForCard(AssembledCard card, int options) {
+    private static void pickCoresForCard(ARCHIVED_AssembledCard card, int options) {
         Wiz.att(new AbstractGameAction() {
             @Override
             public void update() {
@@ -132,7 +130,7 @@ public class AssembleCardAction extends AbstractGameAction {
                             if (c instanceof AbstractCoreCard) {
                                 ((AbstractCoreCard) c).apply(card);
                                 validCores.removeCard(c);
-                                AssembleCardAction.pickedCores.add((AbstractCoreCard) c);
+                                ARCHIVED_AssembleCardAction.pickedCores.add((AbstractCoreCard) c);
                             }
                         }
                     }));

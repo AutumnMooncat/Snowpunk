@@ -31,7 +31,7 @@ public class FireballNextTurnPower extends AbstractEasyPower {
     public void atStartOfTurn() {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             flash();
-            addToBot(new MakeTempCardInHandAction(new Fireball(), amount, false));
+            Wiz.applyToSelf(new FireballPower(owner, amount));
             addToBot(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }

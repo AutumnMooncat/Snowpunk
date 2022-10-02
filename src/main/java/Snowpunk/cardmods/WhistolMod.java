@@ -1,18 +1,14 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.cards.cores.AssembledCard;
+import Snowpunk.cards.old_cores.ARCHIVED_AssembledCard;
 import Snowpunk.patches.CustomTags;
-import Snowpunk.powers.SnowballPower;
-import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.ui.EvaporatePanel;
-import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -46,7 +42,7 @@ public class WhistolMod extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        if (!(card instanceof AssembledCard) && card.type != AbstractCard.CardType.ATTACK) {
+        if (!(card instanceof ARCHIVED_AssembledCard) && card.type != AbstractCard.CardType.ATTACK) {
             return false;
         }
         return !CardModifierManager.hasModifier(card, ID);

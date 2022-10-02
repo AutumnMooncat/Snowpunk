@@ -23,7 +23,7 @@ public class HeatBasedEnergyManager extends EnergyManager {
         calculateGains();
         gainSnowAndSteam();
         super.prep();
-        Wiz.applyToSelfTop(new EngineTempPower(Wiz.adp()));
+        //Wiz.applyToSelfTop(new EngineTempPower(Wiz.adp()));
     }
 
     @Override

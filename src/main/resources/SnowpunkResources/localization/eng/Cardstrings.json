@@ -93,8 +93,7 @@
   },
   "${ModID}:BurningFury": {
     "NAME": "Burning Fury",
-    "DESCRIPTION": "{@@}snowpunk:Heat your Energy. NL Gain {!M!|@=a|>1=!M!} snowpunk:Fireball{!M!|>1=s}. NL snowpunk:Evaporate.",
-    "UPGRADE_DESCRIPTION": "snowpunk:Heat your Energy. NL Gain {!M!|@=a|>1=!M!} snowpunk:Fireball{!M!|>1=s}"
+    "DESCRIPTION": "{@@}Next turn, gain {!M!|@=a|>1=!M!} snowpunk:Fireball{!M!|>1=s}."
   },
   "${ModID}:Caroling": {
     "NAME": "Caroling",
@@ -142,7 +141,7 @@
   },
   "${ModID}:Create": {
     "NAME": "Create",
-    "DESCRIPTION": "{@@}Ethereal. Fleeting. NL snowpunk:Assemble a card from !M! snowpunk:Core{!M!|>1=s} and randomly Upgrade it !Snowpunk:M2! time{!Snowpunk:M2!|>1=s}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
+    "DESCRIPTION": "snowpunk:Assemble a card with !M! effects. NL Gain !Snowpunk:Info! more options to choose from."
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
@@ -155,8 +154,8 @@
   },
   "${ModID}:EngineOffload": {
     "NAME": "Engine Offload",
-    "DESCRIPTION": "{@@}snowpunk:Stabilize your Energy. snowpunk:Condense ALL snowpunk:Evaporated cards.{!Snowpunk:Info!|0= NL Exhaust.}",
-    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Condense ALL snowpunk:Evaporated cards.{!Snowpunk:Info!|0= NL Exhaust.}"
+    "DESCRIPTION": "snowpunk:Condense ALL snowpunk:Evaporated cards. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "snowpunk:Condense ALL snowpunk:Evaporated cards."
   },
   "${ModID}:Faster": {
     "NAME": "Faster",
@@ -164,7 +163,7 @@
   },
   "${ModID}:FireAndBrimstone": {
     "NAME": "Fire and Brimstone",
-    "DESCRIPTION": "{@@}At the start of your turn, lose [E] and gain {!M!|@=a snowpunk:Fireball.|>1=!M! snowpunk:Fireballs.}",
+    "DESCRIPTION": "{@@}At the start of your turn, gain !M! snowpunk:Fireball{!M!|>1=s} and lose {!M!|-1,1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
     "UPGRADE_DESCRIPTION": "{@@}Innate. NL At the start of your turn, lose [E] and gain {!M!|@=a snowpunk:Fireball.|>1=!M! snowpunk:Fireballs.}"
   },
   "${ModID}:Fireball": {
@@ -234,6 +233,10 @@
     "NAME": "Invent",
     "DESCRIPTION": "snowpunk:Assemble a card with !M! effects.",
     "UPGRADE_DESCRIPTION": "{@@}snowpunk:Assemble a card with !M! effect{!M!|>1=s}{!Snowpunk:M2!|>0= and randomly Upgrade it}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
+  },
+  "${ModID}:Kablam": {
+    "NAME": "Kablam",
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:MadScience": {
     "NAME": "Mad Science",

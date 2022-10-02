@@ -1,7 +1,6 @@
 package Snowpunk.cards.parts;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.cards.cores.AbstractCoreCard;
 import Snowpunk.patches.TypeOverridePatch;
 import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.ExhaustiveField;

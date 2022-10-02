@@ -87,7 +87,7 @@
       "snow",
       "s"
     ],
-    "DESCRIPTION": "An accumulating resource that remains between turns and can be converted to #yEnergy."
+    "DESCRIPTION": "A resource that remains between turns and can be spent as #yEnergy."
   },
   {
     "PROPER_NAME": "Chill",
@@ -345,6 +345,6 @@
       "spare_parts",
       "spare_part"
     ],
-    "DESCRIPTION": "#yUpgrades drawn cards for the rest of combat."
+    "DESCRIPTION": "#yUpgrades the next cards you draw."
   }
 ]

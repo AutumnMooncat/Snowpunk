@@ -1,4 +1,4 @@
-package Snowpunk.cards.cores;
+package Snowpunk.cards.old_cores;
 
 import Snowpunk.cardmods.cores.FlingScrapMod;
 import Snowpunk.cardmods.cores.GainSparePartsMod;
@@ -40,11 +40,11 @@ public class FlingScrap extends AbstractCoreCard {
         CardModifierManager.addModifier(card, new CardEditMod(TEXT[0], COST, TYPE, CardRarity.SPECIAL, TARGET));
         CardModifierManager.addModifier(card, new FlingScrapMod(blocks[0], useSecondDamage));
         CardModifierManager.addModifier(card, new GainSparePartsMod(blocks[1], useSecondMagic));
-        if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLING_SCRAP, useSecondDamage, UP_DAMAGE));
-            ((AssembledCard) card).addInfo(new Triplet<>(AssembledCard.SaveInfo.CoreType.FLING_SCRAP2, useSecondMagic, UP_PARTS));
-            ((AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
-            ((AssembledCard) card).saveMagic(PARTS, useSecondMagic);
+        if (card instanceof ARCHIVED_AssembledCard) {
+            ((ARCHIVED_AssembledCard) card).addInfo(new Triplet<>(ARCHIVED_AssembledCard.SaveInfo.CoreType.FLING_SCRAP, useSecondDamage, UP_DAMAGE));
+            ((ARCHIVED_AssembledCard) card).addInfo(new Triplet<>(ARCHIVED_AssembledCard.SaveInfo.CoreType.FLING_SCRAP2, useSecondMagic, UP_PARTS));
+            ((ARCHIVED_AssembledCard) card).saveDamage(DAMAGE, useSecondDamage);
+            ((ARCHIVED_AssembledCard) card).saveMagic(PARTS, useSecondMagic);
         }
     }
 

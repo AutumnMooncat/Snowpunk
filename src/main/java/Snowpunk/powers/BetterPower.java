@@ -1,6 +1,5 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.AssembleCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;

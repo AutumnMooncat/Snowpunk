@@ -1,8 +1,8 @@
 package Snowpunk.cardmods.cores;
 
 import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
-import Snowpunk.cards.cores.AssembledCard;
-import Snowpunk.cards.cores.util.OnUseCardInstance;
+import Snowpunk.cards.old_cores.ARCHIVED_AssembledCard;
+import Snowpunk.cards.old_cores.util.OnUseCardInstance;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -17,9 +17,9 @@ public class PipeFenceMod extends AbstractCardEffectMod {
     @Override
     public void onInitialApplication(AbstractCard card) {
         super.onInitialApplication(card);
-        if (card instanceof AssembledCard) {
-            ((AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
-                int amount = useSecondVar ? ((AssembledCard) card).secondBlock : card.block;
+        if (card instanceof ARCHIVED_AssembledCard) {
+            ((ARCHIVED_AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
+                int amount = useSecondVar ? ((ARCHIVED_AssembledCard) card).secondBlock : card.block;
                 Wiz.atb(new GainBlockAction(p, amount));
                 Wiz.atb(new GainBlockAction(p, amount));
                 Wiz.atb(new GainBlockAction(p, amount));
