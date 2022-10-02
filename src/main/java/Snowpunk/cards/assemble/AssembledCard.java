@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -123,7 +124,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
     public void onLoad(ArrayList<CardSave> coreLoad) {
         int timesToUpgrade = 0;
         if (coreLoad != null) {
-            if (coreLoad.get(0).id == cardID) {
+            if (coreLoad.get(0).id.equals(cardID)) {
                 timesToUpgrade = coreLoad.get(0).upgrades;
                 coreLoad.remove(coreLoad.get(0));
             }
@@ -171,7 +172,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements OnRecreat
         getName();
         getDescription();
 
-        if (name != "")
+        if (!name.equals(""))
             AssembledCardArtRoller.computeCard(this);
 
         if (getUpgrades().size() == 0) {
