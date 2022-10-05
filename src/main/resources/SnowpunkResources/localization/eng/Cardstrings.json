@@ -12,7 +12,10 @@
   },
   "${ModID}:AssembledCard": {
     "NAME": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "{@@}",
+    "EXTENDED_DESCRIPTION": [
+      "."
+    ]
   },
   "${ModID}:ArtilleryCargo": {
     "NAME": "Artillery Cargo",
@@ -22,7 +25,7 @@
   "${ModID}:Avalanche": {
     "NAME": "Avalanche",
     "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add a copy of this card to your discard pile."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL snowpunk:Duplicate."
   },
   "${ModID}:BackupBoiler": {
     "NAME": "Backup Boiler",

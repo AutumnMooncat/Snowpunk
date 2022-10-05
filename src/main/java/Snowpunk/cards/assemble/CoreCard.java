@@ -67,10 +67,14 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
     //region Non-Modifiable Stuff
     public enum EffectTag {
         PREFIX,
+        AB,
         CORE,
+        AMOD,
         ABMOD,
         MOD,
-        NAME
+        MAGIC,
+        NAME,
+        ADJECTIVE
     }
 
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;

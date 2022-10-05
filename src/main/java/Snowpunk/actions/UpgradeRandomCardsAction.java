@@ -12,6 +12,7 @@ public class UpgradeRandomCardsAction extends AbstractGameAction {
 
     public UpgradeRandomCardsAction(int num) {
         this.amount = num;
+        duration = Settings.ACTION_DUR_FAST;
         p = AbstractDungeon.player;
     }
 

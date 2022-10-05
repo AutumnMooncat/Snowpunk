@@ -1,8 +1,10 @@
 package Snowpunk.actions;
 
 import Snowpunk.SnowpunkMod;
+import Snowpunk.cards.assemble.AdjectiveCore;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
+import Snowpunk.cards.assemble.NameCore;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -67,6 +69,8 @@ public class AssembleAction extends AbstractGameAction {
             }
         });
 
+        pickNamesForCard(ac, options);
+        pickAdjectivesForCard(ac, options);
         for (int i = 0; i < cores; i++) {
             if (random)
                 giveRandomCore(ac);
@@ -143,6 +147,74 @@ public class AssembleAction extends AbstractGameAction {
                             if (c instanceof CoreCard) {
                                 ((CoreCard) c).apply(card);
                                 validCores.removeCard(c);
+                                AssembleAction.pickedCores.add((CoreCard) c);
+                            }
+                        }
+                    }));
+                }
+                card.grabStats();
+                this.isDone = true;
+            }
+        });
+    }
+
+    private static void pickAdjectivesForCard(AssembledCard card, int options) {
+        Wiz.att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CardGroup validCores = getValidCores(card);
+                if (!validCores.isEmpty()) {
+                    ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
+                    for (int i = 0; i < options; i++) {
+                        AdjectiveCore newAdj = new AdjectiveCore();
+                        int numChecked = 0;
+                        while (cardsToPick.stream().anyMatch(c -> c.misc == newAdj.misc) && numChecked < AdjectiveCore.TEXT.length) {
+                            newAdj.misc++;
+                            if (newAdj.misc >= AdjectiveCore.TEXT.length)
+                                newAdj.misc -= AdjectiveCore.TEXT.length;
+                            numChecked++;
+                        }
+                        newAdj.initializeDescription();
+                        cardsToPick.add(newAdj);
+                    }
+                    Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, "", false, crd -> true, cards -> {
+                        for (AbstractCard c : cards) {
+                            if (c instanceof CoreCard) {
+                                ((CoreCard) c).apply(card);
+                                AssembleAction.pickedCores.add((CoreCard) c);
+                            }
+                        }
+                    }));
+                }
+                card.grabStats();
+                this.isDone = true;
+            }
+        });
+    }
+
+    private static void pickNamesForCard(AssembledCard card, int options) {
+        Wiz.att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CardGroup validCores = getValidCores(card);
+                if (!validCores.isEmpty()) {
+                    ArrayList<AbstractCard> cardsToPick = new ArrayList<>();
+                    for (int i = 0; i < options; i++) {
+                        NameCore newName = new NameCore();
+                        int numChecked = 0;
+                        while (cardsToPick.stream().anyMatch(c -> c.misc == newName.misc) && numChecked < NameCore.TEXT.length) {
+                            newName.misc++;
+                            if (newName.misc >= NameCore.TEXT.length)
+                                newName.misc -= NameCore.TEXT.length;
+                            numChecked++;
+                        }
+                        newName.initializeDescription();
+                        cardsToPick.add(newName);
+                    }
+                    Wiz.att(new BetterSelectCardsCenteredAction(cardsToPick, 1, "", false, crd -> true, cards -> {
+                        for (AbstractCard c : cards) {
+                            if (c instanceof CoreCard) {
+                                ((CoreCard) c).apply(card);
                                 AssembleAction.pickedCores.add((CoreCard) c);
                             }
                         }

@@ -34,6 +34,13 @@
     "DESCRIPTION": "Determines the effect and abilities of a card."
   },
   {
+    "PROPER_NAME": "Duplicate",
+    "NAMES": [
+      "duplicate"
+    ],
+    "DESCRIPTION": "Add a copy of this card to your discard pile."
+  },
+  {
     "PROPER_NAME": "Engine",
     "NAMES": [
       "engine",

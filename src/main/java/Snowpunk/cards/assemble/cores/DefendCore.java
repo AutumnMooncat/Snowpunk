@@ -26,7 +26,7 @@ public class DefendCore extends CoreCard {
     private static final int COST = 1, BLOCK = 9, UP_BLOCK = 3;
 
     public DefendCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
         block = baseBlock = BLOCK;
     }
 

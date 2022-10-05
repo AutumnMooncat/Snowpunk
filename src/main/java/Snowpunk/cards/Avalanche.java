@@ -39,7 +39,7 @@ public class Avalanche extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         if (addCopy)
-            addToBot((AbstractGameAction) new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
+            addToBot(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
     }
 
     /*

@@ -27,7 +27,7 @@ public class StrikeCore extends CoreCard {
     private static final int COST = 1, DAMAGE = 10, UP_DAMAGE = 3;
 
     public StrikeCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
         damage = baseDamage = DAMAGE;
     }
 

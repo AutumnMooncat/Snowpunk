@@ -28,7 +28,7 @@ public class ConveyorCore extends CoreCard {
     private static final int COST = 0, MAGIC = 2;
 
     public ConveyorCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.MAGIC);
         magicNumber = baseMagicNumber = MAGIC;
     }
 

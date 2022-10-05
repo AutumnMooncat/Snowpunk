@@ -35,7 +35,15 @@ public class ExhaustCore extends CoreCard {
         for (CoreCard core : coreCards) {
             totalCost += core.cost;
         }
-        return totalCost < 1;
+        return totalCost < 1 || (coreCards.stream().anyMatch(coreCard -> coreCard.exhaust));
+    }
+
+    @Override
+    public ArrayList<Integer> unavailableTurns() {
+        ArrayList<Integer> turns = new ArrayList<>();
+        turns.add(0);
+        turns.add(1);
+        return turns;
     }
 
     @Override

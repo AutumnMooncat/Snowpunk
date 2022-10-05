@@ -26,12 +26,21 @@ public class DeflectCore extends CoreCard {
     private static final int COST = 0, BLOCK = 5, UP_BLOCK = 3;
 
     public DeflectCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
         block = baseBlock = BLOCK;
     }
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         blck();
+    }
+
+    @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        int totalCost = 0;
+        for (CoreCard core : coreCards) {
+            totalCost += core.cost;
+        }
+        return totalCost < 1;
     }
 }

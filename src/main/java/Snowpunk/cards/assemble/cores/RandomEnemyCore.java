@@ -4,7 +4,6 @@ import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.patches.NegativeCostFieldPatches;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import java.util.ArrayList;
@@ -13,17 +12,18 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class AllEnemiesCore extends CoreCard {
-    public static final String ID = makeID(AllEnemiesCore.class.getSimpleName());
+public class RandomEnemyCore extends CoreCard {
+    public static final String ID = makeID(RandomEnemyCore.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0;
+    private static final int COST = -1;
 
-    public AllEnemiesCore() {
+    public RandomEnemyCore() {
         super(ID, COST, TYPE, EffectTag.AMOD);
         target = CardTarget.ALL_ENEMY;
+        NegativeCostFieldPatches.NegativeCostField.isNegativeCost.set(this, true);
     }
 
     @Override
@@ -35,8 +35,13 @@ public class AllEnemiesCore extends CoreCard {
 
     @Override
     public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
-        if (coreCards.get(coreCards.size() - 1).damage < 1)
+        if (coreCards.get(coreCards.size() - 1).damage < 1) {
             return true;
-        return false;
+        }
+        int totalCost = 0;
+        for (CoreCard core : coreCards) {
+            totalCost += core.cost;
+        }
+        return totalCost < 1;
     }
 }

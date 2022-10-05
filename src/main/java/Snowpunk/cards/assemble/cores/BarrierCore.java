@@ -28,7 +28,7 @@ public class BarrierCore extends CoreCard {
     private static final int COST = 2, BLOCK = 16, UP_BLOCK = 4;
 
     public BarrierCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
         block = baseBlock = BLOCK;
     }
 

@@ -145,44 +145,47 @@
   },
   "${ModID}:StrikeCore": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage"
   },
   "${ModID}:CarnageCore": {
     "NAME": "Carnage",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage"
   },
   "${ModID}:SliceCore": {
     "NAME": "Slice",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage"
   },
   "${ModID}:DefendCore": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block"
   },
   "${ModID}:BarrierCore": {
     "NAME": "Barrier",
-    "DESCRIPTION": "Gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block"
   },
   "${ModID}:DeflectCore": {
     "NAME": "Deflect",
-    "DESCRIPTION": "Gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block"
   },
   "${ModID}:ConveyorCore": {
     "NAME": "Conveyor",
-    "DESCRIPTION": "Draw !M! cards. NL Discard !M! cards."
+    "DESCRIPTION": "Draw !M! cards. NL Discard !M! cards"
   },
   "${ModID}:UpgradeCore": {
     "NAME": "Upgrade",
-    "DESCRIPTION": "Upgrade !M! random cards in your hand."
+    "DESCRIPTION": "Upgrade !M! random cards in your hand"
   },
   "${ModID}:SnowballCore": {
     "NAME": "Snowball",
-    "DESCRIPTION": "Gain !Snowpunk:M2! snowpunk:Snowball.",
-    "UPGRADE_DESCRIPTION": "Gain !Snowpunk:M2! snowpunk:Snowballs."
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}"
+  },
+  "${ModID}:FireballCore": {
+    "NAME": "Fireball",
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Fireball{!Snowpunk:M2!|>1=s}"
   },
   "${ModID}:ExhaustCore": {
     "NAME": "Exhaust",
-    "DESCRIPTION": "Exhaust."
+    "DESCRIPTION": "Exhaust"
   },
   "${ModID}:ColdCore": {
     "NAME": "Cold",
@@ -192,8 +195,119 @@
     "NAME": "Hot",
     "DESCRIPTION": ""
   },
+  "${ModID}:FrostyCore": {
+    "NAME": "Frosty",
+    "DESCRIPTION": ""
+  },
   "${ModID}:AllEnemiesCore": {
     "NAME": "All Enemies",
-    "DESCRIPTION": "to ALL enemies."
+    "DESCRIPTION": " to ALL enemies"
+  },
+  "${ModID}:RandomEnemyCore": {
+    "NAME": "Random Enemy",
+    "DESCRIPTION": " to a random enemy"
+  },
+  "${ModID}:TwiceCore": {
+    "NAME": "Twice",
+    "DESCRIPTION": " twice"
+  },
+  "${ModID}:ThriceCore": {
+    "NAME": "Thrice",
+    "DESCRIPTION": " thrice. NL Exhaust"
+  },
+  "${ModID}:DuplicateCore": {
+    "NAME": "Duplicate",
+    "DESCRIPTION": "snowpunk:Duplicate"
+  },
+  "${ModID}:AdjectiveCore": {
+    "NAME": "Adjective",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "Big",
+      "Black",
+      "Brass",
+      "Chunky",
+      "Confusing",
+      "Crisp",
+      "Crusty",
+      "Dehydrated",
+      "Discombobulated",
+      "Drunk",
+      "Endless",
+      "Furry",
+      "Greedy",
+      "Green",
+      "Grotesque",
+      "Heavenly",
+      "Jolly",
+      "Magical",
+      "Moist",
+      "Nasty",
+      "Overtuned",
+      "Peachy",
+      "Quizzical",
+      "Red",
+      "Rotund",
+      "Scrunkly",
+      "Sickly",
+      "Small",
+      "Stinky",
+      "Stubby",
+      "Super",
+      "Super Duper",
+      "Suspicious",
+      "Thicc",
+      "Turbo",
+      "Un-",
+      "Waterlogged",
+      "Whacky",
+      "Whimsical",
+      "White",
+      "Wibbly",
+      "Wobbly"
+    ]
+  },
+  "${ModID}:NameCore": {
+    "NAME": "Name",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "9000",
+      "Assault",
+      "Ball Hog",
+      "Beans",
+      "Bomb",
+      "Booty",
+      "Bubble",
+      "Chungus",
+      "Confusion",
+      "Contraption",
+      "Conveyor",
+      "Destroyer",
+      "Doohickey",
+      "Encabulator",
+      "Eye",
+      "Hand",
+      "-inator",
+      "Flame",
+      "Gizmo",
+      "Glasses",
+      "Gongola",
+      "Gremlin",
+      "Gun",
+      "Kludge",
+      "Machine",
+      "Parts",
+      "Pooper Scooper",
+      "Quandary",
+      "Rifle",
+      "Shield",
+      "Snowpile",
+      "Spandangler",
+      "Teapot",
+      "Thing",
+      "Thingamajig",
+      "Train",
+      "Whistle"
+    ]
   }
 }

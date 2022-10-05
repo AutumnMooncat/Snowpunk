@@ -26,12 +26,21 @@ public class SliceCore extends CoreCard {
     private static final int COST = 0, DAMAGE = 6, UP_DAMAGE = 3;
 
     public SliceCore() {
-        super(ID, COST, TYPE, EffectTag.CORE);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
         damage = baseDamage = DAMAGE;
     }
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         card.getModifiedDamageAction(player, monster);
+    }
+
+    @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        int totalCost = 0;
+        for (CoreCard core : coreCards) {
+            totalCost += core.cost;
+        }
+        return totalCost < 1;
     }
 }
