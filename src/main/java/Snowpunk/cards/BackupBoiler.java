@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.DupeMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BackupBoilerPower;
@@ -7,6 +8,7 @@ import Snowpunk.powers.SteamFormPower;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.BaseModCardTags;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,6 +28,7 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
     public BackupBoiler() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
+        CardModifierManager.addModifier(this, new DupeMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -34,8 +37,10 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> upgradeMagicNumber(1), 0);
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setExclusions(1, 2);
     }
 }

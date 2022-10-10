@@ -2,6 +2,8 @@ package Snowpunk.powers;
 
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -19,13 +21,18 @@ public class WildfirePower extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfTurn(boolean player) {
+    public void atStartOfTurn() {
+        addToBot(new LoseEnergyAction(amount));
+        Wiz.applyToSelf(new FireballPower(owner, amount));
         flash();
-        addToBot(new ModEngineTempAction(2 * amount));
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        if (amount == 1) {
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
+        } else {
+            this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
+        }
     }
 }

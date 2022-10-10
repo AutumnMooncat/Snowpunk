@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.WildfirePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,7 +17,7 @@ public class Wildfire extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int EFFECT = 1;
 
     public Wildfire() {
@@ -26,16 +27,18 @@ public class Wildfire extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new WildfirePower(p, magicNumber));
+        if (secondMagic > 0)
+            Wiz.applyToSelf(new FireballPower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
-            isInnate = true;
+            secondMagic = baseSecondMagic = 0;
+            upgradeSecondMagic(1);
             uDesc();
         });
-        addUpgradeData(() -> upgradeBaseCost(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        setDependencies(true, 2, 0, 1);
     }
 }

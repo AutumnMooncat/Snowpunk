@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.DupeMod;
 import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.OverheatNextCardPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -21,42 +23,22 @@ public class Faster extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1;
-    private static final int NRG = 1;
-    private static final int UP_NRG = 1;
-    private static final int UP_DRAW = 1;
+    private static final int COST = 2, OVERHEATED_CARDS = 1, UP_CARDS = 1;
 
     public Faster() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = NRG;
-        secondMagic = baseSecondMagic = 0;
+        magicNumber = baseMagicNumber = OVERHEATED_CARDS;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = this.energyOnUse;
-
-        if (p.hasRelic("Chemical X")) {
-            effect += ChemicalX.BOOST;
-            p.getRelic("Chemical X").flash();
-        }
-
-        effect += secondMagic;
-
-        if (effect > 0) {
-            Wiz.atb(new DrawCardAction(effect));
-        }
-        Wiz.atb(new GainEnergyAction(magicNumber));
-
-        if (!this.freeToPlayOnce) {
-            p.energy.use(EnergyPanel.totalCount);
-        }
+        Wiz.applyToSelf(new OverheatNextCardPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeSecondMagic(UP_DRAW));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_NRG));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new VentMod()));
+        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new DupeMod()));
     }
 }

@@ -1,17 +1,13 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurnPower;
-import Snowpunk.util.SteamEngine;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -39,7 +35,7 @@ public class Comburstion extends AbstractMultiUpgradeCard {
         allDmg(AbstractGameAction.AttackEffect.FIRE);
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
-                Wiz.applyToEnemy(mo, new BurnPower(mo, p, magicNumber));
+                Wiz.applyToEnemy(mo, new SingePower(mo, p, magicNumber));
             }
         }
     }

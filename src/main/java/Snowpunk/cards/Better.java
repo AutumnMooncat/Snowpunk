@@ -1,9 +1,9 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.*;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -16,48 +16,32 @@ public class Better extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
-    private static final int UP_COST = 0;
-    private static final int EFFECT = 2;
-    private static final int UP_EFFECT = 1;
-    private static final int PARTS = 3;
+    private static final int COST = 2, UP_COST = 1;
 
-    private boolean parts = false;
+    private boolean onPlay = false;
 
     public Better() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = EFFECT;
+        baseMagicNumber = magicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (parts) {
-            Wiz.applyToSelf(new SparePartsPower(p, magicNumber));
-        }
         Wiz.applyToSelf(new BetterPower(p, magicNumber));
+        if (onPlay)
+            Wiz.atb(new ArmamentsAction(true));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
-            this.isInnate = true;
-            if (parts) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-                initializeDescription();
-            } else {
-                uDesc();
-            }
+        addUpgradeData(() -> {
+            isInnate = true;
+            info = baseInfo = 0;
+            upgradeInfo(1);
         });
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> {
-            this.parts = true;
-            /*baseSecondMagic = secondMagic = 0;
-            upgradeSecondMagic(PARTS);*/
-            if (isInnate) {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-            } else {
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-            }
-            initializeDescription();
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> {
+            onPlay = true;
+            uDesc();
         });
     }
 }

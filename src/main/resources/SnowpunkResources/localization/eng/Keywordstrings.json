@@ -271,6 +271,13 @@
     "DESCRIPTION": "Receive half damage from #yAttacks this turn."
   },
   {
+    "PROPER_NAME": "Holly",
+    "NAMES": [
+      "holly"
+    ],
+    "DESCRIPTION": "At the start of your turn, increase #yChristmas #ySpirit."
+  },
+  {
     "PROPER_NAME": "Stabilize",
     "NAMES": [
       "stabilize"
@@ -297,9 +304,10 @@
     "NAMES": [
       "christmasspirit",
       "christmas\u00a0spirit",
-      "christmasu00a0spirit"
+      "christmasu00a0spirit",
+      "christmas_spirit"
     ],
-    "DESCRIPTION": "If you end combat without killing anyone, heal HP and gain Gold equal to your #yChristmas #ySpirit, and gain an additional card from this combat's card reward."
+    "DESCRIPTION": "If Christmas Spirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn."
   },
   {
     "PROPER_NAME": "Solve",
@@ -312,7 +320,8 @@
   {
     "PROPER_NAME": "Frosty",
     "NAMES": [
-      "frosty"
+      "frosty",
+      "double_frosty"
     ],
     "DESCRIPTION": "If this card is in your hand at the end of your turn, lower its cost by #b1. NL #yHot cards cannot be Frosty."
   },

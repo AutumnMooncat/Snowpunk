@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.DupeMod;
 import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -53,10 +54,7 @@ public class Avalanche extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> {
-            addCopy = true;
-            uDesc();
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new DupeMod()));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

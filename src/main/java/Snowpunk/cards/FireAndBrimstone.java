@@ -5,6 +5,7 @@ import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrimstonePower;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SteamFormPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.BaseModCardTags;
@@ -20,27 +21,25 @@ public class FireAndBrimstone extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
-    private static final int EFFECT = 1;
+    private static final int COST = 2, FIREBALLS = 1, BRIMSTONE = 3, UP_FIRE = 1, UP_BRIM = 2;
 
     private boolean heatEngine = false;
 
     public FireAndBrimstone() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = EFFECT;
+        baseMagicNumber = magicNumber = FIREBALLS;
+        baseSecondMagic = secondMagic = BRIMSTONE;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new BrimstonePower(p, magicNumber));
+        Wiz.applyToSelf(new FireballPower(p, magicNumber));
+        Wiz.applyToSelf(new BrimstonePower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(0));
-        addUpgradeData(this, () -> {
-            isInnate = true;
-            uDesc();
-        });
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_FIRE));
+        addUpgradeData(() -> upgradeSecondMagic(UP_BRIM));
     }
 }

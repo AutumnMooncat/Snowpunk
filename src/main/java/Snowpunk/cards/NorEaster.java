@@ -37,7 +37,7 @@ public class NorEaster extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 0;
         exhaust = true;
-        CardTemperatureFields.addInherentHeat(this, -2);
+        CardTemperatureFields.addInherentHeat(this, -1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -57,20 +57,13 @@ public class NorEaster extends AbstractMultiUpgradeCard {
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }
-
-        /*
-        if (allCards) {
-            Wiz.atb(new ModCardTempEverywhereAction(-99));
-        } else {
-            Wiz.atb(new ModCardTempAction(-1, -99, true));
-        }
-        Wiz.atb(new ModEngineTempAction(-99));*/
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });

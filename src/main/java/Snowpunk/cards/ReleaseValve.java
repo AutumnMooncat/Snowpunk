@@ -1,13 +1,10 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurnPower;
-import Snowpunk.powers.FireballPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -33,7 +30,7 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
+        Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
         Wiz.atb(new ModCardTempAction(this, 1));
 
         //Wiz.applyToSelf(new FireballPower(p, magicNumber));

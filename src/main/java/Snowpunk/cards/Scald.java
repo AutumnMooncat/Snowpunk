@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.BurnPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,11 +40,11 @@ public class Scald extends AbstractMultiUpgradeCard {
         if (info == 1) {
             for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
                 if (!mon.isDeadOrEscaped()) {
-                    Wiz.applyToEnemy(mon, new BurnPower(mon, p, magicNumber));
+                    Wiz.applyToEnemy(mon, new SingePower(mon, p, magicNumber));
                 }
             }
         } else {
-            Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
+            Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
         }
     }
 

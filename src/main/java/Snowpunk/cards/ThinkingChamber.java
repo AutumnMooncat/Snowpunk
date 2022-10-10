@@ -1,12 +1,10 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.MultiUpgradeInHandAction;
-import Snowpunk.actions.TinkerAction;
 import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.ProtectionPower;
-import Snowpunk.powers.SteamPower;
+import Snowpunk.powers.IcePower;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
@@ -37,7 +35,7 @@ public class ThinkingChamber extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new ProtectionPower(p, secondMagic));
+        Wiz.applyToSelf(new IcePower(p, secondMagic));
         if (magicNumber < BaseMod.MAX_HAND_SIZE)
             Wiz.atb(new MultiUpgradeInHandAction(magicNumber, 1));
         else

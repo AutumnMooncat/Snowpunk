@@ -28,7 +28,7 @@ public class Blueprint extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new MakeCopyInHandAction(freeUpgrade));
+//        Wiz.atb(new MakeCopyInHandAction(freeUpgrade));
     }
 
     @Override

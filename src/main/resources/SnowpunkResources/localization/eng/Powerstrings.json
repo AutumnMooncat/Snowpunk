@@ -21,7 +21,7 @@
     ]
   },
   "${ModID}:CarolingDrawPower": {
-    "NAME": "Caroling Draw",
+    "NAME": "Caroling",
     "DESCRIPTIONS": [
       "At the start of your turn, if you played no attacks last turn, draw #b",
       " card.",
@@ -142,7 +142,7 @@
       " HP."
     ]
   },
-  "${ModID}:BurnPower": {
+  "${ModID}:SingePower": {
     "NAME": "Singe",
     "DESCRIPTIONS": [
       "Take #b",
@@ -226,6 +226,25 @@
       "Sing with me!"
     ]
   },
+  "${ModID}:ChristmasSpiritPower": {
+    "NAME": "Christmas Spirit",
+    "DESCRIPTIONS": [
+      "If #yChristmas #ySpirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn.",
+      "Jingle bells, jingle bells, jingle all the way...",
+      "Dashing through the snow, in a one horse open sleigh...",
+      "Christmas time is here!",
+      "All I want for Christmas is youuuuuuu!",
+      "Let it snow!",
+      "Chestnuts roasting on an open fiiiiire...",
+      "Siiiiiiilent niiiiiight....",
+      "Joy to the world!",
+      "On the first day of Christmas...",
+      "FIVE GOLDEN RINGS!!!",
+      "It's beginning to look a lot like Christmas!",
+      "God rest ye merry gentlemen...",
+      "Sing with me!"
+    ]
+  },
   "${ModID}:SteamFormPower": {
     "NAME": "Steam Form",
     "DESCRIPTIONS": [
@@ -233,20 +252,26 @@
       " #ySteam."
     ]
   },
-  "${ModID}:ProtectionPower": {
+  "${ModID}:HollyPower": {
+    "NAME": "Holly",
+    "DESCRIPTIONS": [
+      "At the start of your turn, increase #yChristmas #ySpirit by #b",
+      "."
+    ]
+  },
+  "${ModID}:IcePower": {
     "NAME": "Ice",
     "DESCRIPTIONS": [
       "Take half damage from #yAttacks this turn.",
-      "Take half damage from #yAttacks for #b", " turns."
+      "Take half damage from #yAttacks for #b",
+      " turns."
     ]
   },
   "${ModID}:BrimstonePower": {
-    "NAME": "Fire and Brimstone",
+    "NAME": "Brimstone",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b",
-      " #yFireball and lose #b",
-      " #yFireballs and lose #b",
-      " [E] ."
+      "Whenever a card Evaporates, apply #b",
+      " #ySinge to a random enemy."
     ]
   },
   "${ModID}:BetterInventionPower": {
@@ -276,7 +301,10 @@
   "${ModID}:WildfirePower": {
     "NAME": "Wildfire",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yHeat your #yEngine."
+      "At the start of your turn, gain #b",
+      " #yFireball and lose #b",
+      " #yFireballs and lose #b",
+      " [E] ."
     ]
   },
   "${ModID}:SparePartsPower": {
@@ -346,7 +374,9 @@
   "${ModID}:BetterPower": {
     "NAME": "Better",
     "DESCRIPTIONS": [
-      "Whenever you play an #yUpgraded card, gain #b"," #yBlock."
+      "At the start of your turn, #yUpgrade ALL cards in your hand.",
+      "At the start of your turn, #yUpgrade ALL cards in your hand #b",
+      " times."
     ]
   },
   "${ModID}:CondensationPower": {

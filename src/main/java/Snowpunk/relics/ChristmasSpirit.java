@@ -1,16 +1,12 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.actions.ChangeChristmasSpiritAction;
-import Snowpunk.powers.ChristmasCookiePower;
+import Snowpunk.powers.ChristmasSpiritPower;
 import Snowpunk.powers.HolidayCheerPower;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -21,131 +17,61 @@ import static Snowpunk.util.Wiz.atb;
 public class ChristmasSpirit extends AbstractEasyRelic {
     public static final String ID = makeID(ChristmasSpirit.class.getSimpleName());
 
-    public int currentCheer = 0;
-    public boolean prevRoomBattle = false, killThisCombat = false;
+    public int currentCheer;
 
     public ChristmasSpirit() {
-        super(ID, RelicTier.SPECIAL, LandingSound.FLAT, TheConductor.Enums.SNOWY_BLUE_COLOR);
-        counter = 0;
+        this(0);
     }
 
+    public ChristmasSpirit(int cheer) {
+        super(ID, RelicTier.SPECIAL, LandingSound.FLAT, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        counter = currentCheer = cheer;
+        grayscale = false;
+    }
 
     @Override
     public void onEquip() {
-        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-            AbstractMonster m = AbstractDungeon.getMonsters().monsters.get(i);
-            if (m.isDead) {
-                if (m.currentHealth == 0) {
-                    flash();
-                    if (counter < 0)
-                        counter = 0;
-                    killThisCombat = true;
-                    grayscale = true;
-                    Wiz.atb(new ChangeChristmasSpiritAction(-1));
-                }
-            }
-        }
-    }
-
-    @Override
-    public void atBattleStart() {
-        if (counter > 0) {
-            currentCheer = counter;
-            resetVars();
-            flash();
-            updateHolidayCheer();
-            prevRoomBattle = true;
-        }
-    }
-
-    @Override
-    public void onMonsterDeath(AbstractMonster m) {
-        if (m.currentHealth == 0) {
-            flash();
-            if (counter < 0)
-                counter = 0;
-            killThisCombat = true;
-            grayscale = true;
-            Wiz.att(new ChangeChristmasSpiritAction(-1));
-            Wiz.atb(new RelicAboveCreatureAction(m, this));
-        }
-    }
-
-    @Override
-    public void onObtainCard(AbstractCard card) {
-        if (card.color == AbstractCard.CardColor.CURSE) {
-            if (ModHelper.isModEnabled("Hoarder")) {
-                Wiz.atb(new ChangeChristmasSpiritAction(-3));
-            } else
-                Wiz.atb(new ChangeChristmasSpiritAction(-1));
-        }
+        updateSpirit();
     }
 
     @Override
     public void onVictory() {
-        if (!killThisCombat) {
-            flash();
-            CardCrawlGame.sound.play("GOLD_GAIN");
-            Wiz.atb(new RelicAboveCreatureAction(adp(), this));
-            adp().heal(counter + getBonusHealing());
-            adp().gainGold(counter);
-        }
-    }
-
-    private int getBonusHealing() {
-        int bonus = 0;
-        if (adp().hasPower(ChristmasCookiePower.POWER_ID))
-            bonus += adp().getPower(ChristmasCookiePower.POWER_ID).amount;
-        return bonus;
+        grayscale = true;
+        counter = currentCheer = -1;
     }
 
     @Override
-    public int changeNumberOfCardsInReward(int amount) {
-        if (!killThisCombat && prevRoomBattle)
-            amount += 1;
-        return amount;
-    }
-
-    @Override
-    public void onEnterRoom(AbstractRoom room) {
-        resetVars();
-    }
-
-    @Override
-    public void setCounter(int amount) {
-        counter = amount;
-        if (counter > 12)
-            counter = 12;
-        if (counter < 0)
-            counter = 0;
-    }
-
-    private void resetVars() {
-        killThisCombat = false;
+    public void atBattleStartPreDraw() {
         grayscale = false;
-        prevRoomBattle = false;
+        counter = currentCheer = 0;
     }
 
-    public void updateHolidayCheer() {
-        updateHolidayCheer(0);
+
+    public void updateSpirit() {
+        updateSpirit(0);
     }
 
-    public void updateHolidayCheer(int addAmount) {
+    public void updateSpirit(int addAmount) {
         currentCheer += addAmount;
         if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            if (adp().hasPower(HolidayCheerPower.POWER_ID))
-                adp().getPower(HolidayCheerPower.POWER_ID).amount = currentCheer;
-            else
-                atb(new ApplyPowerAction(adp(), adp(), new HolidayCheerPower(adp(), currentCheer)));
+            if (adp().hasPower(ChristmasSpiritPower.POWER_ID)) {
+                if (adp().getPower(ChristmasSpiritPower.POWER_ID).amount < currentCheer)
+                    adp().getPower(ChristmasSpiritPower.POWER_ID).flash();
+                adp().getPower(ChristmasSpiritPower.POWER_ID).amount = currentCheer;
+            } else
+                atb(new ApplyPowerAction(adp(), adp(), new ChristmasSpiritPower(adp(), currentCheer)));
 
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
                 if (!monster.escaped && !monster.isDead && !monster.isEscaping) {
-                    if (monster.hasPower(HolidayCheerPower.POWER_ID))
-                        monster.getPower(HolidayCheerPower.POWER_ID).amount = currentCheer;
-                    else
-                        atb(new ApplyPowerAction(monster, monster, new HolidayCheerPower(monster, currentCheer)));
+                    if (monster.hasPower(ChristmasSpiritPower.POWER_ID)) {
+                        if (monster.getPower(ChristmasSpiritPower.POWER_ID).amount < currentCheer)
+                            monster.getPower(ChristmasSpiritPower.POWER_ID).flash();
+                        monster.getPower(ChristmasSpiritPower.POWER_ID).amount = currentCheer;
+                    } else
+                        atb(new ApplyPowerAction(monster, monster, new ChristmasSpiritPower(monster, currentCheer)));
                 }
             }
         }
+        counter = currentCheer;
     }
 }

@@ -1,11 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.interfaces.OnTinkeredCard;
-import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurnPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -46,7 +43,7 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
             dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }
         if (burn) {
-            Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
+            Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
         }
         if (chill) {
             Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));

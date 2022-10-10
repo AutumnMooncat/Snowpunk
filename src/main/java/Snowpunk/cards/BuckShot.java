@@ -1,13 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ScatterDamageAction;
-import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.IgnoreEnemyPowersPatches;
-import Snowpunk.powers.BurnPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -41,7 +39,7 @@ public class BuckShot extends AbstractMultiUpgradeCard {
         Wiz.atb(new ScatterDamageAction(this, damage, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageMap -> {
             if (info > 0) {
                 for (AbstractMonster mon : damageMap.keySet()) {
-                    Wiz.applyToEnemy(mon, new BurnPower(mon, p, magicNumber));
+                    Wiz.applyToEnemy(mon, new SingePower(mon, p, magicNumber));
                 }
             }
         }));

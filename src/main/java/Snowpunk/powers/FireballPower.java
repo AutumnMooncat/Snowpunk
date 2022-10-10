@@ -22,11 +22,9 @@ public class FireballPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse) {
+        if (!card.purgeOnUse && !owner.hasPower(OverheatNextCardPower.POWER_ID)) {
             flash();
-            //Wiz.atb(new ModEngineTempAction(1));
             CardTemperatureFields.addHeat(card, 1);
-            //addToTop(new ModCardTempAction(card, 1));
             addToTop(new ReducePowerAction(owner, owner, this, 1));
         }
     }

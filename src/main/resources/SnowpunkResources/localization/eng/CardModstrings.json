@@ -99,19 +99,35 @@
     ]
   },
   "${ModID}:ReshuffleMod": {
-    "EXTENDED_DESCRIPTION": [" NL snowpunk:Reshuffle."]
+    "EXTENDED_DESCRIPTION": [
+      " NL snowpunk:Reshuffle."
+    ]
   },
   "${ModID}:BetterExhaustMod": {
-    "EXTENDED_DESCRIPTION": [" NL Exhaust."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Exhaust."
+    ]
+  },
+  "${ModID}:DupeMod": {
+    "EXTENDED_DESCRIPTION": [
+      "snowpunk:Duplicate.",
+      " NL "
+    ]
   },
   "${ModID}:BetterPurgeMod": {
-    "EXTENDED_DESCRIPTION": [" NL Purge."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Purge."
+    ]
   },
   "${ModID}:FluxMod": {
-    "EXTENDED_DESCRIPTION": ["snowpunk:Fluxed. NL "]
+    "EXTENDED_DESCRIPTION": [
+      "snowpunk:Fluxed. NL "
+    ]
   },
   "${ModID}:VentMod": {
-    "EXTENDED_DESCRIPTION": [" NL snowpunk:Ventilated."]
+    "EXTENDED_DESCRIPTION": [
+      " NL snowpunk:Ventilated."
+    ]
   },
   "${ModID}:WhistolMod": {
     "EXTENDED_DESCRIPTION": ["snowpunk:Whistol. NL "]
@@ -120,21 +136,34 @@
     "EXTENDED_DESCRIPTION": [" Mk "]
   },
   "${ModID}:PrefixManager": {
-    "EXTENDED_DESCRIPTION": [" NL ",
-                            "snowpunk:Fluxed.",
-                            "snowpunk:Frosty.",
-                            "snowpunk:Whistol.",
-                            "snowpunk:Hot.",
-                            "snowpunk:Overheated.",
-                            "snowpunk:Cold.",
-                            "snowpunk:Frozen.",
-                            "snowpunk:Hot & snowpunk:Cold.",
-                            "snowpunk:Overheated & snowpunk:Frozen."]
+    "EXTENDED_DESCRIPTION": [
+      " NL ",
+      "snowpunk:Fluxed.",
+      "snowpunk:Frosty.",
+      "snowpunk:Whistol.",
+      "snowpunk:Hot.",
+      "snowpunk:Overheated.",
+      "snowpunk:Cold.",
+      "snowpunk:Frozen.",
+      "snowpunk:Hot & snowpunk:Cold.",
+      "snowpunk:Overheated & snowpunk:Frozen.",
+      "snowpunk:Double_Frosty."
+    ]
   },
   "${ModID}:TinkerSelfMod": {
-    "EXTENDED_DESCRIPTION": [" NL snowpunk:Tinker this card."]
+    "EXTENDED_DESCRIPTION": [
+      " NL snowpunk:Tinker this card."
+    ]
   },
   "${ModID}:MendingMod": {
-    "EXTENDED_DESCRIPTION": [" NL Is not removed when snowpunk:Tinkered."]
+    "EXTENDED_DESCRIPTION": [
+      " NL Is not removed when snowpunk:Tinkered."
+    ]
+  },
+  "${ModID}:CombineMod": {
+    "EXTENDED_DESCRIPTION": [
+      " NL Play ",
+      "*."
+    ]
   }
 }

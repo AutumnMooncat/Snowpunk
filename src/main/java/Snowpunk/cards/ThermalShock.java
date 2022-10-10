@@ -3,7 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurnPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -35,7 +35,7 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped()) {
-                Wiz.applyToEnemy(mo, new BurnPower(mo, p, magicNumber));
+                Wiz.applyToEnemy(mo, new SingePower(mo, p, magicNumber));
                 Wiz.applyToEnemy(mo, new ChillPower(mo, magicNumber));
             }
         }

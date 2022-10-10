@@ -166,6 +166,8 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
             return true;
         if ((core.effectTags.contains(CoreCard.EffectTag.AMOD)) && cores.get(cores.indexOf(core) + 1).effectTags.contains(CoreCard.EffectTag.ABMOD))
             return true;
+        if (cores.indexOf(core) == 0 && cores.size() > 2 && core.effectTags.contains(CoreCard.EffectTag.AB) && cores.get(1).rawDescription.equals("") && cores.get(2).effectTags.contains(CoreCard.EffectTag.ABMOD))
+            return true;
         return false;
     }
 
@@ -246,12 +248,14 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int bonusBlock = (int) Math.max(baseBlock * .25, 3);
                 addUpgradeData(() -> upgradeBlock(bonusBlock));
             }
-            if (baseMagicNumber > 0)
-                addUpgradeData(() -> upgradeMagicNumber(1));
-            if (baseSecondMagic > 0)
-                addUpgradeData(() -> upgradeSecondMagic(1));
-//            if (CardTemperatureFields.getCardHeat(this) == 1)
-//                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+            if (baseMagicNumber > 0) {
+                int bonusMagic = (int) Math.max(1, baseMagicNumber * .5);
+                addUpgradeData(() -> upgradeMagicNumber(bonusMagic));
+            }
+            if (baseSecondMagic > 0) {
+                int bonusMagic = (int) Math.max(1, baseSecondMagic * .5);
+                addUpgradeData(() -> upgradeSecondMagic(bonusMagic));
+            }
             if (CardModifierManager.hasModifier(this, FrostMod.ID))
                 addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
             if (baseCost > 2)

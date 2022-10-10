@@ -10,4 +10,5 @@ public class KeywordManager {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static String EVAPORATE = cardStrings.EXTENDED_DESCRIPTION[0];
     public static String CONDENSE = cardStrings.EXTENDED_DESCRIPTION[1];
+    public static String CHRISTMAS_SPIRIT = cardStrings.EXTENDED_DESCRIPTION[2];
 }

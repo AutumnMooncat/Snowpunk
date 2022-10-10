@@ -179,9 +179,17 @@
     "NAME": "Snowball",
     "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}"
   },
+  "${ModID}:SpiritCore": {
+    "NAME": "Christmas Spirit",
+    "DESCRIPTION": "Increase snowpunk:Christmas_Spirit by !Snowpunk:M2!"
+  },
   "${ModID}:FireballCore": {
     "NAME": "Fireball",
     "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Fireball{!Snowpunk:M2!|>1=s}"
+  },
+  "${ModID}:ShardCore": {
+    "NAME": "Ice Shard",
+    "DESCRIPTION": "{@@}Add !M! [#efc851]Ice[] [#efc851]Shard{!M!|>1=s}[] to your hand"
   },
   "${ModID}:ExhaustCore": {
     "NAME": "Exhaust",
@@ -217,7 +225,7 @@
   },
   "${ModID}:DuplicateCore": {
     "NAME": "Duplicate",
-    "DESCRIPTION": "snowpunk:Duplicate"
+    "DESCRIPTION": ""
   },
   "${ModID}:AdjectiveCore": {
     "NAME": "Adjective",
@@ -228,17 +236,20 @@
       "Brass",
       "Chunky",
       "Confusing",
+      "Cool",
       "Crisp",
       "Crusty",
       "Dehydrated",
       "Discombobulated",
       "Drunk",
       "Endless",
+      "Frosty",
       "Furry",
       "Greedy",
       "Green",
       "Grotesque",
       "Heavenly",
+      "Hot",
       "Jolly",
       "Magical",
       "Moist",
@@ -298,6 +309,7 @@
       "Machine",
       "Parts",
       "Pooper Scooper",
+      "Potato",
       "Quandary",
       "Rifle",
       "Shield",

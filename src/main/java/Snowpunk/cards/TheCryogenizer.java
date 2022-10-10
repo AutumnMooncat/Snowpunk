@@ -8,6 +8,7 @@ import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FrostbitePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -24,32 +25,28 @@ public class TheCryogenizer extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
-    private static final int DMG = 20;
-    private static final int UP_DMG = 6;
-    private static final int tempChange = 2;
+    private static final int COST = 2, DMG = 20, UP_DMG = 8, FROST = 1;
 
     public TheCryogenizer() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = tempChange;
+        magicNumber = baseMagicNumber = FROST;
         exhaust = true;
         CardTemperatureFields.addInherentHeat(this, -2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new ModEngineTempAction(-magicNumber));
-        //Wiz.atb(new CondenseRandomCardToHandAction(magicNumber));
+        Wiz.applyToEnemy(m, new FrostbitePower(m, p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(this, () -> upgradeMagicNumber(1));
         addUpgradeData(this, () -> {
             exhaust = false;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(2));
     }
 }

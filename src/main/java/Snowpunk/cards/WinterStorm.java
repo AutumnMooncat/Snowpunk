@@ -3,6 +3,8 @@ package Snowpunk.cards;
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
+import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.WinterStormPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -29,16 +31,19 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new WinterStormPower(p, magicNumber));
+        if (secondMagic > 0)
+            Wiz.applyToSelf(new SnowballPower(p, secondMagic));
     }
 
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(0));
-        addUpgradeData(this, () -> {
-            isInnate = true;
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> {
+            secondMagic = baseSecondMagic = 0;
+            upgradeSecondMagic(1);
             uDesc();
         });
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

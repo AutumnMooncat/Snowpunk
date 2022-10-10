@@ -52,7 +52,10 @@ public class PrefixManager extends AbstractCardModifier {
             }
         }
         if (card.hasTag(CustomTags.FROSTY)) {
-            sb.append(TEXT[2]).append(" ");
+            if (CardModifierManager.hasModifier(card, FrostMod.ID) && ((FrostMod) CardModifierManager.getModifiers(card, FrostMod.ID).get(0)).dub)
+                sb.append(TEXT[10]).append(" ");
+            else
+                sb.append(TEXT[2]).append(" ");
         }
         if (card.hasTag(CustomTags.GUN)) {
             sb.append(TEXT[3]).append(" ");

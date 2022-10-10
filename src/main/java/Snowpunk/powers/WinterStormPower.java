@@ -24,6 +24,7 @@ public class WinterStormPower extends AbstractEasyPower {
         this.loadRegion("storm");
     }
 
+    @Override
     public void atStartOfTurn() {
         addToBot(new LoseEnergyAction(amount));
         addToBot(new ApplyPowerAction(Wiz.adp(), owner, new SnowballPower(Wiz.adp(), amount)));

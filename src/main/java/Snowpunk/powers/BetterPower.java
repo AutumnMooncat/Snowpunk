@@ -1,6 +1,10 @@
 package Snowpunk.powers;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import Snowpunk.actions.UpgradeRandomCardsAction;
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.UpgradeRandomCardAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,14 +24,24 @@ public class BetterPower extends AbstractEasyPower {
     }
 
     @Override
-    public void onPlayCard(AbstractCard card, AbstractMonster m) {
-        if (card.timesUpgraded != 0 || card.upgraded) {
-            addToBot(new GainBlockAction(owner, amount));
+    public void atStartOfTurnPostDraw() {
+        for (int i = 0; i < amount; i++) {
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    addToBot(new ArmamentsAction(true));
+                    isDone = true;
+                }
+            });
         }
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (amount == 1) {
+            description = DESCRIPTIONS[0];
+        } else {
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+        }
     }
 }

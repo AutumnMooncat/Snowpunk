@@ -1,6 +1,5 @@
 package Snowpunk.damageMods;
 
-import Snowpunk.powers.ProtectionPower;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;

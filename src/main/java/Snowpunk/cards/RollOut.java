@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.DupeMod;
 import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -35,6 +36,6 @@ public class RollOut extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBlock(UP_BLOCK));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ReshuffleMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new DupeMod()));
     }
 }

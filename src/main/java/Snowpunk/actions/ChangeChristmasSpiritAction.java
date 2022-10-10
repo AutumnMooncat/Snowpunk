@@ -13,21 +13,18 @@ public class ChangeChristmasSpiritAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        ChristmasSpirit christmasSpirit = checkChristmas();
-        if (christmasSpirit != null) {
-            christmasSpirit.setCounter(christmasSpirit.counter + amount);
-            christmasSpirit.flash();
-        }
-        isDone = true;
-    }
-
-    private ChristmasSpirit checkChristmas() {
         if (!adp().hasRelic(ChristmasSpirit.ID)) {
-            adp().relics.add(new ChristmasSpirit());
+            adp().relics.add(new ChristmasSpirit(amount));
             adp().reorganizeRelics();
             ChristmasSpirit christmasSpirit = (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
             christmasSpirit.onEquip();
+        } else {
+            ChristmasSpirit christmasSpirit = (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
+            if (christmasSpirit != null) {
+                christmasSpirit.updateSpirit(amount);
+                christmasSpirit.flash();
+            }
         }
-        return (ChristmasSpirit) adp().getRelic(ChristmasSpirit.ID);
+        isDone = true;
     }
 }

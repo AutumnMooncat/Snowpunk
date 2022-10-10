@@ -1,6 +1,6 @@
 package Snowpunk.damageMods;
 
-import Snowpunk.powers.BurnPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -27,7 +27,7 @@ public class BurnDamage extends AbstractDamageModifier {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        Wiz.atb(new ApplyPowerAction(target, info.owner, new BurnPower(target, info.owner, amount)));
+        Wiz.atb(new ApplyPowerAction(target, info.owner, new SingePower(target, info.owner, amount)));
     }
 
     @Override

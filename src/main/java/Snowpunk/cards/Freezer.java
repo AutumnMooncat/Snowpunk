@@ -5,6 +5,7 @@ import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FreezeNextCardPower;
+import Snowpunk.powers.IcePower;
 import Snowpunk.powers.LinkNextCardPower;
 import Snowpunk.powers.RefrigeratePower;
 import Snowpunk.util.Wiz;
@@ -22,30 +23,25 @@ public class Freezer extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
-    private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
+    private static final int COST = 1, CARDS = 1, ICE = 1, UP_CARD = 1, UP_ICE = 1;
 
     public Freezer() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = EFFECT;
+        magicNumber = baseMagicNumber = CARDS;
+        secondMagic = baseSecondMagic = ICE;
         CardTemperatureFields.addInherentHeat(this, -2);
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.atb(new ModCardTempAction(magicNumber, -99, false));
-        Wiz.atb(new ModEngineTempAction(-1));
+        Wiz.applyToSelf(new IcePower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(0));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () ->
-        {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeMagicNumber(UP_CARD));
+        addUpgradeData(() -> upgradeSecondMagic(UP_ICE));
     }
 }

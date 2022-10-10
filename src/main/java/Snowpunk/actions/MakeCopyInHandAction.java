@@ -16,15 +16,16 @@ public class MakeCopyInHandAction extends AbstractGameAction {
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     AbstractPlayer player;
-    boolean upgraded;
+    boolean upgraded, free;
 
-    public MakeCopyInHandAction(boolean freeThisTurn) {
+    public MakeCopyInHandAction(boolean freeThisTurn, boolean freeThisCombat) {
         this.actionType = ActionType.CARD_MANIPULATION;
 
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
         player = AbstractDungeon.player;
-        this.upgraded = freeThisTurn;
+        upgraded = freeThisTurn;
+        free = freeThisCombat;
     }
 
     public void update() {
@@ -43,6 +44,9 @@ public class MakeCopyInHandAction extends AbstractGameAction {
                 AbstractDungeon.player.hand.addToTop(c);
 
                 AbstractCard newCard = c.makeStatEquivalentCopy();
+
+                if (free)
+                    newCard.modifyCostForCombat(-newCard.cost);
 
                 if (upgraded)
                     newCard.setCostForTurn(0);

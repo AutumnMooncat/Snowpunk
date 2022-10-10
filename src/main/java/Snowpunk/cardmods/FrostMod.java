@@ -23,7 +23,14 @@ public class FrostMod extends AbstractCardModifier {
     public static final String ID = makeID(FrostMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
+    public boolean dub;
+
     public FrostMod() {
+        this(false);
+    }
+
+    public FrostMod(boolean dub) {
+        this.dub = dub;
     }
 
     @Override
@@ -51,8 +58,11 @@ public class FrostMod extends AbstractCardModifier {
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        if (group == Wiz.adp().hand && CardTemperatureFields.getCardHeat(card) < 1)
+        if (group == Wiz.adp().hand && CardTemperatureFields.getCardHeat(card) < 1) {
             Wiz.atb(new ReduceCostAction(card));
+            if (dub)
+                Wiz.atb(new ReduceCostAction(card));
+        }
     }
 /*
     @Override
@@ -67,6 +77,6 @@ public class FrostMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FrostMod();
+        return new FrostMod(dub);
     }
 }

@@ -49,6 +49,8 @@ public class TwiceCore extends CoreCard {
             return true;
         if (coreCards.get(coreCards.size() - 1).cost == 2)
             return true;
+        if (coreCards.size() == 2 && coreCards.get(0).cost > 1 && coreCards.get(0).effectTags.contains(EffectTag.AB) && !coreCards.get(1).effectTags.contains(EffectTag.AB))
+            return true;
         return false;
     }
 }

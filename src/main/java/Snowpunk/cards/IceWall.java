@@ -3,7 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.ProtectionPower;
+import Snowpunk.powers.IcePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -31,13 +31,13 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     @Override
     public void triggerWhenDrawn() {
-        Wiz.applyToSelf(new ProtectionPower(Wiz.adp(), 1));
+        Wiz.applyToSelf(new IcePower(Wiz.adp(), 1));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (iceOnPlay) {
-            Wiz.applyToSelf(new ProtectionPower(Wiz.adp(), 1));
+            Wiz.applyToSelf(new IcePower(Wiz.adp(), 1));
         }
     }
 

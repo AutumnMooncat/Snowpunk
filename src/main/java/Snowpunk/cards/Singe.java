@@ -1,12 +1,9 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurnPower;
-import Snowpunk.powers.FireballNextTurnPower;
-import Snowpunk.powers.TinkerNextCardPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -37,7 +34,7 @@ public class Singe extends AbstractMultiUpgradeCard {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
         Wiz.atb(new ModCardTempAction(this, 1));
         if (magicNumber > 0)
-            Wiz.applyToEnemy(m, new BurnPower(m, p, magicNumber));
+            Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
 //        Wiz.applyToSelf(new FireballNextTurnPower(p, magicNumber));
     }
 

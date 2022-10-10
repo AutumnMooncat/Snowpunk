@@ -1,6 +1,6 @@
 package Snowpunk.damageMods;
 
-import Snowpunk.powers.ProtectionPower;
+import Snowpunk.powers.IcePower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,7 +11,7 @@ public class ProtectionOnKillDamage extends AbstractDamageModifier {
     @Override
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
         if (targetHit.currentHealth > 0 && targetHit.currentHealth - lastDamageTaken <= 0 && !targetHit.halfDead) {
-            Wiz.applyToSelf(new ProtectionPower(Wiz.adp(), 1));
+            Wiz.applyToSelf(new IcePower(Wiz.adp(), 1));
         }
     }
 

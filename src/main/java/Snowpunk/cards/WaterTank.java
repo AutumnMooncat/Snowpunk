@@ -29,7 +29,6 @@ public class WaterTank extends AbstractMultiUpgradeCard {
     public WaterTank() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = 2;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -38,13 +37,10 @@ public class WaterTank extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeMagicNumber(1));
         setExclusions(1, 2);
     }
 }
