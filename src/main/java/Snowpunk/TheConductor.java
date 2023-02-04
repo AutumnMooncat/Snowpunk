@@ -1,7 +1,7 @@
 package Snowpunk;
 
 import Snowpunk.cards.*;
-import Snowpunk.relics.BrassPipeRelic;
+import Snowpunk.relics.BrassPipe;
 import Snowpunk.util.HeatBasedEnergyManager;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
@@ -98,7 +98,7 @@ public class TheConductor extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(BrassPipeRelic.ID);
+        retVal.add(BrassPipe.ID);
         return retVal;
     }
 
