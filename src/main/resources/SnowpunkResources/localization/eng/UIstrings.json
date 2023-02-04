@@ -9,6 +9,11 @@
       "Adds M10 Robot (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!"
     ]
   },
+  "${ModID}:Crossover": {
+    "TEXT": [
+      "Enable Conductor Crossover Content"
+    ]
+  },
   "${ModID}:Tinker": {
     "TEXT": [
       "Choose a card to tinker.",

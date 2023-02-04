@@ -1,5 +1,6 @@
 package Snowpunk;
 
+import Snowpunk.augments.AugmentHelper;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.SecondBlock;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -189,6 +191,8 @@ public class SnowpunkMod implements
         BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/PartAndCorestrings.json");
 
         BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/UIstrings.json");
+
+        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/Augmentstrings.json");
     }
 
     @Override
@@ -206,6 +210,9 @@ public class SnowpunkMod implements
 
     @Override
     public void receivePostInitialize() {
+        if (Loader.isModLoaded("CardAugments")) {
+            AugmentHelper.register();
+        }
         CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
             private final Color c = Color.RED.cpy();
             @Override

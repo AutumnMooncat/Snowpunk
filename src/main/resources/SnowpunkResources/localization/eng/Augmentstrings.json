@@ -1,0 +1,8 @@
+{
+  "${ModID}:Example": {
+    "TEXT": ["Prefix", "Suffix", "Description stuff"]
+  },
+  "${ModID}:FireballMod": {
+    "TEXT": ["", " and Fire", " NL Gain %d snowpunk:Fireball."]
+  }
+}
