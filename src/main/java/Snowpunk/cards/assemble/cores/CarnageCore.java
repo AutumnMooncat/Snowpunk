@@ -23,7 +23,7 @@ public class CarnageCore extends CoreCard {
 
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DAMAGE = 18, UP_DAMAGE = 6;
+    private static final int COST = 2, DAMAGE = 16, UP_DAMAGE = 6;
 
     public CarnageCore() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);

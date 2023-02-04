@@ -23,7 +23,7 @@ public class DefendCore extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 9, UP_BLOCK = 3;
+    private static final int COST = 1, BLOCK = 8, UP_BLOCK = 3;
 
     public DefendCore() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.AB);
