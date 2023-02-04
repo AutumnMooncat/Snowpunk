@@ -139,7 +139,7 @@
     "EXTENDED_DESCRIPTION": [
       " NL ",
       "snowpunk:Fluxed.",
-      "snowpunk:Frosty.",
+      "snowpunk:Clockwork.",
       "snowpunk:Whistol.",
       "snowpunk:Hot.",
       "snowpunk:Overheated.",
@@ -147,7 +147,8 @@
       "snowpunk:Frozen.",
       "snowpunk:Hot & snowpunk:Cold.",
       "snowpunk:Overheated & snowpunk:Frozen.",
-      "snowpunk:Double_Frosty."
+      "snowpunk:Double_Frosty.",
+      "snowpunk:Everburn."
     ]
   },
   "${ModID}:TinkerSelfMod": {

@@ -88,7 +88,7 @@
   },
   "${ModID}:BurningCoals": {
     "NAME": "Burning Coals",
-    "DESCRIPTION": "{@@}snowpunk:Heat !M! card{!M!|>1=s} in your hand."
+    "DESCRIPTION": "{@@}Gain !M! snowpunk:Fireball{!M!|>1=s}."
   },
   "${ModID}:BurningFury": {
     "NAME": "Burning Fury",
@@ -145,8 +145,8 @@
   },
   "${ModID}:DeckTheHalls": {
     "NAME": "Deck the Halls",
-    "DESCRIPTION": "Increase snowpunk:Christmas_Spirit NL by !M! snowpunk:S times.",
-    "UPGRADE_DESCRIPTION": "{@@}Increase snowpunk:Christmas_Spirit NL by !M! snowpunk:S times. NL Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}."
+    "DESCRIPTION": "Gain !M! snowpunk:Holly. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Holly."
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
@@ -239,15 +239,18 @@
     "DESCRIPTION": "When you draw this card, gain 1 snowpunk:Ice.",
     "UPGRADE_DESCRIPTION": "When you draw or play this card, NL gain 1 snowpunk:Ice."
   },
-  "${ModID}:IcicleSpear": {
-    "NAME": "Icicle Spear",
-    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Cool this card.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill. NL snowpunk:Cool this card."
+  "${ModID}:BrassIcicle": {
+    "NAME": "Brass Icicle",
+    "DESCRIPTION": "Deal !D! damage.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill."
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
-    "DESCRIPTION": "snowpunk:Assemble a card with !M! effects.",
-    "UPGRADE_DESCRIPTION": "{@@}snowpunk:Assemble a card with !M! effect{!M!|>1=s}{!Snowpunk:M2!|>0= and randomly Upgrade it}.{!Snowpunk:Info!|>3= NL Gain 2 more options to pick from.}"
+    "DESCRIPTION": "Create a new card and permanently replace this one with it."
+  },
+  "${ModID}:JingleBells": {
+    "NAME": "Jingle Bells",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! snowpunk:Holly."
   },
   "${ModID}:Kablam": {
     "NAME": "Kablam",
@@ -280,13 +283,11 @@
   },
   "${ModID}:PackedIce": {
     "NAME": "Packed Ice",
-    "DESCRIPTION": "Gain !B! Block snowpunk:S times.",
-    "UPGRADE_DESCRIPTION": "{@@}Gain !B! Block snowpunk:S times. NL Gain !M! snowpunk:Snowball{!M!|>1=s}."
+    "DESCRIPTION": "{@@}Gain !B! Block snowpunk:S{!M!|>0= + !M!} times."
   },
   "${ModID}:PiercingRound": {
     "NAME": "Piercing Round",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Ignores Block."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Ignores Block."
   },
   "${ModID}:PolarExpress": {
     "NAME": "Polar Express",
@@ -299,15 +300,16 @@
   },
   "${ModID}:PressurizedBlast": {
     "NAME": "Pressurized Blast",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:Refrigerate": {
     "NAME": "Refrigerate",
-    "DESCRIPTION": "{@@}snowpunk:Cool !M! {!Snowpunk:Info!|0=random }cards in your hand."
+    "DESCRIPTION": "{@@}snowpunk:Condense !M! random cards."
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "{@@}{!D!|>9=  }Deal !D! damage. NL Apply !M! snowpunk:Singe. NL snowpunk:Heat this card."
+    "DESCRIPTION": "{@@}{!D!|>9=  }Deal !D! damage. NL Apply !M! snowpunk:Singe."
   },
   "${ModID}:Resupply": {
     "NAME": "Resupply",
@@ -320,7 +322,8 @@
   },
   "${ModID}:RollUp": {
     "NAME": "Roll Up",
-    "DESCRIPTION": "Next turn, gain !M! snowpunk:Snowballs."
+    "DESCRIPTION": "Gain !M! snowpunk:Snowballs. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Snowballs."
   },
   "${ModID}:Scald": {
     "NAME": "Scald",
@@ -350,8 +353,7 @@
   },
   "${ModID}:SnowballFight": {
     "NAME": "Snowball Fight",
-    "DESCRIPTION": "Deal !D! damage snowpunk:S times.",
-    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage snowpunk:S times. NL Gain !M! snowpunk:Snowball{!M!|>1=s}."
+    "DESCRIPTION": "{@@}Deal !D! damage NL snowpunk:S{!M!|>0= + !M!} times."
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
@@ -458,7 +460,9 @@
     "EXTENDED_DESCRIPTION": [
       "snowpunk:evaporate",
       "snowpunk:condense",
-      "snowpunk:christmasspirit"
+      "snowpunk:christmasspirit",
+      "snowpunk:wreath",
+      "snowpunk:temperature"
     ]
   }
 }

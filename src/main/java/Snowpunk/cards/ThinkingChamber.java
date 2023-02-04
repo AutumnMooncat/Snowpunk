@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.MultiUpgradeInHandAction;
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.IcePower;
@@ -49,6 +49,6 @@ public class ThinkingChamber extends AbstractMultiUpgradeCard {
             upgradeMagicNumber(UP_TINKER);
             uDesc();
         });
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new FrostMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
     }
 }

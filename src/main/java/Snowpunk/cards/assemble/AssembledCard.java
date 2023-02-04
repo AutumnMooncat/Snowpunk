@@ -1,27 +1,19 @@
 package Snowpunk.cards.assemble;
 
-import Snowpunk.cardmods.FrostMod;
-import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.assemble.cores.AllEnemiesCore;
-import Snowpunk.cards.assemble.cores.TwiceCore;
-import Snowpunk.cards.interfaces.OnRecreateCardModsCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.AssembledCardArtRoller;
-import Snowpunk.util.UpgradeData;
-import Snowpunk.util.UpgradeRunnable;
-import Snowpunk.util.Wiz;
 import basemod.abstracts.CustomSavable;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardSave;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -30,7 +22,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -256,7 +247,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int bonusMagic = (int) Math.max(1, baseSecondMagic * .5);
                 addUpgradeData(() -> upgradeSecondMagic(bonusMagic));
             }
-            if (CardModifierManager.hasModifier(this, FrostMod.ID))
+            if (CardModifierManager.hasModifier(this, ClockworkMod.ID))
                 addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
             if (baseCost > 2)
                 addUpgradeData(() -> upgradeBaseCost(baseCost - 1));

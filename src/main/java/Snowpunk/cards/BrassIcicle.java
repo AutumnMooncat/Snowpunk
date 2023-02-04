@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
@@ -13,40 +13,39 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class IcicleSpear extends AbstractMultiUpgradeCard {
-    public final static String ID = makeID(IcicleSpear.class.getSimpleName());
+public class BrassIcicle extends AbstractMultiUpgradeCard {
+    public final static String ID = makeID(BrassIcicle.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 6, UP_DMG = 3, MAGIC = 3;
+    private static final int COST = 1, DMG = 7, UP_DMG = 3, MAGIC = 3;
 
     private boolean chill = false;
 
-    public IcicleSpear() {
+    public BrassIcicle() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        CardModifierManager.addModifier(this, new FrostMod());
+        CardTemperatureFields.addInherentHeat(this, -1);
+        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        Wiz.atb(new ModCardTempAction(this, -1));
-        if (chill) {
+        if (chill)
             Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
-        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> {
             chill = true;
             baseMagicNumber = magicNumber = 0;
             upgradeMagicNumber(MAGIC);
             uDesc();
         });
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

@@ -255,8 +255,8 @@
   "${ModID}:HollyPower": {
     "NAME": "Holly",
     "DESCRIPTIONS": [
-      "At the start of your turn, increase #yChristmas #ySpirit by #b",
-      "."
+      "Increase the damage and #yBlock of the next card you play that damages or #yBlocks by #b",
+      " for the rest of combat."
     ]
   },
   "${ModID}:IcePower": {

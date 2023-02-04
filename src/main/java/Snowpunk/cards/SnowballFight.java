@@ -32,22 +32,21 @@ public class SnowballFight extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < getSnow(); i++) {
+        int bonusSnow = 0;
+        if (magicNumber > 0)
+            bonusSnow = magicNumber;
+        for (int i = 0; i < getSnow() + bonusSnow; i++)
             dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        }
-        if (magicNumber > 0) {
-            Wiz.applyToSelf(new SnowballPower(p, magicNumber));
-        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> {
             baseMagicNumber = magicNumber = 0;
             upgradeMagicNumber(1);
-            uDesc();
         });
+        setExclusions(1, 2);
     }
 }

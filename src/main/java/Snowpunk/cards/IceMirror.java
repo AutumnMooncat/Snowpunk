@@ -1,6 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
@@ -40,6 +40,6 @@ public class IceMirror extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> upgradeMagicNumber(UP_SHARD));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new FrostMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
     }
 }

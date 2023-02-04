@@ -13,12 +13,16 @@ import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class BurningFury extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BurningFury.class.getSimpleName());
 

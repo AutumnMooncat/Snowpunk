@@ -1,6 +1,6 @@
 package Snowpunk.cards.assemble.cores;
 
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
@@ -23,7 +23,7 @@ public class FrostyCore extends CoreCard {
 
     public FrostyCore() {
         super(ID, COST, TYPE, EffectTag.MOD);
-        CardModifierManager.addModifier(this, new FrostMod());
+        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     @Override
@@ -41,6 +41,6 @@ public class FrostyCore extends CoreCard {
 
     @Override
     public void setStats(AbstractCard card) {
-        CardModifierManager.addModifier(card, new FrostMod());
+        CardModifierManager.addModifier(card, new ClockworkMod());
     }
 }

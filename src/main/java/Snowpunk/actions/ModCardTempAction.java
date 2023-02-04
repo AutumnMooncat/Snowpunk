@@ -1,7 +1,9 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -40,11 +42,13 @@ public class ModCardTempAction extends AbstractGameAction {
             //Assemble all valid cards based on if they can actually accept the change in heat
             CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : Wiz.adp().hand.group) {
-                if (heat > 0 && CardTemperatureFields.getCardHeat(c) != 2) {
+                /*if (heat > 0 && CardTemperatureFields.getCardHeat(c) != 2) {
                     validCards.addToTop(c);
-                } else if (heat < 0 && CardTemperatureFields.getCardHeat(c) != -2) {
+                } else if (heat < 0 && CardTemperatureFields.getCardHeat(c) != -2 && !(CardTemperatureFields.getCardHeat(c) == 1 && CardModifierManager.hasModifier(c, EverburnMod.ID))) {
                     validCards.addToTop(c);
-                }
+                }*/
+                if (CardTemperatureFields.canModTemp(c, heat))
+                    validCards.addToTop(c);
             }
             //If we have less valid cards than cards to modify, we can just hit all of them
             if (amount == -1 || amount >= validCards.size()) {

@@ -52,16 +52,17 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1), new int[]{}, new int[]{1});
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1), new int[]{}, new int[]{0});
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> {
             baseMagicNumber = magicNumber = 0;
             burn = true;
             upgradeMagicNumber(BURN);
             name = cardStrings.EXTENDED_DESCRIPTION[3];
             initializeTitle();
             uDesc();
-        }, 0);
+        });
+        addUpgradeData(() -> upgradeDamage(2));
         addUpgradeData(this, () -> {
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
             baseMagicNumber = magicNumber = 0;
@@ -70,13 +71,11 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
             initializeTitle();
             upgradeMagicNumber(CHILL);
             initializeDescription();
-        }, 1);
-        addUpgradeData(this, () -> {
-            third = true;
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
-            initializeDescription();
-        }, 2);
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), 3);
+        });
+        setDependencies(true, 2, 0);
+        setDependencies(false, 3, 0, 1);
+        setDependencies(true, 4, 1);
+        setExclusions(0, 1);
 
     }
 }

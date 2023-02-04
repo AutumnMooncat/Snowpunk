@@ -5,6 +5,7 @@ import Snowpunk.relics.BrassPipeRelic;
 import Snowpunk.util.HeatBasedEnergyManager;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.brashmonkey.spriter.Player;
@@ -15,15 +16,18 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.*;
 import static Snowpunk.TheConductor.Enums.SNOWY_BLUE_COLOR;
@@ -81,11 +85,12 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
         retVal.add(ReleaseValve.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
         retVal.add(SnowStack.ID);
         retVal.add(Invent.ID);
         return retVal;
@@ -266,11 +271,25 @@ public class TheConductor extends CustomPlayer {
     @Override
     public void heal(int healAmount) {
         if (healAmount > 0) {
-            if (RandomChatterHelper.showChatter(RandomChatterHelper.getHealingText(), damagedTalkProbability, enableDamagedBattleTalkEffect)){ //Technically changes your hp, lol
+            if (RandomChatterHelper.showChatter(RandomChatterHelper.getHealingText(), damagedTalkProbability, enableDamagedBattleTalkEffect)) { //Technically changes your hp, lol
                 playAnimation("happy");
             }
         }
         super.heal(healAmount);
+    }
+
+    @Override
+    public Texture getCutsceneBg() {
+        return ImageMaster.loadImage(modID + "Resources/images/scenes/bkg.png");// 307
+    }
+
+    @Override
+    public List<CutscenePanel> getCutscenePanels() {
+        List<CutscenePanel> panels = new ArrayList();// 312
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman1.png", "ATTACK_HEAVY"));// 313
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman2.png"));// 314
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman3.png"));// 315
+        return panels;// 316
     }
 
     @Override

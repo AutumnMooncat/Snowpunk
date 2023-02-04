@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cardmods.parts.ReshuffleMod;
@@ -30,18 +31,18 @@ public class Refrigerate extends AbstractMultiUpgradeCard {
     public Refrigerate() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = EFFECT;
-        info = baseInfo = 0;
         CardTemperatureFields.addInherentHeat(this, -1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ModCardTempAction(magicNumber, -1, info == 0));
+        for (int i = 0; i < magicNumber; i++)
+            addToBot(new CondenseRandomCardToDrawPileAction());
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> upgradeInfo(1));
     }
 }

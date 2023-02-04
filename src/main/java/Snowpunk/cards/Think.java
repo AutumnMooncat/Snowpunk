@@ -17,7 +17,7 @@ public class Think extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 3;
+    private static final int COST = 1, BLOCK = 5, UPG_BLOCK = 3;
     private static final int TINKER = 1;
     private static final int UP_TINKER = 1;
 

@@ -14,7 +14,7 @@
       "singed",
       "singe"
     ],
-    "DESCRIPTION": "Singed creatures take additional damage when attacked. At the start of their turn, Singe deals damage and is removed."
+    "DESCRIPTION": "Singed creatures take additional damage from attacks this turn."
   },
   {
     "PROPER_NAME": "Link",
@@ -94,7 +94,7 @@
       "snow",
       "s"
     ],
-    "DESCRIPTION": "A resource that remains between turns and can be spent as #yEnergy."
+    "DESCRIPTION": "Counts as [E] NL Remains between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -178,7 +178,7 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate. NL Counts as #yHot."
+    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot",
@@ -192,14 +192,14 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. #yCondense a card."
+    "DESCRIPTION": "#yRetain. NL #yCondense a random card."
   },
   {
     "PROPER_NAME": "Frozen",
     "NAMES": [
       "frozen"
     ],
-    "DESCRIPTION": "#yRetain. #yCondense a card. NL Draw a card. NL Counts as #yCold."
+    "DESCRIPTION": "#yRetain. NL #yCondense a random card. NL Draw a card."
   },
   {
     "PROPER_NAME": "Evaporate",
@@ -217,7 +217,7 @@
       "condensed",
       "condenses"
     ],
-    "DESCRIPTION": "Shuffle a random #yEvaporated card into your draw pile."
+    "DESCRIPTION": "#yCool an #yEvaporated card and shuffle it into your draw pile."
   },
   {
     "PROPER_NAME": "Heat",
@@ -250,6 +250,13 @@
     "DESCRIPTION": "Lower temperature to #yFrozen."
   },
   {
+    "PROPER_NAME": "Everburn",
+    "NAMES": [
+      "everburn"
+    ],
+    "DESCRIPTION": "Cannot be #yCooled below #yHot."
+  },
+  {
     "PROPER_NAME": "Battery",
     "NAMES": [
       "battery"
@@ -275,7 +282,14 @@
     "NAMES": [
       "holly"
     ],
-    "DESCRIPTION": "At the start of your turn, increase #yChristmas #ySpirit."
+    "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
+  },
+  {
+    "PROPER_NAME": "Wreath",
+    "NAMES": [
+      "wreath"
+    ],
+    "DESCRIPTION": "This card deals more damage and gains more #yBlock."
   },
   {
     "PROPER_NAME": "Stabilize",
@@ -283,6 +297,13 @@
       "stabilize"
     ],
     "DESCRIPTION": "Normal temperature."
+  },
+  {
+    "PROPER_NAME": "Temperature",
+    "NAMES": [
+      "temperature"
+    ],
+    "DESCRIPTION": "Card temperature scale: NL #yOverheated NL #yHot NL Stable NL #bCold NL #bFrozen"
   },
   {
     "PROPER_NAME": "Steam",
@@ -318,12 +339,12 @@
     "DESCRIPTION": "Solved cards cost #b0 this combat."
   },
   {
-    "PROPER_NAME": "Frosty",
+    "PROPER_NAME": "Clockwork",
     "NAMES": [
-      "frosty",
+      "clockwork",
       "double_frosty"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of your turn, lower its cost by #b1. NL #yHot cards cannot be Frosty."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, gain [E] towards paying the card's cost."
   },
   {
     "PROPER_NAME": "Pull",

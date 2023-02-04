@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cardmods.DupeMod;
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
@@ -34,7 +34,7 @@ public class Avalanche extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, -1);
-        CardModifierManager.addModifier(this, new FrostMod());
+        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

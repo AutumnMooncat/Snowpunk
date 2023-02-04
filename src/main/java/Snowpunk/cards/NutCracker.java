@@ -3,6 +3,8 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +13,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class NutCracker extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(NutCracker.class.getSimpleName());
 

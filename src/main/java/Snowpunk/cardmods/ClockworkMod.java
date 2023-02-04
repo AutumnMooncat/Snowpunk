@@ -2,51 +2,38 @@ package Snowpunk.cardmods;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
-import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
-import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
-import com.megacrit.cardcrawl.helpers.TipHelper;
-
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FrostMod extends AbstractCardModifier {
-    public static final String ID = makeID(FrostMod.class.getSimpleName());
+public class ClockworkMod extends AbstractCardModifier {
+    public static final String ID = makeID(ClockworkMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    public boolean dub;
-
-    public FrostMod() {
-        this(false);
-    }
-
-    public FrostMod(boolean dub) {
-        this.dub = dub;
+    public ClockworkMod() {
+        priority = 1;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.tags.add(CustomTags.FROSTY);
+        card.tags.add(CustomTags.CLOCKWORK);
         CardModifierManager.addModifier(card, new PrefixManager());
     }
 
     @Override
     public void onRemove(AbstractCard card) {
-        card.tags.remove(CustomTags.FROSTY);
+        card.tags.remove(CustomTags.CLOCKWORK);
     }
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !CardModifierManager.hasModifier(card, ID) && CardTemperatureFields.getCardHeat(card) < 1;
+        return !CardModifierManager.hasModifier(card, ID);
     }
 
 /*
@@ -58,10 +45,8 @@ public class FrostMod extends AbstractCardModifier {
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        if (group == Wiz.adp().hand && CardTemperatureFields.getCardHeat(card) < 1) {
+        if (group == Wiz.adp().hand) {
             Wiz.atb(new ReduceCostAction(card));
-            if (dub)
-                Wiz.atb(new ReduceCostAction(card));
         }
     }
 /*
@@ -77,6 +62,6 @@ public class FrostMod extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FrostMod(dub);
+        return new ClockworkMod();
     }
 }

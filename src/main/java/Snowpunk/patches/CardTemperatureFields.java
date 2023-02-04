@@ -1,6 +1,7 @@
 package Snowpunk.patches;
 
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.EverburnMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
@@ -83,6 +84,15 @@ public class CardTemperatureFields {
         int inherent = TemperatureFields.inherentHeat.get(card);
         int added = TemperatureFields.addedHeat.get(card);
 
+        if (CardModifierManager.hasModifier(card, EverburnMod.ID)) {
+            if (inherent < 1) {
+                TemperatureFields.inherentHeat.set(card, 1);
+                inherent = TemperatureFields.inherentHeat.get(card);
+            }
+            if (inherent + added < 1)
+                TemperatureFields.addedHeat.set(card, 1 - inherent);
+        }
+
         if (inherent > 2) {
             inherent = 2;
         } else if (inherent < -2) {
@@ -106,12 +116,12 @@ public class CardTemperatureFields {
         TemperatureFields.inherentHeat.set(card, inherent);
         TemperatureFields.addedHeat.set(card, added);
 
-        if (CardTemperatureFields.getCardHeat(card) > 0 && CardModifierManager.hasModifier(card, FrostMod.ID)) {
-            CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, FrostMod.ID).get(0), true);
+        if (CardTemperatureFields.getCardHeat(card) > 0 && CardModifierManager.hasModifier(card, ClockworkMod.ID)) {
+            CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0), true);
         }
 
-        if (CardTemperatureFields.getCardHeat(card) < 1 && !CardModifierManager.hasModifier(card, FrostMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
-            CardModifierManager.addModifier(card, new FrostMod());
+        if (CardTemperatureFields.getCardHeat(card) < 1 && !CardModifierManager.hasModifier(card, ClockworkMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
+            CardModifierManager.addModifier(card, new ClockworkMod());
         }
     }
 
@@ -148,6 +158,15 @@ public class CardTemperatureFields {
                 card.superFlash(OVERHEAT_TINT.cpy());
                 break;
         }
+    }
+
+    public static boolean canModTemp(AbstractCard card, int amount) {
+        int heat = CardTemperatureFields.getCardHeat(card);
+        if (amount > 0)
+            return heat < 2;
+        if (amount < 0)
+            return heat > -2 && !(CardModifierManager.hasModifier(card, EverburnMod.ID) && heat < 2);
+        return true;
     }
 
     @SpirePatch(clz = AbstractCard.class, method = "makeStatEquivalentCopy")

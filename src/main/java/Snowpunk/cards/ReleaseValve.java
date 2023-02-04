@@ -1,10 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
+import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,28 +22,29 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 6, UP_DMG = 4, BURN_AMOUNT = 4, BURN_UP = 2;
+    private static final int COST = 1, DMG = 4, UP_DMG = 3, BURN_AMOUNT = 4, UP_BURN = 3;
 
     public ReleaseValve() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        baseMagicNumber = magicNumber = BURN_AMOUNT;
-        baseInfo = info = 0;
+        magicNumber = baseMagicNumber = BURN_AMOUNT;
+        CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
-        Wiz.atb(new ModCardTempAction(this, 1));
+        //Wiz.atb(new ModCardTempAction(this, 1));
 
-        //Wiz.applyToSelf(new FireballPower(p, magicNumber));
+        //Wiz.applyToSelf(new FireballPower(p, FIREBALL));
         //    Wiz.applyToSelf(new OverheatNextCardPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(BURN_UP));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        setDependencies(true, 2, 0, 1);
     }
 }

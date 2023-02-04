@@ -1,13 +1,11 @@
 package Snowpunk.powers;
 
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.interfaces.OnCreateCardPower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -37,8 +35,8 @@ public class TheSnowmanPower extends AbstractEasyPower implements OnCreateCardPo
         allCards.addAll(Wiz.adp().limbo.group);
         allCards.addAll(EvaporatePanel.evaporatePile.group);
         for (AbstractCard card : allCards) {
-            if (!card.hasTag(CustomTags.FROSTY)) {
-                CardModifierManager.addModifier(card, new FrostMod());
+            if (!card.hasTag(CustomTags.CLOCKWORK)) {
+                CardModifierManager.addModifier(card, new ClockworkMod());
             }
         }
     }
@@ -50,8 +48,8 @@ public class TheSnowmanPower extends AbstractEasyPower implements OnCreateCardPo
 
     @Override
     public void onCreateCard(AbstractCard card) {
-        if (!card.hasTag(CustomTags.FROSTY)) {
-            CardModifierManager.addModifier(card, new FrostMod());
+        if (!card.hasTag(CustomTags.CLOCKWORK)) {
+            CardModifierManager.addModifier(card, new ClockworkMod());
         }
     }
 }

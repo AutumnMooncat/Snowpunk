@@ -14,8 +14,11 @@ public class CustomTags {
     public static AbstractCard.CardTags FLUX;
 
     @SpireEnum
-    public static AbstractCard.CardTags FROSTY;
+    public static AbstractCard.CardTags CLOCKWORK;
 
     @SpireEnum
     public static AbstractCard.CardTags MENDING;
+
+    @SpireEnum
+    public static AbstractCard.CardTags EVERBURN;
 }

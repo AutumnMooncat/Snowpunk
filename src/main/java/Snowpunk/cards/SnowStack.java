@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FrostMod;
-import Snowpunk.cardmods.parts.DrawMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowballPower;
@@ -20,18 +19,13 @@ public class SnowStack extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 2;
-    private static final int SNOW = 0;
-    private static final int UP_SNOW = 1;
-    private static final int BLOCK = 8;
-    private static final int UP_BLOCK = 3;
+    private static final int BLOCK = 10;
+    private static final int UP_BLOCK = 4;
 
     public SnowStack() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLOCK;
-        baseMagicNumber = magicNumber = SNOW;
-        baseInfo = info = 0;
         CardTemperatureFields.addInherentHeat(this, -1);
-        CardModifierManager.addModifier(this, new FrostMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,8 +36,12 @@ public class SnowStack extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> {
+            baseMagicNumber = magicNumber = 0;
+            upgradeMagicNumber(1);
+        });
+        setDependencies(true, 2, 0, 1);
     }
 }

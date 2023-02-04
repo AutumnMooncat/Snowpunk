@@ -1,13 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FrostMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 

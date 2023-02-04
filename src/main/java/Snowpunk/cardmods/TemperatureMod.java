@@ -1,15 +1,13 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
-import Snowpunk.actions.ExhumeRandomCardToDrawPileAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.actions.PullCardAction;
+import Snowpunk.actions.*;
 import Snowpunk.cards.interfaces.MultiTempEffectCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.SteamPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
@@ -25,6 +23,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -42,7 +41,7 @@ public class TemperatureMod extends AbstractCardModifier {
         this.priority = -2;
     }
 
-    private static ArrayList<TooltipInfo> Tooltip;
+    private static ArrayList<TooltipInfo> CondenseTip, EvapTip, Tooltip;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -75,18 +74,28 @@ public class TemperatureMod extends AbstractCardModifier {
         }
         return rawDescription;
     }*/
-/*
+
     @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if(Tooltip == null)
-        {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.VOID_ID), BaseMod.getKeywordDescription(KeywordManager.VOID_ID)));
-            //Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.VOID_FORM_ID), BaseMod.getKeywordDescription(KeywordManager.VOID_FORM_ID)));
+    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+        if (EvapTip == null) {
+            EvapTip = new ArrayList<>();
+            EvapTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.EVAPORATE), BaseMod.getKeywordDescription(KeywordManager.EVAPORATE)));
         }
+        if (CondenseTip == null) {
+            CondenseTip = new ArrayList<>();
+            CondenseTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.CONDENSE), BaseMod.getKeywordDescription(KeywordManager.CONDENSE)));
+        }
+        if (Tooltip == null)
+            Tooltip = new ArrayList<>();
+
+        int heat = CardTemperatureFields.getCardHeat(card);
+        if (heat < 0 && !card.keywords.contains(KeywordManager.CONDENSE))
+            return CondenseTip;
+        if (heat > 0 && !card.keywords.contains(KeywordManager.EVAPORATE))
+            return EvapTip;
+
         return Tooltip;
-    }*/
+    }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
@@ -120,6 +129,8 @@ public class TemperatureMod extends AbstractCardModifier {
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, null, card.energyOnUse, true, true), true);
                 }
             }
+            if (heat == 2)
+                Wiz.atb(new ModCardTempAction(card, -1));
         }
         if (heat == -2 || (card.hasTag(CustomTags.FLUX) && heat == 2)) {
             Wiz.atb(new DrawCardAction(amount));

@@ -1,18 +1,12 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.RushdownAction;
-import Snowpunk.cardmods.FrostMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.FrostbitePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -31,7 +25,7 @@ public class Sledding extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         block = baseBlock = BLOCK;
         isMultiDamage = true;
-        CardModifierManager.addModifier(this, new FrostMod());
+        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

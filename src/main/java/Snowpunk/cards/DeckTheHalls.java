@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ChangeChristmasSpiritAction;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
@@ -9,6 +10,7 @@ import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,31 +27,25 @@ public class DeckTheHalls extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1, SPIRIT = 5, UP_SPIRIT = 2;
+    private static final int COST = 2, SPIRIT = 8, UP_SPIRIT = 4;
 
 
     public DeckTheHalls() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = SPIRIT;
-        SCostFieldPatches.SCostField.isSCost.set(this, true);
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int spirit = getSnow() * magicNumber;
-        if (spirit > 0)
-            Wiz.atb(new ChangeChristmasSpiritAction(spirit));
-
-        if (secondMagic > 0)
-            Wiz.applyToSelf(new SnowballPower(p, secondMagic));
+        Wiz.applyToSelf(new HollyPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_SPIRIT));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> {
-            secondMagic = baseSecondMagic = 0;
-            upgradeSecondMagic(1);
+        addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
+        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> {
+            exhaust = false;
             uDesc();
         });
     }

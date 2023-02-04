@@ -11,4 +11,6 @@ public class KeywordManager {
     public static String EVAPORATE = cardStrings.EXTENDED_DESCRIPTION[0];
     public static String CONDENSE = cardStrings.EXTENDED_DESCRIPTION[1];
     public static String CHRISTMAS_SPIRIT = cardStrings.EXTENDED_DESCRIPTION[2];
+    public static String WREATH = cardStrings.EXTENDED_DESCRIPTION[3];
+    public static String TEMP = cardStrings.EXTENDED_DESCRIPTION[4];
 }

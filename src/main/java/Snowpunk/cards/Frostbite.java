@@ -1,20 +1,14 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FrostMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -32,7 +26,7 @@ public class Frostbite extends AbstractMultiUpgradeCard {
         magicNumber = baseMagicNumber = MAGIC;
         info = baseInfo = 0;
         CardTemperatureFields.addInherentHeat(this, -2);
-        CardModifierManager.addModifier(this, new FrostMod());
+        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -19,7 +19,7 @@ public class ColdWind extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 4, UP_CHILL = 2, WEAK = 2;
+    private static final int COST = 1, CHILL = 5, UP_CHILL = 3, WEAK = 2;
 
     private boolean weak, aoe;
 

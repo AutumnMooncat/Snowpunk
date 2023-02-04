@@ -2,7 +2,6 @@ package Snowpunk.cardmods;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
-import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.util.KeywordManager;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -44,21 +43,21 @@ public class PrefixManager extends AbstractCardModifier {
                     case 1:
                         sb.append(TEXT[4]).append(" ");
                         break;
-                    case 2 :
+                    case 2:
                         sb.append(TEXT[5]).append(" ");
                         break;
                 }
                 //addTempKeywords(card, temp);
             }
         }
-        if (card.hasTag(CustomTags.FROSTY)) {
-            if (CardModifierManager.hasModifier(card, FrostMod.ID) && ((FrostMod) CardModifierManager.getModifiers(card, FrostMod.ID).get(0)).dub)
-                sb.append(TEXT[10]).append(" ");
-            else
-                sb.append(TEXT[2]).append(" ");
+        if (card.hasTag(CustomTags.CLOCKWORK)) {
+            sb.append(TEXT[2]).append(" ");
         }
         if (card.hasTag(CustomTags.GUN)) {
             sb.append(TEXT[3]).append(" ");
+        }
+        if (card.hasTag(CustomTags.EVERBURN)) {
+            sb.append(TEXT[11]).append(" ");
         }
         if (sb.length() != 0) {
             sb.setLength(sb.length() - 1);

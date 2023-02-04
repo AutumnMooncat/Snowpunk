@@ -1,16 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ChangeCostAction;
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.FrostbitePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -32,7 +29,7 @@ public class PolarExpress extends AbstractMultiUpgradeCard {
         info = baseInfo = COST;
         costUp = false;
         CardTemperatureFields.addInherentHeat(this, -1);
-        CardModifierManager.addModifier(this, new FrostMod(true));
+        CardModifierManager.addModifier(this, new ClockworkMod());
         cardToPreview.add(new HotChocolate());
     }
 

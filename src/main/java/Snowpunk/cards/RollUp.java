@@ -29,16 +29,21 @@ public class RollUp extends AbstractMultiUpgradeCard {
     public RollUp() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = SNOW;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new NextTurnPowerPower(p, new SnowballPower(p, magicNumber)));
+        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
         addUpgradeData(this, () -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(this, () ->
+        {
+            exhaust = false;
+            uDesc();
+        });
     }
 }

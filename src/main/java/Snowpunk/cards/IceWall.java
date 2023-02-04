@@ -1,6 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FrostMod;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.IcePower;
@@ -44,7 +44,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FrostMod()));
+        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ClockworkMod()));
         addUpgradeData(this, () -> {
             iceOnPlay = true;
             uDesc();
