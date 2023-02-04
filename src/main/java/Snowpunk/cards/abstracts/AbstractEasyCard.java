@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
@@ -291,6 +292,11 @@ public abstract class AbstractEasyCard extends CustomCard {
 
     protected int getSnow() {
         int snow = 0;
+        for (AbstractRelic r : Wiz.adp().relics) {
+            if (r instanceof SnowAmountModifier) {
+                snow += ((SnowAmountModifier) r).modifySnow();
+            }
+        }
         for (AbstractPower pow : Wiz.adp().powers) {
             if (pow instanceof SnowAmountModifier) {
                 snow += ((SnowAmountModifier) pow).modifySnow();

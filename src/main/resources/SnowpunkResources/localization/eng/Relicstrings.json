@@ -26,5 +26,12 @@
     "DESCRIPTIONS": [
       "At the start of each combat, gain #b"," #ysnowpunk:Holly."
     ]
+  },
+  "${ModID}:IceCreamSandwich": {
+    "NAME": "Ice Cream Sandwich",
+    "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
+    "DESCRIPTIONS": [
+      "Card effects act as if you have #b"," more #ysnowpunk:Snowball."
+    ]
   }
 }
