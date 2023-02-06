@@ -1,9 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
+import Snowpunk.actions.CondenseAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BrimstonePower;
 import Snowpunk.powers.CondensationPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -30,7 +28,7 @@ public class Condensation extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new CondensationPower(p, magicNumber));
         if (condense)
-            Wiz.atb(new CondenseRandomCardToDrawPileAction());
+            Wiz.atb(new CondenseAction());
     }
 
     @Override

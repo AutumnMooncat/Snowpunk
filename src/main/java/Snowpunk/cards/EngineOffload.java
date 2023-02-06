@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
-import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.actions.CondenseAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.ui.EvaporatePanel;
@@ -26,7 +25,7 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new CondenseRandomCardToDrawPileAction(EvaporatePanel.evaporatePile.size() + 2));
+        Wiz.atb(new CondenseAction(EvaporatePanel.evaporatePile.size() + 2));
     }
 
     @Override

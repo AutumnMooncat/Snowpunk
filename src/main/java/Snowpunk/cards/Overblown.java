@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cardmods.VentMod;
 import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.damageMods.SteamOnKillDamage;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
@@ -38,11 +40,8 @@ public class Overblown extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FluxMod()));
-        addUpgradeData(this, () -> {
-            DamageModifierManager.addModifier(this, new SteamOnKillDamage());
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
     }
 }

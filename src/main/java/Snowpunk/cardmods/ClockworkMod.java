@@ -2,19 +2,28 @@ package Snowpunk.cardmods;
 
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class ClockworkMod extends AbstractCardModifier {
     public static final String ID = makeID(ClockworkMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
+
+    int amount = 0;
+    private static ArrayList<TooltipInfo> GearTip, Tooltip;
 
     public ClockworkMod() {
         priority = 1;
@@ -36,16 +45,24 @@ public class ClockworkMod extends AbstractCardModifier {
         return !CardModifierManager.hasModifier(card, ID);
     }
 
-/*
     @Override
-    public void addCustomTooltips(AbstractCard card, List<TooltipInfo> list) {
-        list.add(new TooltipInfo(BaseMod.getKeywordProper("Retain"), BaseMod.getKeywordDescription("Retain")));
-        list.add(new TooltipInfo(TipHelper.capitalize(GameDictionary.VULNERABLE.NAMES[0]), GameDictionary.keywords.get(GameDictionary.VULNERABLE.NAMES[0])));
-    }*/
+    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+        if (GearTip == null) {
+            GearTip = new ArrayList<>();
+            GearTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+        }
+
+        if (Tooltip == null)
+            Tooltip = new ArrayList<>();
+        if (amount > 0)
+            return GearTip;
+        return Tooltip;
+    }
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
         if (group == Wiz.adp().hand) {
+            amount++;
             Wiz.atb(new ReduceCostAction(card));
         }
     }

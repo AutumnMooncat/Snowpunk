@@ -6,7 +6,6 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
-import Snowpunk.powers.SteamPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -15,7 +14,6 @@ import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
@@ -23,7 +21,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -136,7 +133,7 @@ public class TemperatureMod extends AbstractCardModifier {
             Wiz.atb(new DrawCardAction(amount));
         }
         if (heat < 0 || (card.hasTag(CustomTags.FLUX) && heat > 0)) {
-            Wiz.atb(new CondenseRandomCardToDrawPileAction());
+            Wiz.atb(new CondenseAction());
         }
     }
 

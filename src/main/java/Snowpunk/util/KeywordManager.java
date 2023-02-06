@@ -13,4 +13,5 @@ public class KeywordManager {
     public static String CHRISTMAS_SPIRIT = cardStrings.EXTENDED_DESCRIPTION[2];
     public static String WREATH = cardStrings.EXTENDED_DESCRIPTION[3];
     public static String TEMP = cardStrings.EXTENDED_DESCRIPTION[4];
+    public static String GEAR = cardStrings.EXTENDED_DESCRIPTION[5];
 }

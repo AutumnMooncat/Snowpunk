@@ -2,6 +2,7 @@ package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
@@ -10,6 +11,8 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -26,6 +29,15 @@ public class FireballCore extends CoreCard {
     public FireballCore() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.MAGIC);
         secondMagic = baseSecondMagic = MAGIC;
+    }
+
+    @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        for (CoreCard core : coreCards) {
+            if (CardTemperatureFields.getCardHeat(core) < 0)
+                return true;
+        }
+        return false;
     }
 
     @Override

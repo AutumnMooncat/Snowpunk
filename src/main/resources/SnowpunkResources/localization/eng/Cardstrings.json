@@ -273,8 +273,7 @@
   },
   "${ModID}:Overblown": {
     "NAME": "Overblown",
-    "DESCRIPTION": "Deal !D! damage.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this kills an enemy, gain 1 snowpunk:Steam."
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:Overdrive": {
     "NAME": "Overdrive",
@@ -462,7 +461,8 @@
       "snowpunk:condense",
       "snowpunk:christmasspirit",
       "snowpunk:wreath",
-      "snowpunk:temperature"
+      "snowpunk:temperature",
+      "snowpunk:gear"
     ]
   }
 }

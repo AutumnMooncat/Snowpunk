@@ -3,6 +3,7 @@ package Snowpunk.cards.assemble.cores;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.UpgradeRunnable;
 import Snowpunk.util.Wiz;
@@ -32,6 +33,15 @@ public class SnowballCore extends CoreCard {
     public SnowballCore() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.MAGIC);
         secondMagic = baseSecondMagic = MAGIC;
+    }
+
+    @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        for (CoreCard core : coreCards) {
+            if (CardTemperatureFields.getCardHeat(core) > 0)
+                return true;
+        }
+        return false;
     }
 
     @Override

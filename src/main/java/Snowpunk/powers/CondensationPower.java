@@ -1,6 +1,5 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
 import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

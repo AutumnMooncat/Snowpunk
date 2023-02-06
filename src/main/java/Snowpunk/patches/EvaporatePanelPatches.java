@@ -1,5 +1,6 @@
 package Snowpunk.patches;
 
+import Snowpunk.actions.CondenseAction;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
@@ -19,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -118,9 +120,9 @@ public class EvaporatePanelPatches {
     //Moving the card
 
     public static boolean shouldEvaporate(AbstractCard card) {
-        if (card.hasTag(CustomTags.VENT)) {
+        /*if (card.hasTag(CustomTags.VENT)) {
             return false;
-        }
+        }*/
         return EvaporateField.evaporate.get(card);
     }
 
@@ -154,6 +156,20 @@ public class EvaporatePanelPatches {
                     }
                 }
                 Wiz.atb(new HandCheckAction());
+                if (___targetCard.hasTag(CustomTags.VENT)) {
+                    Wiz.atb(new CondenseAction(___targetCard));
+                    AbstractGameEffect e = null;
+                    for (AbstractGameEffect effect : AbstractDungeon.effectList) {
+                        if (effect instanceof ExhaustCardEffect) {
+                            AbstractCard c = ReflectionHacks.getPrivate(effect, ExhaustCardEffect.class, "c");
+                            if (c == ___targetCard)
+                                e = effect;
+                        }
+                    }
+                    if (e != null)
+                        AbstractDungeon.effectList.remove(e);
+                }
+
                 ReflectionHacks.RMethod tick = ReflectionHacks.privateMethod(AbstractGameAction.class, "tickDuration");
                 tick.invoke(__instance);
                 return SpireReturn.Return();

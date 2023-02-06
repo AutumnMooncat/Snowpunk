@@ -1,15 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.TemperatureMod;
-import Snowpunk.cardmods.parts.ReshuffleMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.actions.CondenseAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.RefrigeratePower;
-import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,7 +29,7 @@ public class Refrigerate extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < magicNumber; i++)
-            addToBot(new CondenseRandomCardToDrawPileAction());
+            addToBot(new CondenseAction());
     }
 
     @Override

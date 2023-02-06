@@ -1,9 +1,5 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.CondenseRandomCardToDrawPileAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.ui.EvaporatePanel;
-import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;

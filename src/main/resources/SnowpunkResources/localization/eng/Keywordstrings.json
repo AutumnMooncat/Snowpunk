@@ -77,7 +77,7 @@
       "ventilation",
       "ventilated"
     ],
-    "DESCRIPTION": "If this card would #yEvaporate, discard it instead."
+    "DESCRIPTION": "If this card would #yEvaporate, #yCondense it."
   },
   {
     "PROPER_NAME": "Reshuffle",
@@ -290,6 +290,13 @@
       "wreath"
     ],
     "DESCRIPTION": "This card deals more damage and gains more #yBlock."
+  },
+  {
+    "PROPER_NAME": "Gear",
+    "NAMES": [
+      "gear"
+    ],
+    "DESCRIPTION": "Counts as [E] towards paying this card's cost. Any #yGears used to pay the cost are removed on play."
   },
   {
     "PROPER_NAME": "Stabilize",
