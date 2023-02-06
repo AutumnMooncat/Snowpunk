@@ -6,6 +6,13 @@
       "At the start of each combat, gain #b"," #ysnowpunk:Spare_Parts."
     ]
   },
+  "${ModID}:SteamPipe": {
+    "NAME": "Steam Pipe",
+    "FLAVOR": "Now steam powered, as all good things are.",
+    "DESCRIPTIONS": [
+      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. At the start of your turn, gain #b"," #ysnowpunk:Spare_Part."
+    ]
+  },
   "${ModID}:ChristmasSpiritOLD": {
     "NAME": "Christmas Spirit OLD",
     "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
@@ -38,7 +45,7 @@
     "NAME": "Scrap Heap",
     "FLAVOR": "Fresh junk for the picking.",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b"," #ysnowpunk:Spare_Parts. You can no longer #ySmith at Rest Sites"
+      "At the start of your turn, gain #b"," #ysnowpunk:Spare_Parts. You can no longer #ySmith at Rest Sites."
     ]
   }
 }
