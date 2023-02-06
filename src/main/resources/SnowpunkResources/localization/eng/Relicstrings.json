@@ -47,5 +47,12 @@
     "DESCRIPTIONS": [
       "At the start of your turn, gain #b"," #ysnowpunk:Spare_Parts. You can no longer #ySmith at Rest Sites."
     ]
+  },
+  "${ModID}:StrangeGizmo": {
+    "NAME": "Strange Gizmo",
+    "FLAVOR": "Truly a marvel of machinery.",
+    "DESCRIPTIONS": [
+      "When adding cards into your deck, you may #yUpgrade a random card instead.","Random Upgrade"
+    ]
   }
 }
