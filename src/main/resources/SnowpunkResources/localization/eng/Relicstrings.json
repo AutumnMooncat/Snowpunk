@@ -33,5 +33,12 @@
     "DESCRIPTIONS": [
       "Card effects act as if you have #b"," more #ysnowpunk:Snowball."
     ]
+  },
+  "${ModID}:ScrapHeap": {
+    "NAME": "Scrap Heap",
+    "FLAVOR": "Fresh junk for the picking.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain #b"," #ysnowpunk:Spare_Parts. You can no longer #ySmith at Rest Sites"
+    ]
   }
 }
