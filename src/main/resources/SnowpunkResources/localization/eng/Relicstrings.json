@@ -3,7 +3,7 @@
     "NAME": "Brass Pipe",
     "FLAVOR": "For a busy mind.",
     "DESCRIPTIONS": [
-      "#yUpgrade the first #b2 cards you draw each combat."
+      "At the start of each combat, gain #b"," #ysnowpunk:Spare_Parts."
     ]
   },
   "${ModID}:ChristmasSpiritOLD": {
