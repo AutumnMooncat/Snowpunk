@@ -33,9 +33,9 @@ public class Holly extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> innateUpgrade());
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ReshuffleMod()));
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> innateUpgrade());
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new ReshuffleMod()));
     }
 
     private void innateUpgrade() {

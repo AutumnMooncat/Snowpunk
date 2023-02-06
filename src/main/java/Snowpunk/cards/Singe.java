@@ -41,9 +41,9 @@ public class Singe extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgrade2());
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgrade2());
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
     }
 
     private void upgrade2() {

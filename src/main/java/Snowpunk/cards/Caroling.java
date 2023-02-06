@@ -2,7 +2,6 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.CarolingDrawPower;
-import Snowpunk.powers.CarolingSnowballPower;
 import Snowpunk.powers.HollyPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -50,11 +49,11 @@ public class Caroling extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> upgradeSecondMagic(2));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeSecondMagic(2));
     }
 }

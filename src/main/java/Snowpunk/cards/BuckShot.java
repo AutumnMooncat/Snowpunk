@@ -47,9 +47,9 @@ public class BuckShot extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> {
             upgradeInfo(1);
             baseMagicNumber = magicNumber = 0;
             upgradeMagicNumber(BURN);

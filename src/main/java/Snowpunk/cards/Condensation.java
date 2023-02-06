@@ -33,9 +33,9 @@ public class Condensation extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> upgrade2());
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(() -> upgrade2());
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 
     private void upgrade2() {

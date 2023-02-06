@@ -1,11 +1,8 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.MadSciencePower;
-import Snowpunk.powers.SteamFormPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.BaseModCardTags;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -38,11 +35,11 @@ public class MadScience extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             this.isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT), 1);
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeMagicNumber(UP_EFFECT), 1);
     }
 }

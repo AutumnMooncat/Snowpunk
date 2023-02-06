@@ -33,8 +33,8 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeSecondMagic(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> upgradeSecondMagic(UP_MAGIC));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }

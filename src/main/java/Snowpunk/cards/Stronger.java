@@ -1,10 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.powers.StrongerPower;
-import Snowpunk.powers.WinterStormPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -39,9 +36,9 @@ public class Stronger extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MULT), new int[]{}, new int[]{1, 2});
-        addUpgradeData(this, () -> upgrade2(), new int[]{}, new int[]{0, 2});
-        addUpgradeData(this, () -> upgrade3(), new int[]{}, new int[]{0, 1});
+        addUpgradeData(() -> upgradeMagicNumber(UP_MULT), new int[]{}, new int[]{1, 2});
+        addUpgradeData(() -> upgrade2(), new int[]{}, new int[]{0, 2});
+        addUpgradeData(() -> upgrade3(), new int[]{}, new int[]{0, 1});
     }
 
     private void upgrade2() {

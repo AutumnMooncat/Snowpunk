@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
@@ -52,12 +51,12 @@ public class ColdWind extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_CHILL));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeMagicNumber(UP_CHILL));
+        addUpgradeData(() -> {
             weak = true;
             upgradeInfo(1);
         });
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             aoe = true;
             target = CardTarget.ALL_ENEMY;
             uDesc();

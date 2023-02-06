@@ -1,15 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.ChillPower;
-import Snowpunk.powers.FrostbitePower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -57,9 +51,9 @@ public class BlackIce extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(BONUS));
-        addUpgradeData(this, () -> upgrade2());
-        addUpgradeData(this, () -> upgrade3());
+        addUpgradeData(() -> upgradeMagicNumber(BONUS));
+        addUpgradeData(() -> upgrade2());
+        addUpgradeData(() -> upgrade3());
     }
 
     private void upgrade2() {

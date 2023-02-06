@@ -63,7 +63,7 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard {
             uDesc();
         });
         addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
             baseMagicNumber = magicNumber = 0;
             chill = true;

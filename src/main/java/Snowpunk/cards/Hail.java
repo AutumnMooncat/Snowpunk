@@ -1,7 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
@@ -12,7 +10,6 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -67,8 +64,8 @@ public class Hail extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_BONUS));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(UP_BONUS));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

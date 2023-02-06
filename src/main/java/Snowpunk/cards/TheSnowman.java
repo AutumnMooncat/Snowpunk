@@ -1,10 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.TheSnowmanPower;
-import Snowpunk.powers.WinterStormPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -35,11 +33,11 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.MultiUpgradeInHandAction;
-import Snowpunk.actions.TinkerAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnObtainCard;
 import Snowpunk.util.Wiz;
@@ -34,9 +33,9 @@ public class TinkersHammer extends AbstractMultiUpgradeCard implements OnObtainC
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });

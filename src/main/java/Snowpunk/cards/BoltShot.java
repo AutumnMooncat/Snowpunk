@@ -1,9 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.WhistolMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -49,15 +47,15 @@ public class BoltShot extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             upgradeDamage(UP_DMG);
             upgradeMagicNumber(UP_VULN);
         });
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             upgradeDamage(DOWN_DMG);
             upgradeBaseCost(UP_COST);
         });
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             weak = true;
             uDesc();
         });

@@ -1,16 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.CondenseRandomCardToHandAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.actions.PlayRandomEvaporatedCardAction;
-import Snowpunk.cardmods.TemperatureMod;
-import Snowpunk.cardmods.parts.ReshuffleMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FrostbitePower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,9 +35,9 @@ public class TheCryogenizer extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });

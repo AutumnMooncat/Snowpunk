@@ -2,8 +2,6 @@ package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.patches.NegativeCostFieldPatches;
-import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.util.UpgradeRunnable;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.cards.AbstractCard;

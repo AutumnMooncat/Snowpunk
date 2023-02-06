@@ -44,11 +44,11 @@ public class Resupply extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_DRAW));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeMagicNumber(UP_DRAW));
+        addUpgradeData(() -> {
             upgradeBaseCost(UP_COST);
         }, new int[]{}, new int[]{2});
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         }, new int[]{}, new int[]{1});

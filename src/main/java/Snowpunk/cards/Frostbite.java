@@ -43,9 +43,9 @@ public class Frostbite extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> upgrade3());
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgrade3());
     }
 
     private void upgrade3() {

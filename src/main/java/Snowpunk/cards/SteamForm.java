@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SteamFormPower;
@@ -35,12 +34,12 @@ public class SteamForm extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             this.isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> {
             upgradeBaseCost(UP_COST);
             upgradeMagicNumber(UP_EFFECT);
         });

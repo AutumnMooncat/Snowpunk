@@ -62,8 +62,8 @@ public class Smelt extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBlock(UPG_BLOCK));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new VentMod()), new int[]{}, new int[]{2});
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
+        addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new VentMod()), new int[]{}, new int[]{2});
+        addUpgradeData(() -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
     }
 }

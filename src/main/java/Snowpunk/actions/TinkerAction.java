@@ -1,10 +1,10 @@
 package Snowpunk.actions;
 
-import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.MultiUpgradeCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -87,7 +87,7 @@ public class TinkerAction extends AbstractGameAction {
         if (c instanceof BranchingUpgradesCard) {
             parts += Math.abs(c.timesUpgraded);
         } else if (c instanceof MultiUpgradeCard) {
-            parts += ((MultiUpgradeCard) c).upgradesPerformed(c);
+            parts += ((MultiUpgradeCard) c).upgradesPerformed();
         } else {
             parts += c.timesUpgraded;
         }

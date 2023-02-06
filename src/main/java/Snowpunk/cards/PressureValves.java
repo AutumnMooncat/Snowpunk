@@ -60,13 +60,13 @@ public class PressureValves extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_STACKS));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeMagicNumber(UP_STACKS));
+        addUpgradeData(() -> {
             xUpgrade = true;
             upgradeBaseCost(OTHER_COST);
             upgradeMagicNumber(DOWN_STACKS);
             uDesc();
         }, new int[]{}, new int[]{2});
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
+        addUpgradeData(() -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
     }
 }

@@ -1,9 +1,7 @@
 package Snowpunk.cards.abstracts;
 
-import Snowpunk.cardmods.MkMod;
-import Snowpunk.cards.interfaces.MultiUpgradeCard;
 import Snowpunk.patches.MkPatches;
-import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.MultiUpgradeCard;
 
 public abstract class AbstractMultiUpgradeCard extends AbstractEasyCard implements MultiUpgradeCard {
 

@@ -2,9 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.ScrapShieldPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -33,13 +31,13 @@ public class ScrapShield extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1), new int[]{}, new int[]{1});
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1), new int[]{}, new int[]{0});
-        addUpgradeData(this, () -> upgradeBlock(UP_BLK), false, 0, 1);
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1), new int[]{}, new int[]{1});
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1), new int[]{}, new int[]{0});
+        addUpgradeData(() -> upgradeBlock(UP_BLK), false, 0, 1);
+        addUpgradeData(() -> {
             upgradeBlock(UP_BLK_2);
         }, 0, 2);
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             upgradeMagicNumber(MAGIC);
         }, 1, 2);
     }

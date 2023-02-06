@@ -1,9 +1,8 @@
 package Snowpunk.actions;
 
-import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.Wiz;
 import com.badlogic.gdx.Gdx;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
+import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.MultiUpgradePatches;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;

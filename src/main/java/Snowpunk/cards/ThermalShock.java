@@ -43,9 +43,9 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new FluxMod()));
-        addUpgradeData(this, () -> upgrade3(), 1);
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new FluxMod()));
+        addUpgradeData(() -> upgrade3(), 1);
     }
 
     private void upgrade3() {

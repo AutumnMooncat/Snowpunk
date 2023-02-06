@@ -59,7 +59,7 @@ public class Fireball extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             upgradeDamage(UP_DMG);
             upgradeMagicNumber(UP_MAGIC);
         });

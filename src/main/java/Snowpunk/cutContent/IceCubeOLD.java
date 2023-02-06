@@ -63,8 +63,8 @@ public class IceCubeOLD extends AbstractMultiUpgradeCard implements OnTempChange
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_ICE));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeMagicNumber(UP_ICE));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
     }
 }

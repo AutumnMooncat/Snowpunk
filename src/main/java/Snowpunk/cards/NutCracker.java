@@ -1,6 +1,5 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -51,14 +50,14 @@ public class NutCracker extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             upgradeDamage(UP_DMG);
             upgradeMagicNumber(UP_EFFECT);
         });
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             vuln = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeSecondMagic(UP_HITS));
+        addUpgradeData(() -> upgradeSecondMagic(UP_HITS));
     }
 }

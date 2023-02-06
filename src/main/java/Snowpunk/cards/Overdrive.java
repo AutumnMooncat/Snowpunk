@@ -32,11 +32,11 @@ public class Overdrive extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_STACKS), 0, 1);
+        addUpgradeData(() -> upgradeMagicNumber(UP_STACKS), 0, 1);
     }
 }

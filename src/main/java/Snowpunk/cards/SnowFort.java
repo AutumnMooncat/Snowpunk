@@ -1,21 +1,13 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.powers.ChillPower;
-import Snowpunk.powers.FrostbitePower;
 import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -41,8 +33,8 @@ public class SnowFort extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBlock(UP_BLK));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> upgradeBlock(UP_BLK));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
     }
 }

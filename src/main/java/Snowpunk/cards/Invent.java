@@ -1,10 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ARCHIVED_AssembleCardAction;
 import Snowpunk.actions.AssembleAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,6 +34,6 @@ public class Invent extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

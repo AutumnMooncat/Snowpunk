@@ -1,9 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.SparePartsPower;
-import Snowpunk.powers.TinkerNextCardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -41,11 +39,11 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(() -> {
             this.isInnate = true;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }

@@ -4,7 +4,6 @@ import Snowpunk.cardmods.BetterExhaustMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.old_cores.util.OnUseCardInstance;
 import Snowpunk.cards.interfaces.OnRecreateCardModsCard;
-import Snowpunk.patches.MultiUpgradePatches;
 import Snowpunk.util.AssembledCardArtRoller;
 import Snowpunk.util.Triplet;
 import basemod.abstracts.CustomSavable;
@@ -12,6 +11,7 @@ import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.MultiUpgradePatches;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -82,25 +82,25 @@ public class ARCHIVED_AssembledCard extends AbstractMultiUpgradeCard implements 
 
     public void addDamageUpgrade(int amount, boolean secondaryVar) {
         if (secondaryVar) {
-            addUpgradeData(this, () -> upgradeSecondDamage(amount));
+            addUpgradeData(() -> upgradeSecondDamage(amount));
         } else {
-            addUpgradeData(this, () -> upgradeDamage(amount));
+            addUpgradeData(() -> upgradeDamage(amount));
         }
     }
 
     public void addBlockUpgrade(int amount, boolean secondaryVar) {
         if (secondaryVar) {
-            addUpgradeData(this, () -> upgradeSecondBlock(amount));
+            addUpgradeData(() -> upgradeSecondBlock(amount));
         } else {
-            addUpgradeData(this, () -> upgradeBlock(amount));
+            addUpgradeData(() -> upgradeBlock(amount));
         }
     }
 
     public void addMagicUpgrade(int amount, boolean secondaryVar) {
         if (secondaryVar) {
-            addUpgradeData(this, () -> upgradeSecondMagic(amount));
+            addUpgradeData(() -> upgradeSecondMagic(amount));
         } else {
-            addUpgradeData(this, () -> upgradeMagicNumber(amount));
+            addUpgradeData(() -> upgradeMagicNumber(amount));
         }
     }
 
@@ -124,7 +124,7 @@ public class ARCHIVED_AssembledCard extends AbstractMultiUpgradeCard implements 
                 break;
             case FLUX_COMBOBULATOR:
                 addMagicUpgrade(t.getValue(), t.getFlag());
-                addUpgradeData(this, () -> {
+                addUpgradeData(() -> {
                     this.exhaust = false;
                     CardModifierManager.removeModifiersById(this, BetterExhaustMod.ID, false);
                 });
@@ -135,24 +135,24 @@ public class ARCHIVED_AssembledCard extends AbstractMultiUpgradeCard implements 
             case MONKEY_WRENCH:
                 if (t.getFlag()) {
                     if (t.getValue() == 1) {
-                        addUpgradeData(this, () -> {
+                        addUpgradeData(() -> {
                             upgradeSecondBlock(MonkeyWrench.UP_BLOCK);
                             upgradeSecondDamage(MonkeyWrench.UP_DAMAGE);
                         });
                     } else {
-                        addUpgradeData(this, () -> {
+                        addUpgradeData(() -> {
                             upgradeSecondBlock(MonkeyWrench.UP_BLOCK);
                             upgradeDamage(MonkeyWrench.UP_DAMAGE);
                         });
                     }
                 } else {
                     if (t.getValue() == 1) {
-                        addUpgradeData(this, () -> {
+                        addUpgradeData(() -> {
                             upgradeBlock(MonkeyWrench.UP_BLOCK);
                             upgradeSecondDamage(MonkeyWrench.UP_DAMAGE);
                         });
                     } else {
-                        addUpgradeData(this, () -> {
+                        addUpgradeData(() -> {
                             upgradeBlock(MonkeyWrench.UP_BLOCK);
                             upgradeDamage(MonkeyWrench.UP_DAMAGE);
                         });

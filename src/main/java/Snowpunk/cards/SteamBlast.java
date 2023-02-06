@@ -1,19 +1,15 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.WhistolMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -44,9 +40,9 @@ public class SteamBlast extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgrade2());
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_STEAM), 0, 1);
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgrade2());
+        addUpgradeData(() -> upgradeMagicNumber(UP_STEAM), 0, 1);
     }
 
     private void upgrade2() {

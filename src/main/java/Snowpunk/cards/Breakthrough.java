@@ -44,12 +44,12 @@ public class Breakthrough extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> {
             selfTinker = true;
             exhaust = false;
             uDesc();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_CARDS));
+        addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
     }
 }

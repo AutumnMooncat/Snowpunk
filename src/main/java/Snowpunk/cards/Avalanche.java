@@ -53,7 +53,7 @@ public class Avalanche extends AbstractMultiUpgradeCard {
     */
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new DupeMod()));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
     }

@@ -34,8 +34,8 @@ public class Refrigerate extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(0));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_EFFECT));
     }
 }

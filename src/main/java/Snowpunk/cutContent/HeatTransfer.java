@@ -45,7 +45,7 @@ public class HeatTransfer extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             isInnate = true;
             if (heatGenerator) {
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
@@ -54,8 +54,8 @@ public class HeatTransfer extends AbstractMultiUpgradeCard {
                 uDesc();
             }
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(() -> {
             heatGenerator = true;
             if (isInnate) {
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];

@@ -2,9 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.EmberForgePower;
-import Snowpunk.powers.MadSciencePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -37,9 +35,9 @@ public class EmberForge extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST2), 0);
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST2), 0);
+        addUpgradeData(() -> {
             upgradeMagicNumber(UP_EFFECT);
             uDesc();
         });

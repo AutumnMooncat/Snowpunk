@@ -50,8 +50,8 @@ public class Scald extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeInfo(1));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeInfo(1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
     }
 }

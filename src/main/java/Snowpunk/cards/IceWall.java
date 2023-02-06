@@ -43,9 +43,9 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeBaseCost(UP_COST));
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new ClockworkMod()));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
+        addUpgradeData(() -> {
             iceOnPlay = true;
             uDesc();
         });

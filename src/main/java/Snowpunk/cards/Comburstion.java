@@ -42,8 +42,8 @@ public class Comburstion extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_BURN));
-        addUpgradeData(this, () -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
     }
 }

@@ -31,7 +31,7 @@ public class Gift extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             free = true;
             if (exhaust) {
                 uDesc();
@@ -41,7 +41,7 @@ public class Gift extends AbstractMultiUpgradeCard {
             }
 
         });
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> {
             exhaust = false;
             if (free) {
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
@@ -50,6 +50,6 @@ public class Gift extends AbstractMultiUpgradeCard {
             }
             initializeDescription();
         });
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
     }
 }

@@ -1,9 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cardmods.VentMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CustomTags;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -39,11 +37,11 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> {
             this.target = CardTarget.ENEMY;
             uDesc();
         });
-        addUpgradeData(this, () -> CardModifierManager.addModifier(this, new VentMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new VentMod()));
     }
 }

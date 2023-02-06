@@ -1,18 +1,12 @@
 package Snowpunk.cards.assemble.cores;
 
-import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
-import Snowpunk.cards.old_cores.AbstractCoreCard;
-import Snowpunk.util.UpgradeRunnable;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

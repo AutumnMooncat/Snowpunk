@@ -39,9 +39,9 @@ public class Harder extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(this, () -> upgradeDamage(UP_DMG));
-        addUpgradeData(this, () -> upgradeMagicNumber(UP_EFFECT));
-        addUpgradeData(this, () -> {
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(UP_EFFECT));
+        addUpgradeData(() -> {
             DamageModifierManager.addModifier(this, new ProtectionOnKillDamage());
             uDesc();
         });
