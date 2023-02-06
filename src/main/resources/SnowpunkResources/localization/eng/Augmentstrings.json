@@ -4,5 +4,8 @@
   },
   "${ModID}:FireballMod": {
     "TEXT": ["", " and Fire", " NL Gain %d snowpunk:Fireball."]
+  },
+  "${ModID}:DeckedMod": {
+    "TEXT": ["Decked ", "", " NL Gain %s snowpunk:Holly."]
   }
 }
