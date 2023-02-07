@@ -73,8 +73,7 @@
   },
   "${ModID}:BrassWave": {
     "NAME": "Brass Wave",
-    "DESCRIPTION": "{@@}Gain !B! Block and deal !D! damage X{!Snowpunk:Info!|1= + 1} times.",
-    "UPGRADE_DESCRIPTION": "{@@}Gain !B! Block and deal !D! damage X{!Snowpunk:Info!|1= + 1} times. NL Gain X snowpunk:Spare_Parts."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
   "${ModID}:Breakthrough": {
     "NAME": "Breakthrough",

@@ -39,7 +39,7 @@ public class SnowpunkMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber, PostInitializeSubscriber {
+        EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber {
 
     public static final String modID = "Snowpunk";
 
@@ -208,12 +208,19 @@ public class SnowpunkMod implements
     }
 
     @Override
+    public void receiveAddAudio() {
+        BaseMod.addAudio("snowpunk:tick", modID + "Resources/audio/tick.wav");
+        BaseMod.addAudio("snowpunk:tock", modID + "Resources/audio/tock.wav");
+    }
+
+    @Override
     public void receivePostInitialize() {
         if (Loader.isModLoaded("CardAugments")) {
             AugmentHelper.register();
         }
         CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
             private final Color c = Color.RED.cpy();
+
             @Override
             public boolean test(AbstractCard abstractCard) {
                 return MultiUpgradePatches.MultiUpgradeFields.glowRed.get(abstractCard);

@@ -1,9 +1,12 @@
 package Snowpunk.patches;
 
+import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.ModEngineTempAction;
+import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -21,6 +24,12 @@ public class SnowballPatches {
     public static class CardCostPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<?> bePlayable(AbstractCard __instance) {
+            if (CardModifierManager.hasModifier(__instance, ClockworkMod.ID)) {
+                int gears = ((ClockworkMod) CardModifierManager.getModifiers(__instance, ClockworkMod.ID).get(0)).amount;
+                if (EnergyPanel.totalCount + gears >= __instance.costForTurn)
+                    return SpireReturn.Return(true);
+
+            }
             AbstractPower power = Wiz.adp().getPower(SnowballPower.POWER_ID);
             /*if (SCostFieldPatches.SCostField.isSCost.get(__instance)) {
                 if (power != null && EnergyPanel.totalCount < power.amount) {
@@ -48,11 +57,22 @@ public class SnowballPatches {
     public static class ConsumeSnowPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
-            if (__instance.hasPower(SnowballPower.POWER_ID)) {
-                int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
-                if (delta > 0) {
-                    //Wiz.atb(new ModEngineTempAction(-delta*HEAT_PER_BALL));
-                    Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
+            if ((__instance.hasPower(SnowballPower.POWER_ID) || CardModifierManager.hasModifier(c, ClockworkMod.ID)) && c.costForTurn > 0) {
+                int gears = 0;
+                if (CardModifierManager.hasModifier(c, ClockworkMod.ID))
+                    gears = ((ClockworkMod) CardModifierManager.getModifiers(c, ClockworkMod.ID).get(0)).amount;
+                if (c.costForTurn <= gears) {
+                    Wiz.att(new ApplyCardModifierAction(c, new ClockworkMod(-c.costForTurn)));
+                    //__instance.energy.energy += c.costForTurn;
+                    c.costForTurn = 0;
+                } else {
+                    if (gears > 0) {
+                        Wiz.att(new ApplyCardModifierAction(c, new ClockworkMod(-gears)));
+                        c.costForTurn -= gears;
+                    }
+                    int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
+                    if (delta > 0)
+                        Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));
                 }
             }
         }
@@ -67,12 +87,21 @@ public class SnowballPatches {
         @SpireInsertPatch(locator = Locator2.class)
         public static void fixSCostShenanigans(AbstractPlayer __instance, AbstractCard c) {
             if (SCostFieldPatches.SCostField.isSCost.get(c)) {
-                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && __instance.hasPower(SnowballPower.POWER_ID)) {
+                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && (__instance.hasPower(SnowballPower.POWER_ID) || CardModifierManager.hasModifier(c, ClockworkMod.ID))) {
                     int snow = __instance.getPower(SnowballPower.POWER_ID).amount;
+                    int gears = 0;
+                    if (CardModifierManager.hasModifier(c, ClockworkMod.ID))
+                        gears = ((ClockworkMod) CardModifierManager.getModifiers(c, ClockworkMod.ID).get(0)).amount;
                     int energy = EnergyPanel.totalCount;
-                    if (snow > energy)
-                        Wiz.atb(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, snow - energy));
-                    __instance.loseEnergy(snow);
+                    if (snow > energy + gears) {
+                        Wiz.atb(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, snow - (energy + gears)));
+                        Wiz.atb(new ApplyCardModifierAction(c, new ClockworkMod(-gears)));
+                    } else if (snow <= gears) {
+                        Wiz.atb(new ApplyCardModifierAction(c, new ClockworkMod(-snow)));
+                    } else {
+                        Wiz.atb(new ApplyCardModifierAction(c, new ClockworkMod(-gears)));
+                        __instance.loseEnergy(snow - gears);
+                    }
                 }
             }
         }

@@ -115,14 +115,14 @@ public class CardTemperatureFields {
 
         TemperatureFields.inherentHeat.set(card, inherent);
         TemperatureFields.addedHeat.set(card, added);
-
+        /*
         if (CardTemperatureFields.getCardHeat(card) > 0 && CardModifierManager.hasModifier(card, ClockworkMod.ID)) {
             CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0), true);
         }
 
         if (CardTemperatureFields.getCardHeat(card) < 1 && !CardModifierManager.hasModifier(card, ClockworkMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
             CardModifierManager.addModifier(card, new ClockworkMod());
-        }
+        }*/
     }
 
     public static Color getCardTint(AbstractCard card) {
