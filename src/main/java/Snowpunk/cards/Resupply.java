@@ -1,7 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.ClockworkMod;
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,7 +16,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Resupply extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Resupply.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
@@ -24,33 +27,34 @@ public class Resupply extends AbstractMultiUpgradeCard {
 
     public Resupply() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = DRAW;
+        CardModifierManager.addModifier(this, new GearMod(DRAW));
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new DrawCardAction(magicNumber, new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (AbstractCard c : DrawCardAction.drawnCards) {
-                    if (c.canUpgrade()) {
-                        c.upgrade();
+        int drawAmount = getGears();
+        if (drawAmount > 0) {
+            Wiz.atb(new DrawCardAction(drawAmount, new AbstractGameAction() {
+                @Override
+                public void update() {
+                    for (AbstractCard c : DrawCardAction.drawnCards) {
+                        if (c.canUpgrade()) {
+                            c.upgrade();
+                        }
                     }
+                    this.isDone = true;
                 }
-                this.isDone = true;
-            }
-        }));
+            }));
+        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(UP_DRAW));
-        addUpgradeData(() -> {
-            upgradeBaseCost(UP_COST);
-        }, new int[]{}, new int[]{2});
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(UP_DRAW)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();
-        }, new int[]{}, new int[]{1});
+        });
     }
 }

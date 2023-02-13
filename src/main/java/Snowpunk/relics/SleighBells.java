@@ -1,7 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.powers.HollyPower;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 
@@ -18,7 +18,7 @@ public class SleighBells extends AbstractEasyRelic {
     @Override
     public void atBattleStart() {
         flash();
-        Wiz.applyToSelfTop(new HollyPower(Wiz.adp(), 4));
+        Wiz.applyToSelfTop(new SparePartsPower(Wiz.adp(), 4));
         Wiz.att(new RelicAboveCreatureAction(Wiz.adp(), this));
     }
 

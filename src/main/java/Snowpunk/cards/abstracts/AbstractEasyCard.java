@@ -1,10 +1,14 @@
 package Snowpunk.cards.abstracts;
 
 import Snowpunk.TheConductor;
+import Snowpunk.cardmods.GearMod;
+import Snowpunk.powers.SnowpunkPower;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.CustomCard;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -291,6 +295,10 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected int getSnow() {
+        return getSnowStatic();
+    }
+
+    public static int getSnowStatic() {
         int snow = 0;
         for (AbstractRelic r : Wiz.adp().relics) {
             if (r instanceof SnowAmountModifier) {
@@ -303,5 +311,16 @@ public abstract class AbstractEasyCard extends CustomCard {
             }
         }
         return snow;
+    }
+
+    protected int getGears() {
+        int gears = 0;
+        if (CardModifierManager.hasModifier(this, GearMod.ID))
+            gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(SparePartsPower.POWER_ID))
+            gears += Wiz.adp().getPower(SparePartsPower.POWER_ID).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
+            gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
+        return gears;
     }
 }

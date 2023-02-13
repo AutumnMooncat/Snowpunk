@@ -51,7 +51,14 @@ public class PrefixManager extends AbstractCardModifier {
             }
         }
         if (card.hasTag(CustomTags.CLOCKWORK)) {
-            sb.append(TEXT[2]).append(" ");
+            int clock = 0;
+            if (CardModifierManager.hasModifier(card, ClockworkMod.ID))
+                clock = ((ClockworkMod) CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0)).amount;
+
+            if (clock > 1)
+                sb.append(TEXT[12]).append(" ").append(clock).append(". ");
+            else
+                sb.append(TEXT[2]).append(" ");
         }
         if (card.hasTag(CustomTags.GUN)) {
             sb.append(TEXT[3]).append(" ");

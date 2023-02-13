@@ -310,8 +310,16 @@
   "${ModID}:SparePartsPower": {
     "NAME": "Spare Parts",
     "DESCRIPTIONS": [
-      "#yUpgrade the next card you draw for the rest of combat.",
-      "#yUpgrade the next #b"," cards you draw for the rest of combat."
+      "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
+      " [snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:SnowpunkPower": {
+    "NAME": "Snowpunk",
+    "DESCRIPTIONS": [
+      "[snowpunk:SnowIcon] \u00a0count as [snowpunk:GearIcon] .",
+      "[snowpunk:SnowIcon] \u00a0count as #b",
+      " [snowpunk:GearIcon] ."
     ]
   },
   "${ModID}:OverdrivePower": {

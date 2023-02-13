@@ -1,8 +1,12 @@
 package Snowpunk.powers;
 
-import Snowpunk.util.Wiz;
+import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HollyMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,24 +24,29 @@ public class SparePartsPower extends AbstractEasyPower {
     }
 
     @Override
-    public void onCardDraw(AbstractCard card) {
-        if (amount > 0 && card.canUpgrade()) {
-            amount--;
-            card.upgrade();
-            flashWithoutSound();
-            updateDescription();
-            if (amount == 0) {
-                Wiz.att(new RemoveSpecificPowerAction(owner, owner, this));
-            }
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        if (card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, GearMod.ID)) {
+            CardModifierManager.addModifier(card, new GearMod(amount));
+            addToTop(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }
 
     @Override
+    public float modifyBlock(float blockAmount) {
+        if (blockAmount < 1)
+            return blockAmount;
+        return Math.max(blockAmount + amount, 0);
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL)
+            return damage + amount;
+        return damage;
+    }
+
+    @Override
     public void updateDescription() {
-        if (amount == 1) {
-            description = DESCRIPTIONS[0];
-        } else {
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
-        }
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 }

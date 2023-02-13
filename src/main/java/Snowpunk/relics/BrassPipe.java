@@ -1,6 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
+import Snowpunk.powers.OLD_SparePartsPower;
 import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
 

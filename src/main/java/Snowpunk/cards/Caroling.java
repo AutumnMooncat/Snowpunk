@@ -2,7 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.CarolingDrawPower;
-import Snowpunk.powers.HollyPower;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -32,7 +32,7 @@ public class Caroling extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new HollyPower(p, secondMagic));
+        Wiz.applyToSelf(new SparePartsPower(p, secondMagic));
         Wiz.applyToSelf(new CarolingDrawPower(p, magicNumber));
     }
 

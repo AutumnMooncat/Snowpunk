@@ -5,20 +5,5 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class CustomTags {
     @SpireEnum
-    public static AbstractCard.CardTags GUN;
-
-    @SpireEnum
-    public static AbstractCard.CardTags VENT;
-
-    @SpireEnum
-    public static AbstractCard.CardTags FLUX;
-
-    @SpireEnum
-    public static AbstractCard.CardTags CLOCKWORK;
-
-    @SpireEnum
-    public static AbstractCard.CardTags MENDING;
-
-    @SpireEnum
-    public static AbstractCard.CardTags EVERBURN;
+    public static AbstractCard.CardTags GUN, VENT, FLUX, CLOCKWORK, GEAR, MENDING, EVERBURN;
 }

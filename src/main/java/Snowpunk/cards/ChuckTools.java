@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.OLD_SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -34,7 +34,7 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
                 Wiz.applyToEnemy(mo, new VulnerablePower(mo, magicNumber, false));
             }
         }
-        Wiz.applyToSelf(new SparePartsPower(p, magicNumber));
+        Wiz.applyToSelf(new OLD_SparePartsPower(p, magicNumber));
     }
 
     @Override

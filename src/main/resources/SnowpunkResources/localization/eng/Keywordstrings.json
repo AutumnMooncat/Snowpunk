@@ -14,7 +14,7 @@
       "singed",
       "singe"
     ],
-    "DESCRIPTION": "Singed creatures take additional damage from attacks this turn."
+    "DESCRIPTION": "Singed creatures take additional damage from Attacks this turn."
   },
   {
     "PROPER_NAME": "Link",
@@ -87,14 +87,14 @@
     "DESCRIPTION": "Shuffle this card into your draw pile when it is played."
   },
   {
-    "PROPER_NAME": "Snowballs",
+    "PROPER_NAME": "[snowpunk:SnowIcon] Snowballs",
     "NAMES": [
       "snowball",
       "snowballs",
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Counts as [E] NL Remains between turns."
+    "DESCRIPTION": "Counts as [E] . NL Is used after [E] . NL Remains between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -292,11 +292,11 @@
     "DESCRIPTION": "This card deals more damage and gains more #yBlock."
   },
   {
-    "PROPER_NAME": "Gear",
+    "PROPER_NAME": "[snowpunk:GearIcon] Gear",
     "NAMES": [
       "gear"
     ],
-    "DESCRIPTION": "Counts as [E] towards paying this card's cost. Any #yGears used to pay the cost are removed on play."
+    "DESCRIPTION": "Increases the damage, #yBlock, and [snowpunk:GearIcon] effects on a card."
   },
   {
     "PROPER_NAME": "Stabilize",
@@ -351,7 +351,7 @@
       "clockwork",
       "double_frosty"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of your turn, gain [E] towards paying the card's cost."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, increase this card's [snowpunk:GearIcon] s."
   },
   {
     "PROPER_NAME": "Pull",
@@ -389,6 +389,6 @@
       "spare_parts",
       "spare_part"
     ],
-    "DESCRIPTION": "#yUpgrades the next cards you draw."
+    "DESCRIPTION": "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains [snowpunk:GearIcon] . [snowpunk:GearIcon] increases the damage, #yBlock, and [snowpunk:GearIcon] effects on a card."
   }
 ]

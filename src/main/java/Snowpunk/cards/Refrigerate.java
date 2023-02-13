@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.actions.CondenseAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,8 +29,10 @@ public class Refrigerate extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++) {
             addToBot(new CondenseAction());
+            addToBot(new WaitAction(.1f));
+        }
     }
 
     @Override

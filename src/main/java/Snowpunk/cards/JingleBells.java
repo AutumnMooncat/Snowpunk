@@ -1,10 +1,10 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.MultiUpgradeInHandAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.HollyPower;
+import Snowpunk.powers.SparePartsPower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -17,25 +17,26 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 3, HOLLY = 3, UP_HOLLY = 2;
+    private static final int COST = 2, BLOCK = 12, UPG_BLOCK = 4, HOLLY = 3, UP_HOLLY = 1;
 
     private boolean tinkerSelf = false;
 
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = HOLLY;
+        baseMagicNumber = magicNumber = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        Wiz.applyToSelf(new HollyPower(p, magicNumber));
+        if (getSnow() + magicNumber > 0)
+            Wiz.atb(new DrawCardAction(getSnow() + magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> upgradeMagicNumber(UP_HOLLY));
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

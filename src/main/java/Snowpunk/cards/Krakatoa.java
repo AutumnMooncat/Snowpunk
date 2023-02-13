@@ -11,24 +11,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Comburstion extends AbstractMultiUpgradeCard {
-    public final static String ID = makeID(Comburstion.class.getSimpleName());
+public class Krakatoa extends AbstractMultiUpgradeCard {
+    public final static String ID = makeID(Krakatoa.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
-    private static final int DMG = 10;
-    private static final int UP_DMG = 4;
-    private static final int BURN = 5;
-    private static final int UP_BURN = 2;
+    private static final int COST = 2, DMG = 12, UP_DMG = 6, BURN = 12, UP_BURN = 6;
 
-    public Comburstion() {
+    public Krakatoa() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = BURN;
         isMultiDamage = true;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -43,7 +40,7 @@ public class Comburstion extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
     }
 }

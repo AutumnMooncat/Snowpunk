@@ -1,14 +1,11 @@
 package Snowpunk.powers;
 
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -26,7 +23,7 @@ public class ScrapShieldPower extends AbstractEasyPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner) {
             this.flash();
-            this.addToTop(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new SparePartsPower(Wiz.adp(), amount)));
+            this.addToTop(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new OLD_SparePartsPower(Wiz.adp(), amount)));
         }
         return damageAmount;
     }

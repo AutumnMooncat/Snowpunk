@@ -61,6 +61,8 @@ public class SnowpunkMod implements
     private static final String CARD_ENERGY_S = modID + "Resources/images/512/energy.png";
     private static final String TEXT_ENERGY = modID + "Resources/images/512/text_energy.png";
     private static final String CARD_ENERGY_L = modID + "Resources/images/1024/energy.png";
+    public static final String CARD_SNOW_S = modID + "Resources/images/512/energy_snow.png";
+    public static final String CARD_SNOW_L = modID + "Resources/images/1024/snowball.png";
     private static final String CHARSELECT_BUTTON = modID + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/charBG.png";
 
@@ -144,14 +146,8 @@ public class SnowpunkMod implements
 
     @Override
     public void receiveEditCards() {
-        CustomIconHelper.addCustomIcon(IconContainer.IceIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.ParalysisIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.RangedIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.BleedIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.FireIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.ElectricIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.PoisonIcon.get());
-        CustomIconHelper.addCustomIcon(IconContainer.PunctureIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.GearIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.SnowIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -211,6 +207,8 @@ public class SnowpunkMod implements
     public void receiveAddAudio() {
         BaseMod.addAudio("snowpunk:tick", modID + "Resources/audio/tick.wav");
         BaseMod.addAudio("snowpunk:tock", modID + "Resources/audio/tock.wav");
+        BaseMod.addAudio("snowpunk:boing", modID + "Resources/audio/boing.mp3");
+        BaseMod.addAudio("snowpunk:screm", modID + "Resources/audio/screm.wav");
     }
 
     @Override

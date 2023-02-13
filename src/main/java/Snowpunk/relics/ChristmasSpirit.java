@@ -2,9 +2,6 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.powers.ChristmasSpiritPower;
-import Snowpunk.powers.HolidayCheerPower;
-import Snowpunk.powers.SparePartsPower;
-import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

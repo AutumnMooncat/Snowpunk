@@ -148,7 +148,8 @@
       "snowpunk:Hot & snowpunk:Cold.",
       "snowpunk:Overheated & snowpunk:Frozen.",
       "snowpunk:Double_Frosty.",
-      "snowpunk:Everburn."
+      "snowpunk:Everburn.",
+      "snowpunk:Clockwork"
     ]
   },
   "${ModID}:TinkerSelfMod": {

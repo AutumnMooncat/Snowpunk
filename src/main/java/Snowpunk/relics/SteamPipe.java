@@ -1,7 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.OLD_SparePartsPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,7 +26,7 @@ public class SteamPipe extends AbstractEasyRelic {
     public void atTurnStart() {
         this.flash();
         this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        Wiz.applyToSelf(new SparePartsPower(Wiz.adp(), AMOUNT));
+        Wiz.applyToSelf(new OLD_SparePartsPower(Wiz.adp(), AMOUNT));
     }
 
     @Override

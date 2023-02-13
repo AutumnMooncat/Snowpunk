@@ -28,16 +28,14 @@ import java.util.List;
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;
 
-public class ClockworkMod extends AbstractCardModifier implements XCostModifier {
+public class ClockworkMod extends AbstractCardModifier {
     public static final String ID = makeID(ClockworkMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public int amount = 0;
-    private static ArrayList<TooltipInfo> GearTip, Tooltip;
-    private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/ui/GearIcon.png");
 
     public ClockworkMod() {
-        this(0);
+        this(1);
     }
 
     public ClockworkMod(int amount) {
@@ -49,6 +47,7 @@ public class ClockworkMod extends AbstractCardModifier implements XCostModifier 
     public void onInitialApplication(AbstractCard card) {
         card.tags.add(CustomTags.CLOCKWORK);
         CardModifierManager.addModifier(card, new PrefixManager());
+        CardModifierManager.addModifier(card, new GearMod(0));
     }
 
     @Override
@@ -61,8 +60,8 @@ public class ClockworkMod extends AbstractCardModifier implements XCostModifier 
         if (CardModifierManager.hasModifier(card, ID)) {
             ClockworkMod clockworkMod = (ClockworkMod) CardModifierManager.getModifiers(card, ID).get(0);
             clockworkMod.amount += amount;
-            if (clockworkMod.amount < 0)
-                clockworkMod.amount = 0;
+            if (clockworkMod.amount < 1)
+                clockworkMod.amount = 1;
             return false;
         }
 
@@ -70,36 +69,10 @@ public class ClockworkMod extends AbstractCardModifier implements XCostModifier 
     }
 
     @Override
-    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
-        if (GearTip == null) {
-            GearTip = new ArrayList<>();
-            GearTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
-        }
-
-        if (Tooltip == null)
-            Tooltip = new ArrayList<>();
-        if (amount > 0)
-            return GearTip;
-        return Tooltip;
-    }
-
-    @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
         if (group == Wiz.adp().hand)
-            Wiz.atb(new ClockworkTickAction(this, card));
+            Wiz.atb(new ClockworkTickAction(amount, card));
     }
-
-
-    @Override
-    public void onRender(AbstractCard card, SpriteBatch sb) {
-        if (amount > 0)
-            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
-    }
-/*
-    @Override
-    public void onRetained(AbstractCard card) {
-        Wiz.atb(new ReduceCostAction(card));
-    }*/
 
     @Override
     public String identifier(AbstractCard card) {
@@ -109,12 +82,5 @@ public class ClockworkMod extends AbstractCardModifier implements XCostModifier 
     @Override
     public AbstractCardModifier makeCopy() {
         return new ClockworkMod(amount);
-    }
-
-    @Override
-    public int modifyX(AbstractCard abstractCard) {
-        if (amount > 0)
-            return amount;
-        return 0;
     }
 }
