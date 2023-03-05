@@ -1,18 +1,19 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class BrassIcicle extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BrassIcicle.class.getSimpleName());
 
@@ -28,7 +29,6 @@ public class BrassIcicle extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         CardTemperatureFields.addInherentHeat(this, -1);
-        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

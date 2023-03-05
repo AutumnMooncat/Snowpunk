@@ -1,13 +1,12 @@
 package Snowpunk.actions;
 
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cardmods.GearMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.UpdateCardDescriptionAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class ClockworkTickAction extends AbstractGameAction {
 

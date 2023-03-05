@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.CondenseAction;
+import Snowpunk.actions.ExhumeEvaporatedCardAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.ui.EvaporatePanel;
@@ -17,26 +18,25 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, UP_COST = 1;
+    private static final int COST = 1, UP_COST = 0;
 
     public EngineOffload() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = 1;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new CondenseAction(EvaporatePanel.evaporatePile.size() + 2));
+        Wiz.atb(new ExhumeEvaporatedCardAction(magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBaseCost(UP_COST));
-        addUpgradeData(() -> upgrade2());
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-    }
-
-    private void upgrade2() {
-        exhaust = false;
-        uDesc();
+        addUpgradeData(() -> {
+            exhaust = false;
+            uDesc();
+        });
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

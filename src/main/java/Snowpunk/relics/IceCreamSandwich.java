@@ -2,7 +2,7 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.Wiz;
 import basemod.interfaces.XCostModifier;
@@ -22,7 +22,7 @@ public class IceCreamSandwich extends AbstractEasyRelic implements XCostModifier
     @Override
     public void atBattleStart() {
         flash();
-        Wiz.applyToSelfTop(new SparePartsPower(Wiz.adp(), 4));
+        Wiz.applyToSelfTop(new WidgetsPower(Wiz.adp(), 4));
         Wiz.att(new RelicAboveCreatureAction(Wiz.adp(), this));
     }
 

@@ -2,15 +2,24 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ChangeChristmasSpiritAction;
 import Snowpunk.actions.PlayLinkedCardsInHandAction;
+import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.NextTurnPowerPower;
 import Snowpunk.powers.SnowballPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -25,20 +34,29 @@ public class HotChocolate extends AbstractEasyCard {
 
     private static final int COST = 0;
 
+    private static ArrayList<TooltipInfo> Tooltip;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        }
+        return Tooltip;
+    }
+
     public HotChocolate() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 1;
-        secondMagic = baseSecondMagic = 10;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ChangeChristmasSpiritAction(secondMagic));
+        Wiz.applyToSelf(new FireballPower(p, magicNumber));
         Wiz.applyToSelf(new SnowballPower(p, magicNumber));
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
-        upgradeSecondMagic(4);
+        CardModifierManager.addModifier(this, new EverburnMod());
     }
 }

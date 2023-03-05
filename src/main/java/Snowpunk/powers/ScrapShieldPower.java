@@ -23,7 +23,7 @@ public class ScrapShieldPower extends AbstractEasyPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner) {
             this.flash();
-            this.addToTop(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new OLD_SparePartsPower(Wiz.adp(), amount)));
+            this.addToTop(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new TouchOfBrassPower(Wiz.adp(), amount)));
         }
         return damageAmount;
     }

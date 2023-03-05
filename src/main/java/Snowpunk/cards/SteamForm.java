@@ -34,14 +34,6 @@ public class SteamForm extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            this.isInnate = true;
-            uDesc();
-        });
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> {
-            upgradeBaseCost(UP_COST);
-            upgradeMagicNumber(UP_EFFECT);
-        });
     }
 }

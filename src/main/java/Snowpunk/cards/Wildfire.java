@@ -5,11 +5,15 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.WildfirePower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Wildfire extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Wildfire.class.getSimpleName());
 

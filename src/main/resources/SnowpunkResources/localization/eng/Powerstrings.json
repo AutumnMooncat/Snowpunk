@@ -20,12 +20,35 @@
       "An accumulating resource that can be converted to #yEnergy."
     ]
   },
-  "${ModID}:CarolingDrawPower": {
+  "${ModID}:AshesToAshesPower": {
+    "NAME": "Ashes to Ashes",
+    "DESCRIPTIONS": [
+      "The first time a card #yEvaporates each turn, gain #b",
+      " #yFireball.",
+      " #yFireballs."
+    ]
+  },
+  "${ModID}:BrassContraptionPower": {
+    "NAME": "Brass Contraption",
+    "DESCRIPTIONS": [
+      "Whenever you draw a card, #yUpgrade it.",
+      "Whenever you draw a card, #yUpgrade it #b",
+      " times."
+    ]
+  },
+  "${ModID}:BurningEmbersPower": {
+    "NAME": "Burning Embers",
+    "DESCRIPTIONS": [
+      "Whenever you apply #ySinge, apply #b",
+      " more."
+    ]
+  },
+  "${ModID}:CarolingPower": {
     "NAME": "Caroling",
     "DESCRIPTIONS": [
-      "At the start of your turn, if you played no attacks last turn, draw #b",
-      " card.",
-      " cards."
+      "At the start of your turn, #yCondense #b",
+      " card and add it to your hand.",
+      " cards and add them to your hand."
     ]
   },
   "${ModID}:CarolingSnowballPower": {
@@ -34,6 +57,13 @@
       "At the start of your turn, if you played no attacks last gain, #b",
       " #ySnowball.",
       " #ySnowballs."
+    ]
+  },
+  "${ModID}:ClockworkPower": {
+    "NAME": "Clockwork",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b",
+      " [snowpunk:GearIcon] to cards in your hand."
     ]
   },
   "${ModID}:PageTurnPower": {
@@ -82,6 +112,13 @@
       " cards you play."
     ]
   },
+  "${ModID}:IceWallPower": {
+    "NAME": "Ice Wall",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #yChill to enemies when they attack you this turn."
+    ]
+  },
   "${ModID}:LinkNextCardPower": {
     "NAME": "Link Next Card",
     "DESCRIPTIONS": [
@@ -90,6 +127,13 @@
       "#yLink the next #b",
       " cards you play to ",
       "."
+    ]
+  },
+  "${ModID}:LetItSnowPower": {
+    "NAME": "Let It Snow",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you have no [snowpunk:SnowIcon] , gain #b",
+      " [snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:TinkerNextCardPower": {
@@ -132,7 +176,7 @@
     "NAME": "Chill",
     "DESCRIPTIONS": [
       "Decreases attack damage by #b",
-      ". Removed at the end of the turn."
+      " this turn."
     ]
   },
   "${ModID}:ChristmasCookiePower": {
@@ -150,17 +194,25 @@
       " damage, and then remove all #ySinge."
     ]
   },
+  "${ModID}:NoGunPower": {
+    "NAME": "No Gun",
+    "DESCRIPTIONS": [
+      "You can no longer play Attacks this turn.",
+      "You can't play attacks for #b",
+      " more turns."
+    ]
+  },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": [
-      "Take double damage from attacks for #b",
-      " turn.",
-      " turns."
+      "At the start of their turn, if this enemy intends to attack, it takes #b",
+      " damage."
     ]
   },
   "${ModID}:WinterStormPower": {
     "NAME": "Winter Storm",
-    "DESCRIPTIONS": ["At the start of your turn, gain #b",
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain #b",
                     " #ySnowball and lose #b",
                     " #ySnowballs and lose #b",
                     " [E] ."]
@@ -205,6 +257,16 @@
     "DESCRIPTIONS": [
       "Whenever a card is #yExhausted, gain #b",
       " #yStrength."
+    ]
+  },
+  "${ModID}:JingleBellsPower": {
+    "NAME": "Jingle Bells",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b",
+      " #yBlock.",
+      "At the end of your next #b",
+      " turns, gain #b",
+      " #yBlock."
     ]
   },
   "${ModID}:HolidayCheerPower": {
@@ -307,11 +369,26 @@
       " [E] ."
     ]
   },
-  "${ModID}:SparePartsPower": {
-    "NAME": "Spare Parts",
+  "${ModID}:WidgetsPower": {
+    "NAME": "Widgets",
     "DESCRIPTIONS": [
       "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
       " [snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:TouchOfBrassPower": {
+    "NAME": "Touch of Brass",
+    "DESCRIPTIONS": [
+      "#yUpgrade the next card you draw.",
+      "#yUpgrade the next #b",
+      " cards you draw."
+    ]
+  },
+  "${ModID}:FireWallPower": {
+    "NAME": "Fire Wall",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #ySinge to the next enemy that attacks you."
     ]
   },
   "${ModID}:SnowpunkPower": {
@@ -331,9 +408,11 @@
     ]
   },
   "${ModID}:TheSnowmanPower": {
-    "NAME": "The Snowman",
+    "NAME": "Frosty",
     "DESCRIPTIONS": [
-      "All cards become #bFrosty."
+      "At the start of your turn, add a #yHat to a random card in your hand.",
+      "At the start of your turn, add a #yHat to a random card in your hand #b",
+      " times."
     ]
   },
   "${ModID}:BreakthroughPower": {

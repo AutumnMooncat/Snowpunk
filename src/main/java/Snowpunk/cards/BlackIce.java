@@ -51,15 +51,15 @@ public class BlackIce extends AbstractMultiUpgradeCard {
             if (AOE) {
                 for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
                     if (!mo.isDeadOrEscaped()) {
-                        Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow() + magicNumber, false));
-                        Wiz.applyToEnemy(mo, new WeakPower(mo, getSnow() + magicNumber, false));
                         Wiz.applyToEnemy(mo, new ChillPower(mo, getSnow() + magicNumber));
+                        Wiz.applyToEnemy(mo, new WeakPower(mo, getSnow() + magicNumber, false));
+                        Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow() + magicNumber, false));
                     }
                 }
             } else {
-                Wiz.applyToEnemy(m, new VulnerablePower(m, getSnow() + magicNumber, false));
-                Wiz.applyToEnemy(m, new WeakPower(m, getSnow() + magicNumber, false));
                 Wiz.applyToEnemy(m, new ChillPower(m, getSnow() + magicNumber));
+                Wiz.applyToEnemy(m, new WeakPower(m, getSnow() + magicNumber, false));
+                Wiz.applyToEnemy(m, new VulnerablePower(m, getSnow() + magicNumber, false));
             }
         }
     }

@@ -17,11 +17,19 @@ public class CondenseAction extends AbstractGameAction {
     Predicate<AbstractCard> filter;
 
     AbstractCard card = null;
+    boolean addToHand = false;
 
     public CondenseAction() {
         this(c -> true);
         amount = 1;
         card = null;
+    }
+
+    public CondenseAction(boolean addToHand) {
+        this(c -> true);
+        amount = 1;
+        card = null;
+        this.addToHand = addToHand;
     }
 
     public CondenseAction(Predicate<AbstractCard> p) {
@@ -58,7 +66,6 @@ public class CondenseAction extends AbstractGameAction {
                     AbstractCard randomCard = validCards.getRandomCard(true);
                     CondenseCard(randomCard);
                     validCards.removeCard(randomCard);
-
                 }
             }
         } else
@@ -74,7 +81,7 @@ public class CondenseAction extends AbstractGameAction {
         cardToCondense.fadingOut = false;
         if (CardTemperatureFields.canModTemp(cardToCondense, -1))
             CardTemperatureFields.addHeat(cardToCondense, -1);
-        AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense));
+        AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, addToHand));
         triggerOnCondense();
     }
 

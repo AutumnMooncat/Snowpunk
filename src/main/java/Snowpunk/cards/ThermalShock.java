@@ -1,18 +1,19 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SingePower;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class ThermalShock extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ThermalShock.class.getSimpleName());
 
@@ -44,13 +45,13 @@ public class ThermalShock extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new FluxMod()));
-        addUpgradeData(() -> upgrade3(), 1);
+        //addUpgradeData(() -> CardModifierManager.addModifier(this, new FluxMod()));
+        //addUpgradeData(() -> upgrade3(), 1);
     }
-
+/*
     private void upgrade3() {
         CardTemperatureFields.addInherentHeat(this, 1);
         exhaust = false;
         upgradeInfo(1);
-    }
+    }*/
 }

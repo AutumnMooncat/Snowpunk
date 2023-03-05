@@ -3,7 +3,7 @@ package Snowpunk.cards.abstracts;
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.powers.SnowpunkPower;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
@@ -317,8 +317,8 @@ public abstract class AbstractEasyCard extends CustomCard {
         int gears = 0;
         if (CardModifierManager.hasModifier(this, GearMod.ID))
             gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(SparePartsPower.POWER_ID))
-            gears += Wiz.adp().getPower(SparePartsPower.POWER_ID).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(WidgetsPower.POWER_ID))
+            gears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
         if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
             gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
         return gears;

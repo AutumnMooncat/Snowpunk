@@ -3,7 +3,7 @@ package Snowpunk.cardmods;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SnowpunkPower;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
@@ -16,7 +16,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,20 @@ public class GearMod extends AbstractCardModifier {
     public GearMod(int amount) {
         priority = 1;
         this.amount += amount;
+    }
+
+    @Override
+    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        if (damage >= 0)
+            damage += amount;
+        return damage;
+    }
+
+    @Override
+    public float modifyBlock(float block, AbstractCard card) {
+        if (block >= 0)
+            block += amount;
+        return block;
     }
 
     @Override
@@ -76,8 +92,8 @@ public class GearMod extends AbstractCardModifier {
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int numGears = amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(SparePartsPower.POWER_ID) && Wiz.adp().getPower(SparePartsPower.POWER_ID).amount > 0)
-            numGears += Wiz.adp().getPower(SparePartsPower.POWER_ID).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(WidgetsPower.POWER_ID) && Wiz.adp().getPower(WidgetsPower.POWER_ID).amount > 0)
+            numGears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
         if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
             numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
         if (numGears > 0) {
@@ -86,6 +102,12 @@ public class GearMod extends AbstractCardModifier {
             else
                 ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
         }
+    }
+
+    @Override
+    public void onSingleCardViewRender(AbstractCard card, SpriteBatch sb) {
+        if (amount > 0)
+            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
     }
 
     @Override

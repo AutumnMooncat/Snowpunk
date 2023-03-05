@@ -1,8 +1,9 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.CarolingDrawPower;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.CarolingPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -22,38 +23,23 @@ public class Caroling extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public Caroling() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 1;
-        secondMagic = baseSecondMagic = 5;
-        info = baseInfo = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SparePartsPower(p, secondMagic));
-        Wiz.applyToSelf(new CarolingDrawPower(p, magicNumber));
-    }
-
-    private static ArrayList<TooltipInfo> ChristmasTooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (ChristmasTooltip == null) {
-            ChristmasTooltip = new ArrayList<>();
-            ChristmasTooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.CHRISTMAS_SPIRIT), BaseMod.getKeywordDescription(KeywordManager.CHRISTMAS_SPIRIT)));
-        }
-        return ChristmasTooltip;
+        Wiz.applyToSelf(new CarolingPower(p, 1));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeSecondMagic(2));
     }
 }

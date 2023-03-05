@@ -12,10 +12,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FrostbitePower extends AbstractEasyPower {//} implements HealthBarRenderPower, OnUseSnowPower {
+public class FrostbitePower extends AbstractEasyPower implements HealthBarRenderPower {
     public static String POWER_ID = makeID(FrostbitePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -29,35 +30,25 @@ public class FrostbitePower extends AbstractEasyPower {//} implements HealthBarR
     }
 
     @Override
-    public void atEndOfRound() {
-        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
-    }
-
-    @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        if (damageType == DamageInfo.DamageType.NORMAL)
-            return damage * 2;
-        return damage;
+    public void atStartOfTurn() {
+        if (owner instanceof AbstractMonster && ((AbstractMonster) owner).getIntentBaseDmg() >= 0)
+            Wiz.atb(new DamageAction(owner, new DamageInfo(Wiz.adp(), amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
     }
 
     @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
-/*
+
     @Override
     public int getHealthBarAmount() {
-        return amount;
+        if (owner instanceof AbstractMonster && ((AbstractMonster) owner).getIntentBaseDmg() >= 0)
+            return amount;
+        return 0;
     }
 
     @Override
     public Color getColor() {
-        return hpBarColor;
+        return Color.CYAN;
     }
-
-    @Override
-    public void onUseSnowball(int snow) {
-        flashWithoutSound();
-        Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount*snow, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-    }*/
 }

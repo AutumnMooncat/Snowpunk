@@ -12,6 +12,8 @@ import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -21,6 +23,8 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class NorEaster extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(NorEaster.class.getSimpleName());
 

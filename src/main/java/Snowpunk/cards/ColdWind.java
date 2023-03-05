@@ -18,44 +18,31 @@ public class ColdWind extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 5, UP_CHILL = 3, WEAK = 2;
+    private static final int COST = 1, CHILL = 6, UP_CHILL = 3;
 
-    private boolean weak, aoe;
+    private boolean aoe;
 
     public ColdWind() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = CHILL;
-        secondMagic = baseSecondMagic = WEAK;
-        info = baseInfo = 0;
         CardTemperatureFields.addInherentHeat(this, -1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (aoe) {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (!mo.isDeadOrEscaped()) {
+                if (!mo.isDeadOrEscaped())
                     Wiz.applyToEnemy(mo, new ChillPower(mo, magicNumber));
-                    if (weak) {
-                        Wiz.applyToEnemy(mo, new WeakPower(mo, secondMagic, false));
-                    }
-                }
             }
-        } else {
+        } else
             Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
-            if (weak) {
-                Wiz.applyToEnemy(m, new WeakPower(m, secondMagic, false));
-            }
-        }
 
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_CHILL));
-        addUpgradeData(() -> {
-            weak = true;
-            upgradeInfo(1);
-        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
             aoe = true;
             target = CardTarget.ALL_ENEMY;

@@ -17,8 +17,8 @@ public class Kablam extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
-    private static final int DMG = 13;
+    private static final int COST = 1;
+    private static final int DMG = 9;
 
     public Kablam() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -33,9 +33,9 @@ public class Kablam extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(4));
-        addUpgradeData(() -> upgradeDamage(5));
-        addUpgradeData(() -> upgradeDamage(6));
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(3));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

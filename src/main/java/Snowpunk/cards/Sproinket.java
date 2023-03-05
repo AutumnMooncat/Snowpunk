@@ -1,9 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.ClockworkMod;
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SparePartsPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -30,6 +30,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
         damage = baseDamage = DMG;
         magicNumber = baseMagicNumber = GEAR;
         exhaust = true;
+        CardModifierManager.addModifier(this, new GearMod(0));
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -39,7 +40,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
         addToBot(new VFXAction(new FlickCoinEffect(player.hb.cX, player.hb.cY, target.hb.cX, target.hb.cY), 0.3F));
 
         dmg(target, AbstractGameAction.AttackEffect.NONE);
-        Wiz.applyToSelf(new SparePartsPower(player, magicNumber));
+        Wiz.applyToSelf(new WidgetsPower(player, magicNumber));
     }
 
     @Override

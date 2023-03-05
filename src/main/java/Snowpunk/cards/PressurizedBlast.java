@@ -34,23 +34,15 @@ public class PressurizedBlast extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractGameAction.AttackEffect attackEffect = (CardTemperatureFields.getCardHeat(this) > 0 ? AbstractGameAction.AttackEffect.FIRE : AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        if (target == CardTarget.ALL_ENEMY) {
-            for (int i = 0; i < magicNumber; i++)
-                addToBot(new AttackDamageRandomEnemyAction(this, attackEffect));
-        } else if (target == CardTarget.ENEMY) {
-            for (int i = 0; i < magicNumber; i++)
-                dmg(m, (CardTemperatureFields.getCardHeat(this) > 0 ? AbstractGameAction.AttackEffect.FIRE : AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        }
+        for (int i = 0; i < magicNumber; i++)
+            addToBot(new AttackDamageRandomEnemyAction(this, attackEffect));
     }
 
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> {
-            target = CardTarget.ENEMY;
-            uDesc();
-        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeMagicNumber(UP_TIMES));
     }
 }

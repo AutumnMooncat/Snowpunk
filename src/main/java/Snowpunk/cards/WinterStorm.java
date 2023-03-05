@@ -7,11 +7,15 @@ import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.WinterStormPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class WinterStorm extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(WinterStorm.class.getSimpleName());
 

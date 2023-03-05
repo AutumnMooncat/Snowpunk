@@ -1,15 +1,9 @@
 package Snowpunk.patches;
 
-import Snowpunk.actions.ApplyCardModifierAction;
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.powers.SnowballPower;
-import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.EnergyManager;

@@ -36,4 +36,20 @@ public class IconContainer {
             return singleton;
         }
     }
+
+    public static class TempIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Temp");
+        private static AbstractCustomIcon singleton;
+
+        public TempIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Temp.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new TempIcon();
+            }
+            return singleton;
+        }
+    }
 }

@@ -1,13 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.MultiUpgradeInHandAction;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.IcePower;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,33 +20,23 @@ public class ThinkingChamber extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 2;
-    private static final int UPGRADE = 2;
-    private static final int UP_TINKER = 99;
-    private static final int PROTECT = 1;
 
     private boolean steam = false;
 
     public ThinkingChamber() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = UPGRADE;
-        secondMagic = baseSecondMagic = PROTECT;
+        block = baseBlock = 8;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new IcePower(p, secondMagic));
-        if (magicNumber < BaseMod.MAX_HAND_SIZE)
-            Wiz.atb(new MultiUpgradeInHandAction(magicNumber, 1));
-        else
-            Wiz.atb(new ArmamentsAction(true));
+        blck();
+        Wiz.atb(new ArmamentsAction(true));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            upgradeMagicNumber(UP_TINKER);
-            uDesc();
-        });
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
+        addUpgradeData(() -> upgradeBlock(4));
     }
 }

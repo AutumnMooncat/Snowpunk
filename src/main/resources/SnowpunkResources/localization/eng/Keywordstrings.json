@@ -34,6 +34,13 @@
     "DESCRIPTION": "Determines the effect and abilities of a card."
   },
   {
+    "PROPER_NAME": "Hat",
+    "NAMES": [
+      "hat"
+    ],
+    "DESCRIPTION": "When played, a #yHat jumps to a random other card in your hand and you draw 1 card per #yHat. #yHats are removed at the end of your turn."
+  },
+  {
     "PROPER_NAME": "Duplicate",
     "NAMES": [
       "duplicate"
@@ -54,7 +61,7 @@
       "fireball",
       "fireballs"
     ],
-    "DESCRIPTION": "#yHeat the next card you play."
+    "DESCRIPTION": "Increase the [snowpunk:TempIcon] of the next card you play."
   },
   {
     "PROPER_NAME": "Frostbite",
@@ -62,7 +69,7 @@
       "frostbite",
       "frostbitten"
     ],
-    "DESCRIPTION": "Frostbitten creatures take double damage."
+    "DESCRIPTION": "At the start of their turn, Frostbitten enemies take damage if they intend to attack."
   },
   {
     "PROPER_NAME": "Whistol",
@@ -72,12 +79,12 @@
     "DESCRIPTION": "Deals additional damage for each #yEvaporated card you have."
   },
   {
-    "PROPER_NAME": "Ventilation",
+    "PROPER_NAME": "Ventilated",
     "NAMES": [
       "ventilation",
       "ventilated"
     ],
-    "DESCRIPTION": "If this card would #yEvaporate, #yCondense it."
+    "DESCRIPTION": "When this card #yEvaporates, #yCondense it."
   },
   {
     "PROPER_NAME": "Reshuffle",
@@ -87,14 +94,14 @@
     "DESCRIPTION": "Shuffle this card into your draw pile when it is played."
   },
   {
-    "PROPER_NAME": "[snowpunk:SnowIcon] Snowballs",
+    "PROPER_NAME": "Snowballs [snowpunk:SnowIcon]",
     "NAMES": [
       "snowball",
       "snowballs",
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Counts as [E] . NL Is used after [E] . NL Remains between turns."
+    "DESCRIPTION": "Count as [E] . NL Used after [E] . NL Remain between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -174,28 +181,28 @@
     "DESCRIPTION": "Requires and consumes #ySnowballs to trigger an extra effect."
   },
   {
-    "PROPER_NAME": "Overheated",
+    "PROPER_NAME": "Overheated (2 [snowpunk:TempIcon] MAX)",
     "NAMES": [
       "overheated"
     ],
     "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate."
   },
   {
-    "PROPER_NAME": "Hot",
+    "PROPER_NAME": "Hot (1 [snowpunk:TempIcon] [REMOVE_SPACE])",
     "NAMES": [
       "hot"
     ],
     "DESCRIPTION": "Gain [E] . #yEvaporate."
   },
   {
-    "PROPER_NAME": "Cold",
+    "PROPER_NAME": "Cold (-1 [snowpunk:TempIcon] [REMOVE_SPACE])",
     "NAMES": [
       "cold"
     ],
     "DESCRIPTION": "#yRetain. NL #yCondense a random card."
   },
   {
-    "PROPER_NAME": "Frozen",
+    "PROPER_NAME": "Frozen (-2 [snowpunk:TempIcon] MIN)",
     "NAMES": [
       "frozen"
     ],
@@ -217,7 +224,7 @@
       "condensed",
       "condenses"
     ],
-    "DESCRIPTION": "#yCool an #yEvaporated card and shuffle it into your draw pile."
+    "DESCRIPTION": "Shuffle an #yEvaporated card into your draw pile and reduce its [snowpunk:TempIcon] by #b1."
   },
   {
     "PROPER_NAME": "Heat",
@@ -225,14 +232,14 @@
       "heat",
       "heated"
     ],
-    "DESCRIPTION": "Raise temperature if it is below #yOverheated."
+    "DESCRIPTION": "Raise [snowpunk:TempIcon] by #b1 if it is below #yOverheated."
   },
   {
     "PROPER_NAME": "Overheat",
     "NAMES": [
       "overheat"
     ],
-    "DESCRIPTION": "Set Temperature to #yOverheated."
+    "DESCRIPTION": "Raise [snowpunk:TempIcon] to #b2 ( #yOverheated )."
   },
   {
     "PROPER_NAME": "Cool",
@@ -240,21 +247,21 @@
       "cool",
       "cooled"
     ],
-    "DESCRIPTION": "Lower temperature if it is above #yFrozen."
+    "DESCRIPTION": "Lower [snowpunk:TempIcon] by #b1 if it is above #yFrozen."
   },
   {
     "PROPER_NAME": "Freeze",
     "NAMES": [
       "freeze"
     ],
-    "DESCRIPTION": "Lower temperature to #yFrozen."
+    "DESCRIPTION": "Lower [snowpunk:TempIcon] to #b-2 ( #yFrozen )."
   },
   {
     "PROPER_NAME": "Everburn",
     "NAMES": [
       "everburn"
     ],
-    "DESCRIPTION": "Cannot be #yCooled below #yHot."
+    "DESCRIPTION": "[snowpunk:TempIcon] cannot be reduced below #b1 NL ( #yHot )."
   },
   {
     "PROPER_NAME": "Battery",
@@ -292,11 +299,11 @@
     "DESCRIPTION": "This card deals more damage and gains more #yBlock."
   },
   {
-    "PROPER_NAME": "[snowpunk:GearIcon] Gear",
+    "PROPER_NAME": "Gears [snowpunk:GearIcon]",
     "NAMES": [
       "gear"
     ],
-    "DESCRIPTION": "Increases the damage, #yBlock, and [snowpunk:GearIcon] effects on a card."
+    "DESCRIPTION": "Increase a card's damage, #yBlock, and [snowpunk:GearIcon] effects."
   },
   {
     "PROPER_NAME": "Stabilize",
@@ -382,13 +389,11 @@
     "DESCRIPTION": "Hot: Gain Steam NL Stable: Gain [E] NL Cold: Gain Snowballs"
   },
   {
-    "PROPER_NAME": "Spare Parts",
+    "PROPER_NAME": "Widgets",
     "NAMES": [
-      "spare parts",
-      "spare part",
-      "spare_parts",
-      "spare_part"
+      "widget",
+      "widgets"
     ],
-    "DESCRIPTION": "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains [snowpunk:GearIcon] . [snowpunk:GearIcon] increases the damage, #yBlock, and [snowpunk:GearIcon] effects on a card."
+    "DESCRIPTION": "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains [snowpunk:GearIcon] ."
   }
 ]

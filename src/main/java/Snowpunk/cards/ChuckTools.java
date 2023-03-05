@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.OLD_SparePartsPower;
+import Snowpunk.powers.TouchOfBrassPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,6 +12,8 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class ChuckTools extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChuckTools.class.getSimpleName());
 
@@ -34,7 +38,7 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
                 Wiz.applyToEnemy(mo, new VulnerablePower(mo, magicNumber, false));
             }
         }
-        Wiz.applyToSelf(new OLD_SparePartsPower(p, magicNumber));
+        Wiz.applyToSelf(new TouchOfBrassPower(p, magicNumber));
     }
 
     @Override

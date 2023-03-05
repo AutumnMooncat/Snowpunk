@@ -1,16 +1,10 @@
 package Snowpunk.cards;
 
 import Snowpunk.cardmods.EverburnMod;
-import Snowpunk.cardmods.FluxMod;
 import Snowpunk.cardmods.VentMod;
-import Snowpunk.cardmods.WhistolMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.damageMods.SteamOnKillDamage;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.CustomTags;
 import basemod.helpers.CardModifierManager;
-import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

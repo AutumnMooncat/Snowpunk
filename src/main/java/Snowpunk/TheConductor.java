@@ -3,7 +3,10 @@ package Snowpunk;
 import Snowpunk.cards.*;
 import Snowpunk.relics.BrassPipe;
 import Snowpunk.util.HeatBasedEnergyManager;
+import Snowpunk.vfx.VictoryGlow;
+import Snowpunk.vfx.VictorySnowflakeEffects;
 import basemod.abstracts.CustomPlayer;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,6 +28,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +53,15 @@ public class TheConductor extends CustomPlayer {
     static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
+    public static float update_timer = 0;
+    public static boolean glow_fade = false;
 
 
     public TheConductor(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null, new CustomSpriterAnimation(
                 modID + "Resources/images/char/mainChar/OJCharacter.scml"));
         Player.PlayerListener listener = new CustomAnimationListener(this);
-        ((CustomSpriterAnimation)this.animation).myPlayer.addListener(listener);
+        ((CustomSpriterAnimation) this.animation).myPlayer.addListener(listener);
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
@@ -288,6 +294,20 @@ public class TheConductor extends CustomPlayer {
         panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman2.png"));// 314
         panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman3.png"));// 315
         return panels;// 316
+    }
+
+    @Override
+    public void updateVictoryVfx(ArrayList<AbstractGameEffect> effects) {
+        if (!glow_fade) {
+            effects.add(new VictoryGlow());
+            glow_fade = true;
+        }
+
+        update_timer += Gdx.graphics.getDeltaTime();
+
+        for (float i = 0; i + (1.0 / 30.0) <= update_timer; update_timer -= (1.0 / 30.0)) {
+            effects.add(new VictorySnowflakeEffects());
+        }
     }
 
     @Override

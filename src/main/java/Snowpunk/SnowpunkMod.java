@@ -148,6 +148,7 @@ public class SnowpunkMod implements
     public void receiveEditCards() {
         CustomIconHelper.addCustomIcon(IconContainer.GearIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.SnowIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.TempIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -207,6 +208,7 @@ public class SnowpunkMod implements
     public void receiveAddAudio() {
         BaseMod.addAudio("snowpunk:tick", modID + "Resources/audio/tick.wav");
         BaseMod.addAudio("snowpunk:tock", modID + "Resources/audio/tock.wav");
+        BaseMod.addAudio("snowpunk:FIVEGOLDENRINGS", modID + "Resources/audio/FIVEGOLDENRINGS.wav");
         BaseMod.addAudio("snowpunk:boing", modID + "Resources/audio/boing.mp3");
         BaseMod.addAudio("snowpunk:screm", modID + "Resources/audio/screm.wav");
     }

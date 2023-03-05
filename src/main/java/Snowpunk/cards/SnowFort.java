@@ -2,39 +2,55 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.NextTurnPowerPower;
-import Snowpunk.powers.SnowballPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class SnowFort extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SnowFort.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
-    private static final AbstractCard.CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BLK = 12, UP_BLK = 4, MAGIC = 2, UP_MAGIC = 1;
+    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 3;
+
+    private static ArrayList<TooltipInfo> Tooltip;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        }
+        return Tooltip;
+    }
 
     public SnowFort() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseBlock = block = BLK;
-        magicNumber = baseMagicNumber = MAGIC;
+        block = baseBlock = BLOCK;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        Wiz.applyToSelf(new NextTurnPowerPower(p, new SnowballPower(p, magicNumber)));
+        if (getSnow() > 0)
+            Wiz.atb(new DrawCardAction(getSnow()));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UP_BLK));
+        addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        setDependencies(true, 2, 0, 1);
     }
 }

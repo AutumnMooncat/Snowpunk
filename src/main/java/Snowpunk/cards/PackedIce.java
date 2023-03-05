@@ -5,12 +5,16 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class PackedIce extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(PackedIce.class.getSimpleName());
 

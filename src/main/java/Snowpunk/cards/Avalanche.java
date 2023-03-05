@@ -1,10 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.cardmods.DupeMod;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,6 +14,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Avalanche extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Avalanche.class.getSimpleName());
 
@@ -34,7 +37,6 @@ public class Avalanche extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         isMultiDamage = true;
         CardTemperatureFields.addInherentHeat(this, -1);
-        CardModifierManager.addModifier(this, new ClockworkMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

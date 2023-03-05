@@ -1,12 +1,9 @@
 package Snowpunk.cards.assemble;
 
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.assemble.cores.AllEnemiesCore;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.CustomSavable;
-import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.badlogic.gdx.graphics.Texture;
@@ -247,8 +244,8 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int bonusMagic = (int) Math.max(1, baseSecondMagic * .5);
                 addUpgradeData(() -> upgradeSecondMagic(bonusMagic));
             }
-            if (CardModifierManager.hasModifier(this, ClockworkMod.ID))
-                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+            /*if (CardModifierManager.hasModifier(this, ClockworkMod.ID))
+                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));*/
             if (baseCost > 2)
                 addUpgradeData(() -> upgradeBaseCost(baseCost - 1));
         }

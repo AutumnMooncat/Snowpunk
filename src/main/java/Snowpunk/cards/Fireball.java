@@ -6,6 +6,7 @@ import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.TooltipInfo;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
 @NoPools
 public class Fireball extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Fireball.class.getSimpleName());

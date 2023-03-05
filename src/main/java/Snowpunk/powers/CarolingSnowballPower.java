@@ -1,21 +1,12 @@
 package Snowpunk.powers;
 
-import Snowpunk.cardmods.LinkMod;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-
-import java.util.Random;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -42,8 +33,8 @@ public class CarolingSnowballPower extends AbstractEasyPower {
     public void atStartOfTurn() {
         if (!prevTurnAttacked) {
             Wiz.applyToSelf(new SnowballPower(owner, amount));
-            if (!owner.hasPower(CarolingDrawPower.POWER_ID))
-                CarolingDrawPower.carol();
+            if (!owner.hasPower(CarolingPower.POWER_ID))
+                CarolingPower.carol();
         }
         prevTurnAttacked = false;
     }

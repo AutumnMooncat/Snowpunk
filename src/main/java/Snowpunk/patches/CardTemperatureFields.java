@@ -1,13 +1,11 @@
 package Snowpunk.patches;
 
 import Snowpunk.cardmods.EverburnMod;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.OverheatNextCardPower;
-import Snowpunk.powers.TheSnowmanPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -70,11 +68,6 @@ public class CardTemperatureFields {
 
     private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent) {
         int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
-        if (card.hasTag(CustomTags.FLUX) && prevTotal != 0) {
-            if (Math.signum(amount) != Math.signum(prevTotal)) {
-                amount *= -1;
-            }
-        }
         if (addInherent) {
             TemperatureFields.inherentHeat.set(card, TemperatureFields.inherentHeat.get(card) + amount);
         } else {

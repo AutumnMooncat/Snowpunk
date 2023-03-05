@@ -11,12 +11,16 @@ import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class WaterTank extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(WaterTank.class.getSimpleName());
 

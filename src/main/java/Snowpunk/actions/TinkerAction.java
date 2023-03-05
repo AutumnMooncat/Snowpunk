@@ -1,7 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.patches.CustomTags;
-import Snowpunk.powers.OLD_SparePartsPower;
+import Snowpunk.powers.TouchOfBrassPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.MultiUpgradeCard;
@@ -91,6 +91,6 @@ public class TinkerAction extends AbstractGameAction {
         } else {
             parts += c.timesUpgraded;
         }
-        Wiz.applyToSelf(new OLD_SparePartsPower(Wiz.adp(), parts));
+        Wiz.applyToSelf(new TouchOfBrassPower(Wiz.adp(), parts));
     }
 }

@@ -52,10 +52,10 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
 
         addUpgradeData(() -> upgradeBaseCost(UP_COST));
-        addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
     }
 }

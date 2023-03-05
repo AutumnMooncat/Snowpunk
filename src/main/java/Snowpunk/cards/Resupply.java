@@ -1,10 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,6 +14,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Resupply extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Resupply.class.getSimpleName());
 
@@ -51,7 +54,6 @@ public class Resupply extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(UP_DRAW)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();

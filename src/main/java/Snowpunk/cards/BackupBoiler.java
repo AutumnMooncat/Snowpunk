@@ -19,7 +19,7 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 2;
     private static final int UP_COST = 1;
@@ -28,7 +28,7 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
     public BackupBoiler() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = EFFECT;
-        CardModifierManager.addModifier(this, new DupeMod());
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -37,10 +37,10 @@ public class BackupBoiler extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(UP_COST));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> upgradeMagicNumber(1));
-        setExclusions(1, 2);
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

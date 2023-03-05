@@ -19,54 +19,26 @@ public class PressureValves extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
 
     private static final int COST = 2;
-    private static final int UP_COST = 1;
-    private static final int OTHER_COST = -1;
-    private static final int STACKS = 2;
-    private static final int UP_STACKS = 1;
-    private static final int DOWN_STACKS = -2;
 
     private boolean xUpgrade;
 
     public PressureValves() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = STACKS;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (xUpgrade) {
-            int effect = this.energyOnUse + magicNumber;
-
-            if (p.hasRelic("Chemical X")) {
-                effect += ChemicalX.BOOST;
-                p.getRelic("Chemical X").flash();
-            }
-
-            if (effect > 0) {
-                Wiz.applyToSelf(new PressureValvesPower(p, effect));
-            }
-
-            if (!this.freeToPlayOnce) {
-                p.energy.use(EnergyPanel.totalCount);
-            }
-        } else {
-            Wiz.applyToSelf(new PressureValvesPower(p, magicNumber));
-        }
-    }
-
-    public void upp() {
-        upgradeBaseCost(UP_COST);
-        uDesc();
+        Wiz.applyToSelf(new PressureValvesPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(UP_STACKS));
-        addUpgradeData(() -> {
-            xUpgrade = true;
-            upgradeBaseCost(OTHER_COST);
-            upgradeMagicNumber(DOWN_STACKS);
-            uDesc();
-        }, new int[]{}, new int[]{2});
-        addUpgradeData(() -> upgradeBaseCost(UP_COST), new int[]{}, new int[]{1});
+        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setDependencies(true, 2, 0);
+        setDependencies(true, 3, 1);
+        setExclusions(2, 3);
     }
 }

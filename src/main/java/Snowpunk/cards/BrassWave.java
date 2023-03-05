@@ -1,10 +1,8 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ApplyCardModifierAction;
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

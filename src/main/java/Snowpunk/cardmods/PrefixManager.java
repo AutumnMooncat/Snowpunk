@@ -21,44 +21,22 @@ public class PrefixManager extends AbstractCardModifier {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         StringBuilder sb = new StringBuilder();
-        if (card.hasTag(CustomTags.FLUX)) {
-            sb.append(TEXT[1]).append(" ");
-        }
         int temp = CardTemperatureFields.getCardHeat(card);
         if (temp != 0) {
-            if (card.hasTag(CustomTags.FLUX)) {
-                if (temp == 1 || temp == -1) {
-                    sb.append(TEXT[8]).append(" ");
-                } else {
-                    sb.append(TEXT[9]).append(" ");
-                }
-            } else {
-                switch (temp) {
-                    case -2:
-                        sb.append(TEXT[7]).append(" ");
-                        break;
-                    case -1:
-                        sb.append(TEXT[6]).append(" ");
-                        break;
-                    case 1:
-                        sb.append(TEXT[4]).append(" ");
-                        break;
-                    case 2:
-                        sb.append(TEXT[5]).append(" ");
-                        break;
-                }
-                //addTempKeywords(card, temp);
+            switch (temp) {
+                case -2:
+                    sb.append(TEXT[7]).append(" ");
+                    break;
+                case -1:
+                    sb.append(TEXT[6]).append(" ");
+                    break;
+                case 1:
+                    sb.append(TEXT[4]).append(" ");
+                    break;
+                case 2:
+                    sb.append(TEXT[5]).append(" ");
+                    break;
             }
-        }
-        if (card.hasTag(CustomTags.CLOCKWORK)) {
-            int clock = 0;
-            if (CardModifierManager.hasModifier(card, ClockworkMod.ID))
-                clock = ((ClockworkMod) CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0)).amount;
-
-            if (clock > 1)
-                sb.append(TEXT[12]).append(" ").append(clock).append(". ");
-            else
-                sb.append(TEXT[2]).append(" ");
         }
         if (card.hasTag(CustomTags.GUN)) {
             sb.append(TEXT[3]).append(" ");

@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.damageMods.CauterizeDamage;
@@ -22,7 +23,7 @@ public class Cauterize extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, UP_DMG = 3, SINGE = 6, UP_SINGE = 2, FIRE = 1, UP_FIRE = 1;
+    private static final int COST = 2, DMG = 9, UP_DMG = 3;
 
     public Cauterize() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -32,18 +33,12 @@ public class Cauterize extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
-        if (magicNumber > 0)
-            Wiz.applyToSelf(new FireballPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> {
-            magicNumber = baseMagicNumber = 0;
-            upgradeMagicNumber(UP_FIRE);
-            uDesc();
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
     }
 }

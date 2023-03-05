@@ -1,13 +1,22 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.ClockworkMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.IcePower;
+import Snowpunk.powers.IceWallPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -18,36 +27,59 @@ public class IceWall extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 4;
-    private static final int UP_COST = 3;
+    private static final int COST = 4, UP_COST = 3;
 
-    private boolean iceOnPlay = false;
+    boolean upCost = false;
 
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardTemperatureFields.addInherentHeat(this, -2);
-        iceOnPlay = false;
+        block = baseBlock = 16;
+        CardTemperatureFields.addInherentHeat(this, -1);
+    }
+
+    private static ArrayList<TooltipInfo> Tooltip;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        }
+        return Tooltip;
     }
 
     @Override
     public void triggerWhenDrawn() {
-        Wiz.applyToSelf(new IcePower(Wiz.adp(), 1));
+        super.triggerWhenDrawn();
+        applyPowers();
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if (iceOnPlay) {
-            Wiz.applyToSelf(new IcePower(Wiz.adp(), 1));
-        }
+    public void atTurnStart() {
+        resetAttributes();
+        applyPowers();
+    }
+
+    @Override
+    public void use(AbstractPlayer player, AbstractMonster monster) {
+        blck();
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        int newCost = Math.max((upCost ? UP_COST : COST) - getSnow(), 0);
+        if (costForTurn > newCost)
+            setCostForTurn(newCost);
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(UP_COST));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new ClockworkMod()));
         addUpgradeData(() -> {
-            iceOnPlay = true;
-            uDesc();
+            upCost = true;
+            upgradeBaseCost(UP_COST);
         });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBlock(4));
     }
 }

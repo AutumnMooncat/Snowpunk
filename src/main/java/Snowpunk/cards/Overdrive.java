@@ -3,11 +3,15 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.OverdrivePower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Overdrive extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Overdrive.class.getSimpleName());
 
