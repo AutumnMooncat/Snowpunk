@@ -24,7 +24,7 @@ public class Flamethrower extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.SKILL;
 
     private boolean aoe = false;
-    private static final int COST = 2, SINGE = 8, UP_SINGE = 3;
+    private static final int COST = 2, SINGE = 6, UP_SINGE = 3;
 
     public Flamethrower() {
         super(ID, COST, TYPE, RARITY, TARGET);

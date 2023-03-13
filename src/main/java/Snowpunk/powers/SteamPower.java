@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.interfaces.FreeToPlayPower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -27,6 +28,7 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
                 action.exhaustCard = true;
             }*/
             flash();
+            CardTemperatureFields.addHeat(card, 99);
             if (!card.exhaust)
                 EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
             --amount;

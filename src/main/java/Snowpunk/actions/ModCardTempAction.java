@@ -17,7 +17,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 public class ModCardTempAction extends AbstractGameAction {
     AbstractCard card;
-    boolean random;
+    boolean random, choosing = false;
     int heat;
     AbstractPlayer player;
     private ArrayList<AbstractCard> noModTemps;
@@ -65,14 +65,16 @@ public class ModCardTempAction extends AbstractGameAction {
                     validCards.addToTop(c);
             }
             //If we have less valid cards than cards to modify, we can just hit all of them
-            if (amount == -1 || amount >= validCards.size()) {
+            if (choosing)
+                chooseUpdate();
+            else if (amount == -1 || amount >= validCards.size()) {
                 for (AbstractCard c : validCards.group) {
                     CardTemperatureFields.addHeat(c, heat);
                 }
                 isDone = true;
             } else if (random) {
                 //If not, and we are choosing randomly, remove them from the list as we go to not double up
-                for (int i = 0 ; i < amount ; i++) {
+                for (int i = 0; i < amount; i++) {
                     AbstractCard c = validCards.getRandomCard(true);
                     validCards.removeCard(c);
                     CardTemperatureFields.addHeat(c, heat);
@@ -101,6 +103,7 @@ public class ModCardTempAction extends AbstractGameAction {
 
     public void chooseUpdate() {
         if (duration == startDuration) {
+            choosing = true;
             for (AbstractCard c : player.hand.group) {
                 if (!CardTemperatureFields.canModTemp(c, heat))
                     noModTemps.add(c);

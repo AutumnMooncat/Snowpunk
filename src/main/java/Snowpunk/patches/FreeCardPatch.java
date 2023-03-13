@@ -21,6 +21,8 @@ public class FreeCardPatch {
                         return SpireReturn.Return(true);
                     }
                 }
+                if (CardTemperatureFields.getCardHeat(__instance) == CardTemperatureFields.OVERHEATED)
+                    return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();
         }

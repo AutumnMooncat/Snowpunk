@@ -46,6 +46,7 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        setDependencies(true, 2, 0, 1);
     }
 }

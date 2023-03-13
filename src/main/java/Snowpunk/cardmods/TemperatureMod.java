@@ -6,6 +6,7 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
@@ -88,7 +89,7 @@ public class TemperatureMod extends AbstractCardModifier {
             EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
         }
         if ((heat == OVERHEATED) && !LoopcastField.LoopField.islooping.get(card)) {
-            for (int i = 0; i < amount; i++) {
+            /*for (int i = 0; i < amount; i++) {
                 AbstractCard tmp = card.makeSameInstanceOf();
                 AbstractDungeon.player.limbo.addToBottom(tmp);
                 tmp.current_x = card.current_x;
@@ -106,7 +107,8 @@ public class TemperatureMod extends AbstractCardModifier {
                 } else {
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, null, card.energyOnUse, true, true), true);
                 }
-            }
+            }*/
+            //Wiz.applyToSelf(new FireballPower(Wiz.adp(), amount));
         }
 
         if (heat <= COLD)
@@ -119,7 +121,7 @@ public class TemperatureMod extends AbstractCardModifier {
 
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {
-        if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) < 0)
+        if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) <= COLD)
             card.retain = true;
         return false;
     }

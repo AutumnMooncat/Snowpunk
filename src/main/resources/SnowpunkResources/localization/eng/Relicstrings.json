@@ -46,7 +46,8 @@
     "NAME": "Scrap Heap",
     "FLAVOR": "Fresh junk for the picking.",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b"," #ysnowpunk:Spare_Parts. You can no longer #ySmith at Rest Sites."
+      "#yUpgrade the first #b",
+      " cards you draw each turn. You can no longer #ySmith at Rest Sites."
     ]
   },
   "${ModID}:StrangeGizmo": {

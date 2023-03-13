@@ -1,7 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.TouchOfBrassPower;
+import Snowpunk.powers.ScrapPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -38,7 +38,7 @@ public class ChuckTools extends AbstractMultiUpgradeCard {
                 Wiz.applyToEnemy(mo, new VulnerablePower(mo, magicNumber, false));
             }
         }
-        Wiz.applyToSelf(new TouchOfBrassPower(p, magicNumber));
+        Wiz.applyToSelf(new ScrapPower(p, magicNumber));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.HatApplyAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -24,9 +25,7 @@ public class TheSnowmanPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        for (int i = 0; i < amount; i++) {
-            Wiz.atb(new ApplyCardModifierAction(Wiz.adp().hand.getRandomCard(true), new HatMod()));
-        }
+        Wiz.atb(new HatApplyAction(amount));
         flash();
     }
 

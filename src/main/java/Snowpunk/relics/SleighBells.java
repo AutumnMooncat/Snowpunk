@@ -6,7 +6,7 @@ import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 
 import static Snowpunk.SnowpunkMod.makeID;
-
+/*
 public class SleighBells extends AbstractEasyRelic {
     public static final String ID = makeID(SleighBells.class.getSimpleName());
     public static final int AMOUNT = 4;
@@ -27,3 +27,4 @@ public class SleighBells extends AbstractEasyRelic {
         return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }
 }
+*/

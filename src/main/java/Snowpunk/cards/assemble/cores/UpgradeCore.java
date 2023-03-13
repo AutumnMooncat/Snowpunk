@@ -23,7 +23,7 @@ public class UpgradeCore extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, MAGIC = 2;
+    private static final int COST = 0, MAGIC = 3;
 
     public UpgradeCore() {
         super(ID, COST, TYPE, EffectTag.CORE);

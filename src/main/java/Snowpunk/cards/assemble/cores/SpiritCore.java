@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
-
+/*
 @NoPools
 @NoCompendium
 public class SpiritCore extends CoreCard {
@@ -42,3 +42,4 @@ public class SpiritCore extends CoreCard {
         Wiz.atb(new ChangeChristmasSpiritAction(card.secondMagic));
     }
 }
+*/

@@ -43,7 +43,15 @@ public class MultiUpgradeInHandAction extends AbstractGameAction {
 
             player.hand.group.removeAll(cannotUpgrade);// 72
             if (player.hand.size() == 0) {
-                this.isDone = true;
+                isDone = true;
+                returnCards();
+                return;
+            }
+
+            if (player.hand.size() <= amount) {
+                isDone = true;
+                for (AbstractCard c : player.hand.group)
+                    upgrade(c);
                 returnCards();
                 return;
             }

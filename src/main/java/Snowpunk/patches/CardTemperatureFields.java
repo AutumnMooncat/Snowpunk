@@ -19,6 +19,7 @@ public class CardTemperatureFields {
     public static final Color STABLE_TINT = Color.WHITE.cpy();
     public static final Color OVERHEAT_TINT = new Color(1, 130 / 255f, 130 / 255f, 1);
     public static final Color FROZEN_TINT = new Color(130 / 255f, 251 / 255f, 1, 1);
+    public static final int FROZEN = -2, COLD = -1, HOT = 1, OVERHEATED = 2;
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class TemperatureFields {
@@ -40,14 +41,14 @@ public class CardTemperatureFields {
                 heat--;
             }
             if (Wiz.adp().hasPower(OverheatNextCardPower.POWER_ID)) {
-                heat = 2;
+                heat = OVERHEATED;
             }
         }
 
-        if (heat > 2) {
-            heat = 2;
-        } else if (heat < -2) {
-            heat = -2;
+        if (heat > OVERHEATED) {
+            heat = OVERHEATED;
+        } else if (heat < FROZEN) {
+            heat = FROZEN;
         }
         return heat;
     }
@@ -78,23 +79,23 @@ public class CardTemperatureFields {
         int added = TemperatureFields.addedHeat.get(card);
 
         if (CardModifierManager.hasModifier(card, EverburnMod.ID)) {
-            if (inherent < 1) {
-                TemperatureFields.inherentHeat.set(card, 1);
+            if (inherent < HOT) {
+                TemperatureFields.inherentHeat.set(card, HOT);
                 inherent = TemperatureFields.inherentHeat.get(card);
             }
-            if (inherent + added < 1)
-                TemperatureFields.addedHeat.set(card, 1 - inherent);
+            if (inherent + added < HOT)
+                TemperatureFields.addedHeat.set(card, HOT - inherent);
         }
 
-        if (inherent > 2) {
-            inherent = 2;
-        } else if (inherent < -2) {
-            inherent = -2;
+        if (inherent > OVERHEATED) {
+            inherent = OVERHEATED;
+        } else if (inherent < FROZEN) {
+            inherent = FROZEN;
         }
-        if (inherent + added > 2) {
-            added = 2 - inherent;
-        } else if (inherent + added < -2) {
-            added = -2 - inherent;
+        if (inherent + added > OVERHEATED) {
+            added = OVERHEATED - inherent;
+        } else if (inherent + added < FROZEN) {
+            added = FROZEN - inherent;
         }
 
         //If inherent goes up, but added goes down due to clamping, no change actually happens to current heat
@@ -113,20 +114,20 @@ public class CardTemperatureFields {
             CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0), true);
         }
 
-        if (CardTemperatureFields.getCardHeat(card) < 1 && !CardModifierManager.hasModifier(card, ClockworkMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
+        if (CardTemperatureFields.getCardHeat(card) < HOT && !CardModifierManager.hasModifier(card, ClockworkMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
             CardModifierManager.addModifier(card, new ClockworkMod());
         }*/
     }
 
     public static Color getCardTint(AbstractCard card) {
         switch (getCardHeat(card)) {
-            case -2:
+            case FROZEN:
                 return FROZEN_TINT;
-            case -1:
+            case COLD:
                 return COLD_TINT;
-            case 1:
+            case HOT:
                 return HOT_TINT;
-            case 2:
+            case OVERHEATED:
                 return OVERHEAT_TINT;
             default:
                 return STABLE_TINT;
@@ -135,19 +136,19 @@ public class CardTemperatureFields {
 
     public static void flashHeatColor(AbstractCard card) {
         switch (getCardHeat(card)) {
-            case -2:
+            case FROZEN:
                 card.superFlash(FROZEN_TINT.cpy());
                 break;
-            case -1:
+            case COLD:
                 card.superFlash(COLD_TINT.cpy());
                 break;
             case 0:
                 card.superFlash(Color.WHITE.cpy());
                 break;
-            case 1:
+            case HOT:
                 card.superFlash(HOT_TINT.cpy());
                 break;
-            case 2:
+            case OVERHEATED:
                 card.superFlash(OVERHEAT_TINT.cpy());
                 break;
         }
@@ -156,9 +157,9 @@ public class CardTemperatureFields {
     public static boolean canModTemp(AbstractCard card, int amount) {
         int heat = CardTemperatureFields.getCardHeat(card);
         if (amount > 0)
-            return heat < 2;
+            return heat < OVERHEATED;
         if (amount < 0)
-            return heat > -2 && !(CardModifierManager.hasModifier(card, EverburnMod.ID) && heat < 2);
+            return heat > FROZEN && !(CardModifierManager.hasModifier(card, EverburnMod.ID) && heat < 2);
         return true;
     }
 

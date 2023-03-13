@@ -18,7 +18,7 @@ public class Krakatoa extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 12, UP_DMG = 6, BURN = 12, UP_BURN = 6;
+    private static final int COST = 2, DMG = 10, UP_DMG = 5, BURN = 10, UP_BURN = 5;
 
     public Krakatoa() {
         super(ID, COST, TYPE, RARITY, TARGET);

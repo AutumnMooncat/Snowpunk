@@ -65,7 +65,7 @@
   "${ModID}:Blueprint": {
     "NAME": "Blueprint",
     "DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand.{!Snowpunk:Info!|0= NL Exhaust.}",
-    "UPGRADE_DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand. NL It costs 0 this turn.{!Snowpunk:Info!|0= NL Exhaust.}"
+    "UPGRADE_DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand. It costs 0 this turn.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:BoltShot": {
     "NAME": "Bolt Shot",
@@ -308,7 +308,7 @@
   "${ModID}:JingleBells": {
     "NAME": "Jingle Bells",
     "DESCRIPTION": "At the end of your next X turns, gain !B! Block. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Chill."
+    "UPGRADE_DESCRIPTION": "At the end of your next X turns, gain !B! Block."
   },
   "${ModID}:IcicleSpear": {
     "NAME": "Icicle Spear",
@@ -470,8 +470,8 @@
   },
   "${ModID}:SteamForm": {
     "NAME": "Steam Form",
-    "DESCRIPTION": "At the start of your turn, gain !M! snowpunk:Steam.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! snowpunk:Steam."
+    "DESCRIPTION": "The first card you play each turn becomes snowpunk:Overheated.",
+    "UPGRADE_DESCRIPTION": "Innate. NL The first card you play each turn becomes snowpunk:Overheated."
   },
   "${ModID}:SteamTrain": {
     "NAME": "Steam Train",

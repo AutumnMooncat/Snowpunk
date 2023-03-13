@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
-
+/*
 @NoPools
 @NoCompendium
 public class ShardCore extends CoreCard {
@@ -69,3 +69,4 @@ public class ShardCore extends CoreCard {
             MultiCardPreview.add(card, new IceShard());
     }
 }
+*/

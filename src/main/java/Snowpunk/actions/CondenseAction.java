@@ -5,11 +5,14 @@ import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.CondenseEffect;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import java.util.function.Predicate;
 
@@ -82,6 +85,17 @@ public class CondenseAction extends AbstractGameAction {
         if (CardTemperatureFields.canModTemp(cardToCondense, -1))
             CardTemperatureFields.addHeat(cardToCondense, -1);
         AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, addToHand));
+
+        AbstractGameEffect e = null;
+        for (AbstractGameEffect effect : AbstractDungeon.effectList) {
+            if (effect instanceof ExhaustCardEffect) {
+                AbstractCard c = ReflectionHacks.getPrivate(effect, ExhaustCardEffect.class, "c");
+                if (c == cardToCondense)
+                    e = effect;
+            }
+        }
+        AbstractDungeon.effectList.remove(e);
+
         triggerOnCondense();
     }
 

@@ -18,7 +18,7 @@ public class RedRocket extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 7, UP_DMG = 2, TIMES = 3;
+    private static final int COST = 2, DMG = 6, UP_DMG = 2, TIMES = 3;
 
     public RedRocket() {
         super(ID, COST, TYPE, RARITY, TARGET);

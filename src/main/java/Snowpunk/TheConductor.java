@@ -145,7 +145,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new Invent();
+        return new ReleaseValve();
     }
 
     @Override

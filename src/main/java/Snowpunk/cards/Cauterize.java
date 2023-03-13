@@ -23,7 +23,7 @@ public class Cauterize extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 9, UP_DMG = 3;
+    private static final int COST = 2, DMG = 8, UP_DMG = 3;
 
     public Cauterize() {
         super(ID, COST, TYPE, RARITY, TARGET);

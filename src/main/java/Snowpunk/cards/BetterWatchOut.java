@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.DelayedMakeCopyAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
@@ -40,7 +41,7 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
         }
 
         for (int i = 0; i < effect; i++)
-            addToBot(new MakeTempCardInDrawPileAction(makeStatEquivalentCopy(), 1, true, true));
+            addToBot(new DelayedMakeCopyAction(this));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);

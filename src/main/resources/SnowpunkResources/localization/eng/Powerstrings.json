@@ -239,9 +239,9 @@
   "${ModID}:SteamPower": {
     "NAME": "Steam",
     "DESCRIPTIONS": [
-      "The next card you play costs #b0 and #yEvaporates.",
+      "The next card you play gets set to #b2 [snowpunk:TempIcon] (Costs #b0, gains [E] and #yEvaporates)",
       "The next #b",
-      " cards you play cost #b0 and #yEvaporate."
+      " cards you play get set to #b2 [snowpunk:TempIcon] (Cost #b0, gain [E] and #yEvaporate)"
     ]
   },
   "${ModID}:FireballNextTurnPower": {
@@ -376,8 +376,8 @@
       " [snowpunk:GearIcon] ."
     ]
   },
-  "${ModID}:TouchOfBrassPower": {
-    "NAME": "Touch of Brass",
+  "${ModID}:ScrapPower": {
+    "NAME": "Scrap",
     "DESCRIPTIONS": [
       "#yUpgrade the next card you draw.",
       "#yUpgrade the next #b",

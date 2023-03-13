@@ -60,14 +60,17 @@ public class GiftDiscoveryAction extends AbstractGameAction {
         ArrayList<AbstractCard> derp = new ArrayList<>();
         while (derp.size() != this.amount) {
             boolean dupe = false;
+            boolean heal = false;
             AbstractCard tmp = CardLibrary.getAnyColorCard(getRandomItem(rarityList));
             for (AbstractCard c : derp) {
                 if (c.cardID.equals(tmp.cardID)) {
                     dupe = true;
                     break;
                 }
+                if (tmp.hasTag(AbstractCard.CardTags.HEALING))
+                    heal = true;
             }
-            if (!dupe)
+            if (!dupe && !heal)
                 derp.add(tmp.makeCopy());
         }
         return derp;

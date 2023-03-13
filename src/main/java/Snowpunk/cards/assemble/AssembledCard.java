@@ -37,7 +37,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     }
 
     public AssembledCard(ArrayList<CoreCard> newCores) {
-        this(0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, newCores);
+        this(0, CardType.SKILL, CardRarity.RARE, CardTarget.NONE, newCores);
     }
 
     public AssembledCard(int cost, CardType type, CardRarity rarity, CardTarget target, ArrayList<CoreCard> newCores) {

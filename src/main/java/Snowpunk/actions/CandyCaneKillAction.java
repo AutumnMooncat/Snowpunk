@@ -23,7 +23,7 @@ public class CandyCaneKillAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if ((monster.currentHealth > hp) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
+        if ((monster.currentHealth > hp || monster.currentHealth <= 0) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
             isDone = true;
             return;
         }

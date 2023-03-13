@@ -16,7 +16,7 @@ public class Workshop extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, SPIRIT = 8, UP_SPIRIT = 4;
+    private static final int COST = 1, SPIRIT = 5, UP_SPIRIT = 3;
 
 
     public Workshop() {
@@ -31,10 +31,11 @@ public class Workshop extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
-        setExclusions(1, 2);
+        addUpgradeData(() -> {
+            exhaust = false;
+            uDesc();
+        });
     }
 }

@@ -21,7 +21,7 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, UP_DMG = 2;
+    private static final int COST = 1, DMG = 6, UP_DMG = 2;
 
     public TrainScythe() {
         super(ID, COST, TYPE, RARITY, TARGET);

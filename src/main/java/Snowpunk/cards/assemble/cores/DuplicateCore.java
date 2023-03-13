@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
-
+/*
 @NoPools
 @NoCompendium
 public class DuplicateCore extends CoreCard {
@@ -46,3 +46,4 @@ public class DuplicateCore extends CoreCard {
         CardModifierManager.addModifier(card, new DupeMod());
     }
 }
+*/

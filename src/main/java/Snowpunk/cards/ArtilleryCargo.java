@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -38,10 +39,10 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> {
             this.target = CardTarget.ENEMY;
             uDesc();
         });
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new VentMod()));
     }
 }

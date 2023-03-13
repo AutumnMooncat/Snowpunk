@@ -9,11 +9,15 @@ import Snowpunk.powers.SteamPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.BaseModCardTags;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class BackupBoiler extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BackupBoiler.class.getSimpleName());
 

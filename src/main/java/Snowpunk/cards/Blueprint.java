@@ -12,8 +12,6 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoCompendium
-@NoPools
 public class Blueprint extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Blueprint.class.getSimpleName());
 

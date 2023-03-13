@@ -19,10 +19,11 @@ public class ClockworkAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        /*
         if (AbstractDungeon.actionManager.actions.size() > 1) {
             addToBot(this);
             return;
-        }
+        }*/
         for (AbstractCard card : Wiz.adp().hand.group) {
             addToBot(new ClockworkTickAction(amount, card));
         }

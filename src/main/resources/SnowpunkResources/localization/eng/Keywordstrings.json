@@ -185,7 +185,7 @@
     "NAMES": [
       "overheated"
     ],
-    "DESCRIPTION": "Play a copy of this card. NL Gain [E] . #yEvaporate."
+    "DESCRIPTION": "This card costs #b0 to play. NL Gain [E] . #yEvaporate."
   },
   {
     "PROPER_NAME": "Hot (1 [snowpunk:TempIcon] [REMOVE_SPACE])",
@@ -324,7 +324,7 @@
     "NAMES": [
       "steam"
     ],
-    "DESCRIPTION": "The next card you play costs 0 and #yEvaporates."
+    "DESCRIPTION": "The next card you play becomes #yOverheated ( #b2 [snowpunk:TempIcon] , Costs #b0, gains [E] and #yEvaporates)"
   },
   {
     "PROPER_NAME": "Holiday Cheer",
