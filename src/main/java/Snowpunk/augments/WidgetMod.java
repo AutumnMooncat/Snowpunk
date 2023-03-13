@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class DeckedMod extends AbstractAugment implements DynvarCarrier {
-    public static final String ID = SnowpunkMod.makeID(DeckedMod.class.getSimpleName());
+public class WidgetMod extends AbstractAugment implements DynvarCarrier {
+    public static final String ID = SnowpunkMod.makeID(WidgetMod.class.getSimpleName());
     public static final String DESCRIPTION_KEY = "!"+ID+"!";
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
@@ -30,8 +30,7 @@ public class DeckedMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public void onInitialApplication(AbstractCard card) {
         val = getBaseVal(card);
-        card.cost = card.cost + 1;
-        card.costForTurn = card.cost;
+        card.exhaust = true;
     }
 
     @Override
@@ -42,7 +41,7 @@ public class DeckedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && card.type != AbstractCard.CardType.POWER && cardCheck(card, c -> doesntUpgradeCost());
+        return card.cost >= 0 && card.type != AbstractCard.CardType.POWER && cardCheck(card, AbstractAugment::notExhaust);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class DeckedMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public String getSufix() {
+    public String getSuffix() {
         return TEXT[1];
     }
 
@@ -72,7 +71,7 @@ public class DeckedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DeckedMod();
+        return new WidgetMod();
     }
 
     @Override
