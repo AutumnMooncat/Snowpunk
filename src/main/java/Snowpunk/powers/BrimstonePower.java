@@ -1,11 +1,7 @@
 package Snowpunk.powers;
 
-import Snowpunk.cards.Fireball;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

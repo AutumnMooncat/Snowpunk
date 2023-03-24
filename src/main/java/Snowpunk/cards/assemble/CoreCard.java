@@ -114,5 +114,13 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
     public void apply(AssembledCard card) {
         card.cores.add(this);
     }
+
+    public int getUpgradeAmount() {
+        return -1;
+    }
+
+    public boolean costUpgrade() {
+        return false;
+    }
     //endregion
 }

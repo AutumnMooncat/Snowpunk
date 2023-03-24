@@ -20,13 +20,6 @@ public class IceCreamSandwich extends AbstractEasyRelic implements XCostModifier
     }
 
     @Override
-    public void atBattleStart() {
-        flash();
-        Wiz.applyToSelfTop(new WidgetsPower(Wiz.adp(), 4));
-        Wiz.att(new RelicAboveCreatureAction(Wiz.adp(), this));
-    }
-
-    @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }

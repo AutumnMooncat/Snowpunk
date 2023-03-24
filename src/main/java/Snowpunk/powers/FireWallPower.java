@@ -26,7 +26,15 @@ public class FireWallPower extends AbstractEasyPower {
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
-            addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount), amount));
+            if (info.owner.hasPower(SingePower.POWER_ID)) {
+                ((SingePower) info.owner.getPower(SingePower.POWER_ID)).removeThisTurn = info.owner.getPower(SingePower.POWER_ID).amount;
+                /*int bonusAmount = 0;
+                if(owner.hasPower(BurningEmbersPower.POWER_ID))
+                    bonusAmount = owner.getPower(BurningEmbersPower.POWER_ID).amount;*/
+                addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount), amount));
+            } else {
+                addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount, 0), amount));
+            }
             flash();
             addToTop(new RemoveSpecificPowerAction(owner, owner, this));
         }

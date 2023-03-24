@@ -1,21 +1,5 @@
 package Snowpunk.cards.assemble.cores;
 
-import Snowpunk.cards.IceShard;
-import Snowpunk.cards.assemble.AssembledCard;
-import Snowpunk.cards.assemble.CoreCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.util.Wiz;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
-import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
-
-import static Snowpunk.SnowpunkMod.makeID;
 /*
 @NoPools
 @NoCompendium

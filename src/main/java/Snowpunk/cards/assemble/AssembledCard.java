@@ -30,7 +30,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
 
     public ArrayList<CoreCard> cores;
     private final ArrayList<Integer> capturedIndices = new ArrayList<>();
-    public int baseCost = 0;
+    public int baseCost = 0, UP_DMG = -1, UP_BLOCK = -1, UP_MAGIC = -1, UP_M2 = -1;
 
     public AssembledCard() {
         this(new ArrayList<>());
@@ -162,8 +162,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     private int getDamage() {
         int totalDamage = 0;
         for (CoreCard core : cores) {
-            if (core.baseDamage > 0)
-                totalDamage += core.baseDamage;
+            if (core.baseDamage > 0) {
+                totalDamage = core.baseDamage;
+                if (core.getUpgradeAmount() > 0)
+                    UP_DMG = core.getUpgradeAmount();
+            }
         }
         return totalDamage > 0 ? totalDamage : -1;
     }
@@ -171,8 +174,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     private int getBlock() {
         int totalBlock = 0;
         for (CoreCard core : cores) {
-            if (core.baseBlock > 0)
+            if (core.baseBlock > 0) {
                 totalBlock += core.baseBlock;
+                if (core.getUpgradeAmount() > 0)
+                    UP_BLOCK = core.getUpgradeAmount();
+            }
         }
         return totalBlock > 0 ? totalBlock : -1;
     }
@@ -180,8 +186,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     private int getMagic() {
         int totalMagic = 0;
         for (CoreCard core : cores) {
-            if (core.baseMagicNumber > 0)
+            if (core.baseMagicNumber > 0) {
                 totalMagic += core.baseMagicNumber;
+                if (core.getUpgradeAmount() > 0)
+                    UP_MAGIC = core.getUpgradeAmount();
+            }
         }
         return totalMagic > 0 ? totalMagic : -1;
     }
@@ -189,8 +198,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     private int getMagic2() {
         int totalMagic = 0;
         for (CoreCard core : cores) {
-            if (core.baseSecondMagic > 0)
+            if (core.baseSecondMagic > 0) {
                 totalMagic += core.baseSecondMagic;
+                if (core.getUpgradeAmount() > 0)
+                    UP_M2 = core.getUpgradeAmount();
+            }
         }
         return totalMagic > 0 ? totalMagic : -1;
     }
@@ -277,8 +289,11 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         else if (target == CardTarget.ALL_ENEMY) {
             if (cores.stream().anyMatch(coreCard -> coreCard instanceof AllEnemiesCore))
                 allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            else
-                dmg(AbstractDungeon.getRandomMonster(), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            else {
+                AbstractMonster cardTarget = AbstractDungeon.getRandomMonster();
+                if (cardTarget != null)
+                    dmg(cardTarget, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            }
         }
     }
     //endregion

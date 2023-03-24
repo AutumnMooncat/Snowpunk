@@ -497,7 +497,7 @@
   "${ModID}:TheSnowman": {
     "NAME": "The Snowman",
     "DESCRIPTION": "{@@}At the start of your turn, add a snowpunk:Hat to !M! random card{!M!|>1=s} in your hand.",
-    "UPGRADE_DESCRIPTION": "{@@}Innate. NL At the start of your turn, add a snowpunk:Hat to a random card{!M!|>1=s} in your hand."
+    "UPGRADE_DESCRIPTION": "{@@}Innate. NL At the start of your turn, add a snowpunk:Hat to !M! random card{!M!|>1=s} in your hand."
   },
   "${ModID}:Think": {
     "NAME": "Think",

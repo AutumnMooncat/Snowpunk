@@ -35,11 +35,15 @@ public class Sproinket extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         AbstractMonster target = AbstractDungeon.getRandomMonster();
-        calculateCardDamage(target);
+        if (target != null)
+            calculateCardDamage(target);
         addToBot(new SFXAction("snowpunk:boing"));
-        addToBot(new VFXAction(new FlickCoinEffect(player.hb.cX, player.hb.cY, target.hb.cX, target.hb.cY), 0.3F));
 
-        dmg(target, AbstractGameAction.AttackEffect.NONE);
+        if (target != null) {
+            addToBot(new VFXAction(new FlickCoinEffect(player.hb.cX, player.hb.cY, target.hb.cX, target.hb.cY), 0.3F));
+            dmg(target, AbstractGameAction.AttackEffect.NONE);
+        }
+
         Wiz.applyToSelf(new WidgetsPower(player, magicNumber));
     }
 

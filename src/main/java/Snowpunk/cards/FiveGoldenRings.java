@@ -3,8 +3,11 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -16,6 +19,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class FiveGoldenRings extends AbstractMultiUpgradeCard {
@@ -26,6 +32,16 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
+    private static ArrayList<TooltipInfo> Tooltip;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+        }
+        return Tooltip;
+    }
 
     private static final int COST = 1;
 

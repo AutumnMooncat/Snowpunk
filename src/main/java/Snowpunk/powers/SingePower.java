@@ -1,10 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.util.Wiz;
-import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -19,16 +16,29 @@ public class SingePower extends AbstractEasyPower {
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
     private final AbstractCreature source;
 
+    public int removeThisTurn;
+
     public SingePower(AbstractCreature owner, AbstractCreature source, int amount) {
+        this(owner, source, amount, -1);
+    }
+
+    public SingePower(AbstractCreature owner, AbstractCreature source, int amount, int removeThisTurn) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
         this.loadRegion("flameBarrier");
         this.source = source;
+        priority = -1;
+        this.removeThisTurn = removeThisTurn;
     }
 
     @Override
-    public void atStartOfTurn() {
+    public void atEndOfRound() {
         //Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+        if (removeThisTurn < 0)
+            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+        else {
+            Wiz.atb(new ReducePowerAction(owner, owner, this, removeThisTurn));
+            removeThisTurn = -1;
+        }
     }
 
     @Override
