@@ -16,4 +16,5 @@ public class KeywordManager {
     public static String GEAR = cardStrings.EXTENDED_DESCRIPTION[5];
     public static String SNOW = cardStrings.EXTENDED_DESCRIPTION[6];
     public static String HAT = cardStrings.EXTENDED_DESCRIPTION[7];
+    public static String FIRE = cardStrings.EXTENDED_DESCRIPTION[8];
 }

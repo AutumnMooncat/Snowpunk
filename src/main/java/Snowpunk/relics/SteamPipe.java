@@ -2,6 +2,8 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.powers.ScrapPower;
+import Snowpunk.powers.SteamPower;
+import Snowpunk.powers.WidgetsPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,18 +17,19 @@ public class SteamPipe extends AbstractEasyRelic {
     public static final int AMOUNT = 1;
 
     public SteamPipe() {
-        super(ID, RelicTier.BOSS, LandingSound.HEAVY, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
     }
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0];
     }
 
-    public void atTurnStart() {
-        this.flash();
-        this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        Wiz.applyToSelf(new ScrapPower(Wiz.adp(), AMOUNT));
+
+    @Override
+    public void atBattleStartPreDraw() {
+        flash();
+        Wiz.applyToSelf(new SteamPower(Wiz.adp(), AMOUNT));
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Kablam extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 9;
+    private static final int DMG = 10;
 
     public Kablam() {
         super(ID, COST, TYPE, RARITY, TARGET);

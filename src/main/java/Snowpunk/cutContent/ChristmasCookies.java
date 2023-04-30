@@ -1,14 +1,18 @@
 package Snowpunk.cutContent;
-
+/*
 import Snowpunk.actions.HolidayCheerUpAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.ChristmasCookiePower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class ChristmasCookies extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChristmasCookies.class.getSimpleName());
 
@@ -38,3 +42,4 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }
+*/

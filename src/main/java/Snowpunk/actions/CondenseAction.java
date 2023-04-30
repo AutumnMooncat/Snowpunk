@@ -72,7 +72,7 @@ public class CondenseAction extends AbstractGameAction {
                 }
             }
         } else
-            CondenseCard(card); // Condense specific card
+            CondenseCard(card);
 
         isDone = true;
     }
@@ -84,6 +84,7 @@ public class CondenseAction extends AbstractGameAction {
         cardToCondense.fadingOut = false;
         if (CardTemperatureFields.canModTemp(cardToCondense, -1))
             CardTemperatureFields.addHeat(cardToCondense, -1);
+
         AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, addToHand));
 
         AbstractGameEffect e = null;

@@ -37,6 +37,22 @@ public class IconContainer {
         }
     }
 
+    public static class FireIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Fire");
+        private static AbstractCustomIcon singleton;
+
+        public FireIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Fire.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new FireIcon();
+            }
+            return singleton;
+        }
+    }
+
     public static class TempIcon extends AbstractCustomIcon {
         public static final String ID = SnowpunkMod.makeID("Temp");
         private static AbstractCustomIcon singleton;

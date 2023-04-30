@@ -40,9 +40,9 @@ public class TouchOfBrass extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(10));
-        addUpgradeData(() -> upgradeMagicNumber(10));
-        addUpgradeData(() -> upgradeMagicNumber(10));
+        addUpgradeData(() -> upgradeMagicNumber(5));
+        addUpgradeData(() -> upgradeMagicNumber(5));
+        addUpgradeData(() -> upgradeMagicNumber(5));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

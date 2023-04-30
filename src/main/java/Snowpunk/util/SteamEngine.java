@@ -3,8 +3,10 @@ package Snowpunk.util;
 import Snowpunk.TheConductor;
 import Snowpunk.powers.EngineTempPower;
 import Snowpunk.powers.interfaces.ModifyEngineSnowballsPower;
+import Snowpunk.relics.interfaces.ModifySnowballsRelic;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class SteamEngine {
     public static final int FREEZING = -4;
@@ -57,6 +59,10 @@ public class SteamEngine {
             if (p instanceof ModifyEngineSnowballsPower) {
                 bonus += ((ModifyEngineSnowballsPower) p).modifySnowballs(heat);
             }
+        }
+        for (AbstractRelic r : Wiz.adp().relics) {
+            if (r instanceof ModifySnowballsRelic)
+                bonus += ((ModifySnowballsRelic) r).modifySnow();
         }
 
         if (heat == FREEZING)

@@ -18,7 +18,7 @@ public class Fogification extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 7, UP_BLOCK = 3;
+    private static final int COST = 1, BLOCK = 8, UP_BLOCK = 3;
 
     public Fogification() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -33,8 +33,8 @@ public class Fogification extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
         setDependencies(true, 2, 0, 1);
     }
 }

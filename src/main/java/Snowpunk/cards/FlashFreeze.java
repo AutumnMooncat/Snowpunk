@@ -24,12 +24,12 @@ public class FlashFreeze extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DAMAGE = 12, UP_DAMAGE = 4;
+    private static final int COST = 2, DAMAGE = 15, UP_DAMAGE = 5;
 
     public FlashFreeze() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 2;
         CardTemperatureFields.addInherentHeat(this, -1);
     }
 

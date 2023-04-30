@@ -23,24 +23,31 @@ public class SnowballCore extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, MAGIC = 1;
+    private static final int COST = 1, MAGIC = 2;
 
     public SnowballCore() {
-        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.MAGIC);
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.MAGIC, EffectTag.COLD);
         secondMagic = baseSecondMagic = MAGIC;
     }
 
     @Override
     public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
-        for (CoreCard core : coreCards) {
-            if (CardTemperatureFields.getCardHeat(core) > 0)
-                return true;
-        }
-        return false;
+        int totalCost = 0;
+        for (CoreCard core : coreCards)
+            totalCost += core.cost;
+
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.HOT)))
+            return true;
+        return totalCost < 1;
     }
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         Wiz.applyToSelf(new SnowballPower(player, card.secondMagic));
+    }
+
+    @Override
+    public int getUpgradeAmount() {
+        return 1;
     }
 }

@@ -11,7 +11,17 @@
     "NAME": "Steam Pipe",
     "FLAVOR": "Now steam powered, as all good things are.",
     "DESCRIPTIONS": [
-      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. At the start of your turn, gain #b"," #ysnowpunk:Spare_Part."
+      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. The first card you play each combat becomes #ysnowpunk:Overheated."
+    ]
+  },
+  "${ModID}:ForbiddenScoop": {
+    "NAME": "Forbidden Scoop",
+    "FLAVOR": "Just a little off the top-",
+    "DESCRIPTIONS": [
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. Upon pickup, lose #r",
+      " Max HP.",
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. What have you done?",
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. NL Upon pickup, lose #r33% of your Max HP."
     ]
   },
   "${ModID}:ChristmasSpiritOLD": {

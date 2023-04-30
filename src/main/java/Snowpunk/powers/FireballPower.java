@@ -25,7 +25,8 @@ public class FireballPower extends AbstractEasyPower implements FreeToPlayPower 
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && !owner.hasPower(OverheatNextCardPower.POWER_ID) && !owner.hasPower(SteamPower.POWER_ID)) {
+        if (!card.purgeOnUse && !owner.hasPower(OverheatNextCardPower.POWER_ID) && !owner.hasPower(SteamPower.POWER_ID) &&
+                CardTemperatureFields.canModTemp(card, 1)) {
             flash();
             CardTemperatureFields.addHeat(card, 1);
             addToTop(new ReducePowerAction(owner, owner, this, 1));

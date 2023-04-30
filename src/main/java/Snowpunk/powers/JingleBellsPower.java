@@ -26,6 +26,7 @@ public class JingleBellsPower extends AbstractEasyPower {
         super(POWER_ID + idOffset, strings.NAME, PowerType.BUFF, false, owner, amount);
         idOffset++;
         this.amount2 = amount2;
+        updateDescription();
     }
 
     @Override

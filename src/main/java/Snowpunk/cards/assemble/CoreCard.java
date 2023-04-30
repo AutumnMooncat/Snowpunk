@@ -24,6 +24,7 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
         super(cardID, cost, type, CardRarity.SPECIAL, CardTarget.NONE);
         this.effectTags = new ArrayList<>(Arrays.asList(effectTags));
         TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
+        tags.add(CardTags.HEALING); // We don't want this generated in combat
     }
 
     //region Spawn Conditions
@@ -40,6 +41,8 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
             return false;
         if (unavailableTurns().contains(coreCards.size()))
             return false;
+        /*if(card.getCost() >= 2 && cost > 0)
+            return false;*/
         if (getCustomCANTSpawnCondition(coreCards))
             return false;
         return true;
@@ -67,10 +70,16 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
     //region Non-Modifiable Stuff
     public enum EffectTag {
         PREFIX,
+        TargetDmg,
+        ALLDmg,
+        RandDmg,
         AB,
         CORE,
+        HOT,
+        COLD,
         AMOD,
         ABMOD,
+        CLANK,
         MOD,
         MAGIC,
         NAME,
@@ -121,6 +130,13 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
 
     public boolean costUpgrade() {
         return false;
+    }
+
+    public boolean gearUpgrade() {
+        return false;
+    }
+
+    public void onClank(AssembledCard card) {
     }
     //endregion
 }

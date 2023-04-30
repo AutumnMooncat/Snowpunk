@@ -4,11 +4,17 @@ import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -22,8 +28,16 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     private static final int COST = 1;
     private static final int CARDS = 2;
     private static final int UP_CARDS = 1;
+    private static ArrayList<TooltipInfo> Tooltip;
 
-    //private static ArrayList<TooltipInfo> Tooltip;
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
+        }
+        return Tooltip;
+    }
 
     public ChestnutsRoasting() {
         super(ID, COST, TYPE, RARITY, TARGET);

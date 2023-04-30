@@ -1,13 +1,17 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ClankAction;
+import Snowpunk.actions.ResetExhaustAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.WidgetsPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,14 +20,14 @@ import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Sproinket extends AbstractMultiUpgradeCard {
+public class Sproinket extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(Sproinket.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 9, GEAR = 3, UP_DMG = 4, UP_GEAR = 2;
+    private static final int COST = 1, DMG = 11, GEAR = 3, UP_DMG = 3, UP_GEAR = 2;
 
     public Sproinket() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -34,6 +38,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
+        Wiz.atb(new ResetExhaustAction(this, false));
         AbstractMonster target = AbstractDungeon.getRandomMonster();
         if (target != null)
             calculateCardDamage(target);
@@ -45,6 +50,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
         }
 
         Wiz.applyToSelf(new WidgetsPower(player, magicNumber));
+        Wiz.atb(new ClankAction(this));
     }
 
     @Override
@@ -52,5 +58,10 @@ public class Sproinket extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeMagicNumber(UP_GEAR));
+    }
+
+    @Override
+    public void onClank() {
+        addToTop(new ResetExhaustAction(this, true));
     }
 }

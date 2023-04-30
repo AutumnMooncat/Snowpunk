@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassContraptionPower;
 import Snowpunk.powers.ClockworkPower;
 import Snowpunk.util.KeywordManager;
@@ -12,6 +13,8 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +28,24 @@ public class Clockwork extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = -1;
 
     public Clockwork() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new ClockworkPower(p, magicNumber));
+        int effect = this.energyOnUse;
+
+        if (p.hasRelic("Chemical X")) {
+            effect += ChemicalX.BOOST;
+            p.getRelic("Chemical X").flash();
+        }
+        if (effect > 0)
+            Wiz.applyToSelf(new ClockworkPower(p, effect));
+
+        if (!this.freeToPlayOnce)
+            p.energy.use(EnergyPanel.totalCount);
     }
 
 
@@ -50,11 +62,10 @@ public class Clockwork extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
     }
 }

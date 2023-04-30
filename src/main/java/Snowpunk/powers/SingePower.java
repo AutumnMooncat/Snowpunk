@@ -16,28 +16,28 @@ public class SingePower extends AbstractEasyPower {
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
     private final AbstractCreature source;
 
-    public int removeThisTurn;
+    public int keepThisTurn;
 
     public SingePower(AbstractCreature owner, AbstractCreature source, int amount) {
-        this(owner, source, amount, -1);
+        this(owner, source, amount, 0);
     }
 
-    public SingePower(AbstractCreature owner, AbstractCreature source, int amount, int removeThisTurn) {
+    public SingePower(AbstractCreature owner, AbstractCreature source, int amount, int keepThisTurn) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
         this.loadRegion("flameBarrier");
         this.source = source;
         priority = -1;
-        this.removeThisTurn = removeThisTurn;
+        this.keepThisTurn = keepThisTurn;
     }
 
     @Override
     public void atEndOfRound() {
         //Wiz.atb(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        if (removeThisTurn < 0)
+        if (keepThisTurn <= 0)
             Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
         else {
-            Wiz.atb(new ReducePowerAction(owner, owner, this, removeThisTurn));
-            removeThisTurn = -1;
+            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
+            keepThisTurn = 0;
         }
     }
 

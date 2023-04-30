@@ -22,21 +22,18 @@ public class FreezeNextCardPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && CardTemperatureFields.getCardHeat(card) > -2) {
+        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, -1)) {
             flash();
-            //Wiz.atb(new ModEngineTempAction(-1));
             CardTemperatureFields.addHeat(card, -999);
-            //this.addToTop(new ModCardTempAction(card, -1));
-            this.addToTop(new ReducePowerAction(owner, owner, this, 1));
+            addToTop(new ReducePowerAction(owner, owner, this, 1));
         }
     }
 
     @Override
     public void updateDescription() {
-        if (amount == 1) {
-            this.description = DESCRIPTIONS[0];
-        } else {
-            this.description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
-        }
+        if (amount == 1)
+            description = DESCRIPTIONS[0];
+        else
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 }

@@ -17,11 +17,11 @@ public class BrassContraption extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public BrassContraption() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -30,12 +30,11 @@ public class BrassContraption extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeBaseCost(0));
-        setDependencies(true, 2, 0);
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

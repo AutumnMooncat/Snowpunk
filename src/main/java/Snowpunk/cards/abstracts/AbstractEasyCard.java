@@ -290,7 +290,7 @@ public abstract class AbstractEasyCard extends CustomCard {
         atb(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
     }
 
-    protected void blck() {
+    public void blck() {
         atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
     }
 
@@ -313,7 +313,7 @@ public abstract class AbstractEasyCard extends CustomCard {
         return snow;
     }
 
-    protected int getGears() {
+    public int getGears() {
         int gears = 0;
         if (CardModifierManager.hasModifier(this, GearMod.ID))
             gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;

@@ -31,13 +31,12 @@
   "${ModID}:BrassContraptionPower": {
     "NAME": "Brass Contraption",
     "DESCRIPTIONS": [
-      "Whenever you draw a card, #yUpgrade it.",
-      "Whenever you draw a card, #yUpgrade it #b",
-      " times."
+      "#yUpgrade the first #b",
+      " cards you draw each turn."
     ]
   },
-  "${ModID}:BurningEmbersPower": {
-    "NAME": "Burning Embers",
+  "${ModID}:BurningCoalsPower": {
+    "NAME": "Burning Coals",
     "DESCRIPTIONS": [
       "Whenever you apply #ySinge, apply #b",
       " more."
@@ -86,6 +85,30 @@
       "#yHeat the next card you play.",
       "#yHeat the next #b",
       " cards you play."
+    ]
+  },
+  "${ModID}:FineTunePower": {
+    "NAME": "Fine Tune",
+    "DESCRIPTIONS": [
+      "Prevent the next first time you would #yClank each turn.",
+      "Prevent the first #b",
+      " times you would #yClank each turn."
+    ]
+  },
+  "${ModID}:WrenchPower": {
+    "NAME": "Wrench",
+    "DESCRIPTIONS": [
+      "Prevent the next time you would #yClank this turn.",
+      "Prevent the next #b",
+      " times you would #yClank this turn."
+    ]
+  },
+  "${ModID}:PermWrenchPower": {
+    "NAME": "Wrench",
+    "DESCRIPTIONS": [
+      "Prevent the next time you would #yClank.",
+      "Prevent the next #b",
+      " times you would #yClank."
     ]
   },
   "${ModID}:OverheatNextCardPower": {
@@ -360,8 +383,8 @@
       " randomly #yAssembled #yMachinations into your hand."
     ]
   },
-  "${ModID}:WildfirePower": {
-    "NAME": "Wildfire",
+  "${ModID}:AshesPower": {
+    "NAME": "Ashes",
     "DESCRIPTIONS": [
       "At the start of your turn, gain #b",
       " #yFireball and lose #b",
@@ -376,6 +399,20 @@
       " [snowpunk:GearIcon] ."
     ]
   },
+  "${ModID}:GumdropPower": {
+    "NAME": "Gumdrop Buttons",
+    "DESCRIPTIONS": [
+      "If you take unblocked attack damage, apply #b",
+      " #yChill to the attacker."
+    ]
+  },
+  "${ModID}:RailsPower": {
+    "NAME": "Rails",
+    "DESCRIPTIONS": [
+      "The first time your hand is empty during your turn, draw #b",
+      " cards."
+    ]
+  },
   "${ModID}:ScrapPower": {
     "NAME": "Scrap",
     "DESCRIPTIONS": [
@@ -388,7 +425,7 @@
     "NAME": "Fire Wall",
     "DESCRIPTIONS": [
       "Apply #b",
-      " #ySinge to the next enemy that attacks you."
+      " #ySinge to enemies that attack you until your #yBlock breaks."
     ]
   },
   "${ModID}:SnowpunkPower": {
@@ -444,7 +481,7 @@
       "Steam is no longer removed at the end of your turn."
     ]
   },
-  "${ModID}:EmberForgePower": {
+  "${ModID}:EmberForgePowerOLD": {
     "NAME": "Ember Forge",
     "DESCRIPTIONS": [
       "No longer generate #yEnergy at the start of your turn. #yHot cards cost 0."
@@ -464,6 +501,29 @@
       "At the start of your turn, #yUpgrade ALL cards in your hand.",
       "At the start of your turn, #yUpgrade ALL cards in your hand #b",
       " times."
+    ]
+  },
+  "${ModID}:EmberForgePower": {
+    "NAME": "Ember Forge",
+    "DESCRIPTIONS": [
+      "#yOverheated cards play an additional time.",
+      "#yOverheated cards play an additional #b",
+      " times."
+    ]
+  },
+  "${ModID}:YouDidntSeeThatPower": {
+    "NAME": "You Didn't See That",
+    "DESCRIPTIONS": [
+      "Whenever you #yClank, draw a card.",
+      "Whenever you #yClank, draw #b",
+      " cards."
+    ]
+  },
+  "${ModID}:TrainWhistlePower": {
+    "NAME": "Train Whistle",
+    "DESCRIPTIONS": [
+      "Whenever you #yEvaporate a card, gain #b",
+      " #yBlock."
     ]
   },
   "${ModID}:CondensationPower": {

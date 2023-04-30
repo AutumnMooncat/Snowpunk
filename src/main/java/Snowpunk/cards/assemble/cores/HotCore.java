@@ -24,16 +24,14 @@ public class HotCore extends CoreCard {
     private static final int COST = 0;
 
     public HotCore() {
-        super(ID, COST, TYPE, EffectTag.MOD);
+        super(ID, COST, TYPE, EffectTag.MOD, EffectTag.HOT);
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     @Override
     public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
-        for (CoreCard core : coreCards) {
-            if (CardTemperatureFields.getCardHeat(core) != 0)
-                return true;
-        }
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.COLD)))
+            return true;
         return false;
     }
 

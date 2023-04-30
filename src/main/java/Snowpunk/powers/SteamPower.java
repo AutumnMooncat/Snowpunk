@@ -23,7 +23,7 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && amount > 0) {
+        if (!card.purgeOnUse && amount > 0 && CardTemperatureFields.canModTemp(card, 1)) {
             /*if (!owner.hasPower(SteamFormPower.POWER_ID)) {
                 action.exhaustCard = true;
             }*/

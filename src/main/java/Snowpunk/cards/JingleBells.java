@@ -1,6 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ClankAction;
+import Snowpunk.actions.ResetExhaustAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.JingleBellsPower;
 import Snowpunk.util.Wiz;
@@ -13,7 +16,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class JingleBells extends AbstractMultiUpgradeCard {
+public class JingleBells extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(JingleBells.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -22,6 +25,8 @@ public class JingleBells extends AbstractMultiUpgradeCard {
 
     private static final int COST = -1, BLOCK = 7;
 
+    private boolean noClank = false;
+
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
@@ -29,6 +34,7 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        Wiz.atb(new ResetExhaustAction(this, false));
         int effect = this.energyOnUse;
 
         if (p.hasRelic("Chemical X")) {
@@ -36,59 +42,31 @@ public class JingleBells extends AbstractMultiUpgradeCard {
             p.getRelic("Chemical X").flash();
         }
 
-        Wiz.applyToSelf(new JingleBellsPower(p, block, effect));
+        if (effect > 0)
+            Wiz.applyToSelf(new JingleBellsPower(p, block, effect));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }
+
+        if (!noClank)
+            Wiz.atb(new ClankAction(this));
     }
 
-    /*
-        @Override
-        public void applyPowers() {
-            super.applyPowers();
-            int delta = damage - baseDamage;
-            damage = baseDamage + delta * getX();
-            if (damage < 0) {
-                damage = 0;
-            }
-            isDamageModified = (damage != baseDamage);
-        }
-
-        @Override
-        public void calculateCardDamage(AbstractMonster mo) {
-            super.calculateCardDamage(mo);
-            int delta = damage - baseDamage;
-            damage = baseDamage + delta * getX();
-            if (damage < 0) {
-                damage = 0;
-            }
-            isDamageModified = (damage != baseDamage);
-        }
-
-        private int getX()
-        {
-            if(Wiz.adp() == null)
-                return 0;
-
-            int effect = getSnow() + EnergyPanel.getCurrentEnergy();
-
-            if (Wiz.adp().hasRelic("Chemical X")) {
-                effect += ChemicalX.BOOST;
-                Wiz.adp().getRelic("Chemical X").flash();
-            }
-            return effect;
-        }
-    */
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(3));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
-            exhaust = false;
+            noClank = true;
             uDesc();
         });
         setExclusions(1, 2);
+    }
+
+    @Override
+    public void onClank() {
+        addToTop(new ResetExhaustAction(this, true));
     }
 }

@@ -19,7 +19,7 @@ public class FireWall extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 7, SINGE = 7, UP_BLOCK = 3, UP_SINGE = 3;
+    private static final int COST = 2, BLOCK = 10, SINGE = 5, UP_BLOCK = 4, UP_SINGE = 2;
 
     public FireWall() {
         super(ID, COST, TYPE, RARITY, TARGET);

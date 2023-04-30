@@ -16,7 +16,7 @@ public class SilverBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 8, WIDGETS = 2;
+    private static final int COST = 1, BLOCK = 4, WIDGETS = 2;
 
     public SilverBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -25,6 +25,7 @@ public class SilverBells extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
         blck();
         Wiz.applyToSelf(new WidgetsPower(p, magicNumber));
     }

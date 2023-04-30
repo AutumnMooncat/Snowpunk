@@ -76,7 +76,6 @@ public class GearMod extends AbstractCardModifier {
                 gearMod.amount = 0;
             return false;
         }
-
         return true;
     }
 
@@ -92,10 +91,13 @@ public class GearMod extends AbstractCardModifier {
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int numGears = amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(WidgetsPower.POWER_ID) && Wiz.adp().getPower(WidgetsPower.POWER_ID).amount > 0)
-            numGears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
-            numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
+        if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
+            if (Wiz.adp().hasPower(WidgetsPower.POWER_ID) && Wiz.adp().getPower(WidgetsPower.POWER_ID).amount > 0)
+                numGears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
+            if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
+                numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
+        }
+
         if (numGears > 0) {
             if (numGears > amount)
                 ExtraIcons.icon(tex).text(String.valueOf(numGears)).textColor(Color.GREEN).render(card);

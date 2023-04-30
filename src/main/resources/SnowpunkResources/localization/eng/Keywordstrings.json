@@ -26,6 +26,14 @@
     "DESCRIPTION": "#yLinked cards are drawn and played together, and cost 1 [E] more for each card #yLinked to them."
   },
   {
+    "PROPER_NAME": "Clank",
+    "NAMES": [
+      "clank",
+      "clanks"
+    ],
+    "DESCRIPTION": "Perform a backfire effect."
+  },
+  {
     "PROPER_NAME": "Core",
     "NAMES": [
       "core",
@@ -56,7 +64,7 @@
     "DESCRIPTION": "Provides #yEnergy, #yFireballs, and #ySnowballs each turn, based on its temperature. Temperature ranges from #yFrozen to #yOverheated."
   },
   {
-    "PROPER_NAME": "Fireball",
+    "PROPER_NAME": "Fireball [snowpunk:FireIcon]",
     "NAMES": [
       "fireball",
       "fireballs"

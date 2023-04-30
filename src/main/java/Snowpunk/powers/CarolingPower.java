@@ -5,6 +5,7 @@ import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,8 +29,10 @@ public class CarolingPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++) {
             addToBot(new CondenseAction(true));
+            addToBot(new WaitAction(.1f));
+        }
 
         carol();
         flash();

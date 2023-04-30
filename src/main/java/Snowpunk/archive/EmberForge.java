@@ -2,7 +2,7 @@ package Snowpunk.archive;
 
 import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.EmberForgePower;
+import Snowpunk.powers.EmberForgePowerOLD;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -34,7 +34,7 @@ public class EmberForge extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.atb(new ModEngineTempAction(magicNumber));
-        Wiz.applyToSelf(new EmberForgePower(p));
+        Wiz.applyToSelf(new EmberForgePowerOLD(p));
     }
 
     @Override

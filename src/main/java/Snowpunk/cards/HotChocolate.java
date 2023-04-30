@@ -41,6 +41,7 @@ public class HotChocolate extends AbstractEasyCard {
         if (Tooltip == null) {
             Tooltip = new ArrayList<>();
             Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
         }
         return Tooltip;
     }

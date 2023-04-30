@@ -37,7 +37,8 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new VentMod()));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        setDependencies(true, 2, 0, 1);
     }
 }

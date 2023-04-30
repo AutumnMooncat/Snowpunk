@@ -20,7 +20,7 @@ public class Overblown extends AbstractMultiUpgradeCard {
 
     private static final int COST = 2;
     private static final int DMG = 18;
-    private static final int UP_DMG = 6;
+    private static final int UP_DMG = 5;
 
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);

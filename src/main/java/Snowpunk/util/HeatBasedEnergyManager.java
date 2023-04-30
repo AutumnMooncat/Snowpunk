@@ -1,6 +1,6 @@
 package Snowpunk.util;
 
-import Snowpunk.powers.EmberForgePower;
+import Snowpunk.powers.EmberForgePowerOLD;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SnowballPower;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -35,7 +35,7 @@ public class HeatBasedEnergyManager extends EnergyManager {
         snowGain = SteamEngine.getSnowballs();
         fireGain = SteamEngine.getFire();
 
-        if (Wiz.adp().hasPower(EmberForgePower.POWER_ID))
+        if (Wiz.adp().hasPower(EmberForgePowerOLD.POWER_ID))
             energy = 0;
     }
 

@@ -1,6 +1,7 @@
 package Snowpunk.patches;
 
 import Snowpunk.cardmods.EverburnMod;
+import Snowpunk.cardmods.NoHeatMod;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
@@ -157,7 +158,7 @@ public class CardTemperatureFields {
     public static boolean canModTemp(AbstractCard card, int amount) {
         int heat = CardTemperatureFields.getCardHeat(card);
         if (amount > 0)
-            return heat < OVERHEATED;
+            return heat < OVERHEATED && !CardModifierManager.hasModifier(card, NoHeatMod.ID);
         if (amount < 0)
             return heat > FROZEN && !(CardModifierManager.hasModifier(card, EverburnMod.ID) && heat < 2);
         return true;

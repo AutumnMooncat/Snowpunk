@@ -1,10 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurningEmbersPower;
 import Snowpunk.powers.LetItSnowPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;

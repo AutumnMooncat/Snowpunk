@@ -67,9 +67,9 @@ public class GiftDiscoveryAction extends AbstractGameAction {
                     dupe = true;
                     break;
                 }
-                if (tmp.hasTag(AbstractCard.CardTags.HEALING))
-                    heal = true;
             }
+            if (tmp.hasTag(AbstractCard.CardTags.HEALING))
+                heal = true;
             if (!dupe && !heal)
                 derp.add(tmp.makeCopy());
         }

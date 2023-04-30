@@ -17,7 +17,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 public class ModCardTempAction extends AbstractGameAction {
     AbstractCard card;
-    boolean random, choosing = false;
+    boolean random, choosing = false, any;
     int heat;
     AbstractPlayer player;
     private ArrayList<AbstractCard> noModTemps;
@@ -31,9 +31,14 @@ public class ModCardTempAction extends AbstractGameAction {
     }
 
     public ModCardTempAction(int cardsToChoose, int heat, boolean random) {
+        this(cardsToChoose, heat, random, false);
+    }
+
+    public ModCardTempAction(int cardsToChoose, int heat, boolean random, boolean anyAmount) {
         this.amount = cardsToChoose;
         this.heat = heat;
         this.random = random;
+        any = anyAmount;
         player = AbstractDungeon.player;
         duration = startDuration = Settings.ACTION_DUR_FAST;
 
@@ -67,7 +72,7 @@ public class ModCardTempAction extends AbstractGameAction {
             //If we have less valid cards than cards to modify, we can just hit all of them
             if (choosing)
                 chooseUpdate();
-            else if (amount == -1 || amount >= validCards.size()) {
+            else if ((amount == -1 || amount >= validCards.size()) && !any) {
                 for (AbstractCard c : validCards.group) {
                     CardTemperatureFields.addHeat(c, heat);
                 }
@@ -131,7 +136,7 @@ public class ModCardTempAction extends AbstractGameAction {
                         index = 0;
                     break;
             }
-            AbstractDungeon.handCardSelectScreen.open(TEXT[index], amount, false, false, false, false, false);
+            AbstractDungeon.handCardSelectScreen.open(TEXT[index], amount, false, any, false, false, any);
             tickDuration();
             return;
         }

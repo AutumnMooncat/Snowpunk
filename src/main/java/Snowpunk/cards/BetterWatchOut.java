@@ -90,10 +90,10 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         setExclusions(1, 2);
+        setDependencies(true, 3, 1);
+        setDependencies(true, 4, 2);
     }
 }

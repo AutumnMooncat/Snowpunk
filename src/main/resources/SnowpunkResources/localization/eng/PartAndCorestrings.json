@@ -145,55 +145,103 @@
   },
   "${ModID}:StrikeCore": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage"
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:CarnageCore": {
     "NAME": "Carnage",
-    "DESCRIPTION": "Deal !D! damage"
+    "DESCRIPTION": "Deal !D! damage."
   },
-  "${ModID}:SliceCore": {
-    "NAME": "Slice",
-    "DESCRIPTION": "Deal !D! damage"
+  "${ModID}:GloomCore": {
+    "NAME": "Gloom",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
-  "${ModID}:DefendCore": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block"
+  "${ModID}:PierceCore": {
+    "NAME": "Pierce",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
-  "${ModID}:BarrierCore": {
-    "NAME": "Barrier",
-    "DESCRIPTION": "Gain !B! Block"
+  "${ModID}:BoomerangCore": {
+    "NAME": "Boomerang",
+    "DESCRIPTION": "Deal !D! damage to a random enemy 3 times."
+  },
+  "${ModID}:TwinCore": {
+    "NAME": "Twin",
+    "DESCRIPTION": "Deal !D! damage twice."
   },
   "${ModID}:DeflectCore": {
     "NAME": "Deflect",
-    "DESCRIPTION": "Gain !B! Block"
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:RollCore": {
+    "NAME": "Roll",
+    "DESCRIPTION": "Gain !B! Block this turn and next turn."
+  },
+  "${ModID}:LeapCore": {
+    "NAME": "Leap",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:WaveCore": {
+    "NAME": "Wave",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
   "${ModID}:ConveyorCore": {
     "NAME": "Conveyor",
-    "DESCRIPTION": "Draw !M! cards. NL Discard !M! cards"
+    "DESCRIPTION": "Draw !M! cards. NL snowpunk:Clank: Discard !M! cards."
   },
-  "${ModID}:UpgradeCore": {
-    "NAME": "Upgrade",
-    "DESCRIPTION": "Upgrade !M! random cards in your hand"
+  "${ModID}:ResupplierCore": {
+    "NAME": "Resupplier",
+    "DESCRIPTION": "Draw [snowpunk:GearIcon] \u00a0cards."
+  },
+  "${ModID}:ScrapCore": {
+    "NAME": "Scrap",
+    "DESCRIPTION": "Upgrade [snowpunk:GearIcon] \u00a0random cards in your hand."
   },
   "${ModID}:SnowballCore": {
     "NAME": "Snowball",
-    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}"
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}."
   },
   "${ModID}:SpiritCore": {
     "NAME": "Christmas Spirit",
-    "DESCRIPTION": "Increase snowpunk:Christmas_Spirit by !Snowpunk:M2!"
+    "DESCRIPTION": "Increase snowpunk:Christmas_Spirit by !Snowpunk:M2!."
   },
   "${ModID}:FireballCore": {
     "NAME": "Fireball",
-    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Fireball{!Snowpunk:M2!|>1=s}"
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Fireball{!Snowpunk:M2!|>1=s}."
   },
   "${ModID}:ShardCore": {
     "NAME": "Ice Shard",
-    "DESCRIPTION": "{@@}Add !M! [#efc851]Ice[] [#efc851]Shard{!M!|>1=s}[] to your hand"
+    "DESCRIPTION": "{@@}Add !M! [#efc851]Ice[] [#efc851]Shard{!M!|>1=s}[] to your hand."
   },
   "${ModID}:ExhaustCore": {
     "NAME": "Exhaust",
-    "DESCRIPTION": "Exhaust"
+    "DESCRIPTION": "Exhaust."
+  },
+  "${ModID}:GearsCore": {
+    "NAME": "Gears",
+    "DESCRIPTION": "snowpunk:Clank: Exhaust."
+  },
+  "${ModID}:BoilerCore": {
+    "NAME": "Boiler",
+    "DESCRIPTION": "snowpunk:Overheat the next card you play."
+  },
+  "${ModID}:CryochamberCore": {
+    "NAME": "Cryochamber",
+    "DESCRIPTION": "snowpunk:Freeze the next card you play."
+  },
+  "${ModID}:ThermalCore": {
+    "NAME": "Thermal",
+    "DESCRIPTION": "Apply !Snowpunk:M2! snowpunk:Singe and snowpunk:Chill."
+  },
+  "${ModID}:TinkererCore": {
+    "NAME": "Tinkerer",
+    "DESCRIPTION": "Gain [snowpunk:GearIcon] snowpunk:Widgets."
+  },
+  "${ModID}:SnowDrawCore": {
+    "NAME": "Packer",
+    "DESCRIPTION": "Draw [snowpunk:SnowIcon] \u00a0cards."
+  },
+  "${ModID}:BrassCore": {
+    "NAME": "Brass",
+    "DESCRIPTION": "Gain !M! [snowpunk:GearIcon] ."
   },
   "${ModID}:ColdCore": {
     "NAME": "Cold",
@@ -203,40 +251,18 @@
     "NAME": "Hot",
     "DESCRIPTION": ""
   },
-  "${ModID}:FrostyCore": {
-    "NAME": "Frosty",
-    "DESCRIPTION": ""
-  },
-  "${ModID}:AllEnemiesCore": {
-    "NAME": "All Enemies",
-    "DESCRIPTION": " to ALL enemies"
-  },
-  "${ModID}:RandomEnemyCore": {
-    "NAME": "Random Enemy",
-    "DESCRIPTION": " to a random enemy"
-  },
-  "${ModID}:TwiceCore": {
-    "NAME": "Twice",
-    "DESCRIPTION": " twice"
-  },
-  "${ModID}:ThriceCore": {
-    "NAME": "Thrice",
-    "DESCRIPTION": " thrice. NL Exhaust"
-  },
-  "${ModID}:DuplicateCore": {
-    "NAME": "Duplicate",
-    "DESCRIPTION": ""
-  },
   "${ModID}:AdjectiveCore": {
     "NAME": "Adjective",
     "DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": [
+      "Bean",
       "Big",
       "Black",
       "Brass",
       "Chunky",
       "Confusing",
       "Cool",
+      "Crazy",
       "Crisp",
       "Crusty",
       "Dehydrated",
@@ -251,22 +277,29 @@
       "Heavenly",
       "Hot",
       "Jolly",
+      "Legendary",
       "Magical",
       "Moist",
+      "Mr.",
+      "Mrs.",
       "Nasty",
       "Overtuned",
       "Peachy",
       "Quizzical",
       "Red",
+      "Red-nosed",
       "Rotund",
+      "Sandy",
       "Scrunkly",
       "Sickly",
+      "Sluggish",
       "Small",
       "Stinky",
       "Stubby",
       "Super",
       "Super Duper",
       "Suspicious",
+      "The",
       "Thicc",
       "Turbo",
       "Un-",
@@ -275,7 +308,8 @@
       "Whimsical",
       "White",
       "Wibbly",
-      "Wobbly"
+      "Wobbly",
+      "Vexing"
     ]
   },
   "${ModID}:NameCore": {
@@ -283,23 +317,28 @@
     "DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": [
       "9000",
+      "Angel",
+      "Angle",
       "Assault",
       "Ball Hog",
       "Beans",
       "Bomb",
       "Booty",
       "Bubble",
+      "Cannon",
       "Chungus",
       "Confusion",
       "Contraption",
       "Conveyor",
       "Destroyer",
       "Doohickey",
+      "Elf",
       "Encabulator",
       "Eye",
       "Hand",
       "-inator",
       "Flame",
+      "Frostbite",
       "Gizmo",
       "Glasses",
       "Gongola",
@@ -307,14 +346,18 @@
       "Gun",
       "Kludge",
       "Machine",
+      "Melter",
       "Parts",
       "Pooper Scooper",
       "Potato",
       "Quandary",
       "Rifle",
+      "Santa",
       "Shield",
       "Snowpile",
+      "Snowman",
       "Spandangler",
+      "Stomper",
       "Teapot",
       "Thing",
       "Thingamajig",

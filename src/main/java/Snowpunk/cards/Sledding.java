@@ -22,7 +22,7 @@ public class Sledding extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 3, UP_COST = 2, DMG = 13, UP_DMG = 4;
+    private static final int COST = 3, UP_COST = 2, DMG = 14, UP_DMG = 4;
     boolean upCost = false;
 
     public Sledding() {
@@ -68,11 +68,9 @@ public class Sledding extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            upCost = true;
-            upgradeBaseCost(UP_COST);
-        });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        setDependencies(true, 2, 1);
     }
 }

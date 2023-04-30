@@ -29,7 +29,7 @@ public class VentMod extends AbstractCardModifier {
     public void onInitialApplication(AbstractCard card) {
         card.tags.add(CustomTags.VENT);
     }
-
+/*
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         if (CondenseTip == null) {
@@ -49,7 +49,7 @@ public class VentMod extends AbstractCardModifier {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return rawDescription + TEXT[0];
     }
-
+*/
     @Override
     public boolean shouldApply(AbstractCard card) {
         return !CardModifierManager.hasModifier(card, ID);

@@ -1,7 +1,10 @@
 package Snowpunk.powers;
 
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.util.Wiz;
+import Snowpunk.vfx.WrenchEffect;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -27,6 +30,7 @@ public class WidgetsPower extends AbstractEasyPower {
         if (card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, GearMod.ID)) {
             CardModifierManager.addModifier(card, new GearMod(amount));
             addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+            Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
         }
     }
 

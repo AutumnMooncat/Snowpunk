@@ -21,49 +21,29 @@ public class BrassContraptionPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
+    private int cardsDrawnThisTurn = 0;
+
     public BrassContraptionPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
     }
 
     @Override
+    public void atStartOfTurn() {
+        cardsDrawnThisTurn = 0;
+    }
+
+    @Override
     public void onCardDraw(AbstractCard card) {
-        if (amount > 0 && card.canUpgrade()) {
-            for (int i = 0; i < amount; i++)
-                card.upgrade();
+        if (card.canUpgrade() && cardsDrawnThisTurn < amount) {
+            cardsDrawnThisTurn++;
+            card.upgrade();
             card.applyPowers();
         }
     }
 
-    /*
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if(isPlayer && Wiz.adp().drawPile.size() > 0)
-        {
-            for (int i = 0; i < amount; i++)
-                Wiz.atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for(AbstractCard c: Wiz.adp().drawPile.group)
-                        {
-                            if(c.canUpgrade())
-                            {
-                                addToBot(new UpgradeSpecificCardAction(c));
-                            }
-                        }
-                        isDone = true;
-                    }
-                });
-            addToBot(new VFXAction(new UpgradeShineEffect(CardGroup.DRAW_PILE_X, CardGroup.DRAW_PILE_Y)));
-            flash();
-        }
-    }*/
-
     @Override
     public void updateDescription() {
-        if (amount == 1)
-            description = DESCRIPTIONS[0];
-        else
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 }

@@ -149,6 +149,7 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.GearIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.SnowIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.TempIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.FireIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -211,6 +212,11 @@ public class SnowpunkMod implements
         BaseMod.addAudio("snowpunk:FIVEGOLDENRINGS", modID + "Resources/audio/FIVEGOLDENRINGS.wav");
         BaseMod.addAudio("snowpunk:boing", modID + "Resources/audio/boing.mp3");
         BaseMod.addAudio("snowpunk:screm", modID + "Resources/audio/screm.wav");
+        BaseMod.addAudio("snowpunk:clank", modID + "Resources/audio/clank.mp3");
+        BaseMod.addAudio("snowpunk:unclank", modID + "Resources/audio/clank_prevented.mp3");
+        BaseMod.addAudio("snowpunk:wrench", modID + "Resources/audio/wrench.mp3");
+        BaseMod.addAudio("snowpunk:bonk", modID + "Resources/audio/bonk.mp3");
+        BaseMod.addAudio("snowpunk:masterpiece", modID + "Resources/audio/masterpiece.mp3");
     }
 
     @Override

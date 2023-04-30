@@ -24,7 +24,7 @@ public class PressurizedBlast extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 0, DMG = 3, UP_DMG = 2, TIMES = 2, UP_TIMES = 1;
+    private static final int COST = 0, DMG = 4, UP_DMG = 2, TIMES = 2, UP_TIMES = 1;
 
     public PressurizedBlast() {
         super(ID, COST, TYPE, RARITY, TARGET);

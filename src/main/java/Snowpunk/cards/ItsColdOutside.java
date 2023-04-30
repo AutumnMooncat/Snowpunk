@@ -22,41 +22,25 @@ public class ItsColdOutside extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
 
-    private boolean FREEZE = false, HAND = false;
-
     public ItsColdOutside() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardTemperatureFields.addInherentHeat(this, -2);
+        magicNumber = baseMagicNumber = 2;
+        CardTemperatureFields.addInherentHeat(this, -1);
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ModCardTempAction(HAND ? p.hand.size() : 1, FREEZE ? -99 : -1, false));
+        Wiz.atb(new ModCardTempAction(magicNumber, -1, false, true));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() ->
-        {
-            FREEZE = true;
-            uDesc();
-            rawDescription = TEXT[0];
-            initializeDescription();
-        });
-        addUpgradeData(() ->
-        {
-            HAND = true;
-            rawDescription = TEXT[1];
-            initializeDescription();
-        });
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() ->
         {
             exhaust = false;
-            rawDescription = TEXT[2];
-            initializeDescription();
+            uDesc();
         });
-        addUpgradeData(() -> upgradeBaseCost(0));
-        setExclusions(0, 1, 2);
-        setDependencies(false, 3, 0, 1, 2);
     }
 }

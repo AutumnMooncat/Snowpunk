@@ -15,9 +15,16 @@ public class ChillPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
+    public int keepThisTurn;
+
     public ChillPower(AbstractCreature owner, int amount) {
+        this(owner, amount, 0);
+    }
+
+    public ChillPower(AbstractCreature owner, int amount, int keepThisTurn) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
         isTurnBased = true;
+        this.keepThisTurn = keepThisTurn;
     }
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
@@ -26,11 +33,16 @@ public class ChillPower extends AbstractEasyPower {
 
     @Override
     public void atEndOfRound() {
-        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+        if (keepThisTurn <= 0)
+            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+        else {
+            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
+            keepThisTurn = 0;
+        }
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 }
