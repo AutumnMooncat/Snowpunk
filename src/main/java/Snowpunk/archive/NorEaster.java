@@ -1,8 +1,8 @@
 package Snowpunk.archive;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -45,7 +45,7 @@ public class NorEaster extends AbstractMultiUpgradeCard {
         effect += magicNumber;
 
         if (effect > 0) {
-            Wiz.applyToSelf(new SnowballPower(p, effect));
+            Wiz.atb(new GainSnowballAction((effect)));
         }
 
         if (!this.freeToPlayOnce) {

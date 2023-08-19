@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,7 +33,7 @@ public class CarolingSnowballPower extends AbstractEasyPower {
     @Override
     public void atStartOfTurn() {
         if (!prevTurnAttacked) {
-            Wiz.applyToSelf(new SnowballPower(owner, amount));
+            Wiz.atb(new GainSnowballAction((amount)));
             if (!owner.hasPower(CarolingPower.POWER_ID))
                 CarolingPower.carol();
         }

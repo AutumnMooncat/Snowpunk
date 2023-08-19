@@ -2,7 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,7 +26,7 @@ public class Workshop extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new WidgetsPower(p, magicNumber));
+        Wiz.applyToSelf(new BrassPower(p, magicNumber));
     }
 
     @Override

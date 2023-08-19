@@ -6,7 +6,7 @@ import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -49,7 +49,7 @@ public class Sproinket extends AbstractMultiUpgradeCard implements ClankCard {
             dmg(target, AbstractGameAction.AttackEffect.NONE);
         }
 
-        Wiz.applyToSelf(new WidgetsPower(player, magicNumber));
+        Wiz.applyToSelf(new BrassPower(player, magicNumber));
         Wiz.atb(new ClankAction(this));
     }
 

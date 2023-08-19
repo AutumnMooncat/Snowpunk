@@ -1,8 +1,8 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -43,7 +43,7 @@ public class Eggnog extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     @Override

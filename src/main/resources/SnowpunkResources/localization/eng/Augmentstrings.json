@@ -6,6 +6,10 @@
     "TEXT": ["", " and Fire", " NL Gain %d snowpunk:Fireball."]
   },
   "${ModID}:WidgetMod": {
-    "TEXT": ["", " and Tinker", " NL Gain %s snowpunk:Widgets. NL Exhaust."]
+    "TEXT": [
+      "",
+      " and Tinker",
+      " NL Gain %s snowpunk:Brass. NL Exhaust."
+    ]
   }
 }

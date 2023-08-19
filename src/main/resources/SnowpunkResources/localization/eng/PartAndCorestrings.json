@@ -233,7 +233,7 @@
   },
   "${ModID}:TinkererCore": {
     "NAME": "Tinkerer",
-    "DESCRIPTION": "Gain [snowpunk:GearIcon] snowpunk:Widgets."
+    "DESCRIPTION": "Gain [snowpunk:GearIcon] snowpunk:Brass."
   },
   "${ModID}:SnowDrawCore": {
     "NAME": "Packer",

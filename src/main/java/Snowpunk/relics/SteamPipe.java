@@ -3,7 +3,7 @@ package Snowpunk.relics;
 import Snowpunk.TheConductor;
 import Snowpunk.powers.ScrapPower;
 import Snowpunk.powers.SteamPower;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

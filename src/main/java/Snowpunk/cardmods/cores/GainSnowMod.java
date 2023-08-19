@@ -1,9 +1,9 @@
 package Snowpunk.cardmods.cores;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.cores.effects.AbstractCardEffectMod;
 import Snowpunk.cards.old_cores.ARCHIVED_AssembledCard;
 import Snowpunk.cards.old_cores.util.OnUseCardInstance;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -19,7 +19,7 @@ public class GainSnowMod extends AbstractCardEffectMod {
         if (card instanceof ARCHIVED_AssembledCard) {
             ((ARCHIVED_AssembledCard) card).addUseEffects(new OnUseCardInstance(priority, (p, m) -> {
                 int amount = useSecondVar ? ((ARCHIVED_AssembledCard) card).secondMagic : card.magicNumber;
-                Wiz.applyToSelf(new SnowballPower(p, amount));
+                Wiz.atb(new GainSnowballAction((amount)));
             }));
         }
     }

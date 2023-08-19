@@ -130,8 +130,8 @@
   },
   "${ModID}:ChuckTools": {
     "NAME": "Chuck Parts",
-    "DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Widgets. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Widgets. NL Exhaust."
+    "DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Brass. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Apply !M! Vulnerable to ALL enemies. NL Gain !M! snowpunk:Brass. NL Exhaust."
   },
   "${ModID}:ChuggaChugga": {
     "NAME": "Chugga Chugga",
@@ -166,8 +166,8 @@
   },
   "${ModID}:Workshop": {
     "NAME": "Workshop",
-    "DESCRIPTION": "Gain !M! snowpunk:Widgets. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Widgets."
+    "DESCRIPTION": "Gain !M! snowpunk:Brass. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Brass."
   },
   "${ModID}:FineTuned": {
     "NAME": "Fine Tuned",
@@ -376,8 +376,8 @@
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
-    "DESCRIPTION": "Card effects act as if you have !M! more snowpunk:Snowballs.",
-    "UPGRADE_DESCRIPTION": "Card effects act as if you have {@@}X{!M!|>0= + !M!} more snowpunk:Snowballs."
+    "DESCRIPTION": "Card effects act as if you have !M! more [snowpunk:SnowIcon] .",
+    "UPGRADE_DESCRIPTION": "Card effects act as if you have {@@}X{!M!|>0= + !M!} more [snowpunk:SnowIcon] ."
   },
   "${ModID}:PressurizedBlast": {
     "NAME": "Pressurized Blast",
@@ -491,11 +491,11 @@
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "{@@} Gain !B! Block.{!M!|>0= NL Gain !M! snowpunk:Snowball}{!M!|>1=s}{!M!|>0=.}"
+    "DESCRIPTION": "{@@} Gain !B! Block.{!M!|1= NL Gain [snowpunk:SnowIcon] .|2= NL Gain [snowpunk:SnowIcon] [snowpunk:SnowIcon] .|>2= NL Gain !M! [snowpunk:SnowIcon] .}"
   },
   "${ModID}:Sproinket": {
     "NAME": "Sproinket",
-    "DESCRIPTION": "{@@}Deal !D! damage to a random enemy. NL Gain !M! snowpunk:Widgets. NL snowpunk:Clank: Exhaust."
+    "DESCRIPTION": "{@@}Deal !D! damage to a random enemy. NL Gain !M! snowpunk:Brass. NL snowpunk:Clank: Exhaust."
   },
   "${ModID}:SteamBlast": {
     "NAME": "Steam Blast",
@@ -547,15 +547,18 @@
   },
   "${ModID}:SilverBells": {
     "NAME": "Silver Bells",
-    "DESCRIPTION": "Gain !B! Block twice. NL Gain !M! snowpunk:Widgets."
+    "DESCRIPTION": "Gain !B! Block twice. NL Gain !M! snowpunk:Brass."
   },
   "${ModID}:Tinker": {
     "NAME": "Tinker",
-    "DESCRIPTION": "{@@}Gain !M! snowpunk:Widgets.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust."
+    "DESCRIPTION": "{@@}Gain !M! snowpunk:Brass.{!Location!|4,-2= NL Upon pickup, Upgrade a card in your deck.} NL Exhaust."
   },
   "${ModID}:TouchOfBrass": {
     "NAME": "Touch of Brass",
-    "DESCRIPTION": "{@@}Gain !M! Temporary_HP.{!Location!|4,-1,-2= NL Cannot be Upgraded outside combat.} NL Exhaust."
+    "DESCRIPTION": "{@@}Gain !M! Temporary_HP.{!Location!|4,-1,-2= NL Cannot be Upgraded outside combat.} NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "Touch of Grass"
+    ]
   },
   "${ModID}:TrainScythe": {
     "NAME": "Train Scythe",

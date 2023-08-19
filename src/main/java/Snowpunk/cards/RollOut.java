@@ -1,16 +1,9 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.DupeMod;
-import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.NextTurnPowerPower;
-import Snowpunk.powers.SnowballPower;
-import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

@@ -2,7 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnObtainCard;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.SmithEffect;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,7 +27,7 @@ public class Tinker extends AbstractMultiUpgradeCard implements OnObtainCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new WidgetsPower(p, magicNumber));
+        Wiz.applyToSelf(new BrassPower(p, magicNumber));
     }
 
     @Override

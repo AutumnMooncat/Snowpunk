@@ -2,9 +2,7 @@ package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;

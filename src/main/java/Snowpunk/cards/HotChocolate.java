@@ -1,13 +1,10 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ChangeChristmasSpiritAction;
-import Snowpunk.actions.PlayLinkedCardsInHandAction;
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.EverburnMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
-import Snowpunk.powers.NextTurnPowerPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -54,7 +51,7 @@ public class HotChocolate extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new FireballPower(p, magicNumber));
-        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     public void upp() {

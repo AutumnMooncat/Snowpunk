@@ -3,7 +3,7 @@ package Snowpunk.augments;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import Snowpunk.SnowpunkMod;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -61,7 +61,7 @@ public class WidgetMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        Wiz.applyToSelf(new WidgetsPower(Wiz.adp(), getBaseVal(card)));
+        Wiz.applyToSelf(new BrassPower(Wiz.adp(), getBaseVal(card)));
     }
 
     @Override

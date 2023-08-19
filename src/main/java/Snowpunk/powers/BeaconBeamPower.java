@@ -21,10 +21,10 @@ public class BeaconBeamPower extends AbstractEasyPower {
     }
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        if (type != DamageInfo.DamageType.NORMAL || !owner.hasPower(SnowballPower.POWER_ID)) {
-            return damage;
-        }
-        return damage + (this.amount * owner.getPower(SnowballPower.POWER_ID).amount);
+        //if (type != DamageInfo.DamageType.NORMAL || !owner.hasPower(SnowballPower.POWER_ID)) {
+        return damage;
+        //}
+        //return damage + (this.amount * owner.getPower(SnowballPower.POWER_ID).amount);
     }
 
     @Override

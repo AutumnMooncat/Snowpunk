@@ -29,6 +29,12 @@
       "Parts can be added to cards to add or modify effects."
     ]
   },
+  "${ModID}:Snowballs": {
+    "TEXT": [
+      "Snowballs",
+      "Count as [E] NL Spent after [E] NL Conserved between turns."
+    ]
+  },
   "${ModID}:Upgrade": {
     "TEXT": [
       "Upgrade"

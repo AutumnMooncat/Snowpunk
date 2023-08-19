@@ -2,8 +2,9 @@ package Snowpunk.cards.abstracts;
 
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.patches.SnowballPatches;
 import Snowpunk.powers.SnowpunkPower;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
@@ -299,7 +300,8 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     public static int getSnowStatic() {
-        int snow = 0;
+        int snow = SnowballPatches.Snowballs.amount;
+
         for (AbstractRelic r : Wiz.adp().relics) {
             if (r instanceof SnowAmountModifier) {
                 snow += ((SnowAmountModifier) r).modifySnow();
@@ -317,8 +319,8 @@ public abstract class AbstractEasyCard extends CustomCard {
         int gears = 0;
         if (CardModifierManager.hasModifier(this, GearMod.ID))
             gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(WidgetsPower.POWER_ID))
-            gears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(BrassPower.POWER_ID))
+            gears += Wiz.adp().getPower(BrassPower.POWER_ID).amount;
         if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
             gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
         return gears;

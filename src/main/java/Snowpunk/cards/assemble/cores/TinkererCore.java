@@ -3,7 +3,7 @@ package Snowpunk.cards.assemble.cores;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -36,7 +36,7 @@ public class TinkererCore extends CoreCard {
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         int gears = card.getGears();
         if (gears > 0)
-            Wiz.applyToSelf(new WidgetsPower(player, gears));
+            Wiz.applyToSelf(new BrassPower(player, gears));
     }
 
     @Override

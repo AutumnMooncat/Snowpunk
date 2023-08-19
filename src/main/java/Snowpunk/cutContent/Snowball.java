@@ -1,8 +1,8 @@
 package Snowpunk.cutContent;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,7 +26,7 @@ public class Snowball extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     public void upp() {

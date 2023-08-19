@@ -392,8 +392,8 @@
       " [E] ."
     ]
   },
-  "${ModID}:WidgetsPower": {
-    "NAME": "Widgets",
+  "${ModID}:BrassPower": {
+    "NAME": "Brass",
     "DESCRIPTIONS": [
       "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
       " [snowpunk:GearIcon] ."

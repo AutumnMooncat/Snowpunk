@@ -25,6 +25,11 @@ public class TouchOfBrass extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = BRASS;
         exhaust = true;
+
+        if (CardCrawlGame.playerName.equals("rorDev")) {
+            originalName = name = cardStrings.EXTENDED_DESCRIPTION[0];
+            initializeTitle();
+        }
     }
 
     @Override

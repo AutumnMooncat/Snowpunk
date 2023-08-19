@@ -1,24 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.actions.ModCardTempEverywhereAction;
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cardmods.EverburnMod;
-import Snowpunk.cardmods.VentMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.FireballPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
-import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

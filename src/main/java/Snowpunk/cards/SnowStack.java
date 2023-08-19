@@ -1,11 +1,17 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -26,10 +32,25 @@ public class SnowStack extends AbstractMultiUpgradeCard {
         CardTemperatureFields.addInherentHeat(this, -1);
     }
 
+    private static ArrayList<TooltipInfo> Tooltip, ToolTipBlank;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (ToolTipBlank == null)
+            ToolTipBlank = new ArrayList<>();
+        if (Tooltip == null) {
+            Tooltip = new ArrayList<>();
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        }
+        if (magicNumber > 0)
+            return Tooltip;
+        return ToolTipBlank;
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         if (magicNumber > 0)
-            Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+            Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     @Override

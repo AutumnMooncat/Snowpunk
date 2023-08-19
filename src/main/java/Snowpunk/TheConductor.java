@@ -2,7 +2,6 @@ package Snowpunk;
 
 import Snowpunk.cards.*;
 import Snowpunk.relics.BrassPipe;
-import Snowpunk.util.HeatBasedEnergyManager;
 import Snowpunk.vfx.VictoryGlow;
 import Snowpunk.vfx.VictorySnowflakeEffects;
 import basemod.abstracts.CustomPlayer;
@@ -18,6 +17,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -66,7 +66,7 @@ public class TheConductor extends CustomPlayer {
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
-                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new HeatBasedEnergyManager(2));
+                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(2));
 
 
         dialogX = (drawX + 0.0F * Settings.scale);

@@ -1,10 +1,5 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ModEngineTempAction;
-import Snowpunk.cardmods.TemperatureMod;
-import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;

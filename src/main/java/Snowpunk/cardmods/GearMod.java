@@ -3,7 +3,7 @@ package Snowpunk.cardmods;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SnowpunkPower;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
@@ -92,8 +92,8 @@ public class GearMod extends AbstractCardModifier {
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int numGears = amount;
         if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
-            if (Wiz.adp().hasPower(WidgetsPower.POWER_ID) && Wiz.adp().getPower(WidgetsPower.POWER_ID).amount > 0)
-                numGears += Wiz.adp().getPower(WidgetsPower.POWER_ID).amount;
+            if (Wiz.adp().hasPower(BrassPower.POWER_ID) && Wiz.adp().getPower(BrassPower.POWER_ID).amount > 0)
+                numGears += Wiz.adp().getPower(BrassPower.POWER_ID).amount;
             if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
                 numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
         }

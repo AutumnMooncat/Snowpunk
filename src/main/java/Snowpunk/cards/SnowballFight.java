@@ -1,27 +1,14 @@
 package Snowpunk.cards;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.AbstractSCostMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.ChillPower;
-import Snowpunk.powers.SnowballPower;
-import Snowpunk.util.KeywordManager;
-import Snowpunk.util.Wiz;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

@@ -3,17 +3,10 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.CoolNextCardPower;
-import Snowpunk.powers.SnowballPower;
-import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

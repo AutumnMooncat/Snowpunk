@@ -1,8 +1,8 @@
 package Snowpunk.archive;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.WinterStormPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -34,7 +34,7 @@ public class WinterStorm extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new WinterStormPower(p, magicNumber));
         if (secondMagic > 0)
-            Wiz.applyToSelf(new SnowballPower(p, secondMagic));
+            Wiz.atb(new GainSnowballAction((secondMagic)));
     }
 
 

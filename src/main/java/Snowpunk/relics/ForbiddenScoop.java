@@ -1,23 +1,15 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.powers.SteamPower;
 import Snowpunk.relics.interfaces.ModifySnowballsRelic;
 import Snowpunk.util.KeywordManager;
-import Snowpunk.util.SteamEngine;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

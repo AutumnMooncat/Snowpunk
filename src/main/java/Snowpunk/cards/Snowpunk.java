@@ -1,8 +1,7 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.PressureValvesPower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -10,8 +9,6 @@ import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +42,7 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new SnowpunkPower(p, 1));
-        Wiz.applyToSelf(new SnowballPower(p, magicNumber));
+        Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     @Override

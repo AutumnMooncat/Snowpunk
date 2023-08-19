@@ -1,7 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -25,7 +25,7 @@ public class BrassPipe extends AbstractEasyRelic {
     @Override
     public void atBattleStartPreDraw() {
         flash();
-        Wiz.applyToSelf(new WidgetsPower(Wiz.adp(), AMOUNT));
+        Wiz.applyToSelf(new BrassPower(Wiz.adp(), AMOUNT));
     }
 
     @Override

@@ -109,7 +109,7 @@
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Count as [E] . NL Used after [E] . NL Remain between turns."
+    "DESCRIPTION": "Counts as [E] . Spent after [E] . NL Conserved between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -397,11 +397,10 @@
     "DESCRIPTION": "Hot: Gain Steam NL Stable: Gain [E] NL Cold: Gain Snowballs"
   },
   {
-    "PROPER_NAME": "Widgets",
+    "PROPER_NAME": "Brass",
     "NAMES": [
-      "widget",
-      "widgets"
+      "brass"
     ],
-    "DESCRIPTION": "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains [snowpunk:GearIcon] ."
+    "DESCRIPTION": "Apply [snowpunk:GearIcon] to the next viable card."
   }
 ]

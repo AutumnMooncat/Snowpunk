@@ -26,8 +26,8 @@ public class WinterStormPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new LoseEnergyAction(amount));
-        addToBot(new ApplyPowerAction(Wiz.adp(), owner, new SnowballPower(Wiz.adp(), amount)));
+        //addToBot(new LoseEnergyAction(amount));
+        //addToBot(new ApplyPowerAction(Wiz.adp(), owner, new SnowballPower(Wiz.adp(), amount)));
         flash();
     }
 

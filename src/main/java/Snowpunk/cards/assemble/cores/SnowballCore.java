@@ -1,9 +1,8 @@
 package Snowpunk.cards.assemble.cores;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -43,7 +42,7 @@ public class SnowballCore extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.applyToSelf(new SnowballPower(player, card.secondMagic));
+        Wiz.atb(new GainSnowballAction((card.secondMagic)));
     }
 
     @Override

@@ -1,5 +1,7 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.GainSnowballAction;
+import Snowpunk.patches.SnowballPatches;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -21,9 +23,9 @@ public class LetItSnowPower extends AbstractEasyPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        if (!owner.hasPower(SnowballPower.POWER_ID)) {
+        if (SnowballPatches.Snowballs.amount == 0) {
             flash();
-            Wiz.atb(new ApplyPowerAction(owner, owner, new SnowballPower(owner, amount), amount));
+            Wiz.atb(new GainSnowballAction((amount)));
         }
     }
 

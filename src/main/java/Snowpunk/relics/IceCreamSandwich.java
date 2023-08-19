@@ -2,7 +2,7 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.patches.SCostFieldPatches;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.Wiz;
 import basemod.interfaces.XCostModifier;

@@ -9,6 +9,7 @@ import Snowpunk.cards.cardvars.SecondMagicNumber;
 import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.SnowballPatches;
 import Snowpunk.relics.AbstractEasyRelic;
 import basemod.AutoAdd;
 import basemod.BaseMod;
@@ -39,7 +40,7 @@ public class SnowpunkMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber {
+        EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber, OnPlayerTurnStartSubscriber {
 
     public static final String modID = "Snowpunk";
 
@@ -216,6 +217,10 @@ public class SnowpunkMod implements
         BaseMod.addAudio("snowpunk:unclank", modID + "Resources/audio/clank_prevented.mp3");
         BaseMod.addAudio("snowpunk:wrench", modID + "Resources/audio/wrench.mp3");
         BaseMod.addAudio("snowpunk:bonk", modID + "Resources/audio/bonk.mp3");
+        BaseMod.addAudio("snowpunk:snow1", modID + "Resources/audio/snow1.wav");
+        BaseMod.addAudio("snowpunk:snow2", modID + "Resources/audio/snow2.wav");
+        BaseMod.addAudio("snowpunk:snow3", modID + "Resources/audio/snow3.wav");
+        BaseMod.addAudio("snowpunk:snow4", modID + "Resources/audio/snow4.wav");
         BaseMod.addAudio("snowpunk:masterpiece", modID + "Resources/audio/masterpiece.mp3");
     }
 
@@ -244,5 +249,10 @@ public class SnowpunkMod implements
         });
 
         DynamicTextBlocks.registerCustomCheck(makeID("CardTemp"), card -> CardTemperatureFields.getCardHeat(card));
+    }
+
+    @Override
+    public void receiveOnPlayerTurnStart() {
+        SnowballPatches.Snowballs.startTurn();
     }
 }

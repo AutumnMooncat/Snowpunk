@@ -2,7 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.WidgetsPower;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,18 +16,18 @@ public class SilverBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 4, WIDGETS = 2;
+    private static final int COST = 1, BLOCK = 4, Brass = 2;
 
     public SilverBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = WIDGETS;
+        baseMagicNumber = magicNumber = Brass;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         blck();
-        Wiz.applyToSelf(new WidgetsPower(p, magicNumber));
+        Wiz.applyToSelf(new BrassPower(p, magicNumber));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package Snowpunk.archive;
 
-import Snowpunk.actions.ModEngineTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.EmberForgePowerOLD;
 import Snowpunk.util.Wiz;
@@ -33,7 +32,7 @@ public class EmberForge extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ModEngineTempAction(magicNumber));
+        //Wiz.atb(new ModEngineTempAction(magicNumber));
         Wiz.applyToSelf(new EmberForgePowerOLD(p));
     }
 

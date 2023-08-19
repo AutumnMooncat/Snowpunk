@@ -3,13 +3,11 @@ package Snowpunk.archive;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.patches.SCostFieldPatches;
 import Snowpunk.powers.FrostbitePower;
-import Snowpunk.powers.SnowballPower;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -50,7 +48,7 @@ public class ColdSnap extends AbstractEasyCard {
             }
         }
         if (!this.freeToPlayOnce) {
-            Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
+            //Wiz.atb(new RemoveSpecificPowerAction(p, p, SnowballPower.POWER_ID));
         }
     }
 
