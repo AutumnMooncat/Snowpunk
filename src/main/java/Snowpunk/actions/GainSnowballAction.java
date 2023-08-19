@@ -11,15 +11,24 @@ import static Snowpunk.util.Wiz.adp;
 
 public class GainSnowballAction extends AbstractGameAction {
 
+    boolean silent;
+
     public GainSnowballAction(int amount) {
+        this(amount, false);
+    }
+
+    public GainSnowballAction(int amount, boolean silent) {
+        this.silent = silent;
         this.amount = amount;
     }
 
     @Override
     public void update() {
-        Random rand = new Random();
-        int num = rand.random(1, 5);
-        addToTop(new SFXAction("snowpunk:snow" + num));
+        if (!silent) {
+            Random rand = new Random();
+            int num = rand.random(1, 5);
+            addToTop(new SFXAction("snowpunk:snow" + num));
+        }
         SnowballPatches.Snowballs.amount += amount;
         isDone = true;
     }

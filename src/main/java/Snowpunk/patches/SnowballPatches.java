@@ -35,7 +35,9 @@ public class SnowballPatches {
         }
 
         public static void startTurn() {
-            Wiz.att(new GainSnowballAction(getPerTurn()));
+            int snow = getPerTurn();
+            if (snow > 0)
+                Wiz.att(new GainSnowballAction(snow));
         }
     }
 
