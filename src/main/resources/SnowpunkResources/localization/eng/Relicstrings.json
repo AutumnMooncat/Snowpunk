@@ -49,7 +49,7 @@
     "NAME": "Ice Cream Sandwich",
     "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
     "DESCRIPTIONS": [
-      "Card effects act as if you have #b"," more #ysnowpunk:Snowball."
+      "Convert #b1 [E] to [Snowpunk:SnowIcon] each turn."
     ]
   },
   "${ModID}:ScrapHeap": {
