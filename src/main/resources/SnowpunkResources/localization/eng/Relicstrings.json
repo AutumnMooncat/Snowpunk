@@ -54,7 +54,7 @@
   },
   "${ModID}:ScrapHeap": {
     "NAME": "Scrap Heap",
-    "FLAVOR": "Fresh junk for the picking.",
+    "FLAVOR": "'A cluttered desk is a sign of genius.' -Me",
     "DESCRIPTIONS": [
       "#yUpgrade the first #b",
       " cards you draw each turn. You can no longer #ySmith at Rest Sites."

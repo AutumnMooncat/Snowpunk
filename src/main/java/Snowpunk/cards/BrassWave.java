@@ -37,7 +37,7 @@ public class BrassWave extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
     }
 }

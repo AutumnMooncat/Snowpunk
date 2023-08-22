@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class JingleBells extends AbstractMultiUpgradeCard implements ClankCard {
+public class JingleBells extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(JingleBells.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -25,7 +25,7 @@ public class JingleBells extends AbstractMultiUpgradeCard implements ClankCard {
 
     private static final int COST = -1, BLOCK = 7;
 
-    private boolean noClank = false;
+    //private boolean noClank = false;
 
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -48,9 +48,9 @@ public class JingleBells extends AbstractMultiUpgradeCard implements ClankCard {
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }
-
+/*
         if (!noClank)
-            Wiz.atb(new ClankAction(this));
+            Wiz.atb(new ClankAction(this));*/
     }
 
     @Override
@@ -59,14 +59,15 @@ public class JingleBells extends AbstractMultiUpgradeCard implements ClankCard {
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
-            noClank = true;
+            //noClank = true;
+            exhaust = false;
             uDesc();
         });
         setExclusions(1, 2);
     }
-
+/*
     @Override
     public void onClank() {
         addToTop(new ResetExhaustAction(this, true));
-    }
+    }*/
 }

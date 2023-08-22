@@ -35,11 +35,11 @@
       " cards you draw each turn."
     ]
   },
-  "${ModID}:BurningCoalsPower": {
+  "${ModID}:BurningEmbersPower": {
     "NAME": "Burning Coals",
     "DESCRIPTIONS": [
-      "Whenever you apply #ySinge, apply #b",
-      " more."
+      "When #ySinge wears off of a creature, deal #b",
+      " damage to them."
     ]
   },
   "${ModID}:CarolingPower": {
@@ -90,17 +90,20 @@
   "${ModID}:FineTunePower": {
     "NAME": "Fine Tune",
     "DESCRIPTIONS": [
-      "Prevent the next first time you would #yClank each turn.",
-      "Prevent the first #b",
-      " times you would #yClank each turn."
+      "The first time you would #yClank each turn, prevent it and draw #b1 card.",
+      "The first #b",
+      " times you would #yClank each turn, prevent it and draw #b",
+      " cards."
     ]
   },
   "${ModID}:WrenchPower": {
     "NAME": "Wrench",
     "DESCRIPTIONS": [
-      "Prevent the next time you would #yClank this turn.",
-      "Prevent the next #b",
-      " times you would #yClank this turn."
+      "The next time you would #yClank this turn, prevent it and draw #b",
+      "The next #b",
+      " times you would #yClank this turn, prevent it and draw #b",
+      " card.",
+      " cards."
     ]
   },
   "${ModID}:PermWrenchPower": {
@@ -213,8 +216,7 @@
     "NAME": "Singe",
     "DESCRIPTIONS": [
       "Take #b",
-      " additional damage when attacked. At the start of its turn, take #b",
-      " damage, and then remove all #ySinge."
+      " additional damage when attacked. Removed at the start of your turn."
     ]
   },
   "${ModID}:NoGunPower": {

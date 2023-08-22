@@ -16,7 +16,7 @@ public class SilverBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 4, Brass = 2;
+    private static final int COST = 2, BLOCK = 5, Brass = 3;
 
     public SilverBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -32,7 +32,7 @@ public class SilverBells extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(3));
+        addUpgradeData(() -> upgradeBlock(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> upgradeMagicNumber(2));
     }

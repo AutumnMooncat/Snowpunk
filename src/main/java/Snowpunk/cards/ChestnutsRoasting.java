@@ -65,7 +65,7 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
     }

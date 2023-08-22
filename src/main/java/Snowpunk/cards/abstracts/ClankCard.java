@@ -13,6 +13,7 @@ public interface ClankCard {
     static boolean tryClank(AbstractCard card) {
         if (Wiz.adp() != null && Wiz.adp().hasPower(WrenchPower.POWER_ID) && (Wiz.adp().getPower(WrenchPower.POWER_ID).amount > 0)) {
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
+            ((WrenchPower) Wiz.adp().getPower(WrenchPower.POWER_ID)).onClank(card);
             Wiz.adp().getPower(WrenchPower.POWER_ID).amount--;
             if (Wiz.adp().getPower(WrenchPower.POWER_ID).amount == 0)
                 Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), Wiz.adp().getPower(WrenchPower.POWER_ID)));

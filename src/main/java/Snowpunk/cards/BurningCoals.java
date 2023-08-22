@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BurningCoalsPower;
+import Snowpunk.powers.BurningEmbersPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,16 +21,16 @@ public class BurningCoals extends AbstractMultiUpgradeCard {
 
     public BurningCoals() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
+        magicNumber = baseMagicNumber = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new BurningCoalsPower(p, magicNumber));
+        Wiz.applyToSelf(new BurningEmbersPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeMagicNumber(3));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> {
             isInnate = true;

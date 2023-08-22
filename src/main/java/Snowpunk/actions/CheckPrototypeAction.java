@@ -1,27 +1,18 @@
 package Snowpunk.actions;
 
 import Snowpunk.cards.Masterpiece;
-import Snowpunk.cards.Prototype;
-import Snowpunk.cards.abstracts.ClankCard;
-import Snowpunk.powers.interfaces.OnClankPower;
-import Snowpunk.util.Wiz;
+import Snowpunk.archive.Prototype;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.UpgradeHammerImprintEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineParticleEffect;
-import com.megacrit.cardcrawl.vfx.combat.ImpactSparkEffect;
-
-import static Snowpunk.cards.abstracts.ClankCard.tryClank;
 
 public class CheckPrototypeAction extends AbstractGameAction {
 

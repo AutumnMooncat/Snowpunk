@@ -46,7 +46,7 @@
     "NAMES": [
       "hat"
     ],
-    "DESCRIPTION": "When played, a #yHat jumps to a random other card in your hand and you draw 1 card per #yHat. #yHats are removed at the end of your turn."
+    "DESCRIPTION": "Hats draw a card and then hop to another card in your hand. Removed at the end of your turn."
   },
   {
     "PROPER_NAME": "Duplicate",
@@ -240,7 +240,7 @@
       "heat",
       "heated"
     ],
-    "DESCRIPTION": "Raise [snowpunk:TempIcon] by #b1 if it is below #yOverheated."
+    "DESCRIPTION": "Raise [snowpunk:TempIcon] by #b1."
   },
   {
     "PROPER_NAME": "Overheat",
@@ -255,7 +255,7 @@
       "cool",
       "cooled"
     ],
-    "DESCRIPTION": "Lower [snowpunk:TempIcon] by #b1 if it is above #yFrozen."
+    "DESCRIPTION": "Lower [snowpunk:TempIcon] by #b1."
   },
   {
     "PROPER_NAME": "Freeze",

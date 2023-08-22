@@ -1,15 +1,13 @@
-package Snowpunk.cards;
+package Snowpunk.archive;
 
-import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.CheckPrototypeAction;
-import Snowpunk.actions.ClankAction;
-import Snowpunk.actions.ResetExhaustAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cards.Masterpiece;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
-import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -17,6 +15,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Prototype extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Prototype.class.getSimpleName());
     public static CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);

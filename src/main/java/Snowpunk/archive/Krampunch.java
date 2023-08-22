@@ -1,16 +1,20 @@
-package Snowpunk.cards;
+package Snowpunk.archive;
 
 import Snowpunk.actions.ClankAction;
 import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Krampunch extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(Krampunch.class.getSimpleName());
 

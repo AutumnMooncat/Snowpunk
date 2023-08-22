@@ -1,7 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,7 +25,7 @@ public class TouchOfBrass extends AbstractMultiUpgradeCard {
 
     public TouchOfBrass() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = BRASS;
+        CardModifierManager.addModifier(this, new GearMod(BRASS));
         exhaust = true;
 
         if (CardCrawlGame.playerName.equals("rorDev")) {
@@ -40,14 +42,15 @@ public class TouchOfBrass extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new AddTemporaryHPAction(p, p, magicNumber));
+        int tempHP = getGears();
+        Wiz.atb(new AddTemporaryHPAction(p, p, tempHP));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(5));
-        addUpgradeData(() -> upgradeMagicNumber(5));
-        addUpgradeData(() -> upgradeMagicNumber(5));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(5)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(5)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(5)));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

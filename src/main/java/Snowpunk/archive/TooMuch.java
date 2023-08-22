@@ -1,27 +1,22 @@
-package Snowpunk.cards;
+package Snowpunk.archive;
 
 import Snowpunk.actions.ClankAction;
-import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.NoGunPower;
-import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EntanglePower;
-import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class TooMuch extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(TooMuch.class.getSimpleName());
 

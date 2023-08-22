@@ -13,6 +13,7 @@ import Snowpunk.vfx.WrenchEffect;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,7 +27,7 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 5;
+    private static final int DMG = 4;
 
     private boolean third = false;
     private boolean burn = false;
@@ -35,6 +36,7 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     public BrassKnuckles() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        magicNumber = baseMagicNumber = 1;
         CardModifierManager.addModifier(this, new GearMod(2));
     }
 
@@ -47,20 +49,16 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(2)));
+        addUpgradeData(() -> upgradeDamage(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            magicNumber = baseMagicNumber = 0;
-            upgradeMagicNumber(2);
-            uDesc();
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
         setExclusions(1, 2);
 
     }
 
     @Override
     public void onClank() {
-        addToTop(new ApplyCardModifierAction(this, new GearMod(magicNumber > 0 ? -magicNumber : -99999)));
+        addToBot(new ModifyDamageAction(uuid, -magicNumber));// 36
     }
 }
