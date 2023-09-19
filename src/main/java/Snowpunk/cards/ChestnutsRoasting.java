@@ -28,15 +28,25 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     private static final int COST = 1;
     private static final int CARDS = 2;
     private static final int UP_CARDS = 1;
-    private static ArrayList<TooltipInfo> Tooltip;
+
+    private static ArrayList<TooltipInfo> FireTip, FireAndHotTip;
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
+        if (FireTip == null) {
+            FireTip = new ArrayList<>();
+            FireTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
         }
-        return Tooltip;
+
+        if (FireAndHotTip == null) {
+            FireAndHotTip = new ArrayList<>();
+            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
+            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.HOT.toLowerCase()), BaseMod.getKeywordDescription(KeywordManager.HOT.toLowerCase())));
+        }
+
+        if (CardTemperatureFields.getCardHeat(this) != CardTemperatureFields.HOT)
+            return FireAndHotTip;
+        return FireTip;
     }
 
     public ChestnutsRoasting() {
@@ -47,26 +57,17 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Wiz.atb(new ModCardTempAction(magicNumber, 1, false));
         Wiz.applyToSelf(new FireballPower(p, magicNumber));
     }
 
-/*
-    @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if(Tooltip == null)
-        {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.TEMP), BaseMod.getKeywordDescription(KeywordManager.TEMP)));
-        }
-        return Tooltip;
-    }*/
-
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
+        addUpgradeData(() ->
+        {
+            isInnate = true;
+            uDesc();
+        });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

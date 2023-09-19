@@ -15,7 +15,7 @@ public class Gift extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, MAGIC = 3, UP_MAGIC = 2;
+    private static final int COST = 1, MAGIC = 3, UP_MAGIC = 2;
 
     boolean free = false;
 

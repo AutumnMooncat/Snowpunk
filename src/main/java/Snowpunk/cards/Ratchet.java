@@ -35,7 +35,9 @@ public class Ratchet extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> upgradeMagicNumber(UP_CLANK));
+        setExclusions(1, 2);
     }
 }

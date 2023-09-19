@@ -1,0 +1,13 @@
+{
+  "${ModID}:TheConductor": {
+    "NAMES": [
+      "The Conductor",
+      "the Conductor"
+    ],
+    "TEXT": [
+      "A certified chilly boy with a hat full of snow.",
+      "You Singe the heart.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~cold~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  }
+}

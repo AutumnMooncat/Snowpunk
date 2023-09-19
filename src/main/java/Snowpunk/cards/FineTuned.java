@@ -30,11 +30,11 @@ public class FineTuned extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(UP_CLANK));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

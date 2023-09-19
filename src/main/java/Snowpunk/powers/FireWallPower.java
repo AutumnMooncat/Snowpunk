@@ -21,27 +21,16 @@ public class FireWallPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        if (owner.currentBlock <= 0)
-            addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+//        if (owner.currentBlock <= 0)
+        addToTop(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner && amount > 0) {
-            if (info.owner.hasPower(SingePower.POWER_ID)) {
-                ((SingePower) info.owner.getPower(SingePower.POWER_ID)).keepThisTurn += amount;
-                /*int bonusAmount = 0;
-                if(owner.hasPower(BurningEmbersPower.POWER_ID))
-                    bonusAmount = owner.getPower(BurningEmbersPower.POWER_ID).amount;*/
-                addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount), amount));
-            } else {
-                addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount, amount), amount));
-            }
+        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS &&
+                info.owner != null && info.owner != this.owner && amount > 0) {
+            addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount, amount), amount));
             flash();
-            if (damageAmount >= owner.currentBlock) {
-                amount = 0;
-                addToTop(new RemoveSpecificPowerAction(owner, owner, this));
-            }
         }
         return damageAmount;
     }

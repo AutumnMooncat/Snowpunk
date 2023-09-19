@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.MakeCopyInHandAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cardmods.parts.ReshuffleMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -32,7 +33,7 @@ public class TrainStation extends AbstractMultiUpgradeCard {
 
     public TrainStation() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 0;
+        magicNumber = baseMagicNumber = 1;
         exhaust = true;
     }
 
@@ -45,14 +46,14 @@ public class TrainStation extends AbstractMultiUpgradeCard {
         }
 
         if (magicNumber > 0)
-            effect += magicNumber;
+            effect -= magicNumber;
 
         if (effect > 0) {
             Wiz.atb(new DrawCardAction(effect, new AbstractGameAction() {
                 @Override
                 public void update() {
                     for (AbstractCard c : DrawCardAction.drawnCards) {
-                        c.setCostForTurn(0);
+                        CardModifierManager.addModifier(c, new HatMod(1));
                     }
                     isDone = true;
                 }
@@ -65,9 +66,6 @@ public class TrainStation extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> upgradeMagicNumber(-1));
     }
 }

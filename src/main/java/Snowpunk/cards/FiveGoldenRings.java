@@ -67,7 +67,7 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
             @Override
             public void update() {
                 for (AbstractCard card : Wiz.adp().hand.group) {
-                    CardModifierManager.addModifier(card, new GearMod(5));
+                    CardModifierManager.addModifier(card, new GearMod(5, true));
                     card.superFlash(Color.WHITE.cpy());
                 }
                 isDone = true;
@@ -82,11 +82,11 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

@@ -30,17 +30,14 @@ public class ItsColdOutside extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ModCardTempAction(magicNumber, -1, false, true));
+        Wiz.atb(new ModCardTempAction(magicNumber, -99, false, true));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() ->
-        {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
+        setDependencies(true, 1, 0);
     }
 }

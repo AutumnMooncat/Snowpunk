@@ -47,11 +47,11 @@ public class Workshop extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

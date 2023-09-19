@@ -25,49 +25,32 @@ public class PrefixManager extends AbstractCardModifier {
         if (temp != 0) {
             switch (temp) {
                 case -2:
-                    sb.append(TEXT[7]).append(" ");
-                    break;
+//                    sb.append(TEXT[7]).append(" ");
+//                    break;
                 case -1:
                     sb.append(TEXT[6]).append(" ");
+//                    sb.append(TEXT[6]).append(" ");
                     break;
                 case 1:
-                    sb.append(TEXT[4]).append(" ");
-                    break;
                 case 2:
-                    sb.append(TEXT[5]).append(" ");
+                    sb.append(TEXT[4]).append(" ");
+//                    sb.append(TEXT[4]).append(" ");
                     break;
+//                    sb.append(TEXT[5]).append(" ");
+//                    break;
             }
         }
-        if (card.hasTag(CustomTags.GUN)) {
-            sb.append(TEXT[3]).append(" ");
-        }
-        if (card.hasTag(CustomTags.EVERBURN)) {
-            sb.append(TEXT[11]).append(" ");
-        }
-        if (sb.length() != 0) {
-            sb.setLength(sb.length() - 1);
-            sb.append(TEXT[0]);
-        }
+//        if (card.hasTag(CustomTags.GUN)) {
+//            sb.append(TEXT[3]).append(" ");
+//        }
+//        if (card.hasTag(CustomTags.EVERBURN)) {
+//            sb.append(TEXT[11]).append(" ");
+//        }
+//        if (sb.length() != 0) {
+//            sb.setLength(sb.length() - 1);
+//            sb.append(TEXT[0]);
+//        }
         return sb + rawDescription;
-    }
-
-    private void addTempKeywords(AbstractCard card, int temp) {
-        if (temp < 0) {
-            if (!card.keywords.toString().contains(KeywordManager.CONDENSE))
-                card.keywords.add(0, KeywordManager.CONDENSE);
-            if (card.keywords.toString().contains(KeywordManager.EVAPORATE) && !card.description.contains(KeywordManager.EVAPORATE))
-                card.keywords.remove(KeywordManager.EVAPORATE);
-        } else if (temp > 0) {
-            if (!card.keywords.toString().contains(KeywordManager.EVAPORATE))
-                card.keywords.add(0, KeywordManager.EVAPORATE);
-            if (card.keywords.toString().contains(KeywordManager.CONDENSE) && !card.description.contains(KeywordManager.CONDENSE))
-                card.keywords.remove(KeywordManager.CONDENSE);
-        } else {
-            if (card.keywords.toString().contains(KeywordManager.EVAPORATE) && !card.description.contains(KeywordManager.EVAPORATE))
-                card.keywords.remove(KeywordManager.EVAPORATE);
-            if (card.keywords.toString().contains(KeywordManager.CONDENSE) && !card.description.contains(KeywordManager.CONDENSE))
-                card.keywords.remove(KeywordManager.CONDENSE);
-        }
     }
 
     @Override

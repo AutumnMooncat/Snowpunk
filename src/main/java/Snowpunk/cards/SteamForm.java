@@ -4,12 +4,18 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SteamFormPower;
 import Snowpunk.util.Wiz;
+import basemod.AutoAdd;
 import basemod.helpers.BaseModCardTags;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
+@AutoAdd.Ignore
 public class SteamForm extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SteamForm.class.getSimpleName());
 

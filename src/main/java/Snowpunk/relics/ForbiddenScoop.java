@@ -21,8 +21,9 @@ public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballs
     public ForbiddenScoop() {
         super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
         tips.clear();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        tips.add(new PowerTip(name, description));
         initializeTips();
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
     }
 
     @Override

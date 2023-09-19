@@ -26,32 +26,16 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
 
     private static final int COST = 0, DRAW = 3, UP_DRAW = 1;
 
-    private boolean upgradeDraw = false;
-
     public Conveyor() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
         CardModifierManager.addModifier(this, new GearMod(DRAW));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int drawAmount = getGears();
-        if (drawAmount > 0) {
-            if (upgradeDraw) {
-                Wiz.atb(new DrawCardAction(drawAmount, new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractCard c : DrawCardAction.drawnCards) {
-                            if (c.canUpgrade()) {
-                                c.upgrade();
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                }));
-            } else
-                addToBot(new DrawCardAction(drawAmount));
-        }
+        if (drawAmount > 0)
+            addToBot(new DrawCardAction(drawAmount));
+
         addToBot(new ClankAction(this));
     }
 
@@ -59,14 +43,19 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(UP_DRAW)));
         addUpgradeData(() -> {
-            upgradeDraw = true;
+            baseMagicNumber = magicNumber = 0;
+            upgradeMagicNumber(3);
             uDesc();
         });
         addUpgradeData(() -> upgradeMagicNumber(-1));
+        setDependencies(true, 2, 1);
     }
 
     @Override
     public void onClank() {
-        addToTop(new ApplyCardModifierAction(this, new GearMod(-magicNumber)));
+        int remove = magicNumber;
+        if (magicNumber < 0)
+            remove = getGears() * 2;
+        addToTop(new ApplyCardModifierAction(this, new GearMod(-remove)));
     }
 }

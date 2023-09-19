@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.LetItSnowPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -45,11 +46,6 @@ public class LetItSnow extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBaseCost(1));
-        addUpgradeData(() -> {
-            isInnate = true;
-            uDesc();
-        });
-        addUpgradeData(() -> upgradeBaseCost(0));
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
     }
 }

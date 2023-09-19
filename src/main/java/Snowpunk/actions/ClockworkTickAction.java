@@ -22,7 +22,7 @@ public class ClockworkTickAction extends AbstractGameAction {
     public void update() {
 
         addToTop(new WaitAction(.2f));
-        addToTop(new ApplyCardModifierAction(card, new GearMod(amount)));
+        addToTop(new ApplyCardModifierAction(card, new GearMod(amount, true)));
 
         if (tick % 2 == 0)
             addToTop(new SFXAction("snowpunk:tick"));

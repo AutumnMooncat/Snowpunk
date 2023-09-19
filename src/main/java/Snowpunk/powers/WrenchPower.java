@@ -2,6 +2,7 @@ package Snowpunk.powers;
 
 import Snowpunk.powers.interfaces.OnClankPower;
 import Snowpunk.util.Wiz;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class WrenchPower extends AbstractEasyPower implements OnClankPower {
+public class WrenchPower extends AbstractEasyPower implements OnClankPower, InvisiblePower {
     public static String POWER_ID = makeID(WrenchPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;

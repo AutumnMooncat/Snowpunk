@@ -1,99 +1,70 @@
 {
-  "${ModID}:Example": {
-    "NAME": "Example",
-    "DESCRIPTIONS": ["Example"]
-  },
-  "${ModID}:EngineTempPower": {
-    "NAME": "Engine Temperature",
+  "${ModID}:SingePower": {
+    "NAME": "Singe",
     "DESCRIPTIONS": [
-      "Determines your #yEnergy and #ySnowball gain per turn. NL Current Temperature: ",
-      " NL #bFrozen: #b0 #yEnergy, #b3 #bSnowballs",
-      " NL #bCold: #b1 #yEnergy, #b2 #bSnowballs",
-      " NL #yStable: #b2 #yEnergy, #b1 #bSnowball",
-      " NL #rHot: #b2 #yEnergy, #b1 #rFireball",
-      " NL #rOverheated: #b2 #yEnergy, #b2 #rFireballs"
+      "Take #b",
+      " additional damage when Attacked. Removed at the end of your turn."
     ]
   },
-  "${ModID}:SnowballPower": {
-    "NAME": "Snowballs",
+  "${ModID}:ChillPower": {
+    "NAME": "Chill",
     "DESCRIPTIONS": [
-      "An accumulating resource that can be converted to #yEnergy."
-    ]
-  },
-  "${ModID}:AshesToAshesPower": {
-    "NAME": "Ashes to Ashes",
-    "DESCRIPTIONS": [
-      "The first time a card #yEvaporates each turn, gain #b",
-      " #yFireball.",
-      " #yFireballs."
-    ]
-  },
-  "${ModID}:BrassContraptionPower": {
-    "NAME": "Brass Contraption",
-    "DESCRIPTIONS": [
-      "#yUpgrade the first #b",
-      " cards you draw each turn."
-    ]
-  },
-  "${ModID}:BurningEmbersPower": {
-    "NAME": "Burning Coals",
-    "DESCRIPTIONS": [
-      "When #ySinge wears off of a creature, deal #b",
-      " damage to them."
-    ]
-  },
-  "${ModID}:CarolingPower": {
-    "NAME": "Caroling",
-    "DESCRIPTIONS": [
-      "At the start of your turn, #yCondense #b",
-      " card and add it to your hand.",
-      " cards and add them to your hand."
-    ]
-  },
-  "${ModID}:CarolingSnowballPower": {
-    "NAME": "Caroling Snow",
-    "DESCRIPTIONS": [
-      "At the start of your turn, if you played no attacks last gain, #b",
-      " #ySnowball.",
-      " #ySnowballs."
-    ]
-  },
-  "${ModID}:ClockworkPower": {
-    "NAME": "Clockwork",
-    "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " [snowpunk:GearIcon] to cards in your hand."
-    ]
-  },
-  "${ModID}:PageTurnPower": {
-    "NAME": "Page Turn",
-    "DESCRIPTIONS": [
-      "At the end of your turn, #yPull #b",
-      " card and #yRetain it.",
-      " cards and #yRetain them."
-    ]
-  },
-  "${ModID}:SnowballChillPower": {
-    "NAME": "Snowball Chill",
-    "DESCRIPTIONS": [
-      "Once this reaches 3, #yCool your #yEngine."
+      "Decreases Attack damage by #b",
+      " this turn."
     ]
   },
   "${ModID}:FireballPower": {
     "NAME": "Fireball",
     "DESCRIPTIONS": [
-      "#yHeat the next card you play.",
-      "#yHeat the next #b",
-      " cards you play."
+      "The next card you play becomes #yHot.",
+      "The next #b",
+      " cards you play become #yHot."
     ]
   },
-  "${ModID}:FineTunePower": {
-    "NAME": "Fine Tune",
+  "${ModID}:JingleBellsPower": {
+    "NAME": "Jingle Bells",
     "DESCRIPTIONS": [
-      "The first time you would #yClank each turn, prevent it and draw #b1 card.",
-      "The first #b",
-      " times you would #yClank each turn, prevent it and draw #b",
-      " cards."
+      "At the end of your turn, gain #b",
+      " #yBlock.",
+      "At the end of your next #b",
+      " turns, gain #b",
+      " #yBlock."
+    ]
+  },
+  "${ModID}:AllAboardPower": {
+    "NAME": "All Aboard!",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yHot card, gain #b",
+      " #yBlock."
+    ]
+  },
+  "${ModID}:FrostbitePower": {
+    "NAME": "Frostbite",
+    "DESCRIPTIONS": [
+      "Whenever a creature gains Chill, they lose that much HP.",
+      "Whenever a creature gains Chill, they lose #b",
+      " times that much HP."
+    ]
+  },
+  "${ModID}:GreatforgePower": {
+    "NAME": "Greatforge",
+    "DESCRIPTIONS": [
+      "#yUpgrade the first #b",
+      " cards you draw each turn."
+    ]
+  },
+  "${ModID}:BrassPower": {
+    "NAME": "Brass",
+    "DESCRIPTIONS": [
+      "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
+      " [snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:FireWallPower": {
+    "NAME": "Fire Wall",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #ySinge to enemies that attack you this turn."
     ]
   },
   "${ModID}:WrenchPower": {
@@ -114,425 +85,90 @@
       " times you would #yClank."
     ]
   },
-  "${ModID}:OverheatNextCardPower": {
-    "NAME": "Overheat Next Card",
+  "${ModID}:ShovelCoalPower": {
+    "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "#yOverheat the next card you play.",
-      "#yOverheat the next #b",
-      " cards you play."
-    ]
-  },
-  "${ModID}:CoolNextCardPower": {
-    "NAME": "Cool Next Card",
-    "DESCRIPTIONS": [
-      "#yCool the next card you play.",
-      "#yCool the next #b",
-      " cards you play."
-    ]
-  },
-  "${ModID}:FreezeNextCardPower": {
-    "NAME": "Freeze Next Card",
-    "DESCRIPTIONS": [
-      "#yFreeze the next card you play.",
-      "#yFreeze the next #b",
-      " cards you play."
-    ]
-  },
-  "${ModID}:IceWallPower": {
-    "NAME": "Ice Wall",
-    "DESCRIPTIONS": [
-      "Apply #b",
-      " #yChill to enemies when they attack you this turn."
-    ]
-  },
-  "${ModID}:LinkNextCardPower": {
-    "NAME": "Link Next Card",
-    "DESCRIPTIONS": [
-      "#yLink the next card you play to ",
-      ".",
-      "#yLink the next #b",
-      " cards you play to ",
-      "."
+      "At the start of your turn, NL gain #b",
+      " [snowpunk:FireIcon] ."
     ]
   },
   "${ModID}:LetItSnowPower": {
     "NAME": "Let It Snow",
     "DESCRIPTIONS": [
-      "At the end of your turn, if you have no [snowpunk:SnowIcon] , gain #b",
-      " [snowpunk:SnowIcon] ."
+      "Whenever you gain [snowpunk:SnowIcon] , return #b1 random #yHot card to your hand.",
+      "Whenever you gain [snowpunk:SnowIcon] , return #b",
+      " random #yHot cards to your hand."
     ]
   },
-  "${ModID}:TinkerNextCardPower": {
-    "NAME": "Next Card Tinker",
+  "${ModID}:FrostPower": {
+    "NAME": "Frost",
     "DESCRIPTIONS": [
-      "#yTinker the next card you play.",
-      "#yTinker the next #b",
-      " cards you play."
+      "The next card you play that #yBlocks gains #b",
+      " additional #yBlock.",
+      " less #yBlock."
     ]
   },
-  "${ModID}:SnowblowerPower": {
-    "NAME": "Snowblower",
-    "DESCRIPTIONS": [
-      "Your #yEngine gives #b",
-      " additional #ySnowball when #bCold or #bFrozen.",
-      " additional #ySnowballs when #bCold or #bFrozen."
-    ]
-  },
-  "${ModID}:PressureValvesPower": {
-    "NAME": "Pressure Valves",
-    "DESCRIPTIONS": ["Card effects act as if you have #b"," more #ySnowballs."]
-  },
-  "${ModID}:LosePowerPower": {
-    "NAME": "Lose ",
-    "DESCRIPTIONS": [
-      "At the end of your turn, lose #b",
-      " ",
-      "."
-    ]
-  },
-  "${ModID}:NextTurnPowerPower": {
-    "NAME": "Next Turn ",
-    "DESCRIPTIONS": [
-      "Next turn, gain #b",
-      " ",
-      "."
-    ]
-  },
-  "${ModID}:ChillPower": {
-    "NAME": "Chill",
-    "DESCRIPTIONS": [
-      "Decreases attack damage by #b",
-      " this turn."
-    ]
-  },
-  "${ModID}:ChristmasCookiePower": {
-    "NAME": "Christmas Cookies",
-    "DESCRIPTIONS": [
-      "#yChristmas #ySpirit heals an additional #b",
-      " HP."
-    ]
-  },
-  "${ModID}:SingePower": {
-    "NAME": "Singe",
-    "DESCRIPTIONS": [
-      "Take #b",
-      " additional damage when attacked. Removed at the start of your turn."
-    ]
-  },
-  "${ModID}:NoGunPower": {
-    "NAME": "No Gun",
-    "DESCRIPTIONS": [
-      "You can no longer play Attacks this turn.",
-      "You can't play attacks for #b",
-      " more turns."
-    ]
-  },
-  "${ModID}:FrostbitePower": {
-    "NAME": "Frostbite",
-    "DESCRIPTIONS": [
-      "At the start of their turn, if this enemy intends to attack, it takes #b",
-      " damage."
-    ]
-  },
-  "${ModID}:WinterStormPower": {
-    "NAME": "Winter Storm",
-    "DESCRIPTIONS": [
-      "At the start of your turn, gain #b",
-                    " #ySnowball and lose #b",
-                    " #ySnowballs and lose #b",
-                    " [E] ."]
-  },
-  "${ModID}:HeatTransferPower": {
-    "NAME": "Heat Transfer",
-    "DESCRIPTIONS": ["#yHot and #yOverheated Attacks, apply #b"," #yBurn."]
-  },
-  "${ModID}:HeatGeneratorPower": {
-    "NAME": "Heat Generator",
-    "DESCRIPTIONS": ["Attacks, apply #b"," #yBurn."]
-  },
-  "${ModID}:IceCubePower": {
-    "NAME": "Ice",
-    "DESCRIPTIONS": ["Gain #b"," #yBlock when you use a #ySnowball."]
-  },
-  "${ModID}:BeaconBeamPower": {
-    "NAME": "Beacon Beam",
-    "DESCRIPTIONS": [
-      "Attacks deal #b",
-      " additional damage for each #ySnowball you have."
-    ]
-  },
-  "${ModID}:SteamPower": {
-    "NAME": "Steam",
-    "DESCRIPTIONS": [
-      "The next card you play gets set to #b2 [snowpunk:TempIcon] (Costs #b0, gains [E] and #yEvaporates)",
-      "The next #b",
-      " cards you play get set to #b2 [snowpunk:TempIcon] (Cost #b0, gain [E] and #yEvaporate)"
-    ]
-  },
-  "${ModID}:FireballNextTurnPower": {
-    "NAME": "Fireballs Next Turn",
-    "DESCRIPTIONS": [
-      "Next turn, gain a #yFireball.",
-      "Next turn, gain #b",
-      " #yFireballs."
-    ]
-  },
-  "${ModID}:StrongerPower": {
-    "NAME": "Stronger",
-    "DESCRIPTIONS": [
-      "Whenever a card is #yExhausted, gain #b",
-      " #yStrength."
-    ]
-  },
-  "${ModID}:JingleBellsPower": {
-    "NAME": "Jingle Bells",
-    "DESCRIPTIONS": [
-      "At the end of your turn, gain #b",
-      " #yBlock.",
-      "At the end of your next #b",
-      " turns, gain #b",
-      " #yBlock."
-    ]
-  },
-  "${ModID}:HolidayCheerPower": {
-    "NAME": "Holiday Cheer",
-    "DESCRIPTIONS": [
-      "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1.",
-      "Jingle bells, jingle bells, jingle all the way...",
-      "Dashing through the snow, in a one horse open sleigh...",
-      "Christmas time is here!",
-      "All I want for Christmas is youuuuuuu!",
-      "Let it snow!",
-      "Chestnuts roasting on an open fiiiiire...",
-      "Siiiiiiilent niiiiiight....",
-      "Joy to the world!",
-      "On the first day of Christmas...",
-      "FIVE GOLDEN RINGS!!!",
-      "It's beginning to look a lot like Christmas!",
-      "God rest ye merry gentlemen...",
-      "Sing with me!"
-    ]
-  },
-  "${ModID}:ChristmasSpiritPower": {
-    "NAME": "Christmas Spirit",
-    "DESCRIPTIONS": [
-      "If #yChristmas #ySpirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn.",
-      "Jingle bells, jingle bells, jingle all the way...",
-      "Dashing through the snow, in a one horse open sleigh...",
-      "Christmas time is here!",
-      "All I want for Christmas is youuuuuuu!",
-      "Let it snow!",
-      "Chestnuts roasting on an open fiiiiire...",
-      "Siiiiiiilent niiiiiight....",
-      "Joy to the world!",
-      "On the first day of Christmas...",
-      "FIVE GOLDEN RINGS!!!",
-      "It's beginning to look a lot like Christmas!",
-      "God rest ye merry gentlemen...",
-      "Sing with me!"
-    ]
-  },
-  "${ModID}:SteamFormPower": {
-    "NAME": "Steam Form",
-    "DESCRIPTIONS": [
-      "At the start of your turn, gain #b",
-      " #ySteam."
-    ]
-  },
-  "${ModID}:HollyPower": {
-    "NAME": "Holly",
-    "DESCRIPTIONS": [
-      "Increase the damage and #yBlock of the next card you play that damages or #yBlocks by #b",
-      " for the rest of combat."
-    ]
-  },
-  "${ModID}:IcePower": {
-    "NAME": "Ice",
-    "DESCRIPTIONS": [
-      "Take half damage from #yAttacks this turn.",
-      "Take half damage from #yAttacks for #b",
-      " turns."
-    ]
-  },
-  "${ModID}:BrimstonePower": {
-    "NAME": "Brimstone",
-    "DESCRIPTIONS": [
-      "Whenever a card Evaporates, apply #b",
-      " #ySinge to a random enemy."
-    ]
-  },
-  "${ModID}:BetterInventionPower": {
-    "NAME": "Better",
+  "${ModID}:ClockworkPower": {
+    "NAME": "Clockwork",
     "DESCRIPTIONS": [
       "At the start of your turn, add #b",
-      " randomly #yAssembled #yInvention into your hand.",
-      " randomly #yAssembled #yInventions into your hand."
+      " [snowpunk:GearIcon] to cards in your hand."
     ]
   },
-  "${ModID}:BetterCreationPower": {
-    "NAME": "Better",
+  "${ModID}:FineTunePower": {
+    "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " randomly #yAssembled #yCreation into your hand.",
-      " randomly #yAssembled #yCreations into your hand."
-    ]
-  },
-  "${ModID}:BetterMachinationPower": {
-    "NAME": "Better",
-    "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " randomly #yAssembled #yMachination into your hand.",
-      " randomly #yAssembled #yMachinations into your hand."
-    ]
-  },
-  "${ModID}:AshesPower": {
-    "NAME": "Ashes",
-    "DESCRIPTIONS": [
-      "At the start of your turn, gain #b",
-      " #yFireball and lose #b",
-      " #yFireballs and lose #b",
-      " [E] ."
-    ]
-  },
-  "${ModID}:BrassPower": {
-    "NAME": "Brass",
-    "DESCRIPTIONS": [
-      "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
-      " [snowpunk:GearIcon] ."
-    ]
-  },
-  "${ModID}:GumdropPower": {
-    "NAME": "Gumdrop Buttons",
-    "DESCRIPTIONS": [
-      "If you take unblocked attack damage, apply #b",
-      " #yChill to the attacker."
-    ]
-  },
-  "${ModID}:RailsPower": {
-    "NAME": "Rails",
-    "DESCRIPTIONS": [
-      "The first time your hand is empty during your turn, draw #b",
+      "The first time you would #yClank each turn, prevent it and draw #b1 card.",
+      "The first #b",
+      " times you would #yClank each turn, prevent it and draw #b",
       " cards."
     ]
   },
-  "${ModID}:ScrapPower": {
-    "NAME": "Scrap",
+  "${ModID}:SteamTrainPower": {
+    "NAME": "Steam Train",
     "DESCRIPTIONS": [
-      "#yUpgrade the next card you draw.",
-      "#yUpgrade the next #b",
-      " cards you draw."
-    ]
-  },
-  "${ModID}:FireWallPower": {
-    "NAME": "Fire Wall",
-    "DESCRIPTIONS": [
-      "Apply #b",
-      " #ySinge to enemies that attack you until your #yBlock breaks."
+      "For the rest of this turn, deal #b",
+      "For the next #b",
+      " turns, deal #b",
+      " times damage and gain #b",
+      " times #yBlock."
     ]
   },
   "${ModID}:SnowpunkPower": {
     "NAME": "Snowpunk",
     "DESCRIPTIONS": [
-      "[snowpunk:SnowIcon] \u00a0count as [snowpunk:GearIcon] .",
-      "[snowpunk:SnowIcon] \u00a0count as #b",
+      "[snowpunk:SnowIcon] count as [snowpunk:GearIcon] .",
+      "[snowpunk:SnowIcon] count as #b",
       " [snowpunk:GearIcon] ."
     ]
   },
-  "${ModID}:OverdrivePower": {
-    "NAME": "Overdrive",
+  "${ModID}:PressureValvesPower": {
+    "NAME": "Pressure Valves",
     "DESCRIPTIONS": [
-      "Whenever a card #yEvaporates, draw #b",
-      " card.",
-      " cards."
+      "Card effects act as if you have #b",
+      " more #ySnowballs."
     ]
   },
-  "${ModID}:TheSnowmanPower": {
-    "NAME": "Frosty",
+  "${ModID}:BurningEnginePower": {
+    "NAME": "Burning Engine",
     "DESCRIPTIONS": [
-      "At the start of your turn, add a #yHat to a random card in your hand.",
-      "At the start of your turn, add a #yHat to a random card in your hand #b",
+      "When #ySinge wears off of a creature, deal #b",
+      " damage to them."
+    ]
+  },
+  "${ModID}:FullSteamAheadPower": {
+    "NAME": "Full Steam Ahead",
+    "DESCRIPTIONS": [
+      "#yHot cards play an additional time.",
+      "#yHot cards play an additional #b",
       " times."
     ]
   },
-  "${ModID}:BreakthroughPower": {
-    "NAME": "Breakthrough",
+  "${ModID}:FranticFixPower": {
+    "NAME": "Frantic Fix",
     "DESCRIPTIONS": [
-      "The next card you play costs #b0.",
-      "The next #b", " cards you play cost #b0."
-    ]
-  },
-  "${ModID}:MadSciencePower": {
-    "NAME": "Mad Science",
-    "DESCRIPTIONS": [
-      "Whenever you play a card, #yUpgrade #b",
-      " random card in your hand for the rest of combat.",
-      " random cards in your hand for the rest of combat."
-    ]
-  },
-  "${ModID}:ScrapShieldPower": {
-    "NAME": "Scrap Shield",
-    "DESCRIPTIONS": [
-      "When attacked, gain #b",
-      " #ySpare #yPart.",
-      " #ySpare #yParts."
-    ]
-  },
-  "${ModID}:BackupBoilerPower": {
-    "NAME": "Backup Boiler",
-    "DESCRIPTIONS": [
-      "Steam is no longer removed at the end of your turn."
-    ]
-  },
-  "${ModID}:EmberForgePowerOLD": {
-    "NAME": "Ember Forge",
-    "DESCRIPTIONS": [
-      "No longer generate #yEnergy at the start of your turn. #yHot cards cost 0."
-    ]
-  },
-  "${ModID}:RefrigeratePower": {
-    "NAME": "Refrigerate",
-    "DESCRIPTIONS": [
-      "#yCool the next card you draw.",
-      "#yCool the next #b",
-      " cards you draw."
-    ]
-  },
-  "${ModID}:BetterPower": {
-    "NAME": "Better",
-    "DESCRIPTIONS": [
-      "At the start of your turn, #yUpgrade ALL cards in your hand.",
-      "At the start of your turn, #yUpgrade ALL cards in your hand #b",
-      " times."
-    ]
-  },
-  "${ModID}:EmberForgePower": {
-    "NAME": "Ember Forge",
-    "DESCRIPTIONS": [
-      "#yOverheated cards play an additional time.",
-      "#yOverheated cards play an additional #b",
-      " times."
-    ]
-  },
-  "${ModID}:YouDidntSeeThatPower": {
-    "NAME": "You Didn't See That",
-    "DESCRIPTIONS": [
-      "Whenever you #yClank, draw a card.",
-      "Whenever you #yClank, draw #b",
-      " cards."
-    ]
-  },
-  "${ModID}:TrainWhistlePower": {
-    "NAME": "Train Whistle",
-    "DESCRIPTIONS": [
-      "Whenever you #yEvaporate a card, gain #b",
-      " #yBlock."
-    ]
-  },
-  "${ModID}:CondensationPower": {
-    "NAME": "Condensation",
-    "DESCRIPTIONS": [
-      "Whenever a card #yCondenses, gain #b",
-      " #yBlock."
+      "Whenever you play a card with #yClank, gain #b",
+      " #yBrass."
     ]
   }
 }

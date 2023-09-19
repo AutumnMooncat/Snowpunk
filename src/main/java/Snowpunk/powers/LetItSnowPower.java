@@ -1,7 +1,9 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.CondenseAction;
 import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.patches.SnowballPatches;
+import Snowpunk.powers.interfaces.OnGainSnowPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -12,7 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class LetItSnowPower extends AbstractEasyPower {
+public class LetItSnowPower extends AbstractEasyPower implements OnGainSnowPower {
     public static String POWER_ID = makeID(LetItSnowPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -22,15 +24,16 @@ public class LetItSnowPower extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (SnowballPatches.Snowballs.amount == 0) {
-            flash();
-            Wiz.atb(new GainSnowballAction((amount)));
-        }
+    public void updateDescription() {
+        if (amount == 1)
+            description = DESCRIPTIONS[0];
+        else
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override
-    public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+    public void onGainSnowball(int snow) {
+        if (amount > 0)
+            addToBot(new CondenseAction(amount));
     }
 }

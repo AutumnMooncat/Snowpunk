@@ -43,14 +43,14 @@ public class HollyMod extends AbstractCardModifier {
         this.amount = amount;
     }
 
-    @Override
-    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.WREATH), BaseMod.getKeywordDescription(KeywordManager.WREATH)));
-        }
-        return Tooltip;
-    }
+//    @Override
+//    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+//        if (Tooltip == null) {
+//            Tooltip = new ArrayList<>();
+//            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.WREATH), BaseMod.getKeywordDescription(KeywordManager.WREATH)));
+//        }
+//        return Tooltip;
+//    }
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {

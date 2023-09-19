@@ -18,7 +18,7 @@ public class Fogification extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 8, UP_BLOCK = 2;
+    private static final int COST = 0, BLOCK = 6, UP_BLOCK = 2;
 
     public Fogification() {
         super(ID, COST, TYPE, RARITY, TARGET);

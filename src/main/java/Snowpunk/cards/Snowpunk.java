@@ -31,6 +31,7 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
         if (Tooltip == null) {
             Tooltip = new ArrayList<>();
             Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
         }
         return Tooltip;
     }
@@ -47,12 +48,11 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-
-        addUpgradeData(() -> upgradeBaseCost(UP_COST));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
         addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }

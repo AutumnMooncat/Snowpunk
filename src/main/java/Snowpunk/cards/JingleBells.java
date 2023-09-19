@@ -34,13 +34,16 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ResetExhaustAction(this, false));
+        //Wiz.atb(new ResetExhaustAction(this, false));
         int effect = this.energyOnUse;
 
         if (p.hasRelic("Chemical X")) {
             effect += ChemicalX.BOOST;
             p.getRelic("Chemical X").flash();
         }
+
+        if (magicNumber > 0)
+            effect += magicNumber;
 
         if (effect > 0)
             Wiz.applyToSelf(new JingleBellsPower(p, block, effect));
@@ -56,18 +59,14 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(3));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() ->
+        {
+            baseMagicNumber = magicNumber = 0;
+            upgradeMagicNumber(1);
+        });
         addUpgradeData(() -> {
-            //noClank = true;
             exhaust = false;
             uDesc();
         });
-        setExclusions(1, 2);
     }
-/*
-    @Override
-    public void onClank() {
-        addToTop(new ResetExhaustAction(this, true));
-    }*/
 }

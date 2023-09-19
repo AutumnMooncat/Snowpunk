@@ -1,17 +1,19 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.VentMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SingePower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -20,31 +22,61 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
-    private static final AbstractCard.CardType TYPE = CardType.ATTACK;
+    private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, DMG = 4, UP_DMG = 3, BURN_AMOUNT = 4, UP_BURN = 3;
+    private static final int COST = 1, SINGE = 5, UP_SINGE = 2;
+
+    boolean FIREBALL = false;
+    private static ArrayList<TooltipInfo> FireTip, FireAndHotTip, BlankTip;
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        if (FireTip == null) {
+            FireTip = new ArrayList<>();
+            FireTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
+        }
+
+        if (FireAndHotTip == null) {
+            FireAndHotTip = new ArrayList<>();
+            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
+            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.HOT.toLowerCase()), BaseMod.getKeywordDescription(KeywordManager.HOT.toLowerCase())));
+        }
+
+        if (BlankTip == null)
+            BlankTip = new ArrayList<>();
+
+        if (FIREBALL) {
+            if (CardTemperatureFields.getCardHeat(this) != CardTemperatureFields.HOT)
+                return FireAndHotTip;
+            return FireTip;
+        }
+
+        return BlankTip;
+    }
 
     public ReleaseValve() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = BURN_AMOUNT;
+        magicNumber = baseMagicNumber = SINGE;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
-        //Wiz.atb(new ModCardTempAction(this, 1));
 
-        //Wiz.applyToSelf(new FireballPower(p, FIREBALL));
-        //    Wiz.applyToSelf(new OverheatNextCardPower(p, magicNumber));
+        Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
+
+        if (FIREBALL)
+            Wiz.applyToSelf(new FireballPower(p, 1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(UP_BURN));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> upgradeMagicNumber(UP_SINGE));
+        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() ->
+        {
+            FIREBALL = true;
+            uDesc();
+        });
         setDependencies(true, 2, 0, 1);
     }
 }

@@ -1,18 +1,12 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.WhistolMod;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.damageMods.PiercingDamage;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.CustomTags;
-import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
-import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -46,7 +40,6 @@ public class PiercingRound extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
     }
 }

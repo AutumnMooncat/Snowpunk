@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -37,20 +36,36 @@ public class SingePower extends AbstractEasyPower implements HealthBarRenderPowe
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atStartOfTurn() {
         int embers = 0;
-        if (AbstractDungeon.player.hasPower(BurningEmbersPower.POWER_ID))
-            embers = AbstractDungeon.player.getPower(BurningEmbersPower.POWER_ID).amount;
+        if (AbstractDungeon.player.hasPower(BurningEnginePower.POWER_ID))
+            embers = AbstractDungeon.player.getPower(BurningEnginePower.POWER_ID).amount;
         if (embers > 0)
             Wiz.atb(new DamageAction(owner, new DamageInfo(source, embers, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
 
-        if (keepThisTurn <= 0)
-            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
-        else {
-            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
-            keepThisTurn = 0;
-        }
+//            if (keepThisTurn <= 0)
+        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+//            else {
+//                Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
+//                keepThisTurn = 0;
+//            }
     }
+
+//    @Override
+//    public void atEndOfRound() {
+//        int embers = 0;
+//        if (AbstractDungeon.player.hasPower(BurningEmbersPower.POWER_ID))
+//            embers = AbstractDungeon.player.getPower(BurningEmbersPower.POWER_ID).amount;
+//        if (embers > 0)
+//            Wiz.atb(new DamageAction(owner, new DamageInfo(source, embers, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+//
+//        if (keepThisTurn <= 0)
+//            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+//        else {
+//            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
+//            keepThisTurn = 0;
+//        }
+//    }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
@@ -76,8 +91,8 @@ public class SingePower extends AbstractEasyPower implements HealthBarRenderPowe
     @Override
     public int getHealthBarAmount() {
         int embers = 0;
-        if (AbstractDungeon.player.hasPower(BurningEmbersPower.POWER_ID))
-            embers = AbstractDungeon.player.getPower(BurningEmbersPower.POWER_ID).amount;
+        if (AbstractDungeon.player.hasPower(BurningEnginePower.POWER_ID))
+            embers = AbstractDungeon.player.getPower(BurningEnginePower.POWER_ID).amount;
         return embers;
     }
 

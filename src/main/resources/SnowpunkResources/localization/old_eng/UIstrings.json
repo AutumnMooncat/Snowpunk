@@ -1,0 +1,80 @@
+{
+  "${ModID}:ModConfigs": {
+    "TEXT": [
+      "If we decide to make any mod settings",
+      "The strings should go in here"
+    ],
+    "EXTRA_TEXT": [
+      "The M10 Robot",
+      "Adds M10 Robot (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!"
+    ]
+  },
+  "${ModID}:Crossover": {
+    "TEXT": [
+      "Enable Conductor Crossover Content"
+    ]
+  },
+  "${ModID}:Tinker": {
+    "TEXT": [
+      "Choose a card to tinker.",
+      "Choose ",
+      " cards to tinker.",
+      "Choose a Part to apply to ",
+      "."
+    ]
+  },
+  "${ModID}:Parts": {
+    "TEXT": [
+      "Part",
+      "Parts",
+      "Parts can be added to cards to add or modify effects."
+    ]
+  },
+  "${ModID}:Snowballs": {
+    "TEXT": [
+      "Snowballs",
+      "Count as [E] NL Spent after [E] NL Conserved between turns."
+    ]
+  },
+  "${ModID}:Upgrade": {
+    "TEXT": [
+      "Upgrade"
+    ]
+  },
+  "${ModID}:ModTemp": {
+    "TEXT": [
+      "Freeze",
+      "Cool",
+      "Heat",
+      "Overheat"
+    ]
+  },
+  "${ModID}:Copy": {
+    "TEXT": [
+      "Copy"
+    ]
+  },
+  "${ModID}:Cores": {
+    "TEXT": [
+      "Core",
+      "Cores",
+      "Cores act as a base for creating new cards."
+    ]
+  },
+  "${ModID}:Upgrades": {
+    "TEXT": [
+      "Upgrade",
+      "Improves ",
+      " NL Requires (AND): NL ",
+      " NL Requires (OR): NL ",
+      " NL Excludes: NL "
+    ]
+  },
+  "${ModID}:EvaporatePanel": {
+    "TEXT": [
+      "Evaporated Cards",
+      "Click to view cards Evaporated this combat.",
+      "These cards are currently evaporated."
+    ]
+  }
+}

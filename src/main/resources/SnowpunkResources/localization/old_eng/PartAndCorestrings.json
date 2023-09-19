@@ -1,0 +1,380 @@
+{
+  "${ModID}:Example": {
+    "NAME": "",
+    "DESCRIPTION": "",
+    "UPGRADE_DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      ""
+    ]
+  },
+  "${ModID}:Barbs": {
+    "NAME": "Barbs",
+    "DESCRIPTION": "Gain !M! Thorns."
+  },
+  "${ModID}:Battery": {
+    "NAME": "Battery",
+    "DESCRIPTION": "Gain [E] ."
+  },
+  "${ModID}:BrassPlating": {
+    "NAME": "Brass Plating",
+    "DESCRIPTION": "+ !M! Block."
+  },
+  "${ModID}:Sprockets": {
+    "NAME": "Sprockets",
+    "DESCRIPTION": "+ !M! damage."
+  },
+  "${ModID}:CoolantValve": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:CryonicCrystal": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:GlowingMetal": {
+    "NAME": "Glowing Metal",
+    "DESCRIPTION": "Apples 3 snowpunk:Burn on hit."
+  },
+  "${ModID}:Gyroscopter": {
+    "NAME": "Gyroscopter",
+    "DESCRIPTION": "snowpunk:Reshuffle."
+  },
+  "${ModID}:HeatingCoils": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:ManastoneCasing": {
+    "NAME": "Manastone Casing",
+    "DESCRIPTION": "+ 2 snowpunk:Primary."
+  },
+  "${ModID}:OiledGears": {
+    "NAME": "Oiled Gears",
+    "DESCRIPTION": "Draw 1 card."
+  },
+  "${ModID}:Overclock": {
+    "NAME": "Overclock",
+    "DESCRIPTION": "Next turn, gain [E] and draw a card."
+  },
+  "${ModID}:ScrapHeap": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:SpareParts": {
+    "NAME": "Spare Parts",
+    "DESCRIPTION": "Randomly snowpunk:Tinker the next card you play.",
+    "EXTENDED_DESCRIPTION": [
+      "Randomly snowpunk:Tinker the next ",
+      " cards you play."
+    ]
+  },
+  "${ModID}:SpareSpikes": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:BrassShield": {
+    "NAME": "Mending Brass",
+    "DESCRIPTION": "Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": [
+      "Mender"
+    ]
+  },
+  "${ModID}:FlingScrap": {
+    "NAME": "Fling Scrap",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! snowpunk:Spare_Parts.",
+    "EXTENDED_DESCRIPTION": [
+      "Flinger"
+    ]
+  },
+  "${ModID}:MonkeyWrench": {
+    "NAME": "Monkey Wrench",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Wrench"
+    ]
+  },
+  "${ModID}:ScavengedStrike": {
+    "NAME": "Scavenged Strike",
+    "DESCRIPTION": "Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Striker"
+    ]
+  },
+  "${ModID}:QuickBlast": {
+    "NAME": "Quick Blast",
+    "DESCRIPTION": "Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Blaster"
+    ]
+  },
+  "${ModID}:DoubleBarrel": {
+    "NAME": "Double Barrel",
+    "DESCRIPTION": "Deal !D! damage randomly dispersed to ALL enemies twice.",
+    "EXTENDED_DESCRIPTION": [
+      "Cannon"
+    ]
+  },
+  "${ModID}:Fluxcombobulator": {
+    "NAME": "Fluxcombobulator",
+    "DESCRIPTION": "Gain Confused and !M! Strength.",
+    "EXTENDED_DESCRIPTION": [
+      "Combobulator"
+    ]
+  },
+  "${ModID}:FluxMachine": {
+    "NAME": "Flux Machine",
+    "DESCRIPTION": "Draw !M! cards and randomize their cost.",
+    "EXTENDED_DESCRIPTION": [
+      "Fluxer"
+    ]
+  },
+  "${ModID}:RunningEngine": {
+    "NAME": "Running Engine",
+    "DESCRIPTION": "snowpunk:Heat the next !M! cards you play.",
+    "EXTENDED_DESCRIPTION": [
+      "Heater"
+    ]
+  },
+  "${ModID}:BurningEngine": {
+    "NAME": "Burning Engine",
+    "DESCRIPTION": "Apply !M! snowpunk:Burn.",
+    "EXTENDED_DESCRIPTION": [
+      "Burner"
+    ]
+  },
+  "${ModID}:SteamEngine": {
+    "NAME": "Steam Engine",
+    "DESCRIPTION": "Gain !M! snowpunk:Steam.",
+    "EXTENDED_DESCRIPTION": [
+      "Steamer"
+    ]
+  },
+  "${ModID}:PipeFence": {
+    "NAME": "Pipe Fence",
+    "DESCRIPTION": "Gain !B! Block 4 times.",
+    "EXTENDED_DESCRIPTION": [
+      "Piped"
+    ]
+  },
+  "${ModID}:StrikeCore": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:CarnageCore": {
+    "NAME": "Carnage",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:GloomCore": {
+    "NAME": "Gloom",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:PierceCore": {
+    "NAME": "Pierce",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:BoomerangCore": {
+    "NAME": "Boomerang",
+    "DESCRIPTION": "Deal !D! damage to a random enemy 3 times."
+  },
+  "${ModID}:TwinCore": {
+    "NAME": "Twin",
+    "DESCRIPTION": "Deal !D! damage twice."
+  },
+  "${ModID}:DeflectCore": {
+    "NAME": "Deflect",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:RollCore": {
+    "NAME": "Roll",
+    "DESCRIPTION": "Gain !B! Block this turn and next turn."
+  },
+  "${ModID}:LeapCore": {
+    "NAME": "Leap",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:WaveCore": {
+    "NAME": "Wave",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:ConveyorCore": {
+    "NAME": "Conveyor",
+    "DESCRIPTION": "Draw !M! cards. NL snowpunk:Clank: Discard !M! cards."
+  },
+  "${ModID}:ResupplierCore": {
+    "NAME": "Resupplier",
+    "DESCRIPTION": "Draw [snowpunk:GearIcon] \u00a0cards."
+  },
+  "${ModID}:ScrapCore": {
+    "NAME": "Scrap",
+    "DESCRIPTION": "Upgrade [snowpunk:GearIcon] \u00a0random cards in your hand."
+  },
+  "${ModID}:SnowballCore": {
+    "NAME": "Snowball",
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Snowball{!Snowpunk:M2!|>1=s}."
+  },
+  "${ModID}:SpiritCore": {
+    "NAME": "Christmas Spirit",
+    "DESCRIPTION": "Increase snowpunk:Christmas_Spirit by !Snowpunk:M2!."
+  },
+  "${ModID}:FireballCore": {
+    "NAME": "Fireball",
+    "DESCRIPTION": "{@@}Gain !Snowpunk:M2! snowpunk:Fireball{!Snowpunk:M2!|>1=s}."
+  },
+  "${ModID}:ShardCore": {
+    "NAME": "Ice Shard",
+    "DESCRIPTION": "{@@}Add !M! [#efc851]Ice[] [#efc851]Shard{!M!|>1=s}[] to your hand."
+  },
+  "${ModID}:ExhaustCore": {
+    "NAME": "Exhaust",
+    "DESCRIPTION": "Exhaust."
+  },
+  "${ModID}:GearsCore": {
+    "NAME": "Gears",
+    "DESCRIPTION": "snowpunk:Clank: Exhaust."
+  },
+  "${ModID}:BoilerCore": {
+    "NAME": "Boiler",
+    "DESCRIPTION": "snowpunk:Overheat the next card you play."
+  },
+  "${ModID}:CryochamberCore": {
+    "NAME": "Cryochamber",
+    "DESCRIPTION": "snowpunk:Freeze the next card you play."
+  },
+  "${ModID}:ThermalCore": {
+    "NAME": "Thermal",
+    "DESCRIPTION": "Apply !Snowpunk:M2! snowpunk:Singe and snowpunk:Chill."
+  },
+  "${ModID}:TinkererCore": {
+    "NAME": "Tinkerer",
+    "DESCRIPTION": "Gain [snowpunk:GearIcon] snowpunk:Brass."
+  },
+  "${ModID}:SnowDrawCore": {
+    "NAME": "Packer",
+    "DESCRIPTION": "Draw [snowpunk:SnowIcon] \u00a0cards."
+  },
+  "${ModID}:BrassCore": {
+    "NAME": "Brass",
+    "DESCRIPTION": "Gain !M! [snowpunk:GearIcon] ."
+  },
+  "${ModID}:ColdCore": {
+    "NAME": "Cold",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:HotCore": {
+    "NAME": "Hot",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:AdjectiveCore": {
+    "NAME": "Adjective",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "Bean",
+      "Big",
+      "Black",
+      "Brass",
+      "Chunky",
+      "Confusing",
+      "Cool",
+      "Crazy",
+      "Crisp",
+      "Crusty",
+      "Dehydrated",
+      "Discombobulated",
+      "Drunk",
+      "Endless",
+      "Frosty",
+      "Furry",
+      "Greedy",
+      "Green",
+      "Grotesque",
+      "Heavenly",
+      "Hot",
+      "Jolly",
+      "Legendary",
+      "Magical",
+      "Moist",
+      "Mr.",
+      "Mrs.",
+      "Nasty",
+      "Overtuned",
+      "Peachy",
+      "Quizzical",
+      "Red",
+      "Red-nosed",
+      "Rotund",
+      "Sandy",
+      "Scrunkly",
+      "Sickly",
+      "Sluggish",
+      "Small",
+      "Stinky",
+      "Stubby",
+      "Super",
+      "Super Duper",
+      "Suspicious",
+      "The",
+      "Thicc",
+      "Turbo",
+      "Un-",
+      "Waterlogged",
+      "Whacky",
+      "Whimsical",
+      "White",
+      "Wibbly",
+      "Wobbly",
+      "Vexing"
+    ]
+  },
+  "${ModID}:NameCore": {
+    "NAME": "Name",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "9000",
+      "Angel",
+      "Angle",
+      "Assault",
+      "Ball Hog",
+      "Beans",
+      "Bomb",
+      "Booty",
+      "Bubble",
+      "Cannon",
+      "Chungus",
+      "Confusion",
+      "Contraption",
+      "Conveyor",
+      "Destroyer",
+      "Doohickey",
+      "Elf",
+      "Encabulator",
+      "Eye",
+      "Hand",
+      "-inator",
+      "Flame",
+      "Frostbite",
+      "Gizmo",
+      "Glasses",
+      "Gongola",
+      "Gremlin",
+      "Gun",
+      "Kludge",
+      "Machine",
+      "Melter",
+      "Parts",
+      "Pooper Scooper",
+      "Potato",
+      "Quandary",
+      "Rifle",
+      "Santa",
+      "Shield",
+      "Snowpile",
+      "Snowman",
+      "Spandangler",
+      "Stomper",
+      "Teapot",
+      "Thing",
+      "Thingamajig",
+      "Train",
+      "Whistle"
+    ]
+  }
+}

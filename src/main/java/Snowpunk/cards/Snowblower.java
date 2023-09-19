@@ -23,7 +23,7 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 13, UP_DMG = 4;
+    private static final int COST = -1, DMG = 11, UP_DMG = 4;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);

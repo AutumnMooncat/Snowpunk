@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ExhumeEvaporatedCardAction extends AbstractGameAction {
+    boolean free;
 
-
-    public ExhumeEvaporatedCardAction(int number) {
+    public ExhumeEvaporatedCardAction(int number, boolean free) {
         amount = number;
         duration = startDuration = Settings.ACTION_DUR_FAST;
+        this.free = free;
     }
 
     @Override
@@ -62,6 +63,8 @@ public class ExhumeEvaporatedCardAction extends AbstractGameAction {
         cardToExhume.unfadeOut();
         cardToExhume.lighten(true);
         cardToExhume.fadingOut = false;
+        if (free)
+            cardToExhume.setCostForTurn(0);
         AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToExhume, true));
     }
 }

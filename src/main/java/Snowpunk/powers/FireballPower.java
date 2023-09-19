@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FireballPower extends AbstractEasyPower implements FreeToPlayPower {
+public class FireballPower extends AbstractEasyPower {
     public static String POWER_ID = makeID(FireballPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -28,14 +28,9 @@ public class FireballPower extends AbstractEasyPower implements FreeToPlayPower 
         if (!card.purgeOnUse && !owner.hasPower(OverheatNextCardPower.POWER_ID) && !owner.hasPower(SteamPower.POWER_ID) &&
                 CardTemperatureFields.canModTemp(card, 1)) {
             flash();
-            CardTemperatureFields.addHeat(card, 1);
+            CardTemperatureFields.addHeat(card, 99);
             addToTop(new ReducePowerAction(owner, owner, this, 1));
         }
-    }
-
-    @Override
-    public boolean isFreeToPlay(AbstractCard card) {
-        return CardTemperatureFields.getCardHeat(card) == CardTemperatureFields.HOT && Wiz.adp().hand.contains(card);
     }
 
     @Override

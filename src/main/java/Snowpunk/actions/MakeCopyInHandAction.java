@@ -1,5 +1,7 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.HatMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,7 +18,7 @@ public class MakeCopyInHandAction extends AbstractGameAction {
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     AbstractPlayer player;
-    boolean upgraded, free;
+    boolean hat, free;
 
     public MakeCopyInHandAction(boolean freeThisTurn, boolean freeThisCombat) {
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -24,7 +26,7 @@ public class MakeCopyInHandAction extends AbstractGameAction {
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
         player = AbstractDungeon.player;
-        upgraded = freeThisTurn;
+        hat = freeThisTurn;
         free = freeThisCombat;
     }
 
@@ -48,8 +50,8 @@ public class MakeCopyInHandAction extends AbstractGameAction {
                 if (free)
                     newCard.modifyCostForCombat(-newCard.cost);
 
-                if (upgraded)
-                    newCard.setCostForTurn(0);
+                if (hat)
+                    CardModifierManager.addModifier(newCard, new HatMod(1));
 
                 AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(newCard));
             }

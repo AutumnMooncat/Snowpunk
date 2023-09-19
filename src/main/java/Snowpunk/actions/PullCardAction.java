@@ -1,6 +1,5 @@
 package Snowpunk.actions;
 
-import Snowpunk.relics.ChristmasSpirit;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;

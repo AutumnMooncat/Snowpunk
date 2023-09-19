@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +15,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class PressureValves extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(PressureValves.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+    private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.RARE;
     private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
 
@@ -33,12 +34,7 @@ public class PressureValves extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeBaseCost(0));
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        setDependencies(true, 2, 0);
-        setDependencies(true, 3, 1);
-        setExclusions(2, 3);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
     }
 }

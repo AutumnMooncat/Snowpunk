@@ -49,11 +49,6 @@ public class Eggnog extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() ->
-        {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

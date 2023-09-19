@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.DelayedMakeCopyAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -87,14 +89,13 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
     */
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        setExclusions(1, 0);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        setExclusions(1, 2);
         setDependencies(true, 2, 0);
-        setDependencies(true, 4, 1);
-        setDependencies(false, 3, 0, 1);
+        setDependencies(true, 1, 0);
+        setDependencies(false, 3, 2, 1);
     }
 }

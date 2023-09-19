@@ -6,11 +6,11 @@ import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.SecondBlock;
 import Snowpunk.cards.cardvars.SecondDamage;
 import Snowpunk.cards.cardvars.SecondMagicNumber;
-import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SnowballPatches;
 import Snowpunk.relics.AbstractEasyRelic;
+import Snowpunk.util.KeywordManager;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.CardBorderGlowManager;
@@ -38,9 +38,9 @@ import java.util.ArrayList;
 @SpireInitializer
 public class SnowpunkMod implements
         EditCardsSubscriber,
+        EditKeywordsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
-        EditKeywordsSubscriber,
         EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber, OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
 
     public static final String modID = "Snowpunk";
@@ -86,7 +86,6 @@ public class SnowpunkMod implements
     public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
     public static int preTalkProbability = 50; //Out of 100
 
-    public static final ArrayList<AbstractPartCard> parts = new ArrayList<>();
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -163,35 +162,24 @@ public class SnowpunkMod implements
 
         new AutoAdd(modID)
                 .packageFilter("Snowpunk.cards")
-                .any(AbstractPartCard.class, (info, abstractPartCard) -> parts.add(abstractPartCard));
-
-        new AutoAdd(modID)
-                .packageFilter("Snowpunk.cards")
                 .any(CoreCard.class, (info, coreCard) -> cores.add(coreCard));
     }
 
 
     @Override
     public void receiveEditStrings() {
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/Cardstrings.json");
+        String curPath = "eng";
+        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/Cardstrings.json");
 
-        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/eng/Relicstrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + curPath + "/Relicstrings.json");
 
-        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/eng/Charstrings.json");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + curPath + "/Charstrings.json");
 
-        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/eng/Powerstrings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + curPath + "/Powerstrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/CardModstrings.json");
+        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/PartAndCorestrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/Chatterstrings.json");
-
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/DamageModstrings.json");
-
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/PartAndCorestrings.json");
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/UIstrings.json");
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/Augmentstrings.json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + curPath + "/UIstrings.json");
     }
 
     @Override
@@ -203,6 +191,26 @@ public class SnowpunkMod implements
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(modID.toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                switch (keyword.ID) {
+                    case "hot":
+                        KeywordManager.HOT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "cold":
+                        KeywordManager.COLD = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "snowball":
+                        KeywordManager.SNOW = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "fireball":
+                        KeywordManager.FIRE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "hat":
+                        KeywordManager.HAT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "gear":
+                        KeywordManager.GEAR = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                }
             }
         }
     }

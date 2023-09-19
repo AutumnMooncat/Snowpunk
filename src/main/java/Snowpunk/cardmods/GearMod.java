@@ -1,6 +1,7 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.powers.BrassPower;
@@ -31,6 +32,7 @@ public class GearMod extends AbstractCardModifier {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public int amount = 0;
+    private boolean test = false;
     private static ArrayList<TooltipInfo> GearTip;
     private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/ui/GearIcon.png");
 
@@ -39,21 +41,32 @@ public class GearMod extends AbstractCardModifier {
     }
 
     public GearMod(int amount) {
+        this(amount, false);
+    }
+
+    public GearMod(int amount, boolean test) {
+        this.test = test;
         priority = 1;
         this.amount += amount;
     }
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        int mult = 1;
+        if (card instanceof GearMultCard)
+            mult = ((GearMultCard) card).gearMult();
         if (damage >= 0)
-            damage += amount;
+            damage += amount * mult;
         return damage;
     }
 
     @Override
     public float modifyBlock(float block, AbstractCard card) {
+        int mult = 1;
+        if (card instanceof GearMultCard)
+            mult = ((GearMultCard) card).gearMult();
         if (block >= 0)
-            block += amount;
+            block += amount * mult;
         return block;
     }
 
@@ -76,6 +89,8 @@ public class GearMod extends AbstractCardModifier {
                 gearMod.amount = 0;
             return false;
         }
+        if (test)
+            return (card.baseBlock > 0 || card.baseDamage > 0);
         return true;
     }
 
