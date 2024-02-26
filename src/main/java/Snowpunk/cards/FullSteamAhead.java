@@ -21,7 +21,7 @@ public class FullSteamAhead extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 3;
+    private static final int COST = 4;
 
     public FullSteamAhead() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -40,8 +40,5 @@ public class FullSteamAhead extends AbstractMultiUpgradeCard {
             isEthereal = false;
             uDesc();
         });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeBaseCost(2));
-        setDependencies(true, 2, 0, 1);
     }
 }

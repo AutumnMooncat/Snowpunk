@@ -1,7 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -23,21 +25,18 @@ public class Strike extends AbstractMultiUpgradeCard {
     public Strike() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = 1;
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0 ; i < magicNumber ; i ++) {
-            dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        }
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

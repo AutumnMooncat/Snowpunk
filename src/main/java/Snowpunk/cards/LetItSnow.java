@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.LetItSnowPower;
@@ -20,32 +21,22 @@ public class LetItSnow extends AbstractMultiUpgradeCard {
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public LetItSnow() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new LetItSnowPower(p, 1));
-    }
-
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
-        }
-        return Tooltip;
+        Wiz.atb(new GainSnowballAction(true));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

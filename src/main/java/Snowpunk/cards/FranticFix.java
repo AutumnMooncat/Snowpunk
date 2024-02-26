@@ -1,8 +1,6 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BurningEnginePower;
 import Snowpunk.powers.FranticFixPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

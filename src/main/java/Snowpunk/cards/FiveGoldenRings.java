@@ -32,6 +32,7 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
+    private static int playSound = 0;
     private static ArrayList<TooltipInfo> Tooltip;
 
     @Override
@@ -42,6 +43,7 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
         }
         return Tooltip;
     }
+
 
     private static final int COST = 1;
 
@@ -56,13 +58,18 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new SFXAction("snowpunk:FIVEGOLDENRINGS"));
+        if (playSound == 0)
+            addToBot(new SFXAction("snowpunk:FIVEGOLDENRINGS"));
+
         Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
+        if (playSound == 0) {
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+        }
+
         Wiz.atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -73,11 +80,16 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
                 isDone = true;
             }
         });
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
-        addToBot(new WaitAction(.1f));
+        if (playSound == 0) {
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+            addToBot(new WaitAction(.1f));
+        }
+        playSound++;
+        if (playSound > 10)
+            playSound = 0;
     }
 
     @Override

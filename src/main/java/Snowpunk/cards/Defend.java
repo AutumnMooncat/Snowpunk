@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -40,6 +42,6 @@ public class Defend extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

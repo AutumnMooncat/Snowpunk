@@ -11,4 +11,5 @@ public class KeywordManager {
     public static String HAT = "";
     public static String FIRE = "";
     public static String GEAR = "";
+    public static String HOLLY = "";
 }

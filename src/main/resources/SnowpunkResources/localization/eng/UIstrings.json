@@ -27,7 +27,7 @@
     "TEXT": [
       "Hot Cards",
       "Click to view #yHot cards removed this combat.",
-      "These #yHot cards are currently removed."
+      "These Hot cards are currently removed."
     ]
   },
   "${ModID}:Cores": {
@@ -50,6 +50,16 @@
       "Copy"
     ]
   },
+  "${ModID}:DoubleGears": {
+    "TEXT": [
+      "double its Gears"
+    ]
+  },
+  "${ModID}:Cryo": {
+    "TEXT": [
+      "Enhance"
+    ]
+  },
   "${ModID}:Carols": {
     "TEXT": [
       "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1.",
@@ -65,6 +75,12 @@
       "FIVE GOLDEN RINGS!!!",
       "It's beginning to look a lot like Christmas!",
       "God rest ye merry gentlemen...",
+      "Rockin' around the Christmas tree...",
+      "Hark the Herald angels sing!",
+      "Baby it's cold outside...",
+      "Jingle bell, jingle bell, jingle bell rock!",
+      "Rudolph the red-nosed reindeer...",
+      "Santa Claus is coming to town!",
       "Sing with me!"
     ]
   }

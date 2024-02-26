@@ -91,7 +91,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
-        retVal.add(ReleaseValve.ID);
+        retVal.add(Scald.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
@@ -145,7 +145,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new ReleaseValve();
+        return new Scald();
     }
 
     @Override

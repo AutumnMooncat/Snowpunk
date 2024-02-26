@@ -27,6 +27,11 @@ public class ClankAction extends AbstractGameAction {
     public static final Color CLANK_TINT = new Color(1, 209 / 255f, 209 / 255f, 1);
     AbstractCard card;
 
+    public ClankAction(AbstractCard card, ActionType actionType) {
+        this.card = card;
+        this.actionType = actionType;
+    }
+
     public ClankAction(AbstractCard card) {
         this.card = card;
     }

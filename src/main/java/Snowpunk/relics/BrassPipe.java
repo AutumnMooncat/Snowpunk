@@ -11,7 +11,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 public class BrassPipe extends AbstractEasyRelic {
     public static final String ID = makeID(BrassPipe.class.getSimpleName());
-    public static final int AMOUNT = 3;
+    public static final int AMOUNT = 4;
 
     public BrassPipe() {
         super(ID, RelicTier.STARTER, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);

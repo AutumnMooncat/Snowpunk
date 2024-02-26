@@ -151,6 +151,7 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.SnowIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.TempIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.FireIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.HollyIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -210,6 +211,9 @@ public class SnowpunkMod implements
                     case "gear":
                         KeywordManager.GEAR = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
                         break;
+                    case "holly":
+                        KeywordManager.HOLLY = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
                 }
             }
         }
@@ -267,6 +271,6 @@ public class SnowpunkMod implements
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        SnowballPatches.Snowballs.amount = 0;
+        SnowballPatches.Snowballs.setSnow(0);
     }
 }

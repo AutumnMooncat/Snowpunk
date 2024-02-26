@@ -10,13 +10,17 @@ public class DelayedMakeCopyAction extends AbstractGameAction {
 
     AbstractCard card;
 
-    public DelayedMakeCopyAction(AbstractCard card) {
+    public DelayedMakeCopyAction(AbstractCard card, int delay) {
         this.card = card;
+        amount = delay;
     }
 
     @Override
     public void update() {
-        addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, true, true));
+        if (amount <= 0)
+            addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, true, true));
+        else
+            addToBot(new DelayedMakeCopyAction(card, amount - 1));
         isDone = true;
     }
 }

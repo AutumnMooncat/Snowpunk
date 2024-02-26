@@ -68,4 +68,20 @@ public class IconContainer {
             return singleton;
         }
     }
+
+    public static class HollyIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Holly");
+        private static AbstractCustomIcon singleton;
+
+        public HollyIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Holly.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new HollyIcon();
+            }
+            return singleton;
+        }
+    }
 }

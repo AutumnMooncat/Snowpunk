@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.EverburnMod;
+import Snowpunk.actions.ConvertSnowToE;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
@@ -29,24 +30,18 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     private static final int CARDS = 2;
     private static final int UP_CARDS = 1;
 
-    private static ArrayList<TooltipInfo> FireTip, FireAndHotTip;
+    private static ArrayList<TooltipInfo> HotTip;
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
-        if (FireTip == null) {
-            FireTip = new ArrayList<>();
-            FireTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
-        }
-
-        if (FireAndHotTip == null) {
-            FireAndHotTip = new ArrayList<>();
-            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
-            FireAndHotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.HOT.toLowerCase()), BaseMod.getKeywordDescription(KeywordManager.HOT.toLowerCase())));
+        if (HotTip == null) {
+            HotTip = new ArrayList<>();
+            HotTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.HOT.toLowerCase()), BaseMod.getKeywordDescription(KeywordManager.HOT.toLowerCase())));
         }
 
         if (CardTemperatureFields.getCardHeat(this) != CardTemperatureFields.HOT)
-            return FireAndHotTip;
-        return FireTip;
+            return HotTip;
+        return null;
     }
 
     public ChestnutsRoasting() {
@@ -57,17 +52,15 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        Wiz.atb(new ConvertSnowToE(2));
         Wiz.applyToSelf(new FireballPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
-        addUpgradeData(() ->
-        {
-            isInnate = true;
-            uDesc();
-        });
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 2, 0, 1);
     }
 }

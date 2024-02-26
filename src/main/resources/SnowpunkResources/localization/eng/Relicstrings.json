@@ -11,7 +11,8 @@
     "NAME": "Steam Pipe",
     "FLAVOR": "Now steam powered, as all good things are.",
     "DESCRIPTIONS": [
-      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. The first card you play each combat becomes #ysnowpunk:Hot."
+      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. At the start of each turn, gain #b",
+      " #ysnowpunk:Brass."
     ]
   },
   "${ModID}:ForbiddenScoop": {
@@ -28,22 +29,30 @@
     "NAME": "Ice Cream Sandwich",
     "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
     "DESCRIPTIONS": [
-      "Convert #b1 [E] to [Snowpunk:SnowIcon] each turn."
+      "Start each combat with an additional [Snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:ScrapHeap": {
     "NAME": "Scrap Heap",
-    "FLAVOR": "'A cluttered desk is a sign of genius.' -Me",
+    "FLAVOR": "'Let's see what I can do with this...'",
     "DESCRIPTIONS": [
-      "#yUpgrade the first #b",
-      " cards you draw each turn. You can no longer #ySmith at Rest Sites."
+      "Upon pickup, permanently apply #b3 [Snowpunk:GearIcon] to #b3 viable cards in your deck.",
+      "Upgrade with Gears"
+    ]
+  },
+  "${ModID}:CryoChamber": {
+    "NAME": "Cryo Chamber",
+    "FLAVOR": "'Frozen in place.'",
+    "DESCRIPTIONS": [
+      "#ysnowpunk:Cold cards #yRetain."
     ]
   },
   "${ModID}:StrangeGizmo": {
     "NAME": "Strange Gizmo",
     "FLAVOR": "Truly a marvel of machinery.",
     "DESCRIPTIONS": [
-      "When adding cards into your deck, you may #yUpgrade a random card instead.","Random Upgrade"
+      "When adding cards into your deck, you may #yUpgrade a random card instead.",
+      "Random Upgrade"
     ]
   }
 }

@@ -47,6 +47,5 @@ public class Tinker extends AbstractEasyCard implements OnObtainCard {
             AbstractDungeon.closeCurrentScreen();
         }
         AbstractDungeon.effectsQueue.add(new SmithEffect());
-
     }
 }

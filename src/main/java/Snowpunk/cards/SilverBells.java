@@ -14,7 +14,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SilverBells extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SilverBells.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
@@ -37,5 +37,6 @@ public class SilverBells extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeBlock(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+//        setDependencies(false, 2, 0, 1);
     }
 }

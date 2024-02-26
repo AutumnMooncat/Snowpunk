@@ -19,7 +19,7 @@ public class AllAboard extends AbstractMultiUpgradeCard {
 
     public AllAboard() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -28,11 +28,14 @@ public class AllAboard extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() ->
         {
-            isInnate = true;
+            upgradeMagicNumber(1);
             uDesc();
         });
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

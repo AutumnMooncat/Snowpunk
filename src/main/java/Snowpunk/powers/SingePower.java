@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.powers.interfaces.MonsterOnPlayerEndTurnPower;
 import Snowpunk.util.Wiz;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
@@ -14,7 +15,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class SingePower extends AbstractEasyPower implements HealthBarRenderPower {
+public class SingePower extends AbstractEasyPower implements MonsterOnPlayerEndTurnPower {
     public static String POWER_ID = makeID(SingePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -34,38 +35,6 @@ public class SingePower extends AbstractEasyPower implements HealthBarRenderPowe
         priority = -1;
         this.keepThisTurn = keepThisTurn;
     }
-
-    @Override
-    public void atStartOfTurn() {
-        int embers = 0;
-        if (AbstractDungeon.player.hasPower(BurningEnginePower.POWER_ID))
-            embers = AbstractDungeon.player.getPower(BurningEnginePower.POWER_ID).amount;
-        if (embers > 0)
-            Wiz.atb(new DamageAction(owner, new DamageInfo(source, embers, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-
-//            if (keepThisTurn <= 0)
-        Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
-//            else {
-//                Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
-//                keepThisTurn = 0;
-//            }
-    }
-
-//    @Override
-//    public void atEndOfRound() {
-//        int embers = 0;
-//        if (AbstractDungeon.player.hasPower(BurningEmbersPower.POWER_ID))
-//            embers = AbstractDungeon.player.getPower(BurningEmbersPower.POWER_ID).amount;
-//        if (embers > 0)
-//            Wiz.atb(new DamageAction(owner, new DamageInfo(source, embers, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-//
-//        if (keepThisTurn <= 0)
-//            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
-//        else {
-//            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
-//            keepThisTurn = 0;
-//        }
-//    }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
@@ -89,15 +58,8 @@ public class SingePower extends AbstractEasyPower implements HealthBarRenderPowe
     }
 
     @Override
-    public int getHealthBarAmount() {
-        int embers = 0;
-        if (AbstractDungeon.player.hasPower(BurningEnginePower.POWER_ID))
-            embers = AbstractDungeon.player.getPower(BurningEnginePower.POWER_ID).amount;
-        return embers;
-    }
-
-    @Override
-    public Color getColor() {
-        return hpBarColor;
+    public void atEndOfPlayerTurn() {
+        if (!owner.hasPower(CharPower.POWER_ID))
+            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

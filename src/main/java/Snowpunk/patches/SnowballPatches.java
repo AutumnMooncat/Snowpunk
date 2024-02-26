@@ -3,7 +3,7 @@ package Snowpunk.patches;
 import Snowpunk.TheConductor;
 import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.powers.interfaces.OnUseSnowPower;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.relics.interfaces.ModifySnowballsRelic;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.ModifyXCostPatch;
@@ -21,7 +21,19 @@ public class SnowballPatches {
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class Snowballs {
-        public static int amount = 0;
+        private static int amount = 0;
+
+        public static void changeSnow(int snow) {
+            amount += snow;
+            if (amount < 0)
+                amount = 0;
+        }
+
+        public static void setSnow(int snow) {
+            amount = snow;
+            if (amount < 0)
+                amount = 0;
+        }
 
         public static int getPerTurn() {
             int perTurn = 0;
@@ -40,6 +52,27 @@ public class SnowballPatches {
             int snow = getPerTurn();
             if (snow > 0)
                 Wiz.att(new GainSnowballAction(snow));
+        }
+
+        public static int getTrueAmount() {
+            return amount;
+        }
+
+        public static int getEffectiveAmount() {
+            int snow = amount;
+            if (Wiz.adp() != null) {
+                for (AbstractRelic r : Wiz.adp().relics) {
+                    if (r instanceof SnowAmountModifier) {
+                        snow += ((SnowAmountModifier) r).modifySnow();
+                    }
+                }
+                for (AbstractPower pow : Wiz.adp().powers) {
+                    if (pow instanceof SnowAmountModifier) {
+                        snow += ((SnowAmountModifier) pow).modifySnow();
+                    }
+                }
+            }
+            return snow;
         }
     }
 
@@ -69,14 +102,15 @@ public class SnowballPatches {
     public static class ConsumeSnowPatch {
         @SpireInsertPatch(locator = ModifyXCostPatch.Locator.class)
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
-            if (Snowballs.amount > 0 && c.costForTurn > 0 && !c.freeToPlayOnce) {
+            if (Snowballs.getEffectiveAmount() > 0 && c.costForTurn > 0 && !c.purgeOnUse) {
                 int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
-                if (delta > 0)
+                if (delta > 0 && !c.freeToPlayOnce)
                     Wiz.atb(new GainSnowballAction(-delta));
             }
-            if (Snowballs.amount > 0 && c.costForTurn == -1) {
+            if (Snowballs.getEffectiveAmount() > 0 && c.costForTurn == -1 && !c.purgeOnUse) {
                 c.energyOnUse += AbstractEasyCard.getSnowStatic();
-                Wiz.atb(new GainSnowballAction(-Snowballs.amount));
+                if (!c.freeToPlayOnce)
+                    Wiz.atb(new GainSnowballAction(-Snowballs.getTrueAmount()));
             }
         }
         public static class Locator extends SpireInsertLocator {
@@ -90,8 +124,8 @@ public class SnowballPatches {
         @SpireInsertPatch(locator = Locator2.class)
         public static void fixSCostShenanigans(AbstractPlayer __instance, AbstractCard c) {
             if (SCostFieldPatches.SCostField.isSCost.get(c)) {
-                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && (Snowballs.amount > 0/*__instance.hasPower(SnowballPower.POWER_ID)*/)) {
-                    int snow = Snowballs.amount;//__instance.getPower(SnowballPower.POWER_ID).amount;
+                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && (Snowballs.getEffectiveAmount() > 0/*__instance.hasPower(SnowballPower.POWER_ID)*/)) {
+                    int snow = Snowballs.getEffectiveAmount();//__instance.getPower(SnowballPower.POWER_ID).amount;
                     __instance.loseEnergy(snow);
                 }
             }

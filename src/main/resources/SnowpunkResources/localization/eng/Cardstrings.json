@@ -9,12 +9,15 @@
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "Apply !M! snowpunk:Singe.",
-    "UPGRADE_DESCRIPTION": "Apply !M! snowpunk:Singe. NL Gain [snowpunk:FireIcon] ."
+    "DESCRIPTION": "Apply !M! snowpunk:Singe. NL Applies !Snowpunk:M2! additional snowpunk:Singe for each removed snowpunk:Hot card."
+  },
+  "${ModID}:Scald": {
+    "NAME": "Scald",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! snowpunk:Singe."
   },
   "${ModID}:SnowStack": {
     "NAME": "Snow Stack",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! additional Block per [snowpunk:SnowIcon] ."
+    "DESCRIPTION": "Gain !B! Block. NL Gains !M! additional Block per [snowpunk:SnowIcon] ."
   },
   "${ModID}:AbsoluteZero": {
     "NAME": "Absolute Zero",
@@ -25,14 +28,27 @@
     "NAME": "Brass Knuckles",
     "DESCRIPTION": "Deal !D! damage twice. NL snowpunk:Clank: Reduce this card's damage by !M!."
   },
-  "${ModID}:Fogification": {
-    "NAME": "Fogification",
+  "${ModID}:Quickflash": {
+    "NAME": "Quickflash",
     "DESCRIPTION": "Gain !B! Block."
   },
   "${ModID}:JingleBells": {
     "NAME": "Jingle Bells",
-    "DESCRIPTION": "{@@}At the end of your next X{!M!|>0=+!M!} turns, gain !B! Block. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}At the end of your next X{!M!|>0=+!M!} turns, gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:Cryogenizer": {
+    "NAME": "Cryogenizer",
+    "DESCRIPTION": "Make a card in your hand that targets an enemy apply !M! snowpunk:Chill. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Make a card in your hand that targets an enemy apply !M! snowpunk:Chill.",
+    "EXTENDED_DESCRIPTION": [
+      "Apply ",
+      " snowpunk:Chill."
+    ]
+  },
+  "${ModID}:Fogification": {
+    "NAME": "Fogification",
+    "DESCRIPTION": "Block is not removed for [snowpunk:GearIcon] \u00a0turns. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Block is not removed for [snowpunk:GearIcon] \u00a0turns. NL Exhaust."
   },
   "${ModID}:NixieTube": {
     "NAME": "Nixie Tube",
@@ -43,17 +59,17 @@
       " Mk "
     ]
   },
-  "${ModID}:SteamBlast": {
-    "NAME": "Steam Blast",
+  "${ModID}:HeatBlast": {
+    "NAME": "Heat Blast",
     "DESCRIPTION": "Apply !M! snowpunk:Singe. NL Exhaust."
   },
   "${ModID}:Sproinket": {
     "NAME": "Sproinket",
     "DESCRIPTION": "Deal !D! damage to a random enemy."
   },
-  "${ModID}:SteamSurge": {
-    "NAME": "Steam Surge",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Gain{!M!|1= [snowpunk:FireIcon] |2= [snowpunk:FireIcon] [snowpunk:FireIcon] |>2= !M! [snowpunk:FireIcon] }. NL Exhaust."
+  "${ModID}:FireFist": {
+    "NAME": "Fire Fist",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Make the next {!M!|1=card|@=!M! cards} you play snowpunk:Hot."
   },
   "${ModID}:Gizmo": {
     "NAME": "Gizmo",
@@ -67,8 +83,8 @@
     "NAME": "Icicle",
     "DESCRIPTION": " {@@}Deal !D! damage. NL Gain {!M!|1= [snowpunk:SnowIcon] |2= [snowpunk:SnowIcon] [snowpunk:SnowIcon]|@= !M! [snowpunk:SnowIcon] } ."
   },
-  "${ModID}:MiniMes": {
-    "NAME": "Mini Me's",
+  "${ModID}:SnowFort": {
+    "NAME": "Snow Fort",
     "DESCRIPTION": "{@@}Gain !B! Block. NL Draw [snowpunk:SnowIcon] {!M!|>0=+!M!}\u00a0cards."
   },
   "${ModID}:ColdShoulder": {
@@ -90,17 +106,16 @@
   },
   "${ModID}:BlackIce": {
     "NAME": "Black Ice",
-    "DESCRIPTION": "{@@}Apply [snowpunk:SnowIcon]{!M!|>0= + !M!} \u00a0 snowpunk:Chill, Weak, and Vulnerable.{!Snowpunk:Info!|0= NL Exhaust.}"
+    "DESCRIPTION": "{@@}Apply [snowpunk:SnowIcon]{!M!|>0= + !M!} \u00a0 snowpunk:Chill, Weak, and Vulnerable to ALL enemies.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:ChestnutsRoasting": {
     "NAME": "Chestnuts Roasting",
-    "DESCRIPTION": "{@@}Gain {!M!|2= [snowpunk:FireIcon] [snowpunk:FireIcon] |3= [snowpunk:FireIcon] [snowpunk:FireIcon] [snowpunk:FireIcon] |@=!M! [snowpunk:FireIcon] } .",
-    "UPGRADE_DESCRIPTION": "{@@}Innate. NL Gain {!M!|2= [snowpunk:FireIcon] [snowpunk:FireIcon] |3= [snowpunk:FireIcon] [snowpunk:FireIcon] [snowpunk:FireIcon] |@=!M! [snowpunk:FireIcon] } ."
+    "DESCRIPTION": "Turn [snowpunk:SnowIcon] \u00a0into twice as much [E] . NL Make the next !M! cards you play snowpunk:Hot."
   },
   "${ModID}:AllAboard": {
     "NAME": "All Aboard!",
-    "DESCRIPTION": "Whenever you play a snowpunk:Hot card, gain !M! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a snowpunk:Hot card, gain !M! Block."
+    "DESCRIPTION": "At the start of your turn, add a random Uncommon card to your hand.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, add a random Uncommon Mk !M! card to your hand."
   },
   "${ModID}:SnowMiser": {
     "NAME": "Snow Miser",
@@ -113,7 +128,7 @@
   },
   "${ModID}:Condensation": {
     "NAME": "Condensation",
-    "DESCRIPTION": "Return !M! random snowpunk:Hot cards to your hand."
+    "DESCRIPTION": "Move !M! random snowpunk:Evaporated cards to your hand."
   },
   "${ModID}:Conveyor": {
     "NAME": "Conveyor",
@@ -122,12 +137,12 @@
   },
   "${ModID}:Eggnog": {
     "NAME": "Eggnog",
-    "DESCRIPTION": "{@@}Gain {!M!|2= [snowpunk:SnowIcon] [snowpunk:SnowIcon] |3= [snowpunk:SnowIcon] [snowpunk:SnowIcon] [snowpunk:SnowIcon] |@= !M! [snowpunk:SnowIcon] }. NL Exhaust."
+    "DESCRIPTION": "{@@}Gain [snowpunk:SnowIcon] \u00a0for each snowpunk:Cold card in your hand{!M!|>0= + !M!}. NL Exhaust."
   },
   "${ModID}:EngineOffload": {
     "NAME": "Engine Offload",
-    "DESCRIPTION": "{@@}Return a snowpunk:Hot card to your hand.{!Snowpunk:Info!|0= NL Exhaust.}",
-    "UPGRADE_DESCRIPTION": "{@@}Return a snowpunk:Hot card to your hand. NL It costs 0 this turn.{!Snowpunk:Info!|0= NL Exhaust.}"
+    "DESCRIPTION": "{@@}Move an snowpunk:Evaporated card to your hand.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "{@@}Move an snowpunk:Evaporated card to your hand. NL It costs 0 this turn.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:Frostbite": {
     "NAME": "Frostbite",
@@ -158,8 +173,8 @@
     "NAME": "Perfection?",
     "DESCRIPTION": "Deal !D! damage. NL snowpunk:Clank: Transform this card."
   },
-  "${ModID}:Ratchet": {
-    "NAME": "Ratchet",
+  "${ModID}:RatchetStrike": {
+    "NAME": "Ratchet Strike",
     "DESCRIPTION": "{@@}Deal !D! damage. NL Prevent the next {!M!|>1=!M! }time{!M!|>1=s} you would snowpunk:Clank."
   },
   "${ModID}:SilverBells": {
@@ -180,12 +195,17 @@
   },
   "${ModID}:Whistol": {
     "NAME": "Whistol",
-    "DESCRIPTION": "Deal !D! damage. NL Reduce this card's cost by !M! this combat."
+    "DESCRIPTION": "Deal !D! damage. NL snowpunk:Clank: Increase this card's cost by 1."
+  },
+  "${ModID}:RockinAround": {
+    "NAME": "Rockin' Around",
+    "DESCRIPTION": "Deal !D! damage. NL If this card does not have a snowpunk:Hat, gain a snowpunk:Hat.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this card does not have a snowpunk:Hat, gain !M! snowpunk:Hats."
   },
   "${ModID}:ShovelCoal": {
     "NAME": "Shovel Coal",
-    "DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }At the start of your turn, gain [snowpunk:FireIcon] .",
-    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|1=Innate. NL }Gain [snowpunk:FireIcon] . NL At the start of your turn, gain [snowpunk:FireIcon] ."
+    "DESCRIPTION": "Gain [E] \u00a0equal to your removed snowpunk:Hot cards. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain [E] \u00a0equal to your removed snowpunk:Hot cards."
   },
   "${ModID}:SmithingAnvil": {
     "NAME": "Smithing Anvil",
@@ -198,7 +218,7 @@
   },
   "${ModID}:LetItSnow": {
     "NAME": "Let It Snow",
-    "DESCRIPTION": "Whenever you gain [snowpunk:SnowIcon] , return a random snowpunk:Hot card to your hand."
+    "DESCRIPTION": "Double your snowpunk:Snow. NL Exhaust."
   },
   "${ModID}:Tinker": {
     "NAME": "Tinker",
@@ -211,7 +231,7 @@
   },
   "${ModID}:Weld": {
     "NAME": "Weld",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply [snowpunk:GearIcon] {!M!|>0=+!M!}\u00a0 snowpunk:Singe."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply [snowpunk:GearIcon] {!M!|>0=+!M!} snowpunk:Singe."
   },
   "${ModID}:": {
     "NAME": "",
@@ -227,10 +247,23 @@
     "DESCRIPTION": "{@@}At the start of your turn, add X{!M!|>0=+!M!} [snowpunk:GearIcon] \u00a0to viable cards in your hand.",
     "UPGRADE_DESCRIPTION": "{@@}Innate. NL At the start of your turn, add X{!M!|>0=+!M!} [snowpunk:GearIcon] \u00a0to viable cards in your hand."
   },
+  "${ModID}:FaLaLaLaLa": {
+    "NAME": "Fa La La La La",
+    "DESCRIPTION": "Gain [snowpunk:HollyIcon] \u00a0Block. NL Deal [snowpunk:HollyIcon] \u00a0damage.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Gain !B! Block. NL Deal !D! damage."
+    ]
+  },
+  "${ModID}:DeckTheHalls": {
+    "NAME": "Deck the Halls",
+    "DESCRIPTION": "Gain !M! [snowpunk:HollyIcon] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! [snowpunk:HollyIcon] ."
+  },
   "${ModID}:FineTuned": {
     "NAME": "Fine Tuned",
-    "DESCRIPTION": "{@@}The first {!M!|>1=!M! }time{!M!|>1=s} you would snowpunk:Clank each turn, prevent it and draw 1 card.",
-    "UPGRADE_DESCRIPTION": "{@@}Innate. NL The first {!M!|>1=!M! }time{!M!|>1=s} you would snowpunk:Clank each turn, prevent it and draw 1 card."
+    "DESCRIPTION": "{@@}The first{!M!|>1= !M!} snowpunk:Clank card{!M!|>1=s} you play each turn cost{!M!|1=s} 0 and draw{!M!|1=s} 1 card.",
+    "UPGRADE_DESCRIPTION": "{@@}Innate. NL The first{!M!|>1= !M!} snowpunk:Clank card{!M!|>1=s} you play each turn cost{!M!|1=s} 0 and draw{!M!|1=s} 1 card."
   },
   "${ModID}:FiveGoldenRings": {
     "NAME": "FIVE GOLDEN RINGS",
@@ -244,13 +277,24 @@
     "NAME": "Train Scythe",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade your hand."
   },
-  "${ModID}:TrainStation": {
-    "NAME": "Train Station",
-    "DESCRIPTION": "{@@}Draw X{!M!|>0=-!M!} cards. NL Give them a snowpunk:Hat. NL Exhaust."
+  "${ModID}:BeNotAfraid": {
+    "NAME": "Be Not Afraid",
+    "DESCRIPTION": "Prevent the next !M! times you would lose 10 or more HP.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Prevent the next !M! times you would lose 10 or more HP."
   },
-  "${ModID}:SteamTrain": {
-    "NAME": "Steam Train",
-    "DESCRIPTION": "{@@}For the next !M! turns, deal {!Snowpunk:Info!|1=triple|@=double} damage and gain {!Snowpunk:Info!|2=triple|@=double} Block. NL Exhaust."
+  "${ModID}:TheSnowman": {
+    "NAME": "The Snowman",
+    "DESCRIPTION": "{@@}Draw X{!M!|>0=+!M!} cards. NL Give them a snowpunk:Hat. NL Exhaust."
+  },
+  "${ModID}:SteamForm": {
+    "NAME": "Steam Form",
+    "DESCRIPTION": "{@@}{!M!|>0=Draw a card. NL }snowpunk:Hot cards gain [E] . NL snowpunk:Cold cards draw a card.",
+    "UPGRADE_DESCRIPTION": "{@@}Gain [E] . NL {!M!|>0=Draw a card. NL }snowpunk:Hot cards gain [E] . NL snowpunk:Cold cards draw a card."
+  },
+  "${ModID}:ChooChoo": {
+    "NAME": "CHOO CHOO!",
+    "DESCRIPTION": "Gain !M! snowpunk:Brass. NL You cannot take damage this turn. NL End your turn.",
+    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Brass. NL You cannot take damage this turn."
   },
   "${ModID}:Snowpunk": {
     "NAME": "Snowpunk",
@@ -267,8 +311,8 @@
   },
   "${ModID}:GoldenTicket": {
     "NAME": "Golden Ticket",
-    "DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand. Give it a snowpunk:Hat. NL Exhaust."
+    "DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "{@@}Choose a card. NL Add a copy to your hand. Give it a snowpunk:Hat.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
@@ -283,10 +327,6 @@
     "NAME": "Full Steam Ahead",
     "DESCRIPTION": "Ethereal. NL snowpunk:Hot cards play twice.",
     "UPGRADE_DESCRIPTION": "snowpunk:Hot cards play twice."
-  },
-  "${ModID}:ChuggaChugga": {
-    "NAME": "Chugga Chugga",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL [snowpunk:GearIcon] \u00a0affect this card !M! times."
   },
   "${ModID}:FranticFix": {
     "NAME": "Frantic Fix",
@@ -308,11 +348,24 @@
   },
   "${ModID}:Invent": {
     "NAME": "Invent",
-    "DESCRIPTION": "When you draw this card, create a new card and permanently replace this one with it."
+    "DESCRIPTION": "When you draw this card, create a new card from various parts and permanently replace this one with it."
   },
   "${ModID}:Caroling": {
     "NAME": "Caroling",
-    "DESCRIPTION": "Idk yet but you sing carols.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Idk yet but you sing carols."
+    "DESCRIPTION": "At the end of your turn, if you played no Attacks, double your Block."
+  },
+  "${ModID}:Frostburn": {
+    "NAME": "Frostburn",
+    "DESCRIPTION": "Apply !M! snowpunk:Chill. NL Apply !Snowpunk:M2! snowpunk:Singe."
+  },
+  "${ModID}:Overheated": {
+    "NAME": "Overheated",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !M! snowpunk:Singe. NL snowpunk:Singe is not removed from this enemy {!Snowpunk:M2!|1=this turn|@=for !Snowpunk:M2! turns}.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage and apply !M! snowpunk:Singe to ALL enemies. NL snowpunk:Singe is not removed {!Snowpunk:M2!|1=this turn|@=for !Snowpunk:M2! turns}."
+  },
+  "${ModID}:Frozen": {
+    "NAME": "Frozen",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !Snowpunk:M2! snowpunk:Chill. NL snowpunk:Chill acts as snowpunk:Singe for this enemy {!M!|1=this turn|@=for !M! turns}.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Apply !Snowpunk:M2! snowpunk:Chill. NL snowpunk:Chill acts as snowpunk:Singe for this enemy {!M!|1=this turn|@=for !M! turns}. NL Convert their snowpunk:Singe to snowpunk:Chill."
   }
 }

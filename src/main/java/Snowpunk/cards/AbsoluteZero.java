@@ -17,7 +17,7 @@ public class AbsoluteZero extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 99;
+    private static final int COST = 2, CHILL = 20;
 
 
     public AbsoluteZero() {
@@ -32,11 +32,8 @@ public class AbsoluteZero extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeMagicNumber(5));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            isInnate = true;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBaseCost(1));
     }
 }

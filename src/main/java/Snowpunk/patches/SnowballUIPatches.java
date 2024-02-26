@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;
-import static Snowpunk.patches.SnowballPatches.Snowballs.amount;
+import static Snowpunk.patches.SnowballPatches.Snowballs.getTrueAmount;
 
 public class SnowballUIPatches {
     private static Texture texture = TexLoader.getTexture("SnowpunkResources/images/char/mainChar/orb/SnowballSmol.png");
@@ -49,10 +49,10 @@ public class SnowballUIPatches {
         float x = 280.0F * Settings.xScale;
         float y = 245.0F * Settings.yScale;
         tipHitbox.move(x, y);
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && (amount > 0 || SnowballPatches.Snowballs.getPerTurn() > 0)) {
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && (getTrueAmount() > 0 || SnowballPatches.Snowballs.getPerTurn() > 0)) {
             spriteBatch.setColor(1, 1, 1, 1);
             spriteBatch.draw(texture, x - texture.getWidth() / 2, y - texture.getHeight() / 2);
-            String display = String.valueOf(amount);
+            String display = String.valueOf(getTrueAmount());
             if (SnowballPatches.Snowballs.getPerTurn() > 0)
                 display += "/" + SnowballPatches.Snowballs.getPerTurn();
 

@@ -2,9 +2,7 @@ package Snowpunk.actions;
 
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.beyond.AwakenedOne;
@@ -16,26 +14,27 @@ import java.util.Iterator;
 public class CandyCaneKillAction extends AbstractGameAction {
     AbstractMonster monster = null;
     boolean killMinion;
-    int hp;
+    int threshold;
 
     float speed = 0;
 
-    public CandyCaneKillAction(AbstractMonster target, int hp, boolean killMinion) {
+    public CandyCaneKillAction(AbstractMonster target, int threshold, boolean killMinion) {
         monster = target;
-        this.hp = hp;
+        this.threshold = threshold;
         this.killMinion = killMinion;
     }
 
     @Override
     public void update() {
-        if ((monster.currentHealth > hp || monster.currentHealth <= 0) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
+        if (monster == null || (monster.currentHealth > threshold || monster.currentHealth <= 0) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
             isDone = true;
             return;
         }
-        if (monster != null && !monster.isDead) {
+        if (!monster.isDead) {
             monster.drawX -= speed;
             speed += 1f;
         }
+
         if (monster.drawX < -1000) {
             boolean cantLose = AbstractDungeon.getCurrRoom().cannotLose;
             AbstractDungeon.getCurrRoom().cannotLose = false;

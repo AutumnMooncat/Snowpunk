@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.ClankAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -27,17 +28,14 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 4;
+    private static final int DMG = 6;
 
-    private boolean third = false;
-    private boolean burn = false;
-    private boolean chill = false;
 
     public BrassKnuckles() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = 1;
-        CardModifierManager.addModifier(this, new GearMod(2));
+        //CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -52,9 +50,8 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
         addUpgradeData(() -> upgradeDamage(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         setExclusions(1, 2);
-
     }
 
     @Override

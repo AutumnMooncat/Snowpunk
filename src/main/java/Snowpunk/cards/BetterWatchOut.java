@@ -43,7 +43,7 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
         }
 
         for (int i = 0; i < effect; i++)
-            addToBot(new DelayedMakeCopyAction(this));
+            addToBot(new DelayedMakeCopyAction(this, 2));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);

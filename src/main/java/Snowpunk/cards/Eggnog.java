@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowFromColdAction;
 import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -23,11 +24,10 @@ public class Eggnog extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, SNOW = 2, UP_SNOW = 1;
+    private static final int COST = 1;
 
     public Eggnog() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = SNOW;
         exhaust = true;
     }
 
@@ -43,12 +43,17 @@ public class Eggnog extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new GainSnowballAction((magicNumber)));
+        Wiz.atb(new GainSnowFromColdAction((Math.max(magicNumber, 0))));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
+        addUpgradeData(() ->
+        {
+            magicNumber = baseMagicNumber = 0;
+            upgradeMagicNumber(1);
+        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

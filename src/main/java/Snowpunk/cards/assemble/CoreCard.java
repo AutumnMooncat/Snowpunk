@@ -5,6 +5,7 @@ import Snowpunk.patches.TypeOverridePatch;
 import basemod.helpers.TooltipInfo;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,7 +25,7 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
         super(cardID, cost, type, CardRarity.SPECIAL, CardTarget.NONE);
         this.effectTags = new ArrayList<>(Arrays.asList(effectTags));
         TypeOverridePatch.setOverride(this, KEYWORD_TEXT[0]);
-        tags.add(CardTags.HEALING); // We don't want this generated in combat
+        tags.add(CardTags.HEALING);
     }
 
     //region Spawn Conditions
@@ -43,6 +44,12 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
             return false;
         /*if(card.getCost() >= 2 && cost > 0)
             return false;*/
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.POW)) && (target == CardTarget.ENEMY || target == CardTarget.ALL_ENEMY))
+            return false;
+        if (coreCards.size() == 1 && coreCards.get(0).effectTags.contains(EffectTag.POW) && type != CardType.POWER)
+            return false;
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.DBF)) && baseDamage > -1)
+            return false;
         if (getCustomCANTSpawnCondition(coreCards))
             return false;
         return true;
@@ -69,21 +76,31 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
 
     //region Non-Modifiable Stuff
     public enum EffectTag {
-        PREFIX,
-        TargetDmg,
-        ALLDmg,
-        RandDmg,
-        AB,
-        CORE,
-        HOT,
-        COLD,
-        AMOD,
-        ABMOD,
-        CLANK,
+        DMG,
+        POW,
+        POST_POW,
+        BUF,
+        DBF,
+        BLK,
+        CLK,
+        CRD,
         MOD,
-        MAGIC,
+        EXH,
+        MGC,
+        CORE,
         NAME,
         ADJECTIVE
+    }
+
+    public enum PowerCondition {
+        HOT,
+        CLANK,
+        DRAW,
+        PLAY,
+        END,
+        START,
+        DBF,
+        BLK
     }
 
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;
@@ -137,6 +154,28 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
     }
 
     public void onClank(AssembledCard card) {
+    }
+
+    public void onPowerTrigger(int amount) {
+    }
+
+    public void onPowerTrigger(AbstractCard card, int amount) {
+    }
+
+    public void onPowerTrigger(AbstractCard card, int amount, UseCardAction action) {
+        onPowerTrigger(card, amount);
+    }
+
+    public String powerIcon() {
+        return "tools";
+    }
+
+    public PowerCondition getPower() {
+        return null;
+    }
+
+    public String[] getExtended() {
+        return new String[]{""};
     }
     //endregion
 }

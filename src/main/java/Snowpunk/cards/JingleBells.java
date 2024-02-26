@@ -1,18 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ClankAction;
-import Snowpunk.actions.ResetExhaustAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.JingleBellsPower;
-import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -23,50 +16,23 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1, BLOCK = 7;
-
-    //private boolean noClank = false;
+    private static final int COST = 1, BLOCK = 8, UP_BLOCK = 3;
 
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        exhaust = true;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Wiz.atb(new ResetExhaustAction(this, false));
-        int effect = this.energyOnUse;
-
-        if (p.hasRelic("Chemical X")) {
-            effect += ChemicalX.BOOST;
-            p.getRelic("Chemical X").flash();
-        }
-
-        if (magicNumber > 0)
-            effect += magicNumber;
-
-        if (effect > 0)
-            Wiz.applyToSelf(new JingleBellsPower(p, block, effect));
-
-        if (!this.freeToPlayOnce) {
-            p.energy.use(EnergyPanel.totalCount);
-        }
-/*
-        if (!noClank)
-            Wiz.atb(new ClankAction(this));*/
+        blck();
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(3));
-        addUpgradeData(() ->
-        {
-            baseMagicNumber = magicNumber = 0;
-            upgradeMagicNumber(1);
-        });
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 2, 1);
     }
 }

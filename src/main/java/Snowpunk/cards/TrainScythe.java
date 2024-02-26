@@ -23,11 +23,12 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 15, UP_DMG = 5;
+    private static final int COST = 2, DMG = 13, UP_DMG = 5;
 
     public TrainScythe() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        isMultiDamage = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,6 +43,6 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        //addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
     }
 }

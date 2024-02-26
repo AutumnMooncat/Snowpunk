@@ -32,13 +32,13 @@ public class DupeMod extends AbstractCardModifier {
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         Wiz.atb(new MakeTempCardInDiscardAction(card.makeStatEquivalentCopy(), amount));
     }
-
+/*
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (rawDescription.equals("") || rawDescription.endsWith(" NL "))
             return rawDescription + TEXT[0];
         return rawDescription + TEXT[1] + TEXT[0];
-    }
+    }*/
 
     @Override
     public boolean shouldApply(AbstractCard card) {

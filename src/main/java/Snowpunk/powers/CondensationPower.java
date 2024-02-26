@@ -3,6 +3,7 @@ package Snowpunk.powers;
 import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -30,7 +31,7 @@ public class CondensationPower extends AbstractEasyPower implements OnCondensePo
     }
 
     @Override
-    public void onCondense() {
+    public void onCondense(AbstractCard card) {
         Wiz.atb(new GainBlockAction(owner, amount));
     }
 }

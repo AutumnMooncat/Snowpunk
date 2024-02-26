@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.powers.interfaces.FreeToPlayPower;
 import Snowpunk.powers.interfaces.OnClankPower;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
@@ -12,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class WrenchPower extends AbstractEasyPower implements OnClankPower, InvisiblePower {
+public class WrenchPower extends AbstractEasyPower implements OnClankPower, InvisiblePower, FreeToPlayPower {
     public static String POWER_ID = makeID(WrenchPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
@@ -53,5 +54,11 @@ public class WrenchPower extends AbstractEasyPower implements OnClankPower, Invi
         if (owner.hasPower(FineTunePower.POWER_ID))
             getDraw = owner.getPower(FineTunePower.POWER_ID).amount;
         Wiz.atb(new DrawCardAction(getDraw));
+    }
+
+
+    @Override
+    public boolean isFreeToPlay(AbstractCard card) {
+        return true;
     }
 }

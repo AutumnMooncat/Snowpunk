@@ -20,7 +20,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SleighRide extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SleighRide.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 

@@ -15,6 +15,12 @@ import static Snowpunk.util.Wiz.adp;
 public class GainSnowballAction extends AbstractGameAction {
 
     boolean silent;
+    boolean isDouble;
+
+    public GainSnowballAction(boolean isDouble) {
+        amount = 0;
+        this.isDouble = isDouble;
+    }
 
     public GainSnowballAction(int amount) {
         this(amount, false);
@@ -32,12 +38,15 @@ public class GainSnowballAction extends AbstractGameAction {
             int num = rand.random(1, 5);
             addToTop(new SFXAction("snowpunk:snow" + num));
         }
-        SnowballPatches.Snowballs.amount += amount;
+        if (isDouble)
+            SnowballPatches.Snowballs.changeSnow(SnowballPatches.Snowballs.getTrueAmount());
+        else
+            SnowballPatches.Snowballs.changeSnow(amount);
         if (amount > 0) {
             for (AbstractPower p : Wiz.adp().powers) {
                 if (p instanceof OnGainSnowPower) {
                     p.flash();
-                    ((OnGainSnowPower) p).onGainSnowball(SnowballPatches.Snowballs.amount);
+                    ((OnGainSnowPower) p).onGainSnowball(amount);
                 }
             }
         }

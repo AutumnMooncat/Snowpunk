@@ -4,32 +4,41 @@ import Snowpunk.TheConductor;
 import Snowpunk.powers.ScrapPower;
 import Snowpunk.powers.SteamPower;
 import Snowpunk.powers.BrassPower;
+import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class SteamPipe extends AbstractEasyRelic {
     public static final String ID = makeID(SteamPipe.class.getSimpleName());
 
-    public static final int AMOUNT = 1;
+    public static final int AMOUNT = 4;
 
     public SteamPipe() {
         super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+        tips.clear();
+        tips.add(new PowerTip(name, description));
+        initializeTips();
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
     }
+
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
+        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }
 
 
     @Override
-    public void atBattleStartPreDraw() {
+    public void atTurnStart() {
         flash();
-        Wiz.applyToSelf(new SteamPower(Wiz.adp(), AMOUNT));
+        Wiz.applyToSelf(new BrassPower(Wiz.adp(), AMOUNT));
     }
 
     @Override

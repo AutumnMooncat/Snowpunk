@@ -19,9 +19,6 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoCompendium
-@NoPools
-@AutoAdd.Ignore
 public class Caroling extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Caroling.class.getSimpleName());
 
@@ -29,7 +26,7 @@ public class Caroling extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public Caroling() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -41,11 +38,8 @@ public class Caroling extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            isInnate = true;
-            uDesc();
-        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBaseCost(1));
+        setDependencies(true, 1, 0);
     }
 }

@@ -26,7 +26,7 @@ public class ColdShoulder extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = CHILL;
         secondMagic = baseSecondMagic = WEAK;
-        CardTemperatureFields.addInherentHeat(this, -1);
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -38,6 +38,6 @@ public class ColdShoulder extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_CHILL));
         addUpgradeData(() -> upgradeSecondMagic(1));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

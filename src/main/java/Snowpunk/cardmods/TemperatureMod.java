@@ -72,13 +72,13 @@ public class TemperatureMod extends AbstractCardModifier {
         if (heat <= COLD)
             Wiz.att(new CondenseAction(abs(heat)));
     }
-
+/*
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {
         if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) <= COLD)
             card.retain = true;
         return false;
-    }
+    }*/
 
     @Override
     public boolean shouldApply(AbstractCard card) {

@@ -82,10 +82,6 @@ public class CondenseAction extends AbstractGameAction {
         cardToCondense.unfadeOut();
         cardToCondense.lighten(true);
         cardToCondense.fadingOut = false;
-        /*if (CardTemperatureFields.canModTemp(cardToCondense, -1))
-            CardTemperatureFields.addHeat(cardToCondense, -1);*/
-
-        //AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, addToHand));
         AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, true)); //Always set to draw now
 
         AbstractGameEffect e = null;
@@ -98,15 +94,15 @@ public class CondenseAction extends AbstractGameAction {
         }
         AbstractDungeon.effectList.remove(e);
 
-        triggerOnCondense();
+        triggerOnCondense(cardToCondense);
     }
 
 
-    private void triggerOnCondense() {
+    private void triggerOnCondense(AbstractCard card) {
         if (Wiz.adp() != null) {
             for (AbstractPower power : Wiz.adp().powers) {
                 if (power instanceof OnCondensePower)
-                    ((OnCondensePower) power).onCondense();
+                    ((OnCondensePower) power).onCondense(card);
             }
         }
     }

@@ -31,7 +31,7 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(player, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        Wiz.atb(new ClankAction(this));
+        Wiz.atb(new ClankAction(this, AbstractGameAction.ActionType.DAMAGE));
     }
 
     @Override
@@ -43,6 +43,6 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
 
     @Override
     public void onClank() {
-        addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, magicNumber, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
     }
 }

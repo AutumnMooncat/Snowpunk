@@ -33,7 +33,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        block = baseBlock = 13;
+        block = baseBlock = 14;
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -74,7 +74,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(3));
+        addUpgradeData(() -> upgradeBlock(4));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
             upCost = true;

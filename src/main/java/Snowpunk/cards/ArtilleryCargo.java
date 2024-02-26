@@ -17,9 +17,9 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 4;
-    private static final int DMG = 42;
-    private static final int UP_DMG = 14;
+    private static final int COST = 3;
+    private static final int DMG = 40;
+    private static final int UP_DMG = 10;
 
     public ArtilleryCargo() {
         super(ID, COST, TYPE, RARITY, TARGET);

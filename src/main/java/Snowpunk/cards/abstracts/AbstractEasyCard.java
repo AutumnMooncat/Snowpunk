@@ -5,7 +5,6 @@ import Snowpunk.cardmods.GearMod;
 import Snowpunk.patches.SnowballPatches;
 import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.powers.BrassPower;
-import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.CustomCard;
@@ -24,8 +23,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
@@ -300,19 +297,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     public static int getSnowStatic() {
-        int snow = SnowballPatches.Snowballs.amount;
-
-        for (AbstractRelic r : Wiz.adp().relics) {
-            if (r instanceof SnowAmountModifier) {
-                snow += ((SnowAmountModifier) r).modifySnow();
-            }
-        }
-        for (AbstractPower pow : Wiz.adp().powers) {
-            if (pow instanceof SnowAmountModifier) {
-                snow += ((SnowAmountModifier) pow).modifySnow();
-            }
-        }
-        return snow;
+        return SnowballPatches.Snowballs.getEffectiveAmount();
     }
 
     public int getGears() {

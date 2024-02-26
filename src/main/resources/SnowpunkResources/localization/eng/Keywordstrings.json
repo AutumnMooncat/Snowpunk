@@ -17,10 +17,19 @@
     "DESCRIPTION": "Perform a backfire effect."
   },
   {
+    "ID": "holly",
+    "PROPER_NAME": "Holly [snowpunk:HollyIcon]",
+    "NAMES": [
+      "holly"
+    ],
+    "DESCRIPTION": "At the start of your next turn, add a #yFa #yLa #yLa #yLa #yLa to your hand and remove #yHolly."
+  },
+  {
     "ID": "hat",
     "PROPER_NAME": "Hat",
     "NAMES": [
-      "hat"
+      "hat",
+      "hats"
     ],
     "DESCRIPTION": "This card costs #b0 to play, but then loses a #yHat."
   },
@@ -35,14 +44,14 @@
   },
   {
     "ID": "snowball",
-    "PROPER_NAME": "Snowballs [snowpunk:SnowIcon]",
+    "PROPER_NAME": "Snowball [snowpunk:SnowIcon]",
     "NAMES": [
       "snowball",
       "snowballs",
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Counts as [E] . Spent after [E] . NL Conserved between turns."
+    "DESCRIPTION": "Counts as [E] . NL Spent after [E] . NL Conserved between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -53,12 +62,19 @@
     "DESCRIPTION": "Chilled creatures deal less damage this turn."
   },
   {
+    "PROPER_NAME": "Char",
+    "NAMES": [
+      "char"
+    ],
+    "DESCRIPTION": "#ySinge is not removed from #yCharred creatures for a number of turns."
+  },
+  {
     "ID": "hot",
     "PROPER_NAME": "Hot",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Removed from combat until returned."
+    "DESCRIPTION": "Moved to the Evaporate pile for the rest of combat."
   },
   {
     "ID": "cold",
@@ -66,7 +82,7 @@
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. NL Return a random #yHot card to your hand."
+    "DESCRIPTION": "Move a random card from the Evaporate pile to your hand."
   },
   {
     "ID": "gear",
@@ -81,6 +97,48 @@
     "NAMES": [
       "brass"
     ],
-    "DESCRIPTION": "Apply [snowpunk:GearIcon] to the next viable card."
+    "DESCRIPTION": "Apply [snowpunk:GearIcon] to the next viable card played."
+  },
+  {
+    "PROPER_NAME": "Evaporated",
+    "NAMES": [
+      "evaporated"
+    ],
+    "DESCRIPTION": "In the Evaporate pile."
+  },
+  {
+    "PROPER_NAME": "Hook",
+    "NAMES": [
+      "hook"
+    ],
+    "DESCRIPTION": "Remove target from combat if it has less HP than your combined HP and #yBlock."
+  },
+  {
+    "PROPER_NAME": "Desperation",
+    "NAMES": [
+      "desperation"
+    ],
+    "DESCRIPTION": "If you are at or below #b50% of your max HP, or have at least #b2 unique Debuffs, this card costs #b0."
+  },
+  {
+    "PROPER_NAME": "Dualstrike",
+    "NAMES": [
+      "dualstrike"
+    ],
+    "DESCRIPTION": "If this card is the first one played this turn, play a copy of it."
+  },
+  {
+    "PROPER_NAME": "Duplicate",
+    "NAMES": [
+      "duplicate"
+    ],
+    "DESCRIPTION": "Add a copy of this card to the discard pile."
+  },
+  {
+    "PROPER_NAME": "Overclock",
+    "NAMES": [
+      "overclock"
+    ],
+    "DESCRIPTION": "Increase modifiable effects on the card by #b25% per stack."
   }
 ]

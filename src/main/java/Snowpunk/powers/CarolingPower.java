@@ -3,7 +3,10 @@ package Snowpunk.powers;
 import Snowpunk.actions.CondenseAction;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,19 +23,35 @@ public class CarolingPower extends AbstractEasyPower {
     public static UIStrings carolStrings = CardCrawlGame.languagePack.getUIString(makeID("Carols"));
     public static String[] CAROLS = carolStrings.TEXT;
 
+    public boolean hasPlayedAttack = false;
+
     public CarolingPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
     }
 
     @Override
     public void atStartOfTurnPostDraw() {
-        for (int i = 0; i < amount; i++) {
-            addToBot(new CondenseAction(true));
-            addToBot(new WaitAction(.1f));
-        }
+        hasPlayedAttack = false;
+    }
 
-        carol();
-        flash();
+    @Override
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            if (!hasPlayedAttack)
+                flash();
+            hasPlayedAttack = true;
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) {
+            if (!hasPlayedAttack && amount > 1) {
+                carol();
+                flash();
+                Wiz.atb(new GainBlockAction(owner, owner.currentBlock * amount));
+            }
+        }
     }
 
     public static void carol() {
@@ -43,6 +62,6 @@ public class CarolingPower extends AbstractEasyPower {
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + (amount == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2]);
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 }

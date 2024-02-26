@@ -22,10 +22,10 @@ public class BlackIce extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BlackIce.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BONUS = 1;
+    private static final int COST = 2, BONUS = 2;
 
     private static ArrayList<TooltipInfo> Tooltip;
 
@@ -47,9 +47,13 @@ public class BlackIce extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (getSnow() + magicNumber > 0) {
-            Wiz.applyToEnemy(m, new ChillPower(m, getSnow() + magicNumber));
-            Wiz.applyToEnemy(m, new WeakPower(m, getSnow() + magicNumber, false));
-            Wiz.applyToEnemy(m, new VulnerablePower(m, getSnow() + magicNumber, false));
+            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                if (!mo.isDeadOrEscaped()) {
+                    Wiz.applyToEnemy(mo, new ChillPower(mo, getSnow() + magicNumber));
+                    Wiz.applyToEnemy(mo, new WeakPower(mo, getSnow() + magicNumber, false));
+                    Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow() + magicNumber, false));
+                }
+            }
         }
     }
 

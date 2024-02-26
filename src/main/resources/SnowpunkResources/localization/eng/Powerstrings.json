@@ -21,28 +21,26 @@
       " cards you play become #yHot."
     ]
   },
-  "${ModID}:JingleBellsPower": {
-    "NAME": "Jingle Bells",
-    "DESCRIPTIONS": [
-      "At the end of your turn, gain #b",
-      " #yBlock.",
-      "At the end of your next #b",
-      " turns, gain #b",
-      " #yBlock."
-    ]
-  },
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "Whenever you play a #yHot card, gain #b",
-      " #yBlock."
+      "At the start of your turn, add a random Uncommon card to your hand.",
+      "At the start of your turn, add a random Mk",
+      " Uncommon card to your hand."
+    ]
+  },
+  "${ModID}:CarolingPower": {
+    "NAME": "Caroling",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you played no Attacks, increase your Block by #b",
+      "00%."
     ]
   },
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": [
-      "Whenever a creature gains Chill, they lose that much HP.",
-      "Whenever a creature gains Chill, they lose #b",
+      "Whenever a creature gains #yChill, they lose that much HP.",
+      "Whenever a creature gains #yChill, they lose #b",
       " times that much HP."
     ]
   },
@@ -88,8 +86,9 @@
   "${ModID}:ShovelCoalPower": {
     "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "At the start of your turn, NL gain #b",
-      " [snowpunk:FireIcon] ."
+      "The first time you play a #yHot card each turn, return a random #yHot card to your hand.",
+      "The first #b",
+      " times you play a #yHot card each turn, return a random #yHot card to your hand."
     ]
   },
   "${ModID}:LetItSnowPower": {
@@ -115,12 +114,42 @@
       " [snowpunk:GearIcon] to cards in your hand."
     ]
   },
+  "${ModID}:GracePower": {
+    "NAME": "Grace",
+    "DESCRIPTIONS": [
+      "The next time you would lose #b10 or more HP, prevent it.",
+      "The next #b",
+      " times you would lose #b10 or more HP, prevent it."
+    ]
+  },
+  "${ModID}:HollyPower": {
+    "NAME": "Holly",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add a #yFa #yLa #yLa #yLa #yLa to your hand and remove #yHolly."
+    ]
+  },
   "${ModID}:FineTunePower": {
     "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "The first time you would #yClank each turn, prevent it and draw #b1 card.",
+      "The first #yClank card you play each turn costs 0 and draws #b1 card.",
       "The first #b",
-      " times you would #yClank each turn, prevent it and draw #b",
+      " #yClank cards you play each turn cost 0 and draw #b1 card."
+    ]
+  },
+  "${ModID}:ChooChooPower": {
+    "NAME": "CHOO CHOO!",
+    "DESCRIPTIONS": [
+      "You cannot take damage this turn.",
+      "You cannot take damage for #b",
+      " turns."
+    ]
+  },
+  "${ModID}:SteamFormPower": {
+    "NAME": "Steam Form",
+    "DESCRIPTIONS": [
+      "#yHot cards gain #b",
+      " #yEnergy. #yCold cards draw #b",
+      " card.",
       " cards."
     ]
   },
@@ -149,11 +178,20 @@
       " more #ySnowballs."
     ]
   },
-  "${ModID}:BurningEnginePower": {
-    "NAME": "Burning Engine",
+  "${ModID}:CharPower": {
+    "NAME": "Char",
     "DESCRIPTIONS": [
-      "When #ySinge wears off of a creature, deal #b",
-      " damage to them."
+      "#ySinge doesn't wear off this turn.",
+      "#ySinge doesn't wear off for #b",
+      " turns."
+    ]
+  },
+  "${ModID}:FrozenPower": {
+    "NAME": "Frozen",
+    "DESCRIPTIONS": [
+      "#yChill acts as #ySinge this turn.",
+      "#yChill acts as #ySinge for #b",
+      " turns."
     ]
   },
   "${ModID}:FullSteamAheadPower": {
@@ -169,6 +207,20 @@
     "DESCRIPTIONS": [
       "Whenever you play a card with #yClank, gain #b",
       " #yBrass."
+    ]
+  },
+  "${ModID}:AssembledPower": {
+    "NAME": "Assembled",
+    "DESCRIPTIONS": [
+      "Has an effect based on your card."
+    ]
+  },
+  "${ModID}:AntifactPower": {
+    "NAME": "Antifact",
+    "DESCRIPTIONS": [
+      "Negate the next #b",
+      " buff you obtain.",
+      " buffs you obtain."
     ]
   }
 }
