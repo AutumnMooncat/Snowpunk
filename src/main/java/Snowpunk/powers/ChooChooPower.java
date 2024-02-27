@@ -1,5 +1,7 @@
 package Snowpunk.powers;
 
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,8 +14,13 @@ public class ChooChooPower extends AbstractEasyPower {
     public static final String[] DESCRIPTIONS = CardCrawlGame.languagePack.getPowerStrings(POWER_ID).DESCRIPTIONS;
 
     public ChooChooPower(AbstractCreature owner, int num) {
-        super(POWER_ID, NAME, PowerType.BUFF, false, owner, num);
+        super(POWER_ID, NAME, PowerType.BUFF, true, owner, num);
         updateDescription();
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override

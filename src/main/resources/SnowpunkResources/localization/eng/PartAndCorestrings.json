@@ -188,7 +188,7 @@
   },
   "${ModID}:Garland": {
     "NAME": "Garland",
-    "DESCRIPTION": "gain !Snowpunk:M2! snowpunk:Holly.",
+    "DESCRIPTION": "gain !Snowpunk:M2! [Snowpunk:HollyIcon] .",
     "EXTENDED_DESCRIPTION": [
       "gain #b",
       " #yHolly.",
