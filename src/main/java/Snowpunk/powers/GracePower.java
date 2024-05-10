@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.Random;
 
@@ -24,43 +25,38 @@ public class GracePower extends AbstractEasyPower {
     public static String POWER_ID = makeID(GracePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
+    public static int IDOffset = 0;
 
-    public GracePower(AbstractCreature owner, int amount) {
-        super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
+    int threshold;
+
+    public GracePower(AbstractCreature owner, int amount, int threshold) {
+        super(POWER_ID + IDOffset, strings.NAME, PowerType.BUFF, false, owner, amount);
+        IDOffset++;
         this.loadRegion("nirvana");
+        this.threshold = threshold;
+        updateDescription();
     }
 
 
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount >= 10) {
+        if (damageAmount >= threshold) {
             addToTop(new ReducePowerAction(owner, owner, this, 1));
             return 0;
         }
         return damageAmount;
     }
 
-    /*
-        @Override
-        public void onVictory() {
-            AbstractPlayer p = AbstractDungeon.player;
-            if (p.currentHealth > 0 && amount > p.currentHealth)
-                p.heal(amount - p.currentHealth);
-        }
-
-        @Override
-        public boolean onPlayerDeath(AbstractPlayer player, DamageInfo damageInfo) {
-            player.heal(amount);
-            Wiz.att(new RemoveSpecificPowerAction(player, player, this));
-            return false;
-        }
-    */
     @Override
     public void updateDescription() {
         if (amount == 1)
-            description = DESCRIPTIONS[0];
+            description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1];
         else
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[2] + amount + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4];
     }
 
+    @Override
+    public AbstractPower makeCopy() {
+        return new GracePower(owner, amount, threshold);
+    }
 }

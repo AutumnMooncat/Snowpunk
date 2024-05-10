@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -39,5 +40,10 @@ public class ScrapPower extends AbstractEasyPower {
         } else {
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new ScrapPower(owner, amount);
     }
 }

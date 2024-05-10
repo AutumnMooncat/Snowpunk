@@ -1,0 +1,23 @@
+{
+  "${ModID}:BottledInspiration": {
+    "NAME": "Bottled Inspiration",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yBrass."
+    ]
+  },
+  "${ModID}:SteamfogBrew": {
+    "NAME": "Steamfog Brew",
+    "DESCRIPTIONS": [
+      "The next #b",
+      " times you would lose HP, lose half as much."
+    ]
+  },
+  "${ModID}:IceblastTonic": {
+    "NAME": "Iceblast Tonic",
+    "DESCRIPTIONS": [
+      "Give #b",
+      " #yCold to all cards in your hand."
+    ]
+  }
+}

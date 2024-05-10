@@ -56,7 +56,7 @@ public class Embers extends CoreCard {
     @Override
     public void onPowerTrigger(int amount) {
         AbstractMonster monster = AbstractDungeon.getRandomMonster();
-        Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new SingePower(monster, Wiz.adp(), amount), amount));
+        Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new SingePower(monster, amount), amount));
     }
 
     @Override

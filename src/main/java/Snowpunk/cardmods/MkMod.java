@@ -1,7 +1,5 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.cardmods.parts.GainEnergyMod;
-import Snowpunk.patches.CustomTags;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;

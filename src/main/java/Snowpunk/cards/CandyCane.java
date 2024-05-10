@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.CandyCaneKillAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -24,23 +26,17 @@ public class CandyCane extends AbstractMultiUpgradeCard {
     public CandyCane() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
-        magicNumber = baseMagicNumber = 10;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new CandyCaneKillAction(m, magicNumber, killMinion));
+        Wiz.atb(new CandyCaneKillAction(m, killMinion));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() ->
-        {
-            killMinion = true;
-            upgradeMagicNumber(5);
-            uDesc();
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

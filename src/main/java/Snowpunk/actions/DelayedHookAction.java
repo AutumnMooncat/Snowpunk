@@ -14,7 +14,7 @@ public class DelayedHookAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        Wiz.atb(new CandyCaneKillAction((AbstractMonster) target, Wiz.adp().currentBlock + Wiz.adp().currentHealth, false));
+        Wiz.atb(new CandyCaneKillAction((AbstractMonster) target, false));
         isDone = true;
     }
 }

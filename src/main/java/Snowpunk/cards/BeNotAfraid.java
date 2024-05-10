@@ -21,21 +21,20 @@ public class BeNotAfraid extends AbstractMultiUpgradeCard {
 
     public BeNotAfraid() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
+        magicNumber = baseMagicNumber = 2;
+        secondMagic = baseSecondMagic = 8;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new GracePower(p, magicNumber));
+        Wiz.applyToSelf(new GracePower(p, magicNumber, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() ->
-        {
-            isInnate = true;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeSecondMagic(4));
+        addUpgradeData(() -> upgradeSecondMagic(-4));
         addUpgradeData(() -> upgradeBaseCost(2));
+        setExclusions(1, 2);
     }
 }

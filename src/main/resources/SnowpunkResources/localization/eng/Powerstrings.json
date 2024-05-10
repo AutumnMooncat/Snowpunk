@@ -2,8 +2,8 @@
   "${ModID}:SingePower": {
     "NAME": "Singe",
     "DESCRIPTIONS": [
-      "Take #b",
-      " additional damage when Attacked. Removed at the end of your turn."
+      "Whenever a card Evaporates, this creature loses #b",
+      " HP."
     ]
   },
   "${ModID}:ChillPower": {
@@ -13,27 +13,78 @@
       " this turn."
     ]
   },
+  "${ModID}:GearNextCardPower": {
+    "NAME": "Gear Next Card",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " [snowpunk:GearIcon] \u00a0to the next viable card played."
+    ]
+  },
   "${ModID}:FireballPower": {
     "NAME": "Fireball",
     "DESCRIPTIONS": [
-      "The next card you play becomes #yHot.",
+      "The next card you play gains #b1 #yHot.",
       "The next #b",
-      " cards you play become #yHot."
+      " cards you play gain #b1 #yHot."
+    ]
+  },
+  "${ModID}:FireburstPower": {
+    "NAME": "Fireburst",
+    "DESCRIPTIONS": [
+      "The next card you play gains #b",
+      " #yHot."
+    ]
+  },
+  "${ModID}:GearNextPower": {
+    "NAME": "Monocle",
+    "DESCRIPTIONS": [
+      "The next card you play with [Snowpunk:GearIcon] \u00a0gains #b",
+      " [Snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:Mr10BelowPower": {
+    "NAME": "Mr. 10 Below",
+    "DESCRIPTIONS": [
+      "The first time you play a #yCold card each turn, give it #b",
+      " #yCold."
+    ]
+  },
+  "${ModID}:TooMuchPower": {
+    "NAME": "Too Much",
+    "DESCRIPTIONS": [
+      "The first card you play each turn gains #b1 #yHot and applies #b",
+      " #ySinge to a random enemy."
+    ]
+  },
+  "${ModID}:HotEnergyPower": {
+    "NAME": "Hot Energy",
+    "DESCRIPTIONS": [
+      "At the start of your next turn, gain #b",
+      " [E] ."
+    ]
+  },
+  "${ModID}:ColdDrawPower": {
+    "NAME": "Cold Draw",
+    "DESCRIPTIONS": [
+      "At the start of your next turn, draw #b",
+      " cards. If you have cards in the Evaporate pile, draw from those first."
     ]
   },
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "At the start of your turn, add a random Uncommon card to your hand.",
-      "At the start of your turn, add a random Mk",
-      " Uncommon card to your hand."
+      "At the start of your turn, add #b",
+      " random Uncommon cards to your hand",
+      " with #yEthereal",
+      " and #yUpgrade them",
+      "."
     ]
   },
   "${ModID}:CarolingPower": {
     "NAME": "Caroling",
     "DESCRIPTIONS": [
-      "At the end of your turn, if you played no Attacks, increase your Block by #b",
-      "00%."
+      "Any time a card is created during combat, give it #b",
+      " [Snowpunk:GearIcon] \u00a0if viable."
     ]
   },
   "${ModID}:FrostbitePower": {
@@ -54,8 +105,8 @@
   "${ModID}:BrassPower": {
     "NAME": "Brass",
     "DESCRIPTIONS": [
-      "The next card you play that damages, #yBlocks, or has [snowpunk:GearIcon] gains #b",
-      " [snowpunk:GearIcon] ."
+      "The next card you play that damages or #yBlocks gains #b",
+      " #yPlating."
     ]
   },
   "${ModID}:FireWallPower": {
@@ -86,9 +137,9 @@
   "${ModID}:ShovelCoalPower": {
     "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "The first time you play a #yHot card each turn, return a random #yHot card to your hand.",
+      "The first card that #yExhausts each turn is moved to the Evaporate pile.",
       "The first #b",
-      " times you play a #yHot card each turn, return a random #yHot card to your hand."
+      " cards that #yExhaust each turn are moved to the Evaporate pile."
     ]
   },
   "${ModID}:LetItSnowPower": {
@@ -111,29 +162,32 @@
     "NAME": "Clockwork",
     "DESCRIPTIONS": [
       "At the start of your turn, add #b",
-      " [snowpunk:GearIcon] to cards in your hand."
+      " #yPlating to cards in your hand."
     ]
   },
   "${ModID}:GracePower": {
     "NAME": "Grace",
     "DESCRIPTIONS": [
-      "The next time you would lose #b10 or more HP, prevent it.",
+      "The next time you would lose #b",
+      " or more HP, prevent it.",
       "The next #b",
-      " times you would lose #b10 or more HP, prevent it."
+      " times you would lose #b",
+      " or more HP, prevent it."
     ]
   },
   "${ModID}:HollyPower": {
     "NAME": "Holly",
     "DESCRIPTIONS": [
-      "At the start of your turn, add a #yFa #yLa #yLa #yLa #yLa to your hand and remove #yHolly."
+      "The next time you apply a debuff this turn, apply #b",
+      " more."
     ]
   },
   "${ModID}:FineTunePower": {
     "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "The first #yClank card you play each turn costs 0 and draws #b1 card.",
+      "The first #yClank card you play each turn costs #b0 and draws #b1 card.",
       "The first #b",
-      " #yClank cards you play each turn cost 0 and draw #b1 card."
+      " #yClank cards you play each turn cost #b0 and draw #b1 card."
     ]
   },
   "${ModID}:ChooChooPower": {
@@ -147,28 +201,31 @@
   "${ModID}:SteamFormPower": {
     "NAME": "Steam Form",
     "DESCRIPTIONS": [
-      "#yHot cards gain #b",
-      " #yEnergy. #yCold cards draw #b",
-      " card.",
-      " cards."
+      "Gain #b",
+      " #ySteam at the start of your turn."
+    ]
+  },
+  "${ModID}:SteamPower": {
+    "NAME": "Steam",
+    "DESCRIPTIONS": [
+      "The next card you play this turn is free and gains #b1 #yHot.",
+      "The next #b",
+      " cards you play this turn are free and gain #b1 #yHot."
     ]
   },
   "${ModID}:SteamTrainPower": {
     "NAME": "Steam Train",
     "DESCRIPTIONS": [
-      "For the rest of this turn, deal #b",
-      "For the next #b",
-      " turns, deal #b",
-      " times damage and gain #b",
-      " times #yBlock."
+      "The first card you play each turn is free and gains #b",
+      " #yHot."
     ]
   },
   "${ModID}:SnowpunkPower": {
     "NAME": "Snowpunk",
     "DESCRIPTIONS": [
-      "[snowpunk:SnowIcon] count as [snowpunk:GearIcon] .",
+      "[snowpunk:SnowIcon] count as #yPlating and [snowpunk:GearIcon] \u00a0for card effects.",
       "[snowpunk:SnowIcon] count as #b",
-      " [snowpunk:GearIcon] ."
+      "  #yPlating and [snowpunk:GearIcon] \u00a0for card effects."
     ]
   },
   "${ModID}:PressureValvesPower": {
@@ -186,6 +243,14 @@
       " turns."
     ]
   },
+  "${ModID}:SteamfogPower": {
+    "NAME": "Steamfog",
+    "DESCRIPTIONS": [
+      "The next time you would lose HP, lose half as much.",
+      "The next #b",
+      " times you would lose HP, lose half as much."
+    ]
+  },
   "${ModID}:FrozenPower": {
     "NAME": "Frozen",
     "DESCRIPTIONS": [
@@ -194,12 +259,12 @@
       " turns."
     ]
   },
-  "${ModID}:FullSteamAheadPower": {
-    "NAME": "Full Steam Ahead",
+  "${ModID}:PyromaniacPower": {
+    "NAME": "Pyromaniac",
     "DESCRIPTIONS": [
-      "#yHot cards play an additional time.",
+      "#yHot cards play an additional time, but #yExhaust.",
       "#yHot cards play an additional #b",
-      " times."
+      " times, but #yExhaust."
     ]
   },
   "${ModID}:FranticFixPower": {

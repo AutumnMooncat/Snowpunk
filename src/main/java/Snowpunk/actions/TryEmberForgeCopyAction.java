@@ -1,7 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.FullSteamAheadPower;
+import Snowpunk.powers.PyromaniacPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,10 +13,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class TryEmberForgeCopyAction extends AbstractGameAction {
 
     AbstractCard card;
-    FullSteamAheadPower emberForgePower;
+    PyromaniacPower emberForgePower;
     UseCardAction action;
 
-    public TryEmberForgeCopyAction(AbstractCard card, UseCardAction action, FullSteamAheadPower power) {
+    public TryEmberForgeCopyAction(AbstractCard card, UseCardAction action, PyromaniacPower power) {
         this.card = card;
         this.action = action;
         this.emberForgePower = power;
@@ -24,7 +24,7 @@ public class TryEmberForgeCopyAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (CardTemperatureFields.getCardHeat(card) == CardTemperatureFields.HOT && !card.purgeOnUse) {
+        if (CardTemperatureFields.getCardHeat(card) >= CardTemperatureFields.HOT && !card.purgeOnUse) {
             emberForgePower.flash();
             AbstractMonster monster = null;
             if (action.target != null)

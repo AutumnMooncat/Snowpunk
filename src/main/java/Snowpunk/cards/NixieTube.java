@@ -1,11 +1,19 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.EnhanceCardInHardAction;
 import Snowpunk.actions.MultiUpgradeInHandAction;
+import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -16,35 +24,34 @@ public class NixieTube extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 5, UPG_BLOCK = 3;
-    private static final int TINKER = 1;
-    private static final int UP_TINKER = 1;
+    private static final int COST = 1;
 
-    private boolean tinkerSelf = false;
+    private boolean addGear = false;
 
     public NixieTube() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        block = baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = TINKER;
-        secondMagic = baseSecondMagic = 1;
+        baseMagicNumber = magicNumber = 2;
         info = baseInfo = 0;
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
-        Wiz.atb(new MultiUpgradeInHandAction(magicNumber, secondMagic));
-        /*if (tinkerSelf) {
-            Wiz.atb(new TinkerAction(this));
-        } else {
-            Wiz.atb(new TinkerAction(magicNumber, false));
-        }*/
+        int gears = getGears();
+        List<AbstractCardModifier> mods = new ArrayList<>();
+        mods.add(new PlateMod(gears));
+        if (addGear)
+            mods.add(new GearMod(1));
+        Wiz.atb(new EnhanceCardInHardAction(1, info > 0 ? gears : 1, mods));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
-        addUpgradeData(() -> upgradeSecondMagic(1));
-        addUpgradeData(() -> upgradeSecondMagic(1));
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(2)));
+        addUpgradeData(() -> {
+            addGear = true;
+            uDesc();
+            CardModifierManager.addModifier(this, new GearMod(0));
+        });
+        addUpgradeData(() -> upgradeInfo(1));
     }
 }

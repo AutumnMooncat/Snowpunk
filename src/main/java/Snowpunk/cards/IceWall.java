@@ -1,19 +1,17 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.DelayedMakeCopyAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.IcePower;
-import Snowpunk.powers.IceWallPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +25,15 @@ public class IceWall extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 4, UP_COST = 3;
+    private static final int COST = -1;
 
     boolean upCost = false;
 
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        block = baseBlock = 14;
+        block = baseBlock = 5;
+        magicNumber = baseMagicNumber = 2;
+        exhaust = true;
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -47,38 +47,30 @@ public class IceWall extends AbstractMultiUpgradeCard {
         return Tooltip;
     }
 
-    @Override
-    public void triggerWhenDrawn() {
-        super.triggerWhenDrawn();
-        applyPowers();
-    }
-
-    @Override
-    public void atTurnStart() {
-        resetAttributes();
-        applyPowers();
-    }
 
     @Override
     public void use(AbstractPlayer player, AbstractMonster monster) {
-        blck();
-    }
+        int effect = this.energyOnUse;
 
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        int newCost = Math.max((upCost ? UP_COST : COST) - getSnow(), 0);
-        if (costForTurn > newCost)
-            setCostForTurn(newCost);
+        if (player.hasRelic("Chemical X")) {
+            effect += ChemicalX.BOOST;
+            player.getRelic("Chemical X").flash();
+        }
+
+        for (int i = 0; i < effect; i++)
+            blck();
+
+        if (!this.freeToPlayOnce) {
+            player.energy.use(EnergyPanel.totalCount);
+        }
+
+        Wiz.atb(new GainEnergyAction(magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(4));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            upCost = true;
-            upgradeBaseCost(UP_COST);
-        });
+        addUpgradeData(() -> upgradeBlock(2));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

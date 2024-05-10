@@ -46,6 +46,9 @@ public class PrefixManager extends AbstractCardModifier {
 //        if (card.hasTag(CustomTags.EVERBURN)) {
 //            sb.append(TEXT[11]).append(" ");
 //        }
+        if (card.hasTag(CustomTags.FLAMIN)) {
+            sb.append(TEXT[11]).append(" ");
+        }
 //        if (sb.length() != 0) {
 //            sb.setLength(sb.length() - 1);
 //            sb.append(TEXT[0]);

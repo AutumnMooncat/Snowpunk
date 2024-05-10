@@ -9,6 +9,9 @@ import Snowpunk.cards.cardvars.SecondMagicNumber;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SnowballPatches;
+import Snowpunk.potions.BottledInspiration;
+import Snowpunk.potions.IceblastTonic;
+import Snowpunk.potions.SteamfogBrew;
 import Snowpunk.relics.AbstractEasyRelic;
 import Snowpunk.util.KeywordManager;
 import basemod.AutoAdd;
@@ -86,6 +89,17 @@ public class SnowpunkMod implements
     public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
     public static int preTalkProbability = 50; //Out of 100
 
+    public static final Color BOTTLED_INSPIRATION_LIQUID = CardHelper.getColor(240, 240, 150);
+    public static final Color BOTTLED_INSPIRATION_HYBRID = CardHelper.getColor(230, 200, 50);
+    public static final Color BOTTLED_INSPIRATION_SPOTS = CardHelper.getColor(250, 250, 250);
+
+    public static final Color ICEBLAST_TONIC_LIQUID = CardHelper.getColor(130, 180, 230);
+    public static final Color ICEBLAST_TONIC_HYBRID = CardHelper.getColor(170, 220, 250);
+
+    public static final Color STEAMFOG_BREW_LIQUID = CardHelper.getColor(150, 150, 180);
+    public static final Color STEAMFOG_BREW_HYBRID = CardHelper.getColor(80, 90, 130);
+    public static final Color STEAMFOG_BREW_SPOTS = CardHelper.getColor(180, 180, 180);
+
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -127,6 +141,8 @@ public class SnowpunkMod implements
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new TheConductor(TheConductor.characterStrings.NAMES[1], TheConductor.Enums.THE_CONDUCTOR),
                 CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheConductor.Enums.THE_CONDUCTOR);
+
+        receiveEditPotions();
     }
 
     @Override
@@ -152,6 +168,9 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.TempIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.FireIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.HollyIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.ColdIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.HotIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.OverIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -167,6 +186,12 @@ public class SnowpunkMod implements
     }
 
 
+    public void receiveEditPotions() {
+        BaseMod.addPotion(BottledInspiration.class, BOTTLED_INSPIRATION_LIQUID, BOTTLED_INSPIRATION_HYBRID, BOTTLED_INSPIRATION_HYBRID, BottledInspiration.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+        BaseMod.addPotion(SteamfogBrew.class, STEAMFOG_BREW_LIQUID, STEAMFOG_BREW_HYBRID, STEAMFOG_BREW_HYBRID, SteamfogBrew.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+        BaseMod.addPotion(IceblastTonic.class, ICEBLAST_TONIC_LIQUID, ICEBLAST_TONIC_HYBRID, null, IceblastTonic.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+    }
+
     @Override
     public void receiveEditStrings() {
         String curPath = "eng";
@@ -181,6 +206,8 @@ public class SnowpunkMod implements
         BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/PartAndCorestrings.json");
 
         BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + curPath + "/UIstrings.json");
+
+        BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
     }
 
     @Override
@@ -208,11 +235,26 @@ public class SnowpunkMod implements
                     case "hat":
                         KeywordManager.HAT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
                         break;
+                    case "plating":
+                        KeywordManager.PLATE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "condensed":
+                        KeywordManager.COND = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
                     case "gear":
                         KeywordManager.GEAR = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
                         break;
+                    case "overdrive":
+                        KeywordManager.OVER = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
                     case "holly":
                         KeywordManager.HOLLY = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "brass":
+                        KeywordManager.BRASS = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "flamin":
+                        KeywordManager.FLAMIN = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
                         break;
                 }
             }

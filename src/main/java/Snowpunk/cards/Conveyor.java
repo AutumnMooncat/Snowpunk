@@ -24,7 +24,7 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, DRAW = 3, UP_DRAW = 1;
+    private static final int COST = 0, DRAW = 3;
 
     public Conveyor() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -41,21 +41,11 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(UP_DRAW)));
-        addUpgradeData(() -> {
-            baseMagicNumber = magicNumber = 0;
-            upgradeMagicNumber(3);
-            uDesc();
-        });
-        addUpgradeData(() -> upgradeMagicNumber(-1));
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
     }
 
     @Override
-    public void onClank() {
-        int remove = magicNumber;
-        if (magicNumber < 0)
-            remove = getGears() * 2;
-        addToTop(new ApplyCardModifierAction(this, new GearMod(-remove)));
+    public void onClank(AbstractMonster monster) {
+        addToTop(new ApplyCardModifierAction(this, new GearMod(-1)));
     }
 }

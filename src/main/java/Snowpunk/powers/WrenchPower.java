@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -60,5 +61,10 @@ public class WrenchPower extends AbstractEasyPower implements OnClankPower, Invi
     @Override
     public boolean isFreeToPlay(AbstractCard card) {
         return true;
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new WrenchPower(owner, amount);
     }
 }

@@ -33,7 +33,7 @@ public class NorEaster extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.atb(new ModCardTempAction(player.discardPile.group, -99));
+        Wiz.atb(new ModCardTempAction(player.discardPile.group, -1));
     }
 
     @Override

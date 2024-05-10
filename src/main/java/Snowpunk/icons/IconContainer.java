@@ -84,4 +84,52 @@ public class IconContainer {
             return singleton;
         }
     }
+
+    public static class ColdIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Cold");
+        private static AbstractCustomIcon singleton;
+
+        public ColdIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Cold.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new ColdIcon();
+            }
+            return singleton;
+        }
+    }
+
+    public static class HotIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Hot");
+        private static AbstractCustomIcon singleton;
+
+        public HotIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Hot.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new HotIcon();
+            }
+            return singleton;
+        }
+    }
+
+    public static class OverIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Over");
+        private static AbstractCustomIcon singleton;
+
+        public OverIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/ui/OverIcon.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new OverIcon();
+            }
+            return singleton;
+        }
+    }
 }

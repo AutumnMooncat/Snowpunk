@@ -1,12 +1,16 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ClankAction;
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,28 +25,34 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 14, UP_DMG = 3, SELF_DMG = 4, DOWN_DMG = -2;
+    private static final int COST = 1, DMG = 8, UP_DMG = 3;
 
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
-        magicNumber = baseMagicNumber = SELF_DMG;
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(player, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        Wiz.atb(new ClankAction(this, AbstractGameAction.ActionType.DAMAGE));
+
+        int drawAmount = getGears();
+        if (drawAmount > 0)
+            Wiz.atb(new DrawCardAction(drawAmount));
+        Wiz.atb(new ClankAction(this));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeMagicNumber(DOWN_DMG));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
     }
 
     @Override
-    public void onClank() {
-        addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+    public void onClank(AbstractMonster monster) {
+        int drawAmount = getGears();
+        if (drawAmount > 0)
+            addToTop(new DiscardAction(Wiz.adp(), Wiz.adp(), drawAmount, false));
     }
 }

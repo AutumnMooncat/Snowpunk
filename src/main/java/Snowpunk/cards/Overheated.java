@@ -8,6 +8,8 @@ import Snowpunk.powers.CharPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,6 +17,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Overheated extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Overheated.class.getSimpleName());
 
@@ -38,12 +42,12 @@ public class Overheated extends AbstractMultiUpgradeCard {
         if (aoe) {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
                 dmg(mo, AbstractGameAction.AttackEffect.FIRE);
-                Wiz.applyToEnemy(mo, new SingePower(mo, p, magicNumber));
+                Wiz.applyToEnemy(mo, new SingePower(mo, magicNumber));
                 Wiz.applyToEnemy(mo, new CharPower(mo, secondMagic));
             }
         } else {
             dmg(m, AbstractGameAction.AttackEffect.FIRE);
-            Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
+            Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
             Wiz.applyToEnemy(m, new CharPower(m, secondMagic));
         }
     }

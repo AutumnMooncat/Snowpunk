@@ -1,10 +1,12 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.cards.Cryogenizer;
+import Snowpunk.damageMods.ChillDamageMod;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,7 +20,7 @@ public class ChillMod extends AbstractCardModifier {
     public static final String ID = makeID(ChillMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(Cryogenizer.ID).EXTENDED_DESCRIPTION;
 
-    int amount = 0;
+    public int amount = 0;
 
     public ChillMod(int num) {
         this.priority = 2;
@@ -26,8 +28,17 @@ public class ChillMod extends AbstractCardModifier {
     }
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (card.target == AbstractCard.CardTarget.NONE ||
+                card.target == AbstractCard.CardTarget.SELF)
+            card.target = AbstractCard.CardTarget.ENEMY;
+        if (card.type == AbstractCard.CardType.ATTACK)
+            DamageModifierManager.addModifier(card, new ChillDamageMod(amount));
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target instanceof AbstractMonster) {
+        if (card.type != AbstractCard.CardType.ATTACK && target instanceof AbstractMonster) {
             Wiz.applyToEnemy((AbstractMonster) target, new ChillPower(target, amount));
         }
     }
@@ -46,11 +57,15 @@ public class ChillMod extends AbstractCardModifier {
             chillMod.amount += amount;
             if (chillMod.amount < 0)
                 chillMod.amount = 0;
+
+            if (card.type == AbstractCard.CardType.ATTACK)
+                DamageModifierManager.addModifier(card, new ChillDamageMod(amount));
+
             card.applyPowers();
             card.initializeDescription();
             return false;
         }
-        return card.target == AbstractCard.CardTarget.ENEMY;
+        return true;
     }
 
     @Override

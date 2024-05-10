@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -21,7 +22,6 @@ public class FireWallPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-//        if (owner.currentBlock <= 0)
         addToTop(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
@@ -29,7 +29,7 @@ public class FireWallPower extends AbstractEasyPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS &&
                 info.owner != null && info.owner != this.owner && amount > 0) {
-            addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, owner, amount, amount), amount));
+            addToTop(new ApplyPowerAction(info.owner, owner, new SingePower(info.owner, amount), amount));
             flash();
         }
         return damageAmount;
@@ -38,5 +38,10 @@ public class FireWallPower extends AbstractEasyPower {
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new FireWallPower(owner, amount);
     }
 }

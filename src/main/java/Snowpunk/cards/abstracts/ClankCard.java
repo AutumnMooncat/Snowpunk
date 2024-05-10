@@ -7,27 +7,8 @@ import Snowpunk.vfx.WrenchEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public interface ClankCard {
-
-    static boolean tryClank(AbstractCard card) {
-        if (Wiz.adp() != null && Wiz.adp().hasPower(WrenchPower.POWER_ID) && (Wiz.adp().getPower(WrenchPower.POWER_ID).amount > 0)) {
-            Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
-            ((WrenchPower) Wiz.adp().getPower(WrenchPower.POWER_ID)).onClank(card);
-            Wiz.adp().getPower(WrenchPower.POWER_ID).amount--;
-            if (Wiz.adp().getPower(WrenchPower.POWER_ID).amount == 0)
-                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), Wiz.adp().getPower(WrenchPower.POWER_ID)));
-            return false;
-        }
-        if (Wiz.adp() != null && Wiz.adp().hasPower(PermWrenchPower.POWER_ID) && (Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount > 0)) {
-            Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
-            Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount--;
-            if (Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount == 0)
-                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), Wiz.adp().getPower(PermWrenchPower.POWER_ID)));
-            return false;
-        }
-        return true;
-    }
-
-    public abstract void onClank();
+    public abstract void onClank(AbstractMonster monster);
 }

@@ -33,7 +33,7 @@ public class HeatCoils extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.applyToEnemy(monster, new SingePower(monster, player, card.magicNumber));
+        Wiz.applyToEnemy(monster, new SingePower(monster, card.magicNumber));
     }
 
     @Override

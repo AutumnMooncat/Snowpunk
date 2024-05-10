@@ -1,10 +1,12 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.ClankTransformOnPlay;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
@@ -30,7 +32,7 @@ public class ClankTransformAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        AbstractCard newCard = getRandomCard(getTransmutationCandidates(card));
+        AbstractCard newCard = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.ATTACK);
         if (newCard != null) {
             newCard = newCard.makeCopy();
             newCard.hb = card.hb;
@@ -38,6 +40,7 @@ public class ClankTransformAction extends AbstractGameAction {
             newCard.current_y = card.current_y;
             newCard.target_x = card.target_x;
             newCard.target_y = card.target_y;
+            CardModifierManager.addModifier(newCard, new ClankTransformOnPlay());
 
             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(newCard));
 

@@ -32,7 +32,7 @@ public class Anvil extends CoreCard {
 
     public Anvil() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.POST_POW);
-        secondMagic = baseSecondMagic = 4;
+        secondMagic = baseSecondMagic = 3;
     }
 
     @Override
@@ -72,6 +72,6 @@ public class Anvil extends CoreCard {
 
     @Override
     public int getUpgradeAmount() {
-        return 2;
+        return 1;
     }
 }

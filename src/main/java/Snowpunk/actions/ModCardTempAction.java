@@ -99,6 +99,10 @@ public class ModCardTempAction extends AbstractGameAction {
     public void chooseUpdate() {
         if (duration == startDuration) {
             choosing = true;
+            if (amount == 0) {
+                isDone = true;
+                return;
+            }
             for (AbstractCard c : player.hand.group) {
                 if (!CardTemperatureFields.canModTemp(c, heat))
                     noModTemps.add(c);

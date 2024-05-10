@@ -15,7 +15,6 @@ public class LosePowerPower extends AbstractEasyPower {
     public static String TEXT_ID = makeID("LosePowerPower");
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(TEXT_ID);
     private AbstractPower powerToLose;
-    //private static Texture chain = TexLoader.getTexture("SnowpunkResources/images/ui/chain.png");
 
     public LosePowerPower(AbstractCreature owner, AbstractPower powerToLose, int amount) {
         super(TEXT_ID + powerToLose.ID, strings.NAME + powerToLose.name, PowerType.DEBUFF, false, owner, amount);
@@ -45,5 +44,10 @@ public class LosePowerPower extends AbstractEasyPower {
         } else {
             description = strings.DESCRIPTIONS[0] + amount + strings.DESCRIPTIONS[1] + powerToLose.name + strings.DESCRIPTIONS[2];
         }
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new LosePowerPower(owner, powerToLose, amount);
     }
 }

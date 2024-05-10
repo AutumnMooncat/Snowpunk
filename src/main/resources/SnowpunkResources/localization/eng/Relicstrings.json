@@ -25,26 +25,71 @@
       "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. NL Upon pickup, lose #r33% of your Max HP."
     ]
   },
-  "${ModID}:IceCreamSandwich": {
-    "NAME": "Ice Cream Sandwich",
-    "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
-    "DESCRIPTIONS": [
-      "Start each combat with an additional [Snowpunk:SnowIcon] ."
-    ]
-  },
   "${ModID}:ScrapHeap": {
     "NAME": "Scrap Heap",
     "FLAVOR": "'Let's see what I can do with this...'",
     "DESCRIPTIONS": [
-      "Upon pickup, permanently apply #b3 [Snowpunk:GearIcon] to #b3 viable cards in your deck.",
-      "Upgrade with Gears"
+      "Upon pickup, permanently apply #b3 #ysnowpunk:Plating to #b3 viable cards in your deck.",
+      "Upgrade with Plating"
     ]
   },
-  "${ModID}:CryoChamber": {
-    "NAME": "Cryo Chamber",
-    "FLAVOR": "'Frozen in place.'",
+  "${ModID}:IceCreamSandwich": {
+    "NAME": "Ice Cream Sandwich",
+    "FLAVOR": "'Bit chilly, innit?'",
     "DESCRIPTIONS": [
       "#ysnowpunk:Cold cards #yRetain."
+    ]
+  },
+  "${ModID}:BananaSplit": {
+    "NAME": "Banana Split",
+    "FLAVOR": "With three scoops!",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] ."
+    ]
+  },
+  "${ModID}:Mistletoe": {
+    "NAME": "Mistletoe",
+    "FLAVOR": "'So romantic!'",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain #b",
+      " #ysnowpunk:Holly."
+    ]
+  },
+  "${ModID}:Monocle": {
+    "NAME": "Monocle",
+    "FLAVOR": "'Do you see what I see?'",
+    "DESCRIPTIONS": [
+      "The first card with [Snowpunk:GearIcon] \u00a0you play each combat gains #b",
+      " [Snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:SpareWrench": {
+    "NAME": "Spare Wrench",
+    "FLAVOR": "'I was wondering where I put this thing!'",
+    "DESCRIPTIONS": [
+      "Prevent the first time you would #ysnowpunk:Clank each combat."
+    ]
+  },
+  "${ModID}:NaughtyList": {
+    "NAME": "Naughty List",
+    "FLAVOR": "'He sees you when you're sleeping...'",
+    "DESCRIPTIONS": [
+      "Gain [E] \u00a0at the start of your turn. The first #b3 times you apply a debuff each combat, gain a copy of it."
+    ]
+  },
+  "${ModID}:MagicScarf": {
+    "NAME": "Magic Scarf",
+    "FLAVOR": "To go with that other piece of magical clothing.",
+    "DESCRIPTIONS": [
+      "Whenever you play a card with a #yHat, draw a card"
+    ]
+  },
+  "${ModID}:BrassEgg": {
+    "NAME": "Brass Egg",
+    "FLAVOR": "You can hear spinning cogs inside.",
+    "DESCRIPTIONS": [
+      "Whenever you add a card to your deck, add #b",
+      " #ysnowpunk:Plating if possible."
     ]
   },
   "${ModID}:StrangeGizmo": {

@@ -6,17 +6,21 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.CustomTags;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.patches.LoopcastField;
+import Snowpunk.powers.ColdDrawPower;
 import Snowpunk.powers.FireballPower;
+import Snowpunk.powers.HotEnergyPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
+import basemod.devcommands.draw.Draw;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -28,9 +32,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;
@@ -53,11 +59,19 @@ public class TemperatureMod extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (CardTemperatureFields.getCardHeat(card) == HOT)
-            return modID.toLowerCase() + ":" + BaseMod.getKeywordProper(KeywordManager.HOT) + ". NL " + rawDescription;
+        if (CardTemperatureFields.getCardHeat(card) >= HOT && !CardModifierManager.hasModifier(card, FlaminMod.ID)) {
+            String out = KeywordManager.HOT.replace(modID.toLowerCase(), "");
+            out = out.replace(":", "");
+            out = out.substring(0, 1).toUpperCase() + out.substring(1);
+            return modID.toLowerCase() + ":" + out + ". NL " + rawDescription;
+        }
 
-        if (CardTemperatureFields.getCardHeat(card) == COLD)
-            return modID.toLowerCase() + ":" + BaseMod.getKeywordProper(KeywordManager.COLD) + ". NL " + rawDescription;
+        if (CardTemperatureFields.getCardHeat(card) <= COLD) {
+            String out = KeywordManager.COLD.replace(modID.toLowerCase(), "");
+            out = out.replace(":", "");
+            out = out.substring(0, 1).toUpperCase() + out.substring(1);
+            return modID.toLowerCase() + ":" + out + ". NL " + rawDescription;
+        }
 
         return rawDescription;
     }
@@ -66,19 +80,13 @@ public class TemperatureMod extends AbstractCardModifier {
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int heat = CardTemperatureFields.getCardHeat(card);
 
-        if (heat >= HOT)
+        if (heat >= HOT) {
             EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
+        }
 
         if (heat <= COLD)
-            Wiz.att(new CondenseAction(abs(heat)));
+            Wiz.att(new DrawCardAction(Math.abs(heat)));
     }
-/*
-    @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        if (!card.isEthereal && CardTemperatureFields.getCardHeat(card) <= COLD)
-            card.retain = true;
-        return false;
-    }*/
 
     @Override
     public boolean shouldApply(AbstractCard card) {
@@ -89,25 +97,22 @@ public class TemperatureMod extends AbstractCardModifier {
         return true;
     }
 
-
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int heat = CardTemperatureFields.getCardHeat(card);
         if (heat >= HOT)
-            ExtraIcons.icon(hot).render(card);
+            ExtraIcons.icon(hot).text(String.valueOf(heat)).render(card);
         if (heat <= COLD)
-            ExtraIcons.icon(cold).render(card);
-
-        //.text(String.valueOf(heat))
+            ExtraIcons.icon(cold).text(String.valueOf(Math.abs(heat))).render(card);
     }
 
     @Override
     public void onSingleCardViewRender(AbstractCard card, SpriteBatch sb) {
         int heat = CardTemperatureFields.getCardHeat(card);
         if (heat >= HOT)
-            ExtraIcons.icon(hot).render(card);
+            ExtraIcons.icon(hot).text(String.valueOf(heat)).render(card);
         if (heat <= COLD)
-            ExtraIcons.icon(cold).render(card);
+            ExtraIcons.icon(cold).text(String.valueOf(Math.abs(heat))).render(card);
     }
 
     @Override

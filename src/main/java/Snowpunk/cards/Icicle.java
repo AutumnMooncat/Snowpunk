@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.GainSnowballAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -50,10 +52,10 @@ public class Icicle extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DAMAGE));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
         addUpgradeData(() -> {
             upgradeBaseCost(2);
             upgradeMagicNumber(1);
         });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

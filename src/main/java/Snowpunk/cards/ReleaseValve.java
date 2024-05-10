@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -27,22 +28,22 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, SINGE = 4, UP_SINGE = 2, PLUS_SINGE = 2;
+    private static final int COST = 1, SINGE = 2, UP_SINGE = 2;
 
     public ReleaseValve() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = SINGE;
-        secondMagic = baseSecondMagic = PLUS_SINGE;
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyPowers();
-        Wiz.applyToEnemy(m, new SingePower(m, p, magicNumber));
+        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
     }
 
     public void applyPowers() {
         int realBaseMagic = baseMagicNumber;
-        baseMagicNumber += secondMagic * EvaporatePanel.evaporatePile.size();
+        baseMagicNumber += getGears() * EvaporatePanel.evaporatePile.size();
         super.applyPowers();
         magicNumber = baseMagicNumber;
         baseMagicNumber = realBaseMagic;

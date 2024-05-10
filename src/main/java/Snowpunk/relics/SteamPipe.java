@@ -22,10 +22,6 @@ public class SteamPipe extends AbstractEasyRelic {
     public SteamPipe() {
         super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
         description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
-        tips.clear();
-        tips.add(new PowerTip(name, description));
-        initializeTips();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
     }
 
 

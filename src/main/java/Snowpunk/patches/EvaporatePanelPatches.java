@@ -1,14 +1,16 @@
 package Snowpunk.patches;
 
 import Snowpunk.actions.CondenseAction;
+import Snowpunk.powers.PyromaniacPower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.Gdx;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,6 +19,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
@@ -29,6 +33,8 @@ import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.UUID;
 
 public class EvaporatePanelPatches {
     @SpirePatch(clz = OverlayMenu.class, method = SpirePatch.CLASS)
@@ -107,6 +113,43 @@ public class EvaporatePanelPatches {
             EvaporatePanel.evaporatePile.update();
         }
     }
+/*
+    @SpirePatch2(clz = AbstractPlayer.class, method = "draw", paramtypez = {int.class})
+    public static class CheckDraw {
+        @SpirePrefixPatch
+        public static void draw(AbstractPlayer __instance, int ___numCards) {
+            if(AbstractDungeon.overlayMenu.endTurnButton.enabled)
+            {
+                for(int i = 0; i < ___numCards; ++i)
+                {
+                    if(EvaporatePanel.evaporatePile.group.size() > 0)
+                    {
+                        AbstractCard evaporatedCard = EvaporatePanel.evaporatePile.group.get(AbstractDungeon.cardRandomRng.random(EvaporatePanel.evaporatePile.group.size() - 1));
+                        AbstractDungeon.player.drawPile.addToTop(evaporatedCard);
+                        EvaporatePanel.evaporatePile.group.remove(evaporatedCard);
+                        CardTemperatureFields.reduceTemp(evaporatedCard);
+
+
+                        evaporatedCard.unhover();
+                        evaporatedCard.unfadeOut();
+                        evaporatedCard.lighten(true);
+                        evaporatedCard.fadingOut = false;
+
+                        AbstractGameEffect e = null;
+                        for (AbstractGameEffect effect : AbstractDungeon.effectList) {
+                            if (effect instanceof ExhaustCardEffect) {
+                                AbstractCard c = ReflectionHacks.getPrivate(effect, ExhaustCardEffect.class, "c");
+                                if (c == evaporatedCard)
+                                    e = effect;
+                            }
+                        }
+                        if(e != null)
+                            AbstractDungeon.effectList.remove(e);
+                    }
+                }
+            }
+        }
+    }*/
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
@@ -135,7 +178,8 @@ public class EvaporatePanelPatches {
     public static class MoveToEvaporatePile {
         @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<?> yeet(UseCardAction __instance, AbstractCard ___targetCard) {
-            if (!__instance.exhaustCard && shouldEvaporate(___targetCard)) {
+            //if (!__instance.exhaustCard && shouldEvaporate(___targetCard)) {
+            if (shouldEvaporate(___targetCard)) {
                 if (AbstractDungeon.player.hoveredCard == ___targetCard) {
                     AbstractDungeon.player.releaseCard();
                 }
@@ -143,18 +187,32 @@ public class EvaporatePanelPatches {
                 ___targetCard.unhover();
                 ___targetCard.untip();
                 ___targetCard.stopGlowing();
-                Wiz.adp().hand.group.remove(___targetCard);
-                AbstractDungeon.effectList.add(new ExhaustCardEffect(___targetCard));
-                EvaporatePanel.evaporatePile.addToTop(___targetCard);
-                AbstractDungeon.player.onCardDrawOrDiscard();
-                EvaporateField.evaporate.set(___targetCard, false);
-                ___targetCard.exhaustOnUseOnce = false;
-                ___targetCard.dontTriggerOnUseCard = false;
-                for (AbstractPower pow : Wiz.adp().powers) {
-                    if (pow instanceof OnEvaporatePower) {
-                        ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+                if (AbstractDungeon.player.hasPower(PyromaniacPower.POWER_ID)) {
+                    //AbstractDungeon.player.exhaustPile.addToTop(___targetCard);
+                    __instance.exhaustCard = true;
+                    return SpireReturn.Continue();
+                } else {
+                    __instance.exhaustCard = false;
+                    EvaporatePanel.evaporatePile.addToTop(___targetCard);
+                    Wiz.adp().hand.group.remove(___targetCard);
+                    AbstractDungeon.effectList.add(new ExhaustCardEffect(___targetCard));
+                    for (AbstractPower pow : Wiz.adp().powers) {
+                        if (pow instanceof OnEvaporatePower) {
+                            ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+                        }
+                    }
+                    for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                        for (AbstractPower pow : m.powers) {
+                            if (pow instanceof OnEvaporatePower) {
+                                ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+                            }
+                        }
                     }
                 }
+                ___targetCard.exhaustOnUseOnce = false;
+                AbstractDungeon.player.onCardDrawOrDiscard();
+                EvaporateField.evaporate.set(___targetCard, false);
+                ___targetCard.dontTriggerOnUseCard = false;
                 Wiz.atb(new HandCheckAction());
                 if (___targetCard.hasTag(CustomTags.VENT)) {
                     Wiz.atb(new CondenseAction(___targetCard));
@@ -241,6 +299,69 @@ public class EvaporatePanelPatches {
                 return EvaporatePanel.TEXT[2];
             }
             return msg;
+        }
+    }
+
+    @SpirePatch2(clz = DrawCardAction.class, method = "update")
+    public static class PreventReshuffle {
+        @SpireInsertPatch(
+                rloc = 17,
+                localvars = {"deckSize"}
+        )
+        public static void update(DrawCardAction __instance, @ByRef int[] deckSize) {
+            if (AbstractDungeon.overlayMenu.endTurnButton.enabled && EvaporatePanel.evaporatePile.group.size() > 0)
+                deckSize[0] += EvaporatePanel.evaporatePile.group.size();
+        }
+    }
+
+    @SpirePatch2(clz = DrawCardAction.class, method = "update")
+    public static class DrawFromEvaporateBeforeDrawPile {
+        @SpireInsertPatch(
+                rloc = 69
+        )
+        public static void update(DrawCardAction __instance) {
+            if (AbstractDungeon.overlayMenu.endTurnButton.enabled && EvaporatePanel.evaporatePile.size() > 0) {
+                AbstractCard evaporatedCard = EvaporatePanel.evaporatePile.group.get(AbstractDungeon.cardRandomRng.random(EvaporatePanel.evaporatePile.group.size() - 1));
+                AbstractDungeon.player.drawPile.addToTop(evaporatedCard);
+                EvaporatePanel.evaporatePile.group.remove(evaporatedCard);
+                if (CardTemperatureFields.getCardHeat(evaporatedCard) > 0)
+                    CardTemperatureFields.reduceTemp(evaporatedCard);
+
+                evaporatedCard.applyPowers();
+                evaporatedCard.initializeDescription();
+                evaporatedCard.unhover();
+                evaporatedCard.unfadeOut();
+                evaporatedCard.lighten(true);
+                evaporatedCard.fadingOut = false;
+
+                AbstractGameEffect e = null;
+                for (AbstractGameEffect effect : AbstractDungeon.effectList) {
+                    if (effect instanceof ExhaustCardEffect) {
+                        AbstractCard c = ReflectionHacks.getPrivate(effect, ExhaustCardEffect.class, "c");
+                        if (c == evaporatedCard)
+                            e = effect;
+                    }
+                }
+                if (e != null)
+                    AbstractDungeon.effectList.remove(e);
+                /*if (__instance.amount == 0)
+                    ReflectionHacks.privateMethod(DrawCardAction.class, "endActionWithFollowUp").invoke(__instance);
+                return;*/
+            }
+        }
+    }
+
+    @SpirePatch2(clz = GetAllInBattleInstances.class, method = "get")
+    public static class AddEvaporateToGetAllInBattleInstances {
+        @SpireInsertPatch(
+                rloc = 23,
+                localvars = {"cards"}
+        )
+        public static void get(UUID uuid, HashSet<AbstractCard> cards) {
+            for (AbstractCard c : EvaporatePanel.evaporatePile.group) {
+                if (c.uuid == uuid)
+                    cards.add(c);
+            }
         }
     }
 }

@@ -420,7 +420,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     }
 
     @Override
-    public void onClank() {
+    public void onClank(AbstractMonster monster) {
         for (CoreCard coreCard : cores)
             coreCard.onClank(this);
     }

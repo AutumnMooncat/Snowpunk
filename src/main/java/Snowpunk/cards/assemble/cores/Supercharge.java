@@ -24,7 +24,7 @@ public class Supercharge extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public Supercharge() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.BUF, EffectTag.EXH);

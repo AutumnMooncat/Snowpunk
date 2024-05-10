@@ -1,9 +1,9 @@
 package Snowpunk.cards.assemble.cores;
 
-import Snowpunk.actions.DelayedHookAction;
-import Snowpunk.actions.MoveExhaustedCardToEvaporatePileAction;
+import Snowpunk.actions.MoveFromOnePileToAnotherAction;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -30,7 +30,7 @@ public class Smelter extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.atb(new MoveExhaustedCardToEvaporatePileAction(magicNumber));
+        Wiz.atb(new MoveFromOnePileToAnotherAction(magicNumber, Wiz.adp().exhaustPile, EvaporatePanel.evaporatePile));
     }
 
     @Override

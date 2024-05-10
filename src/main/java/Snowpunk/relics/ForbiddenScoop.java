@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballsRelic {
+/*public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballsRelic {
     public static final String ID = makeID(ForbiddenScoop.class.getSimpleName());
 
     public static final int AMOUNT = 1;
@@ -57,4 +57,4 @@ public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballs
     public int modifySnow() {
         return 1;
     }
-}
+}*/

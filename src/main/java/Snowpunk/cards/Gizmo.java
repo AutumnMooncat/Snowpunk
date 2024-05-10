@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -18,26 +19,25 @@ public class Gizmo extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, BLOCK = 8, UP_DMG = 4, UP_BLOCK = 4;
+    private static final int COST = 2, DMG = 8, BLOCK = 8, UP_DMG = 5, UP_BLOCK = 5;
 
     public Gizmo() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 2;
-        CardModifierManager.addModifier(this, new GearMod(0));
+        magicNumber = baseMagicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new ApplyCardModifierAction(this, new GearMod(magicNumber)));
+        Wiz.atb(new ApplyCardModifierAction(this, new PlateMod(magicNumber)));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeMagicNumber(3));
     }
 }

@@ -23,35 +23,18 @@ public class SteamForm extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.POWER;
 
     private static final int COST = 3;
-    private static final int UP_COST = 4;
-    private static final int EFFECT = 1;
-    private static final int UP_EFFECT = 1;
 
-    private boolean energy;
     public SteamForm() {
         super(ID, COST, TYPE, RARITY, TARGET);
         tags.add(BaseModCardTags.FORM);
-        energy = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (energy)
-            Wiz.atb(new GainEnergyAction(1));
-        if (magicNumber > 0)
-            Wiz.atb(new DrawCardAction(1));
-
         Wiz.applyToSelf(new SteamFormPower(p, 1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            energy = true;
-            uDesc();
-        });
-        addUpgradeData(() -> {
-            magicNumber = baseMagicNumber = 0;
-            upgradeMagicNumber(1);
-        });
+        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
     }
 }

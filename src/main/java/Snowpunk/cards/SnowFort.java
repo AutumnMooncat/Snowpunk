@@ -1,10 +1,12 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -53,9 +55,6 @@ public class SnowFort extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            baseMagicNumber = magicNumber = 0;
-            upgradeMagicNumber(1);
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

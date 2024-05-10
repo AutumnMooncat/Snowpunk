@@ -56,6 +56,7 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
             cardsPlayedThisTurn++;
             flash();
             core.cores.get(1).onPowerTrigger(card, amount, action);
+            card.applyPowers();
         }
     }
 
@@ -65,6 +66,7 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
             cardsDrawnThisTurn++;
             flash();
             core.cores.get(1).onPowerTrigger(card, amount);
+            card.applyPowers();
         }
     }
 
@@ -73,6 +75,7 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
         if (core.cores.get(0).getPower() == CoreCard.PowerCondition.HOT) {
             core.cores.get(1).onPowerTrigger(card, amount);
             flash();
+            card.applyPowers();
         }
     }
 
@@ -81,6 +84,7 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
         if (core.cores.get(0).getPower() == CoreCard.PowerCondition.CLANK) {
             flash();
             core.cores.get(1).onPowerTrigger(card, amount);
+            card.applyPowers();
         }
     }
 
@@ -156,5 +160,10 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
                 description = core.cores.get(0).getExtended()[0] + secondAmount + core.cores.get(0).getExtended()[1] + core.cores.get(1).getExtended()[0] + amount + core.cores.get(1).getExtended()[1];
         }
         description = description.replaceAll("snowpunk:", "#y");
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new AssembledPower(owner, amount, secondAmount, (AssembledCard) core.makeCopy());
     }
 }

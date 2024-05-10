@@ -25,9 +25,10 @@
   },
   "${ModID}:EvaporatePanel": {
     "TEXT": [
-      "Hot Cards",
-      "Click to view #yHot cards removed this combat.",
-      "These Hot cards are currently removed."
+      "Evaporate Pile",
+      "When you draw during your turn, draw from here first.",
+      "These cards are currently Evaporated.",
+      "When you draw during your turn (not at the start of your turn), draw from here first. NL Click to view #yHot cards and others removed this combat."
     ]
   },
   "${ModID}:Cores": {
@@ -50,9 +51,19 @@
       "Copy"
     ]
   },
+  "${ModID}:Enhance": {
+    "TEXT": [
+      "Enhance"
+    ]
+  },
   "${ModID}:DoubleGears": {
     "TEXT": [
       "double its Gears"
+    ]
+  },
+  "${ModID}:DoubleModifiers": {
+    "TEXT": [
+      "double its Modifiers"
     ]
   },
   "${ModID}:Cryo": {

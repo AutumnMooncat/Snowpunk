@@ -51,7 +51,7 @@ public class SnowballUIPatches {
         tipHitbox.move(x, y);
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && (getTrueAmount() > 0 || SnowballPatches.Snowballs.getPerTurn() > 0)) {
             spriteBatch.setColor(1, 1, 1, 1);
-            spriteBatch.draw(texture, x - texture.getWidth() / 2, y - texture.getHeight() / 2);
+            spriteBatch.draw(texture, x - texture.getWidth() * Settings.scale / 2.0f, y - texture.getHeight() * Settings.scale / 2.0f, texture.getWidth() * Settings.scale, texture.getHeight() * Settings.scale);
             String display = String.valueOf(getTrueAmount());
             if (SnowballPatches.Snowballs.getPerTurn() > 0)
                 display += "/" + SnowballPatches.Snowballs.getPerTurn();

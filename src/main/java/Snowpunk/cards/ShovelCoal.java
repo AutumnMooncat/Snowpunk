@@ -22,27 +22,26 @@ public class ShovelCoal extends AbstractMultiUpgradeCard {
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
 
     private static final int COST = 1;
 
     public ShovelCoal() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        exhaust = true;
+        magicNumber = baseMagicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int hotCards = EvaporatePanel.evaporatePile.size();
-        if (hotCards > 0)
-            Wiz.atb(new GainEnergyAction(hotCards));
+        Wiz.applyToSelf(new ShovelCoalPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
+        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> {
-            exhaust = false;
+            isInnate = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

@@ -6,12 +6,16 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class HeatMiser extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(HeatMiser.class.getSimpleName());
 
@@ -24,19 +28,19 @@ public class HeatMiser extends AbstractMultiUpgradeCard {
     public HeatMiser() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = SINGE;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
             if (!mo.isDeadOrEscaped())
-                Wiz.applyToEnemy(mo, new SingePower(mo, player, magicNumber));
+                Wiz.applyToEnemy(mo, new SingePower(mo, magicNumber));
         }
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
     }
 }

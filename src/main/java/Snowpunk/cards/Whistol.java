@@ -22,7 +22,7 @@ public class Whistol extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 0, DMG = 12, UP_DMG = 3;
+    private static final int COST = 0, DMG = 10, UP_DMG = 3;
 
     public Whistol() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -37,11 +37,13 @@ public class Whistol extends AbstractMultiUpgradeCard implements ClankCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        setExclusions(1, 2);
     }
 
     @Override
-    public void onClank() {
+    public void onClank(AbstractMonster monster) {
         addToTop(new ChangeCostAction(this, cost + 1));
     }
 }

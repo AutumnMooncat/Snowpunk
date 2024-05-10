@@ -53,7 +53,7 @@ public class EvaporatePanel extends AbstractPanel {
                 this.hb.clickStarted = true;
             }
         }
-
+        EvaporatePanel.evaporatePile.size();
         if ((this.hb.clicked) && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.EXHAUST_VIEW) {
             this.hb.clicked = false;
             this.hb.hovered = false;

@@ -57,7 +57,7 @@ public class Fluxinator extends CoreCard {
 
     @Override
     public void onPowerTrigger(AbstractCard card, int amount) {
-        Wiz.atb(new ModCardTempAction(card, AbstractDungeon.cardRandomRng.randomBoolean() ? -99 : 99));
+        Wiz.atb(new ModCardTempAction(card, AbstractDungeon.cardRandomRng.randomBoolean() ? -1 : 1));
     }
 
     @Override

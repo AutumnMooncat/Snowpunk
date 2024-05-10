@@ -16,10 +16,6 @@ public class BrassPipe extends AbstractEasyRelic {
     public BrassPipe() {
         super(ID, RelicTier.STARTER, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
         description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
-        tips.clear();
-        tips.add(new PowerTip(name, description));
-        initializeTips();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
     }
 
     @Override

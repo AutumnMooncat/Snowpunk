@@ -1,21 +1,21 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ApplyCardModifierAction;
-import Snowpunk.actions.ClankAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class Weld extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Weld.class.getSimpleName());
 
@@ -37,7 +37,7 @@ public class Weld extends AbstractMultiUpgradeCard {
         if (magicNumber > 0)
             gears += magicNumber;
         if (gears > 0)
-            Wiz.applyToEnemy(m, new SingePower(m, p, gears));
+            Wiz.applyToEnemy(m, new SingePower(m, gears));
     }
 
     @Override

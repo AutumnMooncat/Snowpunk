@@ -14,19 +14,17 @@ import java.util.Iterator;
 public class CandyCaneKillAction extends AbstractGameAction {
     AbstractMonster monster = null;
     boolean killMinion;
-    int threshold;
 
     float speed = 0;
 
-    public CandyCaneKillAction(AbstractMonster target, int threshold, boolean killMinion) {
+    public CandyCaneKillAction(AbstractMonster target, boolean killMinion) {
         monster = target;
-        this.threshold = threshold;
         this.killMinion = killMinion;
     }
 
     @Override
     public void update() {
-        if (monster == null || (monster.currentHealth > threshold || monster.currentHealth <= 0) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
+        if (monster == null || (monster.currentHealth >= Wiz.adp().currentBlock || monster.currentHealth <= 0) && (!killMinion || !monster.hasPower(MinionPower.POWER_ID))) {
             isDone = true;
             return;
         }

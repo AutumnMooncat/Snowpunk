@@ -1,16 +1,5 @@
 package Snowpunk.relics;
 
-import Snowpunk.TheConductor;
-import Snowpunk.powers.ChristmasSpiritPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-
-import static Snowpunk.SnowpunkMod.makeID;
-import static Snowpunk.util.Wiz.adp;
-import static Snowpunk.util.Wiz.atb;
-
 //public class ChristmasSpirit extends AbstractEasyRelic {
 //    public static final String ID = makeID(ChristmasSpirit.class.getSimpleName());
 //

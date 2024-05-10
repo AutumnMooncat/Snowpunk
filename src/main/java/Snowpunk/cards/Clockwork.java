@@ -20,7 +20,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Clockwork extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Clockwork.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
@@ -45,18 +45,6 @@ public class Clockwork extends AbstractMultiUpgradeCard {
 
         if (!this.freeToPlayOnce)
             p.energy.use(EnergyPanel.totalCount);
-    }
-
-
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
-        }
-        return Tooltip;
     }
 
     @Override

@@ -16,7 +16,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Frostburn extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Frostburn.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
@@ -30,7 +30,7 @@ public class Frostburn extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
-        Wiz.applyToEnemy(m, new SingePower(m, p, secondMagic));
+        Wiz.applyToEnemy(m, new SingePower(m, secondMagic));
     }
 
     @Override

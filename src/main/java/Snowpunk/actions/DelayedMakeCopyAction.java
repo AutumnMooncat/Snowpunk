@@ -9,18 +9,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class DelayedMakeCopyAction extends AbstractGameAction {
 
     AbstractCard card;
+    int numCards;
 
-    public DelayedMakeCopyAction(AbstractCard card, int delay) {
+    public DelayedMakeCopyAction(AbstractCard card, int delay, int numCards) {
         this.card = card;
         amount = delay;
+        this.numCards = numCards;
     }
 
     @Override
     public void update() {
-        if (amount <= 0)
-            addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, true, true));
-        else
-            addToBot(new DelayedMakeCopyAction(card, amount - 1));
+        if (amount <= 0) {
+            for (int i = 0; i < numCards; i++)
+                addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, true, true));
+        } else
+            addToBot(new DelayedMakeCopyAction(card, amount - 1, numCards));
         isDone = true;
     }
 }

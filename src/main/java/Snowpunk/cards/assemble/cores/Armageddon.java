@@ -34,7 +34,7 @@ public class Armageddon extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.atb(new ModCardTempAction(player.hand.group, 99));
+        Wiz.atb(new ModCardTempAction(player.hand.group, 1));
     }
 
     @Override

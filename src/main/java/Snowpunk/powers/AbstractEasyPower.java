@@ -1,6 +1,7 @@
 package Snowpunk.powers;
 
 import Snowpunk.SnowpunkMod;
+import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,7 +10,7 @@ import Snowpunk.util.TexLoader;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public abstract class AbstractEasyPower extends AbstractPower {
+public abstract class AbstractEasyPower extends AbstractPower implements CloneablePowerInterface {
     public AbstractEasyPower(String ID, String name, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this.ID = ID;
         this.isTurnBased = isTurnBased;

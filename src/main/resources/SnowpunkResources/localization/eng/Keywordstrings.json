@@ -6,7 +6,7 @@
       "singed",
       "singe"
     ],
-    "DESCRIPTION": "Singed creatures take additional damage from Attacks this turn."
+    "DESCRIPTION": "Singed creatures lose HP whenever a card Evaporates."
   },
   {
     "PROPER_NAME": "Clank",
@@ -14,7 +14,7 @@
       "clank",
       "clanks"
     ],
-    "DESCRIPTION": "Perform a backfire effect."
+    "DESCRIPTION": "Perform an effect unless prevented."
   },
   {
     "ID": "holly",
@@ -22,7 +22,15 @@
     "NAMES": [
       "holly"
     ],
-    "DESCRIPTION": "At the start of your next turn, add a #yFa #yLa #yLa #yLa #yLa to your hand and remove #yHolly."
+    "DESCRIPTION": "The next time you apply a debuff this turn, apply this much more."
+  },
+  {
+    "ID": "flamin",
+    "PROPER_NAME": "Flamin",
+    "NAMES": [
+      "flamin"
+    ],
+    "DESCRIPTION": "After playing, if this card is not #yHot, gain #b1 #yHot."
   },
   {
     "ID": "hat",
@@ -31,7 +39,16 @@
       "hat",
       "hats"
     ],
-    "DESCRIPTION": "This card costs #b0 to play, but then loses a #yHat."
+    "DESCRIPTION": "This card is free to play, but then loses a #yHat."
+  },
+  {
+    "ID": "condensed",
+    "PROPER_NAME": "Condensed",
+    "NAMES": [
+      "condensed",
+      "condense"
+    ],
+    "DESCRIPTION": "This card can be played this turn even if you don't have enough [E] , but if you play it this way, it #yExhausts."
   },
   {
     "ID": "fireball",
@@ -62,42 +79,50 @@
     "DESCRIPTION": "Chilled creatures deal less damage this turn."
   },
   {
-    "PROPER_NAME": "Char",
-    "NAMES": [
-      "char"
-    ],
-    "DESCRIPTION": "#ySinge is not removed from #yCharred creatures for a number of turns."
-  },
-  {
     "ID": "hot",
-    "PROPER_NAME": "Hot",
+    "PROPER_NAME": "Hot [snowpunk:HotIcon]",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Moved to the Evaporate pile for the rest of combat."
+    "DESCRIPTION": "Move to the Evaporate pile. When drawn from the Evaporate pile, lose #b1 #yHot.",
+    "EXTENDED_DESCRIPTION": [
+      "Exhaust."
+    ]
   },
   {
     "ID": "cold",
-    "PROPER_NAME": "Cold",
+    "PROPER_NAME": "Cold [snowpunk:ColdIcon]",
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "Move a random card from the Evaporate pile to your hand."
+    "DESCRIPTION": "Draw [snowpunk:ColdIcon] cards."
   },
   {
     "ID": "gear",
     "PROPER_NAME": "Gears [snowpunk:GearIcon]",
     "NAMES": [
-      "gear"
+      "gear",
+      "gears"
     ],
-    "DESCRIPTION": "Increase a card's damage, #yBlock, and [snowpunk:GearIcon] effects."
+    "DESCRIPTION": "Increase a card's [snowpunk:GearIcon] effects."
   },
   {
+    "ID": "brass",
     "PROPER_NAME": "Brass",
     "NAMES": [
       "brass"
     ],
-    "DESCRIPTION": "Apply [snowpunk:GearIcon] to the next viable card played."
+    "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
+  },
+  {
+    "ID": "plating",
+    "PROPER_NAME": "Plating",
+    "NAMES": [
+      "plating",
+      "plate",
+      "plates"
+    ],
+    "DESCRIPTION": "Increase the damage and #yBlock of a card."
   },
   {
     "PROPER_NAME": "Evaporated",
@@ -107,11 +132,19 @@
     "DESCRIPTION": "In the Evaporate pile."
   },
   {
+    "ID": "overdrive",
+    "PROPER_NAME": "Overdrive [snowpunk:OverIcon]",
+    "NAMES": [
+      "overdrive"
+    ],
+    "DESCRIPTION": "Play an additional time for each #yOverdrive."
+  },
+  {
     "PROPER_NAME": "Hook",
     "NAMES": [
       "hook"
     ],
-    "DESCRIPTION": "Remove target from combat if it has less HP than your combined HP and #yBlock."
+    "DESCRIPTION": "If you have more #yBlock than the target's HP, remove them from combat."
   },
   {
     "PROPER_NAME": "Desperation",
@@ -133,6 +166,20 @@
       "duplicate"
     ],
     "DESCRIPTION": "Add a copy of this card to the discard pile."
+  },
+  {
+    "PROPER_NAME": "Unnate",
+    "NAMES": [
+      "unnate"
+    ],
+    "DESCRIPTION": "Starts each combat at the bottom of your draw pile."
+  },
+  {
+    "PROPER_NAME": "Heavy",
+    "NAMES": [
+      "heavy"
+    ],
+    "DESCRIPTION": "Whenever this card is reshuffled, move it to the bottom of your draw pile."
   },
   {
     "PROPER_NAME": "Overclock",

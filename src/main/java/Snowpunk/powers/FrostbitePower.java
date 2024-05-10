@@ -21,10 +21,6 @@ public class FrostbitePower extends AbstractEasyPower implements BetterOnApplyPo
 
     @Override
     public boolean betterOnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-//        if (power.amount > 0 && power.ID == ChillPower.POWER_ID && !target.hasPower("Artifact")) {
-//            flash();
-//            Wiz.atb(new LoseHPAction(target, source, power.amount * amount));
-//        }
         return true;
     }
 
@@ -45,5 +41,10 @@ public class FrostbitePower extends AbstractEasyPower implements BetterOnApplyPo
             description = DESCRIPTIONS[0];
         else
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new FrostbitePower(owner, amount);
     }
 }

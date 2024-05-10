@@ -30,7 +30,6 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
     public List<TooltipInfo> getCustomTooltips() {
         if (Tooltip == null) {
             Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
             Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
         }
         return Tooltip;
@@ -38,7 +37,7 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     public Snowpunk() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = SNOW;
+        baseMagicNumber = magicNumber = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

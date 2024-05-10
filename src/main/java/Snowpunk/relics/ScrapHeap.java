@@ -2,6 +2,7 @@ package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.powers.ScrapPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -41,7 +42,7 @@ public class ScrapHeap extends AbstractEasyRelic {
         tips.clear();
         tips.add(new PowerTip(name, description));
         initializeTips();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+        //tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
         cardsSelected = new ArrayList<>();
     }
 
@@ -53,7 +54,7 @@ public class ScrapHeap extends AbstractEasyRelic {
     public void onEquip() {
         selectables = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-            if (card.block >= 0 || card.damage >= 0 || CardModifierManager.hasModifier(card, GearMod.ID))
+            if (card.block >= 0 || card.damage >= 0)
                 selectables.group.add(card);
         }
         done = true;
@@ -70,7 +71,7 @@ public class ScrapHeap extends AbstractEasyRelic {
             AbstractDungeon.gridSelectScreen.open(selectables, 3, this.DESCRIPTIONS[1] + this.name + LocalizedStrings.PERIOD, false, false, false, false);
         } else {
             for (AbstractCard card : selectables.group) {
-                CardModifierManager.addModifier(card, new GearMod(3));
+                CardModifierManager.addModifier(card, new PlateMod(3));
                 AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH + AbstractCard.IMG_WIDTH * selectables.group.indexOf(card), (float) Settings.HEIGHT / 2.0F));
                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }
@@ -85,7 +86,7 @@ public class ScrapHeap extends AbstractEasyRelic {
         if (cardsSelected.size() >= Math.min(3, selectables.size()) && !done) {
             done = true;
             for (AbstractCard card : cardsSelected) {
-                CardModifierManager.addModifier(card, new GearMod(3));
+                CardModifierManager.addModifier(card, new PlateMod(3));
                 AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH + AbstractCard.IMG_WIDTH * cardsSelected.indexOf(card), (float) Settings.HEIGHT / 2.0F));
                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }

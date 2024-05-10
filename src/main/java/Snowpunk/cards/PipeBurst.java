@@ -48,7 +48,7 @@ public class PipeBurst extends AbstractMultiUpgradeCard implements ClankCard {
     }
 
     @Override
-    public void onClank() {
+    public void onClank(AbstractMonster monster) {
         int remove = 99;
         if (magicNumber > 0)
             remove = magicNumber;

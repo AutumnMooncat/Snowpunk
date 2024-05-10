@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -42,5 +43,10 @@ public class ChooChooPower extends AbstractEasyPower {
         else
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
 
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new ChooChooPower(owner, amount);
     }
 }

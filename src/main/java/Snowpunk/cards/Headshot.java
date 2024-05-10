@@ -17,7 +17,7 @@ public class Headshot extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 7, UP_DMG = 3, CHILL = 3, UP_CHILL = 2;
+    private static final int COST = 1, DMG = 7, UP_DMG = 4, CHILL = 3, UP_CHILL = 2;
 
     private boolean chill = false;
 
@@ -35,7 +35,7 @@ public class Headshot extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> upgradeMagicNumber(UP_CHILL));
     }
 }

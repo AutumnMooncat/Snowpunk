@@ -24,7 +24,7 @@ public class Cane extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public Cane() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.DBF);

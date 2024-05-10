@@ -1,14 +1,15 @@
 package Snowpunk.powers;
 
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.interfaces.FreeToPlayPower;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -23,29 +24,17 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && amount > 0 && CardTemperatureFields.canModTemp(card, 1)) {
-            /*if (!owner.hasPower(SteamFormPower.POWER_ID)) {
-                action.exhaustCard = true;
-            }*/
+        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1)) {
             flash();
-            CardTemperatureFields.addHeat(card, 99);
-            if (!card.exhaust)
-                EvaporatePanelPatches.EvaporateField.evaporate.set(card, true);
-            --amount;
-            updateDescription();
-            if (amount == 0) {
-                addToTop(new RemoveSpecificPowerAction(owner, owner, this));
-            }
+            CardTemperatureFields.addHeat(card, CardTemperatureFields.HOT);
+            addToTop(new ReducePowerAction(owner, owner, this, 1));
         }
     }
 
-//    @Override
-//    public void atEndOfTurn(boolean isPlayer) {
-//        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
-//            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-//        else
-//            owner.getPower(BackupBoilerPower.POWER_ID).flash();
-//    }
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+    }
 
     @Override
     public void updateDescription() {
@@ -54,12 +43,15 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
         } else {
             description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
-//        if (!owner.hasPower(BackupBoilerPower.POWER_ID))
-//            description += DESCRIPTIONS[3];
     }
 
     @Override
     public boolean isFreeToPlay(AbstractCard card) {
         return true;
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new SteamPower(owner, amount);
     }
 }

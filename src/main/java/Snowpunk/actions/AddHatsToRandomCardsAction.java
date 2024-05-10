@@ -25,7 +25,7 @@ public class AddHatsToRandomCardsAction extends AbstractGameAction {
         CardGroup hat = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         for (AbstractCard c : Wiz.adp().hand.group) {
-            if (c.cost >= 0)
+            if (c.cost >= -1)
                 hat.addToTop(c);
         }
 

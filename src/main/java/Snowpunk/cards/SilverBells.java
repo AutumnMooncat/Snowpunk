@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -14,29 +15,27 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SilverBells extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SilverBells.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BLOCK = 6, Brass = 3;
+    private static final int COST = 2, BLOCK = 5, Brass = 3;
 
     public SilverBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-//        baseMagicNumber = magicNumber = Brass;
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
-        blck();
-//        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+        for (int i = 0; i < getGears(); i++)
+            blck();
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(2));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
-//        setDependencies(false, 2, 0, 1);
     }
 }

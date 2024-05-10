@@ -14,12 +14,12 @@ public class Quickflash extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, BLOCK = 6, UP_BLOCK = 2;
+    private static final int COST = 0, BLOCK = 4, UP_BLOCK = 2;
 
     public Quickflash() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        CardTemperatureFields.addInherentHeat(this, 1);
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -29,9 +29,6 @@ public class Quickflash extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
     }
 }

@@ -1,13 +1,16 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.CondenseRandomCardToHandAction;
-import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.actions.MoveFromOnePileToAnotherAction;
+import Snowpunk.powers.interfaces.OnEvaporatePower;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -16,32 +19,48 @@ public class ShovelCoalPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    int numHot = 0;
+    int numExhausted = 0;
 
     public ShovelCoalPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
-        numHot = 0;
+        numExhausted = 0;
     }
 
     @Override
     public void atStartOfTurn() {
-        numHot = 0;
-        flash();
+        numExhausted = 0;
     }
 
     @Override
-    public void onPlayCard(AbstractCard card, AbstractMonster m) {
-        if (CardTemperatureFields.getExpectedCardHeatWhenPlayed(card) == CardTemperatureFields.HOT && numHot < amount) {
-            numHot++;
-            Wiz.atb(new CondenseRandomCardToHandAction(1));
+    public void onExhaust(AbstractCard card) {
+        if (numExhausted < amount) {
+            numExhausted++;
+            Wiz.atb(new MoveFromOnePileToAnotherAction(card, Wiz.adp().exhaustPile, EvaporatePanel.evaporatePile));
+            for (AbstractPower power : Wiz.adp().powers) {
+                if (power instanceof OnEvaporatePower)
+                    ((OnEvaporatePower) power).onEvaporate(card);
+            }
+            for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (monster != null && !monster.isDeadOrEscaped()) {
+                    for (AbstractPower power : monster.powers) {
+                        if (power instanceof OnEvaporatePower)
+                            ((OnEvaporatePower) power).onEvaporate(card);
+                    }
+                }
+            }
             flash();
         }
-        super.onPlayCard(card, m);
+        super.onExhaust(card);
     }
 
     @Override
     public void updateDescription() {
         description = amount == 1 ? DESCRIPTIONS[0] : (DESCRIPTIONS[1] + amount + DESCRIPTIONS[2]);
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new ShovelCoalPower(owner, amount);
     }
 }

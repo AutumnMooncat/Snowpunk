@@ -16,26 +16,30 @@ public class AllAboard extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.POWER;
 
     private static final int COST = 1;
+    private boolean makeEthereal, upgrade;
 
     public AllAboard() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 0;
+        baseMagicNumber = magicNumber = 2;
+        info = baseInfo = 0;
+        makeEthereal = false;
+        upgrade = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new AllAboardPower(p, magicNumber));
+        Wiz.applyToSelf(new AllAboardPower(p, magicNumber, makeEthereal, upgrade));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() ->
-        {
-            upgradeMagicNumber(1);
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> {
+            makeEthereal = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> {
+            upgrade = true;
+            upgradeInfo(1);
+        });
     }
 }

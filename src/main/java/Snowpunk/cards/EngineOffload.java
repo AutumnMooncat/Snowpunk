@@ -20,28 +20,28 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1, UP_COST = 0;
 
-    boolean free;
+    boolean hot;
     public EngineOffload() {
         super(ID, COST, TYPE, RARITY, TARGET);
         info = baseInfo = 0;
-        free = false;
+        hot = false;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ExhumeEvaporatedCardAction(1, free));
+        Wiz.atb(new ExhumeEvaporatedCardAction(1, 1, hot ? 1 : 0));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(UP_COST));
+        addUpgradeData(() -> {
+            upgradeInfo(1);
+            hot = true;
+        });
         addUpgradeData(() -> {
             exhaust = false;
-            upgradeInfo(1);
-        });
-        addUpgradeData(() -> {
-            free = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }

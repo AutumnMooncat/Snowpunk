@@ -2,9 +2,7 @@ package Snowpunk.patches;
 
 import Snowpunk.powers.interfaces.OnCreateCardPower;
 import Snowpunk.util.Wiz;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -18,17 +16,19 @@ public class OnCreateCardPatches {
         public static SpireField<Boolean> modified = new SpireField<>(() -> false);
     }
 
-    @SpirePatch(clz = ShowCardAndAddToDiscardEffect.class, method = "update")
-    @SpirePatch(clz = ShowCardAndAddToHandEffect.class, method = "update")
-    @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")
-    public static class OnCreateCard {
-        @SpirePrefixPatch
-        public static void plz(AbstractGameEffect __instance, AbstractCard ___card) {
-            if (!ModifiedField.modified.get(__instance)) {
-                ModifiedField.modified.set(__instance, true);
+    @SpirePatch2(clz = ShowCardAndAddToHandEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
+    @SpirePatch2(clz = ShowCardAndAddToHandEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, float.class, float.class})
+    @SpirePatch2(clz = ShowCardAndAddToDrawPileEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, boolean.class, boolean.class})
+    @SpirePatch2(clz = ShowCardAndAddToDrawPileEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, float.class, float.class, boolean.class, boolean.class, boolean.class})
+    @SpirePatch2(clz = ShowCardAndAddToDiscardEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
+    @SpirePatch2(clz = ShowCardAndAddToDiscardEffect.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, float.class, float.class})
+    public static class CreatedCards {
+        @SpirePostfixPatch
+        public static void plz(Object[] __args) {
+            if (__args[0] instanceof AbstractCard) {
                 for (AbstractPower p : Wiz.adp().powers) {
                     if (p instanceof OnCreateCardPower) {
-                        ((OnCreateCardPower) p).onCreateCard(___card);
+                        ((OnCreateCardPower) p).onCreateCard((AbstractCard) __args[0]);
                     }
                 }
             }

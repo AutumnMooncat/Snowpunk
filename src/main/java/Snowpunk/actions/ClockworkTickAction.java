@@ -1,6 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -22,7 +23,7 @@ public class ClockworkTickAction extends AbstractGameAction {
     public void update() {
 
         addToTop(new WaitAction(.2f));
-        addToTop(new ApplyCardModifierAction(card, new GearMod(amount, true)));
+        addToTop(new ApplyCardModifierAction(card, new PlateMod(amount, true)));
 
         if (tick % 2 == 0)
             addToTop(new SFXAction("snowpunk:tick"));
