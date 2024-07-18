@@ -15,12 +15,6 @@ public class NextTurnPowerPower extends AbstractEasyPower {
     public static String TEXT_ID = makeID("NextTurnPowerPower");
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(TEXT_ID);
     private AbstractPower powerToGain;
-        /*
-    private static Texture arrow48 = TexLoader.getTexture("SnowpunkResources/images/ui/arrow48.png");
-    private static Texture arrow128 = TexLoader.getTexture("SnowpunkResources/images/ui/arrow128.png");
-    public static HashMap<String, TextureAtlas.AtlasRegion> bufferHashMap48 = new HashMap<>();
-    public static HashMap<String, TextureAtlas.AtlasRegion> bufferHashMap128 = new HashMap<>();
-    */
 
     public NextTurnPowerPower(AbstractCreature owner, AbstractPower powerToGrant) {
         super(TEXT_ID + powerToGrant.ID, strings.NAME + powerToGrant.name, powerToGrant.type, false, owner, powerToGrant.amount);
@@ -56,5 +50,10 @@ public class NextTurnPowerPower extends AbstractEasyPower {
         } else {
             description = strings.DESCRIPTIONS[0] + powerToGain.amount + strings.DESCRIPTIONS[1] + powerToGain.name + strings.DESCRIPTIONS[2];
         }
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new NextTurnPowerPower(owner, powerToGain);
     }
 }

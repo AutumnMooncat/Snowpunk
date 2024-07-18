@@ -1,7 +1,10 @@
 package Snowpunk.patches;
 
+import Snowpunk.cardmods.FreeToPlayMod;
 import Snowpunk.powers.interfaces.FreeToPlayPower;
 import Snowpunk.util.Wiz;
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
@@ -21,8 +24,13 @@ public class FreeCardPatch {
                         return SpireReturn.Return(true);
                     }
                 }
-                if (CardTemperatureFields.getCardHeat(__instance) == CardTemperatureFields.OVERHEATED)
-                    return SpireReturn.Return(true);
+                for (AbstractCardModifier cardMod : CardModifierManager.modifiers(__instance)) {
+                    if (cardMod instanceof FreeToPlayMod && ((FreeToPlayMod) cardMod).isFreeToPlay(__instance))
+                        return SpireReturn.Return(true);
+                }
+
+//                if (CardTemperatureFields.getCardHeat(__instance) == CardTemperatureFields.OVERHEATED)
+//                    return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();
         }

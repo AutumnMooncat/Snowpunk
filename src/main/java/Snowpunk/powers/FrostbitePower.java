@@ -1,54 +1,50 @@
 package Snowpunk.powers;
 
-import Snowpunk.powers.interfaces.OnUseSnowPower;
 import Snowpunk.util.Wiz;
-import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.BetterOnApplyPowerPower;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FrostbitePower extends AbstractEasyPower implements HealthBarRenderPower {
+public class FrostbitePower extends AbstractEasyPower implements BetterOnApplyPowerPower {
     public static String POWER_ID = makeID(FrostbitePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
-    private final AbstractCreature source;
 
-
-    public FrostbitePower(AbstractCreature owner, AbstractCreature source, int amount) {
-        super(POWER_ID, strings.NAME, PowerType.DEBUFF, false, owner, amount);
-        this.loadRegion("int");
-        this.source = source;
+    public FrostbitePower(AbstractCreature owner, int amount) {
+        super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
     }
 
     @Override
-    public void atStartOfTurn() {
-        if (owner instanceof AbstractMonster && ((AbstractMonster) owner).getIntentBaseDmg() >= 0)
-            Wiz.atb(new DamageAction(owner, new DamageInfo(Wiz.adp(), amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+    public boolean betterOnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+        return true;
+    }
+
+    @Override
+    public int betterOnApplyPowerStacks(AbstractPower power, AbstractCreature target, AbstractCreature source, int stackAmount) {
+        if (stackAmount > 0 && power.ID == ChillPower.POWER_ID) {
+            flash();
+            power.flash();
+            Wiz.atb(new LoseHPAction(target, source, stackAmount * amount));
+            return stackAmount;
+        }
+        return stackAmount;
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (amount == 1)
+            description = DESCRIPTIONS[0];
+        else
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override
-    public int getHealthBarAmount() {
-        if (owner instanceof AbstractMonster && ((AbstractMonster) owner).getIntentBaseDmg() >= 0)
-            return amount;
-        return 0;
-    }
-
-    @Override
-    public Color getColor() {
-        return Color.CYAN;
+    public AbstractPower makeCopy() {
+        return new FrostbitePower(owner, amount);
     }
 }

@@ -1,5 +1,7 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.HatMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,6 +9,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
+
+import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -16,7 +20,8 @@ public class MakeCopyInHandAction extends AbstractGameAction {
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     AbstractPlayer player;
-    boolean upgraded, free;
+    boolean hat, free;
+    ArrayList<AbstractCard> removedCards;
 
     public MakeCopyInHandAction(boolean freeThisTurn, boolean freeThisCombat) {
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -24,14 +29,18 @@ public class MakeCopyInHandAction extends AbstractGameAction {
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
         player = AbstractDungeon.player;
-        upgraded = freeThisTurn;
+        hat = freeThisTurn;
         free = freeThisCombat;
     }
 
     public void update() {
         if (this.duration == this.startDuration) {
+            for (AbstractCard c : player.hand.group) {
+
+            }
             if (player.hand.size() == 0) {
                 this.isDone = true;
+                returnCards();
                 return;
             }
 
@@ -48,13 +57,16 @@ public class MakeCopyInHandAction extends AbstractGameAction {
                 if (free)
                     newCard.modifyCostForCombat(-newCard.cost);
 
-                if (upgraded)
-                    newCard.setCostForTurn(0);
-
+                if (hat)
+                    CardModifierManager.addModifier(newCard, new HatMod(1));
+                returnCards();
                 AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(newCard));
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
         tickDuration();
+    }
+
+    private void returnCards() {
     }
 }

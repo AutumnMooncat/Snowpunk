@@ -37,7 +37,7 @@ import java.util.List;
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;
 
-public class HatMod extends AbstractCardModifier {
+public class HatMod extends AbstractCardModifier implements FreeToPlayMod {
     public static final String ID = makeID(HatMod.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
@@ -59,25 +59,19 @@ public class HatMod extends AbstractCardModifier {
         if (CardModifierManager.hasModifier(card, ID)) {
             HatMod hatMod = (HatMod) CardModifierManager.getModifiers(card, ID).get(0);
             hatMod.amount += amount;
-            if (hatMod.amount < 0)
-                hatMod.amount = 0;
+            if (hatMod.amount <= 0)
+                Wiz.att(new RemoveCardModifierAction(card, hatMod));
             return false;
         }
-        return true;
+        return amount > 0;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (amount > 0) {
-            if (Wiz.adp().hand.contains(card))
-                Wiz.adp().hand.removeCard(card);
-            for (int i = 0; i < amount; i++) {
-                if (Wiz.adp().hand.size() > 0)
-                    Wiz.atb(new ApplyCardModifierAction(Wiz.adp().hand.getRandomCard(true), new HatMod()));
-            }
-            Wiz.atb(new RemoveCardModifierAction(card, this));
-            Wiz.atb(new DrawCardAction(amount));
-        }
+            Wiz.atb(new ApplyCardModifierAction(card, new HatMod(-1)));
+        } else
+            Wiz.att(new RemoveCardModifierAction(card, this));
     }
 
     @Override
@@ -90,28 +84,6 @@ public class HatMod extends AbstractCardModifier {
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return true;
-    }
-
-    /*
-    @Override
-    public void onRender(AbstractCard card, SpriteBatch sb) {
-        if (amount > 1)
-            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
-        else
-            ExtraIcons.icon(tex).render(card);
-    }
-
-    @Override
-    public void onSingleCardViewRender(AbstractCard card, SpriteBatch sb) {
-        if (amount > 1)
-            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
-        else
-            ExtraIcons.icon(tex).render(card);
-    }*/
-
-    @Override
     public String identifier(AbstractCard card) {
         return ID;
     }
@@ -119,6 +91,11 @@ public class HatMod extends AbstractCardModifier {
     @Override
     public AbstractCardModifier makeCopy() {
         return new HatMod(amount);
+    }
+
+    @Override
+    public boolean isFreeToPlay(AbstractCard card) {
+        return amount > 0;
     }
 
 

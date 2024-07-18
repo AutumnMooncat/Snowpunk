@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnObtainCard;
 import Snowpunk.powers.BrassPower;
@@ -11,18 +12,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Tinker extends AbstractMultiUpgradeCard implements OnObtainCard {
+public class Tinker extends AbstractEasyCard implements OnObtainCard {
     public final static String ID = makeID(Tinker.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, WIDGE = 2, UP_WIDGE = 2;
+    private static final int COST = 0, BRASS = 3;
 
     public Tinker() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = WIDGE;
+        magicNumber = baseMagicNumber = BRASS;
         exhaust = true;
     }
 
@@ -31,8 +32,13 @@ public class Tinker extends AbstractMultiUpgradeCard implements OnObtainCard {
     }
 
     @Override
-    public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(UP_WIDGE));
+    public boolean canUpgrade() {
+        return false;
+    }
+
+    @Override
+    public void upp() {
+
     }
 
     @Override
@@ -41,6 +47,5 @@ public class Tinker extends AbstractMultiUpgradeCard implements OnObtainCard {
             AbstractDungeon.closeCurrentScreen();
         }
         AbstractDungeon.effectsQueue.add(new SmithEffect());
-
     }
 }

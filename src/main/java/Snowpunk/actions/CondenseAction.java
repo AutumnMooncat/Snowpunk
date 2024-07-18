@@ -1,11 +1,13 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.CondensedMod;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.CondenseEffect;
 import basemod.ReflectionHacks;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -21,6 +23,7 @@ public class CondenseAction extends AbstractGameAction {
 
     AbstractCard card = null;
     boolean addToHand = false;
+    int upgrades = -1;
 
     public CondenseAction() {
         this(c -> true);
@@ -45,6 +48,13 @@ public class CondenseAction extends AbstractGameAction {
         this(c -> true);
         this.amount = amount;
         card = null;
+    }
+
+    public CondenseAction(int amount, int upgrades) {
+        this(c -> true);
+        this.amount = amount;
+        card = null;
+        this.upgrades = upgrades;
     }
 
     public CondenseAction(AbstractCard card) {
@@ -82,10 +92,7 @@ public class CondenseAction extends AbstractGameAction {
         cardToCondense.unfadeOut();
         cardToCondense.lighten(true);
         cardToCondense.fadingOut = false;
-        if (CardTemperatureFields.canModTemp(cardToCondense, -1))
-            CardTemperatureFields.addHeat(cardToCondense, -1);
-
-        AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, addToHand));
+        AbstractDungeon.topLevelEffects.add(new CondenseEffect(cardToCondense, true));
 
         AbstractGameEffect e = null;
         for (AbstractGameEffect effect : AbstractDungeon.effectList) {
@@ -97,15 +104,20 @@ public class CondenseAction extends AbstractGameAction {
         }
         AbstractDungeon.effectList.remove(e);
 
-        triggerOnCondense();
+        if (upgrades > 0) {
+            for (int i = 0; i < upgrades; i++)
+                cardToCondense.upgrade();
+        }
+        //CardModifierManager.addModifier(cardToCondense, new CondensedMod());
+        triggerOnCondense(cardToCondense);
     }
 
 
-    private void triggerOnCondense() {
+    private void triggerOnCondense(AbstractCard card) {
         if (Wiz.adp() != null) {
             for (AbstractPower power : Wiz.adp().powers) {
                 if (power instanceof OnCondensePower)
-                    ((OnCondensePower) power).onCondense();
+                    ((OnCondensePower) power).onCondense(card);
             }
         }
     }

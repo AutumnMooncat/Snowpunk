@@ -47,18 +47,18 @@ public class CondenseRandomCardToHandAction extends AbstractGameAction {
 
                     card.unhover();
                     card.fadingOut = false;
-                    triggerOnCondense();
+                    triggerOnCondense(card);
                 }
             }
         }
         this.tickDuration();
     }
 
-    private void triggerOnCondense() {
+    private void triggerOnCondense(AbstractCard card) {
         if (Wiz.adp() != null) {
             for (AbstractPower power : Wiz.adp().powers) {
                 if (power instanceof OnCondensePower)
-                    ((OnCondensePower) power).onCondense();
+                    ((OnCondensePower) power).onCondense(card);
             }
         }
     }

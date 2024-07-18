@@ -1,29 +1,12 @@
 [
   {
-    "PROPER_NAME": "Assemble",
-    "NAMES": [
-      "assemble",
-      "assembled"
-    ],
-    "DESCRIPTION": "Create a new card from multiple selections of effects and replace this card with it in your hand and deck."
-  },
-  {
     "PROPER_NAME": "Singe",
     "NAMES": [
       "singeing",
       "singed",
       "singe"
     ],
-    "DESCRIPTION": "Singed creatures take additional damage from Attacks this turn."
-  },
-  {
-    "PROPER_NAME": "Link",
-    "NAMES": [
-      "link",
-      "linked",
-      "linking"
-    ],
-    "DESCRIPTION": "#yLinked cards are drawn and played together, and cost 1 [E] more for each card #yLinked to them."
+    "DESCRIPTION": "Singed creatures lose HP whenever a card Evaporates."
   },
   {
     "PROPER_NAME": "Clank",
@@ -31,85 +14,61 @@
       "clank",
       "clanks"
     ],
-    "DESCRIPTION": "Perform a backfire effect."
+    "DESCRIPTION": "Perform an effect unless prevented."
   },
   {
-    "PROPER_NAME": "Core",
+    "ID": "holly",
+    "PROPER_NAME": "Holly [snowpunk:HollyIcon]",
     "NAMES": [
-      "core",
-      "cores"
+      "holly"
     ],
-    "DESCRIPTION": "Determines the effect and abilities of a card."
+    "DESCRIPTION": "The next time you apply a debuff or gain #yBrass, increase the amount."
   },
   {
+    "ID": "flamin",
+    "PROPER_NAME": "Flamin",
+    "NAMES": [
+      "flamin"
+    ],
+    "DESCRIPTION": "After playing, if this card is not #yHot, gain #b1 #yHot."
+  },
+  {
+    "ID": "hat",
     "PROPER_NAME": "Hat",
     "NAMES": [
-      "hat"
+      "hat",
+      "hats"
     ],
-    "DESCRIPTION": "Hats draw a card and then hop to another card in your hand. Removed at the end of your turn."
+    "DESCRIPTION": "This card is free to play, but then loses a #yHat."
   },
   {
-    "PROPER_NAME": "Duplicate",
+    "ID": "condensed",
+    "PROPER_NAME": "Condensed",
     "NAMES": [
-      "duplicate"
+      "condensed",
+      "condense"
     ],
-    "DESCRIPTION": "Add a copy of this card to your discard pile."
+    "DESCRIPTION": "This card can be played this turn even if you don't have enough [E] , but if you play it this way, it #yExhausts."
   },
   {
-    "PROPER_NAME": "Engine",
-    "NAMES": [
-      "engine",
-      "engine's"
-    ],
-    "DESCRIPTION": "Provides #yEnergy, #yFireballs, and #ySnowballs each turn, based on its temperature. Temperature ranges from #yFrozen to #yOverheated."
-  },
-  {
+    "ID": "fireball",
     "PROPER_NAME": "Fireball [snowpunk:FireIcon]",
     "NAMES": [
       "fireball",
       "fireballs"
     ],
-    "DESCRIPTION": "Increase the [snowpunk:TempIcon] of the next card you play."
+    "DESCRIPTION": "The next card you play becomes #yHot."
   },
   {
-    "PROPER_NAME": "Frostbite",
-    "NAMES": [
-      "frostbite",
-      "frostbitten"
-    ],
-    "DESCRIPTION": "At the start of their turn, Frostbitten enemies take damage if they intend to attack."
-  },
-  {
-    "PROPER_NAME": "Whistol",
-    "NAMES": [
-      "whistol"
-    ],
-    "DESCRIPTION": "Deals additional damage for each #yEvaporated card you have."
-  },
-  {
-    "PROPER_NAME": "Ventilated",
-    "NAMES": [
-      "ventilation",
-      "ventilated"
-    ],
-    "DESCRIPTION": "When this card #yEvaporates, #yCondense it."
-  },
-  {
-    "PROPER_NAME": "Reshuffle",
-    "NAMES": [
-      "reshuffle"
-    ],
-    "DESCRIPTION": "Shuffle this card into your draw pile when it is played."
-  },
-  {
-    "PROPER_NAME": "Snowballs [snowpunk:SnowIcon]",
+    "ID": "snowball",
+    "PROPER_NAME": "Snowball [snowpunk:SnowIcon]",
     "NAMES": [
       "snowball",
       "snowballs",
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Counts as [E] . Spent after [E] . NL Conserved between turns."
+    "DESCRIPTION": "Counts as [E] [REMOVE_SPACE]. NL Spent after [E] [REMOVE_SPACE]. NL Conserved between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -120,287 +79,122 @@
     "DESCRIPTION": "Chilled creatures deal less damage this turn."
   },
   {
-    "PROPER_NAME": "Tinker",
-    "NAMES": [
-      "tinker",
-      "tinkered",
-      "tinkers"
-    ],
-    "DESCRIPTION": "Tinkering a card removes it from play and provides #ySpare #yParts which #yUpgrades drawn cards. Additional #yParts are obtained when Tinkering an #yUpgraded card."
-  },
-  {
-    "PROPER_NAME": "Part",
-    "NAMES": [
-      "part",
-      "parts"
-    ],
-    "DESCRIPTION": "Modifies the abilities of a card."
-  },
-  {
-    "PROPER_NAME": "Invention",
-    "NAMES": [
-      "invention",
-      "inventions"
-    ],
-    "DESCRIPTION": "A card made from 1 #yCore and 1 #yPart."
-  },
-  {
-    "PROPER_NAME": "Creation",
-    "NAMES": [
-      "creation",
-      "creations"
-    ],
-    "DESCRIPTION": "A card made from 2 #yCores and 1 #yPart."
-  },
-  {
-    "PROPER_NAME": "Machination",
-    "NAMES": [
-      "machination",
-      "machinations"
-    ],
-    "DESCRIPTION": "A card made from 2 #yCores and 2 #yParts."
-  },
-  {
-    "PROPER_NAME": "Temporary",
-    "NAMES": [
-      "temporary"
-    ],
-    "DESCRIPTION": "Effect is lost at the end of this turn."
-  },
-  {
-    "PROPER_NAME": "Token",
-    "NAMES": [
-      "token"
-    ],
-    "DESCRIPTION": "Is not shuffled into your deck at the start of combat. Cannot be removed from your deck. Upgrades affect all newly created instances of this #yToken."
-  },
-  {
-    "PROPER_NAME": "Primary",
-    "NAMES": [
-      "primary"
-    ],
-    "DESCRIPTION": "The card's main non-damage and non-Block related effect."
-  },
-  {
-    "PROPER_NAME": "Toss",
-    "NAMES": [
-      "toss"
-    ],
-    "DESCRIPTION": "Requires and consumes #ySnowballs to trigger an extra effect."
-  },
-  {
-    "PROPER_NAME": "Overheated (2 [snowpunk:TempIcon] MAX)",
-    "NAMES": [
-      "overheated"
-    ],
-    "DESCRIPTION": "This card costs #b0 to play. NL Gain [E] . #yEvaporate."
-  },
-  {
-    "PROPER_NAME": "Hot (1 [snowpunk:TempIcon] [REMOVE_SPACE])",
+    "ID": "hot",
+    "PROPER_NAME": "Hot [snowpunk:HotIcon]",
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Gain [E] . #yEvaporate."
+    "DESCRIPTION": "Move to the Evaporate pile. When drawn from the Evaporate pile, lose #b1 #yHot.",
+    "EXTENDED_DESCRIPTION": [
+      "Exhaust."
+    ]
   },
   {
-    "PROPER_NAME": "Cold (-1 [snowpunk:TempIcon] [REMOVE_SPACE])",
+    "ID": "cold",
+    "PROPER_NAME": "Cold [snowpunk:ColdIcon]",
     "NAMES": [
       "cold"
     ],
-    "DESCRIPTION": "#yRetain. NL #yCondense a random card."
+    "DESCRIPTION": "Draw [snowpunk:ColdIcon] cards."
   },
   {
-    "PROPER_NAME": "Frozen (-2 [snowpunk:TempIcon] MIN)",
-    "NAMES": [
-      "frozen"
-    ],
-    "DESCRIPTION": "#yRetain. NL #yCondense a random card. NL Draw a card."
-  },
-  {
-    "PROPER_NAME": "Evaporate",
-    "NAMES": [
-      "evaporate",
-      "evaporates",
-      "evaporated"
-    ],
-    "DESCRIPTION": "Removed from combat until #yCondensed."
-  },
-  {
-    "PROPER_NAME": "Condense",
-    "NAMES": [
-      "condense",
-      "condensed",
-      "condenses"
-    ],
-    "DESCRIPTION": "Shuffle an #yEvaporated card into your draw pile and reduce its [snowpunk:TempIcon] by #b1."
-  },
-  {
-    "PROPER_NAME": "Heat",
-    "NAMES": [
-      "heat",
-      "heated"
-    ],
-    "DESCRIPTION": "Raise [snowpunk:TempIcon] by #b1."
-  },
-  {
-    "PROPER_NAME": "Overheat",
-    "NAMES": [
-      "overheat"
-    ],
-    "DESCRIPTION": "Raise [snowpunk:TempIcon] to #b2 ( #yOverheated )."
-  },
-  {
-    "PROPER_NAME": "Cool",
-    "NAMES": [
-      "cool",
-      "cooled"
-    ],
-    "DESCRIPTION": "Lower [snowpunk:TempIcon] by #b1."
-  },
-  {
-    "PROPER_NAME": "Freeze",
-    "NAMES": [
-      "freeze"
-    ],
-    "DESCRIPTION": "Lower [snowpunk:TempIcon] to #b-2 ( #yFrozen )."
-  },
-  {
-    "PROPER_NAME": "Everburn",
-    "NAMES": [
-      "everburn"
-    ],
-    "DESCRIPTION": "[snowpunk:TempIcon] cannot be reduced below #b1 NL ( #yHot )."
-  },
-  {
-    "PROPER_NAME": "Battery",
-    "NAMES": [
-      "battery"
-    ],
-    "DESCRIPTION": "Gain [E]"
-  },
-  {
-    "PROPER_NAME": "Stable",
-    "NAMES": [
-      "stable"
-    ],
-    "DESCRIPTION": "Temperature with no effects. Temperature ranges from #yFrozen to #yOverheated."
-  },
-  {
-    "PROPER_NAME": "Ice",
-    "NAMES": [
-      "ice"
-    ],
-    "DESCRIPTION": "Receive half damage from #yAttacks this turn."
-  },
-  {
-    "PROPER_NAME": "Holly",
-    "NAMES": [
-      "holly"
-    ],
-    "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
-  },
-  {
-    "PROPER_NAME": "Wreath",
-    "NAMES": [
-      "wreath"
-    ],
-    "DESCRIPTION": "This card deals more damage and gains more #yBlock."
-  },
-  {
+    "ID": "gear",
     "PROPER_NAME": "Gears [snowpunk:GearIcon]",
     "NAMES": [
-      "gear"
+      "gear",
+      "gears"
     ],
-    "DESCRIPTION": "Increase a card's damage, #yBlock, and [snowpunk:GearIcon] effects."
+    "DESCRIPTION": "Increase a card's [snowpunk:GearIcon] effects."
   },
   {
-    "PROPER_NAME": "Stabilize",
-    "NAMES": [
-      "stabilize"
-    ],
-    "DESCRIPTION": "Normal temperature."
-  },
-  {
-    "PROPER_NAME": "Temperature",
-    "NAMES": [
-      "temperature"
-    ],
-    "DESCRIPTION": "Card temperature scale: NL #yOverheated NL #yHot NL Stable NL #bCold NL #bFrozen"
-  },
-  {
-    "PROPER_NAME": "Steam",
-    "NAMES": [
-      "steam"
-    ],
-    "DESCRIPTION": "The next card you play becomes #yOverheated ( #b2 [snowpunk:TempIcon] , Costs #b0, gains [E] and #yEvaporates)"
-  },
-  {
-    "PROPER_NAME": "Holiday Cheer",
-    "NAMES": [
-      "holidaycheer",
-      "holiday\u00a0cheer"
-    ],
-    "DESCRIPTION": "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1."
-  },
-  {
-    "PROPER_NAME": "Christmas Spirit",
-    "NAMES": [
-      "christmasspirit",
-      "christmas\u00a0spirit",
-      "christmasu00a0spirit",
-      "christmas_spirit"
-    ],
-    "DESCRIPTION": "If Christmas Spirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn."
-  },
-  {
-    "PROPER_NAME": "Solve",
-    "NAMES": [
-      "solve",
-      "solved"
-    ],
-    "DESCRIPTION": "Solved cards cost #b0 this combat."
-  },
-  {
-    "PROPER_NAME": "Clockwork",
-    "NAMES": [
-      "clockwork",
-      "double_frosty"
-    ],
-    "DESCRIPTION": "If this card is in your hand at the end of your turn, increase this card's [snowpunk:GearIcon] s."
-  },
-  {
-    "PROPER_NAME": "Pull",
-    "NAMES": [
-      "pull"
-    ],
-    "DESCRIPTION": "Move the top card of your draw pile to your hand."
-  },
-  {
-    "PROPER_NAME": "Fluxed",
-    "NAMES": [
-      "fluxed"
-    ],
-    "DESCRIPTION": "Fluxed cards act as if they are also their opposite temperature."
-  },
-  {
-    "PROPER_NAME": "Piercing",
-    "NAMES": [
-      "piercing"
-    ],
-    "DESCRIPTION": "Ignores block."
-  },
-  {
-    "PROPER_NAME": "Water",
-    "NAMES": [
-      "water"
-    ],
-    "DESCRIPTION": "Hot: Gain Steam NL Stable: Gain [E] NL Cold: Gain Snowballs"
-  },
-  {
+    "ID": "brass",
     "PROPER_NAME": "Brass",
     "NAMES": [
       "brass"
     ],
-    "DESCRIPTION": "Apply [snowpunk:GearIcon] to the next viable card."
+    "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
+  },
+  {
+    "ID": "modifications",
+    "PROPER_NAME": "Modifications",
+    "NAMES": [
+      "modifications",
+      "modification"
+    ],
+    "DESCRIPTION": "Card modifications include #yHot, #yCold, #yGears, #yPlating, #yHats, and #yOverdrive!"
+  },
+  {
+    "ID": "plating",
+    "PROPER_NAME": "Plating",
+    "NAMES": [
+      "plating",
+      "plate",
+      "plates"
+    ],
+    "DESCRIPTION": "Increase the damage and #yBlock of a card."
+  },
+  {
+    "PROPER_NAME": "Evaporated",
+    "NAMES": [
+      "evaporated"
+    ],
+    "DESCRIPTION": "In the Evaporate pile."
+  },
+  {
+    "ID": "overdrive",
+    "PROPER_NAME": "Overdrive [snowpunk:OverIcon]",
+    "NAMES": [
+      "overdrive"
+    ],
+    "DESCRIPTION": "Play an additional time for each #yOverdrive."
+  },
+  {
+    "PROPER_NAME": "Hook",
+    "NAMES": [
+      "hook"
+    ],
+    "DESCRIPTION": "If you have more #yBlock than the target's HP, remove them from combat."
+  },
+  {
+    "PROPER_NAME": "Desperation",
+    "NAMES": [
+      "desperation"
+    ],
+    "DESCRIPTION": "If you are at or below #b50% of your max HP, or have at least #b2 unique Debuffs, this card costs #b0."
+  },
+  {
+    "PROPER_NAME": "Dualstrike",
+    "NAMES": [
+      "dualstrike"
+    ],
+    "DESCRIPTION": "If this card is the first one played this turn, play a copy of it."
+  },
+  {
+    "PROPER_NAME": "Duplicate",
+    "NAMES": [
+      "duplicate"
+    ],
+    "DESCRIPTION": "Add a copy of this card to the discard pile."
+  },
+  {
+    "PROPER_NAME": "Unnate",
+    "NAMES": [
+      "unnate"
+    ],
+    "DESCRIPTION": "Starts each combat at the bottom of your draw pile."
+  },
+  {
+    "PROPER_NAME": "Heavy",
+    "NAMES": [
+      "heavy"
+    ],
+    "DESCRIPTION": "Whenever this card is reshuffled, move it to the bottom of your draw pile."
+  },
+  {
+    "PROPER_NAME": "Overclock",
+    "NAMES": [
+      "overclock"
+    ],
+    "DESCRIPTION": "Increase modifiable effects on the card by #b25% per stack."
   }
 ]

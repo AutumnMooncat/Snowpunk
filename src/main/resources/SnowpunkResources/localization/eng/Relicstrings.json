@@ -11,7 +11,8 @@
     "NAME": "Steam Pipe",
     "FLAVOR": "Now steam powered, as all good things are.",
     "DESCRIPTIONS": [
-      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. The first card you play each combat becomes #ysnowpunk:Overheated."
+      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. At the start of each turn, gain #b",
+      " #ysnowpunk:Brass."
     ]
   },
   "${ModID}:ForbiddenScoop": {
@@ -24,47 +25,79 @@
       "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. NL Upon pickup, lose #r33% of your Max HP."
     ]
   },
-  "${ModID}:ChristmasSpiritOLD": {
-    "NAME": "Christmas Spirit OLD",
-    "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
+  "${ModID}:ScrapHeap": {
+    "NAME": "Scrap Heap",
+    "FLAVOR": "'Let's see what I can do with this...'",
     "DESCRIPTIONS": [
-      "At the start of combat, gain #ysnowpunk:Holiday\u00a0Cheer equal to your #ysnowpunk:Christmas\u00a0Spirit. Killing an enemy or gaining a #rCurse reduces your Christmas Spirit!"
-    ]
-  },
-  "${ModID}:ChristmasSpirit": {
-    "NAME": "Christmas Spirit",
-    "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
-    "DESCRIPTIONS": [
-      "If #yChristmas #ySpirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn."
-    ]
-  },
-  "${ModID}:SleighBells": {
-    "NAME": "Sleigh Bells",
-    "FLAVOR": "Not to be confused with Slay Bells, sold separately.",
-    "DESCRIPTIONS": [
-      "At the start of each combat, gain #b"," #ysnowpunk:Holly."
+      "Upon pickup, permanently apply #b3 #ysnowpunk:Plating to #b3 viable cards in your deck.",
+      "Upgrade with Plating"
     ]
   },
   "${ModID}:IceCreamSandwich": {
     "NAME": "Ice Cream Sandwich",
-    "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
+    "FLAVOR": "'Bit chilly, innit?'",
     "DESCRIPTIONS": [
-      "Convert #b1 [E] to [Snowpunk:SnowIcon] each turn."
+      "#ysnowpunk:Cold cards #yRetain."
     ]
   },
-  "${ModID}:ScrapHeap": {
-    "NAME": "Scrap Heap",
-    "FLAVOR": "'A cluttered desk is a sign of genius.' -Me",
+  "${ModID}:BananaSplit": {
+    "NAME": "Banana Split",
+    "FLAVOR": "With three scoops!",
     "DESCRIPTIONS": [
-      "#yUpgrade the first #b",
-      " cards you draw each turn. You can no longer #ySmith at Rest Sites."
+      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] ."
+    ]
+  },
+  "${ModID}:Mistletoe": {
+    "NAME": "Mistletoe",
+    "FLAVOR": "'So romantic!'",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain #b",
+      " #ysnowpunk:Holly."
+    ]
+  },
+  "${ModID}:Monocle": {
+    "NAME": "Monocle",
+    "FLAVOR": "'Do you see what I see?'",
+    "DESCRIPTIONS": [
+      "The first card with [Snowpunk:GearIcon] \u00a0you play each combat gains #b",
+      " [Snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:SpareWrench": {
+    "NAME": "Spare Wrench",
+    "FLAVOR": "'I was wondering where I put this thing!'",
+    "DESCRIPTIONS": [
+      "Prevent the first time you would #ysnowpunk:Clank each combat."
+    ]
+  },
+  "${ModID}:NaughtyList": {
+    "NAME": "Naughty List",
+    "FLAVOR": "'He sees you when you're sleeping...'",
+    "DESCRIPTIONS": [
+      "Gain [E] \u00a0at the start of your turn. The first #b3 times you apply a debuff each combat, gain a copy of it."
+    ]
+  },
+  "${ModID}:MagicScarf": {
+    "NAME": "Magic Scarf",
+    "FLAVOR": "To go with that other piece of magical clothing.",
+    "DESCRIPTIONS": [
+      "Whenever you play a card with a #yHat, draw a card"
+    ]
+  },
+  "${ModID}:BrassEgg": {
+    "NAME": "Brass Egg",
+    "FLAVOR": "You can hear spinning cogs inside.",
+    "DESCRIPTIONS": [
+      "Whenever you add a card to your deck, add #b",
+      " #ysnowpunk:Plating if possible."
     ]
   },
   "${ModID}:StrangeGizmo": {
     "NAME": "Strange Gizmo",
     "FLAVOR": "Truly a marvel of machinery.",
     "DESCRIPTIONS": [
-      "When adding cards into your deck, you may #yUpgrade a random card instead.","Random Upgrade"
+      "When adding cards into your deck, you may #yUpgrade a random card instead.",
+      "Random Upgrade"
     ]
   }
 }

@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -21,12 +22,11 @@ public class BlackIce extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BlackIce.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BONUS = 1;
+    private static final int COST = 1, BONUS = 1;
 
-    private boolean AOE = false;
     private static ArrayList<TooltipInfo> Tooltip;
 
     @Override
@@ -42,38 +42,26 @@ public class BlackIce extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 0;
         info = baseInfo = 0;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
         exhaust = true;
-        //SCostFieldPatches.SCostField.isSCost.set(this, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (getSnow() + magicNumber > 0) {
-            if (AOE) {
-                for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                    if (!mo.isDeadOrEscaped()) {
-                        Wiz.applyToEnemy(mo, new ChillPower(mo, getSnow() + magicNumber));
-                        Wiz.applyToEnemy(mo, new WeakPower(mo, getSnow() + magicNumber, false));
-                        Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow() + magicNumber, false));
-                    }
+            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                if (!mo.isDeadOrEscaped()) {
+                    Wiz.applyToEnemy(mo, new ChillPower(mo, getSnow() + magicNumber));
+                    Wiz.applyToEnemy(mo, new WeakPower(mo, getSnow() + magicNumber, false));
+                    Wiz.applyToEnemy(mo, new VulnerablePower(mo, getSnow() + magicNumber, false));
                 }
-            } else {
-                Wiz.applyToEnemy(m, new ChillPower(m, getSnow() + magicNumber));
-                Wiz.applyToEnemy(m, new WeakPower(m, getSnow() + magicNumber, false));
-                Wiz.applyToEnemy(m, new VulnerablePower(m, getSnow() + magicNumber, false));
             }
         }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
-        addUpgradeData(() -> upgrade2());
         addUpgradeData(() -> upgradeMagicNumber(BONUS));
-    }
-
-    private void upgrade2() {
-        AOE = true;
-        target = CardTarget.ALL_ENEMY;
-        uDesc();
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

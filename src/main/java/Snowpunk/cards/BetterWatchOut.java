@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.DelayedMakeCopyAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,61 +42,19 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
             p.getRelic("Chemical X").flash();
         }
 
-        for (int i = 0; i < effect; i++)
-            addToBot(new DelayedMakeCopyAction(this));
+        //for (int i = 0; i < effect; i++)
+        addToBot(new DelayedMakeCopyAction(this, 2, effect));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }
     }
 
-    /*
-        @Override
-        public void applyPowers() {
-            super.applyPowers();
-            int delta = damage - baseDamage;
-            damage = baseDamage + delta * getX();
-            if (damage < 0) {
-                damage = 0;
-            }
-            isDamageModified = (damage != baseDamage);
-        }
-
-        @Override
-        public void calculateCardDamage(AbstractMonster mo) {
-            super.calculateCardDamage(mo);
-            int delta = damage - baseDamage;
-            damage = baseDamage + delta * getX();
-            if (damage < 0) {
-                damage = 0;
-            }
-            isDamageModified = (damage != baseDamage);
-        }
-
-        private int getX()
-        {
-            if(Wiz.adp() == null)
-                return 0;
-
-            int effect = getSnow() + EnergyPanel.getCurrentEnergy();
-
-            if (Wiz.adp().hasRelic("Chemical X")) {
-                effect += ChemicalX.BOOST;
-                Wiz.adp().getRelic("Chemical X").flash();
-            }
-            return effect;
-        }
-    */
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        setExclusions(1, 0);
-        setDependencies(true, 2, 0);
-        setDependencies(true, 4, 1);
-        setDependencies(false, 3, 0, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        setDependencies(true, 2, 1, 0);
     }
 }

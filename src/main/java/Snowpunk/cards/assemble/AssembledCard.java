@@ -1,8 +1,10 @@
 package Snowpunk.cards.assemble;
 
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
+import Snowpunk.cards.assemble.cores.Searing;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.CustomSavable;
@@ -16,7 +18,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardSave;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -101,7 +102,9 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         cost = baseCost = getCost();
         setCostForTurn(cost);
 
-        if (damage > 0)
+        if (isPower())
+            type = CardType.POWER;
+        else if (damage > 0)
             type = CardType.ATTACK;
         else
             type = CardType.SKILL;
@@ -136,20 +139,24 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     }
 
     private void getDescription() {
-        rawDescription = "";
+        rawDescription = "{@@}";
         for (CoreCard core : cores) {
             if (!core.effectTags.contains(CoreCard.EffectTag.NAME) && !core.effectTags.contains(CoreCard.EffectTag.ADJECTIVE)) {
                 rawDescription += core.rawDescription;
                 if (!core.rawDescription.equals("")) {
                     //rawDescription += cardStrings.EXTENDED_DESCRIPTION[0];
-                    if (cores.indexOf(core) <= 1 && core.rawDescription.length() > 1)
-                        rawDescription += " NL ";
+                    if (cores.indexOf(core) <= 1 && core.rawDescription.length() > 1) {
+                        if (core.rawDescription.endsWith("."))
+                            rawDescription += " NL ";
+                        else
+                            rawDescription += " ";
+                    }
                 }
             }
         }
         initializeDescription();
     }
-
+/*
     private boolean checkContinuations(CoreCard core) {
         if (cores.indexOf(core) == cores.size() - 1)
             return false;
@@ -162,7 +169,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         if (cores.indexOf(core) == 0 && cores.size() > 2 && core.effectTags.contains(CoreCard.EffectTag.AB) && cores.get(1).rawDescription.equals("") && cores.get(2).effectTags.contains(CoreCard.EffectTag.ABMOD))
             return true;
         return false;
-    }
+    }*/
 
     private int getDamage() {
         int totalDamage = 0;
@@ -221,6 +228,14 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         return Math.max(totalCost, 0);
     }
 
+    public boolean isPower() {
+        for (CoreCard core : cores) {
+            if (core.type == CardType.POWER)
+                return true;
+        }
+        return false;
+    }
+
     private void getGearsFromCores() {
         int numGears = 0;
         for (CoreCard core : cores) {
@@ -242,8 +257,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         if (totalDamage > 0) {
             if (cores.stream().anyMatch(c -> c.target == CardTarget.ALL_ENEMY)) {
                 target = CardTarget.ALL_ENEMY;
-                if (cores.stream().anyMatch(coreCard -> coreCard.effectTags.contains(CoreCard.EffectTag.ALLDmg)))
-                    isMultiDamage = true;
+                isMultiDamage = true;
             } else {
                 target = CardTarget.ENEMY;
                 isMultiDamage = false;
@@ -263,6 +277,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     public void addUpgrades() {
         if (cores != null && cores.size() > 0) {
             int indexes = 0;
+            boolean isSearing = cores.stream().anyMatch(coreCard -> coreCard instanceof Searing);
             if (baseDamage > 0) {
                 int bonusDmg = UP_DMG;
                 if (bonusDmg == -1)
@@ -270,6 +285,13 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int finalBonusDmg = bonusDmg;
                 addUpgradeData(() -> upgradeDamage(finalBonusDmg));
                 indexes++;
+                if (isSearing) {
+                    for (int i = 0; i < 8; i++) {
+                        addUpgradeData(() -> upgradeDamage(finalBonusDmg));
+                        setDependencies(true, indexes, indexes - 1);
+                        indexes++;
+                    }
+                }
             }
             if (baseBlock > 0) {
                 int bonusBlock = UP_BLOCK;
@@ -278,6 +300,13 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int finalBonusBlock = bonusBlock;
                 addUpgradeData(() -> upgradeBlock(finalBonusBlock));
                 indexes++;
+                if (isSearing) {
+                    for (int i = 0; i < 8; i++) {
+                        addUpgradeData(() -> upgradeBlock(finalBonusBlock));
+                        setDependencies(true, indexes, indexes - 1);
+                        indexes++;
+                    }
+                }
             }
             if (baseMagicNumber > 0) {
                 int bonusMagic = UP_MAGIC;
@@ -300,16 +329,25 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
             for (CoreCard core : cores) {
                 if (core.gearUpgrade()) {
                     numGearUp++;
-                    int upGear = core.getUpgradeAmount();
-                    if (upGear == -1)
-                        upGear = 1;
-                    int finalUpGear = upGear;
-                    addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(finalUpGear)));
+                    addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(core.getUpgradeAmount())));
                     if (numGearUp > 1)
                         setDependencies(true, indexes, indexes - 1);
                     indexes++;
                 }
             }
+
+            //TEMPS
+            int hotUp = indexes;
+            if (type != CardType.POWER) {
+                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT * 2));
+                indexes++;
+            }
+            int coldUp = indexes;
+            addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+            indexes++;
+            if (type != CardType.POWER)
+                setExclusions(hotUp, coldUp);
+
 
             int numCostDown = 0;
             for (CoreCard core : cores) {
@@ -322,20 +360,21 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                     indexes++;
                 }
             }
-            if (baseCost - numCostDown > 0) {
-                numCostDown++;
-                int finalNumCostDown = numCostDown;
-                addUpgradeData(() -> upgradeBaseCost(baseCost - finalNumCostDown));
-                if (numCostDown > 1)
-                    setDependencies(true, indexes, indexes - 1);
+
+
+            //HAT
+            if (getCost() > 0 && !exhaust && type != CardType.POWER) {
+                addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
                 indexes++;
             }
-
-            if (CardTemperatureFields.getCardHeat(this) > 0)
-                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-
-            if (CardTemperatureFields.getCardHeat(this) < 0)
-                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+//            if (baseCost - numCostDown > 0) {
+//                numCostDown++;
+//                int finalNumCostDown = numCostDown;
+//                addUpgradeData(() -> upgradeBaseCost(baseCost - finalNumCostDown));
+//                if (numCostDown > 1)
+//                    setDependencies(true, indexes, indexes - 1);
+//                indexes++;
+//            }
         }
     }
 
@@ -362,7 +401,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
         }
         if (target == CardTarget.ENEMY)
             dmg(monster, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        else if (target == CardTarget.ALL_ENEMY) {
+        /*else if (target == CardTarget.ALL_ENEMY) {
             if (cores.stream().anyMatch(coreCard -> coreCard.effectTags.contains(CoreCard.EffectTag.ALLDmg)))
                 allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             else {
@@ -370,7 +409,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 if (cardTarget != null)
                     dmg(cardTarget, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             }
-        }
+        }*/
     }
     //endregion
 
@@ -384,7 +423,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     }
 
     @Override
-    public void onClank() {
+    public void onClank(AbstractMonster monster) {
         for (CoreCard coreCard : cores)
             coreCard.onClank(this);
     }

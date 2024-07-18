@@ -12,7 +12,7 @@ public class CauterizeDamage extends AbstractDamageModifier {
     @Override
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
         if (lastDamageTaken > 0) {
-            Wiz.atb(new ApplyPowerAction(target, info.owner, new SingePower(target, info.owner, lastDamageTaken)));
+            Wiz.atb(new ApplyPowerAction(target, info.owner, new SingePower(target, lastDamageTaken)));
         }
     }
 

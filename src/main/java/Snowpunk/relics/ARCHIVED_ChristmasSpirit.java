@@ -1,22 +1,5 @@
 package Snowpunk.relics;
 
-import Snowpunk.TheConductor;
-import Snowpunk.actions.ChangeChristmasSpiritAction;
-import Snowpunk.powers.ChristmasCookiePower;
-import Snowpunk.powers.HolidayCheerPower;
-import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-
-import static Snowpunk.SnowpunkMod.makeID;
-import static Snowpunk.util.Wiz.adp;
-import static Snowpunk.util.Wiz.atb;
 /*
 public class ARCHIVED_ChristmasSpirit extends AbstractEasyRelic {
     public static final String ID = makeID(ARCHIVED_ChristmasSpirit.class.getSimpleName());

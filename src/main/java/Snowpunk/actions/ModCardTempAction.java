@@ -23,6 +23,7 @@ public class ModCardTempAction extends AbstractGameAction {
     private ArrayList<AbstractCard> noModTemps;
     public static final String ID = makeID("ModTemp");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    private ArrayList<AbstractCard> group;
 
     public ModCardTempAction(AbstractCard card, int heat) {
         this.card = card;
@@ -45,6 +46,13 @@ public class ModCardTempAction extends AbstractGameAction {
         noModTemps = new ArrayList();
     }
 
+    public ModCardTempAction(ArrayList<AbstractCard> group, int heat) {
+        this.heat = heat;
+        player = AbstractDungeon.player;
+        this.group = group;
+        amount = 99;
+    }
+
     @Override
     public void update() {
         //Immediately return if trying to add 0 heat
@@ -60,12 +68,9 @@ public class ModCardTempAction extends AbstractGameAction {
         } else if (amount != 0) {
             //Assemble all valid cards based on if they can actually accept the change in heat
             CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            for (AbstractCard c : Wiz.adp().hand.group) {
-                /*if (heat > 0 && CardTemperatureFields.getCardHeat(c) != 2) {
-                    validCards.addToTop(c);
-                } else if (heat < 0 && CardTemperatureFields.getCardHeat(c) != -2 && !(CardTemperatureFields.getCardHeat(c) == 1 && CardModifierManager.hasModifier(c, EverburnMod.ID))) {
-                    validCards.addToTop(c);
-                }*/
+            if (group == null)
+                group = Wiz.adp().hand.group;
+            for (AbstractCard c : group) {
                 if (CardTemperatureFields.canModTemp(c, heat))
                     validCards.addToTop(c);
             }
@@ -86,21 +91,6 @@ public class ModCardTempAction extends AbstractGameAction {
                 }
                 isDone = true;
             } else {
-                //Failing all else, open a selection screen for the player using copied cards to not screw with the cards in hand
-                /*HashMap<AbstractCard, AbstractCard> cardMap = new HashMap<>();
-                ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
-
-                for (AbstractCard c : validCards.group) {
-                    AbstractCard copy = c.makeStatEquivalentCopy();
-                    cardMap.put(copy, c);
-                    selectionGroup.add(copy);
-                }
-
-                Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, amount, "", false, card -> true, cards -> {
-                    for (AbstractCard c : cards) {
-                        CardTemperatureFields.addHeat(cardMap.get(c), heat);
-                    }
-                }));*/
                 chooseUpdate();
             }
         }
@@ -109,6 +99,10 @@ public class ModCardTempAction extends AbstractGameAction {
     public void chooseUpdate() {
         if (duration == startDuration) {
             choosing = true;
+            if (amount == 0) {
+                isDone = true;
+                return;
+            }
             for (AbstractCard c : player.hand.group) {
                 if (!CardTemperatureFields.canModTemp(c, heat))
                     noModTemps.add(c);
@@ -144,7 +138,6 @@ public class ModCardTempAction extends AbstractGameAction {
             for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                 CardTemperatureFields.addHeat(c, heat);
                 AbstractDungeon.player.hand.addToTop(c);
-                //Wiz.att(new ModCardTempAction(c, heat));
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
             returnCards();

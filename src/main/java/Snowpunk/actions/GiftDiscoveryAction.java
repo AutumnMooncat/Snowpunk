@@ -1,7 +1,9 @@
 package Snowpunk.actions;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -36,14 +38,14 @@ public class GiftDiscoveryAction extends AbstractGameAction {
         }
         if (!this.retrieveCard) {
             if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
-                AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
+                AbstractCard chosenCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
                 if (freeThisTurn)
-                    disCard.setCostForTurn(0);
-                disCard.current_x = -1000.0F * Settings.xScale;
+                    CardModifierManager.addModifier(chosenCard, new HatMod());
+                chosenCard.current_x = -1000.0F * Settings.xScale;
                 if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE) {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(chosenCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 } else {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(chosenCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 }
                 AbstractDungeon.cardRewardScreen.discoveryCard = null;
             }

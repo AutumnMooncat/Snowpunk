@@ -4,6 +4,7 @@ import Snowpunk.cards.*;
 import Snowpunk.relics.BrassPipe;
 import Snowpunk.vfx.VictoryGlow;
 import Snowpunk.vfx.VictorySnowflakeEffects;
+import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -21,10 +22,7 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
@@ -59,14 +57,14 @@ public class TheConductor extends CustomPlayer {
 
     public TheConductor(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null, new CustomSpriterAnimation(
-                modID + "Resources/images/char/mainChar/OJCharacter.scml"));
+                modID + "Resources/images/char/mainChar/Conductor.scml"));
         Player.PlayerListener listener = new CustomAnimationListener(this);
         ((CustomSpriterAnimation) this.animation).myPlayer.addListener(listener);
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
-                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(2));
+                getLoadout(), 20.0F, 10.0F, 157.0F, 256.0F, new EnergyManager(2));
 
 
         dialogX = (drawX + 0.0F * Settings.scale);
@@ -91,7 +89,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
-        retVal.add(ReleaseValve.ID);
+        retVal.add(Scald.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
@@ -145,7 +143,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new ReleaseValve();
+        return new Scald();
     }
 
     @Override

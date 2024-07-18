@@ -6,11 +6,15 @@ import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.SecondBlock;
 import Snowpunk.cards.cardvars.SecondDamage;
 import Snowpunk.cards.cardvars.SecondMagicNumber;
-import Snowpunk.cards.parts.AbstractPartCard;
 import Snowpunk.icons.IconContainer;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.SnowballPatches;
+import Snowpunk.potions.BottledInspiration;
+import Snowpunk.potions.IceblastTonic;
+import Snowpunk.potions.SteamfogBrew;
 import Snowpunk.relics.AbstractEasyRelic;
+import Snowpunk.ui.EvaporatePanel;
+import Snowpunk.util.KeywordManager;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.CardBorderGlowManager;
@@ -23,6 +27,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.MultiUpgradePatches;
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -33,14 +38,16 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Properties;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
 public class SnowpunkMod implements
         EditCardsSubscriber,
+        EditKeywordsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
-        EditKeywordsSubscriber,
+        StartGameSubscriber,
         EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber, OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
 
     public static final String modID = "Snowpunk";
@@ -86,7 +93,18 @@ public class SnowpunkMod implements
     public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
     public static int preTalkProbability = 50; //Out of 100
 
-    public static final ArrayList<AbstractPartCard> parts = new ArrayList<>();
+    public static final Color BOTTLED_INSPIRATION_LIQUID = CardHelper.getColor(240, 240, 150);
+    public static final Color BOTTLED_INSPIRATION_HYBRID = CardHelper.getColor(230, 200, 50);
+    public static final Color BOTTLED_INSPIRATION_SPOTS = CardHelper.getColor(250, 250, 250);
+
+    public static final Color ICEBLAST_TONIC_LIQUID = CardHelper.getColor(130, 180, 230);
+    public static final Color ICEBLAST_TONIC_HYBRID = CardHelper.getColor(170, 220, 250);
+
+    public static final Color STEAMFOG_BREW_LIQUID = CardHelper.getColor(150, 150, 180);
+    public static final Color STEAMFOG_BREW_HYBRID = CardHelper.getColor(80, 90, 130);
+    public static final Color STEAMFOG_BREW_SPOTS = CardHelper.getColor(180, 180, 180);
+
+    public static SpireConfig modConfig = null;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -122,12 +140,21 @@ public class SnowpunkMod implements
 
     public static void initialize() {
         SnowpunkMod thismod = new SnowpunkMod();
+        try {
+            Properties defaults = new Properties();
+            defaults.put("EvaporateTutorial", Boolean.toString(false));
+            modConfig = new SpireConfig("TheConductor", "config", defaults);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new TheConductor(TheConductor.characterStrings.NAMES[1], TheConductor.Enums.THE_CONDUCTOR),
                 CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheConductor.Enums.THE_CONDUCTOR);
+
+        receiveEditPotions();
     }
 
     @Override
@@ -152,6 +179,10 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.SnowIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.TempIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.FireIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.HollyIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.ColdIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.HotIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.OverIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -163,35 +194,34 @@ public class SnowpunkMod implements
 
         new AutoAdd(modID)
                 .packageFilter("Snowpunk.cards")
-                .any(AbstractPartCard.class, (info, abstractPartCard) -> parts.add(abstractPartCard));
-
-        new AutoAdd(modID)
-                .packageFilter("Snowpunk.cards")
                 .any(CoreCard.class, (info, coreCard) -> cores.add(coreCard));
     }
 
 
+    public void receiveEditPotions() {
+        BaseMod.addPotion(BottledInspiration.class, BOTTLED_INSPIRATION_LIQUID, BOTTLED_INSPIRATION_HYBRID, BOTTLED_INSPIRATION_HYBRID, BottledInspiration.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+        BaseMod.addPotion(SteamfogBrew.class, STEAMFOG_BREW_LIQUID, STEAMFOG_BREW_HYBRID, STEAMFOG_BREW_HYBRID, SteamfogBrew.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+        BaseMod.addPotion(IceblastTonic.class, ICEBLAST_TONIC_LIQUID, ICEBLAST_TONIC_HYBRID, null, IceblastTonic.POTION_ID, TheConductor.Enums.THE_CONDUCTOR);
+    }
+
     @Override
     public void receiveEditStrings() {
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/Cardstrings.json");
+        String curPath = "eng";
+        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/Cardstrings.json");
 
-        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/eng/Relicstrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + curPath + "/Relicstrings.json");
 
-        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/eng/Charstrings.json");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + curPath + "/Charstrings.json");
 
-        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/eng/Powerstrings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + curPath + "/Powerstrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/CardModstrings.json");
+        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/PartAndCorestrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/Chatterstrings.json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + curPath + "/UIstrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/DamageModstrings.json");
+        BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
 
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/eng/PartAndCorestrings.json");
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/UIstrings.json");
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/eng/Augmentstrings.json");
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
     }
 
     @Override
@@ -203,6 +233,44 @@ public class SnowpunkMod implements
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(modID.toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                switch (keyword.ID) {
+                    case "hot":
+                        KeywordManager.HOT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "cold":
+                        KeywordManager.COLD = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "snowball":
+                        KeywordManager.SNOW = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "fireball":
+                        KeywordManager.FIRE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "hat":
+                        KeywordManager.HAT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "plating":
+                        KeywordManager.PLATE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "condensed":
+                        KeywordManager.COND = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "gear":
+                        KeywordManager.GEAR = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "overdrive":
+                        KeywordManager.OVER = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "holly":
+                        KeywordManager.HOLLY = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "brass":
+                        KeywordManager.BRASS = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "flamin":
+                        KeywordManager.FLAMIN = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                }
             }
         }
     }
@@ -259,6 +327,11 @@ public class SnowpunkMod implements
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        SnowballPatches.Snowballs.amount = 0;
+        SnowballPatches.Snowballs.setSnow(0);
+    }
+
+    @Override
+    public void receiveStartGame() {
+        EvaporatePanel.evaporatePile.clear();
     }
 }

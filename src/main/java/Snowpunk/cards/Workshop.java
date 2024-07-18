@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,18 +24,7 @@ public class Workshop extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, SPIRIT = 5, UP_SPIRIT = 3;
-
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
-        }
-        return Tooltip;
-    }
+    private static final int COST = 1, SPIRIT = 6, UP_SPIRIT = 3;
 
     public Workshop() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -47,11 +38,8 @@ public class Workshop extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

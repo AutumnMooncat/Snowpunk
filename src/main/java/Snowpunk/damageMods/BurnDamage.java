@@ -27,7 +27,7 @@ public class BurnDamage extends AbstractDamageModifier {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        Wiz.atb(new ApplyPowerAction(target, info.owner, new SingePower(target, info.owner, amount)));
+        Wiz.atb(new ApplyPowerAction(target, info.owner, new SingePower(target, amount)));
     }
 
     @Override

@@ -1,0 +1,72 @@
+{
+  "${ModID}:BrassPipe": {
+    "NAME": "Brass Pipe",
+    "FLAVOR": "For a busy mind.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b",
+      " #ysnowpunk:Brass."
+    ]
+  },
+  "${ModID}:SteamPipe": {
+    "NAME": "Steam Pipe",
+    "FLAVOR": "Now steam powered, as all good things are.",
+    "DESCRIPTIONS": [
+      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. The first card you play each combat becomes #ysnowpunk:Overheated."
+    ]
+  },
+  "${ModID}:ForbiddenScoop": {
+    "NAME": "Forbidden Scoop",
+    "FLAVOR": "Just a little off the top-",
+    "DESCRIPTIONS": [
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. Upon pickup, lose #r",
+      " Max HP.",
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. What have you done?",
+      "Gain [snowpunk:SnowIcon] \u00a0at the start of your turn. NL Upon pickup, lose #r33% of your Max HP."
+    ]
+  },
+  "${ModID}:ChristmasSpiritOLD": {
+    "NAME": "Christmas Spirit OLD",
+    "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain #ysnowpunk:Holiday\u00a0Cheer equal to your #ysnowpunk:Christmas\u00a0Spirit. Killing an enemy or gaining a #rCurse reduces your Christmas Spirit!"
+    ]
+  },
+  "${ModID}:ChristmasSpirit": {
+    "NAME": "Christmas Spirit",
+    "FLAVOR": "The best way to spread Christmas Cheer is singing loud for all to hear.",
+    "DESCRIPTIONS": [
+      "If #yChristmas #ySpirit is greater than an enemy's current HP, they go home for the holidays at the start of their turn."
+    ]
+  },
+  "${ModID}:SleighBells": {
+    "NAME": "Sleigh Bells",
+    "FLAVOR": "Not to be confused with Slay Bells, sold separately.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b",
+      " #ysnowpunk:Holly."
+    ]
+  },
+  "${ModID}:IceCreamSandwich": {
+    "NAME": "Ice Cream Sandwich",
+    "FLAVOR": "I scream, you scream, we all scream. There is no end to the eternal cacophony.",
+    "DESCRIPTIONS": [
+      "Convert #b1 [E] to [Snowpunk:SnowIcon] each turn."
+    ]
+  },
+  "${ModID}:ScrapHeap": {
+    "NAME": "Scrap Heap",
+    "FLAVOR": "'A cluttered desk is a sign of genius.' -Me",
+    "DESCRIPTIONS": [
+      "#yUpgrade the first #b",
+      " cards you draw each turn. You can no longer #ySmith at Rest Sites."
+    ]
+  },
+  "${ModID}:StrangeGizmo": {
+    "NAME": "Strange Gizmo",
+    "FLAVOR": "Truly a marvel of machinery.",
+    "DESCRIPTIONS": [
+      "When adding cards into your deck, you may #yUpgrade a random card instead.",
+      "Random Upgrade"
+    ]
+  }
+}

@@ -19,15 +19,17 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(Snowblower.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 13, UP_DMG = 4;
+    private static final int COST = -1, DMG = 7, UP_DMG = 3;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        baseMagicNumber = magicNumber = 0;
+        isMultiDamage = true;
         exhaust = true;
     }
 
@@ -43,7 +45,8 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
             effect += magicNumber;
 
         for (int i = 0; i < effect; i++)
-            addToBot(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            allDmg(AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        //addToBot(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
@@ -55,14 +58,11 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> {
-            baseMagicNumber = magicNumber = 0;
-            upgradeMagicNumber(1);
-        });
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 
     @Override
-    public void onClank() {
+    public void onClank(AbstractMonster monster) {
         addToTop(new ResetExhaustAction(this, true));
     }
 }

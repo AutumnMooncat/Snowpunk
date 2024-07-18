@@ -25,16 +25,16 @@ public class FineTuned extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new FineTunePower(p, magicNumber));
-        Wiz.applyToSelf(new WrenchPower(p, magicNumber));
+        //Wiz.applyToSelf(new WrenchPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> upgradeMagicNumber(UP_CLANK));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

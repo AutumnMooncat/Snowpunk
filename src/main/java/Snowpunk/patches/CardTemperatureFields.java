@@ -1,12 +1,11 @@
 package Snowpunk.patches;
 
 import Snowpunk.cardmods.EverburnMod;
-import Snowpunk.cardmods.NoHeatMod;
 import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.interfaces.OnTempChangeCard;
 import Snowpunk.powers.CoolNextCardPower;
 import Snowpunk.powers.FireballPower;
-import Snowpunk.powers.OverheatNextCardPower;
+import Snowpunk.powers.FireburstPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -20,7 +19,7 @@ public class CardTemperatureFields {
     public static final Color STABLE_TINT = Color.WHITE.cpy();
     public static final Color OVERHEAT_TINT = new Color(1, 130 / 255f, 130 / 255f, 1);
     public static final Color FROZEN_TINT = new Color(130 / 255f, 251 / 255f, 1, 1);
-    public static final int FROZEN = -2, COLD = -1, HOT = 1, OVERHEATED = 2;
+    public static final int COLD = -1, HOT = 1;
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class TemperatureFields {
@@ -32,26 +31,49 @@ public class CardTemperatureFields {
         return TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
     }
 
+    public static int getCardHeatFloored(AbstractCard card) {
+        if (TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card) < 0)
+            return COLD;
+        if (TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card) > 0)
+            return HOT;
+        return 0;
+    }
+
     public static int getExpectedCardHeatWhenPlayed(AbstractCard card) {
         int heat = getCardHeat(card);
         if (Wiz.adp() != null) {
-            if (Wiz.adp().hasPower(FireballPower.POWER_ID)) {
-                heat++;
+            if (Wiz.adp().hasPower(FireballPower.POWER_ID) || Wiz.adp().hasPower(FireburstPower.POWER_ID)) {
+                if (heat <= 0)
+                    heat = HOT;
+                else
+                    heat++;
+
+                if (Wiz.adp().hasPower(FireburstPower.POWER_ID))
+                    heat++;
             }
             if (Wiz.adp().hasPower(CoolNextCardPower.POWER_ID)) {
-                heat--;
-            }
-            if (Wiz.adp().hasPower(OverheatNextCardPower.POWER_ID)) {
-                heat = OVERHEATED;
+                if (heat >= 0)
+                    heat = COLD;
+                else
+                    heat--;
             }
         }
+        /*
+        if (heat > HOT)
+            heat = HOT;
 
-        if (heat > OVERHEATED) {
-            heat = OVERHEATED;
-        } else if (heat < FROZEN) {
-            heat = FROZEN;
-        }
+        if (heat < COLD)
+            heat = COLD;*/
+
         return heat;
+    }
+
+    public static void reduceTemp(AbstractCard card) {
+        int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
+        if (prevTotal > 0)
+            TemperatureFields.addedHeat.set(card, TemperatureFields.addedHeat.get(card) - 1);
+        if (prevTotal < 0)
+            TemperatureFields.addedHeat.set(card, TemperatureFields.addedHeat.get(card) + 1);
     }
 
     public static void addInherentHeat(AbstractCard card, int amount) {
@@ -68,12 +90,34 @@ public class CardTemperatureFields {
         CardModifierManager.addModifier(card, new TemperatureMod());
     }
 
+    public static void setAddedHeat(AbstractCard card, int amount) {
+        if (amount == 0)
+            return;
+        TemperatureFields.addedHeat.set(card, amount);
+        CardModifierManager.addModifier(card, new TemperatureMod());
+    }
+
     private static void addAndClampHeat(AbstractCard card, int amount, boolean addInherent) {
         int prevTotal = TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card);
+
+        int heat = 0;
+        if (amount > 0) {
+            if (prevTotal <= 0)
+                heat = amount;
+            else
+                heat = prevTotal + amount;
+        } else if (amount < 0) {
+            if (prevTotal > 0)
+                heat = amount;
+            else
+                heat = prevTotal + amount;
+        }
+
         if (addInherent) {
-            TemperatureFields.inherentHeat.set(card, TemperatureFields.inherentHeat.get(card) + amount);
+            TemperatureFields.inherentHeat.set(card, heat);
+            TemperatureFields.addedHeat.set(card, 0);
         } else {
-            TemperatureFields.addedHeat.set(card, TemperatureFields.addedHeat.get(card) + amount);
+            TemperatureFields.addedHeat.set(card, heat - TemperatureFields.inherentHeat.get(card));
         }
 
         int inherent = TemperatureFields.inherentHeat.get(card);
@@ -88,19 +132,17 @@ public class CardTemperatureFields {
                 TemperatureFields.addedHeat.set(card, HOT - inherent);
         }
 
-        if (inherent > OVERHEATED) {
-            inherent = OVERHEATED;
-        } else if (inherent < FROZEN) {
-            inherent = FROZEN;
+        /*if (inherent > HOT) {
+            inherent = HOT;
+        } else if (inherent < COLD) {
+            inherent = COLD;
         }
-        if (inherent + added > OVERHEATED) {
-            added = OVERHEATED - inherent;
-        } else if (inherent + added < FROZEN) {
-            added = FROZEN - inherent;
-        }
+        if (inherent + added > HOT) {
+            added = HOT - inherent;
+        } else if (inherent + added < COLD) {
+            added = COLD - inherent;
+        }*/
 
-        //If inherent goes up, but added goes down due to clamping, no change actually happens to current heat
-        //int delta = (inherent + added) - (TemperatureFields.inherentHeat.get(card) + TemperatureFields.addedHeat.get(card));
         if (added + inherent != prevTotal) {
             flashHeatColor(card);
             if (card instanceof OnTempChangeCard) {
@@ -110,36 +152,21 @@ public class CardTemperatureFields {
 
         TemperatureFields.inherentHeat.set(card, inherent);
         TemperatureFields.addedHeat.set(card, added);
-        /*
-        if (CardTemperatureFields.getCardHeat(card) > 0 && CardModifierManager.hasModifier(card, ClockworkMod.ID)) {
-            CardModifierManager.removeSpecificModifier(card, CardModifierManager.getModifiers(card, ClockworkMod.ID).get(0), true);
-        }
-
-        if (CardTemperatureFields.getCardHeat(card) < HOT && !CardModifierManager.hasModifier(card, ClockworkMod.ID) && Wiz.adp() != null && Wiz.adp().hasPower(TheSnowmanPower.POWER_ID)) {
-            CardModifierManager.addModifier(card, new ClockworkMod());
-        }*/
     }
 
     public static Color getCardTint(AbstractCard card) {
-        switch (getCardHeat(card)) {
-            case FROZEN:
-                return FROZEN_TINT;
+        switch (getCardHeatFloored(card)) {
             case COLD:
                 return COLD_TINT;
             case HOT:
                 return HOT_TINT;
-            case OVERHEATED:
-                return OVERHEAT_TINT;
             default:
                 return STABLE_TINT;
         }
     }
 
     public static void flashHeatColor(AbstractCard card) {
-        switch (getCardHeat(card)) {
-            case FROZEN:
-                card.superFlash(FROZEN_TINT.cpy());
-                break;
+        switch (getCardHeatFloored(card)) {
             case COLD:
                 card.superFlash(COLD_TINT.cpy());
                 break;
@@ -149,18 +176,15 @@ public class CardTemperatureFields {
             case HOT:
                 card.superFlash(HOT_TINT.cpy());
                 break;
-            case OVERHEATED:
-                card.superFlash(OVERHEAT_TINT.cpy());
-                break;
         }
     }
 
     public static boolean canModTemp(AbstractCard card, int amount) {
         int heat = CardTemperatureFields.getCardHeat(card);
-        if (amount > 0)
-            return heat < OVERHEATED && !CardModifierManager.hasModifier(card, NoHeatMod.ID);
+        /*if (amount > 0)
+            return heat < HOT;
         if (amount < 0)
-            return heat > FROZEN && !(CardModifierManager.hasModifier(card, EverburnMod.ID) && heat < 2);
+            return heat > COLD;*/
         return true;
     }
 
@@ -168,10 +192,8 @@ public class CardTemperatureFields {
     public static class MakeStatEquivalentCopy {
         public static AbstractCard Postfix(AbstractCard result, AbstractCard self) {
             //Copy non-inherent heat over to the new card
-            addHeat(result, TemperatureFields.addedHeat.get(self));
+            setAddedHeat(result, TemperatureFields.addedHeat.get(self));
             return result;
         }
     }
-
-
 }

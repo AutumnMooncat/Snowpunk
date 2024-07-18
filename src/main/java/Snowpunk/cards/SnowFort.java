@@ -1,15 +1,15 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
-import com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SnowFort extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SnowFort.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 3;
+    private static final int COST = 1, BLOCK = 8, UPG_BLOCK = 3;
 
     private static ArrayList<TooltipInfo> Tooltip;
 
@@ -43,17 +43,18 @@ public class SnowFort extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractCreature target = SelfOrEnemyTargeting.getTarget(this);
         blck();
-        if (getSnow() > 0)
-            Wiz.atb(new DrawCardAction(getSnow()));
+        int bonusDraw = 0;
+        if (magicNumber > 0)
+            bonusDraw = magicNumber;
+        if (getSnow() + bonusDraw > 0)
+            Wiz.atb(new DrawCardAction(getSnow() + bonusDraw));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

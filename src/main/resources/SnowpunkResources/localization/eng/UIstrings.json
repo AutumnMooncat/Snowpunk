@@ -5,28 +5,11 @@
       "The strings should go in here"
     ],
     "EXTRA_TEXT": [
-      "The M10 Robot",
-      "Adds M10 Robot (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!"
     ]
   },
   "${ModID}:Crossover": {
     "TEXT": [
       "Enable Conductor Crossover Content"
-    ]
-  },
-  "${ModID}:Tinker": {
-    "TEXT": [
-      "Choose a card to tinker.",
-      "Choose "," cards to tinker.",
-      "Choose a Part to apply to ",
-      "."
-    ]
-  },
-  "${ModID}:Parts": {
-    "TEXT": [
-      "Part",
-      "Parts",
-      "Parts can be added to cards to add or modify effects."
     ]
   },
   "${ModID}:Snowballs": {
@@ -38,6 +21,26 @@
   "${ModID}:Upgrade": {
     "TEXT": [
       "Upgrade"
+    ]
+  },
+  "${ModID}:Modify": {
+    "TEXT": [
+      "Modify"
+    ]
+  },
+  "${ModID}:EvaporatePanel": {
+    "TEXT": [
+      "Evaporate Pile",
+      "When you draw during your turn, draw from here first.",
+      "These cards are currently Evaporated.",
+      "When you draw during your turn (not at the start of your turn), draw from here first. NL Click to view #yHot cards and others removed this combat."
+    ]
+  },
+  "${ModID}:Cores": {
+    "TEXT": [
+      "Core",
+      "Cores",
+      "Cores act as a base for creating new cards."
     ]
   },
   "${ModID}:ModTemp": {
@@ -53,27 +56,54 @@
       "Copy"
     ]
   },
-  "${ModID}:Cores": {
+  "${ModID}:Enhance": {
     "TEXT": [
-      "Core",
-      "Cores",
-      "Cores act as a base for creating new cards."
+      "Enhance"
     ]
   },
-  "${ModID}:Upgrades": {
+  "${ModID}:DoubleGears": {
     "TEXT": [
-      "Upgrade",
-      "Improves ",
-      " NL Requires (AND): NL ",
-      " NL Requires (OR): NL ",
-      " NL Excludes: NL "
+      "double its Gears"
     ]
   },
-  "${ModID}:EvaporatePanel": {
+  "${ModID}:DoubleModifiers": {
     "TEXT": [
-      "Evaporated Cards",
-      "Click to view cards Evaporated this combat.",
-      "These cards are currently evaporated."
+      "double its Modifiers"
+    ]
+  },
+  "${ModID}:Cryo": {
+    "TEXT": [
+      "Enhance"
+    ]
+  },
+  "${ModID}:EvaporateTutorial": {
+    "TEXT": [
+      "Evaporate",
+      "You have an Evaporated card! Evaporated cards are drawn before cards in your draw pile when you draw during your turn. (But they aren't drawn into your hand at the start of the turn!)"
+    ]
+  },
+  "${ModID}:Carols": {
+    "TEXT": [
+      "If #yHoliday #yCheer is greater than an enemy's current HP, they go home for the holidays and increase #yChristmas #ySpirit by 1.",
+      "Jingle bells, jingle bells, jingle all the way...",
+      "Dashing through the snow, in a one horse open sleigh...",
+      "Christmas time is here!",
+      "All I want for Christmas is youuuuuuu!",
+      "Let it snow!",
+      "Chestnuts roasting on an open fiiiiire...",
+      "Siiiiiiilent niiiiiight....",
+      "Joy to the world!",
+      "On the first day of Christmas...",
+      "FIVE GOLDEN RINGS!!!",
+      "It's beginning to look a lot like Christmas!",
+      "God rest ye merry gentlemen...",
+      "Rockin' around the Christmas tree...",
+      "Hark the Herald angels sing!",
+      "Baby it's cold outside...",
+      "Jingle bell, jingle bell, jingle bell rock!",
+      "Rudolph the red-nosed reindeer...",
+      "Santa Claus is coming to town!",
+      "Sing with me!"
     ]
   }
 }

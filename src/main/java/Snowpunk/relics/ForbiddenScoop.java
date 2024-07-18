@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballsRelic {
+/*public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballsRelic {
     public static final String ID = makeID(ForbiddenScoop.class.getSimpleName());
 
     public static final int AMOUNT = 1;
@@ -21,8 +21,9 @@ public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballs
     public ForbiddenScoop() {
         super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
         tips.clear();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+        tips.add(new PowerTip(name, description));
         initializeTips();
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
     }
 
     @Override
@@ -56,4 +57,4 @@ public class ForbiddenScoop extends AbstractEasyRelic implements ModifySnowballs
     public int modifySnow() {
         return 1;
     }
-}
+}*/

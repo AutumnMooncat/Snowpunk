@@ -1,5 +1,6 @@
 package Snowpunk.actions;
 
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -25,6 +26,8 @@ public class ExhaustSpecificCardAction extends AbstractGameAction {
                 adp().drawPile.moveToExhaustPile(card);
             else if (adp().limbo.contains(card))
                 adp().limbo.moveToExhaustPile(card);
+            else if (EvaporatePanel.evaporatePile.contains(card))
+                EvaporatePanel.evaporatePile.moveToExhaustPile(card);
             else card.triggerOnExhaust();
         }
         isDone = true;

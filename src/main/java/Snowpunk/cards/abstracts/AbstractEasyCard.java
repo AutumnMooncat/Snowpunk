@@ -3,9 +3,9 @@ package Snowpunk.cards.abstracts;
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.patches.SnowballPatches;
+import Snowpunk.powers.GearNextPower;
 import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.powers.BrassPower;
-import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.util.CardArtRoller;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.CustomCard;
@@ -24,8 +24,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
@@ -300,27 +298,15 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     public static int getSnowStatic() {
-        int snow = SnowballPatches.Snowballs.amount;
-
-        for (AbstractRelic r : Wiz.adp().relics) {
-            if (r instanceof SnowAmountModifier) {
-                snow += ((SnowAmountModifier) r).modifySnow();
-            }
-        }
-        for (AbstractPower pow : Wiz.adp().powers) {
-            if (pow instanceof SnowAmountModifier) {
-                snow += ((SnowAmountModifier) pow).modifySnow();
-            }
-        }
-        return snow;
+        return SnowballPatches.Snowballs.getEffectiveAmount();
     }
 
     public int getGears() {
         int gears = 0;
         if (CardModifierManager.hasModifier(this, GearMod.ID))
             gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(BrassPower.POWER_ID))
-            gears += Wiz.adp().getPower(BrassPower.POWER_ID).amount;
+        if (Wiz.adp() != null && Wiz.adp().hasPower(GearNextPower.POWER_ID))
+            gears += Wiz.adp().getPower(GearNextPower.POWER_ID).amount;
         if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
             gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
         return gears;

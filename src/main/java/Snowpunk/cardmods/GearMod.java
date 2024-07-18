@@ -1,7 +1,9 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.patches.CustomTags;
+import Snowpunk.powers.GearNextPower;
 import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.powers.BrassPower;
 import Snowpunk.util.KeywordManager;
@@ -31,6 +33,7 @@ public class GearMod extends AbstractCardModifier {
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     public int amount = 0;
+    private boolean test = false;
     private static ArrayList<TooltipInfo> GearTip;
     private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/ui/GearIcon.png");
 
@@ -39,22 +42,13 @@ public class GearMod extends AbstractCardModifier {
     }
 
     public GearMod(int amount) {
+        this(amount, false);
+    }
+
+    public GearMod(int amount, boolean test) {
+        this.test = test;
         priority = 1;
         this.amount += amount;
-    }
-
-    @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (damage >= 0)
-            damage += amount;
-        return damage;
-    }
-
-    @Override
-    public float modifyBlock(float block, AbstractCard card) {
-        if (block >= 0)
-            block += amount;
-        return block;
     }
 
     @Override
@@ -76,24 +70,27 @@ public class GearMod extends AbstractCardModifier {
                 gearMod.amount = 0;
             return false;
         }
+        if (test)
+            return (CardModifierManager.hasModifier(card, ID));
         return true;
     }
 
-    @Override
-    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
-        if (GearTip == null) {
-            GearTip = new ArrayList<>();
-            GearTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+    /*
+        @Override
+        public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+            if (GearTip == null) {
+                GearTip = new ArrayList<>();
+                GearTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
+            }
+            return GearTip;
         }
-        return GearTip;
-    }
-
+    */
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int numGears = amount;
         if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
-            if (Wiz.adp().hasPower(BrassPower.POWER_ID) && Wiz.adp().getPower(BrassPower.POWER_ID).amount > 0)
-                numGears += Wiz.adp().getPower(BrassPower.POWER_ID).amount;
+            if (Wiz.adp().hasPower(GearNextPower.POWER_ID) && Wiz.adp().getPower(GearNextPower.POWER_ID).amount > 0)
+                numGears += Wiz.adp().getPower(GearNextPower.POWER_ID).amount;
             if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
                 numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
         }
@@ -104,6 +101,8 @@ public class GearMod extends AbstractCardModifier {
             else
                 ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
         }
+        /*if (amount > 0)
+            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);*/
     }
 
     @Override

@@ -1,16 +1,12 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.powers.BrassContraptionPower;
 import Snowpunk.powers.ClockworkPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
-import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
@@ -24,7 +20,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Clockwork extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Clockwork.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
@@ -35,7 +31,10 @@ public class Clockwork extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = this.energyOnUse;
+        int effect = energyOnUse;
+
+        if (magicNumber > 0)
+            effect += magicNumber;
 
         if (p.hasRelic("Chemical X")) {
             effect += ChemicalX.BOOST;
@@ -48,24 +47,16 @@ public class Clockwork extends AbstractMultiUpgradeCard {
             p.energy.use(EnergyPanel.totalCount);
     }
 
-
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
-        }
-        return Tooltip;
-    }
-
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> {
+            magicNumber = baseMagicNumber = 0;
+            upgradeMagicNumber(1);
+        });
+
     }
 }

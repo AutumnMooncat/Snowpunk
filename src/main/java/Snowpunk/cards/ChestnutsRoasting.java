@@ -1,9 +1,11 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.EverburnMod;
+import Snowpunk.actions.ConvertSnowToE;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -22,51 +24,29 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChestnutsRoasting.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
+    private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
-    private static final int CARDS = 2;
-    private static final int UP_CARDS = 1;
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.FIRE), BaseMod.getKeywordDescription(KeywordManager.FIRE)));
-        }
-        return Tooltip;
-    }
+    private static final int COST = 0;
+    private static final int SINGE = 3, CARDS = 1;
 
     public ChestnutsRoasting() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = CARDS;
+        baseMagicNumber = magicNumber = SINGE;
+        secondMagic = baseSecondMagic = CARDS;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Wiz.atb(new ModCardTempAction(magicNumber, 1, false));
-        Wiz.applyToSelf(new FireballPower(p, magicNumber));
+        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
+        Wiz.applyToSelf(new FireballPower(p, secondMagic));
     }
-
-/*
-    @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if(Tooltip == null)
-        {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.TEMP), BaseMod.getKeywordDescription(KeywordManager.TEMP)));
-        }
-        return Tooltip;
-    }*/
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeMagicNumber(UP_CARDS));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new EverburnMod()));
+        addUpgradeData(() -> upgradeSecondMagic(1));
     }
 }

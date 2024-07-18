@@ -2,15 +2,22 @@ package Snowpunk.patches;
 
 import Snowpunk.TheConductor;
 import Snowpunk.actions.GainSnowballAction;
+import Snowpunk.cardmods.CondensedMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.powers.interfaces.SnowAmountModifier;
 import Snowpunk.relics.interfaces.ModifySnowballsRelic;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.ModifyXCostPatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import javassist.CtBehavior;
@@ -19,7 +26,19 @@ public class SnowballPatches {
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class Snowballs {
-        public static int amount = 0;
+        private static int amount = 0;
+
+        public static void changeSnow(int snow) {
+            amount += snow;
+            if (amount < 0)
+                amount = 0;
+        }
+
+        public static void setSnow(int snow) {
+            amount = snow;
+            if (amount < 0)
+                amount = 0;
+        }
 
         public static int getPerTurn() {
             int perTurn = 0;
@@ -39,6 +58,27 @@ public class SnowballPatches {
             if (snow > 0)
                 Wiz.att(new GainSnowballAction(snow));
         }
+
+        public static int getTrueAmount() {
+            return amount;
+        }
+
+        public static int getEffectiveAmount() {
+            int snow = amount;
+            if (Wiz.adp() != null) {
+                for (AbstractRelic r : Wiz.adp().relics) {
+                    if (r instanceof SnowAmountModifier) {
+                        snow += ((SnowAmountModifier) r).modifySnow();
+                    }
+                }
+                for (AbstractPower pow : Wiz.adp().powers) {
+                    if (pow instanceof SnowAmountModifier) {
+                        snow += ((SnowAmountModifier) pow).modifySnow();
+                    }
+                }
+            }
+            return snow;
+        }
     }
 
     @SpirePatch2(clz = AbstractCard.class, method = "hasEnoughEnergy")
@@ -51,6 +91,8 @@ public class SnowballPatches {
                     return SpireReturn.Return(true);
                 }
             }
+            if (CardModifierManager.hasModifier(__instance, CondensedMod.ID))
+                return SpireReturn.Return(true);
             return SpireReturn.Continue();
         }
 
@@ -67,16 +109,16 @@ public class SnowballPatches {
     public static class ConsumeSnowPatch {
         @SpireInsertPatch(locator = ModifyXCostPatch.Locator.class)
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
-            if (Snowballs.amount > 0 && c.costForTurn > 0) {
+            if (Snowballs.getTrueAmount() > 0 && c.costForTurn > 0 && !c.purgeOnUse) {
                 int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
-                if (delta > 0)
-                    Snowballs.amount -= delta;
-                /*if (delta > 0)
-                    Wiz.att(new ReducePowerAction(__instance, __instance, SnowballPower.POWER_ID, delta));*/
+                if (delta > 0 && !c.freeToPlayOnce)
+                    if (!(delta > Snowballs.getTrueAmount() && CardModifierManager.hasModifier(c, CondensedMod.ID)))
+                        Wiz.atb(new GainSnowballAction(-delta));
             }
-            if (Snowballs.amount > 0 && c.costForTurn == -1) {
+            if (Snowballs.getTrueAmount() > 0 && c.costForTurn == -1 && !c.purgeOnUse) {
                 c.energyOnUse += AbstractEasyCard.getSnowStatic();
-                Wiz.atb(new GainSnowballAction(-Snowballs.amount));
+                if (!c.freeToPlayOnce && !CardModifierManager.hasModifier(c, CondensedMod.ID))
+                    Wiz.atb(new GainSnowballAction(-Snowballs.getTrueAmount()));
             }
         }
         public static class Locator extends SpireInsertLocator {
@@ -90,12 +132,13 @@ public class SnowballPatches {
         @SpireInsertPatch(locator = Locator2.class)
         public static void fixSCostShenanigans(AbstractPlayer __instance, AbstractCard c) {
             if (SCostFieldPatches.SCostField.isSCost.get(c)) {
-                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && (Snowballs.amount > 0/*__instance.hasPower(SnowballPower.POWER_ID)*/)) {
-                    int snow = Snowballs.amount;//__instance.getPower(SnowballPower.POWER_ID).amount;
+                if ((!c.freeToPlayOnce || AltCostPatch.AltCostField.usingAltCost.get(c)) && (Snowballs.getEffectiveAmount() > 0/*__instance.hasPower(SnowballPower.POWER_ID)*/)) {
+                    int snow = Snowballs.getEffectiveAmount();//__instance.getPower(SnowballPower.POWER_ID).amount;
                     __instance.loseEnergy(snow);
                 }
             }
         }
+
         public static class Locator2 extends SpireInsertLocator {
             @Override
             public int[] Locate(CtBehavior ctBehavior) throws Exception {
@@ -104,4 +147,25 @@ public class SnowballPatches {
             }
         }
     }
+
+    @SpirePatch2(clz = EnergyPanel.class, method = "useEnergy")
+    public static class UseSnowWhenELost {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void bePlayable(int e) {
+            if (Snowballs.getTrueAmount() > 0 && e > 0) {
+                int delta = e - EnergyPanel.getCurrentEnergy();
+                if (delta > 0)
+                    Wiz.atb(new GainSnowballAction(-delta));
+            }
+        }
+
+        public static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher m = new Matcher.FieldAccessMatcher(EnergyPanel.class, "totalCount");
+                return LineFinder.findInOrder(ctBehavior, m);
+            }
+        }
+    }
+
 }

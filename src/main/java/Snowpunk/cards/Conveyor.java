@@ -24,49 +24,28 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, DRAW = 3, UP_DRAW = 1;
-
-    private boolean upgradeDraw = false;
+    private static final int COST = 0, DRAW = 3;
 
     public Conveyor() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
         CardModifierManager.addModifier(this, new GearMod(DRAW));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int drawAmount = getGears();
-        if (drawAmount > 0) {
-            if (upgradeDraw) {
-                Wiz.atb(new DrawCardAction(drawAmount, new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractCard c : DrawCardAction.drawnCards) {
-                            if (c.canUpgrade()) {
-                                c.upgrade();
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                }));
-            } else
-                addToBot(new DrawCardAction(drawAmount));
-        }
+        if (drawAmount > 0)
+            addToBot(new DrawCardAction(drawAmount));
+
         addToBot(new ClankAction(this));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(UP_DRAW)));
-        addUpgradeData(() -> {
-            upgradeDraw = true;
-            uDesc();
-        });
-        addUpgradeData(() -> upgradeMagicNumber(-1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
     }
 
     @Override
-    public void onClank() {
-        addToTop(new ApplyCardModifierAction(this, new GearMod(-magicNumber)));
+    public void onClank(AbstractMonster monster) {
+        addToTop(new ApplyCardModifierAction(this, new GearMod(-1)));
     }
 }

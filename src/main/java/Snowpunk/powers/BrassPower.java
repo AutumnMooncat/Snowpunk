@@ -1,6 +1,8 @@
 package Snowpunk.powers;
 
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
+import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.WrenchEffect;
 import basemod.helpers.CardModifierManager;
@@ -12,6 +14,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -27,29 +30,40 @@ public class BrassPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, GearMod.ID)) {
-            CardModifierManager.addModifier(card, new GearMod(amount));
+        if ((card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, PlateMod.ID)) && !card.purgeOnUse) {
+            CardModifierManager.addModifier(card, new PlateMod(amount));
             addToTop(new RemoveSpecificPowerAction(owner, owner, this));
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
         }
     }
 
     @Override
-    public float modifyBlock(float blockAmount) {
-        if (blockAmount < 1)
+    public float modifyBlock(float blockAmount, AbstractCard card) {
+        int mult = 1;
+        if (card instanceof GearMultCard)
+            mult = ((GearMultCard) card).gearMult();
+        if (blockAmount < 0)
             return blockAmount;
-        return Math.max(blockAmount + amount, 0);
+        return Math.max(blockAmount + amount * mult, 0);
     }
 
     @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+        int mult = 1;
+        if (card instanceof GearMultCard)
+            mult = ((GearMultCard) card).gearMult();
         if (type == DamageInfo.DamageType.NORMAL)
-            return damage + amount;
+            return damage + amount * mult;
         return damage;
     }
 
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new BrassPower(owner, amount);
     }
 }

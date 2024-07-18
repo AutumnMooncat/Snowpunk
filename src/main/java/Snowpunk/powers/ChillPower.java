@@ -1,12 +1,16 @@
 package Snowpunk.powers;
 
+import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -15,16 +19,22 @@ public class ChillPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    public int keepThisTurn;
-
     public ChillPower(AbstractCreature owner, int amount) {
-        this(owner, amount, 0);
-    }
-
-    public ChillPower(AbstractCreature owner, int amount, int keepThisTurn) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
         isTurnBased = true;
-        this.keepThisTurn = keepThisTurn;
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        if (owner instanceof AbstractPlayer)
+            Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+        if (type == DamageInfo.DamageType.NORMAL)
+            return Math.max(0, damage - amount);
+        return damage;
     }
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
@@ -32,17 +42,18 @@ public class ChillPower extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfRound() {
-        if (keepThisTurn <= 0)
+    public void atEndOfTurn(boolean isPlayer) {
+        if (!owner.hasPower(CharPower.POWER_ID) || !owner.hasPower(FrozenPower.POWER_ID))
             Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
-        else {
-            Wiz.atb(new ReducePowerAction(owner, owner, this, amount - keepThisTurn));
-            keepThisTurn = 0;
-        }
     }
 
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+    }
+
+    @Override
+    public AbstractPower makeCopy() {
+        return new ChillPower(owner, amount);
     }
 }

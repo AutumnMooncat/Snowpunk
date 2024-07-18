@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class WrenchEffect extends AbstractGameEffect {
     private static Texture TEXTURE = TexLoader.getTexture("SnowpunkResources/images/vfx/Wrench.png");
-    public static final float DURATION = 0.75f; //Duration of the action, can lengthen or shorten as you wish. All interpolations are relative to this, so changing this is safe
+    public static final float DURATION = 0.5f; //Duration of the action, can lengthen or shorten as you wish. All interpolations are relative to this, so changing this is safe
     private static final float HALF_DUR = DURATION / 2F;
     private final float sx;
     private final float sy;
