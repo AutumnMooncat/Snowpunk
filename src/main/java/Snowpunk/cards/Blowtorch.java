@@ -29,13 +29,13 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
     public Blowtorch() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = 1;
+        CardModifierManager.addModifier(this, new GearMod(2));
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new EnhanceCardInHardAction(magicNumber, 1, null, true));
+        Wiz.atb(new EnhanceCardInHardAction(getGears(), 1, null, true));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
             upgradeDamage(2);
             CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT);
         });
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(2)));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

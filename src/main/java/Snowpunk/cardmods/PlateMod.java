@@ -50,7 +50,7 @@ public class PlateMod extends AbstractCardModifier {
         this.amount += amount;
     }
 
-    @Override
+    /*@Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
         int mult = 1;
         if (card instanceof GearMultCard)
@@ -68,6 +68,16 @@ public class PlateMod extends AbstractCardModifier {
         if (block >= 0)
             block += amount * mult;
         return block;
+    }*/
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage + amount;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block + amount;
     }
 
     @Override
@@ -89,9 +99,7 @@ public class PlateMod extends AbstractCardModifier {
                 plateMod.amount = 0;
             return false;
         }
-        if (test)
-            return (card.baseBlock >= 0 || card.baseDamage >= 0);
-        return true;
+        return (card.baseBlock >= 0 || card.baseDamage >= 0);
     }
 
     @Override

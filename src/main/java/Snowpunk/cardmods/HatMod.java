@@ -63,9 +63,7 @@ public class HatMod extends AbstractCardModifier implements FreeToPlayMod {
                 Wiz.att(new RemoveCardModifierAction(card, hatMod));
             return false;
         }
-        if (amount > 0)
-            return true;
-        return false;
+        return amount > 0;
     }
 
     @Override

@@ -338,12 +338,15 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
 
             //TEMPS
             int hotUp = indexes;
-            addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-            indexes++;
+            if (type != CardType.POWER) {
+                addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT * 2));
+                indexes++;
+            }
             int coldUp = indexes;
             addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
             indexes++;
-            setExclusions(hotUp, coldUp);
+            if (type != CardType.POWER)
+                setExclusions(hotUp, coldUp);
 
 
             int numCostDown = 0;

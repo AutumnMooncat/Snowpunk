@@ -14,7 +14,7 @@
     ]
   },
   "${ModID}:GearNextCardPower": {
-    "NAME": "Gear Next Card",
+    "NAME": "Cogwheel",
     "DESCRIPTIONS": [
       "Apply #b",
       " [snowpunk:GearIcon] \u00a0to the next viable card played."
@@ -46,7 +46,8 @@
     "NAME": "Mr. 10 Below",
     "DESCRIPTIONS": [
       "The first time you play a #yCold card each turn, give it #b",
-      " #yCold."
+      " #yCold and gain #b",
+      " #yBlock."
     ]
   },
   "${ModID}:TooMuchPower": {
@@ -137,9 +138,9 @@
   "${ModID}:ShovelCoalPower": {
     "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "The first card that #yExhausts each turn is moved to the Evaporate pile.",
-      "The first #b",
-      " cards that #yExhaust each turn are moved to the Evaporate pile."
+      "At the start of your turn, move 1 random card from the #yExhaust or discard pile to the Evaporate pile.",
+      "At the start of your turn, move #b",
+      " random cards from the #yExhaust or discard pile to the Evaporate pile."
     ]
   },
   "${ModID}:LetItSnowPower": {
@@ -162,7 +163,7 @@
     "NAME": "Clockwork",
     "DESCRIPTIONS": [
       "At the start of your turn, add #b",
-      " #yPlating to cards in your hand."
+      " #yPlating to viable cards in your hand."
     ]
   },
   "${ModID}:GracePower": {
@@ -178,8 +179,8 @@
   "${ModID}:HollyPower": {
     "NAME": "Holly",
     "DESCRIPTIONS": [
-      "The next time you apply a debuff this turn, apply #b",
-      " more."
+      "The next time you apply a debuff or gain #yBrass, increase the amount by #b",
+      "."
     ]
   },
   "${ModID}:FineTunePower": {
@@ -262,9 +263,9 @@
   "${ModID}:PyromaniacPower": {
     "NAME": "Pyromaniac",
     "DESCRIPTIONS": [
-      "#yHot cards play an additional time, but #yExhaust.",
+      "#yHot cards play an additional time. At the end of your turn, #yExhaust your Evaporate pile.",
       "#yHot cards play an additional #b",
-      " times, but #yExhaust."
+      " times. At the end of your turn, #yExhaust your Evaporate pile."
     ]
   },
   "${ModID}:FranticFixPower": {

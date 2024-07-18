@@ -22,7 +22,7 @@
     "NAMES": [
       "holly"
     ],
-    "DESCRIPTION": "The next time you apply a debuff this turn, apply this much more."
+    "DESCRIPTION": "The next time you apply a debuff or gain #yBrass, increase the amount."
   },
   {
     "ID": "flamin",
@@ -68,7 +68,7 @@
       "snow",
       "s"
     ],
-    "DESCRIPTION": "Counts as [E] . NL Spent after [E] . NL Conserved between turns."
+    "DESCRIPTION": "Counts as [E] [REMOVE_SPACE]. NL Spent after [E] [REMOVE_SPACE]. NL Conserved between turns."
   },
   {
     "PROPER_NAME": "Chill",
@@ -113,6 +113,15 @@
       "brass"
     ],
     "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
+  },
+  {
+    "ID": "modifications",
+    "PROPER_NAME": "Modifications",
+    "NAMES": [
+      "modifications",
+      "modification"
+    ],
+    "DESCRIPTION": "Card modifications include #yHot, #yCold, #yGears, #yPlating, #yHats, and #yOverdrive!"
   },
   {
     "ID": "plating",

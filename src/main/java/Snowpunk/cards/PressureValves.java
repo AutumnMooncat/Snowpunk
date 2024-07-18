@@ -53,5 +53,9 @@ public class PressureValves extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> {
+            isInnate = true;
+            uDesc();
+        });
     }
 }

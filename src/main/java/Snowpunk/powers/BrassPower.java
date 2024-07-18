@@ -30,7 +30,7 @@ public class BrassPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, PlateMod.ID)) {
+        if ((card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, PlateMod.ID)) && !card.purgeOnUse) {
             CardModifierManager.addModifier(card, new PlateMod(amount));
             addToTop(new RemoveSpecificPowerAction(owner, owner, this));
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));

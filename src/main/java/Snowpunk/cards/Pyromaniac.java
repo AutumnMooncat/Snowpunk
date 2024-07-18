@@ -3,6 +3,8 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.PyromaniacPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,6 +12,8 @@ import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class Pyromaniac extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Pyromaniac.class.getSimpleName());
 
@@ -22,7 +26,6 @@ public class Pyromaniac extends AbstractMultiUpgradeCard {
     public Pyromaniac() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 2;
-        isEthereal = true;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {

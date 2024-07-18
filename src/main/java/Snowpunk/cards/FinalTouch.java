@@ -20,47 +20,38 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class FinalTouch extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(FinalTouch.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 1;
 
-    private static ArrayList<TooltipInfo> Tooltip, Blank;
+    private static ArrayList<TooltipInfo> Tooltip;
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
         if (Tooltip == null) {
             Tooltip = new ArrayList<>();
-            Blank = new ArrayList<>();
             Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
         }
-        if (snow)
             return Tooltip;
-        return Blank;
     }
-
-    private boolean snow;
 
     public FinalTouch() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 0;
         block = baseBlock = 6;
-        snow = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        Wiz.atb(new IncreaseModifiersAction(false, snow ? getSnow() : magicNumber));
+        Wiz.atb(new IncreaseModifiersAction(false, getSnow() + magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(3));
         addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> {
-            snow = true;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

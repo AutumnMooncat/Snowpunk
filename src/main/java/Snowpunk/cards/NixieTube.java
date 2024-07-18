@@ -24,7 +24,7 @@ public class NixieTube extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private boolean addGear = false;
 

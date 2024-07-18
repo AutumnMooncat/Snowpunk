@@ -5,6 +5,8 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,6 +16,8 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class DrillBit extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(DrillBit.class.getSimpleName());
 

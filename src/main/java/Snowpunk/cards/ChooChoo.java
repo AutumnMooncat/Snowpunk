@@ -37,12 +37,10 @@ public class ChooChoo extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(7));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> {
             endTurn = false;
             uDesc();
         });
-        setExclusions(1, 2);
     }
 }

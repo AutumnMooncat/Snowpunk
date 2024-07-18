@@ -34,12 +34,13 @@ public class HollyPower extends AbstractEasyPower implements BetterOnApplyPowerP
         CardModifierManager.addModifier(card, new GearMod(amount, true));
         card.superFlash();
         card.applyPowers();
-    }*/
+    }
 
     @Override
     public void atStartOfTurn() {
         Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
     }
+*/
 
     @Override
     public AbstractPower makeCopy() {
@@ -48,7 +49,8 @@ public class HollyPower extends AbstractEasyPower implements BetterOnApplyPowerP
 
     @Override
     public boolean betterOnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (target instanceof AbstractMonster && power.type == PowerType.DEBUFF) {
+        if ((target instanceof AbstractMonster && power.type == PowerType.DEBUFF) ||
+                power instanceof BrassPower) {
             Wiz.att(new RemoveSpecificPowerAction(owner, owner, this));
             flash();
             power.amount += amount;
@@ -58,7 +60,8 @@ public class HollyPower extends AbstractEasyPower implements BetterOnApplyPowerP
 
     @Override
     public int betterOnApplyPowerStacks(AbstractPower power, AbstractCreature target, AbstractCreature source, int stackAmount) {
-        if (target instanceof AbstractMonster && power.type == PowerType.DEBUFF) {
+        if ((target instanceof AbstractMonster && power.type == PowerType.DEBUFF) ||
+                power instanceof BrassPower) {
             Wiz.att(new RemoveSpecificPowerAction(owner, owner, this));
             flash();
             return stackAmount + amount;

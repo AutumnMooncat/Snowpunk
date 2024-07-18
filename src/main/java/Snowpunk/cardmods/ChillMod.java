@@ -6,6 +6,7 @@ import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -13,6 +14,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -54,12 +58,20 @@ public class ChillMod extends AbstractCardModifier {
     public boolean shouldApply(AbstractCard card) {
         if (CardModifierManager.hasModifier(card, ID)) {
             ChillMod chillMod = (ChillMod) CardModifierManager.getModifiers(card, ID).get(0);
-            chillMod.amount += amount;
+            int total = chillMod.amount + amount;
+            chillMod.amount = total;
             if (chillMod.amount < 0)
                 chillMod.amount = 0;
 
+            ArrayList<AbstractDamageModifier> toRemove = new ArrayList<>();
+            for (AbstractDamageModifier mod : DamageModifierManager.modifiers(card)) {
+                if (mod instanceof ChillDamageMod)
+                    toRemove.add(mod);
+            }
+            DamageModifierManager.removeModifiers(card, toRemove);
+
             if (card.type == AbstractCard.CardType.ATTACK)
-                DamageModifierManager.addModifier(card, new ChillDamageMod(amount));
+                DamageModifierManager.addModifier(card, new ChillDamageMod(total));
 
             card.applyPowers();
             card.initializeDescription();

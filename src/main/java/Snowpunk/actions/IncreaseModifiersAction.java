@@ -6,6 +6,7 @@ import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,15 +17,16 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 public class IncreaseModifiersAction extends AbstractGameAction {
 
-    public static final String ID = makeID("DoubleModifiers");
+    public static final String ID = makeID("Modify");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     boolean random, x2;
     ArrayList<AbstractCard> modCards, nonModCards;
+    CardGroup cardGroup;
 
     public IncreaseModifiersAction(boolean random, int amount) {
         this.actionType = ActionType.CARD_MANIPULATION;
-
+        cardGroup = null;
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
 
@@ -35,42 +37,63 @@ public class IncreaseModifiersAction extends AbstractGameAction {
         this.amount = amount;
     }
 
+    public IncreaseModifiersAction(CardGroup group, int amount) {
+        this.actionType = ActionType.CARD_MANIPULATION;
+        cardGroup = group;
+        startDuration = Settings.ACTION_DUR_FAST;
+        duration = startDuration;
+
+        modCards = new ArrayList<>();
+        nonModCards = new ArrayList<>();
+        random = false;
+        x2 = amount < 0;
+        this.amount = amount;
+    }
+
     public void update() {
         if (this.duration == this.startDuration) {
-            for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                if (CardModifierManager.hasModifier(c, GearMod.ID) || CardModifierManager.hasModifier(c, PlateMod.ID) ||
-                        CardModifierManager.hasModifier(c, TemperatureMod.ID) || CardModifierManager.hasModifier(c, HatMod.ID) ||
-                        CardModifierManager.hasModifier(c, OverdriveMod.ID) || CardModifierManager.hasModifier(c, ChillMod.ID))
-                    modCards.add(c);
-                else
-                    nonModCards.add(c);
-            }
+            if (cardGroup == null) {
+                for (AbstractCard c : Wiz.adp().hand.group) {
+                    if (CardModifierManager.hasModifier(c, GearMod.ID) || CardModifierManager.hasModifier(c, PlateMod.ID) ||
+                            CardModifierManager.hasModifier(c, TemperatureMod.ID) || CardModifierManager.hasModifier(c, HatMod.ID) ||
+                            CardModifierManager.hasModifier(c, OverdriveMod.ID))
+                        modCards.add(c);
+                    else
+                        nonModCards.add(c);
+                }
 
-            Wiz.adp().hand.group.removeAll(nonModCards);
-            if (Wiz.adp().hand.size() == 0) {
-                isDone = true;
-                returnCards();
+                Wiz.adp().hand.group.removeAll(nonModCards);
+
+                if (Wiz.adp().hand.size() == 0) {
+                    isDone = true;
+                    returnCards();
+                    return;
+                }
+
+                if (Wiz.adp().hand.size() <= 1) {
+                    isDone = true;
+                    for (AbstractCard c : Wiz.adp().hand.group)
+                        increaseMods(c);
+                    returnCards();
+                    return;
+                }
+                if (random) {
+                    isDone = true;
+                    AbstractCard card = Wiz.adp().hand.getRandomCard(true);
+                    increaseMods(card);
+                    returnCards();
+                    return;
+                }
+
+                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false, false, false, false, true);
+                tickDuration();
                 return;
-            }
-
-            if (Wiz.adp().hand.size() <= 1) {
+            } else {
                 isDone = true;
-                for (AbstractCard c : Wiz.adp().hand.group)
+                for (AbstractCard c : cardGroup.group)
                     increaseMods(c);
-                returnCards();
                 return;
             }
-            if (random) {
-                isDone = true;
-                AbstractCard card = Wiz.adp().hand.getRandomCard(true);
-                increaseMods(card);
-                returnCards();
-                return;
-            }
-
-            AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false, false, false, false, true);
-            tickDuration();
-            return;
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
             for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
@@ -105,8 +128,6 @@ public class IncreaseModifiersAction extends AbstractGameAction {
         }
         if (CardModifierManager.hasModifier(card, OverdriveMod.ID))
             CardModifierManager.addModifier(card, new OverdriveMod(x2 ? ((OverdriveMod) CardModifierManager.getModifiers(card, OverdriveMod.ID).get(0)).amount : amount));
-        if (CardModifierManager.hasModifier(card, ChillMod.ID))
-            CardModifierManager.addModifier(card, new ChillMod(x2 ? ((ChillMod) CardModifierManager.getModifiers(card, ChillMod.ID).get(0)).amount : amount));
         card.superFlash();
         card.applyPowers();
     }

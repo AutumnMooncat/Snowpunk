@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
+import java.util.ArrayList;
+
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class MakeCopyInHandAction extends AbstractGameAction {
@@ -19,6 +21,7 @@ public class MakeCopyInHandAction extends AbstractGameAction {
 
     AbstractPlayer player;
     boolean hat, free;
+    ArrayList<AbstractCard> removedCards;
 
     public MakeCopyInHandAction(boolean freeThisTurn, boolean freeThisCombat) {
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -32,8 +35,12 @@ public class MakeCopyInHandAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == this.startDuration) {
+            for (AbstractCard c : player.hand.group) {
+
+            }
             if (player.hand.size() == 0) {
                 this.isDone = true;
+                returnCards();
                 return;
             }
 
@@ -52,11 +59,14 @@ public class MakeCopyInHandAction extends AbstractGameAction {
 
                 if (hat)
                     CardModifierManager.addModifier(newCard, new HatMod(1));
-
+                returnCards();
                 AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(newCard));
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
         tickDuration();
+    }
+
+    private void returnCards() {
     }
 }

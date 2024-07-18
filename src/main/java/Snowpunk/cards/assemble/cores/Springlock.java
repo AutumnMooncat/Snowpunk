@@ -11,16 +11,16 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class Hook extends CoreCard {
-    public static final String ID = makeID(Hook.class.getSimpleName());
+public class Springlock extends CoreCard {
+    public static final String ID = makeID(Springlock.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
 
-    public Hook() {
-        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.POW, EffectTag.CRD);
+    public Springlock() {
+        super(ID, COST, TYPE, EffectTag.CORE, EffectTag.POW);
     }
 
     @Override
@@ -33,6 +33,6 @@ public class Hook extends CoreCard {
 
     @Override
     public PowerCondition getPower() {
-        return PowerCondition.END;
+        return PowerCondition.DMGD;
     }
 }

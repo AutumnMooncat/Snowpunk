@@ -1,10 +1,12 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.EvaporateCardInHandAction;
 import Snowpunk.actions.MoveFromOnePileToAnotherAction;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,21 +14,22 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Snowpunk.SnowpunkMod.makeID;
+import static Snowpunk.util.Wiz.adp;
 
 public class ShovelCoalPower extends AbstractEasyPower {
     public static String POWER_ID = makeID(ShovelCoalPower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    int numExhausted = 0;
-
     public ShovelCoalPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
-        numExhausted = 0;
     }
-
+/*
     @Override
     public void atStartOfTurn() {
         numExhausted = 0;
@@ -52,6 +55,44 @@ public class ShovelCoalPower extends AbstractEasyPower {
             flash();
         }
         super.onExhaust(card);
+    }*/
+
+    @Override
+    public void atStartOfTurnPostDraw() {
+        if (Wiz.adp().exhaustPile.group.size() + Wiz.adp().discardPile.group.size() > 0) {
+            List<AbstractCard> cards = new ArrayList<>();
+            cards.addAll(Wiz.adp().exhaustPile.group);
+            cards.addAll(Wiz.adp().discardPile.group);
+
+            for (int i = 0; i < amount; i++) {
+                AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+                card.unhover();
+                card.untip();
+                card.stopGlowing();
+                if (Wiz.adp().exhaustPile.group.contains(card)) {
+                    Wiz.adp().exhaustPile.group.remove(card);
+                    EvaporatePanel.evaporatePile.addToTop(card);
+                }
+                if (adp().discardPile.group.contains(card)) {
+                    Wiz.adp().discardPile.group.remove(card);
+                    EvaporatePanel.evaporatePile.addToTop(card);
+                }
+
+                for (AbstractPower pow : adp().powers) {
+                    if (pow instanceof OnEvaporatePower) {
+                        ((OnEvaporatePower) pow).onEvaporate(card);
+                    }
+                }
+                for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    for (AbstractPower pow : monster.powers) {
+                        if (pow instanceof OnEvaporatePower) {
+                            ((OnEvaporatePower) pow).onEvaporate(card);
+                        }
+                    }
+                }
+                flash();
+            }
+        }
     }
 
     @Override

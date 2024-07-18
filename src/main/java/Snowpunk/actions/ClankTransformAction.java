@@ -1,11 +1,14 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.ClankTransformOnPlay;
+import Snowpunk.cards.Perfection;
+import Snowpunk.cards.Ratchet;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
+import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -33,8 +36,12 @@ public class ClankTransformAction extends AbstractGameAction {
     @Override
     public void update() {
         AbstractCard newCard = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.ATTACK);
+        while (newCard instanceof Ratchet || newCard instanceof Perfection)
+            newCard = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.ATTACK);
+
         if (newCard != null) {
             newCard = newCard.makeCopy();
+            //CardModifierManager.copyModifiers(card, newCard, true, false, false);
             newCard.hb = card.hb;
             newCard.current_x = card.current_x;
             newCard.current_y = card.current_y;

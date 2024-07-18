@@ -35,7 +35,7 @@ public class Perfection extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(3));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
     }
 }

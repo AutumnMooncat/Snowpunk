@@ -57,14 +57,14 @@ public class TheConductor extends CustomPlayer {
 
     public TheConductor(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null, new CustomSpriterAnimation(
-                modID + "Resources/images/char/mainChar/OJCharacter.scml"));
+                modID + "Resources/images/char/mainChar/Conductor.scml"));
         Player.PlayerListener listener = new CustomAnimationListener(this);
         ((CustomSpriterAnimation) this.animation).myPlayer.addListener(listener);
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
-                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(2));
+                getLoadout(), 20.0F, 10.0F, 157.0F, 256.0F, new EnergyManager(2));
 
 
         dialogX = (drawX + 0.0F * Settings.scale);

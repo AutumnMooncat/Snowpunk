@@ -34,7 +34,7 @@ public class Compactor extends CoreCard {
 
     public Compactor() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.POST_POW);
-        secondMagic = baseSecondMagic = 4;
+        secondMagic = baseSecondMagic = 3;
     }
 
     @Override
@@ -52,7 +52,8 @@ public class Compactor extends CoreCard {
 
     @Override
     public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
-        if (!coreCards.get(coreCards.size() - 1).effectTags.contains(EffectTag.POW) || !coreCards.get(coreCards.size() - 1).effectTags.contains(EffectTag.CRD))
+        if (!coreCards.get(coreCards.size() - 1).effectTags.contains(EffectTag.POW) || !coreCards.get(coreCards.size() - 1).effectTags.contains(EffectTag.CRD)
+                || coreCards.get(coreCards.size() - 1) instanceof BrassMagnet)
             return true;
         return false;
     }
@@ -81,6 +82,6 @@ public class Compactor extends CoreCard {
 
     @Override
     public int getUpgradeAmount() {
-        return 2;
+        return 1;
     }
 }

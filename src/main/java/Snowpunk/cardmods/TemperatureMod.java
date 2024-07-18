@@ -9,6 +9,7 @@ import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.ColdDrawPower;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.HotEnergyPower;
+import Snowpunk.ui.EvaporateTutorial;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
@@ -34,12 +35,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static Snowpunk.SnowpunkMod.makeID;
-import static Snowpunk.SnowpunkMod.modID;
+import static Snowpunk.SnowpunkMod.*;
+import static Snowpunk.SnowpunkMod.modConfig;
 import static java.lang.Math.abs;
 
 public class TemperatureMod extends AbstractCardModifier {
@@ -52,9 +54,22 @@ public class TemperatureMod extends AbstractCardModifier {
     private static final Texture cold = TexLoader.getTexture(modID + "Resources/images/icons/Cold.png");
 
     public static final int COLD = -1, HOT = 1;
+    int heatMod = 0;
 
     public TemperatureMod() {
         this.priority = -2;
+    }
+
+    public TemperatureMod(int heatMod) {
+        this.priority = -2;
+        this.heatMod = heatMod;
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        super.onInitialApplication(card);
+        if (heatMod != -0)
+            CardTemperatureFields.addHeat(card, heatMod);
     }
 
     @Override

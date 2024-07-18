@@ -25,12 +25,15 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 0;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         blck();
-        Wiz.applyToSelf(new BrassPower(player, magicNumber));
+        int brass = getSnow() + magicNumber;
+        if (brass <= 0)
+            return;
+        Wiz.applyToSelf(new BrassPower(player, brass));
     }
 
     @Override

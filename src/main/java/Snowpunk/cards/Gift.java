@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class FavoriteThings extends AbstractMultiUpgradeCard {
-    public final static String ID = makeID(FavoriteThings.class.getSimpleName());
+public class Gift extends AbstractMultiUpgradeCard {
+    public final static String ID = makeID(Gift.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -19,7 +19,7 @@ public class FavoriteThings extends AbstractMultiUpgradeCard {
 
     boolean free = false;
 
-    public FavoriteThings() {
+    public Gift() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = MAGIC;
         exhaust = true;

@@ -19,7 +19,7 @@ public class Greatforge extends AbstractMultiUpgradeCard {
 
     public Greatforge() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 2;
+        baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

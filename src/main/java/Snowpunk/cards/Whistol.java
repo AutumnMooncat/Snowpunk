@@ -37,9 +37,7 @@ public class Whistol extends AbstractMultiUpgradeCard implements ClankCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        setExclusions(1, 2);
     }
 
     @Override

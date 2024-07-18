@@ -39,7 +39,7 @@ public class GainSnowballAction extends AbstractGameAction {
             addToTop(new SFXAction("snowpunk:snow" + num));
         }
         if (isDouble)
-            SnowballPatches.Snowballs.changeSnow(SnowballPatches.Snowballs.getTrueAmount());
+            SnowballPatches.Snowballs.changeSnow(SnowballPatches.Snowballs.getEffectiveAmount());
         else
             SnowballPatches.Snowballs.changeSnow(amount);
         if (amount > 0) {

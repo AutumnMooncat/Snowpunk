@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.IncreaseModifiersAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -37,7 +38,9 @@ public class BrainBlast extends AbstractMultiUpgradeCard {
         addToBot(new VFXAction(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal)));
         allDmg(AbstractGameAction.AttackEffect.NONE);
 
-        Wiz.atb(new ApplyCardModifierAction(true, new GearMod(magicNumber, true)));
+        //Wiz.atb(new ApplyCardModifierAction(true, new GearMod(magicNumber, true)));
+
+        Wiz.atb(new IncreaseModifiersAction(Wiz.adp().hand, magicNumber));
     }
 
     @Override

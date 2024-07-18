@@ -19,11 +19,11 @@ public class Mr10Below extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public Mr10Below() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -32,6 +32,7 @@ public class Mr10Below extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
     }
 }

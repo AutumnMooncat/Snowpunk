@@ -2,6 +2,7 @@ package Snowpunk.powers;
 
 import Snowpunk.actions.ExhaustSpecificCardAction;
 import Snowpunk.actions.TryEmberForgeCopyAction;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -25,6 +26,14 @@ public class PyromaniacPower extends AbstractEasyPower {
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         Wiz.att(new TryEmberForgeCopyAction(card, action, this));
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) {
+            for (AbstractCard card : EvaporatePanel.evaporatePile.group)
+                Wiz.atb(new ExhaustSpecificCardAction(card));
+        }
     }
 
     @Override

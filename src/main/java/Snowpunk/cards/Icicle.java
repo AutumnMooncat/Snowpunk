@@ -31,6 +31,7 @@ public class Icicle extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = 1;
+        CardModifierManager.addModifier(this, new HatMod());
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -52,10 +53,7 @@ public class Icicle extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DAMAGE));
-        addUpgradeData(() -> {
-            upgradeBaseCost(2);
-            upgradeMagicNumber(1);
-        });
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 1, 0);
     }
 }

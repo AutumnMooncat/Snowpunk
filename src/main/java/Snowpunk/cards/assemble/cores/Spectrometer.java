@@ -7,6 +7,8 @@ import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,21 +23,21 @@ public class Spectrometer extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, HOLLY = 6;
+    private static final int COST = 0;
 
     public Spectrometer() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.CRD, EffectTag.MGC);
-        magicNumber = baseMagicNumber = HOLLY;
+        magicNumber = baseMagicNumber = 1;
     }
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         Wiz.atb(new ExhaustAction(1, false));
-        Wiz.applyToSelf(new HollyPower(player, magicNumber));
+        Wiz.atb(new MakeTempCardInHandAction(new Shiv(), magicNumber));
     }
 
     @Override
     public int getUpgradeAmount() {
-        return 3;
+        return 1;
     }
 }

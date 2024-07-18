@@ -19,11 +19,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     public final static String ID = makeID(Snowblower.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 9, UP_DMG = 3;
+    private static final int COST = -1, DMG = 7, UP_DMG = 3;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);

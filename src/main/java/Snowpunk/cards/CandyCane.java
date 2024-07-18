@@ -19,13 +19,14 @@ public class CandyCane extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 15, UP_DMG = 5;
+    private static final int COST = 1, DMG = 6, UP_DMG = 3;
 
     boolean killMinion = false;
 
     public CandyCane() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -36,7 +37,7 @@ public class CandyCane extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

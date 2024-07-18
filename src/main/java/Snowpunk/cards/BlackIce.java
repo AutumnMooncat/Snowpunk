@@ -25,7 +25,7 @@ public class BlackIce extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BONUS = 2;
+    private static final int COST = 1, BONUS = 1;
 
     private static ArrayList<TooltipInfo> Tooltip;
 
@@ -42,6 +42,7 @@ public class BlackIce extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 0;
         info = baseInfo = 0;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
         exhaust = true;
     }
 
@@ -61,6 +62,6 @@ public class BlackIce extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(BONUS));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
-        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

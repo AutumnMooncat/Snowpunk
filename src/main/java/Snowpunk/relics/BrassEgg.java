@@ -27,7 +27,7 @@ public class BrassEgg extends AbstractEasyRelic {
     private ArrayList<AbstractCard> pickedCards;
 
     public BrassEgg() {
-        super(ID, RelicTier.RARE, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.UNCOMMON, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
         description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
         pickedCards = new ArrayList<>();
         tips.clear();

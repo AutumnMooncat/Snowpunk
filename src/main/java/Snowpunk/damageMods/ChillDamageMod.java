@@ -21,6 +21,7 @@ public class ChillDamageMod extends AbstractDamageModifier {
         this.inherent = inherent;
     }
 
+
     @Override
     public boolean isInherent() {
         return inherent;

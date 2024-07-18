@@ -2,6 +2,7 @@ package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.powers.AssembledPower;
@@ -57,7 +58,7 @@ public class Anvil extends CoreCard {
 
     @Override
     public void onPowerTrigger(AbstractCard card, int amount) {
-        Wiz.atb(new ApplyCardModifierAction(card, new GearMod(amount)));
+        Wiz.atb(new ApplyCardModifierAction(card, new PlateMod(amount)));
     }
 
     @Override

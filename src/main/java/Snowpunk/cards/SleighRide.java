@@ -30,6 +30,7 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     public SleighRide() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
         isMultiDamage = true;
     }
 
@@ -71,7 +72,9 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 0);
     }
 }

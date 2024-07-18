@@ -46,6 +46,13 @@ public class Bismuth extends CoreCard {
     }
 
     @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.POW)))
+            return true;
+        return false;
+    }
+
+    @Override
     public boolean costUpgrade() {
         return true;
     }

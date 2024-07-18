@@ -16,7 +16,7 @@ public class Frostbite extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public Frostbite() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -28,12 +28,12 @@ public class Frostbite extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeBaseCost(1));
+        //addUpgradeData(() -> upgradeBaseCost(1));
     }
 
 }

@@ -25,7 +25,8 @@ public class ClockworkAction extends AbstractGameAction {
             return;
         }*/
         for (AbstractCard card : Wiz.adp().hand.group) {
-            addToBot(new ClockworkTickAction(amount, card));
+            if (card.block >= 0 || card.damage >= 0)
+                addToBot(new ClockworkTickAction(amount, card));
         }
         for (AbstractCard card : Wiz.adp().hand.group) {
             addToBot(new ApplyPowersAction(card));

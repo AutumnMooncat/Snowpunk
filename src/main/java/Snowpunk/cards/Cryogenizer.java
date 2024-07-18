@@ -6,6 +6,7 @@ import Snowpunk.actions.ModCardTempAction;
 import Snowpunk.cardmods.ChillMod;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.PlateMod;
+import Snowpunk.cardmods.TemperatureMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
@@ -41,10 +42,8 @@ public class Cryogenizer extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         List<AbstractCardModifier> mods = new ArrayList<>();
-        mods.add(new PlateMod(magicNumber));
         mods.add(new ChillMod(magicNumber));
-        Wiz.atb(new EnhanceCardInHardAction(1, 0, mods));
-        //Wiz.atb(new CryogenizerAction(magicNumber));
+        Wiz.atb(new EnhanceCardInHardAction(1, 0, CardTemperatureFields.COLD, mods));
     }
 
     @Override

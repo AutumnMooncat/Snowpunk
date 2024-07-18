@@ -49,7 +49,7 @@
   },
   "${ModID}:Vents": {
     "NAME": "Vents",
-    "DESCRIPTION": "Whenever you return a snowpunk:Hot card,"
+    "DESCRIPTION": "Whenever you draw a card from the Evaporate pile,"
   },
   "${ModID}:Latch": {
     "NAME": "Latch",
@@ -59,9 +59,21 @@
     "NAME": "Whip",
     "DESCRIPTION": "Whenever you apply a Debuff,"
   },
-  "${ModID}:Hook": {
-    "NAME": "Hook",
-    "DESCRIPTION": "When a card is in your hand at the end of your turn,"
+  "${ModID}:Barrel": {
+    "NAME": "Barrel",
+    "DESCRIPTION": "For each card in your hand at the end of your turn,"
+  },
+  "${ModID}:BrassMagnet": {
+    "NAME": "Brass Magnet",
+    "DESCRIPTION": "After you play a card with snowpunk:Modifications,"
+  },
+  "${ModID}:Springlock": {
+    "NAME": "Springlock",
+    "DESCRIPTION": "Whenever you're attacked without Block,"
+  },
+  "${ModID}:Magnifier": {
+    "NAME": "Magnifier",
+    "DESCRIPTION": "Whenever you draw a Power or Exhaust card,"
   },
   "${ModID}:Hollow": {
     "NAME": "Hollow",
@@ -89,7 +101,7 @@
   },
   "${ModID}:Wrench": {
     "NAME": "Wrench",
-    "DESCRIPTION": "After you play a snowpunk:Clank card,"
+    "DESCRIPTION": "After a card snowpunk:Clanks,"
   },
   "${ModID}:Juggler": {
     "NAME": "Juggler",
@@ -107,13 +119,17 @@
     "NAME": "Freezer",
     "DESCRIPTION": "Convert your [E] \u00a0to [Snowpunk:SnowIcon] ."
   },
+  "${ModID}:Capsule": {
+    "NAME": "Capsule",
+    "DESCRIPTION": "{@@}Gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]} . NL snowpunk:Clank: Lose [Snowpunk:SnowIcon] ."
+  },
   "${ModID}:Spectrometer": {
     "NAME": "Spectrometer",
-    "DESCRIPTION": "Exhaust a card and gain !M! [Snowpunk:HollyIcon] ."
+    "DESCRIPTION": "{@@}Exhaust a card. NL Add {!M!|1= 1 *Shiv|@=!M! *Shivs} to your hand."
   },
   "${ModID}:Winder": {
     "NAME": "Winder",
-    "DESCRIPTION": "snowpunk:Overclock your hand."
+    "DESCRIPTION": "snowpunk:Overdrive your hand."
   },
   "${ModID}:Goblet": {
     "NAME": "Goblet",
@@ -145,10 +161,10 @@
   },
   "${ModID}:Anvil": {
     "NAME": "Anvil",
-    "DESCRIPTION": "give it !Snowpunk:M2! [Snowpunk:GearIcon] .",
+    "DESCRIPTION": "give it !Snowpunk:M2! snowpunk:Plating.",
     "EXTENDED_DESCRIPTION": [
       "give it #b",
-      " [Snowpunk:GearIcon] ."
+      " #yPlating."
     ]
   },
   "${ModID}:Compactor": {

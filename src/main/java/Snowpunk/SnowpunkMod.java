@@ -13,6 +13,7 @@ import Snowpunk.potions.BottledInspiration;
 import Snowpunk.potions.IceblastTonic;
 import Snowpunk.potions.SteamfogBrew;
 import Snowpunk.relics.AbstractEasyRelic;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.KeywordManager;
 import basemod.AutoAdd;
 import basemod.BaseMod;
@@ -26,6 +27,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.MultiUpgradePatches;
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -36,6 +38,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Properties;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -44,6 +47,7 @@ public class SnowpunkMod implements
         EditKeywordsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
+        StartGameSubscriber,
         EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber, OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
 
     public static final String modID = "Snowpunk";
@@ -100,6 +104,7 @@ public class SnowpunkMod implements
     public static final Color STEAMFOG_BREW_HYBRID = CardHelper.getColor(80, 90, 130);
     public static final Color STEAMFOG_BREW_SPOTS = CardHelper.getColor(180, 180, 180);
 
+    public static SpireConfig modConfig = null;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -135,6 +140,13 @@ public class SnowpunkMod implements
 
     public static void initialize() {
         SnowpunkMod thismod = new SnowpunkMod();
+        try {
+            Properties defaults = new Properties();
+            defaults.put("EvaporateTutorial", Boolean.toString(false));
+            modConfig = new SpireConfig("TheConductor", "config", defaults);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -208,6 +220,8 @@ public class SnowpunkMod implements
         BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + curPath + "/UIstrings.json");
 
         BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
+
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
     }
 
     @Override
@@ -314,5 +328,10 @@ public class SnowpunkMod implements
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         SnowballPatches.Snowballs.setSnow(0);
+    }
+
+    @Override
+    public void receiveStartGame() {
+        EvaporatePanel.evaporatePile.clear();
     }
 }

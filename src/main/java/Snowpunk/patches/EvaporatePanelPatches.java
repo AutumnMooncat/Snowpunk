@@ -4,6 +4,7 @@ import Snowpunk.actions.CondenseAction;
 import Snowpunk.powers.PyromaniacPower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
+import Snowpunk.ui.EvaporateTutorial;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
@@ -32,9 +33,12 @@ import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.UUID;
+
+import static Snowpunk.SnowpunkMod.modConfig;
 
 public class EvaporatePanelPatches {
     @SpirePatch(clz = OverlayMenu.class, method = SpirePatch.CLASS)
@@ -187,11 +191,11 @@ public class EvaporatePanelPatches {
                 ___targetCard.unhover();
                 ___targetCard.untip();
                 ___targetCard.stopGlowing();
-                if (AbstractDungeon.player.hasPower(PyromaniacPower.POWER_ID)) {
+                /*if (AbstractDungeon.player.hasPower(PyromaniacPower.POWER_ID)) {
                     //AbstractDungeon.player.exhaustPile.addToTop(___targetCard);
                     __instance.exhaustCard = true;
                     return SpireReturn.Continue();
-                } else {
+                } else {*/
                     __instance.exhaustCard = false;
                     EvaporatePanel.evaporatePile.addToTop(___targetCard);
                     Wiz.adp().hand.group.remove(___targetCard);
@@ -208,7 +212,7 @@ public class EvaporatePanelPatches {
                             }
                         }
                     }
-                }
+                //}
                 ___targetCard.exhaustOnUseOnce = false;
                 AbstractDungeon.player.onCardDrawOrDiscard();
                 EvaporateField.evaporate.set(___targetCard, false);
@@ -230,6 +234,17 @@ public class EvaporatePanelPatches {
 
                 ReflectionHacks.RMethod tick = ReflectionHacks.privateMethod(AbstractGameAction.class, "tickDuration");
                 tick.invoke(__instance);
+                if (EvaporatePanel.evaporatePile.size() > 0) {
+                    if (!modConfig.getBool("EvaporateTutorial")) {
+                        AbstractDungeon.ftue = new EvaporateTutorial();
+                        modConfig.setBool("EvaporateTutorial", true);
+                        try {
+                            modConfig.save();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();

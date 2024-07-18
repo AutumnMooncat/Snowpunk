@@ -28,6 +28,7 @@ public class ApplyCardModifierAction extends AbstractGameAction {
     private boolean hand = false;
     private CardGroup group = null;
     private int num = 1;
+    private AbstractCard.CardType typeFilter = null;
     private final Set<AbstractCard> cardsApplied = new HashSet<>();
 
     public ApplyCardModifierAction(AbstractCard card, AbstractCardModifier mod) {
@@ -47,22 +48,31 @@ public class ApplyCardModifierAction extends AbstractGameAction {
     public ApplyCardModifierAction(CardGroup group, int num, AbstractCardModifier mod) {
         this.mod = mod;
         this.group = group;
-        hand = false;
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
         this.num = num;
     }
 
+    public ApplyCardModifierAction(AbstractCard.CardType type, AbstractCardModifier mod) {
+        this.mod = mod;
+        hand = true;
+        startDuration = Settings.ACTION_DUR_FAST;
+        duration = startDuration;
+        typeFilter = type;
+    }
+
     @Override
     public void update() {
-        if (group != null)
-            pickFromGroup(group);
-        else if (hand) {
+        if (hand) {
             for (AbstractCard c : Wiz.adp().hand.group) {
-                CardModifierManager.addModifier(c, mod);
-                c.superFlash();
+                if (typeFilter == null || c.type == typeFilter) {
+                    CardModifierManager.addModifier(c, mod.makeCopy());
+                    c.superFlash();
+                }
             }
             isDone = true;
+        } else if (group != null) {
+            pickFromGroup(group);
         } else {
             if (card == null)
                 card = Wiz.adp().hand.getRandomCard(true);

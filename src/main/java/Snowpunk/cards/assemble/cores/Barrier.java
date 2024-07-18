@@ -18,7 +18,7 @@ public class Barrier extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 6, UP_BLOCK = 2;
+    private static final int COST = 1, BLOCK = 5, UP_BLOCK = 2;
 
     public Barrier() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.BLK);

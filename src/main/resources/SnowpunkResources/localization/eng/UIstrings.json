@@ -23,6 +23,11 @@
       "Upgrade"
     ]
   },
+  "${ModID}:Modify": {
+    "TEXT": [
+      "Modify"
+    ]
+  },
   "${ModID}:EvaporatePanel": {
     "TEXT": [
       "Evaporate Pile",
@@ -69,6 +74,12 @@
   "${ModID}:Cryo": {
     "TEXT": [
       "Enhance"
+    ]
+  },
+  "${ModID}:EvaporateTutorial": {
+    "TEXT": [
+      "Evaporate",
+      "You have an Evaporated card! Evaporated cards are drawn before cards in your draw pile when you draw during your turn. (But they aren't drawn into your hand at the start of the turn!)"
     ]
   },
   "${ModID}:Carols": {

@@ -2,6 +2,7 @@ package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.OverclockMod;
+import Snowpunk.cardmods.OverdriveMod;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.powers.HollyPower;
@@ -23,7 +24,7 @@ public class Winder extends CoreCard {
 
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public Winder() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.CRD);
@@ -31,6 +32,6 @@ public class Winder extends CoreCard {
 
     @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
-        Wiz.atb(new ApplyCardModifierAction(true, new OverclockMod(1)));
+        Wiz.atb(new ApplyCardModifierAction(true, new OverdriveMod(1)));
     }
 }

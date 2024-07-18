@@ -11,15 +11,15 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class Crank extends CoreCard {
-    public static final String ID = makeID(Crank.class.getSimpleName());
+public class Barrel extends CoreCard {
+    public static final String ID = makeID(Barrel.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
-    public Crank() {
+    public Barrel() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.POW, EffectTag.CRD);
     }
 
@@ -33,6 +33,6 @@ public class Crank extends CoreCard {
 
     @Override
     public PowerCondition getPower() {
-        return PowerCondition.PLAY;
+        return PowerCondition.END;
     }
 }

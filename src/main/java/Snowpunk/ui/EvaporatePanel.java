@@ -18,6 +18,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
 import com.megacrit.cardcrawl.vfx.ExhaustPileParticle;
 
+import java.io.IOException;
+
+import static Snowpunk.SnowpunkMod.modConfig;
+
 public class EvaporatePanel extends AbstractPanel {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(SnowpunkMod.makeID("EvaporatePanel"));
     public static final String[] TEXT = uiStrings.TEXT;
@@ -30,39 +34,39 @@ public class EvaporatePanel extends AbstractPanel {
     private static final float COUNT_CIRCLE_W = 128.0F * Settings.scale;
     public static float fontScale;
     public static float energyVfxTimer;
-    private final Hitbox hb;
+    public static Hitbox hb = null;
 
     public static CardGroup evaporatePile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
     public EvaporatePanel() {
         super(SHOW_X, SHOW_Y, HIDE_X, HIDE_Y, null, false);
-        this.hb = new Hitbox(0.0F, 0.0F, 100.0F * Settings.scale, 100.0F * Settings.scale);
+        hb = new Hitbox(0.0F, 0.0F, 100.0F * Settings.scale, 100.0F * Settings.scale);
     }
 
     @Override
     public void updatePositions() {
         super.updatePositions();
         if (!this.isHidden && evaporatePile.size() > 0) {
-            this.hb.update();
+            hb.update();
             this.updateVfx();
         }
 
-        if (this.hb.hovered && (!AbstractDungeon.isScreenUp || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.EXHAUST_VIEW || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.HAND_SELECT || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD && AbstractDungeon.overlayMenu.combatPanelsShown)) {
+        if (hb.hovered && (!AbstractDungeon.isScreenUp || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.EXHAUST_VIEW || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.HAND_SELECT || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD && AbstractDungeon.overlayMenu.combatPanelsShown)) {
             AbstractDungeon.overlayMenu.hoveredTip = true;
             if (InputHelper.justClickedLeft) {
-                this.hb.clickStarted = true;
+                hb.clickStarted = true;
             }
         }
         EvaporatePanel.evaporatePile.size();
-        if ((this.hb.clicked) && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.EXHAUST_VIEW) {
-            this.hb.clicked = false;
-            this.hb.hovered = false;
+        if ((hb.clicked) && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.EXHAUST_VIEW) {
+            hb.clicked = false;
+            hb.hovered = false;
             CardCrawlGame.sound.play("DECK_CLOSE");
             AbstractDungeon.closeCurrentScreen();
         } else {
-            if ((this.hb.clicked) && AbstractDungeon.overlayMenu.combatPanelsShown && AbstractDungeon.getMonsters() != null && !AbstractDungeon.getMonsters().areMonstersDead() && !AbstractDungeon.player.isDead && !evaporatePile.isEmpty()) {
-                this.hb.clicked = false;
-                this.hb.hovered = false;
+            if ((hb.clicked) && AbstractDungeon.overlayMenu.combatPanelsShown && AbstractDungeon.getMonsters() != null && !AbstractDungeon.getMonsters().areMonstersDead() && !AbstractDungeon.player.isDead && !evaporatePile.isEmpty()) {
+                hb.clicked = false;
+                hb.hovered = false;
                 if (AbstractDungeon.isScreenUp) {
                     if (AbstractDungeon.previousScreen == null) {
                         AbstractDungeon.previousScreen = AbstractDungeon.screen;
@@ -85,7 +89,7 @@ public class EvaporatePanel extends AbstractPanel {
         AbstractDungeon.dynamicBanner.hide();
         EvaporatePanelPatches.RenderEvaporateInsteadField.renderEvaporate.set(AbstractDungeon.exhaustPileViewScreen, true);
         AbstractDungeon.exhaustPileViewScreen.open();
-        this.hb.hovered = false;
+        hb.hovered = false;
         InputHelper.justClickedLeft = false;
     }
 
@@ -101,14 +105,14 @@ public class EvaporatePanel extends AbstractPanel {
     public void render(SpriteBatch sb) {
         super.render(sb);
         if (!evaporatePile.isEmpty()) {
-            this.hb.move(this.current_x, this.current_y);
+            hb.move(this.current_x, this.current_y);
             String msg = Integer.toString(evaporatePile.size());
             sb.setColor(Settings.TWO_THIRDS_TRANSPARENT_BLACK_COLOR);
             sb.draw(ImageMaster.DECK_COUNT_CIRCLE, this.current_x - COUNT_CIRCLE_W / 2.0F, this.current_y - COUNT_CIRCLE_W / 2.0F, COUNT_CIRCLE_W, COUNT_CIRCLE_W);
             FontHelper.renderFontCentered(sb, FontHelper.turnNumFont, msg, this.current_x, this.current_y + 2.0F * Settings.scale, Settings.CREAM_COLOR);
 
-            this.hb.render(sb);
-            if (this.hb.hovered && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.isScreenUp) {
+            hb.render(sb);
+            if (hb.hovered && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.isScreenUp) {
                 TipHelper.renderGenericTip(TIP_X, TIP_Y, TEXT[0], TEXT[1]);
             }
         }

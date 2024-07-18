@@ -1,6 +1,7 @@
 package Snowpunk.cards.assemble;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.TypeOverridePatch;
 import basemod.helpers.TooltipInfo;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
@@ -100,7 +101,10 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
         END,
         START,
         DBF,
-        BLK
+        BLK,
+        DMGD,
+        MOD,
+        PWEX
     }
 
     public static String[] KEYWORD_TEXT = CardCrawlGame.languagePack.getUIString(makeID("Cores")).TEXT;

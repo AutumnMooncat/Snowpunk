@@ -15,7 +15,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Gizmo extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Gizmo.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
@@ -38,6 +38,6 @@ public class Gizmo extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(3));
+        addUpgradeData(() -> upgradeMagicNumber(2));
     }
 }

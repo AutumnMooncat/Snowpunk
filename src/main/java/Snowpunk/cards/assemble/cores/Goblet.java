@@ -42,6 +42,13 @@ public class Goblet extends CoreCard {
     }
 
     @Override
+    public boolean getCustomCANTSpawnCondition(ArrayList<CoreCard> coreCards) {
+        if (coreCards.stream().anyMatch(coreCard -> coreCard.effectTags.contains(EffectTag.POW)))
+            return true;
+        return false;
+    }
+
+    @Override
     public void onUseEffect(AbstractPlayer player, AbstractMonster monster, AssembledCard card) {
         Wiz.applyToSelf(new StrengthPower(player, secondMagic));
         Wiz.applyToSelf(new AntifactPower(player, 1));

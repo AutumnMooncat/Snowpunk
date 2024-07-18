@@ -6,11 +6,15 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class EngineOffload extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(EngineOffload.class.getSimpleName());
 
@@ -21,6 +25,7 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     private static final int COST = 1, UP_COST = 0;
 
     boolean hot;
+
     public EngineOffload() {
         super(ID, COST, TYPE, RARITY, TARGET);
         info = baseInfo = 0;

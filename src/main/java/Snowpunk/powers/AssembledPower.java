@@ -1,11 +1,14 @@
 package Snowpunk.powers;
 
+import Snowpunk.cardmods.*;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.powers.interfaces.OnClankPower;
 import Snowpunk.powers.interfaces.OnCondensePower;
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -52,8 +55,16 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (core.cores.get(0).getPower() == CoreCard.PowerCondition.PLAY && cardsPlayedThisTurn < 1) {
+        /*if (core.cores.get(0).getPower() == CoreCard.PowerCondition.PLAY && cardsPlayedThisTurn < 1) {
             cardsPlayedThisTurn++;
+            flash();
+            core.cores.get(1).onPowerTrigger(card, amount, action);
+            card.applyPowers();
+        }*/
+        if (core.cores.get(0).getPower() == CoreCard.PowerCondition.MOD &&
+                (CardModifierManager.hasModifier(card, GearMod.ID) || CardModifierManager.hasModifier(card, PlateMod.ID) ||
+                        CardModifierManager.hasModifier(card, TemperatureMod.ID) || CardModifierManager.hasModifier(card, HatMod.ID) ||
+                        CardModifierManager.hasModifier(card, OverdriveMod.ID) || CardModifierManager.hasModifier(card, ChillMod.ID))) {
             flash();
             core.cores.get(1).onPowerTrigger(card, amount, action);
             card.applyPowers();
@@ -64,6 +75,12 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
     public void onCardDraw(AbstractCard card) {
         if (core.cores.get(0).getPower() == CoreCard.PowerCondition.DRAW && cardsDrawnThisTurn < secondAmount) {
             cardsDrawnThisTurn++;
+            flash();
+            core.cores.get(1).onPowerTrigger(card, amount);
+            card.applyPowers();
+        }
+        if (core.cores.get(0).getPower() == CoreCard.PowerCondition.PWEX &&
+                (card.type == AbstractCard.CardType.POWER || card.exhaust)) {
             flash();
             core.cores.get(1).onPowerTrigger(card, amount);
             card.applyPowers();
@@ -139,8 +156,18 @@ public class AssembledPower extends AbstractEasyPower implements OnCondensePower
             flash();
             core.cores.get(1).onPowerTrigger(amount);
         }
+    }
 
-    }// 34
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (core.cores.get(0).getPower() == CoreCard.PowerCondition.DMGD &&
+                info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS &&
+                info.owner != null && info.owner != this.owner && amount > 0 && owner.currentBlock == 0) {
+            flash();
+            core.cores.get(1).onPowerTrigger(amount);
+        }
+        return damageAmount;
+    }
 
     @Override
     public void updateDescription() {

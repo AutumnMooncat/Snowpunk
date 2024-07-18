@@ -6,7 +6,7 @@
         <file id="2" name="Full Images/CharacterBlock.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
         <file id="3" name="Full Images/CharacterKO.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
         <file id="4" name="Full Images/Throw.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
-        <file id="5" name="Full Images/Character.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
+        <file id="5" name="Full Images/Conductor.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
     </folder>
     <entity id="0" name="Character">
         <animation id="0" name="idle" length="4000" interval="100">

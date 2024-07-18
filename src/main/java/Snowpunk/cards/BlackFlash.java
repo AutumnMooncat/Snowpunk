@@ -1,7 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.actions.MultDebuffsAction;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.KeywordManager;
@@ -23,6 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static Snowpunk.SnowpunkMod.makeID;
+import static Snowpunk.util.Wiz.atb;
 
 public class BlackFlash extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BlackFlash.class.getSimpleName());
@@ -31,42 +34,25 @@ public class BlackFlash extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DAMAGE = 6, UP_DAMAGE = 3;
+    private static final int COST = 3, DAMAGE = 6, UP_DAMAGE = 3;
 
     public BlackFlash() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = 2;
         exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer player, AbstractMonster m) {
-        if (isMultiDamage) {
-            allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            for (AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-                if (mo == null || mo.isDeadOrEscaped() || mo.currentHealth <= 0)
-                    continue;
-                Wiz.atb(new MultDebuffsAction(mo, magicNumber));
-            }
-        } else {
-            dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            if (m == null || m.isDeadOrEscaped() || m.currentHealth <= 0)
-                return;
-            Wiz.atb(new MultDebuffsAction(m, magicNumber));
-        }
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        atb(new ApplyCardModifierAction(CardType.ATTACK, new HatMod(1)));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DAMAGE));
-        addUpgradeData(() -> {
-            isMultiDamage = true;
-            target = CardTarget.ALL_ENEMY;
-            uDesc();
-        });
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeBaseCost(2));
     }
 }

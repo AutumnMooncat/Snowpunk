@@ -1,5 +1,6 @@
 package Snowpunk.actions;
 
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -22,13 +23,13 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
     private final int timesToUpgrade;
     private List<AbstractCardModifier> modifiers = new ArrayList<>();
     private boolean random;
-
+    int heat = 0;
     public EnhanceCardInHardAction(int timesToUpgrade) {
-        this(1, timesToUpgrade, null);
+        this(1, timesToUpgrade, 0, null);
     }
 
     public EnhanceCardInHardAction(AbstractCardModifier cardModifier) {
-        this(1, 0, new ArrayList<AbstractCardModifier>() {
+        this(1, 0, 0, new ArrayList<AbstractCardModifier>() {
             {
                 add(cardModifier);
             }
@@ -36,10 +37,18 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
     }
 
     public EnhanceCardInHardAction(int numCards, int timesToUpgrade, List<AbstractCardModifier> modifiers) {
-        this(numCards, timesToUpgrade, modifiers, false);
+        this(numCards, timesToUpgrade, 0, modifiers, false);
     }
 
     public EnhanceCardInHardAction(int numCards, int timesToUpgrade, List<AbstractCardModifier> modifiers, boolean random) {
+        this(numCards, timesToUpgrade, 0, modifiers, random);
+    }
+
+    public EnhanceCardInHardAction(int numCards, int timesToUpgrade, int heat, List<AbstractCardModifier> modifiers) {
+        this(numCards, timesToUpgrade, heat, modifiers, false);
+    }
+
+    public EnhanceCardInHardAction(int numCards, int timesToUpgrade, int heat, List<AbstractCardModifier> modifiers, boolean random) {
         this.actionType = ActionType.CARD_MANIPULATION;
         amount = numCards;
         duration = startDuration = Settings.ACTION_DUR_FAST;
@@ -47,13 +56,16 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
         if (modifiers != null)
             this.modifiers.addAll(modifiers);
         this.random = random;
+        this.heat = heat;
     }
 
     public void update() {
         if (duration == startDuration) {
-            if (timesToUpgrade > 0 && modifiers == null) {
+            if (timesToUpgrade > 0 && modifiers.size() == 0) {
                 for (AbstractCard card : Wiz.adp().hand.group) {
                     if (!card.canUpgrade())
+                        cannotUpgrade.add(card);
+                    if (card.type == AbstractCard.CardType.STATUS)
                         cannotUpgrade.add(card);
                 }
                 Wiz.adp().hand.group.removeAll(cannotUpgrade);
@@ -63,23 +75,21 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
                 isDone = true;
                 returnCards();
                 return;
-            }
-
-            if (Wiz.adp().hand.size() <= amount) {
+            } else if (Wiz.adp().hand.size() <= amount) {
                 isDone = true;
                 for (AbstractCard c : Wiz.adp().hand.group)
                     Enhance(c);
                 returnCards();
                 return;
-            }
-
-            if (random) {
+            } else if (random) {
                 isDone = true;
                 for (int i = 0; i < amount; i++) {
                     AbstractCard card = Wiz.adp().hand.getRandomCard(true);
                     Enhance(card);
-                    cannotUpgrade.add(card);
-                    Wiz.adp().hand.removeCard(card);
+                    if (amount > 1) {
+                        cannotUpgrade.add(card);
+                        Wiz.adp().hand.removeCard(card);
+                    }
                 }
                 returnCards();
                 return;
@@ -102,7 +112,8 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
 
     private void returnCards() {
         for (AbstractCard card : cannotUpgrade)
-            Wiz.adp().hand.addToTop(card);
+            if (!Wiz.adp().hand.contains(card))
+                Wiz.adp().hand.addToTop(card);
 
         Wiz.adp().hand.refreshHandLayout();
     }
@@ -116,6 +127,8 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
             for (AbstractCardModifier mod : modifiers)
                 CardModifierManager.addModifier(card, mod.makeCopy());
         }
+        if (heat != 0)
+            CardTemperatureFields.addHeat(card, heat);
         card.superFlash();
         card.applyPowers();
     }

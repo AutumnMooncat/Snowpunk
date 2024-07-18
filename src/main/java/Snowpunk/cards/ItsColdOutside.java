@@ -7,6 +7,8 @@ import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -17,6 +19,8 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class ItsColdOutside extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ItsColdOutside.class.getSimpleName());
     public static CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);

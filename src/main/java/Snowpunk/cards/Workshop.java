@@ -39,10 +39,7 @@ public class Workshop extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
+        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }
