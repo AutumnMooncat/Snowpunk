@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 // For more information, please refer to http://unlicense.org/
-//
+// https://www.shadertoy.com/view/4Xc3DM
 
 
 varying vec2 v_texCoord;
