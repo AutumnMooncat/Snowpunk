@@ -1,7 +1,6 @@
 package Snowpunk.cards;
 
 import CardAugments.actions.AutoplayOnRandomEnemyAction;
-import CardAugments.cardmods.uncommon.AutoMod;
 import Snowpunk.actions.AssembleAction;
 import Snowpunk.actions.PurgeCardAction;
 import Snowpunk.actions.RemoveFromExhaustPileAction;
