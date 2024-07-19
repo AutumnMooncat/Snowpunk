@@ -88,10 +88,9 @@ public class SizzlePatch {
                     ShaderProgram oldShader = spriteBatch.getShader();
                     spriteBatch.setShader(sizzleShader);
                     sizzleShader.setUniformf("u_time", SnowpunkMod.time);
-//                    sizzleShader.setUniformf("u_dripAmount1", 0.75f);
-//                    sizzleShader.setUniformf("u_dripAmount2", 0.5f);
-//                    sizzleShader.setUniformf("u_dripSpeed", 0.2f);
-//                    sizzleShader.setUniformf("u_dripStrength", 0.2f);
+                    sizzleShader.setUniformf("u_speed", 2.5f);
+                    sizzleShader.setUniformf("u_strength", 25.f);
+                    sizzleShader.setUniformf("u_distortion", .0025f);
 
                     spriteBatch.draw(t, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
                     spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -121,47 +120,6 @@ public class SizzlePatch {
             fbo.end();
             sb.begin();
             return getBufferTexture(fbo);
-        }
-    }
-
-    @SpirePatch(clz = SingleCardViewPopup.class, method = "render", paramtypez = SpriteBatch.class)
-    public static class SmoothBySantanaFeatRobThomasOfMatchboxTwentySCV {
-        public static ShaderProgram sizzleShader = null;
-        private static ShaderProgram oldShader;
-
-        @SpireInsertPatch(locator = SizzlePatch.SmoothBySantanaFeatRobThomasOfMatchboxTwentySCV.Locator.class)
-        public static void ApplyShader(SingleCardViewPopup __instance, SpriteBatch sb) {
-            if(sizzleShader == null) {
-                sizzleShader = initSizzleShader(sizzleShader);
-            }
-            AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (getCardHeat(card) > 0) {
-                oldShader = sb.getShader();
-                sb.setShader(sizzleShader);
-                sizzleShader.setUniformf("u_time", SnowpunkMod.time);
-            }
-        }
-
-        @SpireInsertPatch(locator = SizzlePatch.SmoothBySantanaFeatRobThomasOfMatchboxTwentySCV.LocatorTwo.class)
-        public static void RemoveShader(SingleCardViewPopup __instance, SpriteBatch sb) {
-            AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (getCardHeat(card) > 0) {
-                sb.setShader(oldShader);
-            }
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(SingleCardViewPopup.class, "renderCardBack");
-                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher);
-            }
-        }
-
-        private static class LocatorTwo extends SpireInsertLocator {
-            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(SingleCardViewPopup.class, "renderArrows");
-                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher);
-            }
         }
     }
 }

@@ -31,10 +31,9 @@ varying vec2 v_texCoord;
 uniform vec2 u_screenSize;
 uniform float u_time;
 uniform sampler2D u_texture;
-uniform float u_dripAmount1;
-uniform float u_dripAmount2;
-uniform float u_dripSpeed;
-uniform float u_dripStrength;
+uniform float u_speed;
+uniform float u_strength;
+uniform float u_distortion;
 
 void main()
 {
@@ -45,7 +44,7 @@ void main()
         float legsx = 1. - length((2. * gl_FragCoord - u_screenSize.xy) / u_screenSize.x);
         float legsy = 1. - length((2. * gl_FragCoord - u_screenSize.xy) / u_screenSize.y);
 
-        col = texture(u_texture, uv + vec2(sin((u_time * 2.) + uv.y * 50.) * (0.005 * legsx), sin((u_time * 2.) + uv.x * 50.) * (0.005 * legsy)));
+        col = texture(u_texture, uv + vec2(sin((u_time * u_speed) + uv.y * u_strength) * (u_distortion * legsx), sin((u_time * u_speed) + uv.x * u_strength) * (u_distortion * legsy)));
 
     }
 
