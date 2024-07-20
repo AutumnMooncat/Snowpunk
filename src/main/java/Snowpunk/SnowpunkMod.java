@@ -48,7 +48,12 @@ public class SnowpunkMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         StartGameSubscriber,
-        EditCharactersSubscriber, PostInitializeSubscriber, AddAudioSubscriber, OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
+        EditCharactersSubscriber,
+        PostInitializeSubscriber,
+        AddAudioSubscriber,
+        OnPlayerTurnStartSubscriber,
+        OnStartBattleSubscriber,
+        PostUpdateSubscriber {
 
     public static final String modID = "Snowpunk";
 
@@ -136,6 +141,10 @@ public class SnowpunkMod implements
 
     public static String makeCardPath(String resourcePath) {
         return modID + "Resources/images/cards/" + resourcePath;
+    }
+
+    public static String makeShaderPath(String resourcePath) {
+        return modID + "Resources/shaders/" + resourcePath;
     }
 
     public static void initialize() {
@@ -334,4 +343,11 @@ public class SnowpunkMod implements
     public void receiveStartGame() {
         EvaporatePanel.evaporatePile.clear();
     }
+
+    public static float time = 0f;
+    @Override
+    public void receivePostUpdate() {
+        time += Gdx.graphics.getRawDeltaTime();
+    }
+
 }
