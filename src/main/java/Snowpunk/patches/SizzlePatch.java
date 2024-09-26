@@ -83,13 +83,14 @@ public class SizzlePatch {
             }
             if (!Settings.hideCards) {
                 if (getCardHeat(__instance) > 0) {
+                    float heatmod = getCardHeat(__instance) * .5f;
                     TextureRegion t = cardToTextureRegion(__instance, spriteBatch);
                     spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
                     ShaderProgram oldShader = spriteBatch.getShader();
                     spriteBatch.setShader(sizzleShader);
                     sizzleShader.setUniformf("u_time", SnowpunkMod.time);
-                    sizzleShader.setUniformf("u_speed", 2.5f);
-                    sizzleShader.setUniformf("u_strength", 25.f);
+                    sizzleShader.setUniformf("u_speed", 1f + heatmod);
+                    sizzleShader.setUniformf("u_strength", 15.f);
                     sizzleShader.setUniformf("u_distortion", .0025f);
 
                     spriteBatch.draw(t, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);

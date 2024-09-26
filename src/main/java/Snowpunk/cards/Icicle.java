@@ -25,7 +25,7 @@ public class Icicle extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DAMAGE = 5, UP_DAMAGE = 3;
+    private static final int COST = 1, DAMAGE = 4, UP_DAMAGE = 3;
 
     public Icicle() {
         super(ID, COST, TYPE, RARITY, TARGET);

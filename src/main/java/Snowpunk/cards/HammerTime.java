@@ -5,11 +5,15 @@ import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class HammerTime extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(HammerTime.class.getSimpleName());
 
@@ -22,7 +26,9 @@ public class HammerTime extends AbstractMultiUpgradeCard {
     public HammerTime() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        exhaust = true;
         CardModifierManager.addModifier(this, new GearMod(3));
+        CardTemperatureFields.addInherentHeat(this, 2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -37,6 +43,6 @@ public class HammerTime extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 2));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
     }
 }

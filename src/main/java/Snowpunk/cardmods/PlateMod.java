@@ -81,16 +81,6 @@ public class PlateMod extends AbstractCardModifier {
     }
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.tags.add(CustomTags.GEAR);
-    }
-
-    @Override
-    public void onRemove(AbstractCard card) {
-        card.tags.remove(CustomTags.GEAR);
-    }
-
-    @Override
     public boolean shouldApply(AbstractCard card) {
         if (CardModifierManager.hasModifier(card, ID)) {
             PlateMod plateMod = (PlateMod) CardModifierManager.getModifiers(card, ID).get(0);
@@ -114,7 +104,7 @@ public class PlateMod extends AbstractCardModifier {
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int numGears = amount;
-        if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
+        /*if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
             if (Wiz.adp().hasPower(BrassPower.POWER_ID) && Wiz.adp().getPower(BrassPower.POWER_ID).amount > 0)
                 numGears += Wiz.adp().getPower(BrassPower.POWER_ID).amount;
             if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
@@ -126,7 +116,8 @@ public class PlateMod extends AbstractCardModifier {
                 ExtraIcons.icon(tex).text(String.valueOf(numGears)).textColor(Color.GREEN).render(card);
             else
                 ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
-        }
+        }*/
+        ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
     }
 
     @Override

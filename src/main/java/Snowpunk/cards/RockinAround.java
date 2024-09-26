@@ -22,7 +22,7 @@ public class RockinAround extends AbstractMultiUpgradeCard {
 
     private static final int COST = 3;
     private static final int DMG = 21;
-    private static final int UP_DMG = 5;
+    private static final int UP_DMG = 7;
 
     public RockinAround() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -38,5 +38,7 @@ public class RockinAround extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeBaseCost(2));
+        setDependencies(false, 2, 0, 1);
     }
 }

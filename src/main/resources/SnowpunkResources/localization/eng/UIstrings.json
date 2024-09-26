@@ -28,12 +28,17 @@
       "Modify"
     ]
   },
+  "${ModID}:Evaporate": {
+    "TEXT": [
+      "Evaporate"
+    ]
+  },
   "${ModID}:EvaporatePanel": {
     "TEXT": [
       "Evaporate Pile",
       "When you draw during your turn, draw from here first.",
       "These cards are currently Evaporated.",
-      "When you draw during your turn (not at the start of your turn), draw from here first. NL Click to view #yHot cards and others removed this combat."
+      "When you draw DURING your turn, draw from here first. NL Click to view cards."
     ]
   },
   "${ModID}:Cores": {
@@ -61,6 +66,13 @@
       "Enhance"
     ]
   },
+  "${ModID}:Hot": {
+    "TEXT": [
+      "Exhaust",
+      " NL Exhaust.",
+      ". Exhaust."
+    ]
+  },
   "${ModID}:DoubleGears": {
     "TEXT": [
       "double its Gears"
@@ -69,6 +81,12 @@
   "${ModID}:DoubleModifiers": {
     "TEXT": [
       "double its Modifiers"
+    ]
+  },
+  "${ModID}:HollyUI": {
+    "TEXT": [
+      "Holly",
+      "If you have #b12 or more #yHolly, your next card plays twice and then you lose #b12 #yHolly."
     ]
   },
   "${ModID}:Cryo": {

@@ -192,6 +192,7 @@ public class SnowpunkMod implements
         CustomIconHelper.addCustomIcon(IconContainer.ColdIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.HotIcon.get());
         CustomIconHelper.addCustomIcon(IconContainer.OverIcon.get());
+        CustomIconHelper.addCustomIcon(IconContainer.PlateIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
@@ -299,6 +300,7 @@ public class SnowpunkMod implements
         BaseMod.addAudio("snowpunk:snow2", modID + "Resources/audio/snow2.wav");
         BaseMod.addAudio("snowpunk:snow3", modID + "Resources/audio/snow3.wav");
         BaseMod.addAudio("snowpunk:snow4", modID + "Resources/audio/snow4.wav");
+        BaseMod.addAudio("snowpunk:holly", modID + "Resources/audio/holly.wav");
         BaseMod.addAudio("snowpunk:masterpiece", modID + "Resources/audio/masterpiece.mp3");
     }
 

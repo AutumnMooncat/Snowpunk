@@ -35,7 +35,7 @@ public class Cryogenizer extends AbstractMultiUpgradeCard {
 
     public Cryogenizer() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 4;
+        magicNumber = baseMagicNumber = 3;
         CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD);
         exhaust = true;
     }

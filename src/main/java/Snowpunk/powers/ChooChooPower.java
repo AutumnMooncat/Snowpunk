@@ -1,11 +1,18 @@
 package Snowpunk.powers;
 
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -15,25 +22,18 @@ public class ChooChooPower extends AbstractEasyPower {
     public static final String[] DESCRIPTIONS = CardCrawlGame.languagePack.getPowerStrings(POWER_ID).DESCRIPTIONS;
 
     public ChooChooPower(AbstractCreature owner, int num) {
-        super(POWER_ID, NAME, PowerType.BUFF, true, owner, num);
+        super(POWER_ID, NAME, PowerType.BUFF, false, owner, num);
         updateDescription();
     }
 
     @Override
     public void atStartOfTurn() {
-        Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
-    }
-
-    @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
-        return 0;
-    }
-
-    @Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS)
-            return 0;
-        return damageAmount;
+        if (owner.currentBlock > 0) {
+            flash();
+            addToBot(new SFXAction("ATTACK_HEAVY"));
+            addToBot(new VFXAction(owner, new CleaveEffect(), 0.1F));
+            addToBot(new DamageAllEnemiesAction(owner, DamageInfo.createDamageMatrix(owner.currentBlock * amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+        }
     }
 
     @Override

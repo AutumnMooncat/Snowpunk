@@ -36,22 +36,12 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     private static int playSound = 0;
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.GEAR), BaseMod.getKeywordDescription(KeywordManager.GEAR)));
-        }
-        return Tooltip;
-    }
 
     private static final int COST = 1;
 
     public FiveGoldenRings() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardModifierManager.addModifier(this, new GearMod(5));
+        //magicNumber = baseMagicNumber = 5;
         exhaust = true;
     }
 
@@ -71,12 +61,11 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
             addToBot(new WaitAction(.1f));
         }
 
-        int numGears = getGears();
         Wiz.atb(new AbstractGameAction() {
             @Override
             public void update() {
                 for (AbstractCard card : Wiz.adp().hand.group) {
-                    CardModifierManager.addModifier(card, new PlateMod(numGears, true));
+                    CardModifierManager.addModifier(card, new PlateMod(5, true));
                     card.superFlash(Color.WHITE.cpy());
                 }
                 isDone = true;

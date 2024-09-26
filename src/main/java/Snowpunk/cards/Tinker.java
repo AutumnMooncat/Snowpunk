@@ -19,12 +19,11 @@ public class Tinker extends AbstractEasyCard implements OnObtainCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, BRASS = 3;
+    private static final int COST = 0, BRASS = 4;
 
     public Tinker() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = BRASS;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

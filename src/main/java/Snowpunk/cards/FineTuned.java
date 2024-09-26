@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.FineTunePower;
+import Snowpunk.powers.GildedWrenchPower;
 import Snowpunk.powers.WrenchPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -25,7 +26,7 @@ public class FineTuned extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new FineTunePower(p, magicNumber));
-        //Wiz.applyToSelf(new WrenchPower(p, magicNumber));
+        Wiz.applyToSelf(new GildedWrenchPower(p, magicNumber));
     }
 
     @Override

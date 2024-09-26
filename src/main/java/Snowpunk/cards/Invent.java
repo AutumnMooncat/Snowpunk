@@ -23,7 +23,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
+import static Snowpunk.TheConductor.Enums.LEGENDARY;
 
+@NoCompendium
+@NoPools
 public class Invent extends AbstractEasyCard {
     public final static String ID = makeID(Invent.class.getSimpleName());
 

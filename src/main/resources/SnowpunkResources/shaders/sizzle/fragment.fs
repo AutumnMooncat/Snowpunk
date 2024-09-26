@@ -39,14 +39,14 @@ void main()
 {
     vec4 col = texture2D(u_texture, v_texCoord);
 
-    if (col.r > 0.0 || col.g > 0.0 || col.b > 0.0) {
+    //if (col.r > 0.0 || col.g > 0.0 || col.b > 0.0) {
         vec2 uv = gl_FragCoord.xy/u_screenSize;
         float legsx = 1. - length((2. * gl_FragCoord - u_screenSize.xy) / u_screenSize.x);
         float legsy = 1. - length((2. * gl_FragCoord - u_screenSize.xy) / u_screenSize.y);
 
         col = texture(u_texture, uv + vec2(sin((u_time * u_speed) + uv.y * u_strength) * (u_distortion * legsx), sin((u_time * u_speed) + uv.x * u_strength) * (u_distortion * legsy)));
 
-    }
+    //}
 
     gl_FragColor = col;
 }

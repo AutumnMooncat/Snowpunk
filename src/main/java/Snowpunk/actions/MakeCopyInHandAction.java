@@ -1,6 +1,8 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.HatMod;
+import Snowpunk.cards.GoldenTicket;
+import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,24 +22,28 @@ public class MakeCopyInHandAction extends AbstractGameAction {
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     AbstractPlayer player;
-    boolean hat, free;
     ArrayList<AbstractCard> removedCards;
+    int numHats;
 
-    public MakeCopyInHandAction(boolean freeThisTurn, boolean freeThisCombat) {
+    public MakeCopyInHandAction(int hats) {
         this.actionType = ActionType.CARD_MANIPULATION;
 
+        removedCards = new ArrayList<>();
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
         player = AbstractDungeon.player;
-        hat = freeThisTurn;
-        free = freeThisCombat;
+        numHats = hats;
     }
 
     public void update() {
         if (this.duration == this.startDuration) {
             for (AbstractCard c : player.hand.group) {
-
+                if (c instanceof GoldenTicket)
+                    removedCards.add(c);
             }
+
+            Wiz.adp().hand.group.removeAll(removedCards);
+
             if (player.hand.size() == 0) {
                 this.isDone = true;
                 returnCards();
@@ -54,11 +60,8 @@ public class MakeCopyInHandAction extends AbstractGameAction {
 
                 AbstractCard newCard = c.makeStatEquivalentCopy();
 
-                if (free)
-                    newCard.modifyCostForCombat(-newCard.cost);
-
-                if (hat)
-                    CardModifierManager.addModifier(newCard, new HatMod(1));
+                if (numHats > 0)
+                    CardModifierManager.addModifier(newCard, new HatMod(numHats));
                 returnCards();
                 AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(newCard));
             }
@@ -68,5 +71,9 @@ public class MakeCopyInHandAction extends AbstractGameAction {
     }
 
     private void returnCards() {
+        for (AbstractCard c : removedCards)
+            Wiz.adp().hand.addToTop(c);
+
+        Wiz.adp().hand.refreshHandLayout();
     }
 }

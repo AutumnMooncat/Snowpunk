@@ -19,7 +19,7 @@ public class Gizmo extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 8, BLOCK = 8, UP_DMG = 5, UP_BLOCK = 5;
+    private static final int COST = 2, DMG = 9, BLOCK = 9, UP_DMG = 5, UP_BLOCK = 5;
 
     public Gizmo() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -37,7 +37,7 @@ public class Gizmo extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
     }
 }

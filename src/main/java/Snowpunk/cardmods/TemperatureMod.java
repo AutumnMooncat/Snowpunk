@@ -13,13 +13,19 @@ import Snowpunk.ui.EvaporateTutorial;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
+import Snowpunk.vfx.ColdSnowflakeEffect;
+import Snowpunk.vfx.VictorySnowflakeEffects;
 import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.devcommands.draw.Draw;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -113,12 +119,22 @@ public class TemperatureMod extends AbstractCardModifier {
     }
 
     @Override
+    public void onUpdate(AbstractCard card) {
+        super.onUpdate(card);
+        int heat = CardTemperatureFields.getCardHeat(card);
+        if (AbstractDungeon.player != null)
+            if (heat <= COLD && MathUtils.random(20) < -COLD && (AbstractDungeon.player.hand.contains(card) || AbstractDungeon.player.limbo.contains(card)))
+                AbstractDungeon.topLevelEffectsQueue.add(new ColdSnowflakeEffect(card));
+    }
+
+    @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         int heat = CardTemperatureFields.getCardHeat(card);
         if (heat >= HOT)
             ExtraIcons.icon(hot).text(String.valueOf(heat)).render(card);
-        if (heat <= COLD)
+        if (heat <= COLD) {
             ExtraIcons.icon(cold).text(String.valueOf(Math.abs(heat))).render(card);
+        }
     }
 
     @Override
@@ -144,4 +160,6 @@ public class TemperatureMod extends AbstractCardModifier {
     public AbstractCardModifier makeCopy() {
         return new TemperatureMod();
     }
+
+
 }

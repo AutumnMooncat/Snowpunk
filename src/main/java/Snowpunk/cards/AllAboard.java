@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.AllAboardPower;
 import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,30 +17,23 @@ public class AllAboard extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.POWER;
 
     private static final int COST = 1;
-    private boolean makeEthereal, upgrade;
 
     public AllAboard() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 2;
-        info = baseInfo = 0;
-        makeEthereal = false;
-        upgrade = false;
+        baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new AllAboardPower(p, magicNumber, makeEthereal, upgrade));
+        Wiz.applyToSelf(new AllAboardPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> {
-            makeEthereal = true;
+            isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> {
-            upgrade = true;
-            upgradeInfo(1);
-        });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeMagicNumber(2));
     }
 }

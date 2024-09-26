@@ -7,6 +7,7 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -44,7 +45,7 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
 
         //for (int i = 0; i < effect; i++)
         addToBot(new DelayedMakeCopyAction(this, 2, effect));
-
+//        addToBot(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), effect));
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }

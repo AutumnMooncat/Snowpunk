@@ -22,20 +22,34 @@ import java.util.HashMap;
 
 public class ExhumeEvaporatedCardAction extends AbstractGameAction {
     int numHats, bonusHot;
+    boolean random;
 
-    public ExhumeEvaporatedCardAction(int number, int numHats) {
-        this(number, numHats, 0);
-    }
-
-    public ExhumeEvaporatedCardAction(int number, int numHats, int bonusHot) {
+    public ExhumeEvaporatedCardAction(int number, int numHats, boolean random) {
         amount = number;
         duration = startDuration = Settings.ACTION_DUR_FAST;
         this.numHats = numHats;
-        this.bonusHot = bonusHot;
+        this.random = random;
     }
 
     @Override
     public void update() {
+        if (random) {
+            ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
+            for (AbstractCard card : EvaporatePanel.evaporatePile.group)
+                selectionGroup.add(card);
+            if (amount >= EvaporatePanel.evaporatePile.group.size()) {
+                for (AbstractCard card : selectionGroup)
+                    ExhumeCard(card);
+            } else {
+                for (int i = 0; i < amount; i++) {
+                    int rand = AbstractDungeon.cardRandomRng.random(selectionGroup.size() - 1);
+                    ExhumeCard(selectionGroup.get(rand));
+                    selectionGroup.remove(rand);
+                }
+            }
+            isDone = true;
+            return;
+        }
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (amount >= EvaporatePanel.evaporatePile.group.size()) {
                 ArrayList<AbstractCard> selectionGroup = new ArrayList<>();

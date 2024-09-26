@@ -1,5 +1,6 @@
 package Snowpunk.util;
 
+import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -160,6 +161,15 @@ public class Wiz {
 
     public static void applyToEnemy(AbstractMonster m, AbstractPower po) {
         atb(new ApplyPowerAction(m, AbstractDungeon.player, po, po.amount));
+    }
+
+    public static void applyToEnemies(CloneablePowerInterface po) {
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            AbstractPower power = po.makeCopy();
+            power.owner = m;
+            if (!m.isDeadOrEscaped() && m.currentHealth > 0)
+                atb(new ApplyPowerAction(m, AbstractDungeon.player, power, power.amount));
+        }
     }
 
     public static void applyToEnemyTop(AbstractMonster m, AbstractPower po) {

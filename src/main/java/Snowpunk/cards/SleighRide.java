@@ -20,12 +20,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SleighRide extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SleighRide.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 3, UP_COST = 2, DMG = 12, UP_DMG = 4;
-    boolean upCost = false;
+    private static final int COST = 4, UP_COST = 2, DMG = 20, UP_DMG = 5;
 
     public SleighRide() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -64,7 +63,7 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        int newCost = Math.max((upCost ? UP_COST : COST) - getSnow(), 0);
+        int newCost = Math.max(COST - getSnow(), 0);
         if (costForTurn > newCost)
             setCostForTurn(newCost);
     }
@@ -72,9 +71,9 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
         setDependencies(true, 1, 0);
-        setDependencies(true, 2, 0);
+        setDependencies(true, 2, 1);
     }
 }

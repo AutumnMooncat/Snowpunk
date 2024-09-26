@@ -24,29 +24,25 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChestnutsRoasting.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
+    private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
     private static final int COST = 0;
-    private static final int SINGE = 3, CARDS = 1;
 
     public ChestnutsRoasting() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = SINGE;
-        secondMagic = baseSecondMagic = CARDS;
+        baseMagicNumber = magicNumber = 2;
         CardTemperatureFields.addInherentHeat(this, 1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
-        Wiz.applyToSelf(new FireballPower(p, secondMagic));
+        Wiz.applyToSelf(new FireballPower(p, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeSecondMagic(1));
     }
 }

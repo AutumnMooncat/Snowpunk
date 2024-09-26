@@ -2,7 +2,7 @@
   "${ModID}:SingePower": {
     "NAME": "Singe",
     "DESCRIPTIONS": [
-      "Whenever a card Evaporates, this creature loses #b",
+      "Whenever a card #yEvaporates, this creature loses #b",
       " HP."
     ]
   },
@@ -74,11 +74,8 @@
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " random Uncommon cards to your hand",
-      " with #yEthereal",
-      " and #yUpgrade them",
-      "."
+      "Whenever a card #yEvaporates, give it #b",
+      " #yPlating."
     ]
   },
   "${ModID}:CarolingPower": {
@@ -91,16 +88,25 @@
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": [
-      "Whenever a creature gains #yChill, they lose that much HP.",
-      "Whenever a creature gains #yChill, they lose #b",
+      "Whenever an enemy gains #yChill, they lose that much HP.",
+      "Whenever an enemy gains #yChill, they lose #b",
       " times that much HP."
+    ]
+  },
+  "${ModID}:ChristmasCookiePower": {
+    "NAME": "Christmas Cookies",
+    "DESCRIPTIONS": [
+      "The next #yEvaporated card you draw gains #b1 #yHot.",
+      "The next #b",
+      " #yEvaporated cards you draw gain #b1 #yHot."
     ]
   },
   "${ModID}:GreatforgePower": {
     "NAME": "Greatforge",
     "DESCRIPTIONS": [
-      "#yUpgrade the first #b",
-      " cards you draw each turn."
+      "Whenever you play a card, #yUpgrade a random card in your hand.",
+      " Repeat #b",
+      " times."
     ]
   },
   "${ModID}:BrassPower": {
@@ -110,11 +116,11 @@
       " #yPlating."
     ]
   },
-  "${ModID}:FireWallPower": {
-    "NAME": "Fire Wall",
+  "${ModID}:BoilerPower": {
+    "NAME": "Boiler",
     "DESCRIPTIONS": [
       "Apply #b",
-      " #ySinge to enemies that attack you this turn."
+      " #ySinge to the next enemy that attacks you this turn."
     ]
   },
   "${ModID}:WrenchPower": {
@@ -138,9 +144,8 @@
   "${ModID}:ShovelCoalPower": {
     "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "At the start of your turn, move 1 random card from the #yExhaust or discard pile to the Evaporate pile.",
-      "At the start of your turn, move #b",
-      " random cards from the #yExhaust or discard pile to the Evaporate pile."
+      "At the start of your turn, if you have any #yEvaporated cards, draw #b",
+      " of them."
     ]
   },
   "${ModID}:LetItSnowPower": {
@@ -186,17 +191,24 @@
   "${ModID}:FineTunePower": {
     "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "The first #yClank card you play each turn costs #b0 and draws #b1 card.",
-      "The first #b",
-      " #yClank cards you play each turn cost #b0 and draw #b1 card."
+      "At the start of your turn, gain #b",
+      " #yGilded #yWrench."
+    ]
+  },
+  "${ModID}:GildedWrenchPower": {
+    "NAME": "Gilded Wrench",
+    "DESCRIPTIONS": [
+      "The next #yClank card you play this turn costs #b0 and draws #b1 card.",
+      "The next #b",
+      " #yClank cards you play this turn cost #b0 and draw #b1 card."
     ]
   },
   "${ModID}:ChooChooPower": {
     "NAME": "CHOO CHOO!",
     "DESCRIPTIONS": [
-      "You cannot take damage this turn.",
-      "You cannot take damage for #b",
-      " turns."
+      "At the start of your turn, deal damage to ALL enemies equal to your #yBlock.",
+      "At the start of your turn, deal damage to ALL enemies equal to #b",
+      " times your #yBlock."
     ]
   },
   "${ModID}:SteamFormPower": {
@@ -268,11 +280,11 @@
       " times. At the end of your turn, #yExhaust your Evaporate pile."
     ]
   },
-  "${ModID}:FranticFixPower": {
-    "NAME": "Frantic Fix",
+  "${ModID}:DecoBotPower": {
+    "NAME": "Deco-Bot",
     "DESCRIPTIONS": [
-      "Whenever you play a card with #yClank, gain #b",
-      " #yBrass."
+      "Whenever you play a #yClank card, gain #b",
+      " #yHolly."
     ]
   },
   "${ModID}:AssembledPower": {

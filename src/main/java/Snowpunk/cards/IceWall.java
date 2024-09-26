@@ -31,7 +31,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
 
     public IceWall() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        block = baseBlock = 6;
+        block = baseBlock = 5;
         magicNumber = baseMagicNumber = 1;
         exhaust = true;
     }

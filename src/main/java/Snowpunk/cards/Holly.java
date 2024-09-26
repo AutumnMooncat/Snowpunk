@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -29,11 +30,21 @@ public class Holly extends AbstractMultiUpgradeCard {
     }
 
     @Override
+    public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
+    }
+
+    @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> upgradeBlock(3));
         setExclusions(1, 2);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return super.makeCopy();
     }
 }

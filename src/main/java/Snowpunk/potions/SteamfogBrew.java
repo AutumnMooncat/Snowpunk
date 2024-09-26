@@ -1,6 +1,8 @@
 package Snowpunk.potions;
 
 import Snowpunk.powers.BrassPower;
+import Snowpunk.powers.ChillPower;
+import Snowpunk.powers.SingePower;
 import Snowpunk.powers.SteamfogPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -12,6 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static Snowpunk.SnowpunkMod.SNOWY_BLUE;
@@ -27,16 +30,17 @@ public class SteamfogBrew extends AbstractPotion {
     public SteamfogBrew() {
         super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.T, PotionColor.ANCIENT);
         potency = getPotency();
-        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
-        isThrown = false;
+        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1] + potency + DESCRIPTIONS[2];
+        isThrown = true;
+        targetRequired = true;
         labOutlineColor = SNOWY_BLUE;
         tips.add(new PowerTip(name, description));
     }
 
     @Override
     public void use(AbstractCreature target) {
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
-            Wiz.applyToSelf(new SteamfogPower(AbstractDungeon.player, potency));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new SingePower(target, potency), potency));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new ChillPower(target, potency), potency));
     }
 
     @Override
@@ -46,6 +50,6 @@ public class SteamfogBrew extends AbstractPotion {
 
     @Override
     public int getPotency(final int potency) {
-        return 2;
+        return 6;
     }
 }

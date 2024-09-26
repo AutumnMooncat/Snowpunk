@@ -1,8 +1,10 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.GreatforgePower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -19,19 +21,25 @@ public class Greatforge extends AbstractMultiUpgradeCard {
 
     public Greatforge() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new GreatforgePower(p, magicNumber));
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                Wiz.applyToSelf(new GreatforgePower(p, 1));
+                isDone = true;
+            }
+        });
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

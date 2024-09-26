@@ -7,11 +7,15 @@ import Snowpunk.powers.HollyPower;
 import Snowpunk.powers.Mr10BelowPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class Mr10Below extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Mr10Below.class.getSimpleName());
 

@@ -54,6 +54,12 @@ public class SnowStack extends AbstractMultiUpgradeCard {
         blck();
     }
 
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        applyPowers();
+    }
+
     public void applyPowers() {
         int realBaseBlock = baseBlock;
         baseBlock += magicNumber * getSnow();

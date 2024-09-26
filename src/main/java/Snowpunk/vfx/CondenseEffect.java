@@ -1,5 +1,6 @@
 package Snowpunk.vfx;
 
+import Snowpunk.actions.CondenseWaitAction;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -17,9 +18,10 @@ public class CondenseEffect extends AbstractGameEffect {
     private AbstractCard card;
     boolean addToHand;
 
+    //TODO: Make like Mill
     public CondenseEffect(AbstractCard card, boolean addToHand) {
         this.card = card;
-        this.duration = EFFECT_DUR;
+        this.duration = startingDuration = EFFECT_DUR;
         this.card.target_x = this.card.current_x = 198.0F * Settings.scale;
         this.card.target_y = this.card.current_y = 334.0F * Settings.scale;
 
@@ -39,6 +41,7 @@ public class CondenseEffect extends AbstractGameEffect {
             }
         } else
             Wiz.adp().drawPile.addToRandomSpot(this.card);
+        Wiz.att(new CondenseWaitAction());
     }
 
     public void update() {

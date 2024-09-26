@@ -2,6 +2,7 @@ package Snowpunk.patches;
 
 import Snowpunk.actions.CondenseAction;
 import Snowpunk.powers.PyromaniacPower;
+import Snowpunk.powers.interfaces.OnCondensePower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.ui.EvaporateTutorial;
@@ -23,6 +24,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -235,7 +237,7 @@ public class EvaporatePanelPatches {
                 ReflectionHacks.RMethod tick = ReflectionHacks.privateMethod(AbstractGameAction.class, "tickDuration");
                 tick.invoke(__instance);
                 if (EvaporatePanel.evaporatePile.size() > 0) {
-                    if (!modConfig.getBool("EvaporateTutorial")) {
+                    if (!modConfig.getBool("EvaporateTutorial") && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                         AbstractDungeon.ftue = new EvaporateTutorial();
                         modConfig.setBool("EvaporateTutorial", true);
                         try {
@@ -359,6 +361,12 @@ public class EvaporatePanelPatches {
                 }
                 if (e != null)
                     AbstractDungeon.effectList.remove(e);
+
+                for (AbstractPower power : AbstractDungeon.player.powers) {
+                    if (power instanceof OnCondensePower)
+                        ((OnCondensePower) power).onCondense(evaporatedCard);
+                }
+
                 /*if (__instance.amount == 0)
                     ReflectionHacks.privateMethod(DrawCardAction.class, "endActionWithFollowUp").invoke(__instance);
                 return;*/

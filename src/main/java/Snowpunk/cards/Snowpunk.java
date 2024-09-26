@@ -42,7 +42,8 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new SnowpunkPower(p, 1));
-        Wiz.atb(new GainSnowballAction((magicNumber)));
+        if (magicNumber > 0)
+            Wiz.atb(new GainSnowballAction((magicNumber)));
     }
 
     @Override
@@ -52,6 +53,5 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
             uDesc();
         });
         addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
-        addUpgradeData(() -> upgradeBaseCost(UP_COST));
     }
 }

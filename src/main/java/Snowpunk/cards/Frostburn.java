@@ -16,11 +16,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Frostburn extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Frostburn.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 4, UP = 2, SINGE = 4;
+    private static final int COST = 1, CHILL = 4, UP = 3, SINGE = 4;
 
     public Frostburn() {
         super(ID, COST, TYPE, RARITY, TARGET);

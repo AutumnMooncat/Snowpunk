@@ -56,7 +56,7 @@ public class SnowballPatches {
         public static void startTurn() {
             int snow = getPerTurn();
             if (snow > 0)
-                Wiz.att(new GainSnowballAction(snow));
+                Wiz.att(new GainSnowballAction(snow, true));
         }
 
         public static int getTrueAmount() {
@@ -111,13 +111,13 @@ public class SnowballPatches {
         public static void useSnow(AbstractPlayer __instance, AbstractCard c) {
             if (Snowballs.getTrueAmount() > 0 && c.costForTurn > 0 && !c.purgeOnUse) {
                 int delta = c.costForTurn - EnergyPanel.getCurrentEnergy();
-                if (delta > 0 && !c.freeToPlayOnce)
+                if (delta > 0 && !c.freeToPlayOnce && !c.isInAutoplay && !c.ignoreEnergyOnUse)
                     if (!(delta > Snowballs.getTrueAmount() && CardModifierManager.hasModifier(c, CondensedMod.ID)))
                         Wiz.atb(new GainSnowballAction(-delta));
             }
             if (Snowballs.getTrueAmount() > 0 && c.costForTurn == -1 && !c.purgeOnUse) {
                 c.energyOnUse += AbstractEasyCard.getSnowStatic();
-                if (!c.freeToPlayOnce && !CardModifierManager.hasModifier(c, CondensedMod.ID))
+                if (!c.freeToPlayOnce && !CardModifierManager.hasModifier(c, CondensedMod.ID) && !c.isInAutoplay && !c.ignoreEnergyOnUse)
                     Wiz.atb(new GainSnowballAction(-Snowballs.getTrueAmount()));
             }
         }

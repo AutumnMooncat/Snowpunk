@@ -124,7 +124,7 @@ public class IncreaseModifiersAction extends AbstractGameAction {
             if (x2)
                 CardTemperatureFields.addHeat(card, CardTemperatureFields.getCardHeat(card));
             else
-                CardTemperatureFields.addHeat(card, amount * CardTemperatureFields.getCardHeat(card) / Math.abs(CardTemperatureFields.getCardHeat(card)));
+                CardTemperatureFields.addHeat(card, amount * CardTemperatureFields.getCardHeat(card) / Math.max(1, Math.abs(CardTemperatureFields.getCardHeat(card))));
         }
         if (CardModifierManager.hasModifier(card, OverdriveMod.ID))
             CardModifierManager.addModifier(card, new OverdriveMod(x2 ? ((OverdriveMod) CardModifierManager.getModifiers(card, OverdriveMod.ID).get(0)).amount : amount));

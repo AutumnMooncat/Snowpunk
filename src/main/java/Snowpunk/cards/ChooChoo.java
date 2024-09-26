@@ -5,6 +5,8 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
 import Snowpunk.powers.ChooChooPower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,29 +20,21 @@ public class ChooChoo extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 5, BRASS = 25;
-    private boolean endTurn = true;
+    private static final int COST = 5, BLOCk = 30;
 
     public ChooChoo() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = BRASS;
-        endTurn = true;
+        block = baseBlock = BLOCk;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+        blck();
         Wiz.applyToSelf(new ChooChooPower(p, 1));
-        if (endTurn)
-            addToBot(new PressEndTurnButtonAction());
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(7));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> {
-            endTurn = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBlock(10));
+        addUpgradeData(() -> upgradeBaseCost(4));
     }
 }

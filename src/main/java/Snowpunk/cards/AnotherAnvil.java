@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
+import static Snowpunk.TheConductor.Enums.LEGENDARY;
 
 public class AnotherAnvil extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(AnotherAnvil.class.getSimpleName());
@@ -31,11 +32,11 @@ public class AnotherAnvil extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2;
+    private static final int COST = 2, DMG = 18, UP = 7;
 
     public AnotherAnvil() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        damage = baseDamage = 18;
+        damage = baseDamage = DMG;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -50,11 +51,11 @@ public class AnotherAnvil extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(6));
-        addUpgradeData(() -> upgradeDamage(6));
-        addUpgradeData(() -> upgradeDamage(6));
-        addUpgradeData(() -> upgradeDamage(6));
-        addUpgradeData(() -> upgradeDamage(6));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
         setDependencies(true, 3, 2);

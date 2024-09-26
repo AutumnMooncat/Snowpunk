@@ -13,7 +13,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,7 @@ public class ChillMod extends AbstractCardModifier {
         this.priority = 2;
         amount = num;
     }
-
+/*
     @Override
     public void onInitialApplication(AbstractCard card) {
         if (card.target == AbstractCard.CardTarget.NONE ||
@@ -38,12 +41,17 @@ public class ChillMod extends AbstractCardModifier {
             card.target = AbstractCard.CardTarget.ENEMY;
         if (card.type == AbstractCard.CardType.ATTACK)
             DamageModifierManager.addModifier(card, new ChillDamageMod(amount));
-    }
+    }*/
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card.type != AbstractCard.CardType.ATTACK && target instanceof AbstractMonster) {
+        /*if (card.type != AbstractCard.CardType.ATTACK && target instanceof AbstractMonster) {
             Wiz.applyToEnemy((AbstractMonster) target, new ChillPower(target, amount));
+        }*/
+        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+            if (!mo.isDeadOrEscaped()) {
+                Wiz.applyToEnemy(mo, new ChillPower(mo, amount));
+            }
         }
     }
 
@@ -62,7 +70,7 @@ public class ChillMod extends AbstractCardModifier {
             chillMod.amount = total;
             if (chillMod.amount < 0)
                 chillMod.amount = 0;
-
+/*
             ArrayList<AbstractDamageModifier> toRemove = new ArrayList<>();
             for (AbstractDamageModifier mod : DamageModifierManager.modifiers(card)) {
                 if (mod instanceof ChillDamageMod)
@@ -72,7 +80,7 @@ public class ChillMod extends AbstractCardModifier {
 
             if (card.type == AbstractCard.CardType.ATTACK)
                 DamageModifierManager.addModifier(card, new ChillDamageMod(total));
-
+*/
             card.applyPowers();
             card.initializeDescription();
             return false;

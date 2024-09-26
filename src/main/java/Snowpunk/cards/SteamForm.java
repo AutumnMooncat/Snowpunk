@@ -27,6 +27,7 @@ public class SteamForm extends AbstractMultiUpgradeCard {
     public SteamForm() {
         super(ID, COST, TYPE, RARITY, TARGET);
         tags.add(BaseModCardTags.FORM);
+        isEthereal = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -35,6 +36,9 @@ public class SteamForm extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> {
+            isEthereal = false;
+            uDesc();
+        });
     }
 }

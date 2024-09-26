@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.GainSnowballAction;
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -23,7 +25,7 @@ public class ChillOut extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 5;
+    private static final int COST = 1, CHILL = 4;
 
     public ChillOut() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -45,12 +47,12 @@ public class ChillOut extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
         if (m != null && m.getIntentBaseDmg() < 0)
-            Wiz.atb(new GainSnowballAction((secondMagic)));
+            Wiz.atb(new GainSnowballAction(secondMagic));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(3));
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> upgradeSecondMagic(1));
     }
 }

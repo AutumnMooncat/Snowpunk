@@ -9,8 +9,9 @@
   "${ModID}:SteamfogBrew": {
     "NAME": "Steamfog Brew",
     "DESCRIPTIONS": [
-      "The next #b",
-      " times you would lose HP, lose half as much."
+      "Apply #b",
+      " #ySinge and #b",
+      " #yChill."
     ]
   },
   "${ModID}:IceblastTonic": {

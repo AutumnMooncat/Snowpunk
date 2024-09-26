@@ -18,24 +18,22 @@ public class Breakthrough extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
 
-    private boolean random;
-
     public Breakthrough() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        damage = baseDamage = 11;
-        random = true;
+        damage = baseDamage = 12;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new IncreaseModifiersAction(random, -1));
+        Wiz.atb(new IncreaseModifiersAction(false, -1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(4));
         addUpgradeData(() -> {
-            random = false;
+            exhaust = false;
             uDesc();
         });
     }

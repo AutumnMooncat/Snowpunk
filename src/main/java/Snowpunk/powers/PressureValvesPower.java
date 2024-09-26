@@ -39,7 +39,7 @@ public class PressureValvesPower extends AbstractEasyPower implements SnowAmount
 
     @Override
     public int modifyX(AbstractCard abstractCard) {
-        if (SnowballPatches.Snowballs.getTrueAmount() == 0)
+        if (SnowballPatches.Snowballs.getTrueAmount() == 0 && !abstractCard.purgeOnUse)
             return amount;
         return 0;
     }

@@ -34,7 +34,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
     public Sproinket() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
-        CardModifierManager.addModifier(this, new GearMod(2));
+        magicNumber = baseMagicNumber = 4;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -45,14 +45,14 @@ public class Sproinket extends AbstractMultiUpgradeCard {
             addToBot(new VFXAction(new FlickCoinEffect(Wiz.adp().hb.cX, Wiz.adp().hb.cY, target.hb.cX, target.hb.cY), 0.3F));
             dmg(target, AbstractGameAction.AttackEffect.NONE);
         }
-        Wiz.applyToSelf(new BrassPower(player, getGears()));
+        Wiz.applyToSelf(new BrassPower(player, magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> {
             upgradeDamage(UP_DMG);
-            CardModifierManager.addModifier(this, new GearMod(1));
+            upgradeMagicNumber(1);
         });
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));

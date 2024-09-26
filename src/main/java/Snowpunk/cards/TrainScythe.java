@@ -23,13 +23,14 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class TrainScythe extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(TrainScythe.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 13, UP_DMG = 5;
+    private static final int COST = 1, DMG = 7, UP_DMG = 3;
 
     public boolean targetEvaporated;
+
     public TrainScythe() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;

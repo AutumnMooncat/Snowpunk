@@ -1,10 +1,15 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.DrawEvaporatedCardsAction;
 import Snowpunk.actions.EvaporateCardInHandAction;
+import Snowpunk.actions.ExhumeEvaporatedCardAction;
 import Snowpunk.actions.MoveFromOnePileToAnotherAction;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,12 +18,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.util.Wiz.adp;
+import static Snowpunk.util.Wiz.atb;
 
 public class ShovelCoalPower extends AbstractEasyPower {
     public static String POWER_ID = makeID(ShovelCoalPower.class.getSimpleName());
@@ -56,7 +63,7 @@ public class ShovelCoalPower extends AbstractEasyPower {
         }
         super.onExhaust(card);
     }*/
-
+/*
     @Override
     public void atStartOfTurnPostDraw() {
         if (Wiz.adp().exhaustPile.group.size() + Wiz.adp().discardPile.group.size() > 0) {
@@ -69,6 +76,7 @@ public class ShovelCoalPower extends AbstractEasyPower {
                 card.unhover();
                 card.untip();
                 card.stopGlowing();
+
                 if (Wiz.adp().exhaustPile.group.contains(card)) {
                     Wiz.adp().exhaustPile.group.remove(card);
                     EvaporatePanel.evaporatePile.addToTop(card);
@@ -94,10 +102,19 @@ public class ShovelCoalPower extends AbstractEasyPower {
             }
         }
     }
+*/
+
+    @Override
+    public void atStartOfTurnPostDraw() {
+        if (EvaporatePanel.evaporatePile.size() > 0) {
+            flash();
+            Wiz.atb(new DrawEvaporatedCardsAction(amount));
+        }
+    }
 
     @Override
     public void updateDescription() {
-        description = amount == 1 ? DESCRIPTIONS[0] : (DESCRIPTIONS[1] + amount + DESCRIPTIONS[2]);
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override

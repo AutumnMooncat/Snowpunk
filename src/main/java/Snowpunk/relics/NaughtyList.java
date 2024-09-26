@@ -3,6 +3,8 @@ package Snowpunk.relics;
 import Snowpunk.TheConductor;
 import Snowpunk.util.Wiz;
 import basemod.interfaces.CloneablePowerInterface;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnApplyPowerRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,6 +15,8 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class NaughtyList extends AbstractEasyRelic implements OnApplyPowerRelic {
     public static final String ID = makeID(NaughtyList.class.getSimpleName());
     public static final int AMOUNT = 1;

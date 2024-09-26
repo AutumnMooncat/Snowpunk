@@ -6,7 +6,7 @@
       "singed",
       "singe"
     ],
-    "DESCRIPTION": "Singed creatures lose HP whenever a card Evaporates."
+    "DESCRIPTION": "Singed creatures lose HP whenever a card #yEvaporates."
   },
   {
     "PROPER_NAME": "Clank",
@@ -22,15 +22,15 @@
     "NAMES": [
       "holly"
     ],
-    "DESCRIPTION": "The next time you apply a debuff or gain #yBrass, increase the amount."
+    "DESCRIPTION": "If you have #b12 or more #yHolly, your next card plays twice and then you lose #b12 #yHolly."
   },
   {
-    "ID": "flamin",
-    "PROPER_NAME": "Flamin",
+    "ID": "buffer",
+    "PROPER_NAME": "Buffer",
     "NAMES": [
-      "flamin"
+      "buffer"
     ],
-    "DESCRIPTION": "After playing, if this card is not #yHot, gain #b1 #yHot."
+    "DESCRIPTION": "Prevent the next time you would lose HP."
   },
   {
     "ID": "hat",
@@ -84,7 +84,7 @@
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Move to the Evaporate pile. When drawn from the Evaporate pile, lose #b1 #yHot.",
+    "DESCRIPTION": "Put into the #yEvaporate pile. When drawn from the #yEvaporate pile reduce #yHot by #b1.",
     "EXTENDED_DESCRIPTION": [
       "Exhaust."
     ]
@@ -112,7 +112,7 @@
     "NAMES": [
       "brass"
     ],
-    "DESCRIPTION": "Increase the damage and #yBlock of the next card you play that damages or #yBlocks for the rest of combat."
+    "DESCRIPTION": "Increase the damage and #yBlock of the next viable card you play for the rest of combat."
   },
   {
     "ID": "modifications",
@@ -121,11 +121,11 @@
       "modifications",
       "modification"
     ],
-    "DESCRIPTION": "Card modifications include #yHot, #yCold, #yGears, #yPlating, #yHats, and #yOverdrive!"
+    "DESCRIPTION": "Modifications include #yHot, #yCold, #yGears, #yPlating, and #yHats!"
   },
   {
     "ID": "plating",
-    "PROPER_NAME": "Plating",
+    "PROPER_NAME": "Plating [Snowpunk:PlateIcon]",
     "NAMES": [
       "plating",
       "plate",
@@ -134,11 +134,19 @@
     "DESCRIPTION": "Increase the damage and #yBlock of a card."
   },
   {
+    "PROPER_NAME": "Evaporate",
+    "NAMES": [
+      "evaporate",
+      "evaporates"
+    ],
+    "DESCRIPTION": "Put a card into the #yEvaporate pile."
+  },
+  {
     "PROPER_NAME": "Evaporated",
     "NAMES": [
       "evaporated"
     ],
-    "DESCRIPTION": "In the Evaporate pile."
+    "DESCRIPTION": "Any cards in the #yEvaporate pile are #yEvaporated."
   },
   {
     "ID": "overdrive",
@@ -154,6 +162,13 @@
       "hook"
     ],
     "DESCRIPTION": "If you have more #yBlock than the target's HP, remove them from combat."
+  },
+  {
+    "PROPER_NAME": "Slipshod",
+    "NAMES": [
+      "slipshod"
+    ],
+    "DESCRIPTION": "Can only be #yUpgraded during combat."
   },
   {
     "PROPER_NAME": "Desperation",

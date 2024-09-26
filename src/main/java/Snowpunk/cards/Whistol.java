@@ -22,7 +22,7 @@ public class Whistol extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 0, DMG = 10, UP_DMG = 3;
+    private static final int COST = 0, DMG = 11, UP_DMG = 3;
 
     public Whistol() {
         super(ID, COST, TYPE, RARITY, TARGET);

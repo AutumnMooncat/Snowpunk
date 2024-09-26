@@ -11,6 +11,8 @@ import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -19,10 +21,12 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class HatTrick extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(HatTrick.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
@@ -31,7 +35,6 @@ public class HatTrick extends AbstractMultiUpgradeCard {
     public HatTrick() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = 5;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

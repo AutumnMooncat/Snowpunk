@@ -17,7 +17,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SteamPipe extends AbstractEasyRelic {
     public static final String ID = makeID(SteamPipe.class.getSimpleName());
 
-    public static final int AMOUNT = 4;
+    public static final int AMOUNT = 5;
 
     public SteamPipe() {
         super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);

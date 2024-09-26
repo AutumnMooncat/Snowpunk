@@ -10,6 +10,8 @@ import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -27,6 +29,8 @@ import java.util.Objects;
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.util.Wiz.atb;
 
+@NoPools
+@NoCompendium
 public class BlackFlash extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(BlackFlash.class.getSimpleName());
 

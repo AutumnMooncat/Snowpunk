@@ -34,7 +34,7 @@ public class EngineOffload extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new ExhumeEvaporatedCardAction(1, 1, hot ? 1 : 0));
+        //Wiz.atb(new ExhumeEvaporatedCardAction(1, 1, hot ? 1 : 0));
     }
 
     @Override

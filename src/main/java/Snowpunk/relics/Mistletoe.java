@@ -1,6 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
+import Snowpunk.actions.GainHollyAction;
 import Snowpunk.powers.BrassPower;
 import Snowpunk.powers.HollyPower;
 import Snowpunk.util.Wiz;
@@ -19,7 +20,7 @@ public class Mistletoe extends AbstractEasyRelic {
     @Override
     public void atBattleStartPreDraw() {
         flash();
-        Wiz.applyToSelf(new HollyPower(Wiz.adp(), AMOUNT));
+        Wiz.atb(new GainHollyAction(AMOUNT));
     }
 
     @Override

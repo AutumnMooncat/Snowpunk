@@ -117,6 +117,22 @@ public class IconContainer {
         }
     }
 
+    public static class PlateIcon extends AbstractCustomIcon {
+        public static final String ID = SnowpunkMod.makeID("Plate");
+        private static AbstractCustomIcon singleton;
+
+        public PlateIcon() {
+            super(ID, TexLoader.getTexture("SnowpunkResources/images/icons/Plate.png"));
+        }
+
+        public static AbstractCustomIcon get() {
+            if (singleton == null) {
+                singleton = new PlateIcon();
+            }
+            return singleton;
+        }
+    }
+
     public static class OverIcon extends AbstractCustomIcon {
         public static final String ID = SnowpunkMod.makeID("Over");
         private static AbstractCustomIcon singleton;

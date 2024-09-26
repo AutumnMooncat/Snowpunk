@@ -11,7 +11,7 @@ public class BananaSplit extends AbstractEasyRelic {
     public static final String ID = makeID(BananaSplit.class.getSimpleName());
 
     public BananaSplit() {
-        super(ID, RelicTier.RARE, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.BOSS, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
         description = DESCRIPTIONS[0];
     }
 
