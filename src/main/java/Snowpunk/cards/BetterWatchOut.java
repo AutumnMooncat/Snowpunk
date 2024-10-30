@@ -24,8 +24,8 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = -1;
-    private static final int DMG = 10;
-    private static final int UP_DMG = 3;
+    private static final int DMG = 5;
+    private static final int UP_DMG = 2;
 
     public BetterWatchOut() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -34,6 +34,7 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
         int effect = this.energyOnUse;

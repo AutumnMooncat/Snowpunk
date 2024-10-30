@@ -14,7 +14,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class NextTurnPowerPower extends AbstractEasyPower {
     public static String TEXT_ID = makeID("NextTurnPowerPower");
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(TEXT_ID);
-    private AbstractPower powerToGain;
+    private final AbstractPower powerToGain;
 
     public NextTurnPowerPower(AbstractCreature owner, AbstractPower powerToGrant) {
         super(TEXT_ID + powerToGrant.ID, strings.NAME + powerToGrant.name, powerToGrant.type, false, owner, powerToGrant.amount);
@@ -45,11 +45,10 @@ public class NextTurnPowerPower extends AbstractEasyPower {
 
     @Override
     public void updateDescription() {
-        if (powerToGain == null) {
+        if (powerToGain == null)
             description = "???";
-        } else {
-            description = strings.DESCRIPTIONS[0] + powerToGain.amount + strings.DESCRIPTIONS[1] + powerToGain.name + strings.DESCRIPTIONS[2];
-        }
+        else
+            description = strings.DESCRIPTIONS[0] + powerToGain.amount + " " + powerToGain.name + ".";
     }
 
     @Override

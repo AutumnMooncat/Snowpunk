@@ -1,6 +1,10 @@
 package Snowpunk.powers;
 
 import Snowpunk.actions.UpgradeRandomInHardWithVisualAction;
+import Snowpunk.actions.UpgradeWithVisualAction;
+import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.UpgradeSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -25,22 +29,55 @@ public class GreatforgePower extends AbstractEasyPower {
 
     //private int cardsDrawnThisTurn = 0;
 
+    boolean postStartDraw = false;
+
     public GreatforgePower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
+        postStartDraw = true;
     }
 
     @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        for (int i = 0; i < amount; i++)
-            addToBot(new UpgradeRandomInHardWithVisualAction(1));
+    public void atStartOfTurn() {
+        postStartDraw = false;
     }
+
+    @Override
+    public void atStartOfTurnPostDraw() {
+        Wiz.atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                postStartDraw = true;
+                isDone = true;
+            }
+        });
+    }
+
+    @Override
+    public void onCardDraw(AbstractCard card) {
+        super.onCardDraw(card);
+        if (postStartDraw && card.canUpgrade()) {
+            Wiz.atb(new UpgradeWithVisualAction(card));
+            flash();
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        postStartDraw = false;
+    }
+
+    //    @Override
+//    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+//        for (int i = 0; i < amount; i++)
+//            addToBot(new UpgradeRandomInHardWithVisualAction(1));
+//    }
 
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0];
         if (amount > 1)
-            description += DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

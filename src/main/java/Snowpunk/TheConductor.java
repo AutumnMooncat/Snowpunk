@@ -94,6 +94,7 @@ public class TheConductor extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
         retVal.add(SnowStack.ID);
         return retVal;
     }

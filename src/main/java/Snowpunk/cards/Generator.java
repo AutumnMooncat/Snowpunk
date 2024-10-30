@@ -1,12 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ClankAction;
-import Snowpunk.actions.EvaporateRandomCardAction;
-import Snowpunk.cardmods.GearMod;
-import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
+import Snowpunk.actions.GeneratorAction;
+import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,29 +11,51 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Generator extends AbstractMultiUpgradeCard {
+public class Generator extends AbstractEasyCard {
     public final static String ID = makeID(Generator.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0;
+    private static final int COST = -2;
 
     public Generator() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardModifierManager.addModifier(this, new GearMod(1));
+    }
+
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+        return false;// 39
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new GainEnergyAction(getGears()));
+
     }
+
+//    @Override
+//    public void triggerWhenDrawn() {
+//        super.triggerWhenDrawn();
+//        Wiz.atb(new GainEnergyAction(1));
+//    }
 
     @Override
     public boolean canUpgrade() {
-        return AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
+        return !AbstractDungeon.player.masterDeck.contains(this) && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
     }
 
+    @Override
+    public void upgrade() {
+        if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
+            addToBot(new GeneratorAction(this));
+    }
+
+    @Override
+    public void upp() {
+
+    }
+
+    /*
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
@@ -57,5 +75,5 @@ public class Generator extends AbstractMultiUpgradeCard {
         setDependencies(true, 6, 5);
         setDependencies(true, 7, 6);
         setDependencies(true, 8, 7);
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.ClankAction;
+import Snowpunk.actions.ReturnAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
@@ -25,7 +26,7 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 8, UP_DMG = 3;
+    private static final int COST = 1, DMG = 8, UP_DMG = 1;
 
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -44,15 +45,32 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> {
+            upgradeDamage(UP_DMG);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(UP_DMG);
+            CardModifierManager.addModifier(this, new GearMod(1));
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(UP_DMG);
+            CardModifierManager.addModifier(this, new GearMod(1));
+        });
+        setDependencies(true, 2, 1);
     }
 
     @Override
-    public void onClank(AbstractMonster monster) {
+    public void onClank(AbstractMonster target) {
         int drawAmount = getGears();
         if (drawAmount > 0)
             addToTop(new DiscardAction(Wiz.adp(), Wiz.adp(), drawAmount, false));
+    }
+
+    @Override
+    public void unClank(AbstractMonster target) {
+        int drawAmount = getGears();
+        if (drawAmount > 0)
+            addToTop(new ReturnAction(drawAmount));
     }
 }

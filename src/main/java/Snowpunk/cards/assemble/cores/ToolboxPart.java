@@ -1,7 +1,6 @@
 package Snowpunk.cards.assemble.cores;
 
 import Snowpunk.actions.DoubleGearsAction;
-import Snowpunk.actions.DoublePowersAction;
 import Snowpunk.cards.assemble.AssembledCard;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.util.Wiz;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 
@@ -19,15 +17,15 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 @NoPools
 @NoCompendium
-public class Toolbox extends CoreCard {
-    public static final String ID = makeID(Toolbox.class.getSimpleName());
+public class ToolboxPart extends CoreCard {
+    public static final String ID = makeID(ToolboxPart.class.getSimpleName());
     public static String[] TEXT = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 1;
 
-    public Toolbox() {
+    public ToolboxPart() {
         super(ID, COST, TYPE, EffectTag.CORE, EffectTag.CRD, EffectTag.EXH);
         exhaust = true;
     }

@@ -28,7 +28,7 @@ public class JingleBells extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 7, HOLLY = 3;
+    private static final int COST = 1, BLOCK = 7, HOLLY = 4;
 
     public JingleBells() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -43,11 +43,8 @@ public class JingleBells extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
-        });
-        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBlock(2));
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

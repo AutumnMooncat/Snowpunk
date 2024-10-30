@@ -1,12 +1,16 @@
 package Snowpunk.actions;
 
+import Snowpunk.TheConductor;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.HandOfGreed;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -61,19 +65,28 @@ public class GiftDiscoveryAction extends AbstractGameAction {
         rarityList.add(AbstractCard.CardRarity.RARE);
         ArrayList<AbstractCard> derp = new ArrayList<>();
         while (derp.size() != this.amount) {
-            boolean dupe = false;
-            boolean heal = false;
             AbstractCard tmp = CardLibrary.getAnyColorCard(getRandomItem(rarityList));
+            if (tmp.color == TheConductor.Enums.SNOWY_BLUE_COLOR)
+                break;
+//            boolean dupe = false;
+//            boolean heal = false;
+//            boolean poolsComp = false;
             for (AbstractCard c : derp) {
                 if (c.cardID.equals(tmp.cardID)) {
-                    dupe = true;
+//                    dupe = true;
                     break;
                 }
             }
-            if (tmp.hasTag(AbstractCard.CardTags.HEALING))
-                heal = true;
-            if (!dupe && !heal)
-                derp.add(tmp.makeCopy());
+            if (tmp.hasTag(AbstractCard.CardTags.HEALING)) {
+//                heal = true;
+                break;
+            }
+            if (tmp.getClass().isAnnotationPresent(NoPools.class) || tmp.getClass().isAnnotationPresent(NoCompendium.class)) {
+//                poolsComp = true;
+                break;
+            }
+//            if (!dupe && !heal && !poolsComp && !(tmp instanceof HandOfGreed))
+            derp.add(tmp.makeCopy());
         }
         return derp;
     }

@@ -1,12 +1,16 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.GainHollyAction;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.ClankCard;
+import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -23,35 +27,32 @@ public class DecoBotPower extends AbstractEasyPower {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
     }
 
-//    @Override
-//    public void atStartOfTurn() {
-//        super.atStartOfTurn();
-//        flash();
-//        //Wiz.applyToSelf(new HollyPower(owner, amount));
-//        Wiz.atb(new GainHollyAction(amount));
-//    }
-
-    //
-//    @Override
-//    public int onAttacked(DamageInfo info, int damageAmount) {
-//        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != owner && damageAmount > 0) {
-//            flash();
-//            Wiz.applyToSelf(new HollyPower(owner, amount));
-//        }
-//        return damageAmount;
-//    }
-
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card instanceof ClankCard) {
             flash();
             Wiz.atb(new GainHollyAction(amount));
+            Wiz.att(new ApplyCardModifierAction(card, new PlateMod(amount)));
         }
     }
 
     @Override
+    public float modifyBlock(float blockAmount, AbstractCard card) {
+        if (blockAmount < 0 || !(card instanceof ClankCard))
+            return blockAmount;
+        return Math.max(blockAmount + amount, 0);
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+        if (type == DamageInfo.DamageType.NORMAL && card instanceof ClankCard)
+            return damage + amount;
+        return damage;
+    }
+
+    @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

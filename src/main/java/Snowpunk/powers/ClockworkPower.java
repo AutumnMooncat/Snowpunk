@@ -1,10 +1,6 @@
 package Snowpunk.powers;
 
-import Snowpunk.actions.ClockworkAction;
-import Snowpunk.actions.CondenseAction;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.common.UpgradeSpecificCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -23,14 +19,16 @@ public class ClockworkPower extends AbstractEasyPower {
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        addToBot(new ClockworkAction(amount));
-        flash();
+    public void atStartOfTurn() {
+        Wiz.applyToSelf(new PreventBrassConsumptionThisTurnPower(Wiz.adp(), amount));
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (amount == 1)
+            description = DESCRIPTIONS[0];
+        else
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

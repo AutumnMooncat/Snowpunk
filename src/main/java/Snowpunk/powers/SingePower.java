@@ -63,7 +63,8 @@ public class SingePower extends AbstractEasyPower implements OnEvaporatePower, H
 //                isDone = true;
 //            }
 //        });
-        Wiz.atb(new LoseHPAction(owner, Wiz.adp(), amount, AbstractGameAction.AttackEffect.FIRE));
+        if (!owner.isDeadOrEscaped() && !owner.isDying && owner.currentHealth > 0)
+            Wiz.atb(new LoseHPAction(owner, Wiz.adp(), amount, AbstractGameAction.AttackEffect.FIRE));
     }
 
     @Override

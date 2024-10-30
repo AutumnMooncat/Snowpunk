@@ -307,8 +307,8 @@ public abstract class AbstractEasyCard extends CustomCard {
             gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
         if (Wiz.adp() != null && Wiz.adp().hasPower(GearNextPower.POWER_ID))
             gears += Wiz.adp().getPower(GearNextPower.POWER_ID).amount;
-        if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
-            gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
+//        if (Wiz.adp() != null && Wiz.adp().hasPower(SnowpunkPower.POWER_ID))
+//            gears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * getSnow();
         return gears;
     }
 }

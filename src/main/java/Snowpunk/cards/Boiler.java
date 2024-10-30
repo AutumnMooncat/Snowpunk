@@ -20,12 +20,12 @@ public class Boiler extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BLOCK = 12, UP_BLOCK = 5;
+    private static final int COST = 2, BLOCK = 12, UP_BLOCK = 4;
 
     public Boiler() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 5;
+        magicNumber = baseMagicNumber = 4;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

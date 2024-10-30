@@ -36,85 +36,21 @@ public class ShovelCoalPower extends AbstractEasyPower {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
     }
-/*
-    @Override
-    public void atStartOfTurn() {
-        numExhausted = 0;
-    }
-
-    @Override
-    public void onExhaust(AbstractCard card) {
-        if (numExhausted < amount) {
-            numExhausted++;
-            Wiz.atb(new MoveFromOnePileToAnotherAction(card, Wiz.adp().exhaustPile, EvaporatePanel.evaporatePile));
-            for (AbstractPower power : Wiz.adp().powers) {
-                if (power instanceof OnEvaporatePower)
-                    ((OnEvaporatePower) power).onEvaporate(card);
-            }
-            for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if (monster != null && !monster.isDeadOrEscaped()) {
-                    for (AbstractPower power : monster.powers) {
-                        if (power instanceof OnEvaporatePower)
-                            ((OnEvaporatePower) power).onEvaporate(card);
-                    }
-                }
-            }
-            flash();
-        }
-        super.onExhaust(card);
-    }*/
-/*
-    @Override
-    public void atStartOfTurnPostDraw() {
-        if (Wiz.adp().exhaustPile.group.size() + Wiz.adp().discardPile.group.size() > 0) {
-            List<AbstractCard> cards = new ArrayList<>();
-            cards.addAll(Wiz.adp().exhaustPile.group);
-            cards.addAll(Wiz.adp().discardPile.group);
-
-            for (int i = 0; i < amount; i++) {
-                AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-                card.unhover();
-                card.untip();
-                card.stopGlowing();
-
-                if (Wiz.adp().exhaustPile.group.contains(card)) {
-                    Wiz.adp().exhaustPile.group.remove(card);
-                    EvaporatePanel.evaporatePile.addToTop(card);
-                }
-                if (adp().discardPile.group.contains(card)) {
-                    Wiz.adp().discardPile.group.remove(card);
-                    EvaporatePanel.evaporatePile.addToTop(card);
-                }
-
-                for (AbstractPower pow : adp().powers) {
-                    if (pow instanceof OnEvaporatePower) {
-                        ((OnEvaporatePower) pow).onEvaporate(card);
-                    }
-                }
-                for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    for (AbstractPower pow : monster.powers) {
-                        if (pow instanceof OnEvaporatePower) {
-                            ((OnEvaporatePower) pow).onEvaporate(card);
-                        }
-                    }
-                }
-                flash();
-            }
-        }
-    }
-*/
 
     @Override
     public void atStartOfTurnPostDraw() {
         if (EvaporatePanel.evaporatePile.size() > 0) {
             flash();
-            Wiz.atb(new DrawEvaporatedCardsAction(amount));
+            Wiz.atb(new ExhumeEvaporatedCardAction(amount, 0, true));
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (amount == 1)
+            description = DESCRIPTIONS[0];
+        else
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

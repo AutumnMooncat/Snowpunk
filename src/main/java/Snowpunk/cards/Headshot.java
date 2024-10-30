@@ -19,18 +19,17 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Headshot extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Headshot.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 12, UP_DMG = 5;
-
-    private boolean chill = false;
+    private static final int COST = 2, DMG = 10, UP_DMG = 5;
 
     public Headshot() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         magicNumber = baseMagicNumber = 4;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD * 2);
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -45,9 +44,9 @@ public class Headshot extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        calculateCardDamage(m);
-        applyPowers();
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+//        calculateCardDamage(m);
+//        applyPowers();
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
     @Override
@@ -65,17 +64,21 @@ public class Headshot extends AbstractMultiUpgradeCard {
     public void applyPowers() {
         int realBaseDamage = baseDamage;
         baseDamage += magicNumber * getSnow();
-        damage = baseDamage;
 
         super.applyPowers();
+
         baseDamage = realBaseDamage;
         isDamageModified = damage != baseDamage;
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> {
+            upgradeDamage(3);
+            upgradeMagicNumber(1);
+        });
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> upgradeMagicNumber(2));
+        setDependencies(true, 2, 1, 0);
     }
 }

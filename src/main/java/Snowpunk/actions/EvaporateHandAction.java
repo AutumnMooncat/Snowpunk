@@ -81,21 +81,8 @@ public class EvaporateHandAction extends AbstractGameAction {
     void Evaporate(AbstractCard c) {
         if (c == null)
             c = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
-        EvaporatePanel.evaporatePile.addToTop(c);
+        EvaporatePanel.Evaporate(c);
         card.OnEvaporateCard(c);
         AbstractDungeon.player.hand.removeCard(c);
-        AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
-        for (AbstractPower pow : Wiz.adp().powers) {
-            if (pow instanceof OnEvaporatePower) {
-                ((OnEvaporatePower) pow).onEvaporate(c);
-            }
-        }
-        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            for (AbstractPower pow : m.powers) {
-                if (pow instanceof OnEvaporatePower) {
-                    ((OnEvaporatePower) pow).onEvaporate(c);
-                }
-            }
-        }
     }
 }

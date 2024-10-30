@@ -23,8 +23,8 @@ public class HotChocolate extends AbstractMultiUpgradeCard {
 
     public HotChocolate() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 5;
-        CardTemperatureFields.addInherentHeat(this, 1);
+        baseMagicNumber = magicNumber = 4;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT * 2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

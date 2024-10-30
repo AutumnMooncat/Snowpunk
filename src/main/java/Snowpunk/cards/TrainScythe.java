@@ -1,8 +1,6 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.EverburnMod;
-import Snowpunk.cardmods.GearMod;
-import Snowpunk.cardmods.HatMod;
+import Snowpunk.cardmods.*;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.ui.EvaporatePanel;
@@ -27,7 +25,7 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 7, UP_DMG = 3;
+    private static final int COST = 2, DMG = 6, UP_DMG = 2;
 
     public boolean targetEvaporated;
 
@@ -36,36 +34,46 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         isMultiDamage = true;
         targetEvaporated = false;
+        CardModifierManager.addModifier(this, new Tinkerific());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new SFXAction("ATTACK_HEAVY"));
-        addToBot(new VFXAction(p, new CleaveEffect(), 0.1F));
+        addToBot(new VFXAction(p, new CleaveEffect(), 0.05F));
         allDmg(AbstractGameAction.AttackEffect.NONE);
 
-        Wiz.atb(new ArmamentsAction(true));
+        addToBot(new SFXAction("ATTACK_HEAVY"));
+        addToBot(new VFXAction(p, new CleaveEffect(), 0.05F));
+        allDmg(AbstractGameAction.AttackEffect.NONE);
 
-        if (targetEvaporated)
-            Wiz.atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    for (AbstractCard card : EvaporatePanel.evaporatePile.group) {
-                        if (card.canUpgrade())
-                            card.upgrade();
-                        card.applyPowers();
-                    }
-                    isDone = true;
-                }
-            });
+//        Wiz.atb(new ArmamentsAction(true));
+//
+//        if (targetEvaporated)
+//            Wiz.atb(new AbstractGameAction() {
+//                @Override
+//                public void update() {
+//                    for (AbstractCard card : EvaporatePanel.evaporatePile.group) {
+//                        if (card.canUpgrade())
+//                            card.upgrade();
+//                        card.applyPowers();
+//                    }
+//                    isDone = true;
+//                }
+//            });
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> {
-            targetEvaporated = true;
-            uDesc();
-        });
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 }

@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.UpgradeRandomInHardWithVisualAction;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.interfaces.OnObtainCard;
@@ -19,15 +20,16 @@ public class Tinker extends AbstractEasyCard implements OnObtainCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, BRASS = 4;
+    private static final int COST = 0;
 
     public Tinker() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = BRASS;
+        magicNumber = baseMagicNumber = 3;
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+    public void use(AbstractPlayer player, AbstractMonster m) {
+//        addToBot(new UpgradeRandomInHardWithVisualAction(1));
+        Wiz.applyToSelf(new BrassPower(player, magicNumber));
     }
 
     @Override

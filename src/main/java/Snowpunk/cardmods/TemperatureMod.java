@@ -9,6 +9,7 @@ import Snowpunk.patches.LoopcastField;
 import Snowpunk.powers.ColdDrawPower;
 import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.HotEnergyPower;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.ui.EvaporateTutorial;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;

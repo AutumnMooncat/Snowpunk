@@ -18,7 +18,7 @@ public class SpareWrench extends AbstractEasyRelic {
     @Override
     public void atBattleStartPreDraw() {
         flash();
-        Wiz.applyToSelf(new PermWrenchPower(Wiz.adp(), 1));
+        Wiz.applyToSelf(new PermWrenchPower(Wiz.adp(), 2));
     }
 
     @Override

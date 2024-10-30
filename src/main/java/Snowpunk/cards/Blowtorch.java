@@ -22,7 +22,7 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 11;
+    private static final int DMG = 10;
 
     public Blowtorch() {
         super(ID, COST, TYPE, RARITY, TARGET);

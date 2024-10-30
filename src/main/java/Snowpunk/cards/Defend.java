@@ -22,7 +22,7 @@ public class Defend extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
     private static final int BLK = 5;
-    private static final int UP_BLK = 3;
+    private static final int UP_BLK = 2;
 
     public Defend() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -41,7 +41,9 @@ public class Defend extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLK));
+        addUpgradeData(() -> upgradeBlock(UP_BLK));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         setDependencies(true, 1, 0);
+        setDependencies(true, 2, 0);
     }
 }

@@ -5,6 +5,8 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.blue.Chill;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,6 +15,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoCompendium
+@NoPools
 public class SnowMiser extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SnowMiser.class.getSimpleName());
 

@@ -4,9 +4,11 @@ import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.ClankAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
+import Snowpunk.cardmods.Tinkerific;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.AntifactPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
@@ -16,6 +18,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
@@ -47,14 +50,20 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> {
+            CardModifierManager.addModifier(this, new Tinkerific());
+            uDesc();
+        });
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setExclusions(1, 2);
     }
 
     @Override
     public void onClank(AbstractMonster target) {
         Wiz.applyToEnemyTop(target, new ArtifactPower(target, 1));
+    }
+
+    @Override
+    public void unClank(AbstractMonster target) {
+        Wiz.applyToEnemy(target, new AntifactPower(target, 1));
     }
 }

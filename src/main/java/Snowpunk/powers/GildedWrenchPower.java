@@ -27,7 +27,7 @@ public class GildedWrenchPower extends AbstractEasyPower implements FreeToPlayPo
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card instanceof ClankCard) {
-            Wiz.atb(new DrawCardAction(1));
+            //Wiz.atb(new DrawCardAction(1));
             Wiz.atb(new ReducePowerAction(owner, owner, this, 1));
             flash();
         }

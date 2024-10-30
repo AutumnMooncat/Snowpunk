@@ -7,6 +7,8 @@ import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -24,7 +26,7 @@ public class GoldenTicket extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
 
     public GoldenTicket() {
@@ -34,22 +36,25 @@ public class GoldenTicket extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        CardGroup deckWithoutTickets = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-            if (!(card instanceof GoldenTicket))
-                deckWithoutTickets.addToTop(card);
-        }
-        Wiz.atb(new BetterSelectCardsCenteredAction(deckWithoutTickets.group, magicNumber, "", false, card -> true, cards -> {
-            for (AbstractCard c : cards) {
-                Wiz.att(new VFXAction(new ShowCardAndAddToHandEffect(c.makeStatEquivalentCopy())));
-            }
-        }));
+//        CardGroup deckWithoutTickets = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+//        for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+//            if (!(card instanceof GoldenTicket))
+//                deckWithoutTickets.addToTop(card);
+//        }
+//        Wiz.atb(new BetterSelectCardsCenteredAction(deckWithoutTickets.group, magicNumber, "", false, card -> true, cards -> {
+//            for (AbstractCard c : cards) {
+//                Wiz.att(new VFXAction(new ShowCardAndAddToHandEffect(c.makeStatEquivalentCopy())));
+//            }
+//        }));
+        Wiz.atb(new MakeCopyInHandAction(magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> {
+            exhaust = false;
+            uDesc();
+        });
     }
 }

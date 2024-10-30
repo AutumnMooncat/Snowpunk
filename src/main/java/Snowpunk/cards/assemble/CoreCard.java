@@ -9,6 +9,7 @@ import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScre
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -158,6 +159,9 @@ public abstract class CoreCard extends AbstractMultiUpgradeCard {
     }
 
     public void onClank(AssembledCard card) {
+    }
+
+    public void unClank(AssembledCard card, AbstractCreature target) {
     }
 
     public void onPowerTrigger(int amount) {

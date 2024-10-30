@@ -1,20 +1,13 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ClankAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.BufferPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -41,8 +34,10 @@ public class Kindness extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(3));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> upgradeMagicNumber(2));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

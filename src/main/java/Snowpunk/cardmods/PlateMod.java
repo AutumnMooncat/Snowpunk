@@ -117,7 +117,8 @@ public class PlateMod extends AbstractCardModifier {
             else
                 ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
         }*/
-        ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
+        if (amount > 0)
+            ExtraIcons.icon(tex).text(String.valueOf(amount)).render(card);
     }
 
     @Override

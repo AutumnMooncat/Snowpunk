@@ -40,10 +40,10 @@ public class ShovelCoal extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

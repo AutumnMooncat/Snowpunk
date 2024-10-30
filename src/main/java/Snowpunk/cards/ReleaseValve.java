@@ -30,17 +30,15 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
     private static final int COST = 1, SINGE = 2, UP_SINGE = 2;
-    boolean random = true;
     public ReleaseValve() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        random = true;
-        CardModifierManager.addModifier(this, new GearMod(1));
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int numGears = getGears();
         if (numGears > 0)
-            addToBot(new ExhumeEvaporatedCardAction(numGears, 1, random));
+            addToBot(new ExhumeEvaporatedCardAction(numGears, 1, false));
     }
 
     /*
@@ -55,11 +53,8 @@ public class ReleaseValve extends AbstractMultiUpgradeCard {
     */
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            random = false;
-            uDesc();
-        });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

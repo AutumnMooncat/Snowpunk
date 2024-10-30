@@ -1,4 +1,4 @@
-package Snowpunk.relics;
+/*package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.util.Wiz;
@@ -15,8 +15,6 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoCompendium
-@NoPools
 public class NaughtyList extends AbstractEasyRelic implements OnApplyPowerRelic {
     public static final String ID = makeID(NaughtyList.class.getSimpleName());
     public static final int AMOUNT = 1;
@@ -65,3 +63,4 @@ public class NaughtyList extends AbstractEasyRelic implements OnApplyPowerRelic 
         return true;
     }
 }
+        */

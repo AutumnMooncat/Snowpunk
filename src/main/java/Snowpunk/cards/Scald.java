@@ -28,7 +28,7 @@ public class Scald extends AbstractMultiUpgradeCard {
 
     public Scald() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseDamage = damage = 6;
+        baseDamage = damage = 5;
         DamageModifierManager.addModifier(this, new CauterizeDamage());
     }
 

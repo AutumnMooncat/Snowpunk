@@ -16,11 +16,11 @@ public class DecoBot extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public DecoBot() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
+        magicNumber = baseMagicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -29,11 +29,11 @@ public class DecoBot extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

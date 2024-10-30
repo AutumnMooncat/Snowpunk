@@ -25,8 +25,8 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard implements ClankCar
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 3;
-    private static final int DMG = 40;
-    private static final int UP_DMG = 10;
+    private static final int DMG = 36;
+    private static final int UP = 6;
 
     public ArtilleryCargo() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -39,8 +39,17 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard implements ClankCar
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        addUpgradeData(() -> upgradeDamage(UP));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 
     @Override
@@ -51,6 +60,20 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard implements ClankCar
 
         if (target != null)
             dmgTop(target, AbstractGameAction.AttackEffect.FIRE);
+    }
+
+    @Override
+    public void unClank(AbstractMonster target) {
+        isMultiDamage = true;
+        calculateCardDamage(null);
+        allDmg(AbstractGameAction.AttackEffect.FIRE);
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isMultiDamage = false;
+                isDone = true;
+            }
+        });
     }
 
     @Override

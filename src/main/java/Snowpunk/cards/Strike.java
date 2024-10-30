@@ -20,7 +20,7 @@ public class Strike extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
     private static final int DMG = 6;
-    private static final int UP_DMG = 3;
+    private static final int UP_DMG = 2;
 
     public Strike() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -36,7 +36,9 @@ public class Strike extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         setDependencies(true, 1, 0);
+        setDependencies(true, 2, 0);
     }
 }

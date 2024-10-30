@@ -5,6 +5,7 @@ import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.CondensedMod;
 import Snowpunk.cards.abstracts.AbstractEasyCard;
 import Snowpunk.powers.interfaces.SnowAmountModifier;
+import Snowpunk.relics.ChemicalS;
 import Snowpunk.relics.interfaces.ModifySnowballsRelic;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -117,8 +118,11 @@ public class SnowballPatches {
             }
             if (Snowballs.getTrueAmount() > 0 && c.costForTurn == -1 && !c.purgeOnUse) {
                 c.energyOnUse += AbstractEasyCard.getSnowStatic();
-                if (!c.freeToPlayOnce && !CardModifierManager.hasModifier(c, CondensedMod.ID) && !c.isInAutoplay && !c.ignoreEnergyOnUse)
+                if (!c.freeToPlayOnce && !CardModifierManager.hasModifier(c, CondensedMod.ID) && !c.isInAutoplay && !c.ignoreEnergyOnUse &&
+                        !AbstractDungeon.player.hasRelic(ChemicalS.ID))
                     Wiz.atb(new GainSnowballAction(-Snowballs.getTrueAmount()));
+                if (AbstractDungeon.player.hasRelic(ChemicalS.ID))
+                    AbstractDungeon.player.getRelic(ChemicalS.ID).flash();
             }
         }
         public static class Locator extends SpireInsertLocator {

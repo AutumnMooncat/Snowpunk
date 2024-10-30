@@ -23,6 +23,7 @@ public class ClockworkTickAction extends AbstractGameAction {
     public void update() {
 
         addToTop(new WaitAction(.2f));
+        addToTop(new ClockworkAction.ApplyPowersAction(card));
         addToTop(new ApplyCardModifierAction(card, new PlateMod(amount, true)));
 
         if (tick % 2 == 0)

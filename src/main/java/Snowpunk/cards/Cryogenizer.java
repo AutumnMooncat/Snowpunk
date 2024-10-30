@@ -2,18 +2,19 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.CryogenizerAction;
 import Snowpunk.actions.EnhanceCardInHardAction;
+import Snowpunk.actions.IncreaseColdAction;
 import Snowpunk.actions.ModCardTempAction;
-import Snowpunk.cardmods.ChillMod;
-import Snowpunk.cardmods.GearMod;
-import Snowpunk.cardmods.PlateMod;
-import Snowpunk.cardmods.TemperatureMod;
+import Snowpunk.cardmods.*;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.ChillPower;
 import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -37,23 +38,22 @@ public class Cryogenizer extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 3;
         CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD);
-        exhaust = true;
+        secondMagic = baseSecondMagic = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        List<AbstractCardModifier> mods = new ArrayList<>();
-        mods.add(new ChillMod(magicNumber));
-        Wiz.atb(new EnhanceCardInHardAction(1, 0, CardTemperatureFields.COLD, mods));
+        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+            if (!monster.isDeadOrEscaped() && monster.currentHealth > 0)
+                Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new ChillPower(monster, magicNumber), magicNumber));
+        }
+        Wiz.atb(new IncreaseColdAction(null, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() ->
-        {
-            uDesc();
-            exhaust = false;
-        });
+//        addUpgradeData(() -> upgradeSecondMagic(1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

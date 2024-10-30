@@ -11,9 +11,11 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static Snowpunk.SnowpunkMod.makeID;
+
 public class UpgradeInHandAction extends AbstractGameAction {
-    //  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("Tinker");// 14;
-    //public static final String[] TEXT = uiStrings.TEXT;// 15;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("Upgrade"));// 14;
+    public static final String[] TEXT = uiStrings.TEXT;
     private AbstractPlayer p;
     private ArrayList<AbstractCard> cannotUpgrade = new ArrayList();
     private int timesToUpgrade;
@@ -74,26 +76,20 @@ public class UpgradeInHandAction extends AbstractGameAction {
 
             this.p.hand.group.removeAll(this.cannotUpgrade);// 72
             if (this.p.hand.group.size() > 1) {// 74
-                AbstractDungeon.handCardSelectScreen.open(/*amount==1?TEXT[5]:(TEXT[6] + amount + TEXT[7]*/"Think", amount, false, false, false, true);// 75
-                this.tickDuration();// 76
-                return;// 77
+                AbstractDungeon.handCardSelectScreen.open(TEXT[0], amount, false, false, false, true);// 75
+                this.tickDuration();
+                return;
             }
-/*
-            if (this.p.hand.group.size() == 1) {// 78
-                this.p.hand.getTopCard().upgrade();// 79
-                this.p.hand.getTopCard().superFlash();// 80
-                this.returnCards();// 81
-                this.isDone = true;// 82
-            }*/
         }
 
-        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {// 87
-            var1 = AbstractDungeon.handCardSelectScreen.selectedCards.group.iterator();// 88
-
-            while (var1.hasNext()) {
-                c = (AbstractCard) var1.next();
-                upgrade(c);
-                this.p.hand.addToTop(c);// 92
+        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
+            for (AbstractCard card : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
+                for (int i = 0; i < timesToUpgrade && card.canUpgrade(); i++) {
+                    card.upgrade();// 89
+                    card.superFlash();// 90
+                    card.applyPowers();// 91
+                }
+                p.hand.addToTop(card);
             }
 
             this.returnCards();// 95

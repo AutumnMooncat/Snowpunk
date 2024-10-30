@@ -4,6 +4,8 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
+import Snowpunk.powers.GearNextPower;
+import Snowpunk.relics.Monocle;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -24,22 +26,24 @@ public class Workshop extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, SPIRIT = 6, UP_SPIRIT = 3;
+    private static final int COST = 1, SPIRIT = 5, UP_SPIRIT = 2;
 
     public Workshop() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = SPIRIT;
-        exhaust = true;
+        secondMagic = baseSecondMagic = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToSelf(new BrassPower(p, magicNumber));
+        Wiz.applyToSelf(new GearNextPower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(UP_SPIRIT));
-        addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 2, 1);
     }
 }

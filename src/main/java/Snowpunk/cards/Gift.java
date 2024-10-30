@@ -31,12 +31,12 @@ public class Gift extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();
             initializeDescription();
         });
-        addUpgradeData(() -> upgradeMagicNumber(UP_MAGIC));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

@@ -4,6 +4,7 @@ import Snowpunk.cardmods.ClankCardMod;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.cards.abstracts.NonClankCard;
 import Snowpunk.powers.PermWrenchPower;
+import Snowpunk.powers.ReverseNextClankPower;
 import Snowpunk.powers.WrenchPower;
 import Snowpunk.powers.interfaces.OnClankPower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
@@ -35,7 +36,7 @@ public class ClankAction extends AbstractGameAction {
     AbstractCard card;
 
     AbstractMonster monster;
-
+    boolean skipNonClank = false;
     public ClankAction(AbstractCard card, AbstractMonster monster) {
         this.card = card;
         this.monster = monster;
@@ -52,7 +53,7 @@ public class ClankAction extends AbstractGameAction {
     public void update() {
         if (checkIfClank())
             runClanks();
-        else if (card instanceof NonClankCard)
+        else if (card instanceof NonClankCard && !skipNonClank)
             runNonClanks();
         isDone = true;
     }
@@ -64,7 +65,7 @@ public class ClankAction extends AbstractGameAction {
         }
         if (tryClank)
             tryClank = tryClank(card);
-        else if (card instanceof NonClankCard)
+        else if (card instanceof NonClankCard && !skipNonClank)
             runNonClanks();
 
         return tryClank;
@@ -104,29 +105,45 @@ public class ClankAction extends AbstractGameAction {
     }
 
     private void clank(float x, float y) {
-        AbstractDungeon.topLevelEffectsQueue.add(new UpgradeHammerImprintEffect(x, y));// 46
-        if (!Settings.DISABLE_EFFECTS) {// 48
-            for (int i = 0; i < 30; ++i) {// 52
-                AbstractDungeon.topLevelEffectsQueue.add(new UpgradeShineParticleEffect(x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, y + MathUtils.random(-10.0F, 10.0F) * Settings.scale));// 53 55 56
-            }
-
+        AbstractDungeon.topLevelEffectsQueue.add(new UpgradeHammerImprintEffect(x, y));
+        if (!Settings.DISABLE_EFFECTS) {
+            for (int i = 0; i < 30; ++i)
+                AbstractDungeon.topLevelEffectsQueue.add(new UpgradeShineParticleEffect(x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, y + MathUtils.random(-10.0F, 10.0F) * Settings.scale));
         }
     }
 
     private boolean tryClank(AbstractCard card) {
-        if (Wiz.adp() != null && Wiz.adp().hasPower(WrenchPower.POWER_ID) && (Wiz.adp().getPower(WrenchPower.POWER_ID).amount > 0)) {
+        if (Wiz.adp() == null)
+            return false;
+        WrenchPower wrenchPower = (WrenchPower) Wiz.adp().getPower(WrenchPower.POWER_ID);
+        PermWrenchPower permWrenchPower = (PermWrenchPower) Wiz.adp().getPower(PermWrenchPower.POWER_ID);
+        ReverseNextClankPower reversePower = (ReverseNextClankPower) Wiz.adp().getPower(ReverseNextClankPower.POWER_ID);
+        if (reversePower != null && reversePower.amount > 0) {
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
-            ((WrenchPower) Wiz.adp().getPower(WrenchPower.POWER_ID)).onClank(card);
-            Wiz.adp().getPower(WrenchPower.POWER_ID).amount--;
-            if (Wiz.adp().getPower(WrenchPower.POWER_ID).amount == 0)
-                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), Wiz.adp().getPower(WrenchPower.POWER_ID)));
+            reversePower.amount--;
+            reversePower.updateDescription();
+            if (reversePower.amount == 0)
+                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), reversePower));
+            if (card instanceof ClankCard)
+                ((ClankCard) card).unClank(monster);
+            skipNonClank = true;
             return false;
         }
-        if (Wiz.adp() != null && Wiz.adp().hasPower(PermWrenchPower.POWER_ID) && (Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount > 0)) {
+        if (wrenchPower != null && wrenchPower.amount > 0) {
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
-            Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount--;
-            if (Wiz.adp().getPower(PermWrenchPower.POWER_ID).amount == 0)
-                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), Wiz.adp().getPower(PermWrenchPower.POWER_ID)));
+            wrenchPower.onClank(card);
+            wrenchPower.amount--;
+            wrenchPower.updateDescription();
+            if (wrenchPower.amount == 0)
+                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), wrenchPower));
+            return false;
+        }
+        if (permWrenchPower != null && permWrenchPower.amount > 0) {
+            Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
+            permWrenchPower.amount--;
+            permWrenchPower.updateDescription();
+            if (permWrenchPower.amount == 0)
+                Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), permWrenchPower));
             return false;
         }
         return true;

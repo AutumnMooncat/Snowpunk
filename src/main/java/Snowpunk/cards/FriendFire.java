@@ -5,7 +5,6 @@ import Snowpunk.actions.ClankAction;
 import Snowpunk.actions.EvaporateHandAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.cards.interfaces.EvaporateHandCard;
 import Snowpunk.patches.CardTemperatureFields;
 import basemod.helpers.CardModifierManager;
@@ -25,13 +24,14 @@ public class FriendFire extends AbstractMultiUpgradeCard implements EvaporateHan
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BLOCK = 6, UP_BLOCK = 3;
+    private static final int COST = 2, BLOCK = 6, UP_BLOCK = 2;
 
     private boolean anyNumber;
 
     public FriendFire() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
         exhaust = true;
         anyNumber = false;
     }

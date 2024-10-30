@@ -51,14 +51,9 @@ public class AnotherAnvil extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP));
-        addUpgradeData(() -> upgradeDamage(UP));
-        addUpgradeData(() -> upgradeDamage(UP));
-        addUpgradeData(() -> upgradeDamage(UP));
-        addUpgradeData(() -> upgradeDamage(UP));
-        setDependencies(true, 1, 0);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(4));
         setDependencies(true, 2, 1);
-        setDependencies(true, 3, 2);
-        setDependencies(true, 4, 3);
     }
 }

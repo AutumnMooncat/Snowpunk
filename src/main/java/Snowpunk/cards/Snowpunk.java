@@ -7,6 +7,8 @@ import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -18,22 +20,22 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Snowpunk extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Snowpunk.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2, UP_COST = 1, SNOW = 1, UP_SNOW = 1;
+    private static final int COST = 1, UP_COST = 1, SNOW = 1, UP_SNOW = 1;
 
-    private static ArrayList<TooltipInfo> Tooltip;
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips() {
-        if (Tooltip == null) {
-            Tooltip = new ArrayList<>();
-            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
-        }
-        return Tooltip;
-    }
+//    private static ArrayList<TooltipInfo> Tooltip;
+//
+//    @Override
+//    public List<TooltipInfo> getCustomTooltips() {
+//        if (Tooltip == null) {
+//            Tooltip = new ArrayList<>();
+//            Tooltip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+//        }
+//        return Tooltip;
+//    }
 
     public Snowpunk() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -48,10 +50,11 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();
         });
-        addUpgradeData(() -> upgradeMagicNumber(UP_SNOW));
     }
 }

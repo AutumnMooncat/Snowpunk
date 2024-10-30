@@ -39,8 +39,8 @@
     "NAME": "Iron Sheet",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
-  "${ModID}:Toolbox": {
-    "NAME": "Toolbox",
+  "${ModID}:ToolboxPart": {
+    "NAME": "ToolboxPart",
     "DESCRIPTION": "Double a card's [Snowpunk:GearIcon] . NL Exhaust."
   },
   "${ModID}:Engine": {

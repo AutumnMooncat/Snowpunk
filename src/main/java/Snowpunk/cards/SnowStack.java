@@ -35,7 +35,7 @@ public class SnowStack extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLOCK;
         magicNumber = baseMagicNumber = 2;
-        CardTemperatureFields.addInherentHeat(this, -1);
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD * 2);
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -70,9 +70,19 @@ public class SnowStack extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> upgradeMagicNumber(2));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> {
+            upgradeBlock(2);
+            upgradeMagicNumber(1);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(2);
+            upgradeMagicNumber(1);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(2);
+            upgradeMagicNumber(1);
+        });
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

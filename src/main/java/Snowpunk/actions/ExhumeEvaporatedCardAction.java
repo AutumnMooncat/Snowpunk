@@ -1,18 +1,12 @@
 package Snowpunk.actions;
 
-import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.patches.CardTemperatureFields;
-import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.CondenseEffect;
-import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,20 +17,32 @@ import java.util.HashMap;
 public class ExhumeEvaporatedCardAction extends AbstractGameAction {
     int numHats, bonusHot;
     boolean random;
+    AbstractCard cardToIgnore;
 
     public ExhumeEvaporatedCardAction(int number, int numHats, boolean random) {
         amount = number;
         duration = startDuration = Settings.ACTION_DUR_FAST;
         this.numHats = numHats;
         this.random = random;
+        cardToIgnore = null;
+    }
+
+    public ExhumeEvaporatedCardAction(int number, int numHats, boolean random, AbstractCard card) {
+        amount = number;
+        duration = startDuration = Settings.ACTION_DUR_FAST;
+        this.numHats = numHats;
+        this.random = random;
+        this.cardToIgnore = card;
     }
 
     @Override
     public void update() {
         if (random) {
             ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
-            for (AbstractCard card : EvaporatePanel.evaporatePile.group)
-                selectionGroup.add(card);
+            for (AbstractCard card : EvaporatePanel.evaporatePile.group) {
+                if (cardToIgnore == null || card != cardToIgnore)
+                    selectionGroup.add(card);
+            }
             if (amount >= EvaporatePanel.evaporatePile.group.size()) {
                 for (AbstractCard card : selectionGroup)
                     ExhumeCard(card);
@@ -54,7 +60,8 @@ public class ExhumeEvaporatedCardAction extends AbstractGameAction {
             if (amount >= EvaporatePanel.evaporatePile.group.size()) {
                 ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
                 for (AbstractCard card : EvaporatePanel.evaporatePile.group) {
-                    selectionGroup.add(card);
+                    if (cardToIgnore == null || card != cardToIgnore)
+                        selectionGroup.add(card);
                 }
                 for (AbstractCard card : selectionGroup) {
                     ExhumeCard(card);
@@ -64,9 +71,11 @@ public class ExhumeEvaporatedCardAction extends AbstractGameAction {
                 ArrayList<AbstractCard> selectionGroup = new ArrayList<>();
 
                 for (AbstractCard c : EvaporatePanel.evaporatePile.group) {
-                    AbstractCard copy = c.makeStatEquivalentCopy();
-                    cardMap.put(copy, c);
-                    selectionGroup.add(copy);
+                    if (cardToIgnore == null || c != cardToIgnore) {
+                        AbstractCard copy = c.makeStatEquivalentCopy();
+                        cardMap.put(copy, c);
+                        selectionGroup.add(copy);
+                    }
                 }
 
                 Wiz.att(new BetterSelectCardsCenteredAction(selectionGroup, amount, "", false, card -> true, cards -> {

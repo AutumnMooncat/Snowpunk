@@ -91,8 +91,8 @@ public class GearMod extends AbstractCardModifier {
         if (Wiz.adp() != null && Wiz.adp().hand.contains(card)) {
             if (Wiz.adp().hasPower(GearNextPower.POWER_ID) && Wiz.adp().getPower(GearNextPower.POWER_ID).amount > 0)
                 numGears += Wiz.adp().getPower(GearNextPower.POWER_ID).amount;
-            if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
-                numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
+//            if (Wiz.adp().hasPower(SnowpunkPower.POWER_ID) && AbstractEasyCard.getSnowStatic() > 0)
+//                numGears += Wiz.adp().getPower(SnowpunkPower.POWER_ID).amount * AbstractEasyCard.getSnowStatic();
         }
 
         if (numGears > 0) {

@@ -10,5 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public interface ClankCard {
-    public abstract void onClank(AbstractMonster monster);
+    void onClank(AbstractMonster target);
+
+    void unClank(AbstractMonster target);
 }

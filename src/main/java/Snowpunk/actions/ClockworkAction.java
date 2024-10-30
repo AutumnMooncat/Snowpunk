@@ -34,7 +34,7 @@ public class ClockworkAction extends AbstractGameAction {
         isDone = true;
     }
 
-    public class ApplyPowersAction extends AbstractGameAction {
+    public static class ApplyPowersAction extends AbstractGameAction {
         AbstractCard card;
 
         public ApplyPowersAction(AbstractCard card) {

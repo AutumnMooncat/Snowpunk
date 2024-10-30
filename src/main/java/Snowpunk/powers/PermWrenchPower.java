@@ -15,7 +15,7 @@ public class PermWrenchPower extends AbstractEasyPower {
 
     public PermWrenchPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        isTurnBased = true;
+        isTurnBased = false;
     }
 
     @Override

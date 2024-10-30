@@ -1,13 +1,18 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.AddHatsToRandomCardsAction;
+import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.powers.TheSnowmanPower;
 import Snowpunk.util.Wiz;
+import basemod.cardmods.ExhaustMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -41,17 +46,9 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
         if (magicNumber > 0)
             effect += magicNumber;
 
-        if (effect > 0) {
-            Wiz.atb(new DrawCardAction(effect, new AbstractGameAction() {
-                @Override
-                public void update() {
-                    for (AbstractCard c : DrawCardAction.drawnCards) {
-                        CardModifierManager.addModifier(c, new HatMod(1));
-                    }
-                    isDone = true;
-                }
-            }));
-        }
+        if (effect > 0)
+            Wiz.applyToSelf(new TheSnowmanPower(Wiz.adp(), effect));
+
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }
@@ -63,6 +60,11 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
         {
             magicNumber = baseMagicNumber = 0;
             upgradeMagicNumber(1);
+        });
+        addUpgradeData(() ->
+        {
+            exhaust = false;
+            uDesc();
         });
     }
 }

@@ -21,7 +21,7 @@ public class RockinAround extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 3;
-    private static final int DMG = 21;
+    private static final int DMG = 9;
     private static final int UP_DMG = 7;
 
     public RockinAround() {
@@ -31,14 +31,16 @@ public class RockinAround extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         Wiz.atb(new ApplyCardModifierAction(Wiz.adp().hand, new HatMod()));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> upgradeBaseCost(2));
-        setDependencies(false, 2, 0, 1);
+        addUpgradeData(() -> upgradeDamage(2));
+        addUpgradeData(() -> upgradeDamage(2));
+        addUpgradeData(() -> upgradeDamage(3));
+        setDependencies(false, 1, 0);
+        setDependencies(false, 2, 1);
     }
 }

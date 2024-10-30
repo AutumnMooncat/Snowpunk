@@ -52,8 +52,10 @@ public class Icicle extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DAMAGE));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

@@ -20,7 +20,7 @@ public class IceCreamSandwich extends AbstractEasyRelic/* implements ModifySnowb
     public void onPlayerEndTurn() {
         if (AbstractDungeon.player != null && AbstractDungeon.player.hand.group.size() > 0) {
             for (AbstractCard card : AbstractDungeon.player.hand.group) {
-                if (CardTemperatureFields.getCardHeat(card) == CardTemperatureFields.COLD)
+                if (CardTemperatureFields.getCardHeat(card) <= CardTemperatureFields.COLD)
                     card.retain = true;
             }
         }

@@ -2,7 +2,9 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChillPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -25,7 +27,7 @@ public class ChillOut extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, CHILL = 4;
+    private static final int COST = 1, CHILL = 5;
 
     public ChillOut() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -53,6 +55,8 @@ public class ChillOut extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(2));
-        addUpgradeData(() -> upgradeSecondMagic(1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 2, 1, 0);
     }
 }

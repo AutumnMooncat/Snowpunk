@@ -25,22 +25,18 @@ public class GracePower extends AbstractEasyPower {
     public static String POWER_ID = makeID(GracePower.class.getSimpleName());
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
-    public static int IDOffset = 0;
+    public static final int THRESHOLD = 7;
 
-    int threshold;
-
-    public GracePower(AbstractCreature owner, int amount, int threshold) {
-        super(POWER_ID + IDOffset, strings.NAME, PowerType.BUFF, false, owner, amount);
-        IDOffset++;
+    public GracePower(AbstractCreature owner, int amount) {
+        super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
         this.loadRegion("nirvana");
-        this.threshold = threshold;
         updateDescription();
     }
 
 
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount >= threshold) {
+        if (damageAmount >= THRESHOLD) {
             addToTop(new ReducePowerAction(owner, owner, this, 1));
             return 0;
         }
@@ -50,13 +46,13 @@ public class GracePower extends AbstractEasyPower {
     @Override
     public void updateDescription() {
         if (amount == 1)
-            description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0] + THRESHOLD + DESCRIPTIONS[1];
         else
-            description = DESCRIPTIONS[2] + amount + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4];
+            description = DESCRIPTIONS[2] + amount + DESCRIPTIONS[3] + THRESHOLD + DESCRIPTIONS[4];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new GracePower(owner, amount, threshold);
+        return new GracePower(owner, amount);
     }
 }

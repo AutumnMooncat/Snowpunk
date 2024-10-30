@@ -48,6 +48,6 @@ public class BottledInspiration extends AbstractPotion {
 
     @Override
     public int getPotency(final int potency) {
-        return 8;
+        return 10;
     }
 }

@@ -5,6 +5,7 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireballPower;
+import Snowpunk.powers.FireburstPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -24,7 +25,7 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(ChestnutsRoasting.class.getSimpleName());
 
     private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
+    private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
     private static final int COST = 0;
@@ -32,17 +33,21 @@ public class ChestnutsRoasting extends AbstractMultiUpgradeCard {
     public ChestnutsRoasting() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = 2;
-        CardTemperatureFields.addInherentHeat(this, 1);
+        secondMagic = baseSecondMagic = 1;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new FireballPower(p, magicNumber));
+        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
+        Wiz.applyToSelf(new FireburstPower(p, secondMagic));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
+        addUpgradeData(() -> {
+            upgradeMagicNumber(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> upgradeSecondMagic(1));
     }
 }

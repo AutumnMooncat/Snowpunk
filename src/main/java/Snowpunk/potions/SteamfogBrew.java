@@ -50,6 +50,6 @@ public class SteamfogBrew extends AbstractPotion {
 
     @Override
     public int getPotency(final int potency) {
-        return 6;
+        return 5;
     }
 }

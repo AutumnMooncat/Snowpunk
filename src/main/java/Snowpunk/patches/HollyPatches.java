@@ -35,7 +35,8 @@ public class HollyPatches {
     public static class DoublePlayHollyPatch {
         @SpirePostfixPatch()
         public static void checkHolly(AbstractPlayer __instance, AbstractCard c, AbstractMonster monster, int energyOnUse) {
-            if (Holly.amount >= Holly.THRESHOLD && !c.purgeOnUse) {
+            if (Holly.amount >= Holly.THRESHOLD && !c.purgeOnUse && !c.isInAutoplay && !c.dontTriggerOnUseCard &&
+                    (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)) {
                 Holly.amount -= Holly.THRESHOLD;
 
                 AbstractMonster m = null;

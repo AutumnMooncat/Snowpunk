@@ -36,10 +36,26 @@
     ]
   },
   "${ModID}:GearNextPower": {
-    "NAME": "Monocle",
+    "NAME": "Crank",
     "DESCRIPTIONS": [
       "The next card you play with [Snowpunk:GearIcon] \u00a0gains #b",
       " [Snowpunk:GearIcon] ."
+    ]
+  },
+  "${ModID}:PreventBrassConsumptionPower": {
+    "NAME": "Stopwatch",
+    "DESCRIPTIONS": [
+      "Prevent the next time #yBrass would be consumed.",
+      "Prevent the next #b",
+      " times #yBrass would be consumed."
+    ]
+  },
+  "${ModID}:PreventBrassConsumptionThisTurnPower": {
+    "NAME": "Tic-Toc",
+    "DESCRIPTIONS": [
+      "Prevent the next time #yBrass would be consumed this turn.",
+      "Prevent the next #b",
+      " times #yBrass would be consumed this turn."
     ]
   },
   "${ModID}:Mr10BelowPower": {
@@ -88,9 +104,9 @@
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": [
-      "Whenever an enemy gains #yChill, they lose that much HP.",
-      "Whenever an enemy gains #yChill, they lose #b",
-      " times that much HP."
+      "Enemies with #yChill take more damage from Attacks.",
+      "Enemies with #yChill take more damage from Attacks equal to #b",
+      " times their #yChill."
     ]
   },
   "${ModID}:ChristmasCookiePower": {
@@ -104,8 +120,8 @@
   "${ModID}:GreatforgePower": {
     "NAME": "Greatforge",
     "DESCRIPTIONS": [
-      "Whenever you play a card, #yUpgrade a random card in your hand.",
-      " Repeat #b",
+      "Whenever you draw a card during your turn, #yUpgrade it.",
+      "Whenever you draw a card during your turn, #yUpgrade it #b",
       " times."
     ]
   },
@@ -113,6 +129,13 @@
     "NAME": "Brass",
     "DESCRIPTIONS": [
       "The next card you play that damages or #yBlocks gains #b",
+      " #yPlating."
+    ]
+  },
+  "${ModID}:NextTurnPowerPower": {
+    "NAME": "Next Turn ",
+    "DESCRIPTIONS": [
+      "Next turn, gain #b",
       " #yPlating."
     ]
   },
@@ -141,11 +164,20 @@
       " times you would #yClank."
     ]
   },
+  "${ModID}:CopyNextCardPower": {
+    "NAME": "Copy Next Card",
+    "DESCRIPTIONS": [
+      "Shuffle a copy of the next card you play into your draw pile.",
+      "Shuffle a copy of the next #b",
+      " cards you play into your draw pile."
+    ]
+  },
   "${ModID}:ShovelCoalPower": {
     "NAME": "Shovel Coal",
     "DESCRIPTIONS": [
-      "At the start of your turn, if you have any #yEvaporated cards, draw #b",
-      " of them."
+      "At the start of your turn, put a random #yEvaporated card into your hand.",
+      "At the start of your turn, put #b",
+      " random #yEvaporated cards into your hand."
     ]
   },
   "${ModID}:LetItSnowPower": {
@@ -167,8 +199,9 @@
   "${ModID}:ClockworkPower": {
     "NAME": "Clockwork",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " #yPlating to viable cards in your hand."
+      "Prevent the first time you would consume #yBrass each turn.",
+      "Prevent the first #b",
+      " times you would consume #yBrass each turn."
     ]
   },
   "${ModID}:GracePower": {
@@ -179,6 +212,13 @@
       "The next #b",
       " times you would lose #b",
       " or more HP, prevent it."
+    ]
+  },
+  "${ModID}:GraceHealPower": {
+    "NAME": "Grace Heal",
+    "DESCRIPTIONS": [
+      "If you end combat with at least #b1 #yGrace, heal #b",
+      " HP."
     ]
   },
   "${ModID}:HollyPower": {
@@ -198,9 +238,9 @@
   "${ModID}:GildedWrenchPower": {
     "NAME": "Gilded Wrench",
     "DESCRIPTIONS": [
-      "The next #yClank card you play this turn costs #b0 and draws #b1 card.",
+      "The next #yClank card you play this turn costs #b0.",
       "The next #b",
-      " #yClank cards you play this turn cost #b0 and draw #b1 card."
+      " #yClank cards you play this turn cost #b0."
     ]
   },
   "${ModID}:ChooChooPower": {
@@ -214,16 +254,33 @@
   "${ModID}:SteamFormPower": {
     "NAME": "Steam Form",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " #ySteam at the start of your turn."
+      "The first card you play each turn costs #b0.",
+      "The first #b",
+      " cards you play each turn cost #b0."
+    ]
+  },
+  "${ModID}:TheSnowmanPower": {
+    "NAME": "The Snowman",
+    "DESCRIPTIONS": [
+      "Next turn, draw a card and give it a #yHat.",
+      "Next turn, draw #b",
+      " cards and give them a #yHat."
+    ]
+  },
+  "${ModID}:SnowAngelPower": {
+    "NAME": "Snow Angel",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #yBlock equal to the number of cards in your hand.",
+      "At the end of your turn, gain #yBlock equal to #b",
+      " times the number of cards in your hand."
     ]
   },
   "${ModID}:SteamPower": {
     "NAME": "Steam",
     "DESCRIPTIONS": [
-      "The next card you play this turn is free and gains #b1 #yHot.",
+      "The next card you play this turn is free and #yEvaporates.",
       "The next #b",
-      " cards you play this turn are free and gain #b1 #yHot."
+      " cards you play this turn are free and #yEvaporate."
     ]
   },
   "${ModID}:SteamTrainPower": {
@@ -236,9 +293,9 @@
   "${ModID}:SnowpunkPower": {
     "NAME": "Snowpunk",
     "DESCRIPTIONS": [
-      "[snowpunk:SnowIcon] count as #yPlating and [snowpunk:GearIcon] \u00a0for card effects.",
-      "[snowpunk:SnowIcon] count as #b",
-      "  #yPlating and [snowpunk:GearIcon] \u00a0for card effects."
+      "Attacks deal additional damage per [snowpunk:SnowIcon] .",
+      "Attacks deal #b",
+      " additional damage per [snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:PressureValvesPower": {
@@ -280,10 +337,27 @@
       " times. At the end of your turn, #yExhaust your Evaporate pile."
     ]
   },
+  "${ModID}:ReverseNextClankPower": {
+    "NAME": "Reverse Next Clank",
+    "DESCRIPTIONS": [
+      "Reverse the next #yClank effect this turn.",
+      "Reverse the next #b",
+      " #yClank effects this turn."
+    ]
+  },
+  "${ModID}:ReverseClankPower": {
+    "NAME": "Reverse Clank",
+    "DESCRIPTIONS": [
+      "Reverse the first #yClank effect each turn.",
+      "Reverse the first #b",
+      " #yClank effects each turn."
+    ]
+  },
   "${ModID}:DecoBotPower": {
     "NAME": "Deco-Bot",
     "DESCRIPTIONS": [
-      "Whenever you play a #yClank card, gain #b",
+      "Whenever you play a #yClank card, apply #b",
+      " #yPlating and gain #b",
       " #yHolly."
     ]
   },

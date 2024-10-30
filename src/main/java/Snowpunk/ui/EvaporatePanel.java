@@ -2,8 +2,11 @@ package Snowpunk.ui;
 
 import Snowpunk.SnowpunkMod;
 import Snowpunk.patches.EvaporatePanelPatches;
+import Snowpunk.powers.interfaces.OnEvaporatePower;
+import Snowpunk.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -14,9 +17,12 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
 import com.megacrit.cardcrawl.vfx.ExhaustPileParticle;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import java.io.IOException;
 
@@ -30,7 +36,7 @@ public class EvaporatePanel extends AbstractPanel {
     private static final float HIDE_X = -480.0F * Settings.scale;
     private static final float HIDE_Y = 284.0F * Settings.scale;
     private static final float TIP_X = 50.0F * Settings.scale;
-    private static final float TIP_Y = 450.0F * Settings.scale;
+    private static final float TIP_Y = 475.0F * Settings.scale;
     private static final float COUNT_CIRCLE_W = 128.0F * Settings.scale;
     public static float fontScale;
     public static float energyVfxTimer;
@@ -79,6 +85,50 @@ public class EvaporatePanel extends AbstractPanel {
             }
 
         }
+    }
+
+    public static void Evaporate(AbstractCard card) {
+        EvaporatePanel.evaporatePile.group.add(getShuffleInPosition(card), card);
+        AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
+        for (AbstractPower pow : Wiz.adp().powers) {
+            if (pow instanceof OnEvaporatePower) {
+                ((OnEvaporatePower) pow).onEvaporate(card);
+            }
+        }
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            for (AbstractPower pow : m.powers) {
+                if (pow instanceof OnEvaporatePower) {
+                    ((OnEvaporatePower) pow).onEvaporate(card);
+                }
+            }
+        }
+    }
+
+    private static int getShuffleInPosition(AbstractCard card) {
+//        if(EvaporatePanel.evaporatePile.group.size() == 0)
+//            return 0;
+//
+//        if(EvaporatePanel.evaporatePile.group.size() == 1)
+//        {
+//            AbstractCard c = EvaporatePanel.evaporatePile.group.get(0);
+//            if(getComparableCost(card) > getComparableCost(c))
+//                return 1;
+//            return 0;
+//        }
+//
+//        for (int i = 1; i < EvaporatePanel.evaporatePile.group.size(); i++) {
+//            AbstractCard c = EvaporatePanel.evaporatePile.group.get(i);
+//            AbstractCard prevCard = EvaporatePanel.evaporatePile.group.get(i - 1);
+//            if(getComparableCost(card) < getComparableCost(c) && getComparableCost(card) >= getComparableCost(prevCard))
+//                return i;
+//        }
+        return AbstractDungeon.shuffleRng.random(0, EvaporatePanel.evaporatePile.group.size());
+    }
+
+    private static int getComparableCost(AbstractCard card) {
+        if (card.cost >= 0) return card.cost;
+        if (card.cost == -1) return 999;
+        return 9999;
     }
 
     private void openExhaustPile() {

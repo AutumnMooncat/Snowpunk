@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.DelayedMakeCopyAction;
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.KeywordManager;
@@ -64,7 +65,7 @@ public class IceWall extends AbstractMultiUpgradeCard {
             player.energy.use(EnergyPanel.totalCount);
         }
 
-        Wiz.atb(new GainEnergyAction(magicNumber));
+        Wiz.atb(new GainSnowballAction(magicNumber));
     }
 
     @Override

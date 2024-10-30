@@ -55,7 +55,7 @@ public class IncreaseModifiersAction extends AbstractGameAction {
             if (cardGroup == null) {
                 for (AbstractCard c : Wiz.adp().hand.group) {
                     if (CardModifierManager.hasModifier(c, GearMod.ID) || CardModifierManager.hasModifier(c, PlateMod.ID) ||
-                            CardModifierManager.hasModifier(c, TemperatureMod.ID) || CardModifierManager.hasModifier(c, HatMod.ID) ||
+                            (CardModifierManager.hasModifier(c, TemperatureMod.ID) && CardTemperatureFields.getCardHeat(c) != 0) || CardModifierManager.hasModifier(c, HatMod.ID) ||
                             CardModifierManager.hasModifier(c, OverdriveMod.ID))
                         modCards.add(c);
                     else

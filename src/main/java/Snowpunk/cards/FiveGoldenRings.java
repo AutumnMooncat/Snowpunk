@@ -37,11 +37,12 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.SKILL;
     private static int playSound = 0;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     public FiveGoldenRings() {
         super(ID, COST, TYPE, RARITY, TARGET);
         //magicNumber = baseMagicNumber = 5;
+        CardModifierManager.addModifier(this, new GearMod(5));
         exhaust = true;
     }
 
@@ -51,43 +52,45 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (playSound == 0)
-            addToBot(new SFXAction("snowpunk:FIVEGOLDENRINGS"));
+        if (getGears() > 0) {
+            if (playSound == 0)
+                addToBot(new SFXAction("snowpunk:FIVEGOLDENRINGS"));
 
-        Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
-        if (playSound == 0) {
-            addToBot(new WaitAction(.1f));
-            addToBot(new WaitAction(.1f));
-            addToBot(new WaitAction(.1f));
-        }
-
-        Wiz.atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (AbstractCard card : Wiz.adp().hand.group) {
-                    CardModifierManager.addModifier(card, new PlateMod(5, true));
-                    card.superFlash(Color.WHITE.cpy());
-                }
-                isDone = true;
+            Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
+            if (playSound == 0) {
+                addToBot(new WaitAction(.1f));
+                addToBot(new WaitAction(.1f));
+                addToBot(new WaitAction(.1f));
             }
-        });
-        if (playSound == 0) {
-            addToBot(new WaitAction(.1f));
-            addToBot(new WaitAction(.1f));
-            addToBot(new WaitAction(.1f));
+
+            Wiz.atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    for (AbstractCard card : Wiz.adp().hand.group) {
+                        if (getGears() > 0)
+                            CardModifierManager.addModifier(card, new PlateMod(getGears(), true));
+                        card.superFlash(Color.WHITE.cpy());
+                    }
+                    isDone = true;
+                }
+            });
+            if (playSound == 0) {
+                addToBot(new WaitAction(.1f));
+                addToBot(new WaitAction(.1f));
+                addToBot(new WaitAction(.1f));
+            }
+            playSound++;
+            if (playSound > 10)
+                playSound = 0;
         }
-        playSound++;
-        if (playSound > 10)
-            playSound = 0;
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            exhaust = false;
-            uDesc();
-        });
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

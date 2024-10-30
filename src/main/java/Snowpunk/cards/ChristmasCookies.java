@@ -24,27 +24,27 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     public ChristmasCookies() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = 5;
-        magicNumber = baseMagicNumber = 1;
-        CardTemperatureFields.addInherentHeat(this, 1);
-        CardModifierManager.addModifier(this, new HatMod());
+//        magicNumber = baseMagicNumber = 1;
+        CardTemperatureFields.addInherentHeat(this, 2);
+//        CardModifierManager.addModifier(this, new HatMod());
     }
 
-    @Override
-    public void triggerWhenDrawn() {
-        AbstractCard card = this;
-        addToTop(new AbstractGameAction() {
-            @Override
-            public void update() {
-                CardTemperatureFields.addHeat(card, CardTemperatureFields.HOT);
-                isDone = true;
-            }
-        });
-    }
+//    @Override
+//    public void triggerWhenDrawn() {
+//        AbstractCard card = this;
+//        addToTop(new AbstractGameAction() {
+//            @Override
+//            public void update() {
+//                CardTemperatureFields.addHeat(card, CardTemperatureFields.HOT);
+//                isDone = true;
+//            }
+//        });
+//    }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
@@ -54,12 +54,34 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(3));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> upgradeDamage(3));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 2, 0);
-        setDependencies(true, 3, 1);
-        setExclusions(2, 3);
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 }

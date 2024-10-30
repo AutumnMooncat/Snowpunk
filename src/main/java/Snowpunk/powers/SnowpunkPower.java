@@ -24,12 +24,12 @@ public class SnowpunkPower extends AbstractEasyPower {
         this.loadRegion("tools");
     }
 
-    @Override
-    public float modifyBlock(float blockAmount) {
-        if (blockAmount < 1)
-            return blockAmount;
-        return Math.max(blockAmount + amount * AbstractEasyCard.getSnowStatic(), 0);
-    }
+//    @Override
+//    public float modifyBlock(float blockAmount) {
+//        if (blockAmount < 1)
+//            return blockAmount;
+//        return Math.max(blockAmount + amount * AbstractEasyCard.getSnowStatic(), 0);
+//    }
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {

@@ -26,21 +26,8 @@ public class EvaporateRandomCardAction extends AbstractGameAction {
             return;
         }
         AbstractCard card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
-        EvaporatePanel.evaporatePile.addToTop(card);
+        EvaporatePanel.Evaporate(card);
         AbstractDungeon.player.hand.removeCard(card);
-        AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
-        for (AbstractPower pow : Wiz.adp().powers) {
-            if (pow instanceof OnEvaporatePower) {
-                ((OnEvaporatePower) pow).onEvaporate(card);
-            }
-        }
-        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            for (AbstractPower pow : m.powers) {
-                if (pow instanceof OnEvaporatePower) {
-                    ((OnEvaporatePower) pow).onEvaporate(card);
-                }
-            }
-        }
         isDone = true;
     }
 }

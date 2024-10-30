@@ -86,7 +86,7 @@
   "${ModID}:HollyUI": {
     "TEXT": [
       "Holly",
-      "If you have #b12 or more #yHolly, your next card plays twice and then you lose #b12 #yHolly."
+      "If you have #b12 or more #yHolly, your next Attack or Skill plays twice and then you lose #b12 #yHolly."
     ]
   },
   "${ModID}:Cryo": {

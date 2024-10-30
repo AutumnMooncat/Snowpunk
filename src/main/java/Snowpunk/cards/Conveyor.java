@@ -24,7 +24,7 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0, DRAW = 3;
+    private static final int COST = 0, DRAW = 2;
 
     public Conveyor() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -42,10 +42,30 @@ public class Conveyor extends AbstractMultiUpgradeCard implements ClankCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 
     @Override
-    public void onClank(AbstractMonster monster) {
-        addToTop(new ApplyCardModifierAction(this, new GearMod(-1)));
+    public void onClank(AbstractMonster target) {
+        int gears = 0;
+        if (CardModifierManager.hasModifier(this, GearMod.ID))
+            gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
+        if (gears % 2 == 1)
+            gears++;
+        gears /= 2;
+        if (gears != 0)
+            addToTop(new ApplyCardModifierAction(this, new GearMod(-gears)));
+    }
+
+    @Override
+    public void unClank(AbstractMonster target) {
+        int gears = 0;
+        if (CardModifierManager.hasModifier(this, GearMod.ID))
+            gears += ((GearMod) CardModifierManager.getModifiers(this, GearMod.ID).get(0)).amount;
+        if (gears != 0)
+            addToTop(new ApplyCardModifierAction(this, new GearMod(gears)));
     }
 }

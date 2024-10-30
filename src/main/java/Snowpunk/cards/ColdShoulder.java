@@ -54,11 +54,11 @@ public class ColdShoulder extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         addUpgradeData(() -> {
-            upgradeMagicNumber(UP_CHILL);
+            upgradeMagicNumber(1);
             upgradeSecondMagic(1);
         });
-        setDependencies(true, 1, 0);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

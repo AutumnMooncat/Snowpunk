@@ -11,6 +11,8 @@ import Snowpunk.util.Wiz;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -28,17 +30,16 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 9, UP_DMG = 3;
+    private static final int COST = -1, DMG = 9, UP_DMG = 2;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         baseMagicNumber = magicNumber = 0;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
-        Wiz.atb(new ResetExhaustAction(this, false));
+//        Wiz.atb(new ResetExhaustAction(this, false));
         int effect = energyOnUse;
         if (player.hasRelic("Chemical X")) {
             effect += ChemicalX.BOOST;
@@ -67,7 +68,13 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     }
 
     @Override
-    public void onClank(AbstractMonster monster) {
-        addToTop(new ResetExhaustAction(this, true));
+    public void onClank(AbstractMonster target) {
+//        addToTop(new ResetExhaustAction(this, true));
+        addToTop(new ModifyDamageAction(uuid, -2));
+    }
+
+    @Override
+    public void unClank(AbstractMonster target) {
+        addToTop(new ModifyDamageAction(uuid, 2));
     }
 }

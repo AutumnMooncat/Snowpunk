@@ -19,7 +19,7 @@ public class Quickflash extends AbstractMultiUpgradeCard {
     public Quickflash() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT * 2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -28,10 +28,34 @@ public class Quickflash extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 }

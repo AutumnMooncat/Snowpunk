@@ -24,7 +24,7 @@ public class SnowFort extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 3;
+    private static final int COST = 1, BLOCK = 5, UPG_BLOCK = 2;
 
     private static ArrayList<TooltipInfo> Tooltip;
 
@@ -51,7 +51,8 @@ public class SnowFort extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, -1));
+        addUpgradeData(() -> upgradeBlock(UPG_BLOCK));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 1, 0);
     }
 }

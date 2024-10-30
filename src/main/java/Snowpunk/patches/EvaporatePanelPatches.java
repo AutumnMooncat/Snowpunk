@@ -37,6 +37,7 @@ import javassist.expr.MethodCall;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -198,22 +199,25 @@ public class EvaporatePanelPatches {
                     __instance.exhaustCard = true;
                     return SpireReturn.Continue();
                 } else {*/
-                    __instance.exhaustCard = false;
-                    EvaporatePanel.evaporatePile.addToTop(___targetCard);
-                    Wiz.adp().hand.group.remove(___targetCard);
-                    AbstractDungeon.effectList.add(new ExhaustCardEffect(___targetCard));
-                    for (AbstractPower pow : Wiz.adp().powers) {
-                        if (pow instanceof OnEvaporatePower) {
-                            ((OnEvaporatePower) pow).onEvaporate(___targetCard);
-                        }
-                    }
-                    for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                        for (AbstractPower pow : m.powers) {
-                            if (pow instanceof OnEvaporatePower) {
-                                ((OnEvaporatePower) pow).onEvaporate(___targetCard);
-                            }
-                        }
-                    }
+                __instance.exhaustCard = false;
+                //EvaporatePanel.evaporatePile.addToTop(___targetCard);
+
+                EvaporatePanel.Evaporate(___targetCard);
+
+                Wiz.adp().hand.group.remove(___targetCard);
+//                AbstractDungeon.effectList.add(new ExhaustCardEffect(___targetCard));
+//                for (AbstractPower pow : Wiz.adp().powers) {
+//                    if (pow instanceof OnEvaporatePower) {
+//                        ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+//                    }
+//                }
+//                for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+//                    for (AbstractPower pow : m.powers) {
+//                        if (pow instanceof OnEvaporatePower) {
+//                            ((OnEvaporatePower) pow).onEvaporate(___targetCard);
+//                        }
+//                    }
+//                }
                 //}
                 ___targetCard.exhaustOnUseOnce = false;
                 AbstractDungeon.player.onCardDrawOrDiscard();
@@ -338,7 +342,8 @@ public class EvaporatePanelPatches {
         )
         public static void update(DrawCardAction __instance) {
             if (AbstractDungeon.overlayMenu.endTurnButton.enabled && EvaporatePanel.evaporatePile.size() > 0) {
-                AbstractCard evaporatedCard = EvaporatePanel.evaporatePile.group.get(AbstractDungeon.cardRandomRng.random(EvaporatePanel.evaporatePile.group.size() - 1));
+                //AbstractCard evaporatedCard = EvaporatePanel.evaporatePile.group.get(AbstractDungeon.cardRandomRng.random(EvaporatePanel.evaporatePile.group.size() - 1));
+                AbstractCard evaporatedCard = EvaporatePanel.evaporatePile.group.get(0);
                 AbstractDungeon.player.drawPile.addToTop(evaporatedCard);
                 EvaporatePanel.evaporatePile.group.remove(evaporatedCard);
                 if (CardTemperatureFields.getCardHeat(evaporatedCard) > 0)

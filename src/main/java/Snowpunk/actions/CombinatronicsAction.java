@@ -115,10 +115,6 @@ public class CombinatronicsAction extends AbstractGameAction {
     private void returnCards() {
         for (AbstractCard c : noDupeCards)
             Wiz.adp().hand.addToTop(c);
-        /*if(card != null){
-            Wiz.adp().hand.addToTop(card);
-            Wiz.att(new ExhaustSpecificCardAction(card));
-        }*/
         Wiz.adp().hand.refreshHandLayout();
     }
 }

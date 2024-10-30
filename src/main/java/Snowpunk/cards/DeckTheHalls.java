@@ -4,6 +4,7 @@ import Snowpunk.actions.GainHollyAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.patches.HollyPatches;
 import Snowpunk.powers.HollyPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
@@ -33,24 +34,22 @@ public class DeckTheHalls extends AbstractMultiUpgradeCard {
     public DeckTheHalls() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = 8;
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 3;
         isMultiDamage = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        int numEnemies = 0;
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (!monster.isDeadOrEscaped())
-                numEnemies++;
-        }
-        Wiz.atb(new GainHollyAction(magicNumber * numEnemies));
+
+        Wiz.atb(new GainHollyAction(magicNumber));
+        if (HollyPatches.Holly.amount > 0)
+            Wiz.atb(new GainHollyAction(magicNumber));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> upgradeMagicNumber(1));
     }
 }

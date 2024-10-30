@@ -17,12 +17,19 @@
     "DESCRIPTION": "Perform an effect unless prevented."
   },
   {
+    "PROPER_NAME": "Fuse",
+    "NAMES": [
+      "fuse"
+    ],
+    "DESCRIPTION": "Remove a card from combat. The card it is fused to plays a copy of it for the rest of combat."
+  },
+  {
     "ID": "holly",
     "PROPER_NAME": "Holly [snowpunk:HollyIcon]",
     "NAMES": [
       "holly"
     ],
-    "DESCRIPTION": "If you have #b12 or more #yHolly, your next card plays twice and then you lose #b12 #yHolly."
+    "DESCRIPTION": "If you have #b12 or more #yHolly, your next Attack or Skill plays twice and then you lose #b12 #yHolly."
   },
   {
     "ID": "buffer",
@@ -40,6 +47,13 @@
       "hats"
     ],
     "DESCRIPTION": "This card is free to play, but then loses a #yHat."
+  },
+  {
+    "PROPER_NAME": "Crank",
+    "NAMES": [
+      "crank"
+    ],
+    "DESCRIPTION": "The next card you play with [Snowpunk:GearIcon] \u00a0gains [Snowpunk:GearIcon] ."
   },
   {
     "ID": "condensed",
@@ -84,7 +98,7 @@
     "NAMES": [
       "hot"
     ],
-    "DESCRIPTION": "Put into the #yEvaporate pile. When drawn from the #yEvaporate pile reduce #yHot by #b1.",
+    "DESCRIPTION": "Shuffle into the #yEvaporate pile. When drawn from the #yEvaporate pile reduce #yHot by #b1.",
     "EXTENDED_DESCRIPTION": [
       "Exhaust."
     ]
@@ -139,7 +153,7 @@
       "evaporate",
       "evaporates"
     ],
-    "DESCRIPTION": "Put a card into the #yEvaporate pile."
+    "DESCRIPTION": "Shuffle a card into the #yEvaporate pile."
   },
   {
     "PROPER_NAME": "Evaporated",

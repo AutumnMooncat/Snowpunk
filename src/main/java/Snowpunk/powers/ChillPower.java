@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -45,6 +46,15 @@ public class ChillPower extends AbstractEasyPower {
     public void atEndOfTurn(boolean isPlayer) {
         if (!owner.hasPower(CharPower.POWER_ID) || !owner.hasPower(FrozenPower.POWER_ID))
             Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
+    }
+
+
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+        FrostbitePower frostbite = (FrostbitePower) AbstractDungeon.player.getPower(FrostbitePower.POWER_ID);
+        if (frostbite != null && frostbite.amount > 0)
+            return damage + amount * frostbite.amount;
+        return damage;
     }
 
     @Override

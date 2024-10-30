@@ -1,10 +1,9 @@
 {
   "${ModID}:BrassPipe": {
     "NAME": "Brass Pipe",
-    "FLAVOR": "For a busy mind.",
+    "FLAVOR": "Cooling off a busy mind.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain #b",
-      " #ysnowpunk:Brass."
+      "At the start of each combat, gain #b3 #ysnowpunk:Brass. Prevent the first time #ysnowpunk:Brass would be consumed."
     ]
   },
   "${ModID}:SteamPipe": {
@@ -67,7 +66,14 @@
     "NAME": "Spare Wrench",
     "FLAVOR": "'I was wondering where I put this thing!'",
     "DESCRIPTIONS": [
-      "Prevent the first time you would #ysnowpunk:Clank each combat."
+      "Prevent the first #b2 times you would #ysnowpunk:Clank each combat."
+    ]
+  },
+  "${ModID}:ChemicalS": {
+    "NAME": "Chemical S",
+    "FLAVOR": "WARNING: Not for consumption. Even though it tastes like ice cream. Don't ask how I know that.",
+    "DESCRIPTIONS": [
+      "#bX Cost cards no longer consume [Snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:NaughtyList": {
@@ -88,8 +94,8 @@
     "NAME": "Brass Egg",
     "FLAVOR": "You can hear spinning cogs inside.",
     "DESCRIPTIONS": [
-      "Whenever you add a card to your deck, add #b",
-      " #ysnowpunk:Plating if possible."
+      "Whenever you add a card to your deck, increase its damage and #yBlock by #b",
+      "."
     ]
   },
   "${ModID}:StrangeGizmo": {
