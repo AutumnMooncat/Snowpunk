@@ -1,6 +1,7 @@
 package Snowpunk;
 
 import Snowpunk.cards.*;
+import Snowpunk.patches.SnowballPatches;
 import Snowpunk.relics.IceCreamSandwich;
 import Snowpunk.vfx.VictoryGlow;
 import Snowpunk.vfx.VictorySnowflakeEffects;
@@ -72,9 +73,9 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo(NAMES[0], TEXT[0],
-                72,
-                72,
+        return new CharSelectInfo(NAMES[SnowpunkMod.conductoMode ? 2 : 0], TEXT[0],
+                75,
+                75,
                 0,
                 129,
                 5, this, getStartingRelics(),
@@ -138,7 +139,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public String getLocalizedCharacterName() {
-        return NAMES[0];
+        return NAMES[SnowpunkMod.conductoMode ? 2 : 0];
     }
 
     @Override
@@ -148,7 +149,7 @@ public class TheConductor extends CustomPlayer {
 
     @Override
     public String getTitle(AbstractPlayer.PlayerClass playerClass) {
-        return NAMES[1];
+        return NAMES[SnowpunkMod.conductoMode ? 3 : 1];
     }
 
     @Override
@@ -313,6 +314,7 @@ public class TheConductor extends CustomPlayer {
     @Override
     public void preBattlePrep() {
         playAnimation("idle");
+        SnowballPatches.Snowballs.setSnow(0);
         super.preBattlePrep();
         boolean bossFight = false;
         for (AbstractMonster mons : AbstractDungeon.getMonsters().monsters) {

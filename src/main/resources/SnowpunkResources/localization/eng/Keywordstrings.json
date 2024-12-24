@@ -1,10 +1,11 @@
 [
   {
+    "ID": "singe",
     "PROPER_NAME": "Singe",
     "NAMES": [
+      "singe",
       "singeing",
-      "singed",
-      "singe"
+      "singed"
     ],
     "DESCRIPTION": "Singed creatures lose HP whenever a card #yEvaporates."
   },
@@ -99,6 +100,7 @@
     "DESCRIPTION": "Counts as [E] [REMOVE_SPACE]. NL Spent after [E] [REMOVE_SPACE]. NL Conserved between turns."
   },
   {
+    "ID": "chill",
     "PROPER_NAME": "Chill",
     "NAMES": [
       "chill",

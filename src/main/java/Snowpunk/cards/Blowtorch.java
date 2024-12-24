@@ -38,7 +38,7 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
         addToBot(new VFXAction(new ExplosionSmallEffect(m.hb.cX, m.hb.cY), 0.1F));
         int gears = getGears();
         if (gears > 0)
-            Wiz.atb(new EnhanceCardInHardAction(1, 1, gears, null));
+            Wiz.atb(new EnhanceCardInHardAction(1, gears, gears, null));
 //            Wiz.applyToSelf(new FireburstPower(p, getGears()));
     }
 

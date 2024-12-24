@@ -19,7 +19,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Sproinket extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Sproinket.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 

@@ -26,7 +26,7 @@ public class PlateMod extends AbstractCardModifier {
 
     public int amount = 0;
     private boolean test = false;
-    private static ArrayList<TooltipInfo> PlateTip;
+    private static ArrayList<TooltipInfo> PlateTip, BlankTip;
     private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/ui/PlateIcon.png");
 
     public PlateMod() {
@@ -91,7 +91,12 @@ public class PlateMod extends AbstractCardModifier {
             PlateTip = new ArrayList<>();
             PlateTip.add(new TooltipInfo(BaseMod.getKeywordProper(KeywordManager.PLATE), BaseMod.getKeywordDescription(KeywordManager.PLATE)));
         }
-        return PlateTip;
+        if (BlankTip == null) {
+            BlankTip = new ArrayList<>();
+        }
+        if (!card.keywords.contains(KeywordManager.PLATE))
+            return PlateTip;
+        return BlankTip;
     }
 
     @Override

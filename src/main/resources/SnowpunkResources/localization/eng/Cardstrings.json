@@ -51,7 +51,7 @@
   },
   "${ModID}:Blowtorch": {
     "NAME": "Blowtorch",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Give a card [snowpunk:GearIcon] [#ffffff][] snowpunk:Hot and Upgrade it."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Give a card [snowpunk:GearIcon] [#ffffff][] snowpunk:Hot and Upgrade it [snowpunk:GearIcon] \u00a0times."
   },
   "${ModID}:ChristmasCookies": {
     "NAME": "Christmas Cookies",
@@ -80,7 +80,7 @@
   },
   "${ModID}:NixieTube": {
     "NAME": "Nixie Tube",
-    "DESCRIPTION": "{@@}Upgrade a card{!M!|>1= !M! times}."
+    "DESCRIPTION": "{@@}Upgrade [snowpunk:GearIcon] \u00a0cards !M! times."
   },
   "${ModID}:MkMod": {
     "EXTENDED_DESCRIPTION": [
@@ -402,8 +402,7 @@
   },
   "${ModID}:Snowpunk": {
     "NAME": "Snowpunk",
-    "DESCRIPTION": "Gain !M! snowpunk:Brass.",
-    "UPGRADE_DESCRIPTION": "Gain !M! snowpunk:Brass."
+    "DESCRIPTION": "Gain [snowpunk:GearIcon] [#ffffff][] snowpunk:Brass twice."
   },
   "${ModID}:EggNog": {
     "NAME": "Egg Nog",
@@ -428,7 +427,7 @@
     "UPGRADE_DESCRIPTION": "{@@}Put a copy of !M! non-Exhausted card{!M!|>1=s} into your hand.",
     "EXTENDED_DESCRIPTION": [
       "Choose a card to copy into your hand.",
-      "Choose #b",
+      "Choose ",
       " cards to put copies of into your hand."
     ]
   },
@@ -476,8 +475,8 @@
   },
   "${ModID}:Forge": {
     "NAME": "Forge",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Upgrade {!M!|1=a card|>1=!M! cards}.",
-    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Upgrade {!M!|1=a card|>1=!M! cards}."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Upgrade a card.",
+    "UPGRADE_DESCRIPTION": "{@@}Deal !D! damage. NL Gain !M! snowpunk:Brass."
   },
   "${ModID}:Invent": {
     "NAME": "Invent",

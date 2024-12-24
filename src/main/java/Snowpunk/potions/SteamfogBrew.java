@@ -35,6 +35,8 @@ public class SteamfogBrew extends AbstractPotion {
         targetRequired = true;
         labOutlineColor = SNOWY_BLUE;
         tips.add(new PowerTip(name, description));
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SINGE), BaseMod.getKeywordDescription(KeywordManager.SINGE)));
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.CHILL), BaseMod.getKeywordDescription(KeywordManager.CHILL)));
     }
 
     @Override

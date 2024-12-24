@@ -48,8 +48,11 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
         }
 
         //for (int i = 0; i < effect; i++)
-        if (effect > 0)
-            addToBot(new ThrowAttackAction(new DamageInfo(player, damage, damageTypeForTurn), effect, Color.WHITE));
+//        if (effect > 0)
+//            addToBot(new ThrowAttackAction(new DamageInfo(player, damage, damageTypeForTurn), effect, Color.WHITE));
+        for (int i = 0; i < effect; i++) {
+            Wiz.atb(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        }
 
         if (!freeToPlayOnce)
             player.energy.use(EnergyPanel.totalCount);

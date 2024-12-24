@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -33,12 +34,16 @@ public class Snowpunk extends AbstractMultiUpgradeCard {
 
     public Snowpunk() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 4;
         CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new BrassPower(Wiz.adp(), magicNumber));
+        int gears = getGears();
+        if (gears > 0) {
+            Wiz.applyToSelf(new BrassPower(Wiz.adp(), gears));
+            Wiz.applyToSelf(new BrassPower(Wiz.adp(), gears));
+        }
     }
 
     @Override

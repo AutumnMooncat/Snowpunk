@@ -2,7 +2,9 @@
   "${ModID}:TheConductor": {
     "NAMES": [
       "The Conductor",
-      "the Conductor"
+      "the Conductor",
+      "Conducto",
+      "the Conducto"
     ],
     "TEXT": [
       "A steampunk snowman who tinkers with trains. NL Rolls up Snow to take down enemies with his inventions.",

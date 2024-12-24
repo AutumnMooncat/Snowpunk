@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
+import static Snowpunk.SnowpunkMod.*;
 
 public class Forge extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Forge.class.getSimpleName());
@@ -31,8 +32,10 @@ public class Forge extends AbstractMultiUpgradeCard {
     public Forge() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = 3;
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 3;
         CardTemperatureFields.addInherentHeat(this, 2);
+        if (altForge)
+            uDesc();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,11 +45,10 @@ public class Forge extends AbstractMultiUpgradeCard {
 //            addToBot(new UpgradeRandomInHardWithVisualAction(magicNumber));
 //        }
 //        else
-        if (magicNumber == 1)
-            addToBot(new ArmamentsAction(false));
+        if (altForge)
+            Wiz.applyToSelf(new BrassPower(p, magicNumber));
         else
-            addToBot(new UpgradeInHandAction(magicNumber));
-//        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+            addToBot(new ArmamentsAction(false));
     }
 
     @Override

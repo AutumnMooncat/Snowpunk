@@ -1,6 +1,5 @@
 package Snowpunk;
 
-import Snowpunk.augments.AugmentHelper;
 import Snowpunk.cards.assemble.CoreCard;
 import Snowpunk.cards.cardvars.Info;
 import Snowpunk.cards.cardvars.SecondBlock;
@@ -114,7 +113,7 @@ public class SnowpunkMod implements
 
     public static SpireConfig config = null;
     public static int sfx = 1;
-    public static boolean drawHot;
+    public static boolean drawHot, conductoMode, altForge;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -158,10 +157,14 @@ public class SnowpunkMod implements
             Properties defaults = new Properties();
             defaults.put("EvaporateTutorial", Boolean.toString(false));
             defaults.put("drawHot", Boolean.toString(true));
+            defaults.put("conductoMode", Boolean.toString(false));
+            defaults.put("altForge", Boolean.toString(false));
             defaults.setProperty("sfx", "2");
             config = new SpireConfig("TheConductor", "config", defaults);
             sfx = config.getInt("sfx");
             drawHot = config.getBool("drawHot");
+            conductoMode = config.getBool("conductoMode");
+            altForge = config.getBool("altForge");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -289,6 +292,12 @@ public class SnowpunkMod implements
                     case "flamin":
                         KeywordManager.FLAMIN = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
                         break;
+                    case "singe":
+                        KeywordManager.SINGE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
+                    case "chill":
+                        KeywordManager.CHILL = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        break;
                 }
             }
         }
@@ -316,9 +325,9 @@ public class SnowpunkMod implements
 
     @Override
     public void receivePostInitialize() {
-        if (Loader.isModLoaded("CardAugments")) {
-            AugmentHelper.register();
-        }
+//        if (Loader.isModLoaded("CardAugments")) {
+//            AugmentHelper.register();
+//        }
         CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
             private final Color c = Color.RED.cpy();
 
@@ -358,6 +367,24 @@ public class SnowpunkMod implements
             float sliderValue = (int) slider.getValue();
             sfx = Math.round(sliderValue);
             config.setString("sfx", Integer.toString(sfx));
+            try {
+                config.save();
+            } catch (Exception e) {
+            }
+        }));
+        settingsPanel.addUIElement(new ModLabeledToggleButton(TEXT[5], 350, 565, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool("conductoMode"), settingsPanel, label -> {
+        }, button -> {
+            conductoMode = button.enabled;
+            config.setBool("conductoMode", button.enabled);
+            try {
+                config.save();
+            } catch (Exception e) {
+            }
+        }));
+        settingsPanel.addUIElement(new ModLabeledToggleButton(TEXT[6], 350, 520, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool("altForge"), settingsPanel, label -> {
+        }, button -> {
+            altForge = button.enabled;
+            config.setBool("altForge", button.enabled);
             try {
                 config.save();
             } catch (Exception e) {

@@ -40,7 +40,7 @@ public class RockinAround extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeDamage(2));
         addUpgradeData(() -> upgradeDamage(2));
         addUpgradeData(() -> upgradeDamage(3));
-        setDependencies(false, 1, 0);
-        setDependencies(false, 2, 1);
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

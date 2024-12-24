@@ -12,5 +12,7 @@ public class KeywordManager {
     public static String PLATE = "";
     public static String HOLLY = "";
     public static String BRASS = "";
+    public static String SINGE = "";
+    public static String CHILL = "";
     public static String FLAMIN = "";
 }
