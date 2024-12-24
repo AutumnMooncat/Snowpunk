@@ -24,8 +24,9 @@ public class MoveModifiersAction extends AbstractGameAction {
     ArrayList<AbstractCard> modCards, nonModCards, chosenCards;
 
     int step = 1;
+    boolean copy;
 
-    public MoveModifiersAction(int numCards) {
+    public MoveModifiersAction(int numCards, boolean copy) {
         this.actionType = ActionType.CARD_MANIPULATION;
         startDuration = Settings.ACTION_DUR_FAST;
         duration = startDuration;
@@ -35,6 +36,7 @@ public class MoveModifiersAction extends AbstractGameAction {
         chosenCards = new ArrayList<>();
         amount = numCards;
         step = 1;
+        this.copy = copy;
     }
 
     public void update() {
@@ -122,22 +124,25 @@ public class MoveModifiersAction extends AbstractGameAction {
     private void moveMods(AbstractCard cardFrom, AbstractCard cardTo) {
         if (CardModifierManager.hasModifier(cardFrom, GearMod.ID)) {
             int amount = ((GearMod) CardModifierManager.getModifiers(cardFrom, GearMod.ID).get(0)).amount;
-            CardModifierManager.addModifier(cardFrom, new GearMod(-amount));
+            if (!copy)
+                CardModifierManager.addModifier(cardFrom, new GearMod(-amount));
             CardModifierManager.addModifier(cardTo, new GearMod(amount));
         }
         if (CardModifierManager.hasModifier(cardFrom, PlateMod.ID)) {
             int amount = ((PlateMod) CardModifierManager.getModifiers(cardFrom, PlateMod.ID).get(0)).amount;
-            CardModifierManager.addModifier(cardFrom, new PlateMod(-amount));
+            if (!copy)
+                CardModifierManager.addModifier(cardFrom, new PlateMod(-amount));
             CardModifierManager.addModifier(cardTo, new PlateMod(amount));
         }
         if (CardModifierManager.hasModifier(cardFrom, HatMod.ID)) {
             int amount = ((HatMod) CardModifierManager.getModifiers(cardFrom, HatMod.ID).get(0)).amount;
-            CardModifierManager.addModifier(cardFrom, new HatMod(-amount));
+            if (!copy)
+                CardModifierManager.addModifier(cardFrom, new HatMod(-amount));
             CardModifierManager.addModifier(cardTo, new HatMod(amount));
         }
         if (CardModifierManager.hasModifier(cardFrom, TemperatureMod.ID)) {
             CardTemperatureFields.addHeat(cardTo, CardTemperatureFields.getCardHeat(cardFrom));
-            while (CardTemperatureFields.getCardHeat(cardFrom) != 0)
+            while (CardTemperatureFields.getCardHeat(cardFrom) != 0 && !copy)
                 CardTemperatureFields.reduceTemp(cardFrom);
         }
         cardTo.superFlash();

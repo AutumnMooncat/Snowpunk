@@ -1,5 +1,6 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowAngelPower;
@@ -22,21 +23,26 @@ public class SnowAngel extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
 
+    boolean snow = false;
     public SnowAngel() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = 1;
+        snow = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new SnowAngelPower(p, 1));
+        Wiz.applyToSelf(new SnowAngelPower(p, magicNumber));
+        if (snow)
+            Wiz.atb(new GainSnowballAction(1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
-            isInnate = true;
+            snow = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setDependencies(true, 1, 0);
     }
 }

@@ -35,16 +35,8 @@ public class CandyCane extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
-        setDependencies(true, 3, 2);
-        setDependencies(true, 4, 3);
-        setDependencies(true, 5, 4);
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

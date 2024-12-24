@@ -35,10 +35,12 @@ public class Strike extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 0);
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        setDependencies(true, 2, 1, 0);
     }
 }

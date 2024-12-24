@@ -72,7 +72,13 @@ public class SleighRide extends AbstractMultiUpgradeCard {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeDamage(UP_DMG));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 }

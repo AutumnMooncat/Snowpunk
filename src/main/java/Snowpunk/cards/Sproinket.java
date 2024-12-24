@@ -3,16 +3,14 @@ package Snowpunk.cards;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
-import Snowpunk.powers.NextTurnPowerPower;
+import Snowpunk.powers.WindupPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
 
@@ -30,7 +28,7 @@ public class Sproinket extends AbstractMultiUpgradeCard {
     public Sproinket() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
-        CardModifierManager.addModifier(this, new GearMod(3));
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -42,17 +40,15 @@ public class Sproinket extends AbstractMultiUpgradeCard {
         dmg(m, AbstractGameAction.AttackEffect.NONE);
 //        }
         int gears = getGears();
-        if (gears > 0) {
+        if (gears > 0)
             Wiz.applyToSelf(new BrassPower(player, gears));
-            Wiz.applyToSelf(new NextTurnPowerPower(player, new BrassPower(player, gears)));
-        }
+        Wiz.applyToSelf(new WindupPower(Wiz.adp(), 1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
-        setDependencies(true, 1, 0);
     }
 }

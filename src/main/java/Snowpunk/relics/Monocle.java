@@ -1,8 +1,7 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.powers.GearNextPower;
-import Snowpunk.powers.HollyPower;
+import Snowpunk.powers.CrankPower;
 import Snowpunk.util.Wiz;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -19,7 +18,7 @@ public class Monocle extends AbstractEasyRelic {
     @Override
     public void atBattleStartPreDraw() {
         flash();
-        Wiz.applyToSelf(new GearNextPower(Wiz.adp(), AMOUNT));
+        Wiz.applyToSelf(new CrankPower(Wiz.adp(), AMOUNT));
     }
 
     @Override

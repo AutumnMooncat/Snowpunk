@@ -15,8 +15,8 @@ import Snowpunk.potions.SteamfogBrew;
 import Snowpunk.relics.AbstractEasyRelic;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.KeywordManager;
-import basemod.AutoAdd;
-import basemod.BaseMod;
+import Snowpunk.util.TexLoader;
+import basemod.*;
 import basemod.helpers.CardBorderGlowManager;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -31,7 +31,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -109,7 +112,9 @@ public class SnowpunkMod implements
     public static final Color STEAMFOG_BREW_HYBRID = CardHelper.getColor(80, 90, 130);
     public static final Color STEAMFOG_BREW_SPOTS = CardHelper.getColor(180, 180, 180);
 
-    public static SpireConfig modConfig = null;
+    public static SpireConfig config = null;
+    public static int sfx = 1;
+    public static boolean drawHot;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -152,7 +157,11 @@ public class SnowpunkMod implements
         try {
             Properties defaults = new Properties();
             defaults.put("EvaporateTutorial", Boolean.toString(false));
-            modConfig = new SpireConfig("TheConductor", "config", defaults);
+            defaults.put("drawHot", Boolean.toString(true));
+            defaults.setProperty("sfx", "2");
+            config = new SpireConfig("TheConductor", "config", defaults);
+            sfx = config.getInt("sfx");
+            drawHot = config.getBool("drawHot");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -301,6 +310,7 @@ public class SnowpunkMod implements
         BaseMod.addAudio("snowpunk:snow3", modID + "Resources/audio/snow3.wav");
         BaseMod.addAudio("snowpunk:snow4", modID + "Resources/audio/snow4.wav");
         BaseMod.addAudio("snowpunk:holly", modID + "Resources/audio/holly.wav");
+        BaseMod.addAudio("snowpunk:choochoo", modID + "Resources/audio/CHOOCHOO.wav");
         BaseMod.addAudio("snowpunk:masterpiece", modID + "Resources/audio/masterpiece.mp3");
     }
 
@@ -329,6 +339,47 @@ public class SnowpunkMod implements
         });
 
         DynamicTextBlocks.registerCustomCheck(makeID("CardTemp"), card -> CardTemperatureFields.getCardHeat(card));
+
+
+        String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("Configs")).TEXT;
+        ModPanel settingsPanel = new ModPanel();
+        settingsPanel.addUIElement(new ModLabeledToggleButton(TEXT[3], 350, 700, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool("drawHot"), settingsPanel, label -> {
+        }, button -> {
+            drawHot = button.enabled;
+            config.setBool("drawHot", button.enabled);
+            try {
+                config.save();
+            } catch (Exception e) {
+            }
+        }));
+        settingsPanel.addUIElement(new ModLabel(TEXT[4], 350, 660, Settings.CREAM_COLOR, FontHelper.charDescFont, settingsPanel, update -> {
+        }));
+        settingsPanel.addUIElement(new ModMinMaxSlider("", 400, 620, 1, 4, sfx, "%.0f", settingsPanel, slider -> {
+            float sliderValue = (int) slider.getValue();
+            sfx = Math.round(sliderValue);
+            config.setString("sfx", Integer.toString(sfx));
+            try {
+                config.save();
+            } catch (Exception e) {
+            }
+        }));
+        BaseMod.registerModBadge(TexLoader.getTexture(makeImagePath("ui/badge.png")), TEXT[0], TEXT[1], TEXT[2], settingsPanel);
+
+//        if (ModManager.isChimeraLoaded)
+//            CardAugmentsLoader.load();
+    }
+
+    public static int getSFXFrequency() {
+        switch (sfx) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 5;
+            default:
+                return -1;
+        }
     }
 
     @Override

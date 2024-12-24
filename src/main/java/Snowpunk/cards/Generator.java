@@ -1,17 +1,18 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.GeneratorAction;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
+import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.cards.interfaces.InHandClankReaction;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class Generator extends AbstractEasyCard {
+public class Generator extends AbstractMultiUpgradeCard implements InHandClankReaction {
     public final static String ID = makeID(Generator.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -22,6 +23,8 @@ public class Generator extends AbstractEasyCard {
 
     public Generator() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        magicNumber = baseMagicNumber = 1;
+        secondMagic = baseSecondMagic = 1;
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
@@ -33,47 +36,25 @@ public class Generator extends AbstractEasyCard {
 
     }
 
-//    @Override
-//    public void triggerWhenDrawn() {
-//        super.triggerWhenDrawn();
-//        Wiz.atb(new GainEnergyAction(1));
-//    }
-
     @Override
-    public boolean canUpgrade() {
-        return !AbstractDungeon.player.masterDeck.contains(this) && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
+    public boolean willBlockClank(AbstractCard card) {
+        return false;
     }
 
     @Override
-    public void upgrade() {
-        if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
-            addToBot(new GeneratorAction(this));
+    public void postClank(AbstractCard card) {
+        Wiz.atb(new DiscardSpecificCardAction(this));
+        Wiz.atb(new DrawCardAction(magicNumber));
+        Wiz.atb(new GainEnergyAction(secondMagic));
     }
 
-    @Override
-    public void upp() {
-
-    }
-
-    /*
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
-        setDependencies(true, 3, 2);
-        setDependencies(true, 4, 3);
-        setDependencies(true, 5, 4);
-        setDependencies(true, 6, 5);
-        setDependencies(true, 7, 6);
-        setDependencies(true, 8, 7);
-    }*/
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeSecondMagic(1));
+        addUpgradeData(() -> {
+            selfRetain = true;
+            uDesc();
+        });
+    }
 }

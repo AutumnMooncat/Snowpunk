@@ -25,7 +25,7 @@ public class SteamPower extends AbstractEasyPower implements FreeToPlayPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1)) {
+        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1) && card.cost != -2) {
             flash();
 //            CardTemperatureFields.addHeat(card, CardTemperatureFields.HOT);
             EvaporatePanel.Evaporate(card);

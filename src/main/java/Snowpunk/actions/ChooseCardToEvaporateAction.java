@@ -37,7 +37,7 @@ public class ChooseCardToEvaporateAction extends AbstractGameAction {
             }
             if (AbstractDungeon.player.hand.size() <= amount) {
                 for (AbstractCard c : AbstractDungeon.player.hand.group)
-                    EvaporatePanel.Evaporate(c);
+                    EvaporatePanel.DelayedEvaporate(c);
                 isDone = true;
                 return;
             }
@@ -48,7 +48,7 @@ public class ChooseCardToEvaporateAction extends AbstractGameAction {
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
             for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group)
-                EvaporatePanel.Evaporate(c);
+                EvaporatePanel.DelayedEvaporate(c);
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
         isDone = true;

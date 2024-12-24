@@ -18,12 +18,11 @@ public class FireballPower extends AbstractEasyPower {
 
     public FireballPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("attackBurn");
     }
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1)) {
+        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1) && !card.isInAutoplay) {
             flash();
             CardTemperatureFields.addHeat(card, 1);
             addToTop(new ReducePowerAction(owner, owner, this, 1));

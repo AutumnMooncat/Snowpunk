@@ -1,13 +1,13 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.ClankAction;
-import Snowpunk.actions.GainSnowballAction;
-import Snowpunk.actions.ResetExhaustAction;
-import Snowpunk.actions.ThrowAttackAction;
+import Snowpunk.actions.*;
+import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
@@ -30,12 +30,13 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 9, UP_DMG = 2;
+    private static final int COST = -1, DMG = 6, UP_DMG = 2;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        baseMagicNumber = magicNumber = 0;
+        CardModifierManager.addModifier(this, new PlateMod(2));
+//        baseMagicNumber = magicNumber = 0;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -53,28 +54,51 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
         if (!freeToPlayOnce)
             player.energy.use(EnergyPanel.totalCount);
 
-        if (magicNumber > 0)
-            Wiz.atb(new GainSnowballAction(magicNumber));
+//        if (magicNumber > 0)
+//            Wiz.atb(new GainSnowballAction(magicNumber));
 
         Wiz.atb(new ClankAction(this));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(UP_DMG));
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new PlateMod(1));
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new PlateMod(1));
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new PlateMod(1));
+        });
+        setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }
 
     @Override
     public void onClank(AbstractMonster target) {
 //        addToTop(new ResetExhaustAction(this, true));
-        addToTop(new ModifyDamageAction(uuid, -2));
+//        addToTop(new ModifyDamageAction(uuid, -2));
+        int plating = -1;
+        PlateMod plateMod = (PlateMod) CardModifierManager.getModifiers(this, PlateMod.ID).get(0);
+        if (plateMod != null)
+            plating = plateMod.amount;
+        if (plating > 0)
+            addToTop(new ApplyCardModifierAction(this, new PlateMod(-plating)));
     }
 
     @Override
     public void unClank(AbstractMonster target) {
-        addToTop(new ModifyDamageAction(uuid, 2));
+//        addToTop(new ModifyDamageAction(uuid, 2));
+//        addToTop(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
+        int plating = -1;
+        PlateMod plateMod = (PlateMod) CardModifierManager.getModifiers(this, PlateMod.ID).get(0);
+        if (plateMod != null)
+            plating = plateMod.amount;
+        if (plating > 0)
+            addToTop(new ApplyCardModifierAction(this, new PlateMod(plating)));
     }
 }

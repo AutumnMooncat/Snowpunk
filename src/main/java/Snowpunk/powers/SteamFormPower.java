@@ -29,7 +29,6 @@ public class SteamFormPower extends AbstractEasyPower implements FreeToPlayPower
 
     public SteamFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("blur");
         playedThisTurn = 999;
     }
 
@@ -41,13 +40,10 @@ public class SteamFormPower extends AbstractEasyPower implements FreeToPlayPower
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (playedThisTurn < amount && !card.purgeOnUse && !card.isInAutoplay) {
+        if (playedThisTurn < amount && !card.purgeOnUse && !card.isInAutoplay)
             flash();
-//            AbstractCard c = EvaporatePanel.evaporatePile.getRandomCard(AbstractDungeon.cardRandomRng);
-//            CardModifierManager.addModifier(card, new PlayCopyMod(c));
-//            EvaporatePanel.evaporatePile.removeCard(c);
-            playedThisTurn++;
-        }
+
+        playedThisTurn++;
     }
 
 //        @Override

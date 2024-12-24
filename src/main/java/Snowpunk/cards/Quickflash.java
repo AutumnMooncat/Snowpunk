@@ -2,6 +2,8 @@ package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
+import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -19,6 +21,7 @@ public class Quickflash extends AbstractMultiUpgradeCard {
     public Quickflash() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
+        magicNumber = baseMagicNumber = 1;
         CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT * 2);
     }
 

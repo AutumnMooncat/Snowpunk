@@ -34,7 +34,6 @@ public class ShovelCoalPower extends AbstractEasyPower {
 
     public ShovelCoalPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("nirvana");
     }
 
     @Override

@@ -1,14 +1,11 @@
 package Snowpunk.patches;
 
 import Snowpunk.actions.CondenseAction;
-import Snowpunk.powers.PyromaniacPower;
 import Snowpunk.powers.interfaces.OnCondensePower;
-import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.ui.EvaporateTutorial;
 import Snowpunk.util.Wiz;
 import basemod.ReflectionHacks;
-import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -22,9 +19,7 @@ import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -37,11 +32,10 @@ import javassist.expr.MethodCall;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.UUID;
 
-import static Snowpunk.SnowpunkMod.modConfig;
+import static Snowpunk.SnowpunkMod.config;
 
 public class EvaporatePanelPatches {
     @SpirePatch(clz = OverlayMenu.class, method = SpirePatch.CLASS)
@@ -241,11 +235,11 @@ public class EvaporatePanelPatches {
                 ReflectionHacks.RMethod tick = ReflectionHacks.privateMethod(AbstractGameAction.class, "tickDuration");
                 tick.invoke(__instance);
                 if (EvaporatePanel.evaporatePile.size() > 0) {
-                    if (!modConfig.getBool("EvaporateTutorial") && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                    if (!config.getBool("EvaporateTutorial") && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                         AbstractDungeon.ftue = new EvaporateTutorial();
-                        modConfig.setBool("EvaporateTutorial", true);
+                        config.setBool("EvaporateTutorial", true);
                         try {
-                            modConfig.save();
+                            config.save();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

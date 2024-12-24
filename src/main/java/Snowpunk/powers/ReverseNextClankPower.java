@@ -15,13 +15,13 @@ public class ReverseNextClankPower extends AbstractEasyPower {
 
     public ReverseNextClankPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        isTurnBased = true;
+//        isTurnBased = true;
     }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-    }
+//    @Override
+//    public void atEndOfTurn(boolean isPlayer) {
+//        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+//    }
 
     @Override
     public void updateDescription() {

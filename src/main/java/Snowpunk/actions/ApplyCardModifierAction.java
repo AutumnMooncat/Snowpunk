@@ -137,6 +137,13 @@ public class ApplyCardModifierAction extends AbstractGameAction {
                 return;
             }
 
+            if (group.size() <= num) {
+                for (AbstractCard c : group.group)
+                    CardModifierManager.addModifier(c, mod);
+                isDone = true;
+                return;
+            }
+
             AbstractDungeon.handCardSelectScreen.open(TEXT[0], num, false, false, false, false, true);
             tickDuration();
             return;

@@ -2,6 +2,7 @@ package Snowpunk.powers;
 
 import Snowpunk.cards.interfaces.GearMultCard;
 import Snowpunk.util.Wiz;
+import Snowpunk.vfx.VictorySnowflakeEffects;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -48,13 +49,20 @@ public class ChillPower extends AbstractEasyPower {
             Wiz.atb(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
-
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        FrostbitePower frostbite = (FrostbitePower) AbstractDungeon.player.getPower(FrostbitePower.POWER_ID);
-        if (frostbite != null && frostbite.amount > 0)
-            return damage + amount * frostbite.amount;
+        FrigidPower frigid = (FrigidPower) owner.getPower(FrigidPower.POWER_ID);
+        if (frigid != null && frigid.amount > 0)
+            return damage + amount;
         return damage;
+    }
+
+    @Override
+    public void updateParticles() {
+        super.updateParticles();
+        if (AbstractDungeon.miscRng.random(200) < amount && AbstractDungeon.miscRng.randomBoolean()) {
+            AbstractDungeon.topLevelEffectsQueue.add(new VictorySnowflakeEffects());
+        }
     }
 
     @Override

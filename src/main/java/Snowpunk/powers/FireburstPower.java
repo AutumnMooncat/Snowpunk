@@ -23,7 +23,7 @@ public class FireburstPower extends AbstractEasyPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1)) {
+        if (!card.purgeOnUse && CardTemperatureFields.canModTemp(card, 1) && !card.isInAutoplay) {
             flash();
             CardTemperatureFields.addHeat(card, amount);
             addToTop(new RemoveSpecificPowerAction(owner, owner, this));

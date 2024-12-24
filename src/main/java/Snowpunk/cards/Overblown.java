@@ -9,6 +9,7 @@ import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -45,19 +46,9 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            upgradeDamage(UP_DMG);
-            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
-        });
-        addUpgradeData(() -> {
-            upgradeDamage(UP_DMG);
-            CardModifierManager.addModifier(this, new GearMod(1));
-        });
-        addUpgradeData(() -> {
-            upgradeDamage(UP_DMG);
-            CardModifierManager.addModifier(this, new GearMod(1));
-        });
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
     }
 
     @Override
@@ -71,6 +62,6 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
     public void unClank(AbstractMonster target) {
         int drawAmount = getGears();
         if (drawAmount > 0)
-            addToTop(new ReturnAction(drawAmount));
+            addToTop(new BetterDiscardPileToHandAction(drawAmount));
     }
 }

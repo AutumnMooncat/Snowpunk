@@ -3,11 +3,13 @@ package Snowpunk.actions;
 import Snowpunk.cardmods.ClankCardMod;
 import Snowpunk.cards.abstracts.ClankCard;
 import Snowpunk.cards.abstracts.NonClankCard;
+import Snowpunk.cards.interfaces.InHandClankReaction;
 import Snowpunk.powers.PermWrenchPower;
 import Snowpunk.powers.ReverseNextClankPower;
 import Snowpunk.powers.WrenchPower;
 import Snowpunk.powers.interfaces.OnClankPower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
+import Snowpunk.relics.interfaces.OnClankRelic;
 import Snowpunk.util.Wiz;
 import Snowpunk.vfx.WrenchEffect;
 import basemod.abstracts.AbstractCardModifier;
@@ -25,6 +27,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeHammerImprintEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineParticleEffect;
@@ -88,11 +91,20 @@ public class ClankAction extends AbstractGameAction {
             if (pow instanceof OnClankPower)
                 ((OnClankPower) pow).onClank(card);
         }
+        for (AbstractCard handCard : Wiz.adp().hand.group) {
+            if (handCard instanceof InHandClankReaction) {
+                ((InHandClankReaction) handCard).postClank(card);
+            }
+        }
+        for (AbstractRelic relic : Wiz.adp().relics) {
+            if (relic instanceof OnClankRelic)
+                ((OnClankRelic) relic).onClank(card, monster);
+        }
     }
 
     private void runNonClanks() {
         if (monster != null && card instanceof NonClankCard)
-            ((NonClankCard) card).onNonClank((AbstractMonster) monster);
+            ((NonClankCard) card).onNonClank(monster);
     }
 
     private boolean checkCardModsForClank(AbstractCard card) {

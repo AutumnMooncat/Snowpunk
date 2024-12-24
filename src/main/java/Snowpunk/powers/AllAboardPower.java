@@ -1,12 +1,16 @@
 package Snowpunk.powers;
 
+import Snowpunk.SnowpunkMod;
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
+import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
 import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -30,9 +34,16 @@ public class AllAboardPower extends AbstractEasyPower implements OnEvaporatePowe
 
     public AllAboardPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        //this.makeEthereal = makeEthereal;
-        //this.upgrade = upgrade;
-        this.loadRegion("blur");
+        Texture normalTexture = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/AllAboard32.png");
+        Texture hiDefImage = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/AllAboard84.png");
+        if (hiDefImage != null) {
+            region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
+            if (normalTexture != null)
+                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        } else if (normalTexture != null) {
+            this.img = normalTexture;
+            region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        }
     }
 
     /*
@@ -52,6 +63,8 @@ public class AllAboardPower extends AbstractEasyPower implements OnEvaporatePowe
             }
         }
     */
+
+
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];

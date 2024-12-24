@@ -1,29 +1,33 @@
 package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
-import Snowpunk.patches.CardTemperatureFields;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import Snowpunk.actions.GainSnowballAction;
+import Snowpunk.util.KeywordManager;
+import Snowpunk.util.Wiz;
+import basemod.BaseMod;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-public class IceCreamSandwich extends AbstractEasyRelic/* implements ModifySnowballsRelic*/ {
+public class IceCreamSandwich extends AbstractEasyRelic {
     public static final String ID = makeID(IceCreamSandwich.class.getSimpleName());
-    public static final int AMOUNT = 1;
+    public static final int AMOUNT = 3;
 
     public IceCreamSandwich() {
-        super(ID, RelicTier.COMMON, LandingSound.HEAVY, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.STARTER, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
+//        description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+        tips.clear();
+        tips.add(new PowerTip(name, description));
+        initializeTips();
+        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
     }
 
-
     @Override
-    public void onPlayerEndTurn() {
-        if (AbstractDungeon.player != null && AbstractDungeon.player.hand.group.size() > 0) {
-            for (AbstractCard card : AbstractDungeon.player.hand.group) {
-                if (CardTemperatureFields.getCardHeat(card) <= CardTemperatureFields.COLD)
-                    card.retain = true;
-            }
-        }
+    public void atBattleStartPreDraw() {
+        flash();
+        Wiz.atb(new GainSnowballAction(1));
+//        Wiz.applyToSelf(new BrassPower(Wiz.adp(), AMOUNT));
+//        Wiz.applyToSelf(new PreventBrassConsumptionPower(Wiz.adp(), 1));
     }
 
     @Override

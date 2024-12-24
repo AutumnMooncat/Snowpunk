@@ -28,17 +28,15 @@ public class FireFist extends AbstractMultiUpgradeCard {
     public FireFist() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        CardTemperatureFields.addInherentHeat(this, 3);
+        magicNumber = baseMagicNumber = 2;
+        CardTemperatureFields.addInherentHeat(this, 2);
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        int heat = CardTemperatureFields.getCardHeat(this);
-        if (heat <= 0)
-            return;
-        Wiz.applyToEnemy(m, new SingePower(m, heat));
-        Wiz.applyToEnemy(m, new VulnerablePower(m, heat, false));
+        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
+        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
     }
 
     @Override

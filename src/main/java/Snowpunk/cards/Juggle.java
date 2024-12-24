@@ -27,25 +27,29 @@ public class Juggle extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
 
+    boolean copy = false;
     public Juggle() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 1;
-        exhaust = true;
+        copy = false;
+        CardModifierManager.addModifier(this, new HatMod());
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
-        Wiz.atb(new ResetExhaustAction(this, false));
-        addToBot(new MoveModifiersAction(magicNumber));
-        if (!CardModifierManager.hasModifier(this, HatMod.ID))
-            Wiz.atb(new ResetExhaustAction(this, true));
+//        Wiz.atb(new ResetExhaustAction(this, false));
+        addToBot(new MoveModifiersAction(magicNumber, copy));
+//        if (!CardModifierManager.hasModifier(this, HatMod.ID))
+//            Wiz.atb(new ResetExhaustAction(this, true));
     }
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> {
+            copy = true;
+            uDesc();
+        });
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }
 

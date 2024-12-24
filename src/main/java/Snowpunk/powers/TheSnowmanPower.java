@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.util.Wiz;
@@ -28,14 +29,16 @@ public class TheSnowmanPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        Wiz.atb(new DrawCardAction(amount, new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (AbstractCard c : DrawCardAction.drawnCards)
-                    CardModifierManager.addModifier(c, new HatMod(1));
-                isDone = true;
-            }
-        }));
+//        Wiz.atb(new DrawCardAction(amount, new AbstractGameAction() {
+//            @Override
+//            public void update() {
+//                for (AbstractCard c : DrawCardAction.drawnCards)
+//                    CardModifierManager.addModifier(c, new HatMod(1));
+//                isDone = true;
+//            }
+//        }));
+        Wiz.atb(new DrawCardAction(amount));
+        Wiz.atb(new GainSnowballAction(amount));
         Wiz.atb(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), this));
     }
 
@@ -44,7 +47,7 @@ public class TheSnowmanPower extends AbstractEasyPower {
         if (amount == 1)
             description = DESCRIPTIONS[0];
         else
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
     }
 
     @Override

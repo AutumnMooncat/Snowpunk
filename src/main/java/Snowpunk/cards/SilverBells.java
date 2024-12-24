@@ -45,10 +45,16 @@ public class SilverBells extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(2));
-        addUpgradeData(() -> upgradeBlock(2));
-        addUpgradeData(() -> upgradeBlock(2));
+        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(1));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
+        setDependencies(true, 3, 2);
+        setDependencies(true, 4, 3);
+        setDependencies(true, 5, 4);
     }
 }

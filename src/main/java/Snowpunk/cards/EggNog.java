@@ -7,57 +7,50 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cardmods.HiddenMagicNumberMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.ChillPower;
+import Snowpunk.powers.SnowNextTurnPower;
+import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.Chill;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoPools
-@NoCompendium
 public class EggNog extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(EggNog.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
     private static final int COST = 0;
 
     public EggNog() {
-        this(0);
-    }
-
-    public EggNog(int numBoosted) {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 1;
-        info = baseInfo = 0;
-        exhaust = true;
+        magicNumber = baseMagicNumber = 2;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
-        addToBot(new GainSnowballAction(magicNumber));
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                addToBot(new GainHollyAction(getSnow()));
-                isDone = true;
-            }
-        });
+        Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
+        Wiz.applyToSelf(new SnowNextTurnPower(player, 1));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new EggNog(info);
+        return new EggNog();
     }
 }

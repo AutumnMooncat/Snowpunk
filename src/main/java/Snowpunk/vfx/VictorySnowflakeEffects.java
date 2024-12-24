@@ -57,7 +57,7 @@ public class VictorySnowflakeEffects extends AbstractGameEffect {
         this.startingDuration = MathUtils.random(3.0F, 7.0F);
         this.duration = this.startingDuration;
         this.startingDuration = this.duration;
-        this.renderBehind = true;
+//        this.renderBehind = true;
         this.rotation = MathUtils.random(0.0F, 360.0F);
         this.rotation_speed = MathUtils.random(-24.0F, 24.0F) * Settings.scale;
         this.flip_speed = MathUtils.random(-2.0F, 2.0F) * Settings.scale;

@@ -25,12 +25,13 @@ import static Snowpunk.util.Wiz.getRandomItem;
 
 public class GiftDiscoveryAction extends AbstractGameAction {
     boolean freeThisTurn;
-    private boolean retrieveCard = false;
+    private boolean retrieveCard = false, otherColors = true;
 
-    public GiftDiscoveryAction(int amount, boolean free) {
+    public GiftDiscoveryAction(int amount, boolean free, boolean otherColors) {
         this.amount = amount;
         freeThisTurn = free;
         duration = Settings.ACTION_DUR_FAST;
+        this.otherColors = otherColors;
     }
 
     @Override
@@ -64,28 +65,32 @@ public class GiftDiscoveryAction extends AbstractGameAction {
         rarityList.add(AbstractCard.CardRarity.UNCOMMON);
         rarityList.add(AbstractCard.CardRarity.RARE);
         ArrayList<AbstractCard> derp = new ArrayList<>();
-        while (derp.size() != this.amount) {
+        while (derp.size() < this.amount) {
             AbstractCard tmp = CardLibrary.getAnyColorCard(getRandomItem(rarityList));
-            if (tmp.color == TheConductor.Enums.SNOWY_BLUE_COLOR)
-                break;
-//            boolean dupe = false;
-//            boolean heal = false;
-//            boolean poolsComp = false;
+            boolean dupe = false;
+            boolean heal = false;
+            boolean poolsComp = false;
+            if (otherColors && tmp.color == TheConductor.Enums.SNOWY_BLUE_COLOR)
+                continue;
+            if (!otherColors)
+                tmp = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
             for (AbstractCard c : derp) {
                 if (c.cardID.equals(tmp.cardID)) {
-//                    dupe = true;
+                    dupe = true;
                     break;
                 }
             }
+            if (dupe)
+                continue;
             if (tmp.hasTag(AbstractCard.CardTags.HEALING)) {
-//                heal = true;
-                break;
+                //   heal = true;
+                continue;
             }
             if (tmp.getClass().isAnnotationPresent(NoPools.class) || tmp.getClass().isAnnotationPresent(NoCompendium.class)) {
-//                poolsComp = true;
-                break;
+                //    poolsComp = true;
+                continue;
             }
-//            if (!dupe && !heal && !poolsComp && !(tmp instanceof HandOfGreed))
+            //if (!dupe && !heal && !poolsComp && !(tmp instanceof HandOfGreed))
             derp.add(tmp.makeCopy());
         }
         return derp;

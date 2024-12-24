@@ -40,10 +40,12 @@ public class Defend extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UP_BLK));
-        addUpgradeData(() -> upgradeBlock(UP_BLK));
+        addUpgradeData(() -> upgradeBlock(3));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 0);
+        addUpgradeData(() -> {
+            upgradeBlock(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
+        });
+        setDependencies(true, 2, 1, 0);
     }
 }

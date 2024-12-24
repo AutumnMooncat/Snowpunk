@@ -39,22 +39,22 @@ public class WrenchPower extends AbstractEasyPower implements OnClankPower, Invi
     @Override
     public void updateDescription() {
         int getDraw = 0;
-        if (owner.hasPower(FineTunePower.POWER_ID))
-            getDraw = owner.getPower(FineTunePower.POWER_ID).amount;
-        if (amount == 1) {
-            description = DESCRIPTIONS[0] + getDraw + DESCRIPTIONS[getDraw > 1 ? 4 : 3];
-        } else {
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + getDraw + DESCRIPTIONS[getDraw > 1 ? 4 : 3];
-        }
+//        if (owner.hasPower(FineTunePower.POWER_ID))
+//            getDraw = owner.getPower(FineTunePower.POWER_ID).amount;
+//        if (amount == 1) {
+//            description = DESCRIPTIONS[0] + getDraw + DESCRIPTIONS[getDraw > 1 ? 4 : 3];
+//        } else {
+//            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + getDraw + DESCRIPTIONS[getDraw > 1 ? 4 : 3];
+//        }
     }
 
     @Override
     public void onClank(AbstractCard card) {
-        flash();
-        int getDraw = 0;
-        if (owner.hasPower(FineTunePower.POWER_ID))
-            getDraw = owner.getPower(FineTunePower.POWER_ID).amount;
-        Wiz.atb(new DrawCardAction(getDraw));
+//        flash();
+//        int getDraw = 0;
+//        if (owner.hasPower(FineTunePower.POWER_ID))
+//            getDraw = owner.getPower(FineTunePower.POWER_ID).amount;
+//        Wiz.atb(new DrawCardAction(getDraw));
     }
 
 

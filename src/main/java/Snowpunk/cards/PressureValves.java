@@ -1,11 +1,13 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.PressureValvesPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,7 +44,7 @@ public class PressureValves extends AbstractMultiUpgradeCard {
 
     public PressureValves() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 2;
+        magicNumber = baseMagicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -51,7 +53,7 @@ public class PressureValves extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();

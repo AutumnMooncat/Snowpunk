@@ -32,12 +32,13 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 7;
+    private static final int DMG = 6;
 
 
     public BrassKnuckles() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        CardModifierManager.addModifier(this, new Tinkerific());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -50,11 +51,9 @@ public class BrassKnuckles extends AbstractMultiUpgradeCard implements ClankCard
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> {
-            CardModifierManager.addModifier(this, new Tinkerific());
-            uDesc();
-        });
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        setDependencies(true, 2, 1);
     }
 
     @Override

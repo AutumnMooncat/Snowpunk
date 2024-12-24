@@ -1,10 +1,12 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BoilerPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,21 +27,35 @@ public class Boiler extends AbstractMultiUpgradeCard {
     public Boiler() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 4;
+        CardModifierManager.addModifier(this, new GearMod(3));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (!monster.isDeadOrEscaped() && monster.currentHealth > 0)
-                Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new SingePower(monster, magicNumber), magicNumber));
+        int gears = getGears();
+        if (gears > 0) {
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                if (!monster.isDeadOrEscaped() && monster.currentHealth > 0)
+                    Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new SingePower(monster, gears), gears));
+            }
         }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(UP_BLOCK));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, 1));
-        addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> {
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+            upgradeBlock(2);
+        });
+        addUpgradeData(() -> {
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+            upgradeBlock(2);
+        });
+        addUpgradeData(() -> {
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+            upgradeBlock(2);
+        });
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
 }

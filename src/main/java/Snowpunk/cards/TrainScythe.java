@@ -34,7 +34,7 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
         baseDamage = damage = DMG;
         isMultiDamage = true;
         targetEvaporated = false;
-        CardModifierManager.addModifier(this, new Tinkerific());
+//        CardModifierManager.addModifier(this, new Tinkerific());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -64,16 +64,10 @@ public class TrainScythe extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
+        addUpgradeData(() -> upgradeDamage(1));
+        addUpgradeData(() -> upgradeDamage(2));
+        addUpgradeData(() -> upgradeDamage(2));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
-        setDependencies(true, 3, 2);
-        setDependencies(true, 4, 3);
-        setDependencies(true, 5, 4);
     }
 }

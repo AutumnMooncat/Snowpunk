@@ -1,26 +1,16 @@
 package Snowpunk.cardmods;
 
 import Snowpunk.cards.Cryogenizer;
-import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.damageMods.ChillDamageMod;
 import Snowpunk.patches.MultiPreviewFieldPatches;
-import Snowpunk.powers.ChillPower;
-import Snowpunk.powers.GearNextPower;
-import Snowpunk.powers.SnowpunkPower;
 import Snowpunk.util.TexLoader;
-import Snowpunk.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
-import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -28,7 +18,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;

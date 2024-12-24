@@ -25,28 +25,33 @@ public class Gizmo extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 2;
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new ApplyCardModifierAction(this, new PlateMod(magicNumber)));
+        int numGears = getGears();
+        if (numGears > 0)
+            Wiz.atb(new ApplyCardModifierAction(this, new PlateMod(numGears)));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> {
-            CardModifierManager.addModifier(this, new PlateMod(1));
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
+            CardModifierManager.addModifier(this, new GearMod(1));
         });
         addUpgradeData(() -> {
-            CardModifierManager.addModifier(this, new PlateMod(1));
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
+            CardModifierManager.addModifier(this, new GearMod(1));
         });
         addUpgradeData(() -> {
-            CardModifierManager.addModifier(this, new PlateMod(1));
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
+            CardModifierManager.addModifier(this, new GearMod(1));
         });
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);

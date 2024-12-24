@@ -26,18 +26,14 @@ public class FriendFire extends AbstractMultiUpgradeCard implements EvaporateHan
 
     private static final int COST = 2, BLOCK = 6, UP_BLOCK = 2;
 
-    private boolean anyNumber;
-
     public FriendFire() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
         exhaust = true;
-        anyNumber = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new EvaporateHandAction(anyNumber, this));
+        addToBot(new EvaporateHandAction(true, this));
     }
 
     @Override
@@ -49,10 +45,6 @@ public class FriendFire extends AbstractMultiUpgradeCard implements EvaporateHan
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(UP_BLOCK));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() ->
-        {
-            anyNumber = true;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBaseCost(1));
     }
 }

@@ -1,10 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.BrassPower;
-import Snowpunk.powers.ClockworkPower;
-import Snowpunk.powers.OLD_ClockworkPower;
-import Snowpunk.powers.PreventBrassConsumptionThisTurnPower;
+import Snowpunk.powers.*;
 import Snowpunk.util.Wiz;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
@@ -24,9 +21,10 @@ public class Clockwork extends AbstractMultiUpgradeCard {
 
     private static final int COST = 1;
 
+    boolean increaseG = false;
     public Clockwork() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 3;
+        increaseG = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -41,17 +39,19 @@ public class Clockwork extends AbstractMultiUpgradeCard {
 //
 //        if (!this.freeToPlayOnce)
 //            p.energy.use(EnergyPanel.totalCount);
-        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+//        Wiz.applyToSelf(new BrassPower(p, magicNumber));
         Wiz.applyToSelf(new ClockworkPower(p, 1));
-        Wiz.applyToSelf(new PreventBrassConsumptionThisTurnPower(p, 1));
+        if (increaseG)
+            Wiz.applyToSelf(new CrankPower(Wiz.adp(), 1));
+//        Wiz.applyToSelf(new PreventBrassConsumptionPower(p, 1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> {
-            isInnate = true;
+            increaseG = true;
             uDesc();
         });
+        addUpgradeData(() -> upgradeBaseCost(0));
     }
 }

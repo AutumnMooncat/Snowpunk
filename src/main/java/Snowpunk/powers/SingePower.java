@@ -34,7 +34,6 @@ public class SingePower extends AbstractEasyPower implements OnEvaporatePower, H
 
     public SingePower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
-        this.loadRegion("flameBarrier");
         priority = -1;
 //        if(!AbstractDungeon.player.hasPower(SingeHelperPower.POWER_ID))
 //            Wiz.atb(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new SingeHelperPower(AbstractDungeon.player, 1), 0));

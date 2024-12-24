@@ -13,13 +13,6 @@
       " this turn."
     ]
   },
-  "${ModID}:GearNextCardPower": {
-    "NAME": "Cogwheel",
-    "DESCRIPTIONS": [
-      "Apply #b",
-      " [snowpunk:GearIcon] \u00a0to the next viable card played."
-    ]
-  },
   "${ModID}:FireballPower": {
     "NAME": "Fireball",
     "DESCRIPTIONS": [
@@ -35,15 +28,29 @@
       " #yHot."
     ]
   },
-  "${ModID}:GearNextPower": {
+  "${ModID}:SnowNextTurnPower": {
+    "NAME": "Snow Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of next turn, gain #b",
+      " [Snowpunk:SnowIcon] ."
+    ]
+  },
+  "${ModID}:CrankPower": {
     "NAME": "Crank",
     "DESCRIPTIONS": [
-      "The next card you play with [Snowpunk:GearIcon] \u00a0gains #b",
+      "The next card you play with [Snowpunk:GearIcon] gains #b",
       " [Snowpunk:GearIcon] ."
     ]
   },
-  "${ModID}:PreventBrassConsumptionPower": {
-    "NAME": "Stopwatch",
+  "${ModID}:BrainBlastPower": {
+    "NAME": "Brain Blast",
+    "DESCRIPTIONS": [
+      "Increase [Snowpunk:GearIcon] effects by #b",
+      " this turn."
+    ]
+  },
+  "${ModID}:WindupPower": {
+    "NAME": "Windup",
     "DESCRIPTIONS": [
       "Prevent the next time #yBrass would be consumed.",
       "Prevent the next #b",
@@ -104,9 +111,9 @@
   "${ModID}:FrostbitePower": {
     "NAME": "Frostbite",
     "DESCRIPTIONS": [
-      "Enemies with #yChill take more damage from Attacks.",
-      "Enemies with #yChill take more damage from Attacks equal to #b",
-      " times their #yChill."
+      "Attacks deal additional damage per [snowpunk:SnowIcon] .",
+      "Attacks deal #b",
+      " additional damage per [snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:ChristmasCookiePower": {
@@ -183,9 +190,9 @@
   "${ModID}:LetItSnowPower": {
     "NAME": "Let It Snow",
     "DESCRIPTIONS": [
-      "Whenever you gain [snowpunk:SnowIcon] , return #b1 random #yHot card to your hand.",
-      "Whenever you gain [snowpunk:SnowIcon] , return #b",
-      " random #yHot cards to your hand."
+      "Whenever you spend [snowpunk:SnowIcon] , draw that many cards.",
+      "Whenever you spend [snowpunk:SnowIcon] , draw #b",
+      " times that many cards."
     ]
   },
   "${ModID}:FrostPower": {
@@ -199,9 +206,9 @@
   "${ModID}:ClockworkPower": {
     "NAME": "Clockwork",
     "DESCRIPTIONS": [
-      "Prevent the first time you would consume #yBrass each turn.",
-      "Prevent the first #b",
-      " times you would consume #yBrass each turn."
+      "Whenever you play a card with [snowpunk:GearIcon] , draw a card.",
+      "Whenever you play a card with [snowpunk:GearIcon] , draw #b",
+      " cards."
     ]
   },
   "${ModID}:GracePower": {
@@ -221,6 +228,22 @@
       " HP."
     ]
   },
+  "${ModID}:MiserPower": {
+    "NAME": "Miser",
+    "DESCRIPTIONS": [
+      "The next #yHot or #yCold card you play this turn plays twice.",
+      "The next #b",
+      "#yHot or #yCold cards you play this turn plays twice."
+    ]
+  },
+  "${ModID}:FrigidPower": {
+    "NAME": "Frigid",
+    "DESCRIPTIONS": [
+      "Take additional damage from Attacks equal to #Chill this turn.",
+      "Take additional damage from Attacks equal to #Chill for #b",
+      " turns."
+    ]
+  },
   "${ModID}:HollyPower": {
     "NAME": "Holly",
     "DESCRIPTIONS": [
@@ -228,19 +251,12 @@
       "."
     ]
   },
-  "${ModID}:FineTunePower": {
+  "${ModID}:FineTunedPower": {
     "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b",
-      " #yGilded #yWrench."
-    ]
-  },
-  "${ModID}:GildedWrenchPower": {
-    "NAME": "Gilded Wrench",
-    "DESCRIPTIONS": [
-      "The next #yClank card you play this turn costs #b0.",
+      "The next card with #yPlating, [snowpunk:GearIcon]  or #yClank you play this turn costs #b0.",
       "The next #b",
-      " #yClank cards you play this turn cost #b0."
+      " cards with #yPlating, [snowpunk:GearIcon]  or #yClank you play this turn cost #b0."
     ]
   },
   "${ModID}:ChooChooPower": {
@@ -262,17 +278,17 @@
   "${ModID}:TheSnowmanPower": {
     "NAME": "The Snowman",
     "DESCRIPTIONS": [
-      "Next turn, draw a card and give it a #yHat.",
+      "Next turn, draw a card and gain a [snowpunk:SnowIcon] .",
       "Next turn, draw #b",
-      " cards and give them a #yHat."
+      " cards and gain #b",
+      " [snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:SnowAngelPower": {
     "NAME": "Snow Angel",
     "DESCRIPTIONS": [
-      "At the end of your turn, gain #yBlock equal to the number of cards in your hand.",
-      "At the end of your turn, gain #yBlock equal to #b",
-      " times the number of cards in your hand."
+      "Whenever you play a #yBlock card, give it ",
+      " #yPlating."
     ]
   },
   "${ModID}:SteamPower": {
@@ -291,7 +307,7 @@
     ]
   },
   "${ModID}:SnowpunkPower": {
-    "NAME": "Snowpunk",
+    "NAME": "Frostbite",
     "DESCRIPTIONS": [
       "Attacks deal additional damage per [snowpunk:SnowIcon] .",
       "Attacks deal #b",
@@ -338,19 +354,19 @@
     ]
   },
   "${ModID}:ReverseNextClankPower": {
-    "NAME": "Reverse Next Clank",
+    "NAME": "Jumble",
     "DESCRIPTIONS": [
-      "Reverse the next #yClank effect this turn.",
+      "Reverse the next #yClank effect.",
       "Reverse the next #b",
-      " #yClank effects this turn."
+      " #yClank effects."
     ]
   },
-  "${ModID}:ReverseClankPower": {
-    "NAME": "Reverse Clank",
+  "${ModID}:JumblomaticPower": {
+    "NAME": "Jumblomatic",
     "DESCRIPTIONS": [
-      "Reverse the first #yClank effect each turn.",
-      "Reverse the first #b",
-      " #yClank effects each turn."
+      "The next time you #yClank, reverse the next #yClank effect.",
+      "The next time you #yClank, reverse the next #b",
+      " #yClank effects."
     ]
   },
   "${ModID}:DecoBotPower": {
@@ -365,6 +381,14 @@
     "NAME": "Assembled",
     "DESCRIPTIONS": [
       "Has an effect based on your card."
+    ]
+  },
+  "${ModID}:BiasedCogPower": {
+    "NAME": "Biased Cog",
+    "DESCRIPTIONS": [
+      "At the start of your turn, a random card in your hand with [Snowpunk:GearIcon] gains 1 [Snowpunk:GearIcon] .",
+      "At the start of your turn, #b",
+      " random cards in your hand with [Snowpunk:GearIcon] gain 1 [Snowpunk:GearIcon] ."
     ]
   },
   "${ModID}:AntifactPower": {

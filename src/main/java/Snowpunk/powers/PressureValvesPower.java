@@ -19,7 +19,6 @@ public class PressureValvesPower extends AbstractEasyPower implements SnowAmount
 
     public PressureValvesPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("panache");
     }
 
     @Override

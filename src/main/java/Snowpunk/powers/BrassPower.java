@@ -1,6 +1,5 @@
 package Snowpunk.powers;
 
-import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cardmods.Tinkerific;
 import Snowpunk.cards.interfaces.GearMultCard;
@@ -27,7 +26,6 @@ public class BrassPower extends AbstractEasyPower {
 
     public BrassPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("tools");
     }
 
     @Override
@@ -35,12 +33,12 @@ public class BrassPower extends AbstractEasyPower {
         if ((card.baseDamage >= 0 || card.baseBlock >= 0 || CardModifierManager.hasModifier(card, PlateMod.ID)) && !card.purgeOnUse) {
             CardModifierManager.addModifier(card, new PlateMod(amount));
             if (!CardModifierManager.hasModifier(card, Tinkerific.ID)) {
-                if (!Wiz.adp().hasPower(PreventBrassConsumptionPower.POWER_ID) && !Wiz.adp().hasPower(PreventBrassConsumptionThisTurnPower.POWER_ID))
+                if (!Wiz.adp().hasPower(WindupPower.POWER_ID) && !Wiz.adp().hasPower(PreventBrassConsumptionThisTurnPower.POWER_ID))
                     addToTop(new RemoveSpecificPowerAction(owner, owner, this));
                 else if (Wiz.adp().hasPower(PreventBrassConsumptionThisTurnPower.POWER_ID))
                     Wiz.atb(new ReducePowerAction(Wiz.adp(), Wiz.adp(), PreventBrassConsumptionThisTurnPower.POWER_ID, 1));
-                else if (Wiz.adp().hasPower(PreventBrassConsumptionPower.POWER_ID))
-                    Wiz.atb(new ReducePowerAction(Wiz.adp(), Wiz.adp(), PreventBrassConsumptionPower.POWER_ID, 1));
+                else if (Wiz.adp().hasPower(WindupPower.POWER_ID))
+                    Wiz.atb(new ReducePowerAction(Wiz.adp(), Wiz.adp(), WindupPower.POWER_ID, 1));
             }
             Wiz.att(new VFXAction(Wiz.adp(), new WrenchEffect(card), WrenchEffect.DURATION, false));
         }

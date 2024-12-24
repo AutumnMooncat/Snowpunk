@@ -26,7 +26,7 @@ public class Gift extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new GiftDiscoveryAction(magicNumber, true));
+        Wiz.atb(new GiftDiscoveryAction(magicNumber, true, true));
     }
 
     @Override

@@ -29,7 +29,6 @@ public class GracePower extends AbstractEasyPower {
 
     public GracePower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
-        this.loadRegion("nirvana");
         updateDescription();
     }
 

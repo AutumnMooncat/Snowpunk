@@ -1,6 +1,9 @@
 package Snowpunk.cards;
 
+import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.EnhanceCardInHardAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.FireburstPower;
@@ -22,25 +25,28 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 10;
+    private static final int DMG = 7;
 
     public Blowtorch() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardModifierManager.addModifier(this, new GearMod(2));
+        CardModifierManager.addModifier(this, new GearMod(1));
         baseDamage = damage = DMG;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
         addToBot(new VFXAction(new ExplosionSmallEffect(m.hb.cX, m.hb.cY), 0.1F));
-        if (getGears() > 0)
-            Wiz.applyToSelf(new FireburstPower(p, getGears()));
+        int gears = getGears();
+        if (gears > 0)
+            Wiz.atb(new EnhanceCardInHardAction(1, 1, gears, null));
+//            Wiz.applyToSelf(new FireburstPower(p, getGears()));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(4));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+//        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
     }
 }

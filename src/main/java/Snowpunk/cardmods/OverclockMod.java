@@ -1,18 +1,9 @@
 package Snowpunk.cardmods;
 
-import Snowpunk.cards.abstracts.AbstractEasyCard;
-import Snowpunk.cards.interfaces.GearMultCard;
-import Snowpunk.patches.CustomTags;
-import Snowpunk.powers.BrassPower;
-import Snowpunk.powers.SnowpunkPower;
-import Snowpunk.util.KeywordManager;
 import Snowpunk.util.TexLoader;
-import Snowpunk.util.Wiz;
-import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
@@ -32,7 +23,6 @@ import javassist.expr.FieldAccess;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 import static Snowpunk.SnowpunkMod.modID;

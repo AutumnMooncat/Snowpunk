@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Snowpunk.SnowpunkMod.getSFXFrequency;
 import static Snowpunk.SnowpunkMod.makeID;
 
 public class FiveGoldenRings extends AbstractMultiUpgradeCard {
@@ -35,7 +36,7 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    private static int playSound = 0;
+    private static int playSound = 99;
 
     private static final int COST = 2;
 
@@ -53,15 +54,18 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (getGears() > 0) {
-            if (playSound == 0)
+            playSound++;
+            if (playSound >= getSFXFrequency() && getSFXFrequency() > 0) {
                 addToBot(new SFXAction("snowpunk:FIVEGOLDENRINGS"));
-
-            Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
-            if (playSound == 0) {
-                addToBot(new WaitAction(.1f));
-                addToBot(new WaitAction(.1f));
-                addToBot(new WaitAction(.1f));
-            }
+                playSound = 0;
+                Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
+                if (playSound == 0) {
+                    addToBot(new WaitAction(.1f));
+                    addToBot(new WaitAction(.1f));
+                    addToBot(new WaitAction(.1f));
+                }
+            } else
+                Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2, 2));
 
             Wiz.atb(new AbstractGameAction() {
                 @Override
@@ -74,14 +78,6 @@ public class FiveGoldenRings extends AbstractMultiUpgradeCard {
                     isDone = true;
                 }
             });
-            if (playSound == 0) {
-                addToBot(new WaitAction(.1f));
-                addToBot(new WaitAction(.1f));
-                addToBot(new WaitAction(.1f));
-            }
-            playSound++;
-            if (playSound > 10)
-                playSound = 0;
         }
     }
 

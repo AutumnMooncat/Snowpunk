@@ -1,12 +1,8 @@
 package Snowpunk.cards;
 
-import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.GildedWrenchPower;
-import Snowpunk.powers.ReverseClankPower;
-import Snowpunk.powers.ReverseNextClankPower;
+import Snowpunk.powers.JumblomaticPower;
 import Snowpunk.util.Wiz;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -27,8 +23,7 @@ public class Jumblomatic extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.applyToSelf(new ReverseClankPower(p, 1));
-        Wiz.applyToSelf(new ReverseNextClankPower(p, 1));
+        Wiz.applyToSelf(new JumblomaticPower(p, 1));
     }
 
     @Override

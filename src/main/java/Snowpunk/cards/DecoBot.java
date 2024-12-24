@@ -30,7 +30,6 @@ public class DecoBot extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeBaseCost(1));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();

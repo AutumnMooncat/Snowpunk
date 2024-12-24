@@ -6,6 +6,7 @@ import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,10 +24,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
 import com.megacrit.cardcrawl.vfx.ExhaustPileParticle;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-
-import java.io.IOException;
-
-import static Snowpunk.SnowpunkMod.modConfig;
 
 public class EvaporatePanel extends AbstractPanel {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(SnowpunkMod.makeID("EvaporatePanel"));
@@ -87,6 +84,16 @@ public class EvaporatePanel extends AbstractPanel {
         }
     }
 
+    public static void DelayedEvaporate(AbstractCard card) {
+        Wiz.atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                EvaporatePanel.Evaporate(card);
+                isDone = true;
+            }
+        });
+    }
+
     public static void Evaporate(AbstractCard card) {
         EvaporatePanel.evaporatePile.group.add(getShuffleInPosition(card), card);
         AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
@@ -102,6 +109,14 @@ public class EvaporatePanel extends AbstractPanel {
                 }
             }
         }
+        if (Wiz.adp().hand.contains(card))
+            Wiz.adp().hand.removeCard(card);
+        if (Wiz.adp().discardPile.contains(card))
+            Wiz.adp().discardPile.removeCard(card);
+        if (Wiz.adp().drawPile.contains(card))
+            Wiz.adp().drawPile.removeCard(card);
+        if (Wiz.adp().limbo.contains(card))
+            Wiz.adp().limbo.removeCard(card);
     }
 
     private static int getShuffleInPosition(AbstractCard card) {

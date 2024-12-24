@@ -1,12 +1,20 @@
 package Snowpunk.cards;
 
-import Snowpunk.actions.IncreaseModifiersAction;
-import Snowpunk.actions.IncreasePlatingAndGearsAction;
+import Snowpunk.actions.*;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.cards.abstracts.ClankCard;
+import Snowpunk.damageMods.BrassDamage;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.TransformCardInHandAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
@@ -22,24 +30,44 @@ public class Breakthrough extends AbstractMultiUpgradeCard {
 
     public Breakthrough() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        damage = baseDamage = 12;
-        magicNumber = baseMagicNumber = 1;
-        exhaust = true;
+        damage = baseDamage = 10;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new IncreasePlatingAndGearsAction(false, -1, magicNumber));
+//        Wiz.atb(new IncreasePlatingAndGearsAction(false, -1, magicNumber));
+//        Wiz.atb(new ClankAction(this));
+
+        Wiz.atb(new GearCardsToHandAction());
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> {
-            upgradeDamage(2);
-            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
         });
-        setDependencies(true, 2, 0, 1);
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
+        });
+        setDependencies(true, 1, 0);
+        setDependencies(true, 2, 1);
     }
+
+//    @Override
+//    public void onClank(AbstractMonster target) {
+//        AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+//        if(Wiz.adp().hand.size() > 0)
+//            Wiz.att(new TransformCardInHandAction(AbstractDungeon.cardRandomRng.random(Wiz.adp().hand.size() - 1), c));
+//    }
+//
+//    @Override
+//    public void unClank(AbstractMonster target) {
+//        Wiz.att(new GiftDiscoveryAction(3, false, false));
+//    }
 }

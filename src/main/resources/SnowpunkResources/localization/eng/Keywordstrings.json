@@ -24,6 +24,20 @@
     "DESCRIPTION": "Remove a card from combat. The card it is fused to plays a copy of it for the rest of combat."
   },
   {
+    "PROPER_NAME": "Frigid",
+    "NAMES": [
+      "frigid"
+    ],
+    "DESCRIPTION": "#yFrigid creatures take more damage from Attacks equal to their #yChill."
+  },
+  {
+    "PROPER_NAME": "Cargo",
+    "NAMES": [
+      "cargo"
+    ],
+    "DESCRIPTION": "Cards in Cargo retain between combats until they are removed."
+  },
+  {
     "ID": "holly",
     "PROPER_NAME": "Holly [snowpunk:HollyIcon]",
     "NAMES": [
@@ -129,13 +143,20 @@
     "DESCRIPTION": "Increase the damage and #yBlock of the next viable card you play for the rest of combat."
   },
   {
+    "PROPER_NAME": "Blur",
+    "NAMES": [
+      "blur"
+    ],
+    "DESCRIPTION": "#yBlock is not removed at the start of your next turn(s)."
+  },
+  {
     "ID": "modifications",
     "PROPER_NAME": "Modifications",
     "NAMES": [
       "modifications",
       "modification"
     ],
-    "DESCRIPTION": "Modifications include #yHot, #yCold, #yGears, #yPlating, and #yHats!"
+    "DESCRIPTION": "Modifications include #yHot, #yCold, [Snowpunk:GearIcon] , #yPlating, and #yHats!"
   },
   {
     "ID": "plating",

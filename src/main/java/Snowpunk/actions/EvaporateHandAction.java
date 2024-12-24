@@ -81,7 +81,7 @@ public class EvaporateHandAction extends AbstractGameAction {
     void Evaporate(AbstractCard c) {
         if (c == null)
             c = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
-        EvaporatePanel.Evaporate(c);
+        EvaporatePanel.DelayedEvaporate(c);
         card.OnEvaporateCard(c);
         AbstractDungeon.player.hand.removeCard(c);
     }

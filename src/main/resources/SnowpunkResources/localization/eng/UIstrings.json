@@ -1,8 +1,11 @@
 {
-  "${ModID}:ModConfigs": {
+  "${ModID}:Configs": {
     "TEXT": [
-      "If we decide to make any mod settings",
-      "The strings should go in here"
+      "The Conductor",
+      "Laugic, Mistress Autumn, Kuma",
+      "Conducting trains, clanking machines, and more. Conducto.",
+      "Hot card shader is enabled. [IF SOME CARDS APPEAR INVISIBLE, DISABLE THIS]",
+      "      Frequency of loud SFX [1- Every time, 2- Every other time, 3- Every five times, 4- Never]"
     ],
     "EXTRA_TEXT": [
     ]

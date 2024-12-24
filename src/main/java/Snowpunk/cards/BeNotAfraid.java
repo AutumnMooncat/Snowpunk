@@ -26,6 +26,7 @@ public class BeNotAfraid extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 2;
         heal = false;
+        tags.add(CardTags.HEALING);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

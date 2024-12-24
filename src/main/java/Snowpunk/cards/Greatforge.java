@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
+@NoPools
+@NoCompendium
 public class Greatforge extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Greatforge.class.getSimpleName());
 

@@ -4,6 +4,7 @@ import Snowpunk.actions.GainSnowballAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.SnowNextTurnPower;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -34,8 +35,8 @@ public class SnowStack extends AbstractMultiUpgradeCard {
     public SnowStack() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseBlock = block = BLOCK;
-        magicNumber = baseMagicNumber = 2;
-        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD * 2);
+        magicNumber = baseMagicNumber = 1;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -50,39 +51,29 @@ public class SnowStack extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyPowers();
         blck();
+        Wiz.applyToSelf(new SnowNextTurnPower(Wiz.adp(), magicNumber));
     }
 
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(mo);
-        applyPowers();
-    }
+//    @Override
+//    public void calculateCardDamage(AbstractMonster mo) {
+//        super.calculateCardDamage(mo);
+//        applyPowers();
+//    }
 
-    public void applyPowers() {
-        int realBaseBlock = baseBlock;
-        baseBlock += magicNumber * getSnow();
-        super.applyPowers();
-        baseBlock = realBaseBlock;
-        isBlockModified = block != baseBlock;
-    }
+//    public void applyPowers() {
+//        int realBaseBlock = baseBlock;
+//        baseBlock += magicNumber * getSnow();
+//        super.applyPowers();
+//        baseBlock = realBaseBlock;
+//        isBlockModified = block != baseBlock;
+//    }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
-        });
-        addUpgradeData(() -> {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
-        });
-        addUpgradeData(() -> {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
-        });
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> upgradeBlock(3));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBlock(3));
+        setDependencies(true, 2, 0);
     }
 }

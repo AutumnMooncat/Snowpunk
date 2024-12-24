@@ -40,6 +40,25 @@ public class MultiPreviewFieldPatches {
 
     }// 34
 
+    public static void removePreview(AbstractCard card, AbstractCard preview) {
+        if (card != null && preview != null) {// 23
+            ExtraPreviews.previews.get(card).remove(preview);// 24
+            if (preview.cardsToPreview != null && (ExtraPreviews.previews.get(card)).contains(preview.cardsToPreview)) {// 25
+                removePreview(card, preview.cardsToPreview);// 26
+            }
+
+            Iterator var2 = ((ArrayList) ExtraPreviews.previews.get(preview)).iterator();// 28
+
+            while (var2.hasNext()) {
+                AbstractCard c = (AbstractCard) var2.next();
+                if (((ArrayList) ExtraPreviews.previews.get(card)).contains(c)) {// 29
+                    removePreview(card, c);// 30
+                }
+            }
+        }
+
+    }// 34
+
     @SpirePatch(
             clz = AbstractCard.class,
             method = "renderCardTip"

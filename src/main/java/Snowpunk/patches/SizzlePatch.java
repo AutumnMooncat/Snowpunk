@@ -78,10 +78,10 @@ public class SizzlePatch {
 
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractCard __instance, SpriteBatch spriteBatch) {
-            if(sizzleShader == null) {
+            if (sizzleShader == null) {
                 sizzleShader = initSizzleShader(sizzleShader);
             }
-            if (!Settings.hideCards) {
+            if (!Settings.hideCards && SnowpunkMod.drawHot) {
                 if (getCardHeat(__instance) > 0) {
                     float heatmod = getCardHeat(__instance) * .5f;
                     TextureRegion t = cardToTextureRegion(__instance, spriteBatch);

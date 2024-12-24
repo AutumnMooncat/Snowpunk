@@ -2,13 +2,9 @@ package Snowpunk.cards;
 
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.powers.FineTunePower;
-import Snowpunk.powers.GildedWrenchPower;
-import Snowpunk.powers.WrenchPower;
+import Snowpunk.powers.FineTunedPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
-import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,13 +22,15 @@ public class FineTuned extends AbstractMultiUpgradeCard {
 
     public FineTuned() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 1;
+//        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
 //        Wiz.applyToSelf(new FineTunePower(p, magicNumber));
+//        if(getGears() > 0)
         Wiz.atb(new DrawCardAction(magicNumber));
-        Wiz.applyToSelf(new GildedWrenchPower(p, 1));
+        Wiz.applyToSelf(new FineTunedPower(p, 1));
     }
 
     @Override

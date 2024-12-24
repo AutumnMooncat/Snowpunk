@@ -2,6 +2,8 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.actions.SoulBarrageAction;
+import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -37,10 +39,8 @@ public class ScrapPile extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(1)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(2)));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new PlateMod(3)));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> upgradeBlock(3));
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.mod.stslib.relics.CardRewardSkipButtonRelic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
@@ -19,8 +20,9 @@ public class StrangeGizmo extends AbstractEasyRelic implements CardRewardSkipBut
     public static final String ID = makeID(StrangeGizmo.class.getSimpleName());
 
     public StrangeGizmo() {
-        super(ID, RelicTier.BOSS, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.RARE, LandingSound.CLINK, TheConductor.Enums.SNOWY_BLUE_COLOR);
     }
+
 
     @Override
     public void onClickedButton() {
@@ -51,5 +53,8 @@ public class StrangeGizmo extends AbstractEasyRelic implements CardRewardSkipBut
         return CardRewardSkipButtonRelic.super.getTexture();
     }
 
+    public boolean canSpawn() {
+        return (AbstractDungeon.floorNum >= 15 && AbstractDungeon.floorNum < 42);
+    }
     //TODO make button not show if no upgradeable cards once this feature is live
 }

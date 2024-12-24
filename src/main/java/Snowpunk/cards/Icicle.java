@@ -21,11 +21,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Icicle extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Icicle.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DAMAGE = 4, UP_DAMAGE = 3;
+    private static final int COST = 1, DAMAGE = 6, UP_DAMAGE = 3;
 
     public Icicle() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -52,9 +52,18 @@ public class Icicle extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardModifierManager.addModifier(this, new HatMod());
+        });
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

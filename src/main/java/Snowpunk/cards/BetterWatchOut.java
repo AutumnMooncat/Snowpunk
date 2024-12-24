@@ -1,6 +1,7 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.DelayedMakeCopyAction;
+import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -27,15 +28,26 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
     private static final int DMG = 5;
     private static final int UP_DMG = 2;
 
+    public boolean gears = false;
+
     public BetterWatchOut() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
         exhaust = true;
+        gears = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        if (gears) {
+            int numGears = getGears();
+            if (numGears > 0) {
+                for (int i = 0; i < numGears; i++)
+                    dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            }
+        } else {
+            dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        }
 
         int effect = this.energyOnUse;
 
@@ -56,7 +68,10 @@ public class BetterWatchOut extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(UP_DMG));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod(1)));
-        setDependencies(true, 2, 1, 0);
+        addUpgradeData(() -> {
+            gears = true;
+            CardModifierManager.addModifier(this, new GearMod(2));
+            uDesc();
+        });
     }
 }

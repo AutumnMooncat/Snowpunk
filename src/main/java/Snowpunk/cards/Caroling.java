@@ -38,7 +38,7 @@ public class Caroling extends AbstractMultiUpgradeCard {
             add(new Gift());
             add(new HeatMiser());
             add(new ItsColdOutside());
-            add(new LetItSnow());
+            add(new OLDLetItSnow());
             add(new RockinAround());
             //add(new SnowMiser());
             add(new FiveGoldenRings());

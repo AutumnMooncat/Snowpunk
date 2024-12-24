@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0" name="Full Images">
-        <file id="0" name="Full Images/CharacterAttack.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
-        <file id="1" name="Full Images/CharacterThumbsUp.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
-        <file id="2" name="Full Images/CharacterBlock.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
-        <file id="3" name="Full Images/CharacterKO.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
+        <file id="0" name="Full Images/Attack.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
+        <file id="1" name="Full Images/Happy.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
+        <file id="2" name="Full Images/Block.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
+        <file id="3" name="Full Images/Die.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
         <file id="4" name="Full Images/Throw.png" width="256" height="256" pivot_x="0.5" pivot_y="0"/>
         <file id="5" name="Full Images/Conductor.png" width="512" height="512" pivot_x="0.5" pivot_y="0"/>
     </folder>

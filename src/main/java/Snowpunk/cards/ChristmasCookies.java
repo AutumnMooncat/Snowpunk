@@ -7,6 +7,7 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.ChristmasCookiePower;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -28,9 +29,9 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
 
     public ChristmasCookies() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseDamage = damage = 5;
-//        magicNumber = baseMagicNumber = 1;
-        CardTemperatureFields.addInherentHeat(this, 2);
+        baseDamage = damage = 4;
+        magicNumber = baseMagicNumber = 1;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
 //        CardModifierManager.addModifier(this, new HatMod());
     }
 
@@ -48,6 +49,7 @@ public class ChristmasCookies extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        Wiz.applyToSelf(new FireballPower(p, magicNumber));
         //Wiz.applyToSelf(new ChristmasCookiePower(p, magicNumber));
         //addToBot(new AddHotToRandomEvaporatedCardAction(magicNumber));
     }

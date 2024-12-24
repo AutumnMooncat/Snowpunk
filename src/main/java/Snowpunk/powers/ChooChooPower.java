@@ -1,6 +1,10 @@
 package Snowpunk.powers;
 
+import Snowpunk.SnowpunkMod;
+import Snowpunk.util.TexLoader;
 import Snowpunk.util.Wiz;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -24,6 +28,16 @@ public class ChooChooPower extends AbstractEasyPower {
     public ChooChooPower(AbstractCreature owner, int num) {
         super(POWER_ID, NAME, PowerType.BUFF, false, owner, num);
         updateDescription();
+        Texture normalTexture = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/ChooChoo32.png");
+        Texture hiDefImage = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/ChooChoo84.png");
+        if (hiDefImage != null) {
+            region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
+            if (normalTexture != null)
+                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        } else if (normalTexture != null) {
+            this.img = normalTexture;
+            region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import Snowpunk.cardmods.GearMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.PermWrenchPower;
+import Snowpunk.powers.ReverseNextClankPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -26,18 +27,26 @@ public class Ratchet extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         CardModifierManager.addModifier(this, new GearMod(1));
+        tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         addToBot(new SFXAction("snowpunk:bonk"));
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToSelf(new PermWrenchPower(player, getGears()));
+        int gears = getGears();
+        if (gears > 0) {
+            if (info < 0)
+                Wiz.applyToSelf(new PermWrenchPower(player, gears));
+            else
+                Wiz.applyToSelf(new ReverseNextClankPower(player, gears));
+        }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+//        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
         addUpgradeData(() -> upgradeDamage(UP_DMG));
+        addUpgradeData(() -> upgradeInfo(2));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();

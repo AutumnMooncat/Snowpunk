@@ -1,10 +1,9 @@
 package Snowpunk;
 
 import Snowpunk.cards.*;
-import Snowpunk.relics.BrassPipe;
+import Snowpunk.relics.IceCreamSandwich;
 import Snowpunk.vfx.VictoryGlow;
 import Snowpunk.vfx.VictorySnowflakeEffects;
-import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -74,10 +73,10 @@ public class TheConductor extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                80,
-                80,
+                72,
+                72,
                 0,
-                99,
+                129,
                 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
@@ -85,23 +84,23 @@ public class TheConductor extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Forge.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
         retVal.add(SnowStack.ID);
         return retVal;
     }
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(BrassPipe.ID);
+        retVal.add(IceCreamSandwich.ID);
         return retVal;
     }
 
@@ -291,8 +290,8 @@ public class TheConductor extends CustomPlayer {
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList();// 312
-        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman1.png", "ATTACK_HEAVY"));// 313
-        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman2.png"));// 314
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman1.png"));// 313
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman2.png", "ATTACK_HEAVY"));// 314
         panels.add(new CutscenePanel(modID + "Resources/images/scenes/snowman3.png"));// 315
         return panels;// 316
     }

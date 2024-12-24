@@ -1,9 +1,10 @@
-package Snowpunk.relics;
+/*package Snowpunk.relics;
 
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.powers.ScrapPower;
+import Snowpunk.relics.AbstractEasyRelic;
 import Snowpunk.util.KeywordManager;
 import Snowpunk.util.Wiz;
 import basemod.BaseMod;
@@ -95,3 +96,4 @@ public class ScrapHeap extends AbstractEasyRelic {
         }
     }
 }
+*/

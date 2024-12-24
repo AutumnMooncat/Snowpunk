@@ -1,17 +1,16 @@
 {
-  "${ModID}:BrassPipe": {
-    "NAME": "Brass Pipe",
-    "FLAVOR": "Cooling off a busy mind.",
+  "${ModID}:IceCreamSandwich": {
+    "NAME": "Ice Cream Sandwich",
+    "FLAVOR": "Always have a spare.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain #b3 #ysnowpunk:Brass. Prevent the first time #ysnowpunk:Brass would be consumed."
+      "At the start of each combat, gain [snowpunk:SnowIcon] ."
     ]
   },
-  "${ModID}:SteamPipe": {
-    "NAME": "Steam Pipe",
-    "FLAVOR": "Now steam powered, as all good things are.",
+  "${ModID}:BrassPipe": {
+    "NAME": "Brass Pipe",
+    "FLAVOR": "For a busy mind.",
     "DESCRIPTIONS": [
-      "Replaces [#bdedfd]Brass [#bdedfd]Pipe. At the start of each turn, gain #b",
-      " #ysnowpunk:Brass."
+      "At the start of combat, gain #b5 #ysnowpunk:Brass."
     ]
   },
   "${ModID}:ForbiddenScoop": {
@@ -28,12 +27,12 @@
     "NAME": "Scrap Heap",
     "FLAVOR": "'Let's see what I can do with this...'",
     "DESCRIPTIONS": [
-      "Upon pickup, permanently apply #b3 #ysnowpunk:Plating to #b3 viable cards in your deck.",
-      "Upgrade with Plating"
+      "Upon pickup, permanently increase the damage and #yBlock of up to #b3 viable cards in your deck.",
+      "Upgrade damage and Block"
     ]
   },
-  "${ModID}:IceCreamSandwich": {
-    "NAME": "Ice Cream Sandwich",
+  "${ModID}:SpareGlove": {
+    "NAME": "Spare Glove",
     "FLAVOR": "'Bit chilly, innit?'",
     "DESCRIPTIONS": [
       "#ysnowpunk:Cold cards #yRetain."
@@ -43,7 +42,7 @@
     "NAME": "Banana Split",
     "FLAVOR": "With three scoops!",
     "DESCRIPTIONS": [
-      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] ."
+      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] . NL Replaces #yIce #yCream #ySandwich."
     ]
   },
   "${ModID}:Mistletoe": {
@@ -104,6 +103,13 @@
     "DESCRIPTIONS": [
       "When adding cards into your deck, you may #yUpgrade a random card instead.",
       "Random Upgrade"
+    ]
+  },
+  "${ModID}:Lightbulb": {
+    "NAME": "Lightbulb",
+    "FLAVOR": "Mr. Krabs, I have an idea!",
+    "DESCRIPTIONS": [
+      "The first time you #ysnowpunk:Clank each turn, gain [E] ."
     ]
   }
 }

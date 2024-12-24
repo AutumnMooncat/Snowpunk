@@ -1,12 +1,6 @@
 package Snowpunk.powers;
 
-import Snowpunk.cards.abstracts.ClankCard;
-import Snowpunk.powers.interfaces.FreeToPlayPower;
 import Snowpunk.util.Wiz;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -25,7 +19,7 @@ public class FineTunePower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurn() {
-        Wiz.applyToSelf(new GildedWrenchPower(owner, amount));
+        Wiz.applyToSelf(new FineTunedPower(owner, amount));
         flash();
     }
 

@@ -22,7 +22,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class NixieTube extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(NixieTube.class.getSimpleName());
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = CardType.SKILL;
 
@@ -33,16 +33,15 @@ public class NixieTube extends AbstractMultiUpgradeCard {
     public NixieTube() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseMagicNumber = magicNumber = 3;
-        secondMagic = baseSecondMagic = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        List<AbstractCardModifier> mods = new ArrayList<>();
+//        List<AbstractCardModifier> mods = new ArrayList<>();
 //        mods.add(new PlateMod(magicNumber));
 //        if (addGear)
 //            mods.add(new GearMod(1));
-        Wiz.applyToSelf(new BrassPower(p, magicNumber));
-        Wiz.atb(new EnhanceCardInHardAction(1, secondMagic, new ArrayList<>()));
+//        Wiz.applyToSelf(new BrassPower(p, magicNumber));
+        Wiz.atb(new EnhanceCardInHardAction(1, magicNumber, new ArrayList<>()));
     }
 
     @Override
