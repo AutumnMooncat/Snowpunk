@@ -1,31 +1,18 @@
 package Snowpunk.cards;
 
 import Snowpunk.actions.BetterSelectCardsCenteredAction;
-import Snowpunk.actions.MakeCopyInHandAction;
-import Snowpunk.actions.MoveCardToHandAction;
-import Snowpunk.actions.MoveCardToTopOfDrawPileAction;
-import Snowpunk.cardmods.CargoMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
-import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
-import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-
-import java.util.ArrayList;
 
 import static Snowpunk.SnowpunkMod.makeID;
 

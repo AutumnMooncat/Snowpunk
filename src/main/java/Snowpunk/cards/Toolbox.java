@@ -32,7 +32,7 @@ public class Toolbox extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Toolbox.class.getSimpleName());
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
@@ -40,6 +40,7 @@ public class Toolbox extends AbstractMultiUpgradeCard {
     public Toolbox() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = 3;
+        isMultiDamage = true;
 //        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
@@ -56,10 +57,11 @@ public class Toolbox extends AbstractMultiUpgradeCard {
         Collections.shuffle(monsters, AbstractDungeon.cardRng.random);
         for (AbstractMonster mo : monsters) {
             Wiz.atb(new VFXAction(new FlickCoinEffect(p.hb.cX, p.hb.cY, mo.hb.cX, mo.hb.cY), 0.1F));
-            DamageInfo info = new DamageInfo(Wiz.adp(), baseDamage, DamageInfo.DamageType.NORMAL);
-            info.applyPowers(info.owner, mo);
-            atb(new DamageAction(mo, info, AbstractGameAction.AttackEffect.NONE));
+//            DamageInfo info = new DamageInfo(Wiz.adp(), damage, DamageInfo.DamageType.NORMAL);
+//            //info.applyPowers(info.owner, mo);
+//            atb(new DamageAction(mo, info, AbstractGameAction.AttackEffect.NONE));
         }
+        allDmg(AbstractGameAction.AttackEffect.NONE);
 
         Wiz.atb(new VFXAction(new FlickCoinEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY), 0.1F));
         Wiz.atb(new WaitAction(.1f));
