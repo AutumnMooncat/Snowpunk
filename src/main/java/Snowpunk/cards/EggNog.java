@@ -28,11 +28,11 @@ public class EggNog extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     public EggNog() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 4;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -42,9 +42,9 @@ public class EggNog extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

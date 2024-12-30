@@ -1,7 +1,6 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.*;
-import Snowpunk.cards.Cryogenizer;
 import Snowpunk.cards.Juggle;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
@@ -66,7 +65,7 @@ public class MoveModifiersAction extends AbstractGameAction {
                 return;
             }
 
-            AbstractDungeon.handCardSelectScreen.open(TEXT[0], amount, true, false, false, false, false);
+            AbstractDungeon.handCardSelectScreen.open(copy ? TEXT[2] : TEXT[0], amount, true, false, false, false, false);
             tickDuration();
             return;
         }
@@ -91,7 +90,7 @@ public class MoveModifiersAction extends AbstractGameAction {
                 return;
             }
 
-            AbstractDungeon.handCardSelectScreen.open(TEXT[1], 1, false, false, false, false, true);
+            AbstractDungeon.handCardSelectScreen.open(copy ? TEXT[3] : TEXT[1], 1, false, false, false, false, true);
             tickDuration();
             return;
         }

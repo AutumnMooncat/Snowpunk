@@ -30,6 +30,7 @@ public class ScrapPile extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,7 +43,7 @@ public class ScrapPile extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(3));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> upgradeDamage(3));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }
