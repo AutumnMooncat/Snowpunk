@@ -1,5 +1,6 @@
 package Snowpunk.powers;
 
+import Snowpunk.SnowpunkMod;
 import Snowpunk.powers.interfaces.MonsterOnPlayerEndTurnPower;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
 import Snowpunk.util.Wiz;
@@ -33,7 +34,7 @@ public class SingePower extends AbstractEasyPower implements OnEvaporatePower, H
     private final Color hpBarColor = new Color(240 / 256f, 180 / 256f, 24 / 256f, 1);
 
     public SingePower(AbstractCreature owner, int amount) {
-        super(POWER_ID, strings.NAME, PowerType.DEBUFF, true, owner, amount);
+        super(POWER_ID, strings.NAME, PowerType.DEBUFF, false, owner, amount);
         priority = -1;
 //        if(!AbstractDungeon.player.hasPower(SingeHelperPower.POWER_ID))
 //            Wiz.atb(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new SingeHelperPower(AbstractDungeon.player, 1), 0));
@@ -68,7 +69,7 @@ public class SingePower extends AbstractEasyPower implements OnEvaporatePower, H
 
     @Override
     public int getHealthBarAmount() {
-        return amount;
+        return SnowpunkMod.singeHP ? amount : 0;
     }
 
     @Override

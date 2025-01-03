@@ -7,7 +7,8 @@
       "Hot card shader is enabled. [IF SOME CARDS APPEAR INVISIBLE, DISABLE THIS]",
       "      Frequency of loud SFX [1- Every time, 2- Every other time, 3- Every five times, 4- Never]",
       "Conducto Mode [May Require Restart]",
-      "Alternate Forge [For people who don't like screens / popups]"
+      "Alternate Forge [For people who don't like screens / popups]",
+      "Singe HP bar coloring"
     ],
     "EXTRA_TEXT": [
     ]

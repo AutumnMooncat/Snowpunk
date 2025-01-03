@@ -28,10 +28,16 @@ public class IceblastTonic extends AbstractPotion {
 
     public IceblastTonic() {
         super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.SPIKY, PotionColor.ANCIENT);
+    }
+
+
+    @Override
+    public void initializeData() {
         potency = getPotency();
         description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
         isThrown = false;
         labOutlineColor = SNOWY_BLUE;
+        tips.clear();
         tips.add(new PowerTip(name, description));
         tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.COLD), BaseMod.getKeywordDescription(KeywordManager.COLD)));
     }

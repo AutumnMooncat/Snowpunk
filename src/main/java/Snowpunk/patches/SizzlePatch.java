@@ -29,6 +29,7 @@ import static Snowpunk.SnowpunkMod.makeShaderPath;
 import static Snowpunk.patches.CardTemperatureFields.getCardHeat;
 
 public class SizzlePatch {
+    public static boolean sizzleWorked = true;
     public static ShaderProgram initSizzleShader(ShaderProgram sizzleShader) {
         if (sizzleShader == null) {
             try {
@@ -38,7 +39,9 @@ public class SizzlePatch {
                 );
                 if (!sizzleShader.isCompiled()) {
                     System.err.println(sizzleShader.getLog());
-                }
+                    sizzleWorked = false;
+                } else
+                    sizzleWorked = true;
                 if (!sizzleShader.getLog().isEmpty()) {
                     System.out.println(sizzleShader.getLog());
                 }
@@ -78,10 +81,10 @@ public class SizzlePatch {
 
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractCard __instance, SpriteBatch spriteBatch) {
-            if (sizzleShader == null) {
+            if (sizzleShader == null && sizzleWorked) {
                 sizzleShader = initSizzleShader(sizzleShader);
             }
-            if (!Settings.hideCards && SnowpunkMod.drawHot) {
+            if (!Settings.hideCards && SnowpunkMod.drawHot && sizzleWorked) {
                 if (getCardHeat(__instance) > 0) {
                     float heatmod = getCardHeat(__instance) * .5f;
                     TextureRegion t = cardToTextureRegion(__instance, spriteBatch);

@@ -4,7 +4,6 @@ import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.cards.abstracts.ClankCard;
-import Snowpunk.cards.assemble.cores.Searing;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.AssembledCardArtRoller;
 import basemod.abstracts.CustomSavable;
@@ -277,7 +276,7 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
     public void addUpgrades() {
         if (cores != null && cores.size() > 0) {
             int indexes = 0;
-            boolean isSearing = cores.stream().anyMatch(coreCard -> coreCard instanceof Searing);
+//            boolean isSearing = cores.stream().anyMatch(coreCard -> coreCard instanceof Searing);
             if (baseDamage > 0) {
                 int bonusDmg = UP_DMG;
                 if (bonusDmg == -1)
@@ -285,13 +284,13 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int finalBonusDmg = bonusDmg;
                 addUpgradeData(() -> upgradeDamage(finalBonusDmg));
                 indexes++;
-                if (isSearing) {
-                    for (int i = 0; i < 8; i++) {
-                        addUpgradeData(() -> upgradeDamage(finalBonusDmg));
-                        setDependencies(true, indexes, indexes - 1);
-                        indexes++;
-                    }
-                }
+//                if (isSearing) {
+//                    for (int i = 0; i < 8; i++) {
+//                        addUpgradeData(() -> upgradeDamage(finalBonusDmg));
+//                        setDependencies(true, indexes, indexes - 1);
+//                        indexes++;
+//                    }
+//                }
             }
             if (baseBlock > 0) {
                 int bonusBlock = UP_BLOCK;
@@ -300,13 +299,13 @@ public class AssembledCard extends AbstractMultiUpgradeCard implements CustomSav
                 int finalBonusBlock = bonusBlock;
                 addUpgradeData(() -> upgradeBlock(finalBonusBlock));
                 indexes++;
-                if (isSearing) {
-                    for (int i = 0; i < 8; i++) {
-                        addUpgradeData(() -> upgradeBlock(finalBonusBlock));
-                        setDependencies(true, indexes, indexes - 1);
-                        indexes++;
-                    }
-                }
+//                if (isSearing) {
+//                    for (int i = 0; i < 8; i++) {
+//                        addUpgradeData(() -> upgradeBlock(finalBonusBlock));
+//                        setDependencies(true, indexes, indexes - 1);
+//                        indexes++;
+//                    }
+//                }
             }
             if (baseMagicNumber > 0) {
                 int bonusMagic = UP_MAGIC;

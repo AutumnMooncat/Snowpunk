@@ -113,7 +113,7 @@ public class SnowpunkMod implements
 
     public static SpireConfig config = null;
     public static int sfx = 1;
-    public static boolean drawHot, conductoMode, altForge;
+    public static boolean drawHot, conductoMode, altForge, singeHP;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
 
 
@@ -159,12 +159,14 @@ public class SnowpunkMod implements
             defaults.put("drawHot", Boolean.toString(true));
             defaults.put("conductoMode", Boolean.toString(false));
             defaults.put("altForge", Boolean.toString(false));
+            defaults.put("singeHP", Boolean.toString(true));
             defaults.setProperty("sfx", "2");
             config = new SpireConfig("TheConductor", "config", defaults);
             sfx = config.getInt("sfx");
             drawHot = config.getBool("drawHot");
             conductoMode = config.getBool("conductoMode");
             altForge = config.getBool("altForge");
+            singeHP = config.getBool("singeHP");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -385,6 +387,15 @@ public class SnowpunkMod implements
         }, button -> {
             altForge = button.enabled;
             config.setBool("altForge", button.enabled);
+            try {
+                config.save();
+            } catch (Exception e) {
+            }
+        }));
+        settingsPanel.addUIElement(new ModLabeledToggleButton(TEXT[7], 350, 475, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool("singeHP"), settingsPanel, label -> {
+        }, button -> {
+            singeHP = button.enabled;
+            config.setBool("singeHP", button.enabled);
             try {
                 config.save();
             } catch (Exception e) {

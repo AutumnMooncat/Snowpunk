@@ -97,8 +97,8 @@
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "Whenever a card #yEvaporates, give it #b",
-      " #yPlating."
+      "Whenever a card #yEvaporates, gain #b",
+      " #yBrass."
     ]
   },
   "${ModID}:CarolingPower": {
