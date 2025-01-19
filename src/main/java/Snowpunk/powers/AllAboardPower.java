@@ -82,8 +82,8 @@ public class AllAboardPower extends AbstractEasyPower implements OnEvaporatePowe
 
     @Override
     public void onEvaporate(AbstractCard card) {
-        Wiz.applyToSelf(new BrassPower(Wiz.adp(), amount));
-        //addToBot(new ApplyCardModifierAction(card, new PlateMod(amount)));
+//        Wiz.applyToSelf(new BrassPower(Wiz.adp(), amount));
+        addToBot(new ApplyCardModifierAction(card, new PlateMod(amount)));
         flash();
     }
 }

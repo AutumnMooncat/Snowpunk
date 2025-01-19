@@ -97,8 +97,8 @@
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "Whenever a card #yEvaporates, gain #b",
-      " #yBrass."
+      "Whenever a card #yEvaporates, give it #b",
+      " #yPlating."
     ]
   },
   "${ModID}:CarolingPower": {
@@ -372,9 +372,8 @@
   "${ModID}:DecoBotPower": {
     "NAME": "Deco-Bot",
     "DESCRIPTIONS": [
-      "Whenever you play a #yClank card, apply #b",
-      " #yPlating and gain #b",
-      " #yHolly."
+      "Whenever you play a #yClank card, gain #b",
+      " #yHolly and #yBrass."
     ]
   },
   "${ModID}:AssembledPower": {

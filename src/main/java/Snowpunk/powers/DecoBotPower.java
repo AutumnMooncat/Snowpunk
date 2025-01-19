@@ -32,27 +32,28 @@ public class DecoBotPower extends AbstractEasyPower {
         if (card instanceof ClankCard) {
             flash();
             Wiz.atb(new GainHollyAction(amount));
-            Wiz.att(new ApplyCardModifierAction(card, new PlateMod(amount)));
+//            Wiz.att(new ApplyCardModifierAction(card, new PlateMod(amount)));
+            Wiz.applyToSelf(new BrassPower(Wiz.adp(), amount));
         }
     }
 
-    @Override
-    public float modifyBlock(float blockAmount, AbstractCard card) {
-        if (blockAmount < 0 || !(card instanceof ClankCard))
-            return blockAmount;
-        return Math.max(blockAmount + amount, 0);
-    }
-
-    @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-        if (type == DamageInfo.DamageType.NORMAL && card instanceof ClankCard)
-            return damage + amount;
-        return damage;
-    }
+//    @Override
+//    public float modifyBlock(float blockAmount, AbstractCard card) {
+//        if (blockAmount < 0 || !(card instanceof ClankCard))
+//            return blockAmount;
+//        return Math.max(blockAmount + amount, 0);
+//    }
+//
+//    @Override
+//    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+//        if (type == DamageInfo.DamageType.NORMAL && card instanceof ClankCard)
+//            return damage + amount;
+//        return damage;
+//    }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override

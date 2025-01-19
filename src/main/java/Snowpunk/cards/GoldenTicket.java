@@ -83,12 +83,18 @@ public class GoldenTicket extends AbstractMultiUpgradeCard {
         cardsToPick.group.addAll(EvaporatePanel.evaporatePile.group);
 
         for (AbstractCard c : Wiz.adp().hand.group) {
-            if (c != this)
+            if (!(c instanceof GoldenTicket))
                 cardsToPick.group.add(c.makeStatEquivalentCopy());
         }
 
+        CardGroup cardsToPickNoTicket = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        for (AbstractCard c : cardsToPick.group) {
+            if (!(c instanceof GoldenTicket))
+                cardsToPickNoTicket.group.add(c);
+        }
+
         String text = magicNumber == 1 ? cardStrings.EXTENDED_DESCRIPTION[0] : cardStrings.EXTENDED_DESCRIPTION[1] + magicNumber + cardStrings.EXTENDED_DESCRIPTION[2];
-        Wiz.atb(new BetterSelectCardsCenteredAction(cardsToPick.group, magicNumber, text, false, card -> true, cards -> {
+        Wiz.atb(new BetterSelectCardsCenteredAction(cardsToPickNoTicket.group, magicNumber, text, false, card -> true, cards -> {
             for (AbstractCard c : cards)
                 Wiz.att(new VFXAction(new ShowCardAndAddToHandEffect(c.makeStatEquivalentCopy())));
         }));

@@ -162,8 +162,8 @@
   },
   "${ModID}:AllAboard": {
     "NAME": "All Aboard!",
-    "DESCRIPTION": "Whenever a card snowpunk:Evaporates, gain !M! snowpunk:Brass.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever a card snowpunk:Evaporates, gain !M! snowpunk:Brass."
+    "DESCRIPTION": "Whenever a card snowpunk:Evaporates, give it !M! snowpunk:Plating.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever a card snowpunk:Evaporates, give it !M! snowpunk:Plating."
   },
   "${ModID}:HeatMiser": {
     "NAME": "Heat Miser",
@@ -461,8 +461,8 @@
   },
   "${ModID}:DecoBot": {
     "NAME": "Deco-Bot",
-    "DESCRIPTION": "Whenever you play a snowpunk:Clank card, give it !M! snowpunk:Plating and gain !M! snowpunk:Holly.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a snowpunk:Clank card, give it !M! snowpunk:Plating and gain !M! snowpunk:Holly."
+    "DESCRIPTION": "Whenever you play a snowpunk:Clank card, gain !M! snowpunk:Holly and snowpunk:Brass.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a snowpunk:Clank card, gain !M! snowpunk:Holly and snowpunk:Brass."
   },
   "${ModID}:Gift": {
     "NAME": "Gift",

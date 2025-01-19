@@ -27,6 +27,7 @@ public class BrainBlast extends AbstractMultiUpgradeCard {
         damage = baseDamage = 8;
 //        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD);
         magicNumber = baseMagicNumber = 1;
+        isMultiDamage = true;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
