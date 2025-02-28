@@ -32,11 +32,13 @@ public class NixieTube extends AbstractMultiUpgradeCard {
 
     public NixieTube() {
         super(ID, COST, TYPE, RARITY, TARGET);
+        block = baseBlock = 5;
         baseMagicNumber = magicNumber = 3;
         CardModifierManager.addModifier(this, new GearMod(1));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
 //        List<AbstractCardModifier> mods = new ArrayList<>();
 //        mods.add(new PlateMod(magicNumber));
 //        if (addGear)
@@ -49,8 +51,7 @@ public class NixieTube extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
+        addUpgradeData(() -> upgradeBlock(3));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 2, 1);
     }
 }

@@ -30,16 +30,18 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = -1, DMG = 6, UP_DMG = 2;
+    private static final int COST = -1;
 
     public Snowblower() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseDamage = damage = DMG;
+        baseDamage = damage = 6;
+        block = baseBlock = 4;
         CardModifierManager.addModifier(this, new PlateMod(2));
 //        baseMagicNumber = magicNumber = 0;
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
+        blck();
 //        Wiz.atb(new ResetExhaustAction(this, false));
         int effect = energyOnUse;
         if (player.hasRelic("Chemical X")) {
@@ -66,16 +68,13 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardModifierManager.addModifier(this, new PlateMod(1));
+            CardModifierManager.addModifier(this, new PlateMod(2));
         });
         addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardModifierManager.addModifier(this, new PlateMod(1));
+            CardModifierManager.addModifier(this, new PlateMod(2));
         });
         addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardModifierManager.addModifier(this, new PlateMod(1));
+            CardModifierManager.addModifier(this, new PlateMod(2));
         });
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
@@ -85,23 +84,13 @@ public class Snowblower extends AbstractMultiUpgradeCard implements ClankCard {
     public void onClank(AbstractMonster target) {
 //        addToTop(new ResetExhaustAction(this, true));
 //        addToTop(new ModifyDamageAction(uuid, -2));
-        int plating = -1;
-        PlateMod plateMod = (PlateMod) CardModifierManager.getModifiers(this, PlateMod.ID).get(0);
-        if (plateMod != null)
-            plating = plateMod.amount;
-        if (plating > 0)
-            addToTop(new ApplyCardModifierAction(this, new PlateMod(-plating)));
+        addToTop(new ApplyCardModifierAction(this, new PlateMod(-3)));
     }
 
     @Override
     public void unClank(AbstractMonster target) {
 //        addToTop(new ModifyDamageAction(uuid, 2));
 //        addToTop(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
-        int plating = -1;
-        PlateMod plateMod = (PlateMod) CardModifierManager.getModifiers(this, PlateMod.ID).get(0);
-        if (plateMod != null)
-            plating = plateMod.amount;
-        if (plating > 0)
-            addToTop(new ApplyCardModifierAction(this, new PlateMod(plating)));
+        addToTop(new ApplyCardModifierAction(this, new PlateMod(3)));
     }
 }

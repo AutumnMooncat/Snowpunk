@@ -1,7 +1,10 @@
 package Snowpunk.actions;
 
 import Snowpunk.patches.DelayRenderPatches;
+import Snowpunk.powers.ChillPower;
+import Snowpunk.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,7 +14,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class RushdownAction extends AbstractGameAction {
     final float xB;
@@ -25,19 +27,19 @@ public class RushdownAction extends AbstractGameAction {
     float dx;
     int[] damages;
     DamageInfo.DamageType damageType;
-    int blockPerHit;
+    int chillPerHit;
 
     public RushdownAction(AbstractCreature source, int[] damages, DamageInfo.DamageType damageType) {
         this(source, damages, damageType, -1);
     }
 
-    public RushdownAction(AbstractCreature source, int[] damages, DamageInfo.DamageType damageType, int blockPerHit) {
+    public RushdownAction(AbstractCreature source, int[] damages, DamageInfo.DamageType damageType, int chillPerHit) {
         this.damages = damages;
         this.source = source;
         this.flipped = source.flipHorizontal;
         this.xB = source.drawX;
         this.damageType = damageType;
-        this.blockPerHit = blockPerHit;
+        this.chillPerHit = chillPerHit;
     }
 
 
@@ -64,9 +66,10 @@ public class RushdownAction extends AbstractGameAction {
                 if (!hitMap.get(aM) && targetToTheRight.get(aM) && source.hb.cX >= aM.hb.cX) {
                     AbstractDungeon.effectList.add(new FlashAtkImgEffect(aM.hb.cX, aM.hb.cY, AttackEffect.BLUNT_HEAVY));
                     aM.damage(new DamageInfo(source, damages[AbstractDungeon.getMonsters().monsters.indexOf(aM)], damageType));
-                    if (blockPerHit > 0) {
-                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.source.hb.cX, this.source.hb.cY, AttackEffect.SHIELD));
-                        source.addBlock(blockPerHit);
+                    if (chillPerHit > 0) {
+//                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.source.hb.cX, this.source.hb.cY, AttackEffect.SHIELD));
+//                        source.addBlock(chillPerHit);
+                        Wiz.applyToEnemyTop(aM, new ChillPower(aM, chillPerHit));
                     }
                     hitMap.put(aM, true);
                 }
@@ -86,9 +89,10 @@ public class RushdownAction extends AbstractGameAction {
                 if (!hitMap.get(aM) && !targetToTheRight.get(aM) && source.hb.cX >= aM.hb.cX) {
                     AbstractDungeon.effectList.add(new FlashAtkImgEffect(aM.hb.cX, aM.hb.cY, AttackEffect.BLUNT_HEAVY));
                     aM.damage(new DamageInfo(source, damages[AbstractDungeon.getMonsters().monsters.indexOf(aM)], damageType));
-                    if (blockPerHit > 0) {
-                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.source.hb.cX, this.source.hb.cY, AttackEffect.SHIELD));
-                        source.addBlock(blockPerHit);
+                    if (chillPerHit > 0) {
+//                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.source.hb.cX, this.source.hb.cY, AttackEffect.SHIELD));
+//                        source.addBlock(chillPerHit);
+                        Wiz.applyToEnemyTop(aM, new ChillPower(aM, chillPerHit));
                     }
                     hitMap.put(aM, true);
                 }

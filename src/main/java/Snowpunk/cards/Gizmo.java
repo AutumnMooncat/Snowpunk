@@ -4,6 +4,8 @@ import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.BrassPower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -19,13 +21,14 @@ public class Gizmo extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 9, BLOCK = 9, UP_DMG = 5, UP_BLOCK = 5;
+    private static final int COST = 2, DMG = 8, BLOCK = 8, UP_DMG = 5, UP_BLOCK = 5;
 
     public Gizmo() {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
-        CardModifierManager.addModifier(this, new GearMod(2));
+        magicNumber = baseMagicNumber = 1;
+        CardModifierManager.addModifier(this, new GearMod(3));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -33,27 +36,21 @@ public class Gizmo extends AbstractMultiUpgradeCard {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         int numGears = getGears();
         if (numGears > 0)
-            Wiz.atb(new ApplyCardModifierAction(this, new PlateMod(numGears)));
+            Wiz.applyToSelf(new BrassPower(p, numGears));
+        if (magicNumber > 0)
+            Wiz.atb(new ApplyCardModifierAction(this, new GearMod(magicNumber)));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> {
-            upgradeDamage(1);
-            upgradeBlock(1);
-            CardModifierManager.addModifier(this, new GearMod(1));
+            upgradeDamage(2);
+            upgradeBlock(2);
         });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> {
-            upgradeDamage(1);
-            upgradeBlock(1);
+            upgradeMagicNumber(1);
             CardModifierManager.addModifier(this, new GearMod(1));
         });
-        addUpgradeData(() -> {
-            upgradeDamage(1);
-            upgradeBlock(1);
-            CardModifierManager.addModifier(this, new GearMod(1));
-        });
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
     }
 }

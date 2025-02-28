@@ -13,8 +13,7 @@
   },
   "${ModID}:ReleaseValve": {
     "NAME": "Release Valve",
-    "DESCRIPTION": "Put [snowpunk:GearIcon] [#ffffff][] random snowpunk:Evaporated cards into your hand. NL Give them a snowpunk:Hat.",
-    "UPGRADE_DESCRIPTION": "Put [snowpunk:GearIcon] [#ffffff][] snowpunk:Evaporated cards into your hand. NL Give them a snowpunk:Hat."
+    "DESCRIPTION": "Apply [snowpunk:GearIcon] [#ffffff][] snowpunk:Singe. NL Play the top card of your draw pile and give it 1 snowpunk:Hot."
   },
   "${ModID}:Scald": {
     "NAME": "Scald",
@@ -71,7 +70,7 @@
   },
   "${ModID}:LetItSnow": {
     "NAME": "Let It Snow",
-    "DESCRIPTION": "Apply [snowpunk:GearIcon] [#ffffff][] snowpunk:Chill to ALL enemies. NL Enemies lose HP equal to their snowpunk:Chill."
+    "DESCRIPTION": "Apply [snowpunk:GearIcon] [#ffffff][] snowpunk:Chill to ALL enemies."
   },
   "${ModID}:Fogification": {
     "NAME": "Fogification",
@@ -80,7 +79,7 @@
   },
   "${ModID}:NixieTube": {
     "NAME": "Nixie Tube",
-    "DESCRIPTION": "{@@}Upgrade [snowpunk:GearIcon] \u00a0cards !M! times."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL Upgrade [snowpunk:GearIcon] \u00a0cards !M! times."
   },
   "${ModID}:MkMod": {
     "EXTENDED_DESCRIPTION": [
@@ -97,11 +96,11 @@
   },
   "${ModID}:FireFist": {
     "NAME": "Fire Fist",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !M! snowpunk:Singe and Vulnerable. NL Exhaust."
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply snowpunk:Singe equal to double the amount of snowpunk:Evaporated cards. NL Exhaust."
   },
   "${ModID}:Gizmo": {
     "NAME": "Gizmo",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain [Snowpunk:GearIcon] [#ffffff][] snowpunk:Plating."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain [Snowpunk:GearIcon] [#ffffff][] snowpunk:Brass. NL Gain !M! [Snowpunk:GearIcon] ."
   },
   "${ModID}:FriendFire": {
     "NAME": "Friend Fire",
@@ -213,7 +212,8 @@
   },
   "${ModID}:Kindness": {
     "NAME": "Kindness",
-    "DESCRIPTION": "Heal an enemy !M! HP. NL Apply !M! snowpunk:Chill."
+    "DESCRIPTION": "Retain. NL Heal an enemy 6 HP. NL Apply !M! snowpunk:Chill. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Heal ALL enemies 6 HP and apply !M! snowpunk:Chill. NL Exhaust."
   },
   "${ModID}:Perfection": {
     "NAME": "Perfection?",
@@ -233,7 +233,7 @@
   },
   "${ModID}:SleighRide": {
     "NAME": "Sleigh Ride",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less per [snowpunk:SnowIcon] ."
+    "DESCRIPTION": "Deal !D! damage and apply !M! snowpunk:Chill to ALL enemies. NL Costs 1 less per [snowpunk:SnowIcon] ."
   },
   "${ModID}:DrillBit": {
     "NAME": "Drill Bit",
@@ -271,8 +271,7 @@
   },
   "${ModID}:PipeBurst": {
     "NAME": "Pipe Burst",
-    "DESCRIPTION": "Gain !B! Block twice. NL snowpunk:Clank: snowpunk:Evaporate a random card.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block twice. NL snowpunk:Clank: snowpunk:Evaporate a card."
+    "DESCRIPTION": "Gain !B! Block. NL snowpunk:Clank: snowpunk:Evaporate a random card."
   },
   "${ModID}:Ventilation": {
     "NAME": "Ventilation",
@@ -284,7 +283,7 @@
   },
   "${ModID}:Toolbox": {
     "NAME": "Toolbox",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade your hand."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade your hand. NL Exhaust."
   },
   "${ModID}:TooMuch": {
     "NAME": "Too Much",
@@ -363,7 +362,7 @@
   },
   "${ModID}:TrainScythe": {
     "NAME": "Train Scythe",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies twice."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies twice. NL Doesn't consume snowpunk:Brass."
   },
   "${ModID}:SteamTrain": {
     "NAME": "Steam Train",
@@ -385,8 +384,8 @@
   },
   "${ModID}:TheSnowman": {
     "NAME": "The Snowman",
-    "DESCRIPTION": "{@@}Ethereal. NL Next turn, NL draw X{!M!|>0=+!M!} cards and NL gain X{!M!|>0=+!M!} [snowpunk:SnowIcon] . NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "{@@}{!Snowpunk:Info!|>-1=Retain. NL }Next turn, NL draw X{!M!|>0=+!M!} cards and NL gain X{!M!|>0=+!M!} [snowpunk:SnowIcon] . NL Exhaust."
+    "DESCRIPTION": "{@@}Give !Snowpunk:M2! card{!Snowpunk:M2!|>1=s} NL X{!M!|>0=+!M!} snowpunk:Hats. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "{@@}Give !Snowpunk:M2! card{!Snowpunk:M2!|>1=s} NL X{!M!|>0=+!M!} snowpunk:Hats."
   },
   "${ModID}:SteamForm": {
     "NAME": "Steam Form",
@@ -411,11 +410,11 @@
   },
   "${ModID}:Breakthrough": {
     "NAME": "Breakthrough",
-    "DESCRIPTION": "Deal !D! damage. NL Put all cards with [snowpunk:GearIcon] \u00a0from your discard pile into your hand."
+    "DESCRIPTION": "Deal !D! damage. NL Put all cards with [snowpunk:GearIcon] \u00a0or snowpunk:Plating from your discard pile into your hand."
   },
   "${ModID}:Snowblower": {
     "NAME": "Snowblower",
-    "DESCRIPTION": "{@@}Deal !D! damage to a random enemy X times. NL snowpunk:Clank: Lose all snowpunk:Plating."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL Deal !D! damage to a random enemy X times. NL snowpunk:Clank: Lose 3 snowpunk:Plating."
   },
   "${ModID}:PressureValves": {
     "NAME": "Pressure Valves",
@@ -504,7 +503,8 @@
   },
   "${ModID}:Miser": {
     "NAME": "Miser",
-    "DESCRIPTION": "{@@}The next{!M!|>1= !M!} snowpunk:Hot or snowpunk:Cold card{!M!|>1=s} you play this turn play{!M!|1=s} twice."
+    "DESCRIPTION": "{@@}Give a snowpunk:Cold card a snowpunk:Hat. NL Upgrade a snowpunk:Hot card 2 times.{!Snowpunk:Info!|0= NL Exhaust.}",
+    "UPGRADE_DESCRIPTION": "{@@}Give a snowpunk:Cold card a snowpunk:Hat. NL Upgrade a snowpunk:Hot card 2 times. NL Increase their snowpunk:Hot and snowpunk:Cold by 1.{!Snowpunk:Info!|0= NL Exhaust.}"
   },
   "${ModID}:Frostburn": {
     "NAME": "Frostburn",

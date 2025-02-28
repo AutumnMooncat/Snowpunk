@@ -20,11 +20,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class SnowFort extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(SnowFort.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 5, UPG_BLOCK = 2;
+    private static final int COST = 1, BLOCK = 6, UPG_BLOCK = 2;
 
     private static ArrayList<TooltipInfo> Tooltip;
 

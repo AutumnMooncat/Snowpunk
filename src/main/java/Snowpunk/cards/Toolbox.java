@@ -39,8 +39,9 @@ public class Toolbox extends AbstractMultiUpgradeCard {
 
     public Toolbox() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        damage = baseDamage = 3;
+        damage = baseDamage = 5;
         isMultiDamage = true;
+        exhaust = true;
 //        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
@@ -90,9 +91,18 @@ public class Toolbox extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> upgradeDamage(2));
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
+        addUpgradeData(() -> {
+            upgradeDamage(1);
+            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
+        });
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

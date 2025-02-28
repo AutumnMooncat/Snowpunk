@@ -15,7 +15,7 @@ public class Jumblomatic extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2, CLANK = 1, UP_CLANK = 1;
+    private static final int COST = 1, CLANK = 1, UP_CLANK = 1;
 
     public Jumblomatic() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -28,7 +28,7 @@ public class Jumblomatic extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBaseCost(1));
+        addUpgradeData(() -> upgradeBaseCost(0));
         addUpgradeData(() -> {
             isInnate = true;
             uDesc();

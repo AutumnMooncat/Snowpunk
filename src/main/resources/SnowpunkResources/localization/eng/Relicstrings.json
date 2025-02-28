@@ -1,7 +1,7 @@
 {
   "${ModID}:IceCreamSandwich": {
     "NAME": "Ice Cream Sandwich",
-    "FLAVOR": "Always have a spare.",
+    "FLAVOR": "Pocket sandwich!",
     "DESCRIPTIONS": [
       "At the start of each combat, gain [snowpunk:SnowIcon] ."
     ]

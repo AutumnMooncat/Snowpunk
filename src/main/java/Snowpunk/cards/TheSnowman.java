@@ -34,7 +34,8 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
 
     public TheSnowman() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        isEthereal = true;
+        magicNumber = baseMagicNumber = 0;
+        secondMagic = baseSecondMagic = 1;
         exhaust = true;
     }
 
@@ -50,8 +51,10 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
             effect += magicNumber;
 
         if (effect > 0) {
-            Wiz.applyToSelf(new DrawCardNextTurnPower(Wiz.adp(), effect));
-            Wiz.applyToSelf(new SnowNextTurnPower(Wiz.adp(), effect));
+//            Wiz.applyToSelf(new DrawCardNextTurnPower(Wiz.adp(), effect));
+//            Wiz.applyToSelf(new SnowNextTurnPower(Wiz.adp(), effect));
+
+            Wiz.atb(new ApplyCardModifierAction(p.hand, secondMagic, new HatMod(effect)));
         }
 //            Wiz.applyToSelf(new TheSnowmanPower(Wiz.adp(), effect));
 
@@ -62,21 +65,12 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(1));
+        addUpgradeData(() -> upgradeSecondMagic(1));
         addUpgradeData(() ->
         {
-            magicNumber = baseMagicNumber = 0;
-            upgradeMagicNumber(1);
-        });
-        addUpgradeData(() ->
-        {
-            isEthereal = false;
+            exhaust = false;
             uDesc();
         });
-        addUpgradeData(() ->
-        {
-            selfRetain = true;
-            upgradeInfo(2);
-        });
-        setDependencies(true, 2, 1);
     }
 }

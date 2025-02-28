@@ -29,6 +29,7 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     public SleighRide() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        magicNumber = baseMagicNumber = 4;
         isMultiDamage = true;
     }
 
@@ -56,7 +57,7 @@ public class SleighRide extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, -1));
+        Wiz.atb(new RushdownAction(p, multiDamage, damageTypeForTurn, magicNumber));
     }
 
     @Override

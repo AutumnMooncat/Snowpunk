@@ -1,6 +1,7 @@
 package Snowpunk.actions;
 
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.PlateMod;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -13,8 +14,9 @@ public class GearCardsToHandAction extends AbstractGameAction {
     @Override
     public void update() {
         for (AbstractCard card : Wiz.adp().discardPile.group) {
-            if (CardModifierManager.hasModifier(card, GearMod.ID))
-                Wiz.atb(new DiscardToHandAction(card));
+            if ((CardModifierManager.hasModifier(card, GearMod.ID) && ((GearMod) CardModifierManager.getModifiers(card, GearMod.ID).get(0)).amount > 0) ||
+                    (CardModifierManager.hasModifier(card, PlateMod.ID) && ((PlateMod) CardModifierManager.getModifiers(card, PlateMod.ID).get(0)).amount > 0))
+                Wiz.att(new DiscardToHandAction(card));
         }
 
         isDone = true;

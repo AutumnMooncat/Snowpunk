@@ -6,6 +6,7 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SingePower;
+import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,7 +24,7 @@ public class FireFist extends AbstractMultiUpgradeCard {
     private static final CardType TYPE = CardType.ATTACK;
 
     private static final int COST = 1;
-    private static final int DMG = 7;
+    private static final int DMG = 10;
 
     public FireFist() {
         super(ID, COST, TYPE, RARITY, TARGET);
@@ -35,8 +36,10 @@ public class FireFist extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
-        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
+        int numEvaporate = EvaporatePanel.evaporatePile.size();
+        if (numEvaporate > 0)
+            Wiz.applyToEnemy(m, new SingePower(m, numEvaporate * 2));
+//        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
     }
 
     @Override

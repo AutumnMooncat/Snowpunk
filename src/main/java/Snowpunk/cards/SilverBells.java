@@ -1,7 +1,10 @@
 package Snowpunk.cards;
 
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.util.Wiz;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
@@ -45,16 +48,8 @@ public class SilverBells extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(1));
-        addUpgradeData(() -> upgradeBlock(1));
-        addUpgradeData(() -> upgradeBlock(1));
-        addUpgradeData(() -> upgradeBlock(1));
-        addUpgradeData(() -> upgradeBlock(1));
-        addUpgradeData(() -> upgradeBlock(1));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
-        setDependencies(true, 3, 2);
-        setDependencies(true, 4, 3);
-        setDependencies(true, 5, 4);
+        addUpgradeData(() -> upgradeBlock(2));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

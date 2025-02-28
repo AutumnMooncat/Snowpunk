@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
@@ -20,8 +21,10 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
     public static final String ID = makeID("Enhance");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     private ArrayList<AbstractCard> cannotUpgrade = new ArrayList<>();
+    private ArrayList<AbstractCard> badCard = new ArrayList<>();
     private final int timesToUpgrade;
     private List<AbstractCardModifier> modifiers = new ArrayList<>();
+    private Predicate<AbstractCard> predicate;
     private boolean random;
     int heat = 0;
     public EnhanceCardInHardAction(int timesToUpgrade) {
@@ -51,17 +54,34 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
     public EnhanceCardInHardAction(int numCards, int timesToUpgrade, int heat, List<AbstractCardModifier> modifiers, boolean random) {
         this.actionType = ActionType.CARD_MANIPULATION;
         amount = numCards;
+        cannotUpgrade = new ArrayList<>();
+        badCard = new ArrayList<>();
         duration = startDuration = Settings.ACTION_DUR_FAST;
         this.timesToUpgrade = timesToUpgrade;
         if (modifiers != null)
             this.modifiers.addAll(modifiers);
         this.random = random;
         this.heat = heat;
+        predicate = (c) -> true;
+    }
+
+    public EnhanceCardInHardAction(int numCards, int timesToUpgrade, int heat, List<AbstractCardModifier> modifiers, boolean random, Predicate<AbstractCard> predicate) {
+        this.actionType = ActionType.CARD_MANIPULATION;
+        amount = numCards;
+        duration = startDuration = Settings.ACTION_DUR_FAST;
+        this.timesToUpgrade = timesToUpgrade;
+        if (modifiers != null)
+            this.modifiers.addAll(modifiers);
+        this.random = random;
+        this.heat = heat;
+        this.predicate = predicate;
+        cannotUpgrade = new ArrayList<>();
+        badCard = new ArrayList<>();
     }
 
     public void update() {
         if (duration == startDuration) {
-            if (timesToUpgrade > 0 && modifiers.size() == 0) {
+            if (timesToUpgrade > 0 && modifiers.size() == 0 && heat == 0) {
                 for (AbstractCard card : Wiz.adp().hand.group) {
                     if (!card.canUpgrade())
                         cannotUpgrade.add(card);
@@ -70,6 +90,11 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
                 }
                 Wiz.adp().hand.group.removeAll(cannotUpgrade);
             }
+            for (AbstractCard card : Wiz.adp().hand.group) {
+                if (!predicate.test(card))
+                    badCard.add(card);
+            }
+            Wiz.adp().hand.group.removeAll(badCard);
 
             if (Wiz.adp().hand.size() == 0) {
                 isDone = true;
@@ -112,6 +137,10 @@ public class EnhanceCardInHardAction extends AbstractGameAction {
 
     private void returnCards() {
         for (AbstractCard card : cannotUpgrade)
+            if (!Wiz.adp().hand.contains(card))
+                Wiz.adp().hand.addToTop(card);
+
+        for (AbstractCard card : badCard)
             if (!Wiz.adp().hand.contains(card))
                 Wiz.adp().hand.addToTop(card);
 

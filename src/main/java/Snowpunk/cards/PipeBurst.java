@@ -23,9 +23,10 @@ public class PipeBurst extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 1, BLOCK = 4;
+    private static final int COST = 1, BLOCK = 10;
 
     boolean random;
+
     public PipeBurst() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
@@ -34,19 +35,16 @@ public class PipeBurst extends AbstractMultiUpgradeCard implements ClankCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        blck();
 
         addToBot(new ClankAction(this));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeBlock(1));
+        addUpgradeData(() -> upgradeBlock(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> {
-            random = false;
-            uDesc();
-        });
+        addUpgradeData(() -> upgradeBlock(3));
+        setDependencies(true, 2, 0);
     }
 
     @Override
