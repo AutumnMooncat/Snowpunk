@@ -230,7 +230,7 @@ public class SnowpunkMod implements
 
     @Override
     public void receiveEditStrings() {
-        String curPath = "eng";
+        String curPath = Settings.language.name().toLowerCase();
         BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/Cardstrings.json");
 
         BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + curPath + "/Relicstrings.json");
@@ -251,7 +251,7 @@ public class SnowpunkMod implements
     @Override
     public void receiveEditKeywords() {
         Gson gson = new Gson();
-        String json = Gdx.files.internal(modID + "Resources/localization/eng/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String json = Gdx.files.internal(modID + "Resources/localization/" + Settings.language.name().toLowerCase() + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
 
         if (keywords != null) {
@@ -259,46 +259,37 @@ public class SnowpunkMod implements
                 BaseMod.addKeyword(modID.toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
                 switch (keyword.ID) {
                     case "hot":
-                        KeywordManager.HOT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.HOT = keyword.NAMES[0].toLowerCase();
                         break;
                     case "cold":
-                        KeywordManager.COLD = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.COLD = keyword.NAMES[0].toLowerCase();
                         break;
                     case "snowball":
-                        KeywordManager.SNOW = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.SNOW = keyword.NAMES[0].toLowerCase();
                         break;
                     case "fireball":
-                        KeywordManager.FIRE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.FIRE = keyword.NAMES[0].toLowerCase();
                         break;
                     case "hat":
-                        KeywordManager.HAT = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.HAT = keyword.NAMES[0].toLowerCase();
                         break;
                     case "plating":
-                        KeywordManager.PLATE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
-                        break;
-                    case "condensed":
-                        KeywordManager.COND = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.PLATE = keyword.NAMES[0].toLowerCase();
                         break;
                     case "gear":
-                        KeywordManager.GEAR = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
-                        break;
-                    case "overdrive":
-                        KeywordManager.OVER = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.GEAR = keyword.NAMES[0].toLowerCase();
                         break;
                     case "holly":
-                        KeywordManager.HOLLY = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.HOLLY = keyword.NAMES[0].toLowerCase();
                         break;
                     case "brass":
-                        KeywordManager.BRASS = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
-                        break;
-                    case "flamin":
-                        KeywordManager.FLAMIN = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.BRASS = keyword.NAMES[0].toLowerCase();
                         break;
                     case "singe":
-                        KeywordManager.SINGE = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.SINGE = keyword.NAMES[0].toLowerCase();
                         break;
                     case "chill":
-                        KeywordManager.CHILL = modID.toLowerCase() + ":" + keyword.ID.toLowerCase();
+                        KeywordManager.CHILL = keyword.NAMES[0].toLowerCase();
                         break;
                 }
             }

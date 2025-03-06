@@ -24,6 +24,11 @@
       "Count as [E] NL Spent after [E] NL Conserved between turns."
     ]
   },
+  "${ModID}:TemperatureContext": {
+    "TEXT": [
+      "."
+    ]
+  },
   "${ModID}:Upgrade": {
     "TEXT": [
       "Upgrade"

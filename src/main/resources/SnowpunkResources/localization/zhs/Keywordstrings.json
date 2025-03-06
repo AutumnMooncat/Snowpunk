@@ -1,0 +1,246 @@
+[
+  {
+    "ID": "singe",
+    "PROPER_NAME": "灼痕",
+    "NAMES": [
+      "灼痕"
+    ],
+    "DESCRIPTION": "拥有 #y灼痕 的目标在卡牌 #y蒸发 时失去生命值。"
+  },
+  {
+    "PROPER_NAME": "卡壳",
+    "NAMES": [
+      "卡壳"
+    ],
+    "DESCRIPTION": "触发效果，除非被阻止。"
+  },
+  {
+    "PROPER_NAME": "熔铸",
+    "NAMES": [
+      "熔铸"
+    ],
+    "DESCRIPTION": "将一张卡牌移出战斗。被熔铸的卡牌在本场战斗中会复制其效果。"
+  },
+  {
+    "PROPER_NAME": "冻伤",
+    "NAMES": [
+      "冻伤"
+    ],
+    "DESCRIPTION": "带有 #y冻伤 的敌人受到的攻击伤害额外等同于其 #y寒颤 层数。"
+  },
+  {
+    "PROPER_NAME": "货舱",
+    "NAMES": [
+      "货舱"
+    ],
+    "DESCRIPTION": "货舱中的卡牌会在战斗间保留，直至被移除。"
+  },
+  {
+    "ID": "holly",
+    "PROPER_NAME": "冬青祝福 [snowpunk:HollyIcon] ",
+    "NAMES": [
+      "冬青祝福"
+    ],
+    "DESCRIPTION": "如果你拥有至少 #b12 层 #y冬青祝福 ，下张攻击或技能牌将施放两次，随后失去 #b12 层 #y冬青祝福 。"
+  },
+  {
+    "ID": "buffer",
+    "PROPER_NAME": "缓冲",
+    "NAMES": [
+      "缓冲"
+    ],
+    "DESCRIPTION": "抵消下一次你将要受到的伤害。"
+  },
+  {
+    "ID": "hat",
+    "PROPER_NAME": "礼帽",
+    "NAMES": [
+      "礼帽"
+    ],
+    "DESCRIPTION": "可免费打出此卡，但随后失去一顶 #y礼帽 。"
+  },
+  {
+    "PROPER_NAME": "曲柄强化",
+    "NAMES": [
+      "曲柄强化"
+    ],
+    "DESCRIPTION": "你下一张带有 [Snowpunk:GearIcon] 的卡牌打出时，会额外获得 [Snowpunk:GearIcon] 。"
+  },
+  {
+    "ID": "condensed",
+    "PROPER_NAME": "凝能",
+    "NAMES": [
+      "凝能"
+    ],
+    "DESCRIPTION": "本回合可无视 [E] 消耗打出此卡，但如此做会 #y消耗 。"
+  },
+  {
+    "ID": "fireball",
+    "PROPER_NAME": "火球充能 [snowpunk:FireIcon] ",
+    "NAMES": [
+      "火球充能"
+    ],
+    "DESCRIPTION": "你下一张打出的卡牌变为 #y炽热 。"
+  },
+  {
+    "ID": "snowball",
+    "PROPER_NAME": "雪球能量 [snowpunk:SnowIcon] ",
+    "NAMES": [
+      "雪球能量"
+    ],
+    "DESCRIPTION": "视为 [E] [REMOVE_SPACE] 。 NL 在 [E] 后消耗 [REMOVE_SPACE] 。 NL 可在回合间保留。"
+  },
+  {
+    "ID": "chill",
+    "PROPER_NAME": "寒颤",
+    "NAMES": [
+      "寒颤"
+    ],
+    "DESCRIPTION": "带有 #y寒颤 的敌人本回合降低对应层数的伤害。"
+  },
+  {
+    "ID": "hot",
+    "PROPER_NAME": "炽热 [snowpunk:HotIcon]",
+    "NAMES": [
+      "炽热"
+    ],
+    "DESCRIPTION": "洗入 #y蒸发 牌堆。当从 #y蒸发 牌堆抽到时，减少 #b1 层 #y炽热 。",
+    "EXTENDED_DESCRIPTION": [
+      " 消耗 。"
+    ]
+  },
+  {
+    "ID": "cold",
+    "PROPER_NAME": "酷寒 [snowpunk:ColdIcon]",
+    "NAMES": [
+      "酷寒"
+    ],
+    "DESCRIPTION": "抽取 [snowpunk:ColdIcon] 张卡牌。"
+  },
+  {
+    "ID": "gear",
+    "PROPER_NAME": "齿轮 [snowpunk:GearIcon]",
+    "NAMES": [
+      "齿轮"
+    ],
+    "DESCRIPTION": "提升卡牌的 [snowpunk:GearIcon] 效果。"
+  },
+  {
+    "ID": "brass",
+    "PROPER_NAME": "黄铜增幅",
+    "NAMES": [
+      "黄铜增幅"
+    ],
+    "DESCRIPTION": "在本次战斗剩余时间内，提升下一张可用卡牌的伤害与 #y格挡 。"
+  },
+  {
+    "PROPER_NAME": "残影",
+    "NAMES": [
+      "残影"
+    ],
+    "DESCRIPTION": "#y格挡 在下一回合开始时不会被移除。"
+  },
+  {
+    "ID": "modifications",
+    "PROPER_NAME": "改装",
+    "NAMES": [
+      "改装"
+    ],
+    "DESCRIPTION": "改装包含 #y炽热 、 #y酷寒 、 [Snowpunk:GearIcon] 、 #y镀层 和 #y礼帽 ！"
+  },
+  {
+    "ID": "plating",
+    "PROPER_NAME": "镀层 [Snowpunk:PlateIcon] ",
+    "NAMES": [
+      "镀层"
+    ],
+    "DESCRIPTION": "增加卡牌的伤害和 #y格挡 。"
+  },
+  {
+    "PROPER_NAME": "蒸发",
+    "NAMES": [
+      "蒸发"
+    ],
+    "DESCRIPTION": "将一张卡牌洗入 #y蒸发 牌堆。"
+  },
+  {
+    "PROPER_NAME": "已蒸发",
+    "NAMES": [
+      "已蒸发"
+    ],
+    "DESCRIPTION": "#y蒸发牌堆 中的所有卡牌视为 #y已蒸发 。"
+  },
+  {
+    "ID": "overdrive",
+    "PROPER_NAME": "过载 [snowpunk:OverIcon] ",
+    "NAMES": [
+      "过载"
+    ],
+    "DESCRIPTION": "每层 #y过载 可额外施放一次。"
+  },
+  {
+    "PROPER_NAME": "钩锁处决",
+    "NAMES": [
+      "钩锁处决",
+      "勾爪"
+    ],
+    "DESCRIPTION": "若你的 #y格挡 值高于目标生命值，直接将其移出战斗。"
+  },
+  {
+    "PROPER_NAME": "临时改装",
+    "NAMES": [
+      "临时改装",
+      "马虎"
+    ],
+    "DESCRIPTION": "仅在战斗中可以 #y升级 。"
+  },
+  {
+    "PROPER_NAME": "绝境",
+    "NAMES": [
+      "绝境"
+    ],
+    "DESCRIPTION": "若生命值 ≤ 最大值的 #b50% 或拥有至少 #b2 种独特减益，此卡消耗为 #b0 。"
+  },
+  {
+    "PROPER_NAME": "二连击",
+    "NAMES": [
+      "二连击"
+    ],
+    "DESCRIPTION": "若本回合首次打出此卡，额外施放一次。"
+  },
+  {
+    "PROPER_NAME": "复制",
+    "NAMES": [
+      "复制"
+    ],
+    "DESCRIPTION": "将本卡的复制品加入弃牌堆。"
+  },
+  {
+    "PROPER_NAME": "未觉醒",
+    "NAMES": [
+      "未觉醒"
+    ],
+    "DESCRIPTION": "每场战斗开始时位于抽牌堆底部。"
+  },
+  {
+    "PROPER_NAME": "沉重",
+    "NAMES": [
+      "沉重"
+    ],
+    "DESCRIPTION": "当此卡被重新洗牌时，移至抽牌堆底部。"
+  },
+  {
+    "PROPER_NAME": "超频",
+    "NAMES": [
+      "超频"
+    ],
+    "DESCRIPTION": "每层 #y超频 使可调整效果提升 #b25% 。"
+  },
+  {
+    "PROPER_NAME": "升级",
+    "NAMES": [
+      "升级"
+    ],
+    "DESCRIPTION": "增加 #g数值 /获得 #g新词条 。"
+  }
+]

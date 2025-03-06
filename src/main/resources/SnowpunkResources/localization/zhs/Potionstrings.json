@@ -1,0 +1,24 @@
+{
+  "Snowpunk:BottledInspiration": {
+    "NAME": "瓶装灵感",
+    "DESCRIPTIONS": [
+      "获得 #b",
+      " #y黄铜增幅 。"
+    ]
+  },
+  "Snowpunk:SteamfogBrew": {
+    "NAME": "蒸汽雾酿",
+    "DESCRIPTIONS": [
+      "给予 #b",
+      " 层 #y灼痕 并且 #b",
+      " 层 #y寒颤 。"
+    ]
+  },
+  "Snowpunk:IceblastTonic": {
+    "NAME": "冰爆药剂",
+    "DESCRIPTIONS": [
+      "赋予手牌中所有卡牌 #b",
+      " 层 #y酷寒 。"
+    ]
+  }
+}

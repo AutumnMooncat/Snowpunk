@@ -19,7 +19,7 @@ public class IceCreamSandwich extends AbstractEasyRelic {
         tips.clear();
         tips.add(new PowerTip(name, description));
         initializeTips();
-        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
+//        tips.add(new PowerTip(BaseMod.getKeywordProper(KeywordManager.SNOW), BaseMod.getKeywordDescription(KeywordManager.SNOW)));
     }
 
     @Override

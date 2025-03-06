@@ -1,0 +1,370 @@
+{
+  "Snowpunk:Barrier": {
+    "NAME": "屏障",
+    "DESCRIPTION": "获得 !B! 点 格挡 两次。"
+  },
+  "Snowpunk:Belt": {
+    "NAME": "皮带",
+    "DESCRIPTION": "抽取 !M! 张牌。 NL snowpunk:卡壳: 弃置 !M! 张牌。"
+  },
+  "Snowpunk:Blade": {
+    "NAME": "刀刃",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "Snowpunk:Slicer": {
+    "NAME": "切片器",
+    "DESCRIPTION": "造成 !D! 点伤害 两次。"
+  },
+  "Snowpunk:Cane": {
+    "NAME": "手杖",
+    "DESCRIPTION": "snowpunk:勾爪 目标敌人。"
+  },
+  "Snowpunk:Bismuth": {
+    "NAME": "铋",
+    "DESCRIPTION": "使目标的减益效果翻倍。 NL 消耗 。"
+  },
+  "Snowpunk:Supercharge": {
+    "NAME": "超级充电",
+    "DESCRIPTION": "使你的增益效果翻倍。 NL 消耗 。"
+  },
+  "Snowpunk:HeatCoils": {
+    "NAME": "加热线圈",
+    "DESCRIPTION": "给予 !M! 层 snowpunk:灼痕 。"
+  },
+  "Snowpunk:Cryogen": {
+    "NAME": "冷冻剂",
+    "DESCRIPTION": "给予 !Snowpunk:M2! 层 snowpunk:寒颤 。"
+  },
+  "Snowpunk:IronSheet": {
+    "NAME": "铁板",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
+  },
+  "Snowpunk:ToolboxPart": {
+    "NAME": "工具箱零件",
+    "DESCRIPTION": "使一张牌的 [Snowpunk:GearIcon] 翻倍。 NL 消耗 。"
+  },
+  "Snowpunk:Engine": {
+    "NAME": "引擎",
+    "DESCRIPTION": "在你的回合开始时，"
+  },
+  "Snowpunk:Vents": {
+    "NAME": "通风口",
+    "DESCRIPTION": "每当你从蒸发堆中抽取一张牌时，"
+  },
+  "Snowpunk:Latch": {
+    "NAME": "锁扣",
+    "DESCRIPTION": "在你的回合开始时，"
+  },
+  "Snowpunk:Whip": {
+    "NAME": "鞭子",
+    "DESCRIPTION": "每当你给予一个减益效果时，"
+  },
+  "Snowpunk:Barrel": {
+    "NAME": "桶",
+    "DESCRIPTION": "在你的回合结束时，对于你手中的每张牌，"
+  },
+  "Snowpunk:BrassMagnet": {
+    "NAME": "黄铜磁铁",
+    "DESCRIPTION": "在你打出一张带有 snowpunk:改装 的牌后，"
+  },
+  "Snowpunk:Springlock": {
+    "NAME": "弹簧锁",
+    "DESCRIPTION": "每当你在没有 格挡 的情况下受到攻击时，"
+  },
+  "Snowpunk:Magnifier": {
+    "NAME": "放大镜",
+    "DESCRIPTION": "每当你抽取一张 力量 牌或 消耗 牌时，"
+  },
+  "Snowpunk:Hollow": {
+    "NAME": "空心",
+    "DESCRIPTION": "snowpunk:绝境 。"
+  },
+  "Snowpunk:Swift": {
+    "NAME": "敏捷",
+    "DESCRIPTION": "snowpunk:二连击 。"
+  },
+  "Snowpunk:Replicable": {
+    "NAME": "可复制",
+    "DESCRIPTION": "snowpunk:复制 。"
+  },
+  "Snowpunk:Searing": {
+    "NAME": "灼热",
+    "DESCRIPTION": "可以多次 snowpunk:升级 。"
+  },
+  "Snowpunk:Armor": {
+    "NAME": "护甲",
+    "DESCRIPTION": "每当你获得 格挡 时，"
+  },
+  "Snowpunk:Crank": {
+    "NAME": "曲柄强化",
+    "DESCRIPTION": "在你每回合打出第一张牌后，"
+  },
+  "Snowpunk:Wrench": {
+    "NAME": "扳手",
+    "DESCRIPTION": "在一张牌 snowpunk:卡壳 后，"
+  },
+  "Snowpunk:Juggler": {
+    "NAME": "杂耍者",
+    "DESCRIPTION": "{@@}给 !M! 张随机牌 一个 snowpunk:帽子 。"
+  },
+  "Snowpunk:Smelter": {
+    "NAME": "熔炉",
+    "DESCRIPTION": "{@@}将 !M! 张已 消耗 的牌 移到蒸发堆。"
+  },
+  "Snowpunk:Trench": {
+    "NAME": "战壕",
+    "DESCRIPTION": "使你的 格挡 翻倍。"
+  },
+  "Snowpunk:Freezer": {
+    "NAME": "冷冻器",
+    "DESCRIPTION": "将你的 [E] 转换为 [Snowpunk:SnowIcon] 。"
+  },
+  "Snowpunk:Capsule": {
+    "NAME": "胶囊",
+    "DESCRIPTION": "{@@}获得 {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]} 。 NL snowpunk:卡壳: 失去 [Snowpunk:SnowIcon] 。"
+  },
+  "Snowpunk:Spectrometer": {
+    "NAME": "光谱仪",
+    "DESCRIPTION": "{@@} 消耗 一张牌。 NL 向你的手牌中添加 {!M!|1= 1 张*小刀|@=!M! 张*小刀}。"
+  },
+  "Snowpunk:Winder": {
+    "NAME": "绕线器",
+    "DESCRIPTION": " snowpunk:过载 你的手牌。"
+  },
+  "Snowpunk:Goblet": {
+    "NAME": "高脚杯",
+    "DESCRIPTION": "获得 !Snowpunk:M2! 点力量。 NL 阻止你的下一个增益效果。 NL 消耗 。"
+  },
+  "Snowpunk:Armageddon": {
+    "NAME": "末日",
+    "DESCRIPTION": "使你的手牌 snowpunk:炽热 。 NL 消耗 。"
+  },
+  "Snowpunk:NorEaster": {
+    "NAME": "东北风",
+    "DESCRIPTION": "使你的弃牌堆 snowpunk:酷寒 。 消耗 。"
+  },
+  "Snowpunk:Counter": {
+    "NAME": "计数器",
+    "DESCRIPTION": "在你每回合抽取牌的前 !M! 次，",
+    "EXTENDED_DESCRIPTION": [
+      "在你每回合抽取牌的前 #b",
+      " 次， "
+    ]
+  },
+  "Snowpunk:Tongs": {
+    "NAME": "钳子",
+    "DESCRIPTION": "将其 snowpunk:升级  !Snowpunk:M2! 次。",
+    "EXTENDED_DESCRIPTION": [
+      "将其 snowpunk:升级  #b",
+      " 次。"
+    ]
+  },
+  "Snowpunk:Anvil": {
+    "NAME": "铁砧",
+    "DESCRIPTION": "给它 !Snowpunk:M2! 层 snowpunk:镀层 。",
+    "EXTENDED_DESCRIPTION": [
+      "给它 #b",
+      " #y镀层 。"
+    ]
+  },
+  "Snowpunk:Compactor": {
+    "NAME": "压实机",
+    "DESCRIPTION": " 消耗 它并获得 !Snowpunk:M2! 层 snowpunk:黄铜增幅 。",
+    "EXTENDED_DESCRIPTION": [
+      " 消耗 它并获得 #b",
+      " #y黄铜增幅 。"
+    ]
+  },
+  "Snowpunk:Mirror": {
+    "NAME": "镜子",
+    "DESCRIPTION": "将一个副本添加到你的弃牌堆。",
+    "EXTENDED_DESCRIPTION": [
+      "将 #b",
+      " 个副本添加到你的弃牌堆。",
+      "将一个副本添加到你的弃牌堆。"
+    ]
+  },
+  "Snowpunk:Froster": {
+    "NAME": "制霜器",
+    "DESCRIPTION": "给它一个 snowpunk:帽子 。",
+    "EXTENDED_DESCRIPTION": [
+      "给它 #b",
+      " 个 #y帽子 。",
+      "给它一个 #y帽子 。"
+    ]
+  },
+  "Snowpunk:Fluxinator": {
+    "NAME": "通量发生器",
+    "DESCRIPTION": "随机使它变为 snowpunk:炽热 或 snowpunk:酷寒 。",
+    "EXTENDED_DESCRIPTION": [
+      "随机使它变为 snowpunk:炽热 或 snowpunk:酷寒 #b",
+      " 次。",
+      "随机使它变为 snowpunk:炽热 或 snowpunk:酷寒 。"
+    ]
+  },
+  "Snowpunk:Garland": {
+    "NAME": "花环",
+    "DESCRIPTION": "获得 !Snowpunk:M2! 个 [Snowpunk:HollyIcon] 。",
+    "EXTENDED_DESCRIPTION": [
+      "获得 #b",
+      " 层 #y冬青祝福 。",
+      "获得 1 层 #y冬青祝福 。"
+    ]
+  },
+  "Snowpunk:Randomizer": {
+    "NAME": "随机器",
+    "DESCRIPTION": "向你的手牌中添加一张任意颜色的随机攻击牌。",
+    "EXTENDED_DESCRIPTION": [
+      "向你的手牌中添加 #b",
+      " 张任意颜色的随机攻击牌。",
+      "向你的手牌中添加一张任意颜色的随机攻击牌。"
+    ]
+  },
+  "Snowpunk:Embers": {
+    "NAME": "余烬",
+    "DESCRIPTION": "对一个随机敌人给予 !Snowpunk:M2! 层 snowpunk:灼痕 。",
+    "EXTENDED_DESCRIPTION": [
+      "对一个随机敌人给予 #b",
+      " 层 #y灼痕 。",
+      "对一个随机敌人给予 #b1 层 #y灼痕 。"
+    ]
+  },
+  "Snowpunk:AdjectiveCore": {
+    "NAME": "形容词",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "豆子",
+      "大的",
+      "黑色的",
+      "蓝色的",
+      "轰鸣的",
+      "黄铜的",
+      "英国的",
+      "厚实的",
+      "令人困惑的",
+      "酷的",
+      "疯狂的",
+      "脆的",
+      "硬皮的",
+      "戴维",
+      "脱水的",
+      "困惑的",
+      "喝醉的",
+      "无尽的",
+      "邪恶的",
+      "结霜的",
+      "狡猾的",
+      "毛茸茸的",
+      "G",
+      "贪婪的",
+      "绿色的",
+      "怪诞的",
+      "神圣的",
+      "热的",
+      "快乐的",
+      "滑稽的",
+      "传奇的",
+      "月球的",
+      "神奇的",
+      "中间的",
+      "莫达戈内",
+      "潮湿的",
+      "先生",
+      "夫人",
+      "讨厌的",
+      "过度的",
+      "过度调整的",
+      "美味的",
+      "皮娜",
+      "流行的",
+      "古怪的",
+      "激进的",
+      "红色的",
+      "红鼻子的",
+      "玫瑰色的",
+      "圆胖的",
+      "奔跑的",
+      "沙质的",
+      "可爱的",
+      "沙米",
+      "病态的",
+      "迟缓的",
+      "小的",
+      "臭的",
+      "石头的",
+      "短粗的",
+      "超级的",
+      "超级超级的",
+      "可疑的",
+      "这个",
+      "厚实的",
+      "涡轮的",
+      "不",
+      "水浸的",
+      "古怪的",
+      "异想天开的",
+      "白色的",
+      "摇晃的",
+      "不稳定的",
+      "令人烦恼的",
+      "你是",
+      "你的"
+    ]
+  },
+  "Snowpunk:NameCore": {
+    "NAME": "名字",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "9000",
+      "天使",
+      "攻击",
+      "秋天",
+      "抢球者",
+      "豆子",
+      "炸弹",
+      "潮人",
+      "屁股",
+      "布莱恩",
+      "泡泡",
+      "大炮",
+      "大块头",
+      "导体",
+      "导体",
+      "困惑",
+      "装置",
+      "传送带",
+      "破坏者",
+      "小玩意儿",
+      "埃里克",
+      "眼睛",
+      "手",
+      "-inator",
+      "火焰",
+      "冻伤",
+      "小发明",
+      "眼镜",
+      "小妖精",
+      "枪",
+      "琼斯",
+      "K",
+      "融化器",
+      "海洋",
+      "零件",
+      "潘德",
+      "熊猫",
+      "铲屎官",
+      "土豆",
+      "圣诞老人",
+      "盾牌",
+      "雪堆",
+      "雪人",
+      "跺脚者",
+      "标签",
+      "小玩意儿",
+      "奇怪的东西",
+      "火车",
+      "口哨",
+      "烦恼"
+    ]
+  }
+}

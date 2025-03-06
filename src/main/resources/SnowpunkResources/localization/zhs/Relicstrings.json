@@ -1,0 +1,115 @@
+{
+  "Snowpunk:IceCreamSandwich": {
+    "NAME": "冰淇淋三明治",
+    "FLAVOR": "口袋三明治！",
+    "DESCRIPTIONS": [
+      "每场战斗开始时，获得 [snowpunk:SnowIcon] 。"
+    ]
+  },
+  "Snowpunk:BrassPipe": {
+    "NAME": "黄铜烟斗",
+    "FLAVOR": "为忙碌的头脑准备。",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b5 #ysnowpunk:黄铜增幅 。"
+    ]
+  },
+  "Snowpunk:ForbiddenScoop": {
+    "NAME": "禁忌冰勺",
+    "FLAVOR": "只需削去顶端一点——",
+    "DESCRIPTIONS": [
+      "在的你回合开始时，获得 [snowpunk:SnowIcon] 。捡起时，失去 #r",
+      " 点最大生命值 。",
+      "你的回合开始时，获得 [snowpunk:SnowIcon] 。你究竟做了什么？",
+      "你的回合开始时，获得 [snowpunk:SnowIcon] 。 NL 捡起时，失去 #r33% 最大生命值。"
+    ]
+  },
+  "Snowpunk:ScrapHeap": {
+    "NAME": "废料堆",
+    "FLAVOR": "'让我看看能用这个做什么……'",
+    "DESCRIPTIONS": [
+      "捡起后，永久提升你牌组中最多 #b3 张可用卡牌的伤害和 #y格挡 。",
+      "提升伤害和格挡"
+    ]
+  },
+  "Snowpunk:SpareGlove": {
+    "NAME": "备用手套",
+    "FLAVOR": "'有点冷，不是吗？'",
+    "DESCRIPTIONS": [
+      "#ysnowpunk:酷寒 卡牌 #y保留 。"
+    ]
+  },
+  "Snowpunk:BananaSplit": {
+    "NAME": "香蕉圣代",
+    "FLAVOR": "有三个球！",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] 。 NL 替换 #y冰淇淋三明治 。"
+    ]
+  },
+  "Snowpunk:Mistletoe": {
+    "NAME": "槲寄生",
+    "FLAVOR": "‘真浪漫！’",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b",
+      "层 #ysnowpunk:冬青祝福 。"
+    ]
+  },
+  "Snowpunk:Monocle": {
+    "NAME": "单片眼镜",
+    "FLAVOR": "‘你看到我所看到的了吗？’",
+    "DESCRIPTIONS": [
+      "每场战斗中你打出的第一张带有 [Snowpunk:GearIcon] 的卡牌获得 #b",
+      " [Snowpunk:GearIcon] 。"
+    ]
+  },
+  "Snowpunk:SpareWrench": {
+    "NAME": "备用扳手",
+    "FLAVOR": "‘我还在想我把这东西放哪儿了呢！’",
+    "DESCRIPTIONS": [
+      "每场战斗中，防止你前 #b2 次 #ysnowpunk:卡壳 。"
+    ]
+  },
+  "Snowpunk:ChemicalS": {
+    "NAME": "化学剂S",
+    "FLAVOR": "警告：不可食用。虽然它尝起来像冰淇淋。别问我是怎么知道的。",
+    "DESCRIPTIONS": [
+      "#bX 费卡牌不再消耗 [Snowpunk:SnowIcon] 。"
+    ]
+  },
+  "Snowpunk:NaughtyList": {
+    "NAME": "淘气名单",
+    "FLAVOR": "‘他在你睡觉时看着你……’",
+    "DESCRIPTIONS": [
+      "在你回合开始时，获得 [E] 。每场战斗中，你前 #b3 次给予负面效果时，获得一个该负面效果的复制。"
+    ]
+  },
+  "Snowpunk:MagicScarf": {
+    "NAME": "魔法围巾",
+    "FLAVOR": "与另一件魔法服饰搭配。",
+    "DESCRIPTIONS": [
+      "每当你打出带 #y礼帽 的卡牌时，抽一张牌。"
+    ]
+  },
+  "Snowpunk:BrassEgg": {
+    "NAME": "黄铜蛋",
+    "FLAVOR": "你能听见内部齿轮转动的声音。",
+    "DESCRIPTIONS": [
+      "每当你向牌组中添加一张卡牌时，将其伤害和 #y格挡 提升 #b",
+      "."
+    ]
+  },
+  "Snowpunk:StrangeGizmo": {
+    "NAME": "奇异装置",
+    "FLAVOR": "真是一件机械奇迹。",
+    "DESCRIPTIONS": [
+      "向牌组添加卡牌时，可 #y snowpunk:升级  一张随机卡牌代替。",
+      "随机 snowpunk:升级 "
+    ]
+  },
+  "Snowpunk:Lightbulb": {
+    "NAME": "灯泡",
+    "FLAVOR": "蟹老板，我有个主意！",
+    "DESCRIPTIONS": [
+      "你每回合第一次 #ysnowpunk:卡壳 时，获得 [E] 。"
+    ]
+  }
+}

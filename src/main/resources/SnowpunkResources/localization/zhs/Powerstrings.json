@@ -1,0 +1,401 @@
+{
+  "Snowpunk:SingePower": {
+    "NAME": "灼痕",
+    "DESCRIPTIONS": [
+      "每当一张卡牌 #y蒸发 时，此生物失去 #b",
+      " 点生命值。"
+    ]
+  },
+  "Snowpunk:ChillPower": {
+    "NAME": "寒颤",
+    "DESCRIPTIONS": [
+      "本回合攻击伤害降低 #b",
+      " 点。"
+    ]
+  },
+  "Snowpunk:FireballPower": {
+    "NAME": "点燃",
+    "DESCRIPTIONS": [
+      "你打出的下一张卡牌获得 #b1 层 #y炽热 。",
+      "你打出的接下来 #b",
+      " 张卡牌获得 #b1 层 #y炽热 。"
+    ]
+  },
+  "Snowpunk:FireburstPower": {
+    "NAME": "烈焰爆发",
+    "DESCRIPTIONS": [
+      "你打出的下一张卡牌获得 #b",
+      " 点 #y炽热 。"
+    ]
+  },
+  "Snowpunk:SnowNextTurnPower": {
+    "NAME": "细雪将至",
+    "DESCRIPTIONS": [
+      "在下一回合开始时，获得 #b",
+      " [Snowpunk:SnowIcon] 。"
+    ]
+  },
+  "Snowpunk:CrankPower": {
+    "NAME": "曲柄强化",
+    "DESCRIPTIONS": [
+      "你打出的下一张带有 [Snowpunk:GearIcon] 的卡牌获得 #b",
+      " [Snowpunk:GearIcon] 。"
+    ]
+  },
+  "Snowpunk:BrainBlastPower": {
+    "NAME": "脑力爆发",
+    "DESCRIPTIONS": [
+      "本回合 [Snowpunk:GearIcon] 效果提升 #b",
+      " 点。"
+    ]
+  },
+  "Snowpunk:WindupPower": {
+    "NAME": "上发条",
+    "DESCRIPTIONS": [
+      "防止下次 #y黄铜增幅 被消耗。",
+      "防止接下来 #b",
+      " 次 #y黄铜增幅 被消耗。"
+    ]
+  },
+  "Snowpunk:PreventBrassConsumptionThisTurnPower": {
+    "NAME": "滴答作响",
+    "DESCRIPTIONS": [
+      "本回合防止下次 #y黄铜增幅 被消耗。",
+      "本回合防止接下来 #b",
+      " 次 #y黄铜增幅 被消耗。"
+    ]
+  },
+  "Snowpunk:Mr10BelowPower": {
+    "NAME": "零下十度先生",
+    "DESCRIPTIONS": [
+      "每回合你第一次打出 #y酷寒 卡牌时，使其获得 #b",
+      " 层 #y酷寒 并获得 #b",
+      " 点 #y格挡 。"
+    ]
+  },
+  "Snowpunk:TooMuchPower": {
+    "NAME": "太过火热",
+    "DESCRIPTIONS": [
+      "每回合你打出的第一张卡牌获得 #b1 层 #y炽热 并对一个随机敌人给予 #b",
+      " 层 #y灼痕 。"
+    ]
+  },
+  "Snowpunk:HotEnergyPower": {
+    "NAME": "炽热能量",
+    "DESCRIPTIONS": [
+      "在下一回合开始时，获得 #b",
+      " 点 [E] 。"
+    ]
+  },
+  "Snowpunk:ColdDrawPower": {
+    "NAME": "酷寒抽牌",
+    "DESCRIPTIONS": [
+      "在下一回合开始时，抽 #b",
+      " 张牌。如果你有卡牌在蒸发牌堆中，优先从那里抽取。"
+    ]
+  },
+  "Snowpunk:AllAboardPower": {
+    "NAME": "全体上车！",
+    "DESCRIPTIONS": [
+      "每当一张卡牌 #y蒸发 时，使其获得 #b",
+      " 层 #y镀层 。"
+    ]
+  },
+  "Snowpunk:CarolingPower": {
+    "NAME": "唱圣诞颂歌",
+    "DESCRIPTIONS": [
+      "在战斗中每当有卡牌被创建时，如果可行，给予其 #b",
+      " 个 [Snowpunk:GearIcon] 。"
+    ]
+  },
+  "Snowpunk:FrostbitePower": {
+    "NAME": "冻伤",
+    "DESCRIPTIONS": [
+      "攻击造成的伤害每有一个 [snowpunk:SnowIcon] 额外增加一定数值。",
+      "攻击每有一个 [snowpunk:SnowIcon] 额外造成 #b",
+      " 点伤害。"
+    ]
+  },
+  "Snowpunk:ChristmasCookiePower": {
+    "NAME": "圣诞饼干",
+    "DESCRIPTIONS": [
+      "你抽取的下一张 #y已蒸发 卡牌获得 #b1 层 #y炽热 。",
+      "你抽取的接下来 #b",
+      " 张 #y已蒸发 卡牌获得 #b1 层 #y炽热 。"
+    ]
+  },
+  "Snowpunk:GreatforgePower": {
+    "NAME": "伟大熔炉",
+    "DESCRIPTIONS": [
+      "在你回合中每当你抽取一张卡牌时， #y升级 它。",
+      "在你回合中每当你抽取一张卡牌时， #y升级 它 #b",
+      " 次。"
+    ]
+  },
+  "Snowpunk:BrassPower": {
+    "NAME": "黄铜增幅",
+    "DESCRIPTIONS": [
+      "你打出的下一张造成伤害或 #y格挡 的卡牌获得 #b",
+      " 层 #y镀层 。"
+    ]
+  },
+  "Snowpunk:NextTurnPowerPower": {
+    "NAME": "延时镀层",
+    "DESCRIPTIONS": [
+      "下一回合，获得 #b",
+      " 层 #y镀层 。"
+    ]
+  },
+  "Snowpunk:BoilerPower": {
+    "NAME": "锅炉",
+    "DESCRIPTIONS": [
+      "本回合下一个攻击你的敌人受到 #b",
+      " 层 #y灼痕 。"
+    ]
+  },
+  "Snowpunk:WrenchPower": {
+    "NAME": "扳手",
+    "DESCRIPTIONS": [
+      "本回合你下次将要 #y卡壳 时，阻止它并抽取 #b",
+      " 张牌。",
+      "本回合你接下来 #b",
+      " 次将要 #y卡壳 时，阻止它并抽取 #b",
+      " 张牌。"
+    ]
+  },
+  "Snowpunk:PermWrenchPower": {
+    "NAME": "扳手",
+    "DESCRIPTIONS": [
+      "阻止下次你将要 #y卡壳 的情况。",
+      "阻止接下来 #b",
+      " 次你将要 #y卡壳 的情况。"
+    ]
+  },
+  "Snowpunk:CopyNextCardPower": {
+    "NAME": "复制下一张卡牌",
+    "DESCRIPTIONS": [
+      "将你打出的下一张卡牌的复制牌洗入你的抽牌堆。",
+      "将你打出的接下来 #b",
+      " 张卡牌的复制牌洗入你的抽牌堆。"
+    ]
+  },
+  "Snowpunk:ShovelCoalPower": {
+    "NAME": "铲煤",
+    "DESCRIPTIONS": [
+      "在你回合开始时，将一张随机的 #y已蒸发 卡牌放入你的手牌。",
+      "在你回合开始时，将 #b",
+      " 张随机的 #y已蒸发 卡牌放入你的手牌。"
+    ]
+  },
+  "Snowpunk:LetItSnowPower": {
+    "NAME": "让雪落下",
+    "DESCRIPTIONS": [
+      "每当你消耗 [snowpunk:SnowIcon] 时，抽取相应数量的卡牌。",
+      "每当你消耗 [snowpunk:SnowIcon] 时，抽取 #b",
+      " 倍数量的卡牌。"
+    ]
+  },
+  "Snowpunk:FrostPower": {
+    "NAME": "寒霜",
+    "DESCRIPTIONS": [
+      "你打出的下一张 #y格挡 获得 #b",
+      " 点额外 #y格挡 。",
+      " 点较少 #y格挡 。"
+    ]
+  },
+  "Snowpunk:ClockworkPower": {
+    "NAME": "发条装置",
+    "DESCRIPTIONS": [
+      "每当你打出一张带有 [snowpunk:GearIcon] 的卡牌时，抽取一张牌。",
+      "每当你打出一张带有 [snowpunk:GearIcon] 的卡牌时，抽取 #b",
+      " 张牌。"
+    ]
+  },
+  "Snowpunk:GracePower": {
+    "NAME": "恩赐",
+    "DESCRIPTIONS": [
+      "下一次你将要失去 #b",
+      " 点或更多生命值时，阻止该效果。",
+      "接下来的 #b",
+      " 次你将要失去 #b",
+      " 点或更多生命值时，阻止该效果。"
+    ]
+  },
+  "Snowpunk:GraceHealPower": {
+    "NAME": "恩赐治愈",
+    "DESCRIPTIONS": [
+      "如果你在战斗结束时至少有 #b1 层 #y恩赐 ，恢复 #b",
+      " 点生命值。"
+    ]
+  },
+  "Snowpunk:MiserPower": {
+    "NAME": "吝啬鬼",
+    "DESCRIPTIONS": [
+      "本回合你打出的下一张 #y炽热 或 #y酷寒 卡牌会使用两次。",
+      "本回合你打出的接下来 #b",
+      " 张 #y炽热 或 #y酷寒 卡牌会使用两次。"
+    ]
+  },
+  "Snowpunk:FrigidPower": {
+    "NAME": "严寒",
+    "DESCRIPTIONS": [
+      "本回合受到的攻击伤害额外增加，增加数值等于 #y寒颤 。",
+      "受到的攻击伤害额外增加，增加数值等于 #y寒颤 ，持续 #b",
+      " 回合。"
+    ]
+  },
+  "Snowpunk:HollyPower": {
+    "NAME": "冬青祝福",
+    "DESCRIPTIONS": [
+      "下次你给予一个减益效果或获得 #y黄铜增幅 时，其数值增加 #b",
+      " 。"
+    ]
+  },
+  "Snowpunk:FineTunedPower": {
+    "NAME": "精细调校",
+    "DESCRIPTIONS": [
+      "本回合你打出的下一张带有 #y镀层、[snowpunk:GearIcon] 或 #y卡壳 的卡牌费用为 #b0 。",
+      "本回合你打出的接下来 #b",
+      " 张带有 #y镀层 、 [snowpunk:GearIcon] 或 #y卡壳 的卡牌费用为 #b0 。"
+    ]
+  },
+  "Snowpunk:ChooChooPower": {
+    "NAME": "呜呜呜！",
+    "DESCRIPTIONS": [
+      "在你回合开始时，对所有敌人造成等于你 #y格挡 值的伤害。",
+      "在你回合开始时，对所有敌人造成等于 #b",
+      " 倍你 #y格挡 值的伤害。"
+    ]
+  },
+  "Snowpunk:SteamFormPower": {
+    "NAME": "蒸汽形态",
+    "DESCRIPTIONS": [
+      "每回合你打出的第一张卡牌费用为 #b0 。",
+      "每回合你打出的前 #b",
+      " 张卡牌费用为 #b0 。"
+    ]
+  },
+  "Snowpunk:TheSnowmanPower": {
+    "NAME": "雪人",
+    "DESCRIPTIONS": [
+      "下一回合，抽取一张牌并获得一个 [snowpunk:SnowIcon] 。",
+      "下一回合，抽取 #b",
+      " 张牌并获得 #b",
+      " 个 [snowpunk:SnowIcon] 。"
+    ]
+  },
+  "Snowpunk:SnowAngelPower": {
+    "NAME": "雪天使",
+    "DESCRIPTIONS": [
+      "每当你打出一张 #y格挡 卡牌时，给予其 ",
+      " 层 #y镀层 。"
+    ]
+  },
+  "Snowpunk:SteamPower": {
+    "NAME": "蒸汽",
+    "DESCRIPTIONS": [
+      "本回合你打出的下一张卡牌免费且 #y蒸发 。",
+      "本回合你打出的接下来 #b",
+      " 张卡牌免费且 #y蒸发 。"
+    ]
+  },
+  "Snowpunk:SteamTrainPower": {
+    "NAME": "蒸汽火车",
+    "DESCRIPTIONS": [
+      "每回合你打出的第一张卡牌免费且获得 #b",
+      " 层 #y灼热 。"
+    ]
+  },
+  "Snowpunk:SnowpunkPower": {
+    "NAME": "冻伤",
+    "DESCRIPTIONS": [
+      "攻击每有一个 [snowpunk:SnowIcon] 就会造成额外伤害。",
+      "攻击每有一个 [snowpunk:SnowIcon] 额外造成 #b",
+      " 点伤害。"
+    ]
+  },
+  "Snowpunk:PressureValvesPower": {
+    "NAME": "压力阀",
+    "DESCRIPTIONS": [
+      "卡牌效果如同你有 #b",
+      " 个额外的 #y雪球能量 。"
+    ]
+  },
+  "Snowpunk:CharPower": {
+    "NAME": "烧焦",
+    "DESCRIPTIONS": [
+      "本回合 #y灼痕 效果不会消失。",
+      "#y灼痕 效果在 #b",
+      " 回合内不会消失。"
+    ]
+  },
+  "Snowpunk:SteamfogPower": {
+    "NAME": "蒸汽雾",
+    "DESCRIPTIONS": [
+      "下次你将要失去生命值时，只失去一半的量。",
+      "接下来 #b",
+      " 次你将要失去生命值时，只失去一半的量。"
+    ]
+  },
+  "Snowpunk:FrozenPower": {
+    "NAME": "冻伤",
+    "DESCRIPTIONS": [
+      "本回合 #y冻伤 效果等同于 #y灼痕 。",
+      "#y冻伤 效果在 #b",
+      " 回合内等同于 #y灼痕 。"
+    ]
+  },
+  "Snowpunk:PyromaniacPower": {
+    "NAME": "纵火狂",
+    "DESCRIPTIONS": [
+      "#y灼热 卡牌会额外使用一次。在你回合结束时， #y耗尽 你的蒸发堆。",
+      "#y灼热 卡牌会额外使用 #b",
+      " 次。在你回合结束时， #y耗尽 你的蒸发堆。"
+    ]
+  },
+  "Snowpunk:ReverseNextClankPower": {
+    "NAME": "逆转",
+    "DESCRIPTIONS": [
+      "反转下次 #y卡壳 的效果。",
+      "反转接下来 #b",
+      " 次 #y卡壳 的效果。"
+    ]
+  },
+  "Snowpunk:JumblomaticPower": {
+    "NAME": "混乱制造机",
+    "DESCRIPTIONS": [
+      "下次你 #y卡壳 时，反转下次 #y卡壳 的效果。",
+      "下次你 #y卡壳 时，反转下一次 #b",
+      "  #y卡壳 效果 。"
+    ]
+  },
+  "Snowpunk:DecoBotPower": {
+    "NAME": "装饰机器人",
+    "DESCRIPTIONS": [
+      "每当你打出一张 #y卡壳 的卡牌时，获得 #b",
+      " 层 #y冬青祝福 和 #y黄铜增幅 。"
+    ]
+  },
+  "Snowpunk:AssembledPower": {
+    "NAME": "组装完毕",
+    "DESCRIPTIONS": [
+      "根据你的卡牌产生效果。"
+    ]
+  },
+  "Snowpunk:BiasedCogPower": {
+    "NAME": "偏心齿轮",
+    "DESCRIPTIONS": [
+      "在你回合开始时，你手牌中一张带有 [Snowpunk:GearIcon] 的随机卡牌获得 1 个 [Snowpunk:GearIcon] 。",
+      "在你回合开始时，你手牌中 #b",
+      " 张带有 [Snowpunk:GearIcon] 的随机卡牌获得 1 个 [Snowpunk:GearIcon] 。"
+    ]
+  },
+  "Snowpunk:AntifactPower": {
+    "NAME": "人工制品",
+    "DESCRIPTIONS": [
+      "抵消你接下来获得的 #b",
+      " 个增益效果。",
+      " 个增益效果。"
+    ]
+  }
+}

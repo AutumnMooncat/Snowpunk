@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 
 import static Snowpunk.SnowpunkMod.*;
 import static java.lang.Math.abs;
@@ -26,6 +27,7 @@ import static java.lang.Math.abs;
 public class TemperatureMod extends AbstractCardModifier {
     public static String ID = makeID(TemperatureMod.class.getSimpleName());
     public static CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static UIStrings UIstrings = CardCrawlGame.languagePack.getUIString(makeID("TemperatureContext"));
     public static String[] TEXT = strings.EXTENDED_DESCRIPTION;
 
     private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/icons/Temp.png");
@@ -57,14 +59,14 @@ public class TemperatureMod extends AbstractCardModifier {
             String out = KeywordManager.HOT.replace(modID.toLowerCase(), "");
             out = out.replace(":", "");
             out = out.substring(0, 1).toUpperCase() + out.substring(1);
-            return modID.toLowerCase() + ":" + out + ". NL " + rawDescription;
+            return modID.toLowerCase() + ":" + out + UIstrings.TEXT[0] + " NL " + rawDescription;
         }
 
         if (CardTemperatureFields.getCardHeat(card) <= COLD) {
             String out = KeywordManager.COLD.replace(modID.toLowerCase(), "");
             out = out.replace(":", "");
             out = out.substring(0, 1).toUpperCase() + out.substring(1);
-            return modID.toLowerCase() + ":" + out + ". NL " + rawDescription;
+            return modID.toLowerCase() + ":" + out + UIstrings.TEXT[0] + " NL " + rawDescription;
         }
 
         return rawDescription;

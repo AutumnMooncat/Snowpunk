@@ -1,0 +1,538 @@
+{
+  "Snowpunk:Strike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "Snowpunk:HeatedStrike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "Snowpunk:Defend": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
+  },
+  "Snowpunk:ReleaseValve": {
+    "NAME": "释放阀门",
+    "DESCRIPTION": "给予 [snowpunk:GearIcon] [#ffffff][] 层  snowpunk:灼痕 。 NL 打出你抽牌堆顶部的卡牌，并使其获得1层 snowpunk:炽热 。"
+  },
+  "Snowpunk:Scald": {
+    "NAME": "灼伤",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层  snowpunk:灼痕 。 NL 获得等同于敌人  snowpunk:灼痕  层数的格挡。"
+  },
+  "Snowpunk:SnowStack": {
+    "NAME": "雪堆",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。 NL 下一回合获得 {!M!|1= [snowpunk:SnowIcon] |2= [snowpunk:SnowIcon] [snowpunk:SnowIcon]|@= !M! [snowpunk:SnowIcon] } 。"
+  },
+  "Snowpunk:SnowMiser": {
+    "NAME": "雪之吝啬鬼",
+    "DESCRIPTION": "给予所有敌人 !M! 层 snowpunk:寒颤 。 NL  消耗 。"
+  },
+  "Snowpunk:BrassKnuckles": {
+    "NAME": "黄铜指节套",
+    "DESCRIPTION": "造成 !D! 点伤害，攻击两次。 NL 不消耗 snowpunk:黄铜增幅 。 NL  snowpunk:卡壳 : 给予 1 层 人工制品 。"
+  },
+  "Snowpunk:Quickflash": {
+    "NAME": "快速闪现",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。"
+  },
+  "Snowpunk:JingleBells": {
+    "NAME": "圣诞铃铛",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。 NL 获得 !M! 层 snowpunk:冬青祝福 。"
+  },
+  "Snowpunk:Carol": {
+    "NAME": "圣诞颂歌",
+    "DESCRIPTION": "{@@}获得 !M! 层 snowpunk:冬青祝福 。 NL 此卡牌的 snowpunk:冬青祝福 层数增加 !Snowpunk:M2! 。"
+  },
+  "Snowpunk:OhChristmasTree": {
+    "NAME": "哦，圣诞树",
+    "DESCRIPTION": "{@@}获得 !M! 层 snowpunk:冬青祝福 。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION": "{@@}获得 !M! 层 snowpunk:冬青祝福 。"
+  },
+  "Snowpunk:Blowtorch": {
+    "NAME": "喷灯",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 给一张卡牌 [snowpunk:GearIcon] [#ffffff][] 层 snowpunk:炽热  并 snowpunk:升级 它 [snowpunk:GearIcon] 次。"
+  },
+  "Snowpunk:ChristmasCookies": {
+    "NAME": "圣诞饼干",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 你接下来打出的 !M! 张卡牌获得 1 层 snowpunk:炽热 。"
+  },
+  "Snowpunk:AnotherAnvil": {
+    "NAME": "又一个铁砧",
+    "DESCRIPTION": " snowpunk:未觉醒 。 snowpunk:沉重 。 NL 对所有敌人造成 !D! 点伤害。 NL  snowpunk:升级 你所有的卡牌。"
+  },
+  "Snowpunk:Cryogenizer": {
+    "NAME": "冷冻器",
+    "DESCRIPTION": "给予所有敌人 !M! 层 snowpunk:寒颤 。 NL 使一张卡牌的 snowpunk:酷寒 层数增加 !Snowpunk:M2! 。",
+    "EXTENDED_DESCRIPTION": [
+      "给予所有敌人 ",
+      " snowpunk:寒颤 。"
+    ]
+  },
+  "Snowpunk:LetItSnow": {
+    "NAME": "让雪飘落",
+    "DESCRIPTION": "给予所有敌人 [snowpunk:GearIcon] [#ffffff][] 层 snowpunk:寒颤 。"
+  },
+  "Snowpunk:Fogification": {
+    "NAME": "雾化",
+    "DESCRIPTION": " 格挡 在 [snowpunk:GearIcon] 回合内不会被移除。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 格挡 在 [snowpunk:GearIcon] 回合内不会被移除。 NL 消耗 。"
+  },
+  "Snowpunk:NixieTube": {
+    "NAME": "数码管",
+    "DESCRIPTION": "{@@} 获得 !B! 点 格挡 。 snowpunk:升级  [snowpunk:GearIcon] 张卡牌 !M! 次。"
+  },
+  "Snowpunk:MkMod": {
+    "EXTENDED_DESCRIPTION": [
+      "型号"
+    ]
+  },
+  "Snowpunk:HatTrick": {
+    "NAME": "帽子戏法",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 给一张随机卡牌一个 snowpunk:礼帽 。"
+  },
+  "Snowpunk:Sproinket": {
+    "NAME": "小齿轮",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 [snowpunk:GearIcon] [#ffffff][] 层  snowpunk:黄铜增幅 。 NL 阻止下一次 snowpunk:黄铜增幅 被 消耗 。"
+  },
+  "Snowpunk:FireFist": {
+    "NAME": "火焰之拳",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 给予等同于 snowpunk:已蒸发 卡牌数量两倍的 snowpunk:灼痕 。 NL 消耗 。"
+  },
+  "Snowpunk:Gizmo": {
+    "NAME": "小发明",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 获得 [Snowpunk:GearIcon] [#ffffff][] 层 snowpunk:镀层 。 NL 获得 !M! 个 [Snowpunk:GearIcon] 。"
+  },
+  "Snowpunk:FriendFire": {
+    "NAME": "友军火力",
+    "DESCRIPTION": "蒸发任意数量的卡牌。 NL 每蒸发一张卡牌，获得 !B! 点 格挡 。 NL  消耗 。"
+  },
+  "Snowpunk:Overblown": {
+    "NAME": "过度膨胀",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽取 [snowpunk:GearIcon] 张卡牌。 NL  snowpunk:卡壳 : 丢弃 [snowpunk:GearIcon] 张卡牌。"
+  },
+  "Snowpunk:Icicle": {
+    "NAME": "冰柱",
+    "DESCRIPTION": " {@@}造成 !D! 点伤害。 NL 获得 {!M!|1= [snowpunk:SnowIcon] |2= [snowpunk:SnowIcon] [snowpunk:SnowIcon]|@= !M! [snowpunk:SnowIcon] } 。"
+  },
+  "Snowpunk:SnowFort": {
+    "NAME": "雪堡",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。 NL 抽取 [snowpunk:SnowIcon] 张卡牌。"
+  },
+  "Snowpunk:ColdShoulder": {
+    "NAME": "冷肩相待",
+    "DESCRIPTION": "{@@}给予 !M! 层  snowpunk:寒颤 。 NL 给予 !Snowpunk:M2! 层 虚弱 。"
+  },
+  "Snowpunk:PiercingBlast": {
+    "NAME": "穿透爆破",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 忽略 格挡 。"
+  },
+  "Snowpunk:CandyCane": {
+    "NAME": "糖果棒",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你当前的格挡值高于目标的生命值，将其从战斗中移除。"
+  },
+  "Snowpunk:BlackIce": {
+    "NAME": "黑冰",
+    "DESCRIPTION": "{@@}给予所有敌人 [snowpunk:SnowIcon] {!M!|>0= + !M!} [#ffffff][] 层  snowpunk:寒颤 、 虚弱 和 脆弱 。{!Snowpunk:Info!|0= NL 消耗 。}"
+  },
+  "Snowpunk:ChestnutsRoasting": {
+    "NAME": "烤栗子",
+    "DESCRIPTION": "{@@}获得 !M! 层  snowpunk:冬青祝福 。 NL 给予 !Snowpunk:M2! 层  snowpunk:灼痕 。",
+    "EXTENDED_DESCRIPTION": [
+      "给予 ",
+      " 层 snowpunk:灼痕 。",
+      "燃烧"
+    ]
+  },
+  "Snowpunk:Juggle": {
+    "NAME": "杂耍",
+    "DESCRIPTION": "{@@}选择一张卡牌。将其 snowpunk:改装 移动到另一张卡牌上。",
+    "UPGRADE_DESCRIPTION": "{@@}选择一张卡牌。将其 snowpunk:改装 复制到另一张卡牌上。",
+    "EXTENDED_DESCRIPTION": [
+      "移动修饰符从。",
+      "移动修饰符到。",
+      "复制修饰符从。",
+      "复制修饰符到。"
+    ]
+  },
+  "Snowpunk:HotChocolate": {
+    "NAME": "热巧克力",
+    "DESCRIPTION": "给予 !M! 层 snowpunk:灼痕 。"
+  },
+  "Snowpunk:AllAboard": {
+    "NAME": "全体上车！",
+    "DESCRIPTION": "每当一张卡牌 snowpunk:蒸发 时，给它 !M! 层 snowpunk:镀层 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 每当一张卡牌 snowpunk:蒸发 时，给它 !M! 层 snowpunk:镀层 。"
+  },
+  "Snowpunk:HeatMiser": {
+    "NAME": "热之吝啬鬼",
+    "DESCRIPTION": "给予所有敌人 !M! 层 snowpunk:灼痕 。"
+  },
+  "Snowpunk:Condensation": {
+    "NAME": "冷凝",
+    "DESCRIPTION": ""
+  },
+  "Snowpunk:Conveyor": {
+    "NAME": "传送带",
+    "DESCRIPTION": "抽取 [snowpunk:GearIcon] 张卡牌。 NL snowpunk:卡壳 : 失去 1 个 [Snowpunk:GearIcon] 。"
+  },
+  "Snowpunk:ChillOut": {
+    "NAME": "冷静下来",
+    "DESCRIPTION": "{@@}给予 !M! 层 snowpunk:寒颤 。 NL 如果敌人不打算攻击， NL 获得 {!Snowpunk:M2!|1= [snowpunk:SnowIcon] |2= [snowpunk:SnowIcon] [snowpunk:SnowIcon] |3= [snowpunk:SnowIcon] [snowpunk:SnowIcon] [snowpunk:SnowIcon] |@= !Snowpunk:M2! [snowpunk:SnowIcon] }。"
+  },
+  "Snowpunk:EngineOffload": {
+    "NAME": "引擎卸载",
+    "DESCRIPTION": "{@@}从蒸发牌堆中返回一张卡牌到你的手牌。给它一个 snowpunk:礼帽 {!Snowpunk:Info!|>0= 和 1 层 snowpunk:炽热 }。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "{@@}从蒸发牌堆中返回一张卡牌到你的手牌。给它一个 snowpunk:礼帽 {!Snowpunk:Info!|>0= 和 1 层 snowpunk:炽热 }。"
+  },
+  "Snowpunk:Frostbite": {
+    "NAME": "冻伤",
+    "DESCRIPTION": "攻击造成额外伤害，数值等同于你的 [Snowpunk:SnowIcon] 。",
+    "UPGRADE_DESCRIPTION": "获得 [Snowpunk:SnowIcon] 。 NL 攻击造成额外伤害，数值等同于你的 [Snowpunk:SnowIcon] 。"
+  },
+  "Snowpunk:Greatforge": {
+    "NAME": "伟大熔炉",
+    "DESCRIPTION": "每当你在你的回合中抽取一张卡牌时， snowpunk:升级 它。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 每当你在你的回合中抽取一张卡牌时， snowpunk:升级 它。"
+  },
+  "Snowpunk:BrassPower": {
+    "NAME": "黄铜之力",
+    "DESCRIPTIONS": [
+      "你接下来打出的造成伤害、 #y格挡 或带有 [snowpunk:GearIcon] 的卡牌获得 #b",
+      " [snowpunk:GearIcon] 。"
+    ]
+  },
+  "Snowpunk:ItsColdOutside": {
+    "NAME": "外面很冷",
+    "DESCRIPTION": "{@@}给你手牌中最多 [Snowpunk:SnowIcon] {!M!|>0= + !M!} 张卡牌 1 层  snowpunk:酷寒 。 NL  消耗 。"
+  },
+  "Snowpunk:Boiler": {
+    "NAME": "锅炉",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予所有敌人 [snowpunk:GearIcon] [#ffffff][] 层  snowpunk:灼痕 。"
+  },
+  "Snowpunk:Kindness": {
+    "NAME": "仁慈",
+    "DESCRIPTION": " 保留 。 NL 治疗一名敌人6点生命值。 NL 施加 !M! 层 snowpunk:寒颤 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": " 保留 。 NL 治疗所有敌人6点生命值，并施加 !M! 层 snowpunk:寒颤 。 NL 消耗 。"
+  },
+  "Snowpunk:Perfection": {
+    "NAME": "完美？",
+    "DESCRIPTION": "造成 !D! 点伤害。",
+    "EXTENDED_DESCRIPTION": [
+      " NL snowpunk:卡壳 : 将此卡牌转换为一张随机攻击牌，保留此 snowpunk:卡壳 。"
+    ]
+  },
+  "Snowpunk:Ratchet": {
+    "NAME": "棘轮打击",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL {!Snowpunk:Info!|<0=防止|>-1=反转} 接下来 [snowpunk:GearIcon] 次你将要进行的  snowpunk:卡壳 。",
+    "UPGRADE_DESCRIPTION": "{@@} 固有 。 NL 造成 !D! 点伤害。 NL {!Snowpunk:Info!|<0=防止|>-1=反转} 接下来 [snowpunk:GearIcon] 次你将要进行的  snowpunk:卡壳 。"
+  },
+  "Snowpunk:SilverBells": {
+    "NAME": "银铃",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 2次。 NL 下回合获得 !B! 点 格挡 。"
+  },
+  "Snowpunk:SleighRide": {
+    "NAME": "雪橇之旅",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害，并对所有敌人施加 !M! 层 snowpunk:寒颤 。 NL 每有一个 [snowpunk:SnowIcon] ，费用减少 1。"
+  },
+  "Snowpunk:DrillBit": {
+    "NAME": "钻头",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 [snowpunk:GearIcon] [#ffffff][] 易伤 。"
+  },
+  "Snowpunk:Mr10Below": {
+    "NAME": "零下十先生",
+    "DESCRIPTION": "每回合你第一次打出带有 snowpunk:酷寒 的卡牌时，将其 snowpunk:酷寒 效果增加 1，并获得 !M! 点 格挡 。"
+  },
+  "Snowpunk:Headshot": {
+    "NAME": "爆头",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每有一个 [snowpunk:SnowIcon] ，额外造成 !M! 点伤害。"
+  },
+  "Snowpunk:Whistol": {
+    "NAME": "呼啸",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL snowpunk:卡壳 ：此卡牌费用增加 1。"
+  },
+  "Snowpunk:Incinerate": {
+    "NAME": "焚烧",
+    "DESCRIPTION": "将敌人的 snowpunk:灼痕 效果乘以 !M!。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION": "将所有敌人的 snowpunk:灼痕 效果乘以 !M!。 NL 消耗 。"
+  },
+  "Snowpunk:RockinAround": {
+    "NAME": "摇摆不停",
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 给你手牌中的一张卡牌添加一个 snowpunk:礼帽 。"
+  },
+  "Snowpunk:ShovelCoal": {
+    "NAME": "铲煤",
+    "DESCRIPTION": "{@@}在你的回合开始时，将一张随机的 snowpunk:已蒸发 卡牌放入你的手牌。",
+    "UPGRADE_DESCRIPTION": "{@@} 固有 。 NL 在你的回合开始时，将一张随机的 snowpunk:已蒸发 卡牌放入你的手牌。"
+  },
+  "Snowpunk:HammerTime": {
+    "NAME": "锤子时间",
+    "DESCRIPTION": "对一个随机敌人造成 !D! 点伤害，[snowpunk:GearIcon] 次。 NL 消耗 。"
+  },
+  "Snowpunk:PipeBurst": {
+    "NAME": "管道破裂",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL  snowpunk:卡壳 ：随机 snowpunk:蒸发 一张卡牌。"
+  },
+  "Snowpunk:Ventilation": {
+    "NAME": "通风",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 使你弃牌堆中最多 [snowpunk:GearIcon] 张卡牌 snowpunk:蒸发 。"
+  },
+  "Snowpunk:Tinker": {
+    "NAME": "修补匠",
+    "DESCRIPTION": "{@@}获得 !M! 点 snowpunk:黄铜增幅 。{!Location!|4,-2= NL 拾取时， snowpunk:升级 你牌库中的一张卡牌。}"
+  },
+  "Snowpunk:Toolbox": {
+    "NAME": "工具箱",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL  snowpunk:升级 你手牌中的所有卡牌。 NL 消耗 。"
+  },
+  "Snowpunk:TooMuch": {
+    "NAME": "太多了",
+    "DESCRIPTION": "每回合你打出的第一张卡牌获得 1 点 snowpunk:炽热 ，并给予一个随机敌人 !M! 层 snowpunk:灼痕 。"
+  },
+  "Snowpunk:Workshop": {
+    "NAME": "工坊",
+    "DESCRIPTION": "获得 !M! 点 snowpunk:黄铜增幅 。 NL 你接下来打出的带有 [snowpunk:GearIcon] 的卡牌获得 1 个 [snowpunk:GearIcon] 。"
+  },
+  "Snowpunk:PinheadLarry": {
+    "NAME": "大头拉里",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 将一张 *脏丹 加入你的手牌。"
+  },
+  "Snowpunk:BlackFlash": {
+    "NAME": "黑色闪光",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害2次。 NL 给你手牌中的所有攻击牌添加一个 snowpunk:礼帽 。 NL 消耗 。"
+  },
+  "Snowpunk:DirtyDan": {
+    "NAME": "脏丹",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 本战斗中，所有 *脏丹 的费用减少 1。"
+  },
+  "Snowpunk:Weld": {
+    "NAME": "焊接",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 给予 [snowpunk:GearIcon] {!M!|>0=+!M!} 层 snowpunk:灼痕 。"
+  },
+  "Snowpunk:": {
+    "NAME": "",
+    "DESCRIPTION": "每当你打出一张带有 snowpunk:卡壳 的卡牌时，获得 !M! 点 snowpunk:黄铜增幅 。"
+  },
+  "Snowpunk:ArtilleryCargo": {
+    "NAME": "火炮弹药",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL snowpunk:卡壳 ：对一个随机敌人。"
+  },
+  "Snowpunk:Clockwork": {
+    "NAME": "发条装置",
+    "DESCRIPTION": "{@@}每当你打出一张带有 [Snowpunk:GearIcon] 的卡牌时，抽一张牌。",
+    "UPGRADE_DESCRIPTION": "{@@} 你接下来打出带有 [snowpunk:GearIcon] 的牌获得 1 个 [snowpunk:GearIcon] 。 NL 每当你打出一张带有 [Snowpunk:GearIcon] 的牌时，抽一张牌。"
+  },
+  "Snowpunk:Holly": {
+    "NAME": "冬青祝福",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
+  },
+  "Snowpunk:ScrapPile": {
+    "NAME": "废料堆",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 对一个随机敌人造成 !D! 点伤害。 NL  消耗 。"
+  },
+  "Snowpunk:DeckTheHalls": {
+    "NAME": "装饰大厅",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 获得 !M! 点 snowpunk:冬青祝福 。如果已有 snowpunk:冬青祝福 ，则额外获得 !M! 点。"
+  },
+  "Snowpunk:StockingStuffer": {
+    "NAME": "圣诞袜礼物",
+    "DESCRIPTION": "{@@}将 !M! 张卡牌从你的抽牌堆、弃牌堆或 *蒸发牌 堆放入你的手牌。 NL 消耗 。"
+  },
+  "Snowpunk:FinalTouch": {
+    "NAME": "最后润色",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。 NL 将一张卡牌的 snowpunk:改装 增加 !M!。"
+  },
+  "Snowpunk:Jumblomatic": {
+    "NAME": "混乱制造机",
+    "DESCRIPTION": "在一张卡牌 snowpunk:卡壳 后，反转下一个 snowpunk:卡壳 效果。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 在一张卡牌 snowpunk:卡壳 后，反转下一个 snowpunk:卡壳 效果。"
+  },
+  "Snowpunk:FineTuned": {
+    "NAME": "精细调校",
+    "DESCRIPTION": "{@@}抽 !M! 张牌。 NL 本回合你打出的下一张带有 snowpunk:改装 或 snowpunk:卡壳 的卡牌 NL 费用为 0。",
+    "UPGRADE_DESCRIPTION": "{@@} 保留 。 NL 抽 !M! 张牌{!M!|>1=复数}。 NL 本回合你打出的下一张带有 snowpunk:改装 或 snowpunk:卡壳 的卡牌 NL 费用为 0。"
+  },
+  "Snowpunk:FiveGoldenRings": {
+    "NAME": "五个金戒指",
+    "DESCRIPTION": "给予你手牌中所有可行的卡牌 [snowpunk:GearIcon] [#ffffff][] snowpunk:镀层 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "给你手牌中所有可行的卡牌给予 [snowpunk:GearIcon] [#ffffff][] snowpunk:镀层 。",
+    "EXTENDED_DESCRIPTION": [
+      "五个金——环——！"
+    ]
+  },
+  "Snowpunk:TrainScythe": {
+    "NAME": "火车镰刀",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害2次。 NL 不消耗 snowpunk:黄铜增幅 。"
+  },
+  "Snowpunk:SteamTrain": {
+    "NAME": "蒸汽火车",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 NL 。"
+  },
+  "Snowpunk:BeNotAfraid": {
+    "NAME": "不要害怕",
+    "DESCRIPTION": "防止接下来 !M! 次你将要失去 7 点或更多生命值的情况。",
+    "UPGRADE_DESCRIPTION": "防止接下来 !M! 次你将要失去 7 点或更多生命值的情况。如果在战斗结束时还有剩余次数，恢复 7 点生命值。"
+  },
+  "Snowpunk:SnowAngel": {
+    "NAME": "雪天使",
+    "DESCRIPTION": "{@@}每当你打出一张 格挡 牌时，给它 !M! 层 snowpunk:镀层 。",
+    "UPGRADE_DESCRIPTION": "{@@}获得 [Snowpunk:SnowIcon] 。 NL 每当你打出一张 格挡 牌时，给它 !M! 层 snowpunk:镀层 。"
+  },
+  "Snowpunk:BiasedCog": {
+    "NAME": "偏心齿轮",
+    "DESCRIPTION": "{@@}在你的回合开始时，你手牌中 !M! 张随机带有 [Snowpunk:GearIcon] 的卡牌{!M!|>1=复数} 获得{!M!|1=一个|>1=多个} 1 个 [Snowpunk:GearIcon] 。"
+  },
+  "Snowpunk:TheSnowman": {
+    "NAME": "雪人",
+    "DESCRIPTION": "{@@}给予 !Snowpunk:M2! 张卡牌 NL X{!M!|>0=+!M!} 个 snowpunk:礼帽 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "{@@}给予 !Snowpunk:M2! 张卡牌 NL X{!M!|>0=+!M!} 个 snowpunk:礼帽 。"
+  },
+  "Snowpunk:SteamForm": {
+    "NAME": "蒸汽形态",
+    "DESCRIPTION": " 虚无 。 NL 每回合你打出的第一张卡牌费用为 0。",
+    "UPGRADE_DESCRIPTION": "每回合你打出的第一张卡牌费用为 0。"
+  },
+  "Snowpunk:ChooChoo": {
+    "NAME": "呜呜呜！",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在你的回合开始时，对所有敌人造成等同于你剩余格挡值的伤害。"
+  },
+  "Snowpunk:ChuggaChugga": {
+    "NAME": "噗噗噗",
+    "DESCRIPTION": "{@@}将一张 NL *呜呜呜！ {!Snowpunk:Info!|>0=*Mk !Snowpunk:Info!} 洗入你的抽牌堆。 NL 消耗 。"
+  },
+  "Snowpunk:Snowpunk": {
+    "NAME": "雪朋克",
+    "DESCRIPTION": "获得 [snowpunk:GearIcon] [#ffffff][] 层 snowpunk:黄铜增幅 2次。"
+  },
+  "Snowpunk:EggNog": {
+    "NAME": "蛋酒",
+    "DESCRIPTION": "给予 !M! 层 snowpunk:寒颤 。 NL 下回合获得 [snowpunk:SnowIcon] 。"
+  },
+  "Snowpunk:Breakthrough": {
+    "NAME": "突破",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 将你弃牌堆中所有带有 [snowpunk:GearIcon] 或 snowpunk:镀层 的卡牌放入你的手牌。"
+  },
+  "Snowpunk:Snowblower": {
+    "NAME": "吹雪机",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。对一个随机敌人造成 !D! 点伤害 X 次。 NL snowpunk:卡壳 ：失去3层 snowpunk:镀层 。"
+  },
+  "Snowpunk:PressureValves": {
+    "NAME": "压力阀",
+    "DESCRIPTION": "触发 *雪球能量 [snowpunk:SnowIcon] 相关的卡牌效果时，视作你额外拥有 !M! 个 [snowpunk:SnowIcon] 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 触发 *雪球能量 [snowpunk:SnowIcon] 相关的卡牌效果时，视作你额外拥有 !M! 个 [snowpunk:SnowIcon] 。"
+  },
+  "Snowpunk:GoldenTicket": {
+    "NAME": "金色入场券",
+    "DESCRIPTION": "{@@}将 !M! 张未消耗的卡牌{!M!|>1=s}置入你的手牌。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "{@@}将 !M! 张未消耗的卡牌{!M!|>1=s}置入你的手牌。",
+    "EXTENDED_DESCRIPTION": [
+      "选择一张卡牌复制到你的手牌中。",
+      "选择 ",
+      " 张卡牌，将其副本放入你的手牌。"
+    ]
+  },
+  "Snowpunk:Cargo": {
+    "NAME": "货舱",
+    "DESCRIPTION": "货舱中的卡牌在战斗之间会保留，并且可以通过“金色入场券”加入你的手牌。"
+  },
+  "Snowpunk:IceWall": {
+    "NAME": "冰墙",
+    "DESCRIPTION": "{@@}获得 !B! 点 格挡 。 NL 每有一个 [snowpunk:SnowIcon] 额外获得 !M! 点 格挡 。"
+  },
+  "Snowpunk:BrainBlast": {
+    "NAME": "脑爆",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 带有 [snowpunk:GearIcon] 的卡牌在本回合 [snowpunk:GearIcon] + !M! 。"
+  },
+  "Snowpunk:BurningEngine": {
+    "NAME": "燃烧引擎",
+    "DESCRIPTION": "拥有 snowpunk:灼痕 的生物在 snowpunk:灼痕 效果消失时受到 !M! 点伤害。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 拥有 snowpunk:灼痕  的生物在 snowpunk:灼痕 效果消失时受到 !M! 点伤害。"
+  },
+  "Snowpunk:FullSteamAhead": {
+    "NAME": "全速前进",
+    "DESCRIPTION": " 虚无 。 NL snowpunk:炽热 卡牌会使用两次。",
+    "UPGRADE_DESCRIPTION": " snowpunk:炽热  卡牌会使用两次。"
+  },
+  "Snowpunk:Pyromaniac": {
+    "NAME": "纵火狂",
+    "DESCRIPTION": " snowpunk:炽热 卡牌会使用两次。 NL 在你的回合结束时， 消耗 你的蒸发牌堆。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL snowpunk:炽热  卡牌会使用两次。 NL 在你的回合结束时， 消耗 你的蒸发牌堆。"
+  },
+  "Snowpunk:DecoBot": {
+    "NAME": "装饰机器人",
+    "DESCRIPTION": "每当你使用一张 snowpunk:卡壳 卡牌时，获得 !M! 层 snowpunk:冬青祝福 和 snowpunk:黄铜增幅 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 每当你使用一张  snowpunk:卡壳  卡牌时，获得 !M! 层  snowpunk:冬青祝福  和  snowpunk:黄铜增幅 。"
+  },
+  "Snowpunk:Gift": {
+    "NAME": "礼物",
+    "DESCRIPTION": "从 !M! 张其他颜色的随机卡牌中选择 1 张加入你的手牌。给它一个 snowpunk:礼帽 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "从 !M! 张其他颜色的随机卡牌中选择 1 张加入你的手牌。给它一个 snowpunk:礼帽 。"
+  },
+  "Snowpunk:BetterWatchOut": {
+    "NAME": "小心点",
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 将 X 张此牌放入你的弃牌堆。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害，[Snowpunk:GearIcon] 次。 NL 将 X 张此牌放入你的弃牌堆。 NL 消耗 。"
+  },
+  "Snowpunk:Forge": {
+    "NAME": "锻造",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL snowpunk:升级 一张卡牌。",
+    "UPGRADE_DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 获得 !M! 个 snowpunk:黄铜增幅 。"
+  },
+  "Snowpunk:Invent": {
+    "NAME": "发明",
+    "DESCRIPTION": "当你抽到这张牌时，用各种部件创造一张新牌，并永久用它替换这张牌。"
+  },
+  "Snowpunk:FlashFreeze": {
+    "NAME": "瞬间冰冻",
+    "DESCRIPTION": "{@@}给予 [snowpunk:SnowIcon] [#ffffff][]  snowpunk:寒颤 {!M!|>1= !M! times}。 NL 本回合目标受到的攻击伤害额外增加其 snowpunk:寒颤 的数值。"
+  },
+  "Snowpunk:Generator": {
+    "NAME": "发电机",
+    "DESCRIPTION": "{@@} 不能被打出 。 NL 下一次有卡牌 snowpunk:卡壳 时， 消耗 这张牌以抽取 !M! 张牌 并获得 {!Snowpunk:M2!|1=[E]|2=[E] [E]|3=[E] [E] [E]|>3=!Snowpunk:M2! [E]} 。",
+    "UPGRADE_DESCRIPTION": "{@@} 不能被打出 。保留。 NL 下一次有卡牌 snowpunk:卡壳 时 消耗 这张牌以抽取 !M! 张牌 并获得 {!Snowpunk:M2!|1=[E]|2=[E] [E]|3=[E] [E] [E]|>3=!Snowpunk:M2! [E]} 。",
+    "EXTENDED_DESCRIPTION": [
+      "这破玩意儿就是启动不起来！"
+    ]
+  },
+  "Snowpunk:Slush": {
+    "NAME": "泥浆",
+    "DESCRIPTION": " 不能被打出 。 虚无 。 NL 每当你抽到这张牌时，获得 4 个 snowpunk:寒颤 。",
+    "EXTENDED_DESCRIPTION": [
+      "我抽不动了，我被泥浆困住了！"
+    ]
+  },
+  "Snowpunk:Miser": {
+    "NAME": "吝啬鬼",
+    "DESCRIPTION": "{@@}本回合你使用的下 {!M!|>1= !M!} 张 snowpunk:炽热 或 snowpunk:酷寒 卡牌会使用两次。",
+    "UPGRADE_DESCRIPTION": "{@@}给一张 snowpunk:酷寒 卡牌添加一个 snowpunk:礼帽 。 NL 将一张 snowpunk:炽热 卡牌 snowpunk:升级 两次。 NL 将它们炽热和酷寒的数值各增加1。{!Snowpunk:Info!|0= NL 消耗 。}"
+  },
+  "Snowpunk:Frostburn": {
+    "NAME": "霜灼",
+    "DESCRIPTION": "给予 !M! 层 snowpunk:寒颤 和 snowpunk:灼痕 X 次。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION": "给予 !M! 层 snowpunk:寒颤 和 snowpunk:灼痕 X 次。"
+  },
+  "Snowpunk:SunlightYellow": {
+    "NAME": "阳光黄",
+    "DESCRIPTION": "{@@}给你手牌中的 {!M!|1=一张卡牌|1<=一张卡牌|@=!M! 张卡牌} 赋予 snowpunk:Overdrive。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "{@@}给你手牌中的 {!M!|1=一张卡牌|1<=一张卡牌|@=!M! 张卡牌} 赋予 snowpunk:Overdrive 。"
+  },
+  "Snowpunk:Overheated": {
+    "NAME": "过热",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 给予 !M! 层 snowpunk:灼痕 。 NL 这个敌人的 snowpunk:灼痕 效果 {!Snowpunk:M2!|1=本回合|@=持续 !Snowpunk:M2! 回合} 不会消失。",
+    "UPGRADE_DESCRIPTION": "{@@}对所有敌人造成 !D! 点伤害并给予 !M! 层 snowpunk:灼痕 。 NL  snowpunk:灼痕 效果 {!Snowpunk:M2!|1=本回合|@=持续 !Snowpunk:M2! 回合} 不会消失。"
+  },
+  "Snowpunk:Frozen": {
+    "NAME": "冻伤",
+    "DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 对于这个敌人， snowpunk:寒颤 效果在 {!M!|1=本回合|@=!M! 回合} 内等同于 snowpunk:灼痕 。 NL 给予 !Snowpunk:M2! 个 snowpunk:寒颤 。",
+    "UPGRADE_DESCRIPTION": "{@@}造成 !D! 点伤害。 NL 对于这个敌人， snowpunk:寒颤 效果在 {!M!|1=本回合|@=!M! 回合} 内等同于 snowpunk:灼痕 。 NL 给予 !Snowpunk:M2! 个 snowpunk:寒颤 。 NL 将其 snowpunk:灼痕 效果转换为 snowpunk:寒颤 。"
+  },
+  "Snowpunk:Combinatronics": {
+    "NAME": "组合术",
+    "DESCRIPTION": "选择两张费用相同的卡牌。移除第一张，并使第二张打出其复制牌。 消耗 。",
+    "UPGRADE_DESCRIPTION": "选择两张费用相同的卡牌。移除第一张，并使第二张打出其复制牌。",
+    "EXTENDED_DESCRIPTION": [
+      "移除并与另一张卡牌组合。",
+      "将其与……组合。"
+    ]
+  }
+}

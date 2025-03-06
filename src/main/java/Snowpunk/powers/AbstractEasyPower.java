@@ -21,8 +21,10 @@ public abstract class AbstractEasyPower extends AbstractPower implements Cloneab
         this.amount = amount;
         this.type = powerType;
 
-        Texture normalTexture = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/" + name.replace(" ","") + "32.png");
-        Texture hiDefImage = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/" + name.replace(" ","") + "84.png");
+        String power = ID.replaceAll(SnowpunkMod.modID + ":", "").replaceAll("Power", "");
+        Texture normalTexture = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/" + power + "32.png");
+        Texture hiDefImage = TexLoader.getTexture(SnowpunkMod.modID + "Resources/images/powers/" + power + "84.png");
+
         if (hiDefImage != null) {
             region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
             if (normalTexture != null)
