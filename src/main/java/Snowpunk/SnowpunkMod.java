@@ -22,6 +22,7 @@ import basemod.interfaces.*;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.mod.stslib.patches.cardInterfaces.MultiUpgradePatches;
@@ -115,6 +116,7 @@ public class SnowpunkMod implements
     public static int sfx = 1;
     public static boolean drawHot, conductoMode, altForge, singeHP;
     public static final ArrayList<CoreCard> cores = new ArrayList<>();
+    public static String lang = "eng";
 
 
     public SnowpunkMod() {
@@ -230,7 +232,19 @@ public class SnowpunkMod implements
 
     @Override
     public void receiveEditStrings() {
-        String curPath = Settings.language.name().toLowerCase();
+        loadStrings("eng");
+        if (Settings.language != Settings.GameLanguage.ENG) {
+            try {
+                lang = Settings.language.toString().toLowerCase();
+                loadStrings(Settings.language.toString().toLowerCase());
+            } catch (GdxRuntimeException er) {
+                System.out.println("Vacant: Adding keywords error: Language not found, defaulted to eng.");
+                lang = "eng";
+            }
+        }
+    }
+
+    private void loadStrings(String curPath) {
         BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + curPath + "/Cardstrings.json");
 
         BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + curPath + "/Relicstrings.json");
@@ -248,10 +262,11 @@ public class SnowpunkMod implements
         BaseMod.loadCustomStringsFile(TutorialStrings.class, modID + "Resources/localization/" + curPath + "/Potionstrings.json");
     }
 
+
     @Override
     public void receiveEditKeywords() {
         Gson gson = new Gson();
-        String json = Gdx.files.internal(modID + "Resources/localization/" + Settings.language.name().toLowerCase() + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String json = Gdx.files.internal(modID + "Resources/localization/" + lang + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
 
         if (keywords != null) {
