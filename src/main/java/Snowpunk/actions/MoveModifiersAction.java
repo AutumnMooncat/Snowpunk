@@ -48,6 +48,12 @@ public class MoveModifiersAction extends AbstractGameAction {
                     nonModCards.add(c);
             }
 
+            if (modCards.size() == 0 || (nonModCards.size() == 0 && modCards.size() == 1)) {
+                isDone = true;
+                returnCards();
+                return;
+            }
+
             Wiz.adp().hand.group.removeAll(nonModCards);
 
             if (Wiz.adp().hand.size() == 0) {
@@ -56,14 +62,14 @@ public class MoveModifiersAction extends AbstractGameAction {
                 return;
             }
 
-            if (Wiz.adp().hand.size() <= 1) {
-                chosenCards.add(Wiz.adp().hand.getTopCard());
-                Wiz.adp().hand.removeCard(Wiz.adp().hand.getTopCard());
-                returnCards();
-                step = 2;
-                duration = startDuration;
-                return;
-            }
+//            if (Wiz.adp().hand.size() <= 1) {
+//                chosenCards.add(Wiz.adp().hand.getTopCard());
+//                Wiz.adp().hand.removeCard(Wiz.adp().hand.getTopCard());
+//                returnCards();
+//                step = 2;
+//                duration = startDuration;
+//                return;
+//            }
 
             AbstractDungeon.handCardSelectScreen.open(copy ? TEXT[2] : TEXT[0], amount, true, false, false, false, false);
             tickDuration();
@@ -81,12 +87,14 @@ public class MoveModifiersAction extends AbstractGameAction {
 
             if (Wiz.adp().hand.size() == 0) {
                 isDone = true;
+                returnCards();
                 return;
             }
 
             if (Wiz.adp().hand.size() == 1) {
                 moveTo(AbstractDungeon.player.hand.getTopCard());
                 isDone = true;
+                returnCards();
                 return;
             }
 

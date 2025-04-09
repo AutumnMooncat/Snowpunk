@@ -30,7 +30,7 @@ public class ColdFireballCrossoutPatch {
         public static void Insert(AbstractCard __instance, SpriteBatch sb, float spacing, int i, @ByRef float[] start_x, float draw_y, BitmapFont font, Color textColor, @ByRef String[] tmp, GlyphLayout gl) {
             String key = tmp[0].trim();
             if (CardTemperatureFields.getCardHeat(__instance) < 0 && key.contains(TEXT[0])) {
-                if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FireballPower.POWER_ID)) {
+                if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(FireballPower.POWER_ID) && (AbstractDungeon.getMonsters().areMonstersBasicallyDead() || AbstractDungeon.getMonsters().areMonstersDead())) {
                     Color original = sb.getColor();
                     sb.setColor(Color.RED);
                     sb.draw(strikethrough,

@@ -254,9 +254,9 @@
   "${ModID}:FineTunedPower": {
     "NAME": "Fine Tuned",
     "DESCRIPTIONS": [
-      "The next card with #yPlating, [snowpunk:GearIcon]  or #yClank you play this turn costs #b0.",
+      "The next card with #yModifications or #yClank you play this turn costs #b0.",
       "The next #b",
-      " cards with #yPlating, [snowpunk:GearIcon]  or #yClank you play this turn cost #b0."
+      " cards with #yModifications or #yClank you play this turn cost #b0."
     ]
   },
   "${ModID}:ChooChooPower": {

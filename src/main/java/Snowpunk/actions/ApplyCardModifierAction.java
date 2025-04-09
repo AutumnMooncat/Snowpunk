@@ -139,7 +139,7 @@ public class ApplyCardModifierAction extends AbstractGameAction {
 
             if (group.size() <= num) {
                 for (AbstractCard c : group.group)
-                    CardModifierManager.addModifier(c, mod);
+                    CardModifierManager.addModifier(c, mod.makeCopy());
                 isDone = true;
                 return;
             }
@@ -150,7 +150,7 @@ public class ApplyCardModifierAction extends AbstractGameAction {
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
             for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-                CardModifierManager.addModifier(c, mod);
+                CardModifierManager.addModifier(c, mod.makeCopy());
                 AbstractDungeon.player.hand.addToTop(c);
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;

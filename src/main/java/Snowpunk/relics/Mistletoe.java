@@ -10,7 +10,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 
 public class Mistletoe extends AbstractEasyRelic {
     public static final String ID = makeID(Mistletoe.class.getSimpleName());
-    public static final int AMOUNT = 7;
+    public static final int AMOUNT = 8;
 
     public Mistletoe() {
         super(ID, RelicTier.UNCOMMON, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
