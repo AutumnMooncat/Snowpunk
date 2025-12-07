@@ -28,22 +28,9 @@ public class Clockwork extends AbstractMultiUpgradeCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-//        int effect = energyOnUse;
-//
-//        if (p.hasRelic("Chemical X")) {
-//            effect += ChemicalX.BOOST;
-//            p.getRelic("Chemical X").flash();
-//        }
-//        if (effect > 0)
-//            Wiz.applyToSelf(new OLD_ClockworkPower(p, magicNumber, effect));
-//
-//        if (!this.freeToPlayOnce)
-//            p.energy.use(EnergyPanel.totalCount);
-//        Wiz.applyToSelf(new BrassPower(p, magicNumber));
         Wiz.applyToSelf(new ClockworkPower(p, 1));
         if (increaseG)
             Wiz.applyToSelf(new CrankPower(Wiz.adp(), 1));
-//        Wiz.applyToSelf(new PreventBrassConsumptionPower(p, 1));
     }
 
     @Override

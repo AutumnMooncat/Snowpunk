@@ -24,9 +24,9 @@ public class ArtilleryCargo extends AbstractMultiUpgradeCard implements ClankCar
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 3;
-    private static final int DMG = 36;
-    private static final int UP = 6;
+    private static final int COST = 2;
+    private static final int DMG = 30;
+    private static final int UP = 5;
 
     public ArtilleryCargo() {
         super(ID, COST, TYPE, RARITY, TARGET);

@@ -5,5 +5,5 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public interface InHandClankReaction {
     boolean willBlockClank(AbstractCard card);
 
-    void postClank(AbstractCard card);
+    void postClank(AbstractCard card, boolean clanked);
 }

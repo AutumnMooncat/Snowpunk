@@ -29,7 +29,7 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
 
     public Blowtorch() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        CardModifierManager.addModifier(this, new GearMod(1));
+        CardModifierManager.addModifier(this, new GearMod(2));
         baseDamage = damage = DMG;
     }
 
@@ -44,7 +44,7 @@ public class Blowtorch extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(4));
+        addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
 //        addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));

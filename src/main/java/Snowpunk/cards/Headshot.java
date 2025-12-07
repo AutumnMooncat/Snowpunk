@@ -19,11 +19,11 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Headshot extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Headshot.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 2, DMG = 10, UP_DMG = 5;
+    private static final int COST = 2, DMG = 8, UP_DMG = 5;
 
     public Headshot() {
         super(ID, COST, TYPE, RARITY, TARGET);

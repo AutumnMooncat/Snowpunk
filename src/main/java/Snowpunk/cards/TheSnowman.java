@@ -4,6 +4,7 @@ import Snowpunk.actions.AddHatsToRandomCardsAction;
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
+import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.SnowNextTurnPower;
 import Snowpunk.powers.TheSnowmanPower;
 import Snowpunk.util.Wiz;
@@ -28,45 +29,46 @@ public class TheSnowman extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = -1;
+    private static final int COST = 2;
 
     public boolean freeUpgrade = false;
 
     public TheSnowman() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 0;
-        secondMagic = baseSecondMagic = 1;
+        magicNumber = baseMagicNumber = 2;
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = this.energyOnUse;
+//        int effect = this.energyOnUse;
+//
+//        if (p.hasRelic("Chemical X")) {
+//            effect += ChemicalX.BOOST;
+//            p.getRelic("Chemical X").flash();
+//        }
+//
+//        if (magicNumber > 0)
+//            effect += magicNumber;
+//
+//        if (effect > 0) {
+////            Wiz.applyToSelf(new DrawCardNextTurnPower(Wiz.adp(), effect));
+////            Wiz.applyToSelf(new SnowNextTurnPower(Wiz.adp(), effect));
+//
+//            Wiz.atb(new ApplyCardModifierAction(p.hand, secondMagic, new HatMod(effect)));
+//        }
+////            Wiz.applyToSelf(new TheSnowmanPower(Wiz.adp(), effect));
+//
+//        if (!this.freeToPlayOnce) {
+//            p.energy.use(EnergyPanel.totalCount);
+//        }
 
-        if (p.hasRelic("Chemical X")) {
-            effect += ChemicalX.BOOST;
-            p.getRelic("Chemical X").flash();
-        }
-
-        if (magicNumber > 0)
-            effect += magicNumber;
-
-        if (effect > 0) {
-//            Wiz.applyToSelf(new DrawCardNextTurnPower(Wiz.adp(), effect));
-//            Wiz.applyToSelf(new SnowNextTurnPower(Wiz.adp(), effect));
-
-            Wiz.atb(new ApplyCardModifierAction(p.hand, secondMagic, new HatMod(effect)));
-        }
-//            Wiz.applyToSelf(new TheSnowmanPower(Wiz.adp(), effect));
-
-        if (!this.freeToPlayOnce) {
-            p.energy.use(EnergyPanel.totalCount);
-        }
+        Wiz.atb(new ApplyCardModifierAction(p.hand, magicNumber, new HatMod(1)));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeMagicNumber(1));
-        addUpgradeData(() -> upgradeSecondMagic(1));
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() ->
         {
             exhaust = false;

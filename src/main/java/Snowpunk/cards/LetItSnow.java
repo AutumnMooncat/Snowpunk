@@ -42,7 +42,7 @@ public class LetItSnow extends AbstractMultiUpgradeCard {
     public LetItSnow() {
         super(ID, COST, TYPE, RARITY, TARGET);
         CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD);
-        CardModifierManager.addModifier(this, new GearMod(4));
+        CardModifierManager.addModifier(this, new GearMod(3));
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
@@ -54,17 +54,17 @@ public class LetItSnow extends AbstractMultiUpgradeCard {
                     Wiz.atb(new ApplyPowerAction(monster, AbstractDungeon.player, new ChillPower(monster, gears), gears));
             }
         }
-//        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-//            if (!monster.isDeadOrEscaped() && monster.currentHealth > 0) {
-//                int numChill = 0;
-//                if (monster.hasPower(ChillPower.POWER_ID))
-//                    numChill = monster.getPower(ChillPower.POWER_ID).amount;
-//                if (!monster.hasPower(ArtifactPower.POWER_ID))
-//                    numChill += gears;
-//
-//                Wiz.atb(new DamageAction(monster, new DamageInfo(player, numChill, DamageInfo.DamageType.HP_LOSS)));
-//            }
-//        }
+        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+            if (!monster.isDeadOrEscaped() && monster.currentHealth > 0) {
+                int numChill = 0;
+                if (monster.hasPower(ChillPower.POWER_ID))
+                    numChill = monster.getPower(ChillPower.POWER_ID).amount;
+                if (!monster.hasPower(ArtifactPower.POWER_ID))
+                    numChill += gears;
+
+                Wiz.atb(new DamageAction(monster, new DamageInfo(player, numChill, DamageInfo.DamageType.HP_LOSS)));
+            }
+        }
 
         Wiz.applyToSelf(new SnowfallPower(player, 1));
     }

@@ -23,28 +23,28 @@ public class BananaSplit extends AbstractEasyRelic {
         Wiz.atb(new GainSnowballAction(3));
     }
 
-    @Override
-    public void obtain() {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.hasRelic(IceCreamSandwich.ID)) {
-            for (int i = 0; i < p.relics.size(); ++i) {
-                if (p.relics.get(i).relicId.equals(IceCreamSandwich.ID)) {
-                    instantObtain(p, i, true);
-                    break;
-                }
-            }
-        } else {
-            super.obtain();
-        }
-    }
+//    @Override
+//    public void obtain() {
+//        AbstractPlayer p = AbstractDungeon.player;
+//        if (p.hasRelic(IceCreamSandwich.ID)) {
+//            for (int i = 0; i < p.relics.size(); ++i) {
+//                if (p.relics.get(i).relicId.equals(IceCreamSandwich.ID)) {
+//                    instantObtain(p, i, true);
+//                    break;
+//                }
+//            }
+//        } else {
+//            super.obtain();
+//        }
+//    }
 
     @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
     }
 
-    @Override
-    public boolean canSpawn() {
-        return AbstractDungeon.player.hasRelic(IceCreamSandwich.ID);
-    }
+//    @Override
+//    public boolean canSpawn() {
+//        return AbstractDungeon.player.hasRelic(IceCreamSandwich.ID);
+//    }
 }

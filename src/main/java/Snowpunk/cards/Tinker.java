@@ -16,7 +16,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Tinker extends AbstractEasyCard implements OnObtainCard {
     public final static String ID = makeID(Tinker.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 

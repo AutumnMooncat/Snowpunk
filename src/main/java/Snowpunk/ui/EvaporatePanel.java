@@ -3,6 +3,7 @@ package Snowpunk.ui;
 import Snowpunk.SnowpunkMod;
 import Snowpunk.patches.EvaporatePanelPatches;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
+import Snowpunk.relics.interfaces.OnEvaporateRelic;
 import Snowpunk.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
 import com.megacrit.cardcrawl.vfx.ExhaustPileParticle;
@@ -101,6 +103,10 @@ public class EvaporatePanel extends AbstractPanel {
             if (pow instanceof OnEvaporatePower) {
                 ((OnEvaporatePower) pow).onEvaporate(card);
             }
+        }
+        for (AbstractRelic relic : Wiz.adp().relics) {
+            if (relic instanceof OnEvaporateRelic)
+                ((OnEvaporateRelic) relic).onEvaporate(card);
         }
         for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
             for (AbstractPower pow : m.powers) {

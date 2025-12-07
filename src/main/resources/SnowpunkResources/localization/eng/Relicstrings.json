@@ -13,6 +13,13 @@
       "At the start of combat, gain #b5 #ysnowpunk:Brass."
     ]
   },
+  "${ModID}:HatEngine": {
+    "NAME": "Hat Engine",
+    "FLAVOR": "Always running.",
+    "DESCRIPTIONS": [
+      "The first time a card #ysnowpunk:Evaporates each combat, NL gain [E] ."
+    ]
+  },
   "${ModID}:ForbiddenScoop": {
     "NAME": "Forbidden Scoop",
     "FLAVOR": "Just a little off the top-",
@@ -42,7 +49,7 @@
     "NAME": "Banana Split",
     "FLAVOR": "With three scoops!",
     "DESCRIPTIONS": [
-      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] . NL Replaces #yIce #yCream #ySandwich."
+      "At the start of combat, gain [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] [Snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:Mistletoe": {

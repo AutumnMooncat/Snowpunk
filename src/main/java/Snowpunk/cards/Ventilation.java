@@ -12,8 +12,10 @@ import Snowpunk.powers.CopyNextCardPower;
 import Snowpunk.ui.EvaporatePanel;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsCenteredAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ReboundPower;
 
@@ -22,23 +24,24 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Ventilation extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Ventilation.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    public static String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("Evaporate")).TEXT;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
 
-    private static final int COST = 2, BLOCK = 11;
+    private static final int COST = 2, BLOCK = 12;
 
     public Ventilation() {
         super(ID, COST, TYPE, RARITY, TARGET);
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 1;
-        CardModifierManager.addModifier(this, new GearMod(1));
+        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         blck();
-        if (getGears() > 0) {
-            Wiz.atb(new BetterSelectCardsCenteredAction(Wiz.adp().discardPile.group, getGears(), "", true, card -> true, cards -> {
+        int numGears = getGears();
+        if (numGears > 0) {
+            Wiz.atb(new BetterSelectCardsCenteredAction(Wiz.adp().discardPile.group, numGears, TEXT[0] + numGears + TEXT[1], true, card -> true, cards -> {
                 for (AbstractCard c : cards)
                     EvaporatePanel.Evaporate(c);
             }));
@@ -48,8 +51,7 @@ public class Ventilation extends AbstractMultiUpgradeCard {
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> CardModifierManager.addModifier(this, new GearMod(1)));
-        addUpgradeData(() -> upgradeBlock(3));
-        addUpgradeData(() -> upgradeBlock(3));
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeBlock(4));
     }
 }

@@ -23,29 +23,33 @@ public class FireFist extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1;
-    private static final int DMG = 10;
+    private static final int COST = 2;
+    private static final int DMG = 13;
 
     public FireFist() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 3;
+        secondMagic = baseSecondMagic = 1;
         CardTemperatureFields.addInherentHeat(this, 2);
         exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        int numEvaporate = EvaporatePanel.evaporatePile.size();
-        if (numEvaporate > 0)
-            Wiz.applyToEnemy(m, new SingePower(m, numEvaporate * 2));
-//        Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
+//        int numEvaporate = EvaporatePanel.evaporatePile.size();
+//        if (numEvaporate > 0)
+        Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
+        Wiz.applyToEnemy(m, new VulnerablePower(m, secondMagic, false));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> upgradeDamage(5));
         addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
+        addUpgradeData(() -> {
+            upgradeMagicNumber(1);
+            upgradeSecondMagic(1);
+        });
     }
 }

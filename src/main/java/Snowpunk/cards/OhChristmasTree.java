@@ -33,13 +33,12 @@ public class OhChristmasTree extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
+        addUpgradeData(() -> upgradeMagicNumber(4));
         addUpgradeData(() -> {
             exhaust = false;
             uDesc();
         });
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 2, 0, 1);
     }
 
     @Override

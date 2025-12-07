@@ -31,7 +31,7 @@ import static Snowpunk.util.Wiz.atb;
 public class Toolbox extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Toolbox.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
@@ -39,9 +39,8 @@ public class Toolbox extends AbstractMultiUpgradeCard {
 
     public Toolbox() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        damage = baseDamage = 5;
+        damage = baseDamage = 6;
         isMultiDamage = true;
-        exhaust = true;
 //        CardModifierManager.addModifier(this, new GearMod(2));
     }
 

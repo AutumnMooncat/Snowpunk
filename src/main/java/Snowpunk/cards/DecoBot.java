@@ -16,7 +16,7 @@ public class DecoBot extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public DecoBot() {
         super(ID, COST, TYPE, RARITY, TARGET);

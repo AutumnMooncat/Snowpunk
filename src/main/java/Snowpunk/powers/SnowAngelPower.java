@@ -1,11 +1,15 @@
 package Snowpunk.powers;
 
 import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.GainBrassFromSnowAction;
 import Snowpunk.actions.GainHollyAction;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.cards.abstracts.ClankCard;
+import Snowpunk.patches.SnowballPatches;
 import Snowpunk.powers.interfaces.OnUseSnowPower;
 import Snowpunk.util.Wiz;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -27,23 +31,9 @@ public class SnowAngelPower extends AbstractEasyPower {
     }
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.baseBlock >= 0) {
-            flash();
-            Wiz.att(new ApplyCardModifierAction(card, new PlateMod(amount)));
-        }
-    }
-
-    @Override
-    public float modifyBlock(float blockAmount, AbstractCard card) {
-        return Math.max(blockAmount + amount, 0);
-    }
-
-    @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-        if (card.baseBlock >= 0 && type == DamageInfo.DamageType.NORMAL)
-            return damage + amount;
-        return damage;
+    public void atStartOfTurnPostDraw() {
+        Wiz.atb(new GainBrassFromSnowAction(amount));
+        flash();
     }
 
     @Override

@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.AddHatsToRandomCardsAction;
 import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.GainHollyAction;
 import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
@@ -20,27 +21,26 @@ public class RockinAround extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 3;
-    private static final int DMG = 9;
+    private static final int COST = 2;
+    private static final int DMG = 8;
     private static final int UP_DMG = 7;
 
     public RockinAround() {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = DMG;
+        magicNumber = baseMagicNumber = 6;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.atb(new ApplyCardModifierAction(Wiz.adp().hand, new HatMod()));
+        Wiz.atb(new GainHollyAction(magicNumber));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> upgradeDamage(2));
-        addUpgradeData(() -> upgradeDamage(3));
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
+        addUpgradeData(() -> upgradeMagicNumber(2));
     }
 }

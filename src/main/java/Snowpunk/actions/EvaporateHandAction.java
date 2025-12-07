@@ -28,7 +28,7 @@ public class EvaporateHandAction extends AbstractGameAction {
 
     private final boolean canPick;
 
-    public static final String ID = makeID("Enhance");
+    public static final String ID = makeID("Evaporate");
     public static String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     EvaporateHandCard card;
 
@@ -47,7 +47,7 @@ public class EvaporateHandAction extends AbstractGameAction {
                     isDone = true;
                     return;
                 }
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 999, true, true);
+                AbstractDungeon.handCardSelectScreen.open(TEXT[2], 999, true, true);
                 tickDuration();
                 return;
             }

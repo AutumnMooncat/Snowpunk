@@ -17,7 +17,7 @@ import static Snowpunk.SnowpunkMod.makeID;
 public class Kindness extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(Kindness.class.getSimpleName());
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
 
@@ -28,9 +28,7 @@ public class Kindness extends AbstractMultiUpgradeCard {
     public Kindness() {
         super(ID, COST, TYPE, RARITY, TARGET);
         magicNumber = baseMagicNumber = 8;
-        selfRetain = true;
         AoE = false;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,19 +40,19 @@ public class Kindness extends AbstractMultiUpgradeCard {
                 }
             }
         } else {
-            Wiz.atb(new HealAction(m, p, magicNumber));
+            Wiz.atb(new HealAction(m, p, 6));
             Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
         }
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(3));
         addUpgradeData(() -> {
             AoE = true;
             target = CardTarget.ALL_ENEMY;
             uDesc();
         });
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

@@ -23,7 +23,7 @@ public class HotChocolate extends AbstractMultiUpgradeCard {
 
     public HotChocolate() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 4;
+        baseMagicNumber = magicNumber = 5;
         CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
     }
 
@@ -33,9 +33,8 @@ public class HotChocolate extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeMagicNumber(2));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
-        setDependencies(true, 1, 0);
     }
 }

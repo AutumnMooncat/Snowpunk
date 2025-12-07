@@ -15,6 +15,10 @@
     "NAME": "Slicer",
     "DESCRIPTION": "Deal !D! damage twice."
   },
+  "${ModID}:Frontloader": {
+    "NAME": "Frontloader",
+    "DESCRIPTION": "Deal !D! damage. NL Doesn't consume snowpunk:Brass."
+  },
   "${ModID}:Cane": {
     "NAME": "Cane",
     "DESCRIPTION": "snowpunk:Hook target enemy."
@@ -81,7 +85,7 @@
   },
   "${ModID}:Swift": {
     "NAME": "Swift",
-    "DESCRIPTION": "snowpunk:Dualstrike."
+    "DESCRIPTION": "snowpunk:Swiftstrike."
   },
   "${ModID}:Replicable": {
     "NAME": "Replicable",
@@ -113,7 +117,7 @@
   },
   "${ModID}:Trench": {
     "NAME": "Trench",
-    "DESCRIPTION": "Double your Block."
+    "DESCRIPTION": "Gain !B! Block. NL Double your Block."
   },
   "${ModID}:Freezer": {
     "NAME": "Freezer",
@@ -129,7 +133,7 @@
   },
   "${ModID}:Winder": {
     "NAME": "Winder",
-    "DESCRIPTION": "snowpunk:Overdrive your hand."
+    "DESCRIPTION": "Deal !D! damage. NL Increase [snowpunk:GearIcon] \u00a0by 1 on cards in your hand."
   },
   "${ModID}:Goblet": {
     "NAME": "Goblet",
@@ -204,7 +208,7 @@
   },
   "${ModID}:Garland": {
     "NAME": "Garland",
-    "DESCRIPTION": "gain !Snowpunk:M2! [Snowpunk:HollyIcon] .",
+    "DESCRIPTION": "gain !Snowpunk:M2! snowpunk:Holly.",
     "EXTENDED_DESCRIPTION": [
       "gain #b",
       " #yHolly.",

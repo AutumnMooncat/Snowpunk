@@ -215,11 +215,11 @@
     "DESCRIPTION": "If you are at or below #b50% of your max HP, or have at least #b2 unique Debuffs, this card costs #b0."
   },
   {
-    "PROPER_NAME": "Dualstrike",
+    "PROPER_NAME": "Swiftstrike",
     "NAMES": [
-      "dualstrike"
+      "swiftstrike"
     ],
-    "DESCRIPTION": "If this card is the first one played this turn, play a copy of it."
+    "DESCRIPTION": "If this last card played this combat was an Attack, gain [E] ."
   },
   {
     "PROPER_NAME": "Duplicate",

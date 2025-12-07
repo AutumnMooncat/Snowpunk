@@ -2,6 +2,9 @@ package Snowpunk.powers;
 
 import Snowpunk.SnowpunkMod;
 import Snowpunk.actions.ApplyCardModifierAction;
+import Snowpunk.actions.MoveCardToHandAction;
+import Snowpunk.actions.MoveCardToTopOfDrawPileAction;
+import Snowpunk.actions.MoveTopOfDrawPileToHandAction;
 import Snowpunk.cardmods.PlateMod;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.interfaces.OnEvaporatePower;
@@ -46,33 +49,9 @@ public class AllAboardPower extends AbstractEasyPower implements OnEvaporatePowe
         }
     }
 
-    /*
-        public void atStartOfTurn() {
-            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                if (amount > 0) {
-                    flash();
-                    for (int i = 0; i < amount; i++) {
-                        AbstractCard card = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON, AbstractDungeon.cardRandomRng);
-                        if (makeEthereal)
-                            CardModifierManager.addModifier(card, new EtherealMod());
-                        if (upgrade)
-                            card.upgrade();
-                        addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), 1, false));
-                    }
-                }
-            }
-        }
-    */
-
-
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        /*if (makeEthereal)
-            description += DESCRIPTIONS[2];
-        if (upgrade)
-            description += DESCRIPTIONS[3];
-        description += DESCRIPTIONS[4];*/
     }
 
     @Override
@@ -82,8 +61,9 @@ public class AllAboardPower extends AbstractEasyPower implements OnEvaporatePowe
 
     @Override
     public void onEvaporate(AbstractCard card) {
-//        Wiz.applyToSelf(new BrassPower(Wiz.adp(), amount));
-        addToBot(new ApplyCardModifierAction(card, new PlateMod(amount)));
+        for (int i = 0; i < amount; i++)
+            addToBot(new MoveTopOfDrawPileToHandAction());
+
         flash();
     }
 }

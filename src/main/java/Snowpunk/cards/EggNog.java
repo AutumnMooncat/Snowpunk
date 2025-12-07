@@ -38,7 +38,7 @@ public class EggNog extends AbstractMultiUpgradeCard {
 
     public EggNog() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 4;
+        magicNumber = baseMagicNumber = 3;
     }
 
     private static ArrayList<TooltipInfo> Tooltip;
@@ -54,12 +54,13 @@ public class EggNog extends AbstractMultiUpgradeCard {
 
     public void use(AbstractPlayer player, AbstractMonster m) {
         Wiz.applyToEnemy(m, new ChillPower(m, magicNumber));
+        addToBot(new GainHollyAction(magicNumber));
         Wiz.applyToSelf(new SnowNextTurnPower(player, 1));
     }
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> upgradeMagicNumber(2));
+        addUpgradeData(() -> upgradeMagicNumber(1));
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.COLD));
         addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }

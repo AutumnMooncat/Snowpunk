@@ -19,36 +19,37 @@ public class ClockworkPower extends AbstractEasyPower {
     public static PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
-    public static int tick = 0;
+    public static int tick = 0, numCards = 0;
+
 
     public ClockworkPower(AbstractCreature owner, int amount) {
         super(POWER_ID, strings.NAME, PowerType.BUFF, false, owner, amount);
     }
 
-//    @Override
-//    public void atStartOfTurn() {
-////        Wiz.applyToSelf(new PreventBrassConsumptionThisTurnPower(Wiz.adp(), amount));
-//        Wiz.applyToSelf(new PreventBrassConsumptionPower(Wiz.adp(), amount));
-//        if (tick % 2 == 0)
-//            addToTop(new SFXAction("snowpunk:tick"));
-//        else
-//            addToTop(new SFXAction("snowpunk:tock"));
-//        tick++;
-//    }
+    @Override
+    public void onInitialApplication() {
+        super.onInitialApplication();
+        numCards = 0;
+    }
 
+    @Override
+    public void atStartOfTurn() {
+        super.atStartOfTurn();
+        numCards = 0;
+    }
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         int gears = GearMod.getGears(card);
-        if (gears > 0) {
+        if (gears > 0 && numCards < amount) {
             flash();
             if (tick % 2 == 0)
                 addToBot(new SFXAction("snowpunk:tick"));
             else
                 addToBot(new SFXAction("snowpunk:tock"));
             tick++;
-//            Wiz.applyToSelf(new BrassPower(Wiz.adp(), amount * gears));
-            Wiz.atb(new DrawCardAction(amount));
+            numCards++;
+            Wiz.atb(new DrawCardAction(gears));
         }
     }
 

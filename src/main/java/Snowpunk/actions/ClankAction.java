@@ -58,6 +58,7 @@ public class ClankAction extends AbstractGameAction {
             runClanks();
         else if (card instanceof NonClankCard && !skipNonClank)
             runNonClanks();
+        clankPlayed();
         isDone = true;
     }
 
@@ -93,7 +94,7 @@ public class ClankAction extends AbstractGameAction {
         }
         for (AbstractCard handCard : Wiz.adp().hand.group) {
             if (handCard instanceof InHandClankReaction) {
-                ((InHandClankReaction) handCard).postClank(card);
+                ((InHandClankReaction) handCard).postClank(card, true);
             }
         }
         for (AbstractRelic relic : Wiz.adp().relics) {
@@ -105,6 +106,14 @@ public class ClankAction extends AbstractGameAction {
     private void runNonClanks() {
         if (monster != null && card instanceof NonClankCard)
             ((NonClankCard) card).onNonClank(monster);
+    }
+
+    private void clankPlayed() {
+        for (AbstractCard handCard : Wiz.adp().hand.group) {
+            if (handCard instanceof InHandClankReaction) {
+                ((InHandClankReaction) handCard).postClank(card, false);
+            }
+        }
     }
 
     private boolean checkCardModsForClank(AbstractCard card) {

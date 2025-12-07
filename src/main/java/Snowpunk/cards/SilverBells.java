@@ -43,7 +43,7 @@ public class SilverBells extends AbstractMultiUpgradeCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         blck();
-        Wiz.applyToSelf(new NextTurnBlockPower(p, block));
+        Wiz.applyToSelf(new BlurPower(p, 1));
     }
 
     @Override

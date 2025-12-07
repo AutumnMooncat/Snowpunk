@@ -14,7 +14,7 @@ public class IceCreamSandwich extends AbstractEasyRelic {
     public static final int AMOUNT = 3;
 
     public IceCreamSandwich() {
-        super(ID, RelicTier.STARTER, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
+        super(ID, RelicTier.COMMON, LandingSound.MAGICAL, TheConductor.Enums.SNOWY_BLUE_COLOR);
 //        description = DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
         tips.clear();
         tips.add(new PowerTip(name, description));

@@ -3,6 +3,7 @@ package Snowpunk.cards;
 import Snowpunk.actions.ApplyCardModifierAction;
 import Snowpunk.cardmods.GearMod;
 import Snowpunk.cardmods.PlateMod;
+import Snowpunk.cardmods.Tinkerific;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
@@ -27,7 +28,6 @@ public class Gizmo extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         block = baseBlock = BLOCK;
-        magicNumber = baseMagicNumber = 1;
         CardModifierManager.addModifier(this, new GearMod(3));
     }
 
@@ -47,10 +47,13 @@ public class Gizmo extends AbstractMultiUpgradeCard {
             upgradeDamage(2);
             upgradeBlock(2);
         });
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
         addUpgradeData(() -> {
-            upgradeMagicNumber(1);
-            CardModifierManager.addModifier(this, new GearMod(1));
+            magicNumber = baseMagicNumber = 0;
+            upgradeMagicNumber(2);
+        });
+        addUpgradeData(() -> {
+            uDesc();
+            CardModifierManager.addModifier(this, new Tinkerific());
         });
     }
 }

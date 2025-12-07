@@ -2,6 +2,7 @@ package Snowpunk;
 
 import Snowpunk.cards.*;
 import Snowpunk.patches.SnowballPatches;
+import Snowpunk.relics.HatEngine;
 import Snowpunk.relics.IceCreamSandwich;
 import Snowpunk.vfx.VictoryGlow;
 import Snowpunk.vfx.VictorySnowflakeEffects;
@@ -101,7 +102,7 @@ public class TheConductor extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(IceCreamSandwich.ID);
+        retVal.add(HatEngine.ID);
         return retVal;
     }
 

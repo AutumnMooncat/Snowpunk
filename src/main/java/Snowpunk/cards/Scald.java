@@ -6,6 +6,7 @@ import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.damageMods.CauterizeDamage;
 import Snowpunk.patches.CardTemperatureFields;
+import Snowpunk.powers.FireballPower;
 import Snowpunk.powers.SingePower;
 import Snowpunk.util.Wiz;
 import basemod.helpers.CardModifierManager;
@@ -36,6 +37,8 @@ public class Scald extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         baseDamage = damage = 10;
         magicNumber = baseMagicNumber = 3;
+        secondMagic = baseSecondMagic = 1;
+        CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -44,7 +47,8 @@ public class Scald extends AbstractMultiUpgradeCard {
         else
             addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         Wiz.applyToEnemy(m, new SingePower(m, magicNumber));
-        Wiz.atb(new GainBlockEqualToDebuffAction(SingePower.POWER_ID, m));
+        Wiz.applyToSelf(new FireballPower(p, secondMagic));
+//        Wiz.atb(new GainBlockEqualToDebuffAction(SingePower.POWER_ID, m));
     }
 
     @Override
@@ -54,10 +58,6 @@ public class Scald extends AbstractMultiUpgradeCard {
             upgradeMagicNumber(1);
         });
         addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
-        addUpgradeData(() -> {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
-        });
-        setDependencies(true, 2, 0);
+        addUpgradeData(() -> upgradeSecondMagic(1));
     }
 }

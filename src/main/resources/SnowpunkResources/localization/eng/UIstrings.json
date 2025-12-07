@@ -41,6 +41,8 @@
   },
   "${ModID}:Evaporate": {
     "TEXT": [
+      "Choose up to ",
+      " cards to Evaporate",
       "Evaporate"
     ]
   },
@@ -110,6 +112,11 @@
   "${ModID}:Cryo": {
     "TEXT": [
       "Enhance"
+    ]
+  },
+  "${ModID}:Exhaust": {
+    "TEXT": [
+      "Exhaust"
     ]
   },
   "${ModID}:EvaporateTutorial": {

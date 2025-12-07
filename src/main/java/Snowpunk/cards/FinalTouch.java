@@ -19,8 +19,6 @@ import java.util.List;
 
 import static Snowpunk.SnowpunkMod.makeID;
 
-@NoPools
-@NoCompendium
 public class FinalTouch extends AbstractMultiUpgradeCard {
     public final static String ID = makeID(FinalTouch.class.getSimpleName());
 
@@ -32,20 +30,18 @@ public class FinalTouch extends AbstractMultiUpgradeCard {
 
     public FinalTouch() {
         super(ID, COST, TYPE, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 1;
         block = baseBlock = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        Wiz.atb(new IncreaseModifiersAction(false, magicNumber));
+        Wiz.atb(new IncreaseModifiersAction(false, 1));
     }
 
     @Override
     public void addUpgrades() {
         addUpgradeData(() -> upgradeBlock(3));
         addUpgradeData(() -> CardTemperatureFields.addHeat(this, CardTemperatureFields.COLD));
-        addUpgradeData(() -> upgradeMagicNumber(1));
-        setDependencies(false, 2, 0, 1);
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

@@ -38,6 +38,7 @@ public class AnotherAnvil extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = DMG;
         isMultiDamage = true;
+        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -55,7 +56,7 @@ public class AnotherAnvil extends AbstractMultiUpgradeCard {
     public void addUpgrades() {
         addUpgradeData(() -> upgradeDamage(3));
         addUpgradeData(() -> upgradeDamage(4));
-        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeDamage(5));
         setDependencies(true, 1, 0);
         setDependencies(true, 2, 1);
     }

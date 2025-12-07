@@ -97,8 +97,8 @@
   "${ModID}:AllAboardPower": {
     "NAME": "All Aboard!",
     "DESCRIPTIONS": [
-      "Whenever a card #yEvaporates, give it #b",
-      " #yPlating."
+      "Whenever a card #yEvaporates, put the top #b",
+      " card(s) from your draw pile into your hand."
     ]
   },
   "${ModID}:CarolingPower": {
@@ -206,9 +206,9 @@
   "${ModID}:ClockworkPower": {
     "NAME": "Clockwork",
     "DESCRIPTIONS": [
-      "Whenever you play a card with [snowpunk:GearIcon] , draw a card.",
-      "Whenever you play a card with [snowpunk:GearIcon] , draw #b",
-      " cards."
+      "The first time each turn you play a card with [snowpunk:GearIcon] , draw cards equal to its [snowpunk:GearIcon] .",
+      "The first #b",
+      " times each turn you play a card with [snowpunk:GearIcon] , draw cards equal to its [snowpunk:GearIcon] ."
     ]
   },
   "${ModID}:GracePower": {
@@ -226,6 +226,14 @@
     "DESCRIPTIONS": [
       "If you end combat with at least #b1 #yGrace, heal #b",
       " HP."
+    ]
+  },
+  "${ModID}:GeneratorPower": {
+    "NAME": "Generator",
+    "DESCRIPTIONS": [
+      "The next time a card #yClanks, draw 1 card and gain [E] .",
+      "The next #b",
+      " times a card #yClanks, draw 1 card and gain [E] ."
     ]
   },
   "${ModID}:MiserPower": {
@@ -287,8 +295,8 @@
   "${ModID}:SnowAngelPower": {
     "NAME": "Snow Angel",
     "DESCRIPTIONS": [
-      "Whenever you play a #yBlock card, give it ",
-      " #yPlating."
+      "At the start of your turn, gain #b",
+      " #yBrass per [snowpunk:SnowIcon] ."
     ]
   },
   "${ModID}:SteamPower": {
