@@ -233,7 +233,7 @@
   },
   "${ModID}:SleighRide": {
     "NAME": "Sleigh Ride",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! snowpunk:Plating to ALL Sleigh Rides."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Deals additional damage equal to your snowpunk:Holly."
   },
   "${ModID}:DrillBit": {
     "NAME": "Drill Bit",

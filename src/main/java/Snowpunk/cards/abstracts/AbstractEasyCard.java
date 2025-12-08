@@ -2,6 +2,7 @@ package Snowpunk.cards.abstracts;
 
 import Snowpunk.TheConductor;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.patches.HollyPatches;
 import Snowpunk.patches.SnowballPatches;
 import Snowpunk.powers.CrankPower;
 import Snowpunk.util.CardArtRoller;
@@ -293,6 +294,10 @@ public abstract class AbstractEasyCard extends CustomCard {
 
     protected int getSnow() {
         return getSnowStatic();
+    }
+
+    protected int getHolly() {
+        return HollyPatches.Holly.amount;
     }
 
     public static int getSnowStatic() {
