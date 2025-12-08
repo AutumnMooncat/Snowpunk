@@ -2,6 +2,7 @@ package Snowpunk.cards;
 
 import Snowpunk.actions.UpgradeInHandAction;
 import Snowpunk.cardmods.GearMod;
+import Snowpunk.cardmods.HatMod;
 import Snowpunk.cards.abstracts.AbstractMultiUpgradeCard;
 import Snowpunk.patches.CardTemperatureFields;
 import Snowpunk.powers.BrassPower;
@@ -41,6 +42,7 @@ public class Toolbox extends AbstractMultiUpgradeCard {
         super(ID, COST, TYPE, RARITY, TARGET);
         damage = baseDamage = 6;
         isMultiDamage = true;
+        exhaust = true;
 //        CardModifierManager.addModifier(this, new GearMod(2));
     }
 
@@ -90,19 +92,8 @@ public class Toolbox extends AbstractMultiUpgradeCard {
 
     @Override
     public void addUpgrades() {
-        addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
-        });
-        addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
-        });
-        addUpgradeData(() -> {
-            upgradeDamage(1);
-            CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT);
-        });
-        setDependencies(true, 1, 0);
-        setDependencies(true, 2, 1);
+        addUpgradeData(() -> CardTemperatureFields.addInherentHeat(this, CardTemperatureFields.HOT));
+        addUpgradeData(() -> upgradeDamage(3));
+        addUpgradeData(() -> CardModifierManager.addModifier(this, new HatMod()));
     }
 }

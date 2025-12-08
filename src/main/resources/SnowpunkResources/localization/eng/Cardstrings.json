@@ -233,7 +233,7 @@
   },
   "${ModID}:SleighRide": {
     "NAME": "Sleigh Ride",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL snowpunk:Clank: Gain 4 snowpunk:Chill."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! snowpunk:Plating to ALL Sleigh Rides."
   },
   "${ModID}:DrillBit": {
     "NAME": "Drill Bit",
@@ -283,7 +283,7 @@
   },
   "${ModID}:Toolbox": {
     "NAME": "Toolbox",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade your hand."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade your hand. NL Exhaust."
   },
   "${ModID}:TooMuch": {
     "NAME": "Too Much",

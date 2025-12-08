@@ -27,7 +27,7 @@ public class Overblown extends AbstractMultiUpgradeCard implements ClankCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 10, UP_DMG = 1;
+    private static final int COST = 1, DMG = 8, UP_DMG = 1;
 
     public Overblown() {
         super(ID, COST, TYPE, RARITY, TARGET);

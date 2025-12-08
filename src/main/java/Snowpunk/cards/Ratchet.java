@@ -22,7 +22,7 @@ public class Ratchet extends AbstractMultiUpgradeCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
 
-    private static final int COST = 1, DMG = 9, CLANK = 1, UP_DMG = 3, UP_CLANK = 1;
+    private static final int COST = 1, DMG = 8, CLANK = 1, UP_DMG = 3, UP_CLANK = 1;
 
     public Ratchet() {
         super(ID, COST, TYPE, RARITY, TARGET);
